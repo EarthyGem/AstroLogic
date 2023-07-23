@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "charts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielgindi/Charts.git",
+      "state" : {
+        "revision" : "0a229f8c914b0ec93798cee058cf75b339297513",
+        "version" : "5.0.0"
+      }
+    },
+    {
+      "identity" : "googlemaps-sp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/YAtechnologies/GoogleMaps-SP.git",
+      "state" : {
+        "revision" : "684ea6db362feaefdfcff89356e446bec8bcde3d",
+        "version" : "7.2.0"
+      }
+    },
+    {
+      "identity" : "swiftephemeris",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/heylila/SwiftEphemeris.git",
+      "state" : {
+        "branch" : "chart-cake",
+        "revision" : "c5e63fa35ec9425002c66889d3d75872f0ee34b0"
+      }
+    }
+  ],
+  "version" : 2
+}
