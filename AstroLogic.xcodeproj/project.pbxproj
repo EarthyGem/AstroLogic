@@ -29,6 +29,7 @@
 		3997F07A2A64303F00741E9D /* Progression Sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0792A64303F00741E9D /* Progression Sentence.swift */; };
 		3997F07C2A66FA5700741E9D /* AspectsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F07B2A66FA5700741E9D /* AspectsVc.swift */; };
 		3997F07E2A68F7DF00741E9D /* AspectarianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F07D2A68F7DF00741E9D /* AspectarianView.swift */; };
+		3997F0802A6D89B900741E9D /* VC 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F07F2A6D89B900741E9D /* VC 2.swift */; };
 		39A1EC342A5F6003008D1EC1 /* StrongestPlanetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */; };
 		39A1EC362A5F6043008D1EC1 /* MyItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */; };
 		39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */; };
@@ -101,6 +102,7 @@
 		3997F0792A64303F00741E9D /* Progression Sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Progression Sentence.swift"; sourceTree = "<group>"; };
 		3997F07B2A66FA5700741E9D /* AspectsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectsVc.swift; sourceTree = "<group>"; };
 		3997F07D2A68F7DF00741E9D /* AspectarianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectarianView.swift; sourceTree = "<group>"; };
+		3997F07F2A6D89B900741E9D /* VC 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC 2.swift"; sourceTree = "<group>"; };
 		39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrongestPlanetVC.swift; sourceTree = "<group>"; };
 		39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsVC.swift; sourceTree = "<group>"; };
 		39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today's VC.swift"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				3903A33A2A5F2D0700245DD2 /* AppDelegate.swift */,
 				3903A33C2A5F2D0700245DD2 /* SceneDelegate.swift */,
 				3903A33E2A5F2D0700245DD2 /* ViewController.swift */,
+				3997F07F2A6D89B900741E9D /* VC 2.swift */,
 				39A1EC392A5F61AD008D1EC1 /* ChartViewerVC.swift */,
 				3997F07B2A66FA5700741E9D /* AspectsVc.swift */,
 				39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */,
@@ -413,6 +416,7 @@
 				39A1EC692A60F98C008D1EC1 /* Harmony and Discord.swift in Sources */,
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
 				39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */,
+				3997F0802A6D89B900741E9D /* VC 2.swift in Sources */,
 				3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */,
 				39A1EC6F2A611D05008D1EC1 /* more scores.swift in Sources */,
 				39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */,

@@ -302,8 +302,7 @@ var chart: Chart?
     var SelectedIndex = -1
     var isCollapsed = false
 
-   
-  
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         sunTableView.dataSource = self
