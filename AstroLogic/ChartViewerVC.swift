@@ -22,7 +22,7 @@ class PercentFormatter: NSObject, ValueFormatter {
 
 
 class ChartViewController: UIViewController {
-    var birthChartView: ChartView!
+    var birthChartView: BirthChartView!
     
     var harmonyDiscordLabels: [UILabel] = []
     
@@ -108,9 +108,9 @@ class ChartViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = ChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake)
+        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chart: chart!)
         
-        birthChartView.backgroundColor = .white
+     //   birthChartView.backgroundColor = .white
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 550, width: screenWidth, height: 1500))
         // Set the total height to 4000
         let totalHeight: CGFloat = 4000

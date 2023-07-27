@@ -11,7 +11,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     var birthPlaceTimeZone: TimeZone? = nil
     var selectedDate: Date?
     var chart: Chart?
-    var birthChartView: ChartView?
+    var birthChartView: BirthChartView?
     var strongestPlanetSign: String?
     let locationManager = CLLocationManager()
     var harmonyDiscordScores: [String: (harmony: Double, discord: Double, difference: Double)]?
@@ -371,7 +371,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
         self.navigationController?.pushViewController(chartVC, animated: true)
         
-//        birthChartView = ChartView(frame: view.bounds, chartCake: chartCake!)
+//        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
     }
 
 @objc func getPowerPlanetButtonTapped() {

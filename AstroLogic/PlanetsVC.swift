@@ -11,7 +11,7 @@ import UIKit
 class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var chartCake: ChartCake?
     var chart: Chart?
-    var birthChartView: ChartView!
+    var birthChartView: BirthChartView!
 
     var natalSigns: [String] = []
 
@@ -108,7 +108,7 @@ var mySunText = ""
         super.viewDidLoad()
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = ChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
+        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chart: chart!)
      
         
         view.backgroundColor = .black

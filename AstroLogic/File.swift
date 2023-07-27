@@ -15,7 +15,7 @@
 //    var selectedDate: Date?
 //    var chartCake: ChartCake?
 //    var chart: Chart?
-//        var birthChartView: ChartView?
+//        var birthChartView: BirthChartView?
 //    var strongestPlanetSign: String?
 //    let locationManager = CLLocationManager()
 //    var harmonyDiscordScores: [String: (harmony: Double, discord: Double, difference: Double)]?
@@ -166,7 +166,7 @@
 //            // Show an error message if the chart is not available
 //            return
 //        }
-//        birthChartView = ChartView(frame: view.bounds, chartCake: chartCake!)
+//        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
 //
 //        // Initialize and push the ChartViewController
 //        let chartVC = ChartViewController()
