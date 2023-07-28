@@ -365,8 +365,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         // Initialize and push the ChartViewController
         let chartVC = ChartViewController()
         chartVC.chart = chart.self
+        chartVC.houseScores = calculateHouseStrengths(chart: self.chart!, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns(), planetsInHouses: calculatePlanetsInHouses())
         chartVC.chartCake = chartCake.self
-        chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: chart!)
+        chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
         chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
         chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
         self.navigationController?.pushViewController(chartVC, animated: true)

@@ -212,23 +212,23 @@ class ChartViewController: UIViewController {
         let signScores = calculateTotalSignScore(chart: chart, houseCusps: [], interceptedSigns: [])
         let elementScores = calculateTotalElementScores(signScores: signScores)
         let elementPieChartView = createPieChartView(dataEntries: generateElementPieChartData(scores: elementScores))
-        elementPieChartView.frame = CGRect(x: 10, y: 750, width: 150, height: 150)
+        elementPieChartView.frame = CGRect(x: 85, y: 750, width: 250, height: 250)
         scrollView.addSubview(elementPieChartView)
         
         
         let modalityScores = calculateTotalModalityScores(signScores: signScores)
         let modalityPieChartView = createPieChartView(dataEntries: generateModalityPieChartData(scores: modalityScores))
-        modalityPieChartView.frame = CGRect(x: 10, y: 900, width: 150, height: 150)
+        modalityPieChartView.frame = CGRect(x: 85, y: 1050, width: 250, height: 250)
         scrollView.addSubview(modalityPieChartView)
         
         let emanationScores = calculateTotalEmanationScores(signScores: signScores)
         let emanationPieChartView = createPieChartView(dataEntries: generateEmanationPieChartData(scores: emanationScores))
-        emanationPieChartView.frame = CGRect(x: 10, y: 1050, width: 150, height: 150)
+        emanationPieChartView.frame = CGRect(x: 85, y: 1350, width: 250, height: 250)
         scrollView.addSubview(emanationPieChartView)
         
         let trinityScores = calculateTotalTrinityScores(houseScores: houseScores)
         let trinityPieChartView = createPieChartView(dataEntries: generateTrinityPieChartData(trinityScores: trinityScores))
-        trinityPieChartView.frame = CGRect(x: 10, y: 1200, width: 150, height: 150)
+        trinityPieChartView.frame = CGRect(x: 85, y: 1650, width: 250, height: 250)
         scrollView.addSubview(trinityPieChartView)
         
         
@@ -238,7 +238,7 @@ class ChartViewController: UIViewController {
         
         //     print("Domain Scores: \(domainScores)")
         let domainPieChartView = createPieChartView(dataEntries: generateDomainPieChartData(domainScores: domainScores))
-        domainPieChartView.frame = CGRect(x: 10, y: 1350, width: 150, height: 150)
+        domainPieChartView.frame = CGRect(x: 85, y: 1950, width: 250, height: 250)
         scrollView.addSubview(domainPieChartView)
         
 //
@@ -275,20 +275,20 @@ class ChartViewController: UIViewController {
             
             
             // Sign Scores Bar Chart
-            let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 1600, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateSignBarChart(chartView: signScoresChart, scores: signScores, label: "Sign Scores")
             self.scrollView.addSubview(signScoresChart)
             
             
             // House Scores Bar Chart
-            let houseScoresChart = BarChartView(frame: CGRect(x: 10, y: 1900, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let houseScoresChart = BarChartView(frame: CGRect(x: 10, y: 2550, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateHouseBarChart(chartView: houseScoresChart, scores: houseScores, label: "House Scores")
             self.scrollView.addSubview(houseScoresChart)
             
             
             
             // Planet Scores Bar Chart
-            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: 2200, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: 2850, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updatePlanetBarChart(chartView: planetScoresChart, scores: scores, label: "Planet Scores")
             self.scrollView.addSubview(planetScoresChart)
             
