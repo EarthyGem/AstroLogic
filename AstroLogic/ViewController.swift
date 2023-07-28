@@ -399,24 +399,16 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                self.timePicker.timeZone = timeZone
                self.datePicker.timeZone = timeZone
                
-            self.ascDeclination = ascDeclination
-                self.mcDeclination = mcDeclination
+           
             self.birthPlaceTimeZone = timeZone
        
             self.chart = Chart(date: combinedDateAndTime()!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         
-            self.selectedDate = self.datePicker.date // Store the selected date in a property
-               
                
                
 
-            //                datePickerValueChanged()
-            // Calculate Ascendant and Midheaven declinations
-//            let julianDay = selectedDate!.julianDate()
-//            let obliquityOfEcliptic = obliquity(julianDay: julianDay)
-//
-//               let (_, ascDeclination) = eclipticToEquatorial(longitude: (self.chart?.houseCusps.ascendent.value)!, obliquity: obliquityOfEcliptic)
-//               let (_, mcDeclination) = eclipticToEquatorial(longitude: (self.chart?.houseCusps.midHeaven.value)!, obliquity: obliquityOfEcliptic)
+                            datePickerValueChanged()
+
 
                let scores = getTotalPowerScoresForPlanets(chart: chart!)
 
@@ -552,7 +544,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                let strongestPlanetVC = StrongestPlanetViewController()
                strongestPlanetVC.chartCake = chartCake.self
                strongestPlanetVC.chart = chart.self
-               strongestPlanetVC.strongestPlanet = strongestPlanet.self
+               strongestPlanetVC.strongestPlanet = getStrongestPlanet2(from: filteredScores)
+               //
                strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.self
                strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.self
                strongestPlanetVC.sentenceText = sentence.self

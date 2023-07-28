@@ -364,7 +364,7 @@ class BirthChartView: UIView {
             
             
             
-            let symbolSize = min(bounds.width, bounds.height) / 20
+            let symbolSize = min(bounds.width, bounds.height) / 30
             let symbolRect = CGRect(x: centerX - symbolSize / 2, y: centerY - symbolSize / 2, width: symbolSize, height: symbolSize)
             
             let degreeLabelRadius = min(bounds.width, bounds.height) * 0.45 - 42
@@ -378,7 +378,7 @@ class BirthChartView: UIView {
                 degreeLabel.textColor = .white
                 degreeLabel.textAlignment = .center
                 degreeLabel.text = degree
-                degreeLabel.font = UIFont.systemFont(ofSize: 12)
+                degreeLabel.font = UIFont.systemFont(ofSize: 9)
                 degreeLabel.sizeToFit()
 
                 let degreeLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: degreeLabelRadius, lastSymbolCenter: &lastDegreeLabelCenter, lastCelestialObject: &lastDegreeLabelCelestialObject, minSymbolDistance: minLabelDistance)
@@ -421,7 +421,7 @@ class BirthChartView: UIView {
                 minuteLabel.textColor = .white
                 minuteLabel.textAlignment = .center
                 minuteLabel.text = minute
-                minuteLabel.font = UIFont.systemFont(ofSize: 8)
+                minuteLabel.font = UIFont.systemFont(ofSize: 6)
                 minuteLabel.sizeToFit()
 
                 let minuteLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: minuteLabelRadius, lastSymbolCenter: &lastMinuteLabelCenter, lastCelestialObject: &lastMinuteLabelCelestialObject, minSymbolDistance: minLabelDistance)
