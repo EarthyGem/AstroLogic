@@ -63,11 +63,13 @@ class MyItemsViewController: UIViewController {
         
         
         super.viewDidLoad()
+        print("StrongestPlanet: \(strongestPlanet)")
         view.backgroundColor = .white
               title = "My Items"
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
 
     override func viewDidLayoutSubviews() {
@@ -95,15 +97,15 @@ extension MyItemsViewController: UITableViewDelegate {
         natalPlanetsVC.chartCake = self.chartCake
 //
 
-//        let decanatesVC = DeacanatesViewController(planets: placeolder)
-//        decanatesVC.title = category.chartType
-//        decanatesVC.chart = self.chart
-//        decanatesVC.strongestPlanet = self.strongestPlanet
-//        decanatesVC.title = category.chartType
-//        let planetaryDegreesVC = PlanetDegreeViewController()
-//
-//        planetaryDegreesVC.title = category.chartType
-//        planetaryDegreesVC.chart = self.chart
+        let decanatesVC = DeacanatesViewController(planets: placeolder)
+        decanatesVC.title = category.chartType
+        decanatesVC.chart = self.chart
+        decanatesVC.strongestPlanet = self.strongestPlanet
+        decanatesVC.title = category.chartType
+        let planetaryDegreesVC = PlanetDegreeViewController()
+
+        planetaryDegreesVC.title = category.chartType
+        planetaryDegreesVC.chart = self.chart
 
         let myNatalHousesVC = MyNatalHousesVC()
         myNatalHousesVC.chart = self.chart
@@ -147,7 +149,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
         MP_PlanetsVC.title = category.chartType
         
-        let categories = [todaysVC,natalPlanetsVC,myNatalHousesVC,myNatalAspectsVC,transitPlanetsVC,transitAspectsVC,minorProgressionsVC,mp_natalAspectsVC,MP_PlanetsVC,MP_AspectsVC]
+        let categories = [todaysVC, planetaryDegreesVC, decanatesVC,planetaryDegreesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,transitPlanetsVC,transitAspectsVC,minorProgressionsVC,mp_natalAspectsVC,MP_PlanetsVC,MP_AspectsVC]
         
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
         

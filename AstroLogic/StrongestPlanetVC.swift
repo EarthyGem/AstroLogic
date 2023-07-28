@@ -81,6 +81,7 @@ class StrongestPlanetViewController: UIViewController {
         // Initialize and push the MyItemsViewController
         let myItemsVC = MyItemsViewController()
         myItemsVC.chart = chart.self
+        myItemsVC.strongestPlanet = strongestPlanet.self
         myItemsVC.chartCake = chartCake.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet
