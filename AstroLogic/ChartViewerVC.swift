@@ -31,7 +31,7 @@ class ChartViewController: UIViewController {
     var scrollView: UIScrollView!
     var scoreLabels: [UILabel] = []
     var chartCake: ChartCake!
-    var selectedDate: Date?
+  
     var scores2: [(String, Double)] = []
     var signScore: [String : Double] = [:]
     var scores: [String : Double] = [:]
@@ -207,7 +207,7 @@ class ChartViewController: UIViewController {
     //    birthChartView.updateBirthChart()
         
         let birthChart = chart
-        let date = selectedDate
+     
         
         let signScores = calculateTotalSignScore(chart: chart, houseCusps: [], interceptedSigns: [])
         let elementScores = calculateTotalElementScores(signScores: signScores)
@@ -241,13 +241,13 @@ class ChartViewController: UIViewController {
         domainPieChartView.frame = CGRect(x: 85, y: 1950, width: 250, height: 250)
         scrollView.addSubview(domainPieChartView)
         
-//
-//        let aspectarianView = AspectarianView(frame: CGRect(x: 0, y: 400, width: screenWidth, height: 400), chart: chart, selectedDate: Date())
-//        aspectarianView.backgroundColor = .black // Add this line to visually identify the AspectarianView
-//        //        view.addSubview(aspectarianView)
-//
-//        let aspectButton = UIBarButtonItem(title: "Aspects", style: .plain, target: self, action: #selector(showAspectsViewController))
-//        navigationItem.rightBarButtonItem = aspectButton
+
+        let aspectarianView = AspectarianView(frame: CGRect(x: 0, y: 400, width: screenWidth, height: 400), chart: chart)
+        aspectarianView.backgroundColor = .black // Add this line to visually identify the AspectarianView
+             //  view.addSubview(aspectarianView)
+
+        let aspectButton = UIBarButtonItem(title: "Aspects", style: .plain, target: self, action: #selector(showAspectsViewController))
+        navigationItem.rightBarButtonItem = aspectButton
         
         
         
@@ -669,11 +669,12 @@ class ChartViewController: UIViewController {
         }
     }
     
-//    @objc private func showAspectsViewController() {
-//        let aspectsViewController = AspectsViewController(chart: chart, selectedDate: selectedDate ?? Date())
-//        navigationController?.pushViewController(aspectsViewController, animated: true)
-//    }
-//
+    @objc private func showAspectsViewController() {
+        let aspectsViewController = AspectsViewController(chart: chart)
+      
+        navigationController?.pushViewController(aspectsViewController, animated: true)
+    }
+
     func calculateTotalElementScores(signScores: [String: Double]) -> [Element: Double] {
         var elementScores: [Element: Double] = [.fire: 0, .earth: 0, .air: 0, .water: 0]
         

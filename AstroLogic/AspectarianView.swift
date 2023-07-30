@@ -2,20 +2,17 @@ import UIKit
 import SwiftEphemeris
 
 class AspectarianView: UIView {
-    private let chartCake: ChartCake
-    
     private let chart: Chart
-    private let selectedDate: Date
-    private var aspects: [AspectType] = []
+  
+  //  private var aspects: [AstroAspect] = []
 
     let planetNames = ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto", "s.node","ascendant", "midheaven", "northnode", "midheaven"]
 
-    init(frame: CGRect, chartCake: ChartCake, chart: Chart, selectedDate: Date) {
+    init(frame: CGRect, chart: Chart) {
         self.chart = chart
-        self.chartCake = chartCake
-        self.selectedDate = selectedDate
+     
         super.init(frame: frame)
-        setupView()
+//        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,16 +32,16 @@ class AspectarianView: UIView {
 
 //    func printAspectSymbols() {
 //          for aspect in aspects {
-//              if let symbol = aspect.aspectString {
-//               //   print("Aspect Symbol: \(symbol)")
+//              if let symbol = aspect.symbol {
+//                  print("Aspect Symbol: \(symbol)")
 //              }
 //          }
 //      }
-//
-  func setupView() {
-      aspects = chart.allRickysNatalAspects
+      
+//  func setupView() {
+//      aspects = getAllNatalAspects(birthChart: chart, date: selectedDate)
 //          printAspectSymbols() // Print the aspect symbols
-      }
+//      }
 
     
     private func drawZodiacSquareGrid2(context: CGContext) {
