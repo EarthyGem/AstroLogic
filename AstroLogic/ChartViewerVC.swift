@@ -34,7 +34,7 @@ class ChartViewController: UIViewController {
   
     var scores2: [(String, Double)] = []
     var signScore: [String : Double] = [:]
-    var scores: [String : Double] = [:]
+    var scores = [String : Double]()
     var houseScores: [Int : Double] = [:]
     var signScore2: [String : Double] = [:]
     var signScores: [String : Double] = [:]

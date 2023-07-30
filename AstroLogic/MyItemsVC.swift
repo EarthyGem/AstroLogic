@@ -35,7 +35,7 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "Today for \(myName)"),
         RicksItems(chartType: "\(myName)'s Planetary Degrees"),
         RicksItems(chartType: "\(myName)'s Key Decanates"),
-        RicksItems(chartType: "\(myName)'s Natal ChartCake"),
+        RicksItems(chartType: "\(myName)'s Natal Chart"),
         RicksItems(chartType: "\(myName)'s Natal Houses"),
         RicksItems(chartType: "\(myName)'s Natal Aspects"),
         RicksItems(chartType: "\(myName)'s Transit Progressions"),
@@ -149,7 +149,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
         MP_PlanetsVC.title = category.chartType
         
-        let categories = [todaysVC, planetaryDegreesVC, decanatesVC,planetaryDegreesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,transitPlanetsVC,transitAspectsVC,minorProgressionsVC,mp_natalAspectsVC,MP_PlanetsVC,MP_AspectsVC]
+        let categories = [todaysVC, planetaryDegreesVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,transitPlanetsVC,transitAspectsVC,minorProgressionsVC,mp_natalAspectsVC,MP_PlanetsVC,MP_AspectsVC]
         
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
         
