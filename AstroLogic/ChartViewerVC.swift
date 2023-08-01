@@ -242,8 +242,8 @@ class ChartViewController: UIViewController {
         scrollView.addSubview(domainPieChartView)
         
 
-        let aspectarianView = AspectarianView(frame: CGRect(x: 0, y: 400, width: screenWidth, height: 400), chart: chart)
-        aspectarianView.backgroundColor = .black // Add this line to visually identify the AspectarianView
+    //    let aspectarianView = AspectarianView(frame: CGRect(x: 0, y: 400, width: screenWidth, height: 400), chart: chart)
+    //    aspectarianView.backgroundColor = .black // Add this line to visually identify the AspectarianView
              //  view.addSubview(aspectarianView)
 
         let aspectButton = UIBarButtonItem(title: "Aspects", style: .plain, target: self, action: #selector(showAspectsViewController))
@@ -670,9 +670,9 @@ class ChartViewController: UIViewController {
     }
     
     @objc private func showAspectsViewController() {
-        let aspectsViewController = AspectsViewController(chart: chart)
+      //  let aspectsViewController = AspectsViewController(chart: chart)
       
-        navigationController?.pushViewController(aspectsViewController, animated: true)
+     //   navigationController?.pushViewController(aspectsViewController, animated: true)
     }
 
     func calculateTotalElementScores(signScores: [String: Double]) -> [Element: Double] {

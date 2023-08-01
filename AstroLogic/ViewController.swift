@@ -475,9 +475,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 //
 //                   print("Unoccupied Sign Scores: \(signScores)")
               
-            let mostDiscordantPlanet = getMostDiscordantPlanet(from: harmonyScoreDifferences)
+               let mostDiscordantPlanet = getMostDiscordantPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets())!)
 
-            let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: harmonyScoreDifferences)
+            let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets())!)
 
 //                presentMainTabBarController()
                
@@ -764,57 +764,42 @@ func showAlert(withTitle title: String, message: String) {
 //    return obliquity
 //}
 
-func getMostDiscordantPlanet(birthChart: Chart) -> String {
-    let scoreDifferences = getHarmonyScoreDifferenceForPlanets(chart: chart!)
-    
-    var mostDiscordantPlanet: String = ""
-    var maxScoreDifference = 0.0
-    
-    for (planet, scoreDifference) in scoreDifferences {
-        if scoreDifference > maxScoreDifference {
-            mostDiscordantPlanet = planet
-            maxScoreDifference = scoreDifference
+    func getMostHarmoniousPlanet(from scores: [String: (harmony: Double, discord: Double, net: Double)]) -> String? {
+        guard !scores.isEmpty else {
+            return nil
         }
+        
+        var mostHarmoniousPlanet: String = scores.keys.first!
+        var mostHarmoniousNetScore: Double = scores[mostHarmoniousPlanet]?.net ?? Double.nan
+        
+        for (planet, scoreTuple) in scores {
+            if scoreTuple.net > mostHarmoniousNetScore {
+                mostHarmoniousPlanet = planet
+                mostHarmoniousNetScore = scoreTuple.net
+            }
+        }
+        
+        return mostHarmoniousPlanet
     }
-    
-    return mostDiscordantPlanet
-}
 
-func getMostHarmoniousPlanet(from harmonyScoreDifferences: [String: Double]) -> String? {
-    guard !harmonyScoreDifferences.isEmpty else {
-        return nil
-    }
-    
-    var mostHarmoniousPlanet: String = harmonyScoreDifferences.keys.first!
-    var mostHarmoniousScore: Double = harmonyScoreDifferences[mostHarmoniousPlanet] ?? Double.nan
-    
-    for (planet, scoreDifference) in harmonyScoreDifferences {
-        if scoreDifference > mostHarmoniousScore {
-            mostHarmoniousPlanet = planet
-            mostHarmoniousScore = scoreDifference
+    func getMostDiscordantPlanet(from scores: [String: (harmony: Double, discord: Double, net: Double)]) -> String? {
+        guard !scores.isEmpty else {
+            return nil
         }
+        
+        var mostDiscordantPlanet: String = scores.keys.first!
+        var mostDiscordantNetScore: Double = scores[mostDiscordantPlanet]?.net ?? Double.nan
+        
+        for (planet, scoreTuple) in scores {
+            if scoreTuple.net < mostDiscordantNetScore {
+                mostDiscordantPlanet = planet
+                mostDiscordantNetScore = scoreTuple.net
+            }
+        }
+        
+        return mostDiscordantPlanet
     }
-    
-    return mostHarmoniousPlanet
-}
 
-func getMostDiscordantPlanet(from harmonyScoreDifferences: [String: Double]) -> String? {
-    guard !harmonyScoreDifferences.isEmpty else {
-        return nil
-    }
-    
-    var mostDiscordantPlanet: String = harmonyScoreDifferences.keys.first!
-    var mostDiscordantScore: Double = harmonyScoreDifferences[mostDiscordantPlanet] ?? Double.nan
-    
-    for (planet, scoreDifference) in harmonyScoreDifferences {
-        if scoreDifference < mostDiscordantScore {
-            mostDiscordantPlanet = planet
-            mostDiscordantScore = scoreDifference
-        }
-    }
-    
-    return mostDiscordantPlanet
-}
 }
 
 
