@@ -148,33 +148,32 @@ class ChartViewController: UIViewController {
             scoreLabels.append(label)
         }
         
-        let sortedHarmonyDiscordScores = harmonyDiscordScores?.sorted(by: { $0.value.difference > $1.value.difference }) ?? []
-        let labelStartY: CGFloat = labelSpacing + CGFloat(sortedScores.count) * (labelHeight + labelSpacing) + 50 // Adjust the starting Y position of the harmony and discord labels
-        let barStartX2: CGFloat = 110 // Adjust this value to set the starting position of the bars
-        let _: CGFloat = 2 // The width of the bars when the score is 100
-        
+        let sortedHarmonyDiscordScores = chart.getTotalHarmonyDiscordScoresForPlanets().sorted(by: { $0.value.net > $1.value.net }) // Sort by the net score
+        let labelStartY: CGFloat = labelSpacing + CGFloat(sortedScores.count) * (labelHeight + labelSpacing) + 50
+        let barStartX2: CGFloat = 110
+        let _: CGFloat = 2
+
         for (index, (planet, scores)) in sortedHarmonyDiscordScores.enumerated() {
             // Difference label
             let differenceLabel = UILabel(frame: CGRect(x: 10, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing), width: screenWidth - 20, height: labelHeight))
             differenceLabel.textColor = .white
             differenceLabel.font = UIFont.systemFont(ofSize: 13)
-            differenceLabel.text = "\(planet) : \(Int(scores.difference))"
+            differenceLabel.text = "\(planet) : \(Int(scores.net))" // Use net score here
             scrollView.addSubview(differenceLabel)
-            
+
             // Harmony bar
             let harmonyBarView = UIView()
-            harmonyBarView.backgroundColor = .systemBlue // Set the bar color
-            harmonyBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) , width: CGFloat(scores.harmony) * 2, height: barHeight2)
+            harmonyBarView.backgroundColor = .systemBlue
+            harmonyBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing), width: CGFloat(scores.harmony) * 2, height: barHeight2)
             scrollView.addSubview(harmonyBarView)
-            
+
             // Discord bar
             let discordBarView = UIView()
-            discordBarView.backgroundColor = .systemRed // Set the bar color
+            discordBarView.backgroundColor = .systemRed
             discordBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + barHeight2 + barSpacing2, width: CGFloat(scores.discord) * 2, height: barHeight2)
             scrollView.addSubview(discordBarView)
-            
         }
-        
+
         
         let toolbar = UIToolbar()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
