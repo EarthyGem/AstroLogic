@@ -404,7 +404,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
        
             self.chart = Chart(date: combinedDateAndTime()!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         
-               
+               self.chartCake = ChartCake(birthDate: combinedDateAndTime()!, latitude: latitude, longitude: longitude)
                
 
                             datePickerValueChanged()
@@ -457,7 +457,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                         let planetsInHousesResult = calculatePlanetsInHouses()
            //             print("calculatePlanetsInHouses: \(planetsInHousesResult)")
 
-     
+               print("chartCake: \(chartCake)")
                
                let houseStrengths = calculatePlanetInHouseScores(chart: self.chart!,  planetsInHouses: planetsInHousesResult)
                                                             
