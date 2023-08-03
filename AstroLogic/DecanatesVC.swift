@@ -332,9 +332,7 @@ var mySunText = ""
 //        print(planets[indexPath.row])
         
 
-        
-        let MovingPlanetVCs = [TodayViewController()]
-        
+     
 //        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
        
 //

@@ -76,7 +76,6 @@ func getTotalPowerScoresForPlanets2(chart: Chart)  -> [String: Double]  {
     let houseScores = chart.getHouseScoreForPlanets()
     let cuspScores = chart.getAllCuspAspectScores()
     let parallelScores = chart.getAllParallelAspectScores()
-    let parallelScores2 = chart.getAllParallelAspects()
     let parallelAngleScores = chart.allParallelCuspAspectScores()
     
     houseScores.forEach { (key: CelestialObject, score: Double) in

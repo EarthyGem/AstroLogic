@@ -114,121 +114,122 @@ class TransitBiWheelChartView: UIView {
             context.strokePath()
         }
         
-        private func drawHouseLines(context: CGContext) {
-            let center = CGPoint(x: bounds.midX, y: bounds.midY)
-            let radius = min(bounds.width, bounds.height) * 0.45
-            let houseDegrees = getHousesDegree()
-            let houseMinutes = getHousesMinute()
+    private func drawHouseLines(context: CGContext) {
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+        let radius = min(bounds.width, bounds.height) * 0.45
+        let houseDegrees = getHousesDegree()
+        let houseMinutes = getHousesMinute()
+        let houseDistances = getHouses2()
 
-            context.setStrokeColor(UIColor.white.cgColor)
-            context.setLineWidth(0.5)
-            context.setLineCap(.round)
-            context.setLineJoin(.round)
+        context.setStrokeColor(UIColor.white.cgColor)
+        context.setLineWidth(0.5)
+        context.setLineCap(.round)
+        context.setLineJoin(.round)
+        
+//        let houseDistances[index] : CGFloat = 30
+        var accumulatedAngle: CGFloat = 0
+        
+        for index in 0..<12 {
+            let angle = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi
+            let startX = center.x + cos(angle) * (0.21 * radius)
+            let startY = center.y + sin(angle) * (0.21 * radius)
             
-            let equalHouseAngle: CGFloat = 30
-            var accumulatedAngle: CGFloat = 0
-            
-            for index in 0..<12 {
-                let angle = 2 * .pi - ((accumulatedAngle + equalHouseAngle) * .pi / 180) + .pi
-                let startX = center.x + cos(angle) * (0.21 * radius)
-                let startY = center.y + sin(angle) * (0.21 * radius)
+            // Line doesn't intersect with the innermost circle, draw full line
+            let endX = center.x + cos(angle) * radius
+            let endY = center.y + sin(angle) * radius
                 
-                // Line doesn't intersect with the innermost circle, draw full line
-                let endX = center.x + cos(angle) * radius
-                let endY = center.y + sin(angle) * radius
-                    
-                context.move(to: CGPoint(x: startX, y: startY))
-                context.addLine(to: CGPoint(x: endX, y: endY))
-                context.strokePath()
-                let houseDegree = houseDegrees[(index + 2) % 12]
-                let houseMinute = houseMinutes[(index + 2) % 12]
-               
+            context.move(to: CGPoint(x: startX, y: startY))
+            context.addLine(to: CGPoint(x: endX, y: endY))
+            context.strokePath()
+            let houseDegree = houseDegrees[(index + 2) % 12]
+            let houseMinute = houseMinutes[(index + 2) % 12]
+           
+      
+                let glyphLabelAngleOffset: CGFloat = 0.8
+           
+        
+            let degreeLabelAngleOffset: CGFloat
+                let minuteLabelAngleOffset: CGFloat
+
+                let adjustedIndex = (index + 1) % 12
+
+                if index == 10 { // House 1
+                    degreeLabelAngleOffset = 0.11
+                    minuteLabelAngleOffset = -0.08
+                } else if adjustedIndex < 5 { // Houses 2-6
+                    degreeLabelAngleOffset = 0.11
+                    minuteLabelAngleOffset = -0.08
+                } else { // Houses 7-12
+                    degreeLabelAngleOffset = -0.08
+                    minuteLabelAngleOffset = 0.08
+                }
+//            print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
+
+
+            
           
-                    let glyphLabelAngleOffset: CGFloat = 0.8
-               
+            // Add the planet number label
+            let houseNumberLabel = UILabel()
+            houseNumberLabel.textColor = .white
+            houseNumberLabel.textAlignment = .center
+            houseNumberLabel.text = "\((index + 1) % 12 + 1)"
+            houseNumberLabel.font = UIFont.systemFont(ofSize: 10)
+            houseNumberLabel.sizeToFit()
+            let labelRadius = (0.21 + 0.28) / 2 * radius
+            let labelAngle = angle - houseDistances[index]  / 2 * .pi / 180
+            let labelX = center.x + cos(labelAngle) * labelRadius - houseNumberLabel.bounds.width / 2
+            let labelY = center.y + sin(labelAngle) * labelRadius - houseNumberLabel.bounds.height / 2
+            houseNumberLabel.frame.origin = CGPoint(x: labelX, y: labelY)
+            addSubview(houseNumberLabel)
             
-                let degreeLabelAngleOffset: CGFloat
-                    let minuteLabelAngleOffset: CGFloat
+            
+            // Add the house degree label
+            let houseDegreeLabel = UILabel()
+            houseDegreeLabel.textColor = .white
+            houseDegreeLabel.textAlignment = .center
+            houseDegreeLabel.text = "\(Int(houseDegree))°"
 
-                    let adjustedIndex = (index + 1) % 12
+            houseDegreeLabel.font = UIFont.systemFont(ofSize: 10)
+            houseDegreeLabel.sizeToFit()
+            let labelRadius1 = 1.07 * radius
+            let labelAngle1 = angle - houseDistances[index]  * .pi / 180 + degreeLabelAngleOffset
+            let labelX1 = center.x + cos(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.width / 2
+            let labelY1 = center.y + sin(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.height / 2
+            houseDegreeLabel.frame.origin = CGPoint(x: labelX1, y: labelY1)
+            addSubview(houseDegreeLabel)
+     
+            
+            let signIndex = Int((accumulatedAngle + houseDistances[index]  / 2) / 30)
+            let imageName = getHouseNames()[signIndex]
+            guard let image = UIImage(named: imageName) else { continue }
 
-                    if index == 10 { // House 1
-                        degreeLabelAngleOffset = 0.11
-                        minuteLabelAngleOffset = -0.08
-                    } else if adjustedIndex < 5 { // Houses 2-6
-                        degreeLabelAngleOffset = 0.11
-                        minuteLabelAngleOffset = -0.08
-                    } else { // Houses 7-12
-                        degreeLabelAngleOffset = -0.08
-                        minuteLabelAngleOffset = 0.08
-                    }
-//                print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
-//
+            let imageSize = min(bounds.width, bounds.height) / 30
+            let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
+            let labelAngle2 = angle - houseDistances[index]  / 2 * .pi / 180 + glyphLabelAngleOffset
+            let labelX2 = center.x + cos(labelAngle2) * labelRadius2 - imageSize / 2
+            let labelY2 = center.y + sin(labelAngle2) * labelRadius2 - imageSize / 2
+            let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
+            image.draw(in: imageRect)
+            
+            // Add the house minute label
+            let houseMinuteLabel = UILabel()
+            houseMinuteLabel.textColor = .white
+            houseMinuteLabel.textAlignment = .center
+            houseMinuteLabel.text = "\(Int(houseMinute))'"
 
-                
-              
-                // Add the planet number label
-                let houseNumberLabel = UILabel()
-                houseNumberLabel.textColor = .white
-                houseNumberLabel.textAlignment = .center
-                houseNumberLabel.text = "\((index + 1) % 12 + 1)"
-                houseNumberLabel.font = UIFont.systemFont(ofSize: 9)
-                houseNumberLabel.sizeToFit()
-                let labelRadius = (0.21 + 0.28) / 2 * radius
-                let labelAngle = angle - equalHouseAngle / 2 * .pi / 180
-                let labelX = center.x + cos(labelAngle) * labelRadius - houseNumberLabel.bounds.width / 2
-                let labelY = center.y + sin(labelAngle) * labelRadius - houseNumberLabel.bounds.height / 2
-                houseNumberLabel.frame.origin = CGPoint(x: labelX, y: labelY)
-                addSubview(houseNumberLabel)
-                
-                
-                // Add the house degree label
-                let houseDegreeLabel = UILabel()
-                houseDegreeLabel.textColor = .white
-                houseDegreeLabel.textAlignment = .center
-                houseDegreeLabel.text = "\(Int(houseDegree))°"
-
-                houseDegreeLabel.font = UIFont.systemFont(ofSize: 10)
-                houseDegreeLabel.sizeToFit()
-                let labelRadius1 = 1.07 * radius
-                let labelAngle1 = angle - equalHouseAngle * .pi / 180 + degreeLabelAngleOffset
-                let labelX1 = center.x + cos(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.width / 2
-                let labelY1 = center.y + sin(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.height / 2
-                houseDegreeLabel.frame.origin = CGPoint(x: labelX1, y: labelY1)
-                addSubview(houseDegreeLabel)
-         
-                
-                let signIndex = Int((accumulatedAngle + equalHouseAngle / 2) / 30)
-                let imageName = getHouseNames()[signIndex]
-                guard let image = UIImage(named: imageName) else { continue }
-
-                let imageSize = min(bounds.width, bounds.height) / 30
-                let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
-                let labelAngle2 = angle - equalHouseAngle / 2 * .pi / 180 + glyphLabelAngleOffset
-                let labelX2 = center.x + cos(labelAngle2) * labelRadius2 - imageSize / 2
-                let labelY2 = center.y + sin(labelAngle2) * labelRadius2 - imageSize / 2
-                let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
-                image.draw(in: imageRect)
-                
-                // Add the house minute label
-                let houseMinuteLabel = UILabel()
-                houseMinuteLabel.textColor = .white
-                houseMinuteLabel.textAlignment = .center
-                houseMinuteLabel.text = "\(Int(houseMinute))'"
-
-                houseMinuteLabel.font = UIFont.systemFont(ofSize: 8)
-                houseMinuteLabel.sizeToFit()
-                let labelRadius3 = 1.07 * radius
-                let labelAngle3 = angle - equalHouseAngle * .pi / 180 + minuteLabelAngleOffset
-                let labelX3 = center.x + cos(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.width / 2
-                let labelY3 = center.y + sin(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.height / 2
-                houseMinuteLabel.frame.origin = CGPoint(x: labelX3, y: labelY3)
-                addSubview(houseMinuteLabel)
-                
-                accumulatedAngle += equalHouseAngle
-            }
+            houseMinuteLabel.font = UIFont.systemFont(ofSize: 8)
+            houseMinuteLabel.sizeToFit()
+            let labelRadius3 = 1.07 * radius
+            let labelAngle3 = angle - houseDistances[index]  * .pi / 180 + minuteLabelAngleOffset
+            let labelX3 = center.x + cos(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.width / 2
+            let labelY3 = center.y + sin(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.height / 2
+            houseMinuteLabel.frame.origin = CGPoint(x: labelX3, y: labelY3)
+            addSubview(houseMinuteLabel)
+            
+            accumulatedAngle += houseDistances[index]
         }
-    
+    }
+
     private func drawTransitZodiacCircle(context: CGContext) {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.34
@@ -394,7 +395,6 @@ class TransitBiWheelChartView: UIView {
             
             ]
             
-            
             let sortedPlanetSymbols = planetSymbols.sorted { (symbol1, symbol2) -> Bool in
                 if let position1 = planetPositions[symbol1.planet], let position2 = planetPositions[symbol2.planet] {
                     return position1 < position2
@@ -424,7 +424,7 @@ class TransitBiWheelChartView: UIView {
             }
 
             
-            let minSymbolDistance: CGFloat = 22 // Adjust this value to change the minimum distance
+            let minSymbolDistance: CGFloat = 10 // Adjust this value to change the minimum distance
             var lastSymbolCenter: CGPoint? = nil
             var lastCelestialObject: CelestialObject? = nil
             
@@ -464,6 +464,10 @@ class TransitBiWheelChartView: UIView {
                 let symbolSize = min(bounds.width, bounds.height) / 25
                 let symbolRect = CGRect(x: centerX - symbolSize / 2, y: centerY - symbolSize / 2, width: symbolSize, height: symbolSize)
                 
+                let degreeLabelRadius = min(bounds.width, bounds.height) * 0.34 - 32
+                var lastDegreeLabelCenter: CGPoint? = nil
+                var lastDegreeLabelCelestialObject: CelestialObject? = nil
+                let minLabelDistance: CGFloat = 20
                 for (_, (celestialObject, degree)) in sortedPlanetDegree.enumerated() {
                     guard let position = planetPositions[celestialObject] else { continue }
 
@@ -471,54 +475,57 @@ class TransitBiWheelChartView: UIView {
                     degreeLabel.textColor = .white
                     degreeLabel.textAlignment = .center
                     degreeLabel.text = degree
-                    degreeLabel.font = UIFont.systemFont(ofSize: 10)
+                    degreeLabel.font = UIFont.systemFont(ofSize: 9)
                     degreeLabel.sizeToFit()
-                    degreeLabel.textColor = .white
-                    let degreeLabelRadius =  min(bounds.width, bounds.height) * 0.34 - 32
 
-                    let degreeLabelAngle = 2 * .pi - (position * .pi / 180) + .pi
-                    let degreeLabelX = center.x + cos(degreeLabelAngle) * degreeLabelRadius
-                    let degreeLabelY = center.y + sin(degreeLabelAngle) * degreeLabelRadius
-                    degreeLabel.center = CGPoint(x: degreeLabelX, y: degreeLabelY)
+                    let degreeLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: degreeLabelRadius, lastSymbolCenter: &lastDegreeLabelCenter, lastCelestialObject: &lastDegreeLabelCelestialObject, minSymbolDistance: minLabelDistance)
+                    degreeLabel.center = degreeLabelCenter
                     addSubview(degreeLabel)
-                    
                 }
+
+                
+
+                let signSymbolLabelRadius = min(bounds.width, bounds.height) * 0.34 - 49
+                var lastSignSymbolLabelCenter: CGPoint? = nil
+                var lastSignSymbolLabelCelestialObject: CelestialObject? = nil
 
                 for (_, (celestialObject, imageName)) in sortedPlanetSignSymbol.enumerated() {
                     guard let position = planetPositions[celestialObject] else { continue }
                     let angle = 2 * .pi - (position * .pi / 180) + .pi
                     let radius = min(bounds.width, bounds.height) * 0.34 - 49
                     let center = CGPoint(x: bounds.midX, y: bounds.midY)
-                    let centerX = center.x + cos(angle) * radius
-                    let centerY = center.y + sin(angle) * radius
-                    
+                    _ = center.x + cos(angle) * radius
+                    _ = center.y + sin(angle) * radius
+
                     let symbolSize = min(bounds.width, bounds.height) / 40
                     let symbolImageView = UIImageView(image: UIImage(named: imageName))
                     symbolImageView.contentMode = .scaleAspectFit
-                    symbolImageView.frame = CGRect(x: 0, y: 0, width: symbolSize, height: symbolSize)
-                    symbolImageView.center = CGPoint(x: centerX, y: centerY - symbolSize / 2 )
+
+                    let symbolLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: signSymbolLabelRadius, lastSymbolCenter: &lastSignSymbolLabelCenter, lastCelestialObject: &lastSignSymbolLabelCelestialObject, minSymbolDistance: minLabelDistance)
+                    symbolImageView.frame = CGRect(x: symbolLabelCenter.x - symbolSize / 2, y: symbolLabelCenter.y - symbolSize / 2, width: symbolSize, height: symbolSize)
                     addSubview(symbolImageView)
                 }
+
+                
+                let minuteLabelRadius = min(bounds.width, bounds.height) * 0.34 - 62
+                var lastMinuteLabelCenter: CGPoint? = nil
+                var lastMinuteLabelCelestialObject: CelestialObject? = nil
 
                 for (_, (celestialObject, minute)) in sortedPlanetMinute.enumerated() {
                     guard let position = planetPositions[celestialObject] else { continue }
 
-                    // Add the planet minute label
                     let minuteLabel = UILabel()
                     minuteLabel.textColor = .white
                     minuteLabel.textAlignment = .center
-                    minuteLabel.text = minute // Generate a random minute value
-                    minuteLabel.font = UIFont.systemFont(ofSize: 8)
+                    minuteLabel.text = minute
+                    minuteLabel.font = UIFont.systemFont(ofSize: 6)
                     minuteLabel.sizeToFit()
-                    
-                    let minuteLabelRadius = min(bounds.width, bounds.height) * 0.34 - 62
-                    let minuteLabelAngle = 2 * .pi - (position * .pi / 180) + .pi
-                    let minuteLabelX = center.x + cos(minuteLabelAngle) * minuteLabelRadius
-                    let minuteLabelY = center.y + sin(minuteLabelAngle) * minuteLabelRadius
-                    
-                    minuteLabel.center = CGPoint(x: minuteLabelX, y: minuteLabelY)
+
+                    let minuteLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: minuteLabelRadius, lastSymbolCenter: &lastMinuteLabelCenter, lastCelestialObject: &lastMinuteLabelCelestialObject, minSymbolDistance: minLabelDistance)
+                    minuteLabel.center = minuteLabelCenter
                     addSubview(minuteLabel)
                 }
+
 
                 
                 if let image = UIImage(named: imageName) {
@@ -529,7 +536,6 @@ class TransitBiWheelChartView: UIView {
             }
         }
         
-    
     private func drawTransitPlanetSymbols(context: CGContext) {
         let planetSymbols: [(planet: CelestialObject, imageName: String)] = [
             (.planet(.sun), "sun"),

@@ -205,7 +205,7 @@ class ChartViewController: UIViewController {
         // Update the planet positions in the view
     //    birthChartView.updateBirthChart()
         
-        let birthChart = chart
+   
      
         
         let signScores = calculateTotalSignScore(chart: chart, houseCusps: [], interceptedSigns: [])
@@ -311,7 +311,7 @@ class ChartViewController: UIViewController {
             var harmonyEntries: [BarChartDataEntry] = []
             var discordEntries: [BarChartDataEntry] = []
             
-            var sortedPlanets = scores.sorted(by: { $0.key < $1.key })
+            let sortedPlanets = scores.sorted(by: { $0.key < $1.key })
             
             // Rest of the code stays the same, including moving the SouthNode to the end of the array if it exists...
             
@@ -370,8 +370,7 @@ class ChartViewController: UIViewController {
             // Create a number formatter for percentage style
             let numberFormatter = NumberFormatter()
             numberFormatter.numberStyle = .percent
-            let valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
-            
+ 
             // Enable showing values on top of the bars and set value formatter to percentage
             chartDataSet.drawValuesEnabled = true
             chartDataSet.valueFormatter = PercentFormatter()
