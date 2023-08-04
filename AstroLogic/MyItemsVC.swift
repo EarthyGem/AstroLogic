@@ -33,18 +33,18 @@ class MyItemsViewController: UIViewController {
     
     private let ricksData: [RicksItems] = [
         RicksItems(chartType: "Today for \(myName)"),
-        RicksItems(chartType: "\(myName)'s Planetary Degrees"),
-        RicksItems(chartType: "\(myName)'s Key Decanates"),
-        RicksItems(chartType: "\(myName)'s Natal Chart"),
-        RicksItems(chartType: "\(myName)'s Natal Houses"),
-        RicksItems(chartType: "\(myName)'s Natal Aspects"),
-        RicksItems(chartType: "\(myName)'s Transit Progressions"),
-        RicksItems(chartType: "\(myName)'s Transit Aspects"),
-        RicksItems(chartType: "\(myName)'s Minor Progressions"),
-        RicksItems(chartType: "\(myName)'s Minor Progression Aspects"),
-        RicksItems(chartType: "\(myName)'s Major Progressions"),
-              RicksItems(chartType: "\(myName)'s Major Progression Aspects"),
-        RicksItems(chartType: "\(myName)'s Solar Arc Progressions"),
+        RicksItems(chartType: "My Planetary Degrees"),
+        RicksItems(chartType: "My Key Decanates"),
+        RicksItems(chartType: "My Natal Chart"),
+        RicksItems(chartType: "My Natal Houses"),
+        RicksItems(chartType: "My Natal Aspects"),
+        RicksItems(chartType: "My Transit Progressions"),
+        RicksItems(chartType: "My Transit Aspects"),
+        RicksItems(chartType: "My Minor Progressions"),
+        RicksItems(chartType: "My Minor Progression Aspects"),
+        RicksItems(chartType: "My Major Progressions"),
+              RicksItems(chartType: "My Major Progression Aspects"),
+        RicksItems(chartType: "My Solar Arc Progressions"),
         RicksItems(chartType: "Relationships")
                    
     ]
