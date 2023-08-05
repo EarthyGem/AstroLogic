@@ -148,7 +148,7 @@ class ChartViewController: UIViewController {
             scoreLabels.append(label)
         }
         
-        let sortedHarmonyDiscordScores = chart.getTotalHarmonyDiscordScoresForPlanets().sorted(by: { $0.value.net > $1.value.net }) // Sort by the net score
+        let sortedHarmonyDiscordScores = chart.getTotalHarmonyDiscordScoresForPlanets(chart!.planets).sorted(by: { $0.value.net > $1.value.net }) // Sort by the net score
         let labelStartY: CGFloat = labelSpacing + CGFloat(sortedScores.count) * (labelHeight + labelSpacing) + 50
         let barStartX2: CGFloat = 110
         let _: CGFloat = 2

@@ -324,17 +324,17 @@ class AspectedPlanetsViewController: UIViewController {
    
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.sun.celestialObject).count * 90)
+        sunTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.sun.celestialObject).count * 90)
 //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-       moonTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.moon.celestialObject).count * 90)
-        mercuryTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
-        venusTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.venus.celestialObject).count * 90)
-        marsTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.mars.celestialObject).count * 90)
-        jupiterTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
-        saturnTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
-        uranusTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
-        neptuneTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
-        plutoTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
+        moonTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.moon.celestialObject).count * 90)
+        mercuryTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.mercury.celestialObject).count * 90)
+        venusTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.venus.celestialObject).count * 90)
+        marsTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.mars.celestialObject).count * 90)
+        jupiterTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.jupiter.celestialObject).count * 90)
+        saturnTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.saturn.celestialObject).count * 90)
+        uranusTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.uranus.celestialObject).count * 90)
+        neptuneTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.neptune.celestialObject).count * 90)
+        plutoTableView.contentSize.height = CGFloat(chart!.aspectsFiltered(chart!.planets, by: Planet.pluto.celestialObject).count * 90)
         
         
         
@@ -628,44 +628,44 @@ extension AspectedPlanetsViewController: UITableViewDataSource, UITableViewDeleg
                 
                 if(tableView == sunTableView) {
 
-                    return chart!.aspectsFiltered(by: Planet.sun.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.sun.celestialObject).count
             }
                 else if(tableView == moonTableView){
-                    return chart!.aspectsFiltered(by: Planet.moon.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.moon.celestialObject).count
                 }
                 
                 
                     else if(tableView == mercuryTableView){
 
-                        return chart!.aspectsFiltered(by: Planet.mercury.celestialObject).count
+                        return chart!.aspectsFiltered(chart!.planets, by: Planet.mercury.celestialObject).count
                     }
                     else if(tableView == venusTableView){
 
-                            return chart!.aspectsFiltered(by: Planet.venus.celestialObject).count
+                        return chart!.aspectsFiltered(chart!.planets, by: Planet.venus.celestialObject).count
                         }
                 else if(tableView == marsTableView){
 
-                                return chart!.aspectsFiltered(by: Planet.mars.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.mars.celestialObject).count
                             }
                 else if(tableView == jupiterTableView){
 
-                                    return chart!.aspectsFiltered(by: Planet.jupiter.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.jupiter.celestialObject).count
                                 }
                 else if(tableView == saturnTableView){
 
-                                        return chart!.aspectsFiltered(by: Planet.saturn.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.saturn.celestialObject).count
                                     }
                 else if(tableView == uranusTableView){
 
-                                            return chart!.aspectsFiltered(by: Planet.uranus.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.uranus.celestialObject).count
                                         }
                 else if(tableView == neptuneTableView){
 
-                                                return chart!.aspectsFiltered(by: Planet.neptune.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.neptune.celestialObject).count
                                             }
                 else {
 
-                                                    return chart!.aspectsFiltered(by: Planet.pluto.celestialObject).count
+                    return chart!.aspectsFiltered(chart!.planets, by: Planet.pluto.celestialObject).count
 
 
 

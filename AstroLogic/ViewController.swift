@@ -367,7 +367,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         chartVC.chart = chart.self
         chartVC.houseScores = calculateHouseStrengths(chart: self.chart!, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns(), planetsInHouses: calculatePlanetsInHouses())
         chartVC.chartCake = chartCake.self
-        chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
+     //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
         chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
         chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
         self.navigationController?.pushViewController(chartVC, animated: true)
@@ -426,9 +426,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 //                scoresText.frame = CGRect(x: 0, y: 300, width: 300 , height: 250)
 //                view.addSubview(scoresText)
 
-            let harmonyScoreDifferences = getHarmonyScoreDifferenceForPlanets(chart: self.chart!)
+        //    let harmonyScoreDifferences = getHarmonyScoreDifferenceForPlanets(chart: self.chart!)
             
-               _ = getScoresAndDifferenceForPlanets(chart: self.chart!)
+           //    _ = getScoresAndDifferenceForPlanets(chart: self.chart!)
             
                _ = calculateUnoccupiedSignStrengths(chart: self.chart!, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns())
                
@@ -475,9 +475,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 //
 //                   print("Unoccupied Sign Scores: \(signScores)")
               
-               let mostDiscordantPlanet = getMostDiscordantPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets())!)
+               let mostDiscordantPlanet = getMostDiscordantPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets(chart!.planets))!)
 
-            let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets())!)
+               let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets(chart!.planets))!)
 
 //                presentMainTabBarController()
                

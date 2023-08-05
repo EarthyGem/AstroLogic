@@ -27,8 +27,8 @@ func calculateAngleSignScores(chart: Chart) -> [String: Double] {
 }
 
 func getTotalPowerScoresForAngles(chart: Chart) -> [String: Double] {
-    let cuspScores = chart.getAllCuspAspectScores()
-    let parallelScores = chart.allParallelCuspAspectScores()
+    let cuspScores = chart.getAllCuspAspectScores(chart.planets)
+    let parallelScores = chart.allParallelCuspAspectScores(chart.planets)
     let angleHouseScores: [String: Double] = ["ascendant": 15, "midheaven": 15]
     
     // Combine the scores for all aspects

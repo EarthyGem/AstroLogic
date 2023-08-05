@@ -13,12 +13,12 @@ var chart: Chart?
 
 
 func getTotalPowerScoresForPlanets(chart: Chart)  -> [(String, Double)]  {
-    let aspectScores = chart.getAllCelestialAspectScores()
-    let houseScores = chart.getHouseScoreForPlanets()
-    let cuspScores = chart.getAllCuspAspectScores()
-    let parallelScores = chart.getAllParallelAspectScores()
-    let parallelScores2 = chart.getAllParallelAspects()
-    let parallelAngleScores = chart.allParallelCuspAspectScores()
+    let aspectScores = chart.getAllCelestialAspectScores(chart.planets)
+    let houseScores = chart.getHouseScoreForPlanets(chart.planets)
+    let cuspScores = chart.getAllCuspAspectScores(chart.planets)
+    let parallelScores = chart.getAllParallelAspectScores(chart.planets)
+    let parallelScores2 = chart.getAllParallelAspects(chart.planets)
+    let parallelAngleScores = chart.allParallelCuspAspectScores(chart.planets)
   //  print("angle scores for parallels to planets: \(parallelAngleScores)")
 //
 //    let angleAspectsScores = getTotalPowerScoresForAngles(birthChart: birthChart, ascDeclination: ascDeclination, mcDeclination: mcDeclination)
@@ -72,11 +72,11 @@ func getTotalPowerScoresForPlanets(chart: Chart)  -> [(String, Double)]  {
 
 
 func getTotalPowerScoresForPlanets2(chart: Chart)  -> [String: Double]  {
-    let aspectScores = chart.getAllCelestialAspectScores()
-    let houseScores = chart.getHouseScoreForPlanets()
-    let cuspScores = chart.getAllCuspAspectScores()
-    let parallelScores = chart.getAllParallelAspectScores()
-    let parallelAngleScores = chart.allParallelCuspAspectScores()
+    let aspectScores = chart.getAllCelestialAspectScores(chart.planets)
+    let houseScores = chart.getHouseScoreForPlanets(chart.planets)
+    let cuspScores = chart.getAllCuspAspectScores(chart.planets)
+    let parallelScores = chart.getAllParallelAspectScores(chart.planets)
+    let parallelAngleScores = chart.allParallelCuspAspectScores(chart.planets)
     
     houseScores.forEach { (key: CelestialObject, score: Double) in
         _ = aspectScores[key] ?? Double.nan
