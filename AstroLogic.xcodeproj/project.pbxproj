@@ -14,9 +14,6 @@
 		3903A3452A5F2D0700245DD2 /* AstroLogic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3432A5F2D0700245DD2 /* AstroLogic.xcdatamodeld */; };
 		3903A3472A5F2D0900245DD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3903A3462A5F2D0900245DD2 /* Assets.xcassets */; };
 		3903A34A2A5F2D0900245DD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3903A3482A5F2D0900245DD2 /* LaunchScreen.storyboard */; };
-		3903A3552A5F2D0900245DD2 /* AstroLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3542A5F2D0900245DD2 /* AstroLogicTests.swift */; };
-		3903A35F2A5F2D0900245DD2 /* AstroLogicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A35E2A5F2D0900245DD2 /* AstroLogicUITests.swift */; };
-		3903A3612A5F2D0900245DD2 /* AstroLogicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3602A5F2D0900245DD2 /* AstroLogicUITestsLaunchTests.swift */; };
 		3903A3722A5F2DF000245DD2 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 3903A3712A5F2DF000245DD2 /* GoogleMaps */; };
 		3903A3742A5F2DF000245DD2 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 3903A3732A5F2DF000245DD2 /* GooglePlaces */; };
 		3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3752A5F2E8400245DD2 /* BirthChartView.swift */; };
@@ -63,23 +60,6 @@
 		39B108362A80C72100165E62 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 39B108352A80C72100165E62 /* SwiftEphemeris */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3903A3512A5F2D0900245DD2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3903A32F2A5F2D0700245DD2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3903A3362A5F2D0700245DD2;
-			remoteInfo = AstroLogic;
-		};
-		3903A35B2A5F2D0900245DD2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3903A32F2A5F2D0700245DD2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3903A3362A5F2D0700245DD2;
-			remoteInfo = AstroLogic;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		3903A3372A5F2D0700245DD2 /* AstroLogic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstroLogic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3903A33A2A5F2D0700245DD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,11 +70,6 @@
 		3903A3462A5F2D0900245DD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3903A3492A5F2D0900245DD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3903A34B2A5F2D0900245DD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3903A3502A5F2D0900245DD2 /* AstroLogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroLogicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3903A3542A5F2D0900245DD2 /* AstroLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroLogicTests.swift; sourceTree = "<group>"; };
-		3903A35A2A5F2D0900245DD2 /* AstroLogicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroLogicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3903A35E2A5F2D0900245DD2 /* AstroLogicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroLogicUITests.swift; sourceTree = "<group>"; };
-		3903A3602A5F2D0900245DD2 /* AstroLogicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroLogicUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3903A3752A5F2E8400245DD2 /* BirthChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthChartView.swift; sourceTree = "<group>"; };
 		3903A3772A5F2F3200245DD2 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3903A37B2A5F305100245DD2 /* GeoCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCode.swift; sourceTree = "<group>"; };
@@ -149,20 +124,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3903A34D2A5F2D0900245DD2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3903A3572A5F2D0900245DD2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -170,8 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				3903A3392A5F2D0700245DD2 /* AstroLogic */,
-				3903A3532A5F2D0900245DD2 /* AstroLogicTests */,
-				3903A35D2A5F2D0900245DD2 /* AstroLogicUITests */,
 				3903A3382A5F2D0700245DD2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -180,8 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				3903A3372A5F2D0700245DD2 /* AstroLogic.app */,
-				3903A3502A5F2D0900245DD2 /* AstroLogicTests.xctest */,
-				3903A35A2A5F2D0900245DD2 /* AstroLogicUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,23 +198,6 @@
 			path = AstroLogic;
 			sourceTree = "<group>";
 		};
-		3903A3532A5F2D0900245DD2 /* AstroLogicTests */ = {
-			isa = PBXGroup;
-			children = (
-				3903A3542A5F2D0900245DD2 /* AstroLogicTests.swift */,
-			);
-			path = AstroLogicTests;
-			sourceTree = "<group>";
-		};
-		3903A35D2A5F2D0900245DD2 /* AstroLogicUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3903A35E2A5F2D0900245DD2 /* AstroLogicUITests.swift */,
-				3903A3602A5F2D0900245DD2 /* AstroLogicUITestsLaunchTests.swift */,
-			);
-			path = AstroLogicUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,42 +224,6 @@
 			productReference = 3903A3372A5F2D0700245DD2 /* AstroLogic.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3903A34F2A5F2D0900245DD2 /* AstroLogicTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3903A3672A5F2D0900245DD2 /* Build configuration list for PBXNativeTarget "AstroLogicTests" */;
-			buildPhases = (
-				3903A34C2A5F2D0900245DD2 /* Sources */,
-				3903A34D2A5F2D0900245DD2 /* Frameworks */,
-				3903A34E2A5F2D0900245DD2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3903A3522A5F2D0900245DD2 /* PBXTargetDependency */,
-			);
-			name = AstroLogicTests;
-			productName = AstroLogicTests;
-			productReference = 3903A3502A5F2D0900245DD2 /* AstroLogicTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3903A3592A5F2D0900245DD2 /* AstroLogicUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3903A36A2A5F2D0900245DD2 /* Build configuration list for PBXNativeTarget "AstroLogicUITests" */;
-			buildPhases = (
-				3903A3562A5F2D0900245DD2 /* Sources */,
-				3903A3572A5F2D0900245DD2 /* Frameworks */,
-				3903A3582A5F2D0900245DD2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3903A35C2A5F2D0900245DD2 /* PBXTargetDependency */,
-			);
-			name = AstroLogicUITests;
-			productName = AstroLogicUITests;
-			productReference = 3903A35A2A5F2D0900245DD2 /* AstroLogicUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -332,14 +236,6 @@
 				TargetAttributes = {
 					3903A3362A5F2D0700245DD2 = {
 						CreatedOnToolsVersion = 14.3.1;
-					};
-					3903A34F2A5F2D0900245DD2 = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 3903A3362A5F2D0700245DD2;
-					};
-					3903A3592A5F2D0900245DD2 = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 3903A3362A5F2D0700245DD2;
 					};
 				};
 			};
@@ -362,8 +258,6 @@
 			projectRoot = "";
 			targets = (
 				3903A3362A5F2D0700245DD2 /* AstroLogic */,
-				3903A34F2A5F2D0900245DD2 /* AstroLogicTests */,
-				3903A3592A5F2D0900245DD2 /* AstroLogicUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,20 +270,6 @@
 				3903A34A2A5F2D0900245DD2 /* LaunchScreen.storyboard in Resources */,
 				3903A3472A5F2D0900245DD2 /* Assets.xcassets in Resources */,
 				3903A3422A5F2D0700245DD2 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3903A34E2A5F2D0900245DD2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3903A3582A5F2D0900245DD2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,37 +327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3903A34C2A5F2D0900245DD2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3903A3552A5F2D0900245DD2 /* AstroLogicTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3903A3562A5F2D0900245DD2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3903A35F2A5F2D0900245DD2 /* AstroLogicUITests.swift in Sources */,
-				3903A3612A5F2D0900245DD2 /* AstroLogicUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3903A3522A5F2D0900245DD2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3903A3362A5F2D0700245DD2 /* AstroLogic */;
-			targetProxy = 3903A3512A5F2D0900245DD2 /* PBXContainerItemProxy */;
-		};
-		3903A35C2A5F2D0900245DD2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3903A3362A5F2D0700245DD2 /* AstroLogic */;
-			targetProxy = 3903A35B2A5F2D0900245DD2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3903A3402A5F2D0700245DD2 /* Main.storyboard */ = {
@@ -669,82 +519,6 @@
 			};
 			name = Release;
 		};
-		3903A3682A5F2D0900245DD2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UQYCK3883D;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Errick.AstroLogicTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AstroLogic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AstroLogic";
-			};
-			name = Debug;
-		};
-		3903A3692A5F2D0900245DD2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UQYCK3883D;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Errick.AstroLogicTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AstroLogic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AstroLogic";
-			};
-			name = Release;
-		};
-		3903A36B2A5F2D0900245DD2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UQYCK3883D;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Errick.AstroLogicUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AstroLogic;
-			};
-			name = Debug;
-		};
-		3903A36C2A5F2D0900245DD2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UQYCK3883D;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Errick.AstroLogicUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AstroLogic;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -762,24 +536,6 @@
 			buildConfigurations = (
 				3903A3652A5F2D0900245DD2 /* Debug */,
 				3903A3662A5F2D0900245DD2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3903A3672A5F2D0900245DD2 /* Build configuration list for PBXNativeTarget "AstroLogicTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3903A3682A5F2D0900245DD2 /* Debug */,
-				3903A3692A5F2D0900245DD2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3903A36A2A5F2D0900245DD2 /* Build configuration list for PBXNativeTarget "AstroLogicUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3903A36B2A5F2D0900245DD2 /* Debug */,
-				3903A36C2A5F2D0900245DD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -808,7 +564,7 @@
 			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
 			requirement = {
 				kind = revision;
-				revision = 3f7c7fce472a2cc76899f6e9667f103ecbc90407;
+				revision = 67698bbf51979ef921bf541b67c285eb2532c101;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
