@@ -21,9 +21,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     var strongestPlanetSign: String?
     let locationManager = CLLocationManager()
     var harmonyDiscordScores: [String: (harmony: Double, discord: Double, difference: Double)]?
- //   var aspects: [AstroAspect?] = []
+    //   var aspects: [AstroAspect?] = []
     var latitude: Double?
-       var longitude: Double?
+    var longitude: Double?
     let planetsInHouses: [Int: [String]] = [:]
     var signScore: [String : Double] = [:]
     var houseScores: [Int : Double] = [:]
@@ -52,9 +52,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     
     var autocompleteController: GMSAutocompleteViewController? // Add this line
     
-        
+
     
-   
+
     
     
     lazy var birthTimeTextField: UITextField = {
@@ -127,7 +127,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         return datePicker
     }()
- 
+
 
     lazy var timePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -151,19 +151,13 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         view.addSubview(getChartButton)
         view.backgroundColor = .black
-       
         view.addSubview(birthPlaceTextField)
-   
-             makeAutocompleteViewController()
-        
+        makeAutocompleteViewController()
         view.addSubview(dateTextField)
         view.addSubview(birthPlaceTextField)
         birthPlaceTextField.addTarget(self, action: #selector(birthPlaceTextFieldDidChange), for: .editingChanged)
-        
         view.addSubview(birthTimeTextField)
-
         birthTimeTextField.inputView = timePicker
-
         view.addSubview(aboutButton)
         aboutButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -202,14 +196,14 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
- 
+
         
     }
     
     @objc func birthPlaceTextFieldEditingDidBegin() {
-         presentAutocompleteViewController()
-     }
-     
+        presentAutocompleteViewController()
+    }
+
     func makeAutocompleteViewController() {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
@@ -222,7 +216,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         
         // Customize the autocomplete filter and place fields if needed
         let filter = GMSAutocompleteFilter()
-       filter.type = .city
+        filter.type = .city
         autocompleteController.autocompleteFilter = filter
         
         let fields: GMSPlaceField = GMSPlaceField(rawValue: (UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)))
@@ -231,12 +225,12 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         self.autocompleteController = autocompleteController
     }
 
-     func presentAutocompleteViewController() {
-         if let autocompleteController = autocompleteController {
-             present(autocompleteController, animated: true, completion: nil)
-         }
-     }
-     
+    func presentAutocompleteViewController() {
+        if let autocompleteController = autocompleteController {
+            present(autocompleteController, animated: true, completion: nil)
+        }
+    }
+
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         var city: String?
         var state: String?
@@ -305,15 +299,15 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 
-     
-     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-         print("Autocomplete error: \(error.localizedDescription)")
-         dismiss(animated: true, completion: nil)
-     }
 
-     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-         dismiss(animated: true, completion: nil)
-     }
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Autocomplete error: \(error.localizedDescription)")
+        dismiss(animated: true, completion: nil)
+    }
+
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @objc func birthPlaceTextFieldDidChange() {
         updateDatePickerTimeZone()
@@ -325,7 +319,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         navigationController?.pushViewController(aboutVC, animated: true)
     }
     
- 
+
     func updateDatePickerTimeZone() {
         let geocoder = CLGeocoder()
         let addressString = birthPlaceTextField.text ?? ""
@@ -346,143 +340,124 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         }
     }
 
-//    @objc func birthPlaceTextFieldDidChange() {
-//           updateDatePickerTimeZone()
-//       }
-//
+    //    @objc func birthPlaceTextFieldDidChange() {
+    //           updateDatePickerTimeZone()
+    //       }
+    //
 
-  
+
 
 
     @objc func getChartButtonTapped() {
-     
+
         
         
         // Initialize and push the ChartViewController
         let chartVC = ChartViewController()
-        chartVC.chart = chart.self
-        chartVC.houseScores = chart!.calculateHouseStrengths(chart!.planets)
-        chartVC.chartCake = chartCake.self
-     //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
+        chartVC.chart = chart
+        chartVC.houseScores = chart!.calculateHouseStrengths()
+        chartVC.chartCake = chartCake
+        //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
         chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
         chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
         self.navigationController?.pushViewController(chartVC, animated: true)
         
-//        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
+        //        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
     }
 
-@objc func getPowerPlanetButtonTapped() {
-   
-    getPowerPlanetButton.isEnabled = false
-    let location = birthPlaceTextField.text
-       getPowerPlanetButton.isEnabled = false
-       
-    geocoding(location: location!) { [self] (latitude, longitude) in
-           let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-           getTimeZone(location: coordinate) { [self] timeZone in
-               guard let timeZone = timeZone else {
-                   DispatchQueue.main.async {
-                       self.getPowerPlanetButton.isEnabled = true
-                   }
-                   return
-               }
+    @objc func getPowerPlanetButtonTapped() {
 
-               // Update the latitude and longitude values
-               self.latitude = latitude
-               self.longitude = longitude
+        getPowerPlanetButton.isEnabled = false
+        let location = birthPlaceTextField.text!
+        getPowerPlanetButton.isEnabled = false
 
-               // Set the time zone of the date picker and time picker
-               self.timePicker.timeZone = timeZone
-               self.datePicker.timeZone = timeZone
-               
-           
-            self.birthPlaceTimeZone = timeZone
-       
-            self.chart = Chart(date: combinedDateAndTime()!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
-        
-               self.chartCake = ChartCake(birthDate: combinedDateAndTime()!, latitude: latitude, longitude: longitude)
-               
+        geocoding(location: location) { latitude, longitude in
+            let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            getTimeZone(location: coordinate) { [self] timeZone in
+                guard let timeZone = timeZone else {
+                    DispatchQueue.main.async {
+                        self.getPowerPlanetButton.isEnabled = true
+                    }
+                    return
+                }
 
-           //    datePickerValueChanged(self.datePicker)
+                // Update the latitude and longitude values
+                self.latitude = latitude
+                self.longitude = longitude
 
+                // Set the time zone of the date picker and time picker
+                self.timePicker.timeZone = timeZone
+                self.datePicker.timeZone = timeZone
+                self.birthPlaceTimeZone = timeZone
 
-               let scores = getTotalPowerScoresForPlanets(chart: chart!)
+                let chartDate = self.combinedDateAndTime()!
+                self.chart = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
+                self.chartCake = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
+                let scores = self.chart!.getTotalPowerScoresForPlanets()
+                let strongestPlanet = self.getStrongestPlanet(from: scores)
 
-               let filteredScores = scores.filter { tuple in
-                   // Filter out the planet with name "South Node"
-                   return tuple.0 != "Mean South Node"
-               }
-                   let strongestPlanet = getStrongestPlanet2(from: filteredScores)
+                // let signScore = self.chart.calculateTotalSignScore()
+                // let houseStrengths = self.chart.calculatePlanetInHouseScores()
+                // let houseScores = self.chart.calculateHouseStrengths()
 
-               let signScore = chart!.calculateTotalSignScore(chart!.planets)
+                let tuple = self.chart!.getTotalHarmonyDiscordScoresForPlanets()
+                let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
+                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
 
-             
+                if strongestPlanet == Planet.sun.celestialObject {
+                    strongestPlanetSign = self.chart!.sun.sign.keyName
+                } else if strongestPlanet == Planet.moon.celestialObject {
+                    strongestPlanetSign = self.chart!.moon.sign.keyName
+                } else if strongestPlanet == Planet.mercury.celestialObject {
+                    strongestPlanetSign = self.chart!.mercury.sign.keyName
+                } else if strongestPlanet == Planet.venus.celestialObject {
+                    strongestPlanetSign = self.chart!.venus.sign.keyName
+                } else if strongestPlanet == Planet.mars.celestialObject {
+                    strongestPlanetSign = self.chart!.mars.sign.keyName
+                } else if strongestPlanet == Planet.jupiter.celestialObject {
+                    strongestPlanetSign = self.chart!.jupiter.sign.keyName
+                } else if strongestPlanet == Planet.saturn.celestialObject {
+                    strongestPlanetSign = self.chart!.saturn.sign.keyName
+                } else if strongestPlanet == Planet.uranus.celestialObject {
+                    strongestPlanetSign = self.chart!.uranus.sign.keyName
+                } else if strongestPlanet == Planet.neptune.celestialObject {
+                    strongestPlanetSign = self.chart!.neptune.sign.keyName
+                } else if strongestPlanet == Planet.pluto.celestialObject {
+                    strongestPlanetSign = self.chart!.pluto.sign.keyName
+                } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
+                    strongestPlanetSign = self.chart!.southNode.sign.keyName
+                }
 
-               print("chartCake: \(chartCake)")
-               
-               let houseStrengths = chart?.calculatePlanetInHouseScores(chart!.planets)
-                                                            
-               
-               let houseScores = chart!.calculateHouseStrengths(chart!.planets)
-               
+                let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
+                                                     strongestPlanetSign: strongestPlanetSign!,
+                                                     sunSign: self.chart!.sun.sign.keyName,
+                                                     moonSign: self.chart!.moon.sign.keyName,
+                                                     risingSign: self.chart!.houseCusps.ascendent.sign.keyName)
 
-               let mostDiscordantPlanet = getMostDiscordantPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets(chart!.planets))!)
+                // Initialize and push the StrongestPlanetViewController
+                let strongestPlanetVC = StrongestPlanetViewController()
+                strongestPlanetVC.chartCake = chartCake
+                strongestPlanetVC.chart = chart
+                strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
+                //
+                strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
+                strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+                strongestPlanetVC.sentenceText = sentence
+                self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
 
-               let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets(chart!.planets))!)
+                // ... existing code ...
+                DispatchQueue.main.async {
+                    self.getPowerPlanetButton.isEnabled = true
+                }
+            }
+        } failure: { msg in
+            // Also enable the button when there's a failure in geocoding
+            DispatchQueue.main.async {
+                self.getPowerPlanetButton.isEnabled = true
+            }
+        }
+    }
 
-
-               
-               if strongestPlanet == "Sun" {
-                strongestPlanetSign = chart!.sun.sign.keyName
-            }  else  if strongestPlanet == "Moon" {
-                strongestPlanetSign = chart!.moon.sign.keyName
-            }  else  if strongestPlanet == "Mercury" {
-                strongestPlanetSign = chart!.mercury.sign.keyName
-            }  else  if strongestPlanet == "Venus" {
-                strongestPlanetSign = chart!.venus.sign.keyName
-            }  else  if strongestPlanet == "Mars" {
-                strongestPlanetSign = chart!.mars.sign.keyName
-            }  else  if strongestPlanet == "Jupiter" {
-                strongestPlanetSign = chart!.jupiter.sign.keyName
-            }  else  if strongestPlanet == "Saturn" {
-                strongestPlanetSign = chart!.saturn.sign.keyName
-            }  else  if strongestPlanet == "Uranus" {
-                strongestPlanetSign = chart!.uranus.sign.keyName
-            }  else  if strongestPlanet == "Neptune" {
-                strongestPlanetSign = chart!.neptune.sign.keyName
-            }  else  if strongestPlanet == "Pluto" {
-                strongestPlanetSign = chart!.pluto.sign.keyName
-              }  else  if strongestPlanet == "Mean South Node" {
-                                 strongestPlanetSign = chart!.southNode.sign.keyName
-                            }
-               
-               
-               
-               let sentence = generateAstroSentence(strongestPlanet: strongestPlanet!, strongestPlanetSign: strongestPlanetSign!, sunSign: chart!.sun.sign.keyName, moonSign: chart!.moon.sign.keyName, risingSign: chart!.houseCusps.ascendent.sign.keyName)
-               // Initialize and push the StrongestPlanetViewController
-               let strongestPlanetVC = StrongestPlanetViewController()
-               strongestPlanetVC.chartCake = chartCake.self
-               strongestPlanetVC.chart = chart.self
-               strongestPlanetVC.strongestPlanet = getStrongestPlanet2(from: filteredScores)
-               //
-               strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.self
-               strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.self
-               strongestPlanetVC.sentenceText = sentence.self
-               self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
-               
-               // ... existing code ...
-               DispatchQueue.main.async {
-                          self.getPowerPlanetButton.isEnabled = true
-                      }
-                  }
-              } failure: { msg in
-                  // Also enable the button when there's a failure in geocoding
-                  DispatchQueue.main.async {
-                      self.getPowerPlanetButton.isEnabled = true
-                  }
-              }
-          }
-              
     func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
         let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8"
         let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
@@ -508,28 +483,12 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         }
         task.resume()
     }
-    
 
-func getStrongestPlanet(from scores: [String: Double]) -> String? {
-    guard !scores.isEmpty else {
-        return nil
-    }
-    
-    var strongestPlanet: String = scores.keys.first!
-    var strongestScore: Double = scores[strongestPlanet] ?? Double.nan
-    
-    for (planet, score) in scores {
-        if score > strongestScore {
-            strongestPlanet = planet
-            strongestScore = score
-        }
-    }
-    
-    return strongestPlanet
-}
-    
-    func getStrongestPlanet2(from scores: [(String, Double)]) -> String? {
-        return scores.first?.0
+    func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {
+        let sorted = scores.sorted { $0.value > $1.value }
+        let strongestPlanet = sorted.first!.key
+
+        return strongestPlanet
     }
 
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
@@ -540,63 +499,35 @@ func getStrongestPlanet(from scores: [String: Double]) -> String? {
         let dateString = dateFormatter.string(from: selectedDate)
         dateTextField.text = dateString
     }
-        
+
+    @objc func datePickerDonePressed() {
+        // Set the time zone for the date picker
+
+        dateTextField.resignFirstResponder()
+    }
 
 
-@objc func datePickerDonePressed() {
-    // Set the time zone for the date picker
-
-    dateTextField.resignFirstResponder()
-}
-
-
-func showAlert(withTitle title: String, message: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-    alert.addAction(okAction)
-    present(alert, animated: true, completion: nil
-) }
+    func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil
+        ) }
 
 
-    func getMostHarmoniousPlanet(from scores: [String: (harmony: Double, discord: Double, net: Double)]) -> String? {
-        guard !scores.isEmpty else {
-            return nil
-        }
-        
-        var mostHarmoniousPlanet: String = scores.keys.first!
-        var mostHarmoniousNetScore: Double = scores[mostHarmoniousPlanet]?.net ?? Double.nan
-        
-        for (planet, scoreTuple) in scores {
-            if scoreTuple.net > mostHarmoniousNetScore {
-                mostHarmoniousPlanet = planet
-                mostHarmoniousNetScore = scoreTuple.net
-            }
-        }
-        
+    func getMostHarmoniousPlanet(from scores: [CelestialObject: (harmony: Double, discord: Double, net: Double)]) -> CelestialObject {
+        let sorted = scores.sorted { $0.value.net > $1.value.net }
+        let mostHarmoniousPlanet = sorted.first!.key
         return mostHarmoniousPlanet
     }
 
-    func getMostDiscordantPlanet(from scores: [String: (harmony: Double, discord: Double, net: Double)]) -> String? {
-        guard !scores.isEmpty else {
-            return nil
-        }
-        
-        var mostDiscordantPlanet: String = scores.keys.first!
-        var mostDiscordantNetScore: Double = scores[mostDiscordantPlanet]?.net ?? Double.nan
-        
-        for (planet, scoreTuple) in scores {
-            if scoreTuple.net < mostDiscordantNetScore {
-                mostDiscordantPlanet = planet
-                mostDiscordantNetScore = scoreTuple.net
-            }
-        }
-        
+    func getMostDiscordantPlanet(from scores: [CelestialObject: (harmony: Double, discord: Double, net: Double)]) -> CelestialObject {
+        let sorted = scores.sorted { $0.value.net < $1.value.net }
+        let mostDiscordantPlanet = sorted.first!.key
         return mostDiscordantPlanet
     }
 
 }
-
-
 
 extension ViewController: CLLocationManagerDelegate {
     
@@ -628,8 +559,6 @@ extension ViewController: CLLocationManagerDelegate {
         birthTimeTextField.text = timeString
     }
 
-    
-    
     func combinedDateAndTime() -> Date? {
         let calendar = Calendar.current
 
@@ -645,11 +574,6 @@ extension ViewController: CLLocationManagerDelegate {
 
         return calendar.date(from: dateComponents)
     }
-
-
-    
-
-    
 }
 
 
