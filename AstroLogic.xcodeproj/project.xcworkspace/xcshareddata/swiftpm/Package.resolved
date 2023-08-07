@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heylila/SwiftEphemeris.git",
       "state" : {
-        "branch" : "chart-cake",
-        "revision" : "8a1da7521447b8f471b889665c72850370a2871e"
+        "branch" : "rickys-branch",
+        "revision" : "5cae7165d89cb57fe5b96e8a0f91036cfbfa4f24"
       }
     }
   ],

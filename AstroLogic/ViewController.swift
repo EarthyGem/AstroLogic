@@ -8,7 +8,13 @@ import GooglePlaces
 
 class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     var selectedPlace: GMSPlace?
-    var birthPlaceTimeZone: TimeZone? = nil
+    var birthPlaceTimeZone: TimeZone? {
+        didSet {
+            datePicker.timeZone = birthPlaceTimeZone
+            timePicker.timeZone = birthPlaceTimeZone
+        }
+    }
+
     var selectedDate: Date?
     var chart: Chart?
     var birthChartView: BirthChartView?
@@ -61,17 +67,13 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     }()
     
     
-    let dateFormatter: DateFormatter = {
+    lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, yyyy"
-        formatter.timeZone = TimeZone.current
-//        let dateComponents = DateComponents(year: 1977, month: 5, day: 21, hour: 13, minute: 57)
-//        let date = Calendar.current.date(from: dateComponents)!
-//        let dateString = formatter.string(from: date)
-//        formatter.defaultDate = date
+        formatter.timeZone = birthPlaceTimeZone ?? TimeZone.current
         return formatter
     }()
-    
+
     lazy var getPowerPlanetButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Get Power Planet", for: .normal)
@@ -102,10 +104,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.borderStyle = .roundedRect
         textField.frame = CGRect(x: 25, y: 150, width: 250, height: 35)
-//        let dateComponents = DateComponents(year: 1977, month: 5, day: 21, hour: 13, minute: 57)
-//        let date = Calendar.current.date(from: dateComponents)!
 
-//        textField.text = dateFormatter.string(from: date)
         return textField
     }()
     
@@ -113,11 +112,11 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
-
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        datePicker.timeZone = TimeZone.current // Use birthPlaceTimeZone
 
         // Set default date
         let dateFormatter = DateFormatter()
@@ -128,12 +127,13 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         return datePicker
     }()
+ 
 
-    
     lazy var timePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .time
+        datePicker.timeZone = TimeZone.current // Use birthPlaceTimeZone
         datePicker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
         datePicker.addTarget(self, action: #selector(timePickerValueChanged), for: .valueChanged)
 
@@ -145,32 +145,10 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         return datePicker
     }()
-    
-//  func printAspectSymbols() {
-//        for aspect in aspects {
-//            if let symbol = aspect?.symbol {
-//             //   print("Aspect Symbol: \(symbol)")
-//            }
-//        }
-//    }
-//    
-//func setupView() {
-//      aspects = getAllNatalAspects(birthChart: chart!, date: selectedDate!)
-//        printAspectSymbols() // Print the aspect symbols
-//    }
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        
-        
-//            print("View constarints\(view.constraints)")
-//            print("View constarints\(aboutButton.constraints)")
-//            print(aboutButton.constraints)
 
-//       print(nodalMadLib())
         view.addSubview(getChartButton)
         view.backgroundColor = .black
        
@@ -249,17 +227,6 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         
         let fields: GMSPlaceField = GMSPlaceField(rawValue: (UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)))
         autocompleteController.placeFields = fields
-
-        
-        // Set the desired location restriction if needed
-        // autocompleteController.locationRestriction = ...
-        
-        // Set the desired country restriction if needed
-        // autocompleteController.countryRestriction = ...
-        
-        // Rest of your code...
-        
-        
         
         self.autocompleteController = autocompleteController
     }
@@ -310,6 +277,31 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         // Set the location string to the text field.
         birthPlaceTextField.text = locationString
 
+        if let address = place.formattedAddress {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(address) { [self] placemarks, error in
+                guard let placemark = placemarks?.first,
+                      let location = placemark.location else {
+                    print("Geocoding error: \(error?.localizedDescription ?? "unknown error")")
+                    return
+                }
+
+                let latitude = location.coordinate.latitude
+                let longitude = location.coordinate.longitude
+
+                // Convert the current date to Unix timestamp
+                let timestamp = Int(Date().timeIntervalSince1970)
+
+                // Fetch the timezone for the selected place
+                fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { timeZone in
+                    DispatchQueue.main.async {
+                        self.birthPlaceTimeZone = timeZone
+                        self.timePicker.timeZone = timeZone
+                    }
+                }
+            }
+        }
+
         dismiss(animated: true, completion: nil)
     }
 
@@ -337,15 +329,19 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     func updateDatePickerTimeZone() {
         let geocoder = CLGeocoder()
         let addressString = birthPlaceTextField.text ?? ""
-        
+
         geocoder.geocodeAddressString(addressString) { placemarks, error in
-            guard let placemark = placemarks?.first, let timeZone = placemark.timeZone else {
+            guard let placemark = placemarks?.first, let location = placemark.location else {
                 // Handle error or default timezone
                 return
             }
-            
-            DispatchQueue.main.async {
-                self.datePicker.timeZone = timeZone
+
+            let timestamp = Int(Date().timeIntervalSince1970)
+            self.fetchTimeZone(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, timestamp: timestamp) { timeZone in
+                DispatchQueue.main.async {
+                    self.datePicker.timeZone = timeZone
+                    self.birthPlaceTimeZone = timeZone
+                }
             }
         }
     }
@@ -407,7 +403,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                self.chartCake = ChartCake(birthDate: combinedDateAndTime()!, latitude: latitude, longitude: longitude)
                
 
-                            datePickerValueChanged()
+           //    datePickerValueChanged(self.datePicker)
 
 
                let scores = getTotalPowerScoresForPlanets(chart: chart!)
@@ -417,101 +413,24 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                    return tuple.0 != "Mean South Node"
                }
                    let strongestPlanet = getStrongestPlanet2(from: filteredScores)
-//
-               
-             //   print("SCORES: \(scores)")
-//                  let scoresTexts = getTotalPowerScoresForPlanetsText(birthChart: self.chart!, date: selectedDate!, ascDeclination: ascDeclination, mcDeclination: mcDeclination)
-//                scoresText.text = scoresTexts
-            
-//                scoresText.frame = CGRect(x: 0, y: 300, width: 300 , height: 250)
-//                view.addSubview(scoresText)
 
-        //    let harmonyScoreDifferences = getHarmonyScoreDifferenceForPlanets(chart: self.chart!)
-            
-           //    _ = getScoresAndDifferenceForPlanets(chart: self.chart!)
-            
-             
-               
                let signScore = chart!.calculateTotalSignScore(chart!.planets)
-              
-//               print("Total Aspect Scores \(getCompositeAspectScores())")
-        //       print("Total Comp House Scores \(getHouseScoreForPlanets())")
-               
-         //      print("Total Comp Parallels \(getCompositeParallelAspects())")
-          
-         //      print("Total Comp Apects to Angles \(getCompositePlanetaryAspectsToFirstAndTenthHouses())")
-               
-               let bodies = self.chart!.allBodies
-               for body in bodies {
-               //    print(" declinations: \(body.body.keyName) \(body.declination)")
-               }
-               
-         
-               
-//                   // Call the function and print the result
-//                   let planetsInHouses = calculatePlanetsInHouses
-//                   print("Planets in Houses: \(planetsInHouses)")
-//
-//
-//
-                        let planetsInHousesResult = calculatePlanetsInHouses()
-           //             print("calculatePlanetsInHouses: \(planetsInHousesResult)")
+
+             
 
                print("chartCake: \(chartCake)")
                
                let houseStrengths = chart?.calculatePlanetInHouseScores(chart!.planets)
                                                             
-                //    print("calculatePlanetInHouseScores: \(houseStrengths)")
                
                let houseScores = chart!.calculateHouseStrengths(chart!.planets)
                
-             
-            //   print("House Score: \(houseScores)")
-//
-             //  _ = calculatePlanetSignScores(chart: self.chart!)
-//
-        //       getAllCompositeAspectScores()
-             
-//
-//                   print("Unoccupied Sign Scores: \(signScores)")
-              
+
                let mostDiscordantPlanet = getMostDiscordantPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets(chart!.planets))!)
 
                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: (chart?.getTotalHarmonyDiscordScoresForPlanets(chart!.planets))!)
 
-//                presentMainTabBarController()
-               
 
-//
-              //     print("Get total for planets and angles: \(getTotalPowerScoresForPlanets2(birthChart: self.chart!, date: selectedDate!, ascDeclination: ascDeclination, mcDeclination: mcDeclination))")
-               
-               
-                //   print("CuspParallels: \(getAllParallelAspectScoresToAngles(birthChart: self.chart!, ascDeclination: ascDeclination, mcDeclination: mcDeclination))")
-               
-          //     print("Cusp Scores: \(getTotalPowerScoresForAngles(birthChart: self.chart!,ascDeclination: ascDeclination, mcDeclination: mcDeclination))")
-              
-               
-              // print("angle house score: \( calculateAngleSignScores(birthChart: self.chart!,ascDeclination: ascDeclination, mcDeclination: mcDeclination))")
-             
-         //      print("planet house score: \( calculatePlanetSignScores(birthChart: self.chart!, date: selectedDate!,ascDeclination: ascDeclination, mcDeclination: mcDeclination))")
-             
-               
-            //   print("Strong Planets: \(getStrongPlanets(birthChart: self.chart!, date: selectedDate!,ascDeclination: ascDeclination, mcDeclination: mcDeclination))")
-               
-             //  print("CuspAspects: \(getAllCuspAspectScores2(birthChart: self.chart!))")
-               
-               
-          //     setupView()
-               
-       //        print("calculate comp Aspects: \(calculateAspects())")
-
-               
-               
-               
-               
-        //       print("positive a negative: \(getPositiveNegativeAspectScores(birthChart: self.chart!, date: selectedDate!))")
-               
-               
                
                if strongestPlanet == "Sun" {
                 strongestPlanetSign = chart!.sun.sign.keyName
@@ -563,7 +482,32 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                   }
               }
           }
-                 
+              
+    func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
+        let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8"
+        let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
+
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let timeZoneId = json["timeZoneId"] as? String {
+                        let timeZone = TimeZone(identifier: timeZoneId)
+                        completion(timeZone)
+                    } else {
+                        completion(nil)
+                    }
+                }
+            } catch {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
     
 
 func getStrongestPlanet(from scores: [String: Double]) -> String? {
@@ -588,109 +532,16 @@ func getStrongestPlanet(from scores: [String: Double]) -> String? {
         return scores.first?.0
     }
 
-
-    func calculatePlanetsInHouses() -> [Int: [String]] {
-        guard let chart = chart else {
-            return [:]
-        }
-
-        var planetsInHouses: [Int: [String]] = [:]
-
-        for body in chart.allBodies {
-          let cusp = chart.houseCusps.cusp(for: body.longitude)
-                
-                let houseNumber = cusp.number
-
-                if planetsInHouses[houseNumber] == nil {
-                    planetsInHouses[houseNumber] = []
-                }
-                
-                planetsInHouses[houseNumber]?.append(body.body.keyName)
-            }
-        
-
-        return planetsInHouses
-    }
-    private func getHouseCusps2() -> [String] {
-        
-        let first = chart!.houseCusps.first.sign.keyName
-        let second = chart!.houseCusps.second.sign.keyName
-        let third = chart!.houseCusps.third.sign.keyName
-        let fourth = chart!.houseCusps.fourth.sign.keyName
-        let fifth = chart!.houseCusps.fifth.sign.keyName
-        let sixth = chart!.houseCusps.sixth.sign.keyName
-        let seventh = chart!.houseCusps.seventh.sign.keyName
-        let eighth = chart!.houseCusps.eighth.sign.keyName
-        let ninth = chart!.houseCusps.ninth.sign.keyName
-        let tenth = chart!.houseCusps.tenth.sign.keyName
-        let eleventh = chart!.houseCusps.eleventh.sign.keyName
-        let twelfth = chart!.houseCusps.twelfth.sign.keyName
-        
-        return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
-    }
-
-    
-    private func getHouseCusps() -> [Zodiac] {
-        
-        let first = chart!.houseCusps.first.sign
-        let second = chart!.houseCusps.second.sign
-        let third = chart!.houseCusps.third.sign
-        let fourth = chart!.houseCusps.fourth.sign
-        let fifth = chart!.houseCusps.fifth.sign
-        let sixth = chart!.houseCusps.sixth.sign
-        let seventh = chart!.houseCusps.seventh.sign
-        let eighth = chart!.houseCusps.eighth.sign
-        let ninth = chart!.houseCusps.ninth.sign
-        let tenth = chart!.houseCusps.tenth.sign
-        let eleventh = chart!.houseCusps.eleventh.sign
-        let twelfth = chart!.houseCusps.twelfth.sign
-        
-        return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
-    }
-
-    private func getInterceptedSigns() -> [String] {
-        let houseCusps = getHouseCusps()
-        var interceptedSigns: [String] = []
-
-        for i in 0..<houseCusps.count {
-            var currentCusp = houseCusps[i]
-            let nextCusp = houseCusps[(i + 1) % houseCusps.count]
-            
-            while currentCusp != nextCusp {
-                let nextZodiacIndex = (currentCusp.rawValue + 1) % 12
-                if let nextZodiac = Zodiac(rawValue: nextZodiacIndex), nextZodiac != nextCusp {
-                    interceptedSigns.append(nextZodiac.keyName)
-                }
-                currentCusp = Zodiac(rawValue: nextZodiacIndex) ?? .aries // Defaulting to .aries in case of error, update this as per your need
-            }
-        }
-        
-        return interceptedSigns
-    }
-
-
-
-
-//    @objc func calculateButtonTapped() {
-//        guard let date = dateTextField.text?.toDate()?.date, let location = birthPlaceTextField.text else {
-//            showAlert(withTitle: "Error", message: "Please enter valid birth date and place")
-//            return
-//        }
-//    }
-
-
-@objc func datePickerValueChanged() {
-    // Ensure that UI updates are performed on the main thread
-    DispatchQueue.main.async {
+    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+        let selectedDate = sender.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
-        dateFormatter.timeZone = self.birthPlaceTimeZone ?? TimeZone.current
-
-        let dateString = dateFormatter.string(from: self.datePicker.date)
-        self.dateTextField.text = dateString
-
+        dateFormatter.timeZone = birthPlaceTimeZone // Use the birthPlaceTimeZone here
+        let dateString = dateFormatter.string(from: selectedDate)
+        dateTextField.text = dateString
     }
-}
+        
+
 
 @objc func datePickerDonePressed() {
     // Set the time zone for the date picker
@@ -706,63 +557,6 @@ func showAlert(withTitle title: String, message: String) {
     present(alert, animated: true, completion: nil
 ) }
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showStrongestPlanet",
-//           let strongestPlanetVC = segue.destination as? StrongestPlanetViewController,
-//           let planets = sender as? (String, String, String, String) {
-//
-//            strongestPlanetVC.strongestPlanet = planets.0
-//            strongestPlanetVC.mostHarmoniousPlanet = planets.1
-//            strongestPlanetVC.mostDiscordantPlanet = planets.2
-//            strongestPlanetVC.sentenceText = planets.3
-//            strongestPlanetVC.chart = chart // Add this line to your code
-//
-//            strongestPlanetVC.getMajorProgresseDate = { [weak self] in
-//                guard let self = self else {
-//                    return Date()
-//                }
-//                // Replace `latitude`, `longitude`, and `self.birthPlaceTimeZone` with your actual values or variables
-//                return self.getMajorProgresseDate(latitude: self.latitude!, longitude: self.longitude!, birthTimeZone: self.birthPlaceTimeZone!)
-//            }
-//
-//            strongestPlanetVC.getMinors = { [weak self] in
-//                return self?.getMinors() ?? Date()
-//            }
-//        } else if segue.identifier == "showChart",
-//                  let chartViewerVC = segue.destination as? ChartViewController {
-//
-//            let planetsInHousesResult = calculatePlanetsInHouses()
-//
-//            chartViewerVC.chart = chart
-//            chartViewerVC.scores2 = getTotalPowerScoresForPlanets2(birthChart: self.chart!, date: selectedDate!, ascDeclination: self.ascDeclination ?? 0.0, mcDeclination: self.mcDeclination ?? 0.0)
-//            chartViewerVC.ascDeclination = self.ascDeclination
-//            chartViewerVC.mcDeclination = self.mcDeclination
-//            chartViewerVC.selectedDate = self.selectedDate
-//            chartViewerVC.signScore = self.signScore
-//            chartViewerVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(birthChart: self.chart!, date: selectedDate!, ascDeclination: self.ascDeclination ?? 0.0, mcDeclination: self.mcDeclination ?? 0.0)
-//            chartViewerVC.scores = getTotalPowerScoresForPlanets(birthChart: self.chart!, date: selectedDate!, ascDeclination: self.ascDeclination ?? 0.0, mcDeclination: self.mcDeclination ?? 0.0)
-//            chartViewerVC.houseScores = calculateHouseStrengths(birthChart: self.chart!, date: selectedDate!, ascDeclination: self.ascDeclination ?? 0.0, mcDeclination: self.mcDeclination ?? 0.0, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns(), planetsInHouses: planetsInHousesResult)
-//        }
-//
-//    }
-//func eclipticToEquatorial(longitude: Double, obliquity: Double) -> (rightAscension: Double, declination: Double) {
-//    let radLongitude = longitude * Double.pi / 180
-//    let radObliquity = obliquity * Double.pi / 180
-//
-//
-//    let ra = atan2(cos(radObliquity) * sin(radLongitude), cos(radLongitude))
-//    let declination = asin(sin(radObliquity) * sin(radLongitude))
-//
-//    return (ra * 180 / Double.pi, declination * 180 / Double.pi)
-//}
-//
-//func obliquity(julianDay: Double) -> Double {
-//    let eps = UnsafeMutablePointer<Double>.allocate(capacity: 1)
-//    swe_calc(julianDay, SE_ECL_NUT, 0, eps, nil)
-//    let obliquity = eps.pointee
-//    eps.deallocate()
-//    return obliquity
-//}
 
     func getMostHarmoniousPlanet(from scores: [String: (harmony: Double, discord: Double, net: Double)]) -> String? {
         guard !scores.isEmpty else {
@@ -805,259 +599,57 @@ func showAlert(withTitle title: String, message: String) {
 
 
 extension ViewController: CLLocationManagerDelegate {
-
-func startUpdatingLocation() {
+    
+    func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
-}
-
-func stopUpdatingLocation() {
-    locationManager.stopUpdatingLocation()
-}
-
-//func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//    guard locations.last != nil else { return }
-//    let rulingPlanet = rulingPlanet(at: Date(), location: locations.last!)
-//
-//    let planetaryHours: () = printPlanetaryHoursForTheDay(date: Date(), location: locations.first!)
-//   //     print("Planetary Hour: \(rulingPlanet)")
-//  //  print("Planetary Hour: \(planetaryHours)")
-//}
-
-func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    print("Location update failed: \(error.localizedDescription)")
-
-
-}
-
-@objc func timePickerDonePressed() {
-    birthTimeTextField.resignFirstResponder()
-}
-
-@objc func timePickerValueChanged(_ sender: UIDatePicker) {
-    let selectedTime = sender.date
-    let timeFormatter = DateFormatter()
-    timeFormatter.dateFormat = "h:mm a"
-    timeFormatter.timeZone = sender.timeZone // Use the timePicker's timezone
-    let timeString = timeFormatter.string(from: selectedTime)
-    birthTimeTextField.text = timeString
-}
-
-
-func combinedDateAndTime() -> Date? {
-    let calendar = Calendar.current
-
-    guard let birthPlaceTimeZone = birthPlaceTimeZone else {
-        return nil // Return early if birthPlaceTimeZone is not set
+    }
+    
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location update failed: \(error.localizedDescription)")
+        
+        
+    }
+    
+    @objc func timePickerDonePressed() {
+        birthTimeTextField.resignFirstResponder()
+    }
+    @objc func timePickerValueChanged(_ sender: UIDatePicker) {
+        let selectedTime = sender.date
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm a"
+        timeFormatter.timeZone = TimeZone.current
+        let timeString = timeFormatter.string(from: selectedTime)
+        birthTimeTextField.text = timeString
     }
 
-    var dateComponents = calendar.dateComponents(in: birthPlaceTimeZone, from: datePicker.date)
-    let timeComponents = calendar.dateComponents(in: birthPlaceTimeZone, from: timePicker.date)
+    
+    
+    func combinedDateAndTime() -> Date? {
+        let calendar = Calendar.current
 
-    dateComponents.hour = timeComponents.hour
-    dateComponents.minute = timeComponents.minute
+        guard let birthPlaceTimeZone = birthPlaceTimeZone else {
+            return nil // Return early if birthPlaceTimeZone is not set
+        }
 
-    return calendar.date(from: dateComponents)
-}
+        var dateComponents = calendar.dateComponents(in: birthPlaceTimeZone, from: datePicker.date)
+        let timeComponents = calendar.dateComponents(in: TimeZone.current, from: timePicker.date)
 
+        dateComponents.hour = timeComponents.hour
+        dateComponents.minute = timeComponents.minute
 
-func convertToLocalTime(fromDate date: Date, timeZone: TimeZone) -> Date {
-    let localTimeZone = TimeZone.current
-
-    let sourceOffset = TimeInterval(timeZone.secondsFromGMT(for: date)) / 60
-    let localOffset = TimeInterval(localTimeZone.secondsFromGMT(for: date)) / 60
-
-    let adjustedDate = date.addingTimeInterval((localOffset - sourceOffset) * 60)
-    return adjustedDate
-}
+        return calendar.date(from: dateComponents)
+    }
 
 
-//func getDates() async -> BodiesRequest {
-//
-//    let request = BodiesRequest(body: Planet.moon.celestialObject)
-//
-//    // Asynchronously returns an array of `.sun` `Coordinate`s for every hour between now and 720 hours in the future.
-//    _ = request.fetch(start: combinedDateAndTime()! - 1.days, end: combinedDateAndTime()! + 1.days, interval: 7200)
-//    // Some async code
-//    return BodiesRequest(body: Planet.moon.celestialObject)
-//}
+    
 
-
-
-//func getMinors() -> Date {
-//
-//
-//    let ProgressedDateInSec = Date().timeIntervalSince1970
-//    let BirthDateInSec = combinedDateAndTime()!.timeIntervalSince1970
-//
-//
-//    let minorProgressedTimeDifference = ProgressedDateInSec - BirthDateInSec
-//
-//    let minorPreLimitingDate = (minorProgressedTimeDifference * 27.3) / 365.25
-//
-//
-//
-//var minProgDateComponent = DateComponents()
-//minProgDateComponent.second = Int(minorPreLimitingDate)
-//
-//    let minorProgDate = combinedDateAndTime()! + minProgDateComponent
-////
-//
-//
-//    return minorProgDate
-//}
-
-//func getMajorProgresseDate(latitude: Double, longitude: Double, birthTimeZone: TimeZone) -> Date {
-//    //            let latitude = Double(placemark.location!.coordinate.longitude)
-//    //            let longitude = Double(placemark.location!.coordinate.longitude)
-//    
-//    //    var birthTimeZone = TimeZone.current
-//    let secondsFromGMT = birthTimeZone.secondsFromGMT(for: combinedDateAndTime()!)
-//
-//    //  let noonAtGMT = noonOnDob
-//    let timeZone = secondsFromGMT / 60 / 60
-//    //          let datePicker = datePicker
-//    //          datePicker.timeZone = TimeZone(identifier:  birthTimeZone.description)
-//    //  let datePicker = myBirthDate()
-//    _ = timeZone
-//
-//    let birthTimeMeridian = -timeZone * 15
-//
-//
-//    //  The Dominant Factor
-//
-//    //  Find LMT (Local Mean Time)
-//
-//    //Rule 8. When Standard Time is given to find the L.M.T. at a place WEST of a Standard Meridian multiply the ° distant from the standard by 4, calling the result minutes, multiply
-//
-//    //    Standard Time = 1:30 am
-//    //      distance from Standard Meridian = 105 degrees
-//    //    105 x 4 = 420 minutes
-//
-//
-//    let standardTimeAtBirth = combinedDateAndTime()!
-//    let standardMeridian = 0
-//    let birthLongitude = longitude - Double(standardMeridian)
-//    _ = birthLongitude * 4
-//    
-//    let meridianOffSet = Double(birthTimeMeridian) - birthLongitude
-//    let egmt = meridianOffSet * 4
-//    
-//    let timeZoneAtBirth = (birthTimeMeridian / 15) * 60
-//    
-//    
-//    let  preLMToffset = meridianOffSet * 4
-//
-//    let EGMTIntervals = standardTimeAtBirth + timeZoneAtBirth.hours
-//    
-//    let LMToffset =  preLMToffset * 60
-//    
-//    _ = standardTimeAtBirth + Int(LMToffset).seconds
-//    
-//
-//
-//    //          Step IV. How to Find the E.G.M.T. INTERVAL
-//
-//
-//    //          Rule 14. To find the difference in time between the place of birth and Greenwich, multiply the ° distant in longitude from Greenwich by 4, calling the product minutes, and multiply the ′ by 4, calling the product seconds. Convert into hours and minutes.
-//    
-//    //    420 minutes  = 7 hours
-//
-//
-//    let distanceFromGMTInSeconds = (longitude * 4) * 60
-//
-//    _ = distanceFromGMTInSeconds / 60 / 60
-//
-//    //  Rule 15. Divide the ° by 15. The quotient is hours, the remainder multiplied by 4 is minutes.
-//
-//
-//    _ = longitude / 15
-//
-//
-//    _ = egmt.formatted // May 26, 2022, 8:16 PM          newFormatter.timeZone =  TimeZone(abbreviation: "UTC")
-//
-//
-//
-//    //          If the EGMT Interval of birth is minus, add the calendar interval thus found to the year and month of birth. If the EGMT Interval of birth is plus, subtract the calendar interval thus found from the year, month and day of birth. The L.D. thus found is the calendar starting point from which all major-progressed aspects and positions are calculated.
-//
-//    let noonOnDobInput = combinedDateAndTime()!
-//    let NoonInterval = noonOnDobInput.dateBySet(hour: 12, min: 00, secs: 00)
-//
-//    // convert Date to TimeInterval (typealias for Double)
-//    let timeInterval1 = NoonInterval
-//
-//    // convert to Integer
-//    _ = timeInterval1
-//
-//
-//    let timeInterval2 = NoonInterval!.timeIntervalSince1970
-//
-//    // convert to Integer
-//    _ = Int(timeInterval2)
-//
-//
-//    let EGMTInterval = NoonInterval!.timeIntervalSince1970 - EGMTIntervals.timeIntervalSince1970
-//
-//    
-//    _ = NoonInterval! - EGMTIntervals
-//    
-//    //
-//    //          Finding the Limiting Date
-//
-//    //  The Limiting Date (abbreviated L.D.) is the date in calendar time corresponding to the major-progressed positions of the planets on the day of birth as they are shown in the ephemeris. Convert the EGMT Interval of birth into months and days of calendar time by dividing the hours by 2 and calling the result months, and dividing the minutes by 4 and calling the result days.
-//
-//
-//    let LDinSeconds = Double(EGMTInterval/2) * 730.0
-//
-//
-//    _ = EGMTInterval
-//
-//    //
-//    //            var LimitingDate = limitingDateNumber * 60
-//
-//    let limitingDate = Date(timeInterval: LDinSeconds, since: combinedDateAndTime()!)
-//
-//
-//    let timeCorrectionMins = abs(timeZone) * 60
-//
-//    _ = abs(timeCorrectionMins) * 60
-//
-//
-//
-//    //          The Major Progression Date (abbreviated Map.D.) is the ephemeris day which shows the major-progressed positions of the planets for the month and day of the Limiting Date, but for some calendar year.
-//
-//
-//    //          To find the Map.D. for any calendar year, count ahead in the ephemeris from the day of birth as many days as complete years have elapsed since the Limiting Date. The ephemeris day so located is the required Map.D.
-//
-//
-//    let progressionDate = Date().timeIntervalSince1970
-//    let natalDate = combinedDateAndTime()!.timeIntervalSince1970
-//    let progressedDifference = progressionDate - natalDate
-//
-//    //
-//    let preLimitingDate = progressedDifference / 365.25
-//    _ = progressedDifference * 0.000011574074074
-//
-//    var dateComponent = DateComponents()
-//    dateComponent.day = 1
-//    let futureDate = Calendar.current.date(byAdding: dateComponent, to: limitingDate)
-//
-//
-//    var birthDateComponent = DateComponents()
-//    birthDateComponent.second = Int(preLimitingDate)
-//    let dayAfterBirth = Calendar.current.date(byAdding: birthDateComponent, to: combinedDateAndTime()!)
-//
-//    _ = futureDate
-//
-//   
-//    let MapD = dayAfterBirth
-//
-// 
-//    
-//    return MapD!
-//}
-//
-
-
+    
 }
 
 

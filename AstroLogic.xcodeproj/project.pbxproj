@@ -17,7 +17,6 @@
 		3903A3552A5F2D0900245DD2 /* AstroLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3542A5F2D0900245DD2 /* AstroLogicTests.swift */; };
 		3903A35F2A5F2D0900245DD2 /* AstroLogicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A35E2A5F2D0900245DD2 /* AstroLogicUITests.swift */; };
 		3903A3612A5F2D0900245DD2 /* AstroLogicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3602A5F2D0900245DD2 /* AstroLogicUITestsLaunchTests.swift */; };
-		3903A36F2A5F2D4300245DD2 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 3903A36E2A5F2D4300245DD2 /* SwiftEphemeris */; };
 		3903A3722A5F2DF000245DD2 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 3903A3712A5F2DF000245DD2 /* GoogleMaps */; };
 		3903A3742A5F2DF000245DD2 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 3903A3732A5F2DF000245DD2 /* GooglePlaces */; };
 		3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3752A5F2E8400245DD2 /* BirthChartView.swift */; };
@@ -61,7 +60,7 @@
 		39A1EC692A60F98C008D1EC1 /* Harmony and Discord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC682A60F98C008D1EC1 /* Harmony and Discord.swift */; };
 		39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6A2A610480008D1EC1 /* Dignity.swift */; };
 		39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6C2A611BFD008D1EC1 /* graph info.swift */; };
-		39A1EC6F2A611D05008D1EC1 /* more scores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6E2A611D05008D1EC1 /* more scores.swift */; };
+		39B108362A80C72100165E62 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 39B108352A80C72100165E62 /* SwiftEphemeris */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +135,6 @@
 		39A1EC682A60F98C008D1EC1 /* Harmony and Discord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harmony and Discord.swift"; sourceTree = "<group>"; };
 		39A1EC6A2A610480008D1EC1 /* Dignity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dignity.swift; sourceTree = "<group>"; };
 		39A1EC6C2A611BFD008D1EC1 /* graph info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "graph info.swift"; sourceTree = "<group>"; };
-		39A1EC6E2A611D05008D1EC1 /* more scores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "more scores.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +143,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				39A1EC3D2A5F61D8008D1EC1 /* DGCharts in Frameworks */,
+				39B108362A80C72100165E62 /* SwiftEphemeris in Frameworks */,
 				3903A3742A5F2DF000245DD2 /* GooglePlaces in Frameworks */,
 				3903A3722A5F2DF000245DD2 /* GoogleMaps in Frameworks */,
-				3903A36F2A5F2D4300245DD2 /* SwiftEphemeris in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +216,6 @@
 				39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */,
 				39A1EC642A60EBC0008D1EC1 /* 34.swift */,
 				3997F0772A63C6D800741E9D /* 35.swift */,
-				39A1EC6E2A611D05008D1EC1 /* more scores.swift */,
 				3903A37B2A5F305100245DD2 /* GeoCode.swift */,
 				39A1EC4C2A5F768B008D1EC1 /* TransitAspectedPlanetsViewController.swift */,
 				39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */,
@@ -278,10 +275,10 @@
 			);
 			name = AstroLogic;
 			packageProductDependencies = (
-				3903A36E2A5F2D4300245DD2 /* SwiftEphemeris */,
 				3903A3712A5F2DF000245DD2 /* GoogleMaps */,
 				3903A3732A5F2DF000245DD2 /* GooglePlaces */,
 				39A1EC3C2A5F61D8008D1EC1 /* DGCharts */,
+				39B108352A80C72100165E62 /* SwiftEphemeris */,
 			);
 			productName = AstroLogic;
 			productReference = 3903A3372A5F2D0700245DD2 /* AstroLogic.app */;
@@ -356,9 +353,9 @@
 			);
 			mainGroup = 3903A32E2A5F2D0700245DD2;
 			packageReferences = (
-				3903A36D2A5F2D4300245DD2 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
 				3903A3702A5F2DF000245DD2 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
 				39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */,
+				39B108342A80C72100165E62 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
 			);
 			productRefGroup = 3903A3382A5F2D0700245DD2 /* Products */;
 			projectDirPath = "";
@@ -429,7 +426,6 @@
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
 				39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */,
 				3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */,
-				39A1EC6F2A611D05008D1EC1 /* more scores.swift in Sources */,
 				39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */,
 				39A1EC532A5F773E008D1EC1 /* MPAspectsVC.swift in Sources */,
 				39A1EC512A5F76E8008D1EC1 /* MinorsVC.swift in Sources */,
@@ -791,14 +787,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3903A36D2A5F2D4300245DD2 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
-			requirement = {
-				branch = "chart-cake";
-				kind = branch;
-			};
-		};
 		3903A3702A5F2DF000245DD2 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/YAtechnologies/GoogleMaps-SP.git";
@@ -815,14 +803,17 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		39B108342A80C72100165E62 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
+			requirement = {
+				branch = "ricky-Fix2";
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3903A36E2A5F2D4300245DD2 /* SwiftEphemeris */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3903A36D2A5F2D4300245DD2 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;
-			productName = SwiftEphemeris;
-		};
 		3903A3712A5F2DF000245DD2 /* GoogleMaps */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3903A3702A5F2DF000245DD2 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
@@ -837,6 +828,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = DGCharts;
+		};
+		39B108352A80C72100165E62 /* SwiftEphemeris */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39B108342A80C72100165E62 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;
+			productName = SwiftEphemeris;
 		};
 /* End XCSwiftPackageProductDependency section */
 
