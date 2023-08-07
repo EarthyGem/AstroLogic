@@ -807,8 +807,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
 			requirement = {
-				branch = "ricky-Fix2";
-				kind = branch;
+				kind = revision;
+				revision = 3f7c7fce472a2cc76899f6e9667f103ecbc90407;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
