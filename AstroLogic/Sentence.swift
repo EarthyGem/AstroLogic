@@ -8,78 +8,66 @@
 import Foundation
 import UIKit
 
-func generateAstroSentence(strongestPlanet: String, strongestPlanetSign: String, sunSign: String, moonSign: String, risingSign: String) -> String {
+func generateAstroSentence(strongestPlanet: String,
+                           strongestPlanetSign: String,
+                           sunSign: String,
+                           moonSign: String,
+                           risingSign: String) -> String {
     // Define arrays of arrays for adjectives and archetypes
     let adjectiveArrays: [String: [String]] = ["Aries": ["The Fiery", "The Bold", "The Courageous"],
-                                                "Taurus": ["The Sensual", "The Loyal", "The Grounded"],
-                                                "Gemini": ["The Witty", "The Versatile", "The Curious"],
-                                                "Cancer": ["The Intuitive", "The Nurturing", "The Emotional"],
-                                                "Leo": ["The Dramatic", "The Confident", "The Generous"],
-                                                "Virgo": ["The Analytical", "The Practical", "The Perfectionist"],
-                                                "Libra": ["The Charming", "The Diplomatic", "The Harmonious"],
-                                                "Scorpio": ["The Intense", "The Mysterious", "The Powerful"],
-                                                "Sagittarius": ["The Adventurous", "The Philosophical", "The Optimistic"],
-                                                "Capricorn": ["The Ambitious", "The Disciplined", "The Responsible"],
-                                                "Aquarius": ["The Eccentric", "The Humanitarian", "The Independent"],
-                                                "Pisces": ["The Dreamy", "The Compassionate", "The Creative"]]
+                                               "Taurus": ["The Sensual", "The Loyal", "The Grounded"],
+                                               "Gemini": ["The Witty", "The Versatile", "The Curious"],
+                                               "Cancer": ["The Intuitive", "The Nurturing", "The Emotional"],
+                                               "Leo": ["The Dramatic", "The Confident", "The Generous"],
+                                               "Virgo": ["The Analytical", "The Practical", "The Perfectionist"],
+                                               "Libra": ["The Charming", "The Diplomatic", "The Harmonious"],
+                                               "Scorpio": ["The Intense", "The Mysterious", "The Powerful"],
+                                               "Sagittarius": ["The Adventurous", "The Philosophical", "The Optimistic"],
+                                               "Capricorn": ["The Ambitious", "The Disciplined", "The Responsible"],
+                                               "Aquarius": ["The Eccentric", "The Humanitarian", "The Independent"],
+                                               "Pisces": ["The Dreamy", "The Compassionate", "The Creative"]]
     
-    let planetArrays: [String: [String]] = ["Sun": ["Charismatic One","Confident One", "Creative", "Creator", "Entertainer", "Force of Nature", "Gifted One", "Ruler"]
-,
-                                            
-"Moon": ["Nurturer", "Comforter", "Healer", "Supporter",  "Caretaker", "Gardener", "Empath"]
-,
-"Mercury": ["Thinker","Intelligent )ne","Communicator","Problem Solver","Adaptable One","Journalist","Messenger",
-"Intellectual","Teacher"],
-                                            
-"Venus": ["Sensualist", "Romantic", "Artist","Accommodator", "Aesthete", "Ambassador", "Balancer", "Beautifier", "Best Friend", "Charmer", "Connector", "Counselor", "Curator", "Lover", "Matchmaker", "Negotiator", "Partner", "Peacemaker"
-],
-                                            
-"Mars": ["Warrior", "Pioneer", "Adventurer", "Challenger", "Competitor", "Conqueror", "Courageous One", "Crusader", "Dynamic Force", "Builder", "Fighter", "Pioneer", "Protector", "Trailblazer", "Champion", "Leader"]
-,
-                                           
-"Jupiter": ["Philosopher", "Adventurer", "Optimist", "Promoter", "Bebefactor", "Bestower of Blessings", "True Believer"],
-                                            
-"Saturn": ["Expert", "Disciplinarian", "Elder", "Organizer", "Gatekeeper", "Judge", "Planner", "Organizer", "Provider", "Realist", "Rule Maker", "Taskmaster", "Traditionalist", "Wise One", "Authority", "Worker"]
-,
-                                            
-"Uranus": ["Awakener", "Genius", "Counterculturalist", "Dissenter", "Eccentric", "Entrepreneur", "Free Thinker",   "Groundbreaker", "Heretic","Rebel", "Innovator", "Iconoclast",   "Activist",
-           "Agent of Change",
-                          "Futurist",
-           "Disruptor",
-    "Orginal",
-           "Maverick",
-           "Outsider",
-           "Whistleblower"],
-                                         
-"Neptune": ["Mystic", "Dreamer", "Visionary", "Artist",
-            "Empath",
-            "Enchanter",
-                     "Idealist",
-            "Lover of God",
-            "Meditator",
-            "Medium",
-            "Muse",
-            "Poet"],
-                                         
-"Pluto": ["Transformer",
-    "Alchemist",
-    "Confidante",
-    "Deep Thinker",
-    "Detective",
-    "Excavator",
-    "Extremist",
+    let planetArrays: [String: [String]] = [
+        "Sun": [ "Charismatic One","Confident One", "Creative", "Creator", "Entertainer", "Force of Nature", "Gifted One", "Ruler"],
+        "Moon": ["Nurturer", "Comforter", "Healer", "Supporter",  "Caretaker", "Gardener", "Empath"],
+        "Mercury": [ "Thinker","Intelligent )ne","Communicator","Problem Solver","Adaptable One","Journalist","Messenger",
+                     "Intellectual","Teacher"],
+        "Venus": ["Sensualist", "Romantic", "Artist","Accommodator", "Aesthete", "Ambassador", "Balancer", "Beautifier",
+                  "Best Friend", "Charmer", "Connector", "Counselor", "Curator", "Lover", "Matchmaker", "Negotiator",
+                  "Partner", "Peacemaker" ],
+        "Mars": ["Warrior", "Pioneer", "Adventurer", "Challenger", "Competitor", "Conqueror", "Courageous One",
+                 "Crusader", "Dynamic Force", "Builder", "Fighter", "Pioneer", "Protector", "Trailblazer", "Champion", "Leader"],
+        "Jupiter": ["Philosopher", "Adventurer", "Optimist", "Promoter", "Bebefactor", "Bestower of Blessings", "True Believer"],
+        "Saturn": ["Expert", "Disciplinarian", "Elder", "Organizer", "Gatekeeper", "Judge", "Planner", "Organizer", "Provider", "Realist", "Rule Maker", "Taskmaster", "Traditionalist", "Wise One", "Authority", "Worker"],
+        "Uranus": [ "Awakener", "Genius", "Counterculturalist", "Dissenter", "Eccentric", "Entrepreneur", "Free Thinker",
+                    "Groundbreaker", "Heretic","Rebel", "Innovator", "Iconoclast", "Activist", "Agent of Change", "Futurist",
+                    "Disruptor", "Original", "Maverick", "Outsider", "Whistleblower"],
+        "Neptune": ["Mystic", "Dreamer", "Visionary", "Artist", "Empath", "Enchanter", "Idealist",
+                                                        "Lover of God",
+                                                        "Meditator",
+                                                        "Medium",
+                                                        "Muse",
+                                                        "Poet"],
 
-    "Intense One",
-    "Occultist",
-    "Penetrator",
-    "Phoenix",
-    "Provocateur",
-    "Psychoanalyst",
-    "Reformer",
-    "Regenerist",
-    "Revealer"
+                                            "Pluto": ["Transformer",
+                                                      "Alchemist",
+                                                      "Confidante",
+                                                      "Deep Thinker",
+                                                      "Detective",
+                                                      "Excavator",
+                                                      "Extremist",
 
-]]
+                                                      "Intense One",
+                                                      "Occultist",
+                                                      "Penetrator",
+                                                      "Phoenix",
+                                                      "Provocateur",
+                                                      "Psychoanalyst",
+                                                      "Reformer",
+                                                      "Regenerist",
+                                                      "Revealer"
+
+                                                     ]]
     
     let signArrays: [String: [String]] = ["Aries": ["Energetic", "Confident", "Charismatic"],
                                           "Taurus": ["Reliable", "Practical", "Sensual"],
@@ -204,9 +192,9 @@ func generateAstroSentence(strongestPlanet: String, strongestPlanetSign: String,
                                             "Outsider",
                                             "Pioneer",
                                             "Rebel with a Cause"
-                                        ],
+                                          ],
                                           "Pisces": ["Artist", "Bartender", "Chameleon",  "Dreamer", "Empath", "Enchanter", "Escapist",  "Idealist", "Illusionist", "Lover of God", "Magician", "Master Actor", "Meditator", "Medium", "Muse", "Mystic", "Partier", "Poet", "Ponderer", "Priest", "Priestess", "Psychic",   "Shapeshifter", "Socialist", "Spiritualist", "Visionary",  "Yogi", "Beach Bum",  "Intuitive", "Lightworker",  "Spiritual Advisor", "Surrealist", "Transcendentalist", "Utopian", "Visionary Artist"]]
-                                        
+
 
 
     
@@ -220,7 +208,7 @@ func generateAstroSentence(strongestPlanet: String, strongestPlanetSign: String,
     // Construct and return sentence
     let sentence = "You are \(adjective) \(planetArchetype), with the Spirit of the \(sunArchetype), and the soul of the \(moonArchetype), who wears the mask of the \(risingArchetype)."
     
-//    print(sentence)
+    //    print(sentence)
     return sentence
 }
 

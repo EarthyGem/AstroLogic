@@ -15,7 +15,7 @@ var chart: Chart?
 func getTotalPowerScoresForPlanets(chart: Chart)  -> [(String, Double)]  {
     let aspectScores = chart.getAllCelestialAspectScores(chart.planets)
     let houseScores = chart.getHouseScoreForPlanets(chart.planets)
-    let cuspScores = chart.getAllCuspAspectScores(chart.planets)
+    let cuspScores = chart.getAllCuspAspectScoresForPlanets()
     let parallelScores = chart.getAllParallelAspectScores(chart.planets)
     let parallelScores2 = chart.getAllParallelAspects(chart.planets)
     let parallelAngleScores = chart.allParallelCuspAspectScores(chart.planets)
@@ -74,7 +74,7 @@ func getTotalPowerScoresForPlanets(chart: Chart)  -> [(String, Double)]  {
 func getTotalPowerScoresForPlanets2(chart: Chart)  -> [String: Double]  {
     let aspectScores = chart.getAllCelestialAspectScores(chart.planets)
     let houseScores = chart.getHouseScoreForPlanets(chart.planets)
-    let cuspScores = chart.getAllCuspAspectScores(chart.planets)
+    let cuspScores = chart.getAllCuspAspectScoresForPlanets()
     let parallelScores = chart.getAllParallelAspectScores(chart.planets)
     let parallelAngleScores = chart.allParallelCuspAspectScores(chart.planets)
     
