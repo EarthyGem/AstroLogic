@@ -96,10 +96,10 @@ class ChartViewController: UIViewController {
      
         
         
-        let signScores = calculateTotalSignScore(chart: chart,  houseCusps: [], interceptedSigns: [])
+        let signScores = chart.calculateTotalSignScore(chart.planets)
         
-        let pdfURL = createPDF(scores2: scores, harmonyDiscordScores2: harmonyDiscordScores!, signScore: signScores, houseScores2: houseScores)
-        printPDF(at: pdfURL)
+      //  let pdfURL = createPDF(scores2: scores, harmonyDiscordScores2: harmonyDiscordScores!, signScore: signScores, houseScores2: houseScores)
+     //   printPDF(at: pdfURL)
         
         
     }
@@ -208,7 +208,7 @@ class ChartViewController: UIViewController {
    
      
         
-        let signScores = calculateTotalSignScore(chart: chart, houseCusps: [], interceptedSigns: [])
+        let signScores = chart.calculateTotalSignScore(chart.planets)
         let elementScores = calculateTotalElementScores(signScores: signScores)
         let elementPieChartView = createPieChartView(dataEntries: generateElementPieChartData(scores: elementScores))
         elementPieChartView.frame = CGRect(x: 85, y: 750, width: 250, height: 250)
@@ -262,7 +262,7 @@ class ChartViewController: UIViewController {
             scrollView.addSubview(barView)
             
             // Create pie chart for total sign scores
-            let signScores = calculateTotalSignScore(chart: chart, houseCusps: [], interceptedSigns: [])
+            let signScores = chart.calculateTotalSignScore(chart.planets)
             let signPieChartView = createPieChartView(dataEntries: generatePieChartData(scores: signScores))
             signPieChartView.frame = CGRect(x: 10, y: 400, width: screenWidth - 20, height: 300)
             
@@ -406,10 +406,10 @@ class ChartViewController: UIViewController {
             xAxis.drawAxisLineEnabled = false
         }
         
-        func updateSignBarChart(chartView: BarChartView, scores: [String: Double], label: String) {
+        func updateSignBarChart(chartView: BarChartView, scores: [Zodiac: Double], label: String) {
             let zodiacOrder = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
             let sortedZodiacs = scores.sorted {
-                zodiacOrder.firstIndex(of: $0.key) ?? 0 < zodiacOrder.firstIndex(of: $1.key) ?? 0
+                zodiacOrder.firstIndex(of: $0.key.keyName) ?? 0 < zodiacOrder.firstIndex(of: $1.key.keyName) ?? 0
             }
 
             var dataEntries: [BarChartDataEntry] = []
@@ -447,7 +447,7 @@ class ChartViewController: UIViewController {
             xAxis.setLabelCount(scores.count, force: false)
             xAxis.axisMinimum = -0.5
             xAxis.axisMaximum = Double(scores.count) - 0.5
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedZodiacs.map { signSymbolMapping[$0.key] ?? $0.key })
+            xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedZodiacs.map { signSymbolMapping[$0.key.keyName] ?? $0.key.keyName })
             xAxis.labelTextColor = .white
             xAxis.labelFont = UIFont.systemFont(ofSize: 20) // Set the font size to 14
             xAxis.yOffset = -2.0 // Move the labels up by 5 points
@@ -590,12 +590,12 @@ class ChartViewController: UIViewController {
             return pieChartView
         }
         
-        func generatePieChartData(scores: [String: Double]) -> [PieChartDataEntry] {
+        func generatePieChartData(scores: [Zodiac: Double]) -> [PieChartDataEntry] {
             var dataEntries: [PieChartDataEntry] = []
             let totalScore = scores.values.reduce(0, +) // Calculate the total score
             for (sign, score) in scores {
                 let percentage = (score / totalScore) * 100 // Convert the score to a percentage of the total
-                let entry = PieChartDataEntry(value: percentage, label: sign)
+                let entry = PieChartDataEntry(value: percentage, label: sign.keyName)
                 dataEntries.append(entry)
             }
             return dataEntries
@@ -673,12 +673,12 @@ class ChartViewController: UIViewController {
      //   navigationController?.pushViewController(aspectsViewController, animated: true)
     }
 
-    func calculateTotalElementScores(signScores: [String: Double]) -> [Element: Double] {
+    func calculateTotalElementScores(signScores: [Zodiac: Double]) -> [Element: Double] {
         var elementScores: [Element: Double] = [.fire: 0, .earth: 0, .air: 0, .water: 0]
         
         for (element, signs) in elementSigns {
             for sign in signs {
-                if let score = signScores[sign.keyName] {
+                if let score = signScores[sign] {
                     elementScores[element, default: 0] += score
                 }
             }
@@ -687,12 +687,12 @@ class ChartViewController: UIViewController {
         return elementScores
     }
     
-    func calculateTotalModalityScores(signScores: [String: Double]) -> [Modality: Double] {
+    func calculateTotalModalityScores(signScores: [Zodiac: Double]) -> [Modality: Double] {
         var modalityScores: [Modality: Double] = [.cardinal: 0, .fixed: 0, .mutable: 0]
         
         for (modality, signs) in modalitySigns {
             for sign in signs {
-                if let score = signScores[sign.keyName] {
+                if let score = signScores[sign] {
                     modalityScores[modality, default: 0] += score
                 }
             }
@@ -701,12 +701,12 @@ class ChartViewController: UIViewController {
         return modalityScores
     }
     
-    func calculateTotalEmanationScores(signScores: [String: Double]) -> [Emanation: Double] {
+    func calculateTotalEmanationScores(signScores: [Zodiac: Double]) -> [Emanation: Double] {
         var emanationScores: [Emanation: Double] = [.first: 0, .second: 0, .third: 0]
         
         for (emanation, signs) in emanationSigns {
             for sign in signs {
-                if let score = signScores[sign.keyName] {
+                if let score = signScores[sign] {
                     emanationScores[emanation, default: 0] += score
                 }
             }

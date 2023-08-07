@@ -365,7 +365,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         // Initialize and push the ChartViewController
         let chartVC = ChartViewController()
         chartVC.chart = chart.self
-        chartVC.houseScores = calculateHouseStrengths(chart: self.chart!, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns(), planetsInHouses: calculatePlanetsInHouses())
+        chartVC.houseScores = chart!.calculateHouseStrengths(chart!.planets)
         chartVC.chartCake = chartCake.self
      //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
         chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
@@ -430,9 +430,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
             
            //    _ = getScoresAndDifferenceForPlanets(chart: self.chart!)
             
-               _ = calculateUnoccupiedSignStrengths(chart: self.chart!, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns())
+             
                
-               let signScore = calculateTotalSignScore(chart: self.chart!, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns() )
+               let signScore = chart!.calculateTotalSignScore(chart!.planets)
               
 //               print("Total Aspect Scores \(getCompositeAspectScores())")
         //       print("Total Comp House Scores \(getHouseScoreForPlanets())")
@@ -459,16 +459,16 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
                print("chartCake: \(chartCake)")
                
-               let houseStrengths = calculatePlanetInHouseScores(chart: self.chart!,  planetsInHouses: planetsInHousesResult)
+               let houseStrengths = chart?.calculatePlanetInHouseScores(chart!.planets)
                                                             
                 //    print("calculatePlanetInHouseScores: \(houseStrengths)")
                
-               let houseScores = calculateHouseStrengths(chart: self.chart!, houseCusps: getHouseCusps2(), interceptedSigns: getInterceptedSigns(), planetsInHouses: planetsInHousesResult)
+               let houseScores = chart!.calculateHouseStrengths(chart!.planets)
                
              
             //   print("House Score: \(houseScores)")
 //
-               _ = calculatePlanetSignScores(chart: self.chart!)
+             //  _ = calculatePlanetSignScores(chart: self.chart!)
 //
         //       getAllCompositeAspectScores()
              
