@@ -393,6 +393,11 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 let chartDate = self.combinedDateAndTime()!
                 self.chart = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
                 self.chartCake = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
+                guard let chart = self.chart else {
+                    assert(false, "There is no chart")
+                    return
+                }
+
                 let scores = self.chart!.getTotalPowerScoresForPlanets()
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
 
@@ -400,39 +405,39 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 // let houseStrengths = self.chart.calculatePlanetInHouseScores()
                 // let houseScores = self.chart.calculateHouseStrengths()
 
-                let tuple = self.chart!.getTotalHarmonyDiscordScoresForPlanets()
+                let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
                 let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
                 let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
 
                 if strongestPlanet == Planet.sun.celestialObject {
-                    strongestPlanetSign = self.chart!.sun.sign.keyName
+                    strongestPlanetSign = chart.sun.sign.keyName
                 } else if strongestPlanet == Planet.moon.celestialObject {
-                    strongestPlanetSign = self.chart!.moon.sign.keyName
+                    strongestPlanetSign = chart.moon.sign.keyName
                 } else if strongestPlanet == Planet.mercury.celestialObject {
-                    strongestPlanetSign = self.chart!.mercury.sign.keyName
+                    strongestPlanetSign = chart.mercury.sign.keyName
                 } else if strongestPlanet == Planet.venus.celestialObject {
-                    strongestPlanetSign = self.chart!.venus.sign.keyName
+                    strongestPlanetSign = chart.venus.sign.keyName
                 } else if strongestPlanet == Planet.mars.celestialObject {
-                    strongestPlanetSign = self.chart!.mars.sign.keyName
+                    strongestPlanetSign = chart.mars.sign.keyName
                 } else if strongestPlanet == Planet.jupiter.celestialObject {
-                    strongestPlanetSign = self.chart!.jupiter.sign.keyName
+                    strongestPlanetSign = chart.jupiter.sign.keyName
                 } else if strongestPlanet == Planet.saturn.celestialObject {
-                    strongestPlanetSign = self.chart!.saturn.sign.keyName
+                    strongestPlanetSign = chart.saturn.sign.keyName
                 } else if strongestPlanet == Planet.uranus.celestialObject {
-                    strongestPlanetSign = self.chart!.uranus.sign.keyName
+                    strongestPlanetSign = chart.uranus.sign.keyName
                 } else if strongestPlanet == Planet.neptune.celestialObject {
-                    strongestPlanetSign = self.chart!.neptune.sign.keyName
+                    strongestPlanetSign = chart.neptune.sign.keyName
                 } else if strongestPlanet == Planet.pluto.celestialObject {
-                    strongestPlanetSign = self.chart!.pluto.sign.keyName
+                    strongestPlanetSign = chart.pluto.sign.keyName
                 } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-                    strongestPlanetSign = self.chart!.southNode.sign.keyName
+                    strongestPlanetSign = chart.southNode.sign.keyName
                 }
 
                 let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
                                                      strongestPlanetSign: strongestPlanetSign!,
-                                                     sunSign: self.chart!.sun.sign.keyName,
-                                                     moonSign: self.chart!.moon.sign.keyName,
-                                                     risingSign: self.chart!.houseCusps.ascendent.sign.keyName)
+                                                     sunSign: chart.sun.sign.keyName,
+                                                     moonSign: chart.moon.sign.keyName,
+                                                     risingSign: chart.houseCusps.ascendent.sign.keyName)
 
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
