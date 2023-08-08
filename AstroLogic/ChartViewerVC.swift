@@ -44,7 +44,7 @@ class ChartViewController: UIViewController {
     
     
     let planetSymbolMapping: [String: String] = [
-        "☉": "Sun",
+        "Sun": "☉",
         "Moon": "☽",
         "Mercury": "☿",
         "Venus": "♀",
