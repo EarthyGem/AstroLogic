@@ -44,7 +44,7 @@ class ChartViewController: UIViewController {
     
     
     let planetSymbolMapping: [String: String] = [
-        "Sun": "☉",
+        "☉": "Sun",
         "Moon": "☽",
         "Mercury": "☿",
         "Venus": "♀",
@@ -324,11 +324,20 @@ class ChartViewController: UIViewController {
         }
         
         func updateGroupedPlanetBarChart(chartView: BarChartView, scores: [String: (power: Double, harmony: Double, discord: Double)], label: String) {
+            let planetOrder = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
+             var sortedPlanets = scores.sorted {
+                 planetOrder.firstIndex(of: $0.key) ?? 0 < planetOrder.firstIndex(of: $1.key) ?? 0
+             }
+
+            if let southNodeIndex = sortedPlanets.firstIndex(where: { $0.key == "S.Node" }) {
+                let southNode = sortedPlanets.remove(at: southNodeIndex)
+                sortedPlanets.append(southNode)
+            }
+
             var powerEntries: [BarChartDataEntry] = []
             var harmonyEntries: [BarChartDataEntry] = []
             var discordEntries: [BarChartDataEntry] = []
 
-            let sortedPlanets = scores.sorted(by: { $0.key < $1.key })
             for (index, planetScore) in sortedPlanets.enumerated() {
                 let powerEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.power)
                 let harmonyEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.harmony)
@@ -339,25 +348,50 @@ class ChartViewController: UIViewController {
             }
 
             let powerDataSet = BarChartDataSet(entries: powerEntries, label: "Power")
+            powerDataSet.colors = [UIColor.white]
+            powerDataSet.valueTextColor = UIColor.white
+
             let harmonyDataSet = BarChartDataSet(entries: harmonyEntries, label: "Harmony")
+            harmonyDataSet.colors = [UIColor.green]
+            harmonyDataSet.valueTextColor = UIColor.green
+
             let discordDataSet = BarChartDataSet(entries: discordEntries, label: "Discord")
+            discordDataSet.colors = [UIColor.red]
+            discordDataSet.valueTextColor = UIColor.red
 
             let chartData = BarChartData(dataSets: [powerDataSet, harmonyDataSet, discordDataSet])
             chartView.data = chartData
 
+            // Bar chart configurations
             let groupSpace = 0.3
             let barSpace = 0.05
-            let barWidth = 0.2 // (0.2 + 0.05) * 3 + 0.3 = 1.00 -> interval per "group"
+            let barWidth = 0.2
 
             let groupCount = scores.count
             let startYear = 0
             chartData.barWidth = barWidth
             chartView.xAxis.axisMinimum = Double(startYear)
             let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-            chartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
+            chartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount) - gg + 1.0
+
             chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
 
-            // ... Add any other chart configurations as needed ...
+            // ... Additional chart configurations ...
+            // Set up the x-axis with the sorted planet names
+              let xAxis = chartView.xAxis
+              xAxis.labelPosition = .bottom
+            xAxis.setLabelCount(sortedPlanets.count, force: true)
+
+              xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedPlanets.map { $0.key })
+              xAxis.labelTextColor = .white
+              xAxis.labelFont = UIFont.systemFont(ofSize: 18)
+              xAxis.yOffset = 2.0
+              chartView.extraBottomOffset = 10.0
+
+            // Disable axis lines
+            chartView.leftAxis.drawAxisLineEnabled = false
+            chartView.rightAxis.drawAxisLineEnabled = false
+            xAxis.drawAxisLineEnabled = false
         }
 
 //        func displayGroupedSignBarChart() {
