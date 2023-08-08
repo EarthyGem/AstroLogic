@@ -239,7 +239,7 @@ class ChartViewController: UIViewController {
         let domainPieChartView = createPieChartView(dataEntries: generateDomainPieChartData(domainScores: domainScores))
         domainPieChartView.frame = CGRect(x: 85, y: 1950, width: 250, height: 250)
         scrollView.addSubview(domainPieChartView)
-        
+        displayGroupedPlanetBarChart()
 
     //    let aspectarianView = AspectarianView(frame: CGRect(x: 0, y: 400, width: screenWidth, height: 400), chart: chart)
     //    aspectarianView.backgroundColor = .black // Add this line to visually identify the AspectarianView
@@ -276,7 +276,7 @@ class ChartViewController: UIViewController {
             // Sign Scores Bar Chart
             let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateSignBarChart(chartView: signScoresChart, scores: signScores, label: "Sign Scores")
-            self.scrollView.addSubview(signScoresChart)
+         //   self.scrollView.addSubview(signScoresChart)
             
             
             // House Scores Bar Chart
@@ -291,30 +291,44 @@ class ChartViewController: UIViewController {
             updatePlanetBarChart(chartView: planetScoresChart, scores: scores, label: "Planet Scores")
             self.scrollView.addSubview(planetScoresChart)
             
-            //            let chartView = BarChartView()
-            //                chartView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)  // Adjust these values to fit your needs
-            //                view.addSubview(chartView)
-            //
-            //            let scores: [String: (power: Double, harmony: Double, discord: Double)] = [:
-            //                    // your celestial objects with their scores here...
-            //                ]
-            //
-            //                updateGroupedPlanetBarChart(chartView: chartView, scores: scores, label: "Your label here")
-            //
+                        let chartView = BarChartView()
+                            chartView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)  // Adjust these values to fit your needs
+                            view.addSubview(chartView)
             
-        //    print("Sign Scores 2 \(signScores)")
+                        let scores: [String: (power: Double, harmony: Double, discord: Double)] = [:
+                                // your celestial objects with their scores here...
+                            ]
+            
+//                            updateGroupedPlanetBarChart(chartView: chartView, scores: scores, label: "Your label here")
+//
+//
+//            print("Sign Scores 2 \(signScores)")
         }
         
+        func displayGroupedPlanetBarChart() {
+            // 1. Get the scores
+            let scoresFromFunction = chart.getTotalScoresForPlanets()
+
+            // 2. Convert to String-based Dictionary
+            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
+
+            for (celestialObject, scoreTuple) in scoresFromFunction {
+                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
+                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
+            }
+
+            // 3. Update the Chart
+            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            self.scrollView.addSubview(barChartView)
+            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
+        }
         
         func updateGroupedPlanetBarChart(chartView: BarChartView, scores: [String: (power: Double, harmony: Double, discord: Double)], label: String) {
             var powerEntries: [BarChartDataEntry] = []
             var harmonyEntries: [BarChartDataEntry] = []
             var discordEntries: [BarChartDataEntry] = []
-            
+
             let sortedPlanets = scores.sorted(by: { $0.key < $1.key })
-            
-            // Rest of the code stays the same, including moving the SouthNode to the end of the array if it exists...
-            
             for (index, planetScore) in sortedPlanets.enumerated() {
                 let powerEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.power)
                 let harmonyEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.harmony)
@@ -323,34 +337,104 @@ class ChartViewController: UIViewController {
                 harmonyEntries.append(harmonyEntry)
                 discordEntries.append(discordEntry)
             }
-            
+
             let powerDataSet = BarChartDataSet(entries: powerEntries, label: "Power")
             let harmonyDataSet = BarChartDataSet(entries: harmonyEntries, label: "Harmony")
             let discordDataSet = BarChartDataSet(entries: discordEntries, label: "Discord")
-            
+
             let chartData = BarChartData(dataSets: [powerDataSet, harmonyDataSet, discordDataSet])
             chartView.data = chartData
-            
+
             let groupSpace = 0.3
             let barSpace = 0.05
-            let barWidth = 0.2
-            // (0.2 + 0.05) * 3 + 0.3 = 1.00 -> interval per "group"
-            
+            let barWidth = 0.2 // (0.2 + 0.05) * 3 + 0.3 = 1.00 -> interval per "group"
+
             let groupCount = scores.count
             let startYear = 0
-            
-            chartData.barWidth = barWidth;
+            chartData.barWidth = barWidth
             chartView.xAxis.axisMinimum = Double(startYear)
             let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
             chartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
-            
             chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-            
-            // Rest of the code remains the same...
+
+            // ... Add any other chart configurations as needed ...
         }
-        
-        
-        
+
+//        func displayGroupedSignBarChart() {
+//            // 1. Get the scores
+//            let scoresFromFunction = chart.calculateTotalHarmonyDiscordSignScores()
+//
+//            // 2. Convert to String-based Dictionary
+//            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
+//
+//            for (celestialObject, scoreTuple) in scoresFromFunction {
+//                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
+//                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
+//            }
+//
+//            // 3. Update the Chart
+//            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+//            self.scrollView.addSubview(barChartView)
+//            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
+//        }
+//
+//
+//
+//        func displayGroupedHouseBarChart() {
+//            // 1. Get the scores
+//            let scoresFromFunction = chart.sign()
+//
+//            // 2. Convert to String-based Dictionary
+//            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
+//
+//            for (celestialObject, scoreTuple) in scoresFromFunction {
+//                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
+//                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
+//            }
+//
+//            // 3. Update the Chart
+//            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+//            self.scrollView.addSubview(barChartView)
+//            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
+//        }
+//
+//        func updateGroupedHouseBarChart(chartView: BarChartView, scores: [String: (power: Double, harmony: Double, discord: Double)], label: String) {
+//            var powerEntries: [BarChartDataEntry] = []
+//            var harmonyEntries: [BarChartDataEntry] = []
+//            var discordEntries: [BarChartDataEntry] = []
+//
+//            let sortedPlanets = scores.sorted(by: { $0.key < $1.key })
+//            for (index, planetScore) in sortedPlanets.enumerated() {
+//                let powerEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.power)
+//                let harmonyEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.harmony)
+//                let discordEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.discord)
+//                powerEntries.append(powerEntry)
+//                harmonyEntries.append(harmonyEntry)
+//                discordEntries.append(discordEntry)
+//            }
+//
+//            let powerDataSet = BarChartDataSet(entries: powerEntries, label: "Power")
+//            let harmonyDataSet = BarChartDataSet(entries: harmonyEntries, label: "Harmony")
+//            let discordDataSet = BarChartDataSet(entries: discordEntries, label: "Discord")
+//
+//            let chartData = BarChartData(dataSets: [powerDataSet, harmonyDataSet, discordDataSet])
+//            chartView.data = chartData
+//
+//            let groupSpace = 0.3
+//            let barSpace = 0.05
+//            let barWidth = 0.2 // (0.2 + 0.05) * 3 + 0.3 = 1.00 -> interval per "group"
+//
+//            let groupCount = scores.count
+//            let startYear = 0
+//            chartData.barWidth = barWidth
+//            chartView.xAxis.axisMinimum = Double(startYear)
+//            let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+//            chartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
+//            chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
+//
+//            // ... Add any other chart configurations as needed ...
+//        }
+       
         func updateHouseBarChart(chartView: BarChartView, scores: [Int: Double], label: String) {
             var dataEntries: [BarChartDataEntry] = []
             
@@ -589,6 +673,8 @@ class ChartViewController: UIViewController {
             pieChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5)
             return pieChartView
         }
+        
+        
         
         func generatePieChartData(scores: [Zodiac: Double]) -> [PieChartDataEntry] {
             var dataEntries: [PieChartDataEntry] = []
