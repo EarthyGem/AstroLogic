@@ -158,7 +158,7 @@ class ChartViewController: UIViewController {
             let differenceLabel = UILabel(frame: CGRect(x: 10, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing), width: screenWidth - 20, height: labelHeight))
             differenceLabel.textColor = .white
             differenceLabel.font = UIFont.systemFont(ofSize: 13)
-            differenceLabel.text = "\(planet) : \(Int(scores.net))" // Use net score here
+            differenceLabel.text = "\(planet.keyName) : \(Int(scores.net))" // Use net score here
             scrollView.addSubview(differenceLabel)
 
             // Harmony bar
@@ -276,7 +276,7 @@ class ChartViewController: UIViewController {
             // Sign Scores Bar Chart
             let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateSignBarChart(chartView: signScoresChart, scores: signScores, label: "Sign Scores")
-         //   self.scrollView.addSubview(signScoresChart)
+            self.scrollView.addSubview(signScoresChart)
             
             
             // House Scores Bar Chart
@@ -298,11 +298,12 @@ class ChartViewController: UIViewController {
                         let scores: [String: (power: Double, harmony: Double, discord: Double)] = [:
                                 // your celestial objects with their scores here...
                             ]
-            
-//                            updateGroupedPlanetBarChart(chartView: chartView, scores: scores, label: "Your label here")
-//
-//
-//            print("Sign Scores 2 \(signScores)")
+            let lastYPositionOfContent = planetScoresChart.frame.origin.y + planetScoresChart.frame.size.height
+            if lastYPositionOfContent > scrollView.contentSize.height {
+                scrollView.contentSize.height = lastYPositionOfContent  // Adding 50 or another suitable value as a buffer space at the bottom
+            }
+
+
         }
         
         func displayGroupedPlanetBarChart() {
@@ -319,7 +320,7 @@ class ChartViewController: UIViewController {
 
             // 3. Update the Chart
             let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
-            self.scrollView.addSubview(barChartView)
+         //   self.scrollView.addSubview(barChartView)
             updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
         }
         
@@ -469,6 +470,7 @@ class ChartViewController: UIViewController {
 //            // ... Add any other chart configurations as needed ...
 //        }
        
+        
         func updateHouseBarChart(chartView: BarChartView, scores: [Int: Double], label: String) {
             var dataEntries: [BarChartDataEntry] = []
             
@@ -764,6 +766,8 @@ class ChartViewController: UIViewController {
             }
             return dataEntries
         }
+        
+        
     }
     
     func generateTrinityPieChartData(trinityScores: [Trinity: Double]) -> [PieChartDataEntry] {
