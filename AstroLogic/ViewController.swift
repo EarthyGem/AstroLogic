@@ -81,13 +81,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         return button
     }()
     
-    lazy var getChartButton: UIButton = {
-        let chartButton = UIButton(type: .system)
-        chartButton.setTitle("Get Chart", for: .normal)
-        chartButton.addTarget(self, action: #selector(getChartButtonTapped), for: .touchUpInside)
-        return chartButton
-        
-    }()
+
     
     lazy var scoresText: UILabel = {
         let scoresText = UILabel()
@@ -149,7 +143,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(getChartButton)
+       
         view.backgroundColor = .black
         view.addSubview(birthPlaceTextField)
         makeAutocompleteViewController()
@@ -186,11 +180,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
             getPowerPlanetButton.topAnchor.constraint(equalTo: birthPlaceTextField.bottomAnchor, constant: 55)
         ])
         
-        getChartButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            getChartButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10), // Add a small space between buttons
-            getChartButton.topAnchor.constraint(equalTo: birthPlaceTextField.bottomAnchor, constant: 55)
-        ])
+    
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -348,22 +338,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
 
 
-    @objc func getChartButtonTapped() {
-
-        
-        
-        // Initialize and push the ChartViewController
-        let chartVC = ChartViewController()
-        chartVC.chart = chart
-        chartVC.houseScores = chart!.calculateHouseStrengths()
-        chartVC.chartCake = chartCake
-        //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
-        chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
-        chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
-        self.navigationController?.pushViewController(chartVC, animated: true)
-        
-        //        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
-    }
+   
 
     @objc func getPowerPlanetButtonTapped() {
 

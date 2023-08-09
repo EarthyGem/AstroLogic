@@ -32,8 +32,8 @@ class MyItemsViewController: UIViewController {
 
     
     private let ricksData: [RicksItems] = [
-        RicksItems(chartType: "Today for \(myName)"),
-        RicksItems(chartType: "My Planetary Degrees"),
+        RicksItems(chartType: "My Chart"),
+      //  RicksItems(chartType: "My Planetary Degrees"),
         RicksItems(chartType: "My Key Decanates"),
         RicksItems(chartType: "My Natal Chart"),
         RicksItems(chartType: "My Natal Houses"),
@@ -44,8 +44,8 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "My Minor Progression Aspects"),
         RicksItems(chartType: "My Major Progressions"),
               RicksItems(chartType: "My Major Progression Aspects"),
-        RicksItems(chartType: "My Solar Arc Progressions"),
-        RicksItems(chartType: "Relationships")
+   //     RicksItems(chartType: "My Solar Arc Progressions"),
+   //     RicksItems(chartType: "Relationships")
                    
     ]
     
@@ -90,7 +90,14 @@ extension MyItemsViewController: UITableViewDelegate {
         let category2 = ricksData[indexPath.row]
 
 //
-        let todaysVC = TodayViewController()
+        let chartVC = ChartViewController()
+        chartVC.chart = chart
+        chartVC.houseScores = chart!.calculateHouseStrengths()
+        chartVC.chartCake = chartCake
+        //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
+        chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
+        chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
+       
         let natalPlanetsVC = PlanetsViewController(planets: placeolder)
         natalPlanetsVC.title = category.chartType
         natalPlanetsVC.chart = self.chart
@@ -149,7 +156,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
         MP_PlanetsVC.title = category.chartType
         
-        let categories = [todaysVC, planetaryDegreesVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,transitPlanetsVC,transitAspectsVC,minorProgressionsVC,mp_natalAspectsVC,MP_PlanetsVC,MP_AspectsVC]
+        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,transitPlanetsVC,transitAspectsVC,minorProgressionsVC,mp_natalAspectsVC,MP_PlanetsVC,MP_AspectsVC]
         
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
         
