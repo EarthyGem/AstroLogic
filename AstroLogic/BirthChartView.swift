@@ -152,7 +152,7 @@ class BirthChartView: UIView {
 
                 let adjustedIndex = (index + 1) % 12
 
-                if index == 10 { // House 1
+                if index == 11 { // House 1
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
                 } else if adjustedIndex < 5 { // Houses 2-6

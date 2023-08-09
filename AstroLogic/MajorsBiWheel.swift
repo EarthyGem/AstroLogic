@@ -152,7 +152,7 @@ init(frame: CGRect, chartCake: ChartCake) {
 
                 let adjustedIndex = (index + 1) % 12
 
-                if index == 10 { // House 1
+                if index == 11 { // House 1
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
                 } else if adjustedIndex < 5 { // Houses 2-6
@@ -162,7 +162,7 @@ init(frame: CGRect, chartCake: ChartCake) {
                     degreeLabelAngleOffset = -0.08
                     minuteLabelAngleOffset = 0.08
                 }
-//            print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
+            print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
 
 
             
