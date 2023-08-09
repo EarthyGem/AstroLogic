@@ -141,12 +141,11 @@ class TransitBiWheelChartView: UIView {
             context.move(to: CGPoint(x: startX, y: startY))
             context.addLine(to: CGPoint(x: endX, y: endY))
             context.strokePath()
-            let houseDegree = houseDegrees[(index + 2) % 12]
-            let houseMinute = houseMinutes[(index + 2) % 12]
+            let houseDegree = houseDegrees[(index + 1) % 12]
+            let houseMinute = houseMinutes[(index + 1) % 12]
            
       
-                let glyphLabelAngleOffset: CGFloat = 0.8
-           
+                let glyphLabelAngleOffset: CGFloat = 0.0
         
             let degreeLabelAngleOffset: CGFloat
                 let minuteLabelAngleOffset: CGFloat
@@ -192,24 +191,28 @@ class TransitBiWheelChartView: UIView {
             houseDegreeLabel.font = UIFont.systemFont(ofSize: 10)
             houseDegreeLabel.sizeToFit()
             let labelRadius1 = 1.07 * radius
-            let labelAngle1 = angle - houseDistances[index]  * .pi / 180 + degreeLabelAngleOffset
+            let labelAngle1 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + degreeLabelAngleOffset
             let labelX1 = center.x + cos(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.width / 2
             let labelY1 = center.y + sin(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.height / 2
             houseDegreeLabel.frame.origin = CGPoint(x: labelX1, y: labelY1)
             addSubview(houseDegreeLabel)
      
             
-            let signIndex = Int((accumulatedAngle + houseDistances[index]  / 2) / 30)
-            let imageName = getHouseNames()[signIndex]
-            guard let image = UIImage(named: imageName) else { continue }
+                   let signIndex = (Int(accumulatedAngle / 30) + 1) % 12
 
-            let imageSize = min(bounds.width, bounds.height) / 30
-            let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
-            let labelAngle2 = angle - houseDistances[index]  / 2 * .pi / 180 + glyphLabelAngleOffset
-            let labelX2 = center.x + cos(labelAngle2) * labelRadius2 - imageSize / 2
-            let labelY2 = center.y + sin(labelAngle2) * labelRadius2 - imageSize / 2
-            let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
-            image.draw(in: imageRect)
+                   print("House \(index + 1): Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signIndex)")
+
+                  
+                   let imageName = getHouseNames()[signIndex]
+                   guard let image = UIImage(named: imageName) else { continue }
+
+                   let imageSize = min(bounds.width, bounds.height) / 30
+                   let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
+                   let labelAngle2 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + glyphLabelAngleOffset
+                   let labelX2 = center.x + cos(labelAngle2) * labelRadius2 - imageSize / 2
+                   let labelY2 = center.y + sin(labelAngle2) * labelRadius2 - imageSize / 2
+                   let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
+                   image.draw(in: imageRect)
             
             // Add the house minute label
             let houseMinuteLabel = UILabel()
@@ -220,7 +223,7 @@ class TransitBiWheelChartView: UIView {
             houseMinuteLabel.font = UIFont.systemFont(ofSize: 8)
             houseMinuteLabel.sizeToFit()
             let labelRadius3 = 1.07 * radius
-            let labelAngle3 = angle - houseDistances[index]  * .pi / 180 + minuteLabelAngleOffset
+            let labelAngle3 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + minuteLabelAngleOffset
             let labelX3 = center.x + cos(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.width / 2
             let labelY3 = center.y + sin(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.height / 2
             houseMinuteLabel.frame.origin = CGPoint(x: labelX3, y: labelY3)
@@ -229,6 +232,7 @@ class TransitBiWheelChartView: UIView {
             accumulatedAngle += houseDistances[index]
         }
     }
+
 
     private func drawTransitZodiacCircle(context: CGContext) {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
