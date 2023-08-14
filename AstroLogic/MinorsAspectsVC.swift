@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SwiftEphemeris
 
 class mpAspectViewController: UIViewController {
    
     
+    var chart: Chart?
+    var chartCake: ChartCake?
     
     var sunAspects = [""]
     var moonAspects = [""]
@@ -348,17 +351,17 @@ class mpAspectViewController: UIViewController {
    
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat(0 * 90)
+        sunTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.sun.celestialObject).count * 90)
 //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-       moonTableView.contentSize.height = CGFloat(0 * 90)
-        mercuryTableView.contentSize.height = CGFloat(0 * 90)
-        venusTableView.contentSize.height = CGFloat(0 * 90)
-        marsTableView.contentSize.height = CGFloat(0 * 90)
-        jupiterTableView.contentSize.height = CGFloat(0 * 90)
-        saturnTableView.contentSize.height = CGFloat(0 * 90)
-        uranusTableView.contentSize.height = CGFloat(0 * 90)
-        neptuneTableView.contentSize.height = CGFloat(0 * 90)
-        plutoTableView.contentSize.height = CGFloat(0 * 90)
+        moonTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.moon.celestialObject).count * 90)
+        mercuryTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
+        venusTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.venus.celestialObject).count * 90)
+        marsTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.mars.celestialObject).count * 90)
+        jupiterTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
+        saturnTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
+        uranusTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
+        neptuneTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
+        plutoTableView.contentSize.height = CGFloat(chartCake!.minorProgressedAspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
         
         
         
@@ -651,50 +654,49 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 if(tableView == sunTableView) {
 
-                    return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.sun.celestialObject).count
             }
                 else if(tableView == moonTableView){
-                    return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.moon.celestialObject).count
                 }
                 
                 
                     else if(tableView == mercuryTableView){
 
-                        return 0
+                        return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.mercury.celestialObject).count
                     }
                     else if(tableView == venusTableView){
 
-                            return 0
+                        return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.venus.celestialObject).count
                         }
                 else if(tableView == marsTableView){
 
-                                return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.mars.celestialObject).count
                             }
                 else if(tableView == jupiterTableView){
 
-                                    return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.jupiter.celestialObject).count
                                 }
                 else if(tableView == saturnTableView){
 
-                                        return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.saturn.celestialObject).count
                                     }
                 else if(tableView == uranusTableView){
 
-                                            return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.uranus.celestialObject).count
                                         }
                 else if(tableView == neptuneTableView){
 
-                                                return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.neptune.celestialObject).count
                                             }
                 else {
 
-                                                    return 0
+                    return chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.pluto.celestialObject).count
 
 
 
             }
             }
-            
             func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
                 if(tableView == sunTableView) {
@@ -708,14 +710,11 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
                  
                     
               
-                    
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                    
-                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
-//
-//                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: transitSunAspects[indexPath.row],firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-//
+             
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.sun.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                   
                    return cell
+                   
                    
             }
                 else if(tableView == moonTableView){
@@ -726,10 +725,11 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
                    }
               
                 
-                    
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                    
+                  
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.moon.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                   
                    return cell
+                   
                    
                 }
                 
@@ -747,8 +747,11 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
             
                     
            
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.mercury.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                   
                    return cell
+                   
                    
                 }
                     else if(tableView == venusTableView){
@@ -762,7 +765,9 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
                        
                      
                         
-                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                
+                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.venus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                       
                        return cell
                        
                     
@@ -777,9 +782,11 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
                    }
 
            
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.mars.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    
                    return cell
+                   
                    
                             }
                 else if(tableView == jupiterTableView){
@@ -791,9 +798,11 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
                    }
 
                 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.jupiter.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    
                    return cell
+                   
                    
                                 }
                 else if(tableView == saturnTableView){
@@ -806,7 +815,9 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
 
 //                    var transitSaturnAspects = [plutoSaturn]
               
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                 
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.saturn.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                   
                    return cell
                    
                                     }
@@ -820,9 +831,11 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
 
               
                 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+             
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.uranus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    
                    return cell
+                   
                    
                                         }
                 else if(tableView == neptuneTableView){
@@ -836,7 +849,8 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
            
          
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+              
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.neptune.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    
                    return cell
                    
@@ -851,9 +865,10 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
 
       
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Sep 13, 2022 - Feb 16, 2023", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.minorProgressedAspectsFiltered(chartCake!.minor.planets, by: Planet.pluto.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    
                    return cell
+                   
                    
 
 

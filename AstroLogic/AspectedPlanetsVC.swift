@@ -77,7 +77,7 @@ class AspectedPlanetsViewController: UIViewController {
     private let sunTableView: UITableView = {
         let sunTableView = UITableView()
       
-            sunTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+            sunTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
             
      
         
@@ -87,7 +87,7 @@ class AspectedPlanetsViewController: UIViewController {
     private let ascTableView: UITableView = {
         let ascTableView = UITableView()
       
-        ascTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        ascTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
             
      
         
@@ -96,7 +96,7 @@ class AspectedPlanetsViewController: UIViewController {
     
     private let moonTableView: UITableView = {
         let moonTableView = UITableView()
-        moonTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        moonTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         
         
         return moonTableView
@@ -105,27 +105,27 @@ class AspectedPlanetsViewController: UIViewController {
     private let mercuryTableView: UITableView = {
         let mercuryTableView = UITableView()
      
-        mercuryTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        mercuryTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return mercuryTableView
     }()
     
     private let venusTableView: UITableView = {
         let venusTableView = UITableView()
-        venusTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        venusTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         
         return venusTableView
     }()
     
     private let marsTableView: UITableView = {
         let marsTableView = UITableView()
-        marsTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        marsTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         
         return marsTableView
     }()
     
     private let jupiterTableView: UITableView = {
         let jupiterTableView = UITableView()
-        jupiterTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        jupiterTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         
         return jupiterTableView
     }()
@@ -133,26 +133,26 @@ class AspectedPlanetsViewController: UIViewController {
     private let saturnTableView: UITableView = {
         let saturnTableView = UITableView()
      
-        saturnTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        saturnTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return saturnTableView
     }()
     
     private let uranusTableView: UITableView = {
         let uranusTableView = UITableView()
-        uranusTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        uranusTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         
         return uranusTableView
     }()
     private let neptuneTableView: UITableView = {
         let neptuneTableView = UITableView()
      
-        neptuneTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        neptuneTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return neptuneTableView
     }()
     private let plutoTableView: UITableView = {
         let plutoTableView = UITableView()
      
-        plutoTableView.register(AspectsCustomTableViewCell.self, forCellReuseIdentifier: AspectsCustomTableViewCell.identifier)
+        plutoTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return plutoTableView
     }()
     
@@ -672,157 +672,185 @@ extension AspectedPlanetsViewController: UITableViewDataSource, UITableViewDeleg
             }
             }
             
-            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-               
-                
-                
-                
-                
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        if(tableView == sunTableView) {
+
+            
+            guard let cell = sunTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+
+         
+            
       
-                if(tableView == sunTableView) {
-
-                    
-                    guard let cell = sunTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                 
-                    
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-            }
-                else if(tableView == moonTableView){
-                    
-                    guard let cell = moonTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-                }
-                
-                
+     
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.sun.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+           
+    }
+        else if(tableView == moonTableView){
             
+            guard let cell = moonTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+      
+        
+          
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.moon.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+           
+        }
+        
+        
+    
+        
+
+        else if(tableView == mercuryTableView){
+
+            
+            guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+    
+            
+   
+        
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.mercury.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+           
+        }
+            else if(tableView == venusTableView){
+
                 
+                guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-                else if(tableView == mercuryTableView){
+                   return UITableViewCell()
+               }
 
-                    
-                    guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
+               
+             
+                
+        
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.venus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+               
+               return cell
+               
+            
+               
                 }
-                    else if(tableView == venusTableView){
+        else if(tableView == marsTableView){
 
-                        
-                        guard let cell = venusTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
+            
+            guard let cell = marsTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-                           return UITableViewCell()
-                       }
+               return UITableViewCell()
+           }
 
-                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                       
-                       return cell
-                       
-                    
-                       
+   
+        
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.mars.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+           
+                    }
+        else if(tableView == jupiterTableView){
+
+            
+            guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+
+        
+        
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.jupiter.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+           
                         }
-                else if(tableView == marsTableView){
+        else if(tableView == saturnTableView){
 
-                    
-                    guard let cell = marsTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-                            }
-                else if(tableView == jupiterTableView){
-
-                    
-                    guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-                                }
-                else if(tableView == saturnTableView){
-
-                    
-                    guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-                                    }
-                else if(tableView == uranusTableView){
-
-                    
-                    guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-                                        }
-                else if(tableView == neptuneTableView){
-
-                    
-                    guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-                                            }
-                else {
-
-                    
-                    guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: AspectsCustomTableViewCell.identifier, for: indexPath) as? AspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-                   
-                   return cell
-                   
-
-
-            }
-            }
             
-               
-               
+            guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+
+//                    var transitSaturnAspects = [plutoSaturn]
+      
+         
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.saturn.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+                            }
+        else if(tableView == uranusTableView){
+
+            
+            guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+
+      
+        
+     
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.uranus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+           
+                                }
+        else if(tableView == neptuneTableView){
+
+            
+            guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+
+   
+ 
+
+      
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.neptune.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+                                    }
+        else {
+
+            
+            guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+               return UITableViewCell()
+           }
+
+
+
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chart!.aspectsFiltered(chart!.planets, by: Planet.pluto.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+           
+           return cell
+           
+           
+
+
+    }
+    }
+    
+
            
            
            func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
