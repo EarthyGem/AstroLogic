@@ -32,18 +32,18 @@ class MyItemsViewController: UIViewController {
 
     
     private let ricksData: [RicksItems] = [
-        RicksItems(chartType: "My Chart"),
+        RicksItems(chartType: "Charts and Graphs"),
       //  RicksItems(chartType: "My Planetary Degrees"),
-        RicksItems(chartType: "My Key Decanates"),
-        RicksItems(chartType: "My Natal Chart"),
-        RicksItems(chartType: "My Natal Houses"),
-        RicksItems(chartType: "My Natal Aspects"),
-        RicksItems(chartType: "My Transit Progressions"),
-        RicksItems(chartType: "My Transit Aspects"),
-        RicksItems(chartType: "My Minor Progressions"),
-        RicksItems(chartType: "My Minor Progression Aspects"),
-        RicksItems(chartType: "My Major Progressions"),
-              RicksItems(chartType: "My Major Progression Aspects"),
+        RicksItems(chartType: "Key Decanates"),
+        RicksItems(chartType: "Natal Planets"),
+        RicksItems(chartType: "Natal Houses"),
+        RicksItems(chartType: "Natal Aspects"),
+        RicksItems(chartType: "Transit Planets"),
+        RicksItems(chartType: "Transit Aspects"),
+        RicksItems(chartType: "Minor Progressed Planets"),
+        RicksItems(chartType: "Minor Progressed Aspects"),
+        RicksItems(chartType: "Progressed Planeta"),
+              RicksItems(chartType: "Progressed Aspects"),
    //     RicksItems(chartType: "My Solar Arc Progressions"),
    //     RicksItems(chartType: "Relationships")
                    
@@ -121,6 +121,7 @@ extension MyItemsViewController: UITableViewDelegate {
         
         let myNatalAspectsVC = AspectedPlanetsViewController()
         myNatalAspectsVC.chart = self.chart
+        myNatalAspectsVC.chartCake = self.chartCake
 //        myNatalHousesVC.title = category2.chartType
 
         let transitPlanetsVC = TransitPlanets(transitPlanets: [""])
@@ -139,7 +140,8 @@ extension MyItemsViewController: UITableViewDelegate {
 
         let mp_natalAspectsVC =  mpAspectViewController()
         minorProgressionsVC.title = category.chartType
-
+        mp_natalAspectsVC.chartCake = self.chartCake
+        mp_natalAspectsVC.chart = self.chart
 //
         let MP_PlanetsVC = MajorProgressionsViewController(MP_Planets: placeolder)
   
@@ -149,7 +151,8 @@ extension MyItemsViewController: UITableViewDelegate {
 //        SA_PlanetsVC.getMajorProgresseDate = self.getMajorProgresseDate
 //        SA_PlanetsVC.chart = self.chart
         let MP_AspectsVC = MPAspectsViewController()
-
+        MP_AspectsVC.chartCake = self.chartCake
+        MP_AspectsVC.chart = self.chart
 //        let RelationshipVC = RelationshipsViewController()
 //        RelationshipVC.natalChart = self.chart
 //
