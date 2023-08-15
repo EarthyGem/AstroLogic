@@ -38,12 +38,16 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "Natal Planets"),
         RicksItems(chartType: "Natal Houses"),
         RicksItems(chartType: "Natal Aspects"),
+        RicksItems(chartType: "Natal Aspects By House"),
         RicksItems(chartType: "Transit Planets"),
         RicksItems(chartType: "Transit Aspects"),
+        RicksItems(chartType: "Transit Aspects By House"),
         RicksItems(chartType: "Minor Progressed Planets"),
         RicksItems(chartType: "Minor Progressed Aspects"),
+        RicksItems(chartType: "Minor Progressed Aspects By House"),
         RicksItems(chartType: "Progressed Planeta"),
               RicksItems(chartType: "Progressed Aspects"),
+        RicksItems(chartType: "Progressed Aspects By House"),
    //     RicksItems(chartType: "My Solar Arc Progressions"),
    //     RicksItems(chartType: "Relationships")
                    
@@ -63,7 +67,7 @@ class MyItemsViewController: UIViewController {
         
         
         super.viewDidLoad()
-        print("StrongestPlanet: \(strongestPlanet)")
+        print("StrongestPlanet: \(String(describing: strongestPlanet))")
         view.backgroundColor = .white
               title = "My Items"
         view.addSubview(tableView)
@@ -87,8 +91,7 @@ extension MyItemsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let category = ricksData[indexPath.row]
-        let category2 = ricksData[indexPath.row]
-
+       
 //
         let chartVC = ChartViewController()
         chartVC.chart = chart
@@ -117,13 +120,17 @@ extension MyItemsViewController: UITableViewDelegate {
         let myNatalHousesVC = MyNatalHousesVC()
         myNatalHousesVC.chart = self.chart
 
-  
-        
+      
         let myNatalAspectsVC = AspectedPlanetsViewController()
         myNatalAspectsVC.chart = self.chart
         myNatalAspectsVC.chartCake = self.chartCake
 //        myNatalHousesVC.title = category2.chartType
 
+        let natalHouseAspects = AspectsByNatalHousesVC()
+        natalHouseAspects.chart = self.chart
+        natalHouseAspects.chartCake = self.chartCake
+        
+        
         let transitPlanetsVC = TransitPlanets(transitPlanets: [""])
       
         transitPlanetsVC.chartCake = self.chartCake
@@ -146,6 +153,19 @@ extension MyItemsViewController: UITableViewDelegate {
         let MP_PlanetsVC = MajorProgressionsViewController(MP_Planets: placeolder)
   
         MP_PlanetsVC.chartCake = self.chartCake
+        
+        let progressedAspectsByHouseVC = ProgressedAspectsByHousesVC()
+        progressedAspectsByHouseVC.chartCake = self.chartCake
+        progressedAspectsByHouseVC.chart = self.chart
+        let mProgressedAspectsByHouseVC = MinorProgressedAspectsByHousesVC()
+        mProgressedAspectsByHouseVC.chartCake = self.chartCake
+        mProgressedAspectsByHouseVC.chart = self.chart
+        let transitAspectsByHouseVC = TransitAspectsByHousesVC()
+        transitAspectsByHouseVC.chartCake = self.chartCake
+        transitAspectsByHouseVC.chart = self.chart
+        
+        
+        
 
 //        let SA_PlanetsVC = SolarArcViewController(MP_Planets: placeolder)
 //        SA_PlanetsVC.getMajorProgresseDate = self.getMajorProgresseDate
@@ -157,9 +177,12 @@ extension MyItemsViewController: UITableViewDelegate {
 //        RelationshipVC.natalChart = self.chart
 //
 
+        
+        
+        
         MP_PlanetsVC.title = category.chartType
         
-        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,transitPlanetsVC,transitAspectsVC,minorProgressionsVC,mp_natalAspectsVC,MP_PlanetsVC,MP_AspectsVC]
+        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalHouseAspects,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC]
         
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
         
