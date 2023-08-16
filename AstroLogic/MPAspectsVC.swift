@@ -339,18 +339,17 @@ class MPAspectsViewController: UIViewController {
    
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.sun.celestialObject).count * 90)
+        sunTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
 //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-        moonTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.moon.celestialObject).count * 90)
-        mercuryTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
-        venusTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.venus.celestialObject).count * 90)
-        marsTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.mars.celestialObject).count * 90)
-        jupiterTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
-        saturnTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
-        uranusTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
-        neptuneTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
-        plutoTableView.contentSize.height = CGFloat(chartCake!.progressedAspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
-        
+        moonTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        mercuryTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        venusTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        marsTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        jupiterTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        saturnTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        uranusTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        neptuneTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
+        plutoTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
         
       
         
@@ -644,44 +643,44 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 if(tableView == sunTableView) {
 
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.sun.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
             }
                 else if(tableView == moonTableView){
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.moon.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                 }
                 
                 
                     else if(tableView == mercuryTableView){
 
-                        return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.mercury.celestialObject).count
+                        return chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                     }
                     else if(tableView == venusTableView){
 
-                        return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.venus.celestialObject).count
+                        return chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                         }
                 else if(tableView == marsTableView){
 
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.mars.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                             }
                 else if(tableView == jupiterTableView){
 
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.jupiter.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                                 }
                 else if(tableView == saturnTableView){
 
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.saturn.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                                     }
                 else if(tableView == uranusTableView){
 
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.uranus.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                                         }
                 else if(tableView == neptuneTableView){
 
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.neptune.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
                                             }
                 else {
 
-                    return chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.pluto.celestialObject).count
+                    return chartCake!.filterAndFormat(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count
 
 
 
@@ -699,7 +698,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
 
                  
                   
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.sun.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                     
 //                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
 ////
@@ -716,7 +715,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                    }
                  
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.moon.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    
                    return cell
                    
@@ -737,7 +736,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                     
     
                     
-                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.mercury.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                       
                    return cell
                    
@@ -754,7 +753,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                    
                         
                         
-                          cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.venus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                           
                        return cell
                        
@@ -773,7 +772,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                
 
                     
-                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.mars.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                       
                    return cell
                    
@@ -790,7 +789,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
          
 
                     
-                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.jupiter.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.jupiter .celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                       
                    
                    return cell
@@ -807,7 +806,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
 //                    var transitSaturnAspects = [plutoSaturn]
       
                     
-                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.saturn.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.saturn .celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                       
                    return cell
                    
@@ -823,7 +822,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                
        
                     
-                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.uranus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.uranus .celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                       
                    
                    return cell
@@ -838,7 +837,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                    }
 
                     
-                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.neptune.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.neptune .celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                       
                    
                    return cell
@@ -855,7 +854,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                     
 
                     
-                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedAspectsFiltered(chartCake!.major.planets, by: Planet.pluto.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.pluto .celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                       
                    
                    return cell
@@ -868,202 +867,14 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                
                
            
-           
-           func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-               
-               
-               
-               if(tableView == sunTableView) {
-                   
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90 // returns fixed height for all rows, regardless of the tableView
+    }
 
-           }
-           
-               
-
-               else if(tableView == moonTableView){
-
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
-
-           }
-                   else if(tableView == mercuryTableView){
-
-                       if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                           return 243
-                       }else
-                       {
-                           return 90
-                       }
-
-               }
-                   else if(tableView == venusTableView){
-
-                       if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                           return 243
-                       }else
-                       {
-                           return 90
-                       }
-
-               }
-               else if(tableView == marsTableView){
-
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
-
-           }
-               else if(tableView == jupiterTableView){
-
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
-
-           }
-               else if(tableView == saturnTableView){
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
-
-           }
-               else if(tableView == uranusTableView){
-
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
-
-           }
-               else if(tableView == neptuneTableView){
-
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
-
-           }
-               else {
-
-                   if self.SelectedIndex == indexPath.row && isCollapsed == true{
-                       return 243
-                   }else
-                   {
-                       return 90
-                   }
-
-           }
-           }
-              
-           
-            
-            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                tableView.deselectRow(at: indexPath, animated: true)
-                
-                
-                if SelectedIndex == indexPath.row
-                {
-                    if self.isCollapsed == false
-                    {
-                        self.isCollapsed = true
-                        
-                    }else
-                    {
-                        self.isCollapsed = false
-                    }
-                } else {
-                        self.isCollapsed = true}
-                    self.SelectedIndex = indexPath.row
-                    sunTableView.reloadRows(at: [indexPath], with: .automatic)
-
-                
-                    }
-    
-    
-    
-    private func tableView2(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-         
-        if(tableView == mercuryTableView) && SelectedIndex == indexPath.row {
-        
-     
-    
-        if self.isCollapsed == false
-        {
-            self.isCollapsed = true
-            
-        }else
-        {
-            self.isCollapsed = false
-        }
-    } else {
-            self.isCollapsed = true
-        
+        // remove all the code related to expanding and collapsing
     }
-        self.SelectedIndex = indexPath.row
-        sunTableView.reloadRows(at: [indexPath], with: .automatic)
-
-        
-        if(tableView == moonTableView) && SelectedIndex == indexPath.row {
-        
-     
-    
-        if self.isCollapsed == false
-        {
-            self.isCollapsed = true
-            
-        }else
-        {
-            self.isCollapsed = false
-        }
-    } else {
-            self.isCollapsed = true
-        
-    }
-        self.SelectedIndex = indexPath.row
-        sunTableView.reloadRows(at: [indexPath], with: .automatic)
-
-        
-        
-    
-        }
-
-    
  
 
     }
-    
-    
-    
-                
-                
-                
-                
-                
-                
-//
-//                let selectedVC = FirstFirstHousePlanetViewController.self
-//                performSegue(withIdentifier: "firstHouse1", sender: selectedVC)
-
