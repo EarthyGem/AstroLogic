@@ -394,7 +394,7 @@ var chart: Chart?
         scrollView.addSubview(sunScrollView)
 //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
         
-//        firstTableView.backgroundColor = .orange
+        firstTableView.backgroundColor = .orange
         secondTableView.backgroundColor = .green
 
        thirdTableView.backgroundColor = .purple
