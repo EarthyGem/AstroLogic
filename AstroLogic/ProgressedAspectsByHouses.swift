@@ -810,13 +810,3 @@ extension ProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegat
     
     
     
-                
-                
-                
-                
-                
-                
-//
-//                let selectedVC = FirstFirstHousePlanetViewController.self
-//                performSegue(withIdentifier: "firstHouse1", sender: selectedVC)
-
