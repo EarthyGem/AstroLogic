@@ -157,7 +157,7 @@ class StrongestPlanetViewController: UIViewController {
 
     @objc func imageViewTapped() {
         let infoViewController = InfoViewController()
-        if let strongestPlanet = self.strongestPlanet
+        if self.strongestPlanet != nil
          {
             infoViewController.infoText = ""
         } else {
@@ -168,7 +168,7 @@ class StrongestPlanetViewController: UIViewController {
 //
     @objc func harmoniousImageViewTapped() {
         let infoViewController = InfoViewController()
-        if let mostHarmoniousPlanet = self.mostHarmoniousPlanet {
+        if self.mostHarmoniousPlanet != nil {
           
             infoViewController.infoText = ""
         } else {
@@ -179,7 +179,7 @@ class StrongestPlanetViewController: UIViewController {
 
     @objc func discordantImageViewTapped() {
         let infoViewController = InfoViewController()
-        if let mostDiscordantPlanet = self.mostDiscordantPlanet
+        if self.mostDiscordantPlanet != nil
           {
             infoViewController.infoText = ""
         } else {
@@ -204,6 +204,16 @@ class StrongestPlanetViewController: UIViewController {
             titleLabel.bottomAnchor.constraint(equalTo: imageView.topAnchor, constant: -20),
         ])
     }
+    
+  
+
+        
+        
+        // Initialize and push the ChartViewController
+     
+        
+        //        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
+
 
     private func configureStrongestLabel() {
         label.text = strongestPlanet

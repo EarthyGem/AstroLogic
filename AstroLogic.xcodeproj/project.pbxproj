@@ -23,6 +23,9 @@
 		396CDCBB2A74716A00EDCECC /* CustomDecansTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */; };
 		396CDCBD2A7471A200EDCECC /* PlanetDegreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBC2A7471A200EDCECC /* PlanetDegreeVC.swift */; };
 		396CDCBF2A7471D400EDCECC /* PlanetDegreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBE2A7471D400EDCECC /* PlanetDegreeCell.swift */; };
+		398342532A8DA49900140A1D /* Fake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398342522A8DA49900140A1D /* Fake.swift */; };
+		398ECC2F2A8F025900695354 /* ChartDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */; };
+		398ECC312A8F07D300695354 /* MyCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ECC302A8F07D300695354 /* MyCharts.swift */; };
 		3997F0742A63707F00741E9D /* Sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0732A63707F00741E9D /* Sentence.swift */; };
 		3997F0762A637D4700741E9D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0752A637D4700741E9D /* File.swift */; };
 		3997F0782A63C6D800741E9D /* 35.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0772A63C6D800741E9D /* 35.swift */; };
@@ -39,7 +42,7 @@
 		39A1EC432A5F7080008D1EC1 /* TransitPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */; };
 		39A1EC452A5F70F1008D1EC1 /* MajorProgressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC442A5F70F1008D1EC1 /* MajorProgressions.swift */; };
 		39A1EC472A5F75CF008D1EC1 /* MyNatalHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */; };
-		39A1EC492A5F75FF008D1EC1 /* AspectedPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC482A5F75FF008D1EC1 /* AspectedPlanetsVC.swift */; };
+		39A1EC492A5F75FF008D1EC1 /* NatalApsectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC482A5F75FF008D1EC1 /* NatalApsectsVC.swift */; };
 		39A1EC4D2A5F768B008D1EC1 /* TransitAspectedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC4C2A5F768B008D1EC1 /* TransitAspectedVC.swift */; };
 		39A1EC4F2A5F76B8008D1EC1 /* MinorsAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */; };
 		39A1EC512A5F76E8008D1EC1 /* MinorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC502A5F76E8008D1EC1 /* MinorsVC.swift */; };
@@ -52,12 +55,17 @@
 		39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC5E2A5FA75E008D1EC1 /* 1.swift */; };
 		39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC602A603D8F008D1EC1 /* Houses Custom.swift */; };
 		39A1EC632A605743008D1EC1 /* signs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC622A605743008D1EC1 /* signs.swift */; };
-		39A1EC652A60EBC0008D1EC1 /* 34.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC642A60EBC0008D1EC1 /* 34.swift */; };
+		39A1EC652A60EBC0008D1EC1 /* \.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC642A60EBC0008D1EC1 /* \.swift */; };
 		39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC662A60F744008D1EC1 /* InfoVC.swift */; };
 		39A1EC692A60F98C008D1EC1 /* Harmony and Discord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC682A60F98C008D1EC1 /* Harmony and Discord.swift */; };
 		39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6A2A610480008D1EC1 /* Dignity.swift */; };
 		39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6C2A611BFD008D1EC1 /* graph info.swift */; };
 		39B108362A80C72100165E62 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 39B108352A80C72100165E62 /* SwiftEphemeris */; };
+		39E113EC2A8A8545006EA576 /* playgorund.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113EB2A8A8545006EA576 /* playgorund.swift */; };
+		39E113EE2A8ABE80006EA576 /* AspectByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113ED2A8ABE80006EA576 /* AspectByHouses.swift */; };
+		39E113F02A8AC18E006EA576 /* ProgressedAspectsByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */; };
+		39E113F22A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */; };
+		39E113F42A8AC220006EA576 /* TransitAspectsByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113F32A8AC220006EA576 /* TransitAspectsByHouses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +85,9 @@
 		396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDecansTable.swift; sourceTree = "<group>"; };
 		396CDCBC2A7471A200EDCECC /* PlanetDegreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDegreeVC.swift; sourceTree = "<group>"; };
 		396CDCBE2A7471D400EDCECC /* PlanetDegreeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDegreeCell.swift; sourceTree = "<group>"; };
+		398342522A8DA49900140A1D /* Fake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fake.swift; sourceTree = "<group>"; };
+		398ECC2E2A8F025900695354 /* ChartDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChartDataModel.xcdatamodel; sourceTree = "<group>"; };
+		398ECC302A8F07D300695354 /* MyCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCharts.swift; sourceTree = "<group>"; };
 		3997F0732A63707F00741E9D /* Sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentence.swift; sourceTree = "<group>"; };
 		3997F0752A637D4700741E9D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		3997F0772A63C6D800741E9D /* 35.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 35.swift; sourceTree = "<group>"; };
@@ -92,7 +103,7 @@
 		39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPlanetsVC.swift; sourceTree = "<group>"; };
 		39A1EC442A5F70F1008D1EC1 /* MajorProgressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorProgressions.swift; sourceTree = "<group>"; };
 		39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNatalHousesVC.swift; sourceTree = "<group>"; };
-		39A1EC482A5F75FF008D1EC1 /* AspectedPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectedPlanetsVC.swift; sourceTree = "<group>"; };
+		39A1EC482A5F75FF008D1EC1 /* NatalApsectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalApsectsVC.swift; sourceTree = "<group>"; };
 		39A1EC4C2A5F768B008D1EC1 /* TransitAspectedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitAspectedVC.swift; sourceTree = "<group>"; };
 		39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorsAspectsVC.swift; sourceTree = "<group>"; };
 		39A1EC502A5F76E8008D1EC1 /* MinorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorsVC.swift; sourceTree = "<group>"; };
@@ -105,11 +116,16 @@
 		39A1EC5E2A5FA75E008D1EC1 /* 1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 1.swift; sourceTree = "<group>"; };
 		39A1EC602A603D8F008D1EC1 /* Houses Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Houses Custom.swift"; sourceTree = "<group>"; };
 		39A1EC622A605743008D1EC1 /* signs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signs.swift; sourceTree = "<group>"; };
-		39A1EC642A60EBC0008D1EC1 /* 34.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 34.swift; sourceTree = "<group>"; };
+		39A1EC642A60EBC0008D1EC1 /* \.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\\.swift"; sourceTree = "<group>"; };
 		39A1EC662A60F744008D1EC1 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		39A1EC682A60F98C008D1EC1 /* Harmony and Discord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harmony and Discord.swift"; sourceTree = "<group>"; };
 		39A1EC6A2A610480008D1EC1 /* Dignity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dignity.swift; sourceTree = "<group>"; };
 		39A1EC6C2A611BFD008D1EC1 /* graph info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "graph info.swift"; sourceTree = "<group>"; };
+		39E113EB2A8A8545006EA576 /* playgorund.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playgorund.swift; sourceTree = "<group>"; };
+		39E113ED2A8ABE80006EA576 /* AspectByHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectByHouses.swift; sourceTree = "<group>"; };
+		39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressedAspectsByHouses.swift; sourceTree = "<group>"; };
+		39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedAsepctsByHousesVC.swift; sourceTree = "<group>"; };
+		39E113F32A8AC220006EA576 /* TransitAspectsByHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitAspectsByHouses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +165,8 @@
 				3903A33A2A5F2D0700245DD2 /* AppDelegate.swift */,
 				3903A33C2A5F2D0700245DD2 /* SceneDelegate.swift */,
 				3903A33E2A5F2D0700245DD2 /* ViewController.swift */,
+				398ECC302A8F07D300695354 /* MyCharts.swift */,
+				398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */,
 				39A1EC392A5F61AD008D1EC1 /* ChartViewerVC.swift */,
 				3997F07B2A66FA5700741E9D /* AspectsVc.swift */,
 				39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */,
@@ -158,12 +176,13 @@
 				396CDCB82A74712100EDCECC /* DecanatesVC.swift */,
 				396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */,
 				39A1EC502A5F76E8008D1EC1 /* MinorsVC.swift */,
-				39A1EC482A5F75FF008D1EC1 /* AspectedPlanetsVC.swift */,
+				39A1EC482A5F75FF008D1EC1 /* NatalApsectsVC.swift */,
 				39A1EC522A5F773E008D1EC1 /* MPAspectsVC.swift */,
 				39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */,
 				39A1EC4C2A5F768B008D1EC1 /* TransitAspectedVC.swift */,
 				39A1EC6A2A610480008D1EC1 /* Dignity.swift */,
 				39A1EC5C2A5F7A96008D1EC1 /* NewAspects.swift */,
+				398342522A8DA49900140A1D /* Fake.swift */,
 				39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */,
 				3997F0752A637D4700741E9D /* File.swift */,
 				3997F0732A63707F00741E9D /* Sentence.swift */,
@@ -172,12 +191,17 @@
 				39A1EC3E2A5F6DB6008D1EC1 /* PlanetsVC.swift */,
 				39A1EC662A60F744008D1EC1 /* InfoVC.swift */,
 				39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */,
-				39A1EC642A60EBC0008D1EC1 /* 34.swift */,
+				39A1EC642A60EBC0008D1EC1 /* \.swift */,
 				3997F0772A63C6D800741E9D /* 35.swift */,
 				3903A37B2A5F305100245DD2 /* GeoCode.swift */,
 				39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */,
+				39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */,
+				39E113ED2A8ABE80006EA576 /* AspectByHouses.swift */,
+				39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */,
+				39E113F32A8AC220006EA576 /* TransitAspectsByHouses.swift */,
 				3903A3772A5F2F3200245DD2 /* AboutVC.swift */,
 				3903A3752A5F2E8400245DD2 /* BirthChartView.swift */,
+				39E113EB2A8A8545006EA576 /* playgorund.swift */,
 				3997F07D2A68F7DF00741E9D /* AspectarianView.swift */,
 				39A1EC542A5F798F008D1EC1 /* MajorsBiWheel.swift */,
 				39A1EC582A5F79A8008D1EC1 /* TransitsBiWheel.swift */,
@@ -283,6 +307,7 @@
 				396CDCBF2A7471D400EDCECC /* PlanetDegreeCell.swift in Sources */,
 				39A1EC5D2A5F7A96008D1EC1 /* NewAspects.swift in Sources */,
 				3997F07A2A64303F00741E9D /* Progression Sentence.swift in Sources */,
+				39E113EE2A8ABE80006EA576 /* AspectByHouses.swift in Sources */,
 				39A1EC342A5F6003008D1EC1 /* StrongestPlanetVC.swift in Sources */,
 				39A1EC5B2A5F7A31008D1EC1 /* Custom Aspects.swift in Sources */,
 				396CDCBD2A7471A200EDCECC /* PlanetDegreeVC.swift in Sources */,
@@ -291,8 +316,8 @@
 				39A1EC412A5F6E91008D1EC1 /* CustomTableCell.swift in Sources */,
 				39A1EC632A605743008D1EC1 /* signs.swift in Sources */,
 				39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */,
-				39A1EC492A5F75FF008D1EC1 /* AspectedPlanetsVC.swift in Sources */,
-				39A1EC652A60EBC0008D1EC1 /* 34.swift in Sources */,
+				39A1EC492A5F75FF008D1EC1 /* NatalApsectsVC.swift in Sources */,
+				39A1EC652A60EBC0008D1EC1 /* \.swift in Sources */,
 				3997F0742A63707F00741E9D /* Sentence.swift in Sources */,
 				3997F0762A637D4700741E9D /* File.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
@@ -301,6 +326,7 @@
 				39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */,
 				39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */,
 				3997F0782A63C6D800741E9D /* 35.swift in Sources */,
+				398ECC2F2A8F025900695354 /* ChartDataModel.xcdatamodeld in Sources */,
 				396CDCBB2A74716A00EDCECC /* CustomDecansTable.swift in Sources */,
 				39A1EC692A60F98C008D1EC1 /* Harmony and Discord.swift in Sources */,
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
@@ -308,11 +334,13 @@
 				3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */,
 				39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */,
 				39A1EC532A5F773E008D1EC1 /* MPAspectsVC.swift in Sources */,
+				39E113F42A8AC220006EA576 /* TransitAspectsByHouses.swift in Sources */,
 				39A1EC512A5F76E8008D1EC1 /* MinorsVC.swift in Sources */,
 				39A1EC4F2A5F76B8008D1EC1 /* MinorsAspectsVC.swift in Sources */,
 				39A1EC472A5F75CF008D1EC1 /* MyNatalHousesVC.swift in Sources */,
 				3903A37C2A5F305100245DD2 /* GeoCode.swift in Sources */,
 				3997F07C2A66FA5700741E9D /* AspectsVc.swift in Sources */,
+				39E113F22A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift in Sources */,
 				3903A33B2A5F2D0700245DD2 /* AppDelegate.swift in Sources */,
 				3903A3452A5F2D0700245DD2 /* AstroLogic.xcdatamodeld in Sources */,
 				39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */,
@@ -323,7 +351,11 @@
 				39A1EC3F2A5F6DB6008D1EC1 /* PlanetsVC.swift in Sources */,
 				39A1EC452A5F70F1008D1EC1 /* MajorProgressions.swift in Sources */,
 				3997F07E2A68F7DF00741E9D /* AspectarianView.swift in Sources */,
+				398342532A8DA49900140A1D /* Fake.swift in Sources */,
+				398ECC312A8F07D300695354 /* MyCharts.swift in Sources */,
 				3903A33D2A5F2D0700245DD2 /* SceneDelegate.swift in Sources */,
+				39E113EC2A8A8545006EA576 /* playgorund.swift in Sources */,
+				39E113F02A8AC18E006EA576 /* ProgressedAspectsByHouses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +632,16 @@
 			);
 			currentVersion = 3903A3442A5F2D0700245DD2 /* AstroLogic.xcdatamodel */;
 			path = AstroLogic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				398ECC2E2A8F025900695354 /* ChartDataModel.xcdatamodel */,
+			);
+			currentVersion = 398ECC2E2A8F025900695354 /* ChartDataModel.xcdatamodel */;
+			path = ChartDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

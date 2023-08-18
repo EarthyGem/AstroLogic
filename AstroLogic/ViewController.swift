@@ -1,4 +1,5 @@
 import SwiftEphemeris
+import CoreData
 import UIKit
 import CoreLocation
 import GooglePlaces
@@ -53,7 +54,15 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     var autocompleteController: GMSAutocompleteViewController? // Add this line
     
 
-    
+    lazy var nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Name"
+        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.borderStyle = .roundedRect
+        textField.frame = CGRect(x: 25, y: 100, width: 250, height: 35)  // Adjust y to position it above dateTextField
+        return textField
+    }()
+
 
     
     
@@ -160,7 +169,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         ])
         
         dateTextField.inputView = datePicker
-        
+        view.addSubview(nameTextField)
+
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(datePickerDonePressed))
@@ -172,7 +182,10 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         let timePickerDoneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(timePickerDonePressed))
         timePickerToolBar.setItems([timePickerDoneBtn], animated: true)
         birthTimeTextField.inputAccessoryView = timePickerToolBar
-        
+
+        let myChartsButton = UIBarButtonItem(title: "My Charts", style: .plain, target: self, action: #selector(showMyCharts))
+          navigationItem.rightBarButtonItem = myChartsButton
+
         view.addSubview(getPowerPlanetButton)
         getPowerPlanetButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -188,6 +201,11 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         locationManager.startUpdatingLocation()
 
         
+    }
+
+    @objc func showMyCharts() {
+        let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
+        navigationController?.pushViewController(myChartsViewController, animated: true)
     }
     
     @objc func birthPlaceTextFieldEditingDidBegin() {
@@ -356,6 +374,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                     return
                 }
 
+
+
                 // Update the latitude and longitude values
                 self.latitude = latitude
                 self.longitude = longitude
@@ -372,6 +392,12 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                     assert(false, "There is no chart")
                     return
                 }
+
+//                let chartName = nameTextField.text ?? "Unnamed"
+//                saveChart(name: nameTextField.text!, birthDate: chartDate, latitude: latitude, longitude: longitude)
+                let name = nameTextField.text ?? ""
+                saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude)
+
 
                 let scores = self.chart!.getTotalPowerScoresForPlanets()
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
@@ -510,7 +536,80 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    
+
+
+    func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double) {
+        // Get the Core Data managed context
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Unable to get AppDelegate")
+            return
+        }
+
+        let context = appDelegate.persistentContainer.viewContext
+
+        // Ensure the context is not nil and is ready to use
+        guard context != nil else {
+            print("Managed Object Context is not initialized properly")
+            return
+        }
+
+        // Check whether "ChartEntity" is the correct entity name in your .xcdatamodeld file.
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "ChartEntity", in: context) else {
+            print("Failed to get the entity description for 'ChartEntity'")
+            return
+        }
+
+        let newChart = NSManagedObject(entity: entityDescription, insertInto: context)
+        newChart.setValue(name, forKey: "name")
+        newChart.setValue(birthDate, forKey: "birthDate")
+        newChart.setValue(latitude, forKey: "latitude")
+        newChart.setValue(longitude, forKey: "longitude")
+
+        // Try saving the context
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save chart: \(error.localizedDescription)")
+        }
+    }
+
+   
+    func fetchAndPrintCharts() {
+        // Get the Core Data managed context
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Unable to get AppDelegate")
+            return
+        }
+
+        let context = appDelegate.persistentContainer.viewContext
+
+        // Create a fetch request for the ChartEntity
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ChartEntity")
+
+        do {
+            // Execute the fetch request
+            let charts = try context.fetch(fetchRequest)
+
+            // Check if we got any results
+            if charts.isEmpty {
+                print("No charts saved in Core Data.")
+            } else {
+                for chart in charts {
+                    if let name = chart.value(forKey: "name") as? String,
+                       let birthDate = chart.value(forKey: "birthDate") as? Date,
+                       let latitude = chart.value(forKey: "latitude") as? Double,
+                       let longitude = chart.value(forKey: "longitude") as? Double {
+
+                        print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude)")
+                    }
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+
+
     func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
     }

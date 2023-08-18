@@ -278,7 +278,7 @@ var mySunText = ""
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
         let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chart: chart!)
-     print("StrongestPlanet: \(strongestPlanet)")
+        print("StrongestPlanet: \(String(describing: strongestPlanet))")
         
         view.backgroundColor = .black
         tableView.backgroundColor = .black

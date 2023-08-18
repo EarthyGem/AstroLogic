@@ -17,7 +17,6 @@ func getTotalPowerScoresForPlanets(chart: Chart)  -> [(String, Double)]  {
     let houseScores = chart.getHouseScoreForPlanets(chart.planets)
     let cuspScores = chart.getAllCuspAspectScoresForPlanets()
     let parallelScores = chart.getAllParallelAspectScores(chart.planets)
-    let parallelScores2 = chart.getAllParallelAspects(chart.planets)
     let parallelAngleScores = chart.allParallelCuspAspectScores(chart.planets)
   //  print("angle scores for parallels to planets: \(parallelAngleScores)")
 //
@@ -124,3 +123,4 @@ func getTotalPowerScoresForPlanets2(chart: Chart)  -> [String: Double]  {
     }
     return combinedScores
 }
+

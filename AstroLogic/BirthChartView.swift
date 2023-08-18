@@ -162,7 +162,7 @@ class BirthChartView: UIView {
                     degreeLabelAngleOffset = -0.08
                     minuteLabelAngleOffset = 0.08
                 }
-            print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
+      //      print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
 
 
             
@@ -201,7 +201,7 @@ class BirthChartView: UIView {
      
             let signIndex = (Int(accumulatedAngle / 30) + 1) % 12
 
-            print("House \(index + 1): Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signIndex)")
+            print("House \(index + 1) : Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signIndex)")
 
            
             let imageName = getHouseNames()[signIndex]
@@ -545,7 +545,8 @@ class BirthChartView: UIView {
         let tenth = chart!.houseCusps.tenth.value
         let eleventh = chart!.houseCusps.eleventh.value
         let twelfth = chart!.houseCusps.twelfth.value
-        
+        print("House cusps: \(first), \(second), \(third), \(fourth), \(fifth), \(sixth), \(seventh), \(eighth), \(ninth), \(tenth), \(eleventh), \(twelfth)")
+
         return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
     }
     
@@ -608,13 +609,16 @@ class BirthChartView: UIView {
     
     private func getHouses2() -> [CGFloat] {
         let houseCusps = getHouses1()
-        
+        print("House cusps: \(houseCusps)")
+
         var houseDistances: [CGFloat] = []
         
         for i in 0..<houseCusps.count {
             let nextIndex = (i + 1) % houseCusps.count
             let distance = (houseCusps[nextIndex] - houseCusps[i] + 360).truncatingRemainder(dividingBy: 360)
             houseDistances.append(distance)
+            print("House \(i + 1) to \(nextIndex + 1) distance: \(distance)")
+
         }
         
         return houseDistances

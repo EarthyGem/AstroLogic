@@ -421,7 +421,7 @@ class NewAspectsCustomTableViewCell: UITableViewCell {
            myTransit1.frame = CGRect(x: 20, y: 60, width: 325, height: 80)
         
            
-           secondPlanetText.frame = CGRect(x: 40, y: 25, width: 300, height: 40)
+           secondPlanetText.frame = CGRect(x: 20, y: 25, width: 300, height: 40)
            
            firstPlanetImageView.frame = CGRect(x: 20, y: 75, width: 55, height: 55)
           

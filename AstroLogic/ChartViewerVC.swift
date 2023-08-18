@@ -95,8 +95,8 @@ class ChartViewController: UIViewController {
     @objc func printButtonTapped() {
      
         
-        
-        let signScores = chart.calculateTotalSignScore(chart.planets)
+    
+    
         
       //  let pdfURL = createPDF(scores2: scores, harmonyDiscordScores2: harmonyDiscordScores!, signScore: signScores, houseScores2: houseScores)
      //   printPDF(at: pdfURL)
@@ -295,9 +295,7 @@ class ChartViewController: UIViewController {
                             chartView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)  // Adjust these values to fit your needs
                             view.addSubview(chartView)
             
-                        let scores: [String: (power: Double, harmony: Double, discord: Double)] = [:
-                                // your celestial objects with their scores here...
-                            ]
+                      
             let lastYPositionOfContent = planetScoresChart.frame.origin.y + planetScoresChart.frame.size.height
             if lastYPositionOfContent > scrollView.contentSize.height {
                 scrollView.contentSize.height = lastYPositionOfContent  // Adding 50 or another suitable value as a buffer space at the bottom
