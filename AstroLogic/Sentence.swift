@@ -12,7 +12,7 @@ func generateAstroSentence(strongestPlanet: String,
                            strongestPlanetSign: String,
                            sunSign: String,
                            moonSign: String,
-                           risingSign: String) -> String {
+                           risingSign: String, name: String) -> String {
     // Define arrays of arrays for adjectives and archetypes
     let adjectiveArrays: [String: [String]] = ["Aries": ["The Fiery", "The Bold", "The Courageous"],
                                                "Taurus": ["The Sensual", "The Loyal", "The Grounded"],
@@ -206,7 +206,7 @@ func generateAstroSentence(strongestPlanet: String,
     let risingArchetype = signArrays[risingSign]!.randomElement()!
     
     // Construct and return sentence
-    let sentence = "You are \(adjective) \(planetArchetype), with the Spirit of the \(sunArchetype), and the soul of the \(moonArchetype), who wears the mask of the \(risingArchetype)."
+    let sentence = "\(name) is \(adjective) \(planetArchetype), with the Spirit of the \(sunArchetype), and the soul of the \(moonArchetype), who wears the mask of the \(risingArchetype)."
     
     //    print(sentence)
     return sentence

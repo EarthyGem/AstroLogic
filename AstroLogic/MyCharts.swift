@@ -2,6 +2,8 @@ import UIKit
 import SwiftEphemeris
 import CoreData
 
+
+
 class ChartsViewController: UIViewController {
 
     var tableView: UITableView!
@@ -159,7 +161,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                                              strongestPlanetSign: strongestPlanetSign!,
                                              sunSign: chart.sun.sign.keyName,
                                              moonSign: chart.moon.sign.keyName,
-                                             risingSign: chart.houseCusps.ascendent.sign.keyName)
+                                             risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
 
         // Initialize and push the StrongestPlanetViewController
         let strongestPlanetVC = StrongestPlanetViewController()

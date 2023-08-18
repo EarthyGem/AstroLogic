@@ -438,7 +438,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                                                      strongestPlanetSign: strongestPlanetSign!,
                                                      sunSign: chart.sun.sign.keyName,
                                                      moonSign: chart.moon.sign.keyName,
-                                                     risingSign: chart.houseCusps.ascendent.sign.keyName)
+                                                     risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
 
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
@@ -464,12 +464,25 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         }
     }
 
+    func updateTimeZoneForNewLocation(latitude: Double, longitude: Double) {
+        let currentTimestamp = Int(Date().timeIntervalSince1970)
+        fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: currentTimestamp) { newTimeZone in
+            self.birthPlaceTimeZone = newTimeZone
+
+            // Optionally: Update the displayed date and time in the date and time picker fields to reflect the new timezone
+            self.datePickerValueChanged(self.datePicker)
+            self.timePickerValueChanged(self.timePicker) // Assuming you have a timePicker like your datePicker
+        }
+    }
+
+
     func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
-        let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8"
+        let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8" // Note: Never hard-code API keys in production apps. Use environment variables or secure storage.
         let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
 
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
+                self.birthPlaceTimeZone = nil
                 completion(nil)
                 return
             }
@@ -477,18 +490,21 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     if let timeZoneId = json["timeZoneId"] as? String {
-                        let timeZone = TimeZone(identifier: timeZoneId)
-                        completion(timeZone)
+                        self.birthPlaceTimeZone = TimeZone(identifier: timeZoneId)
+                        completion(self.birthPlaceTimeZone)
                     } else {
+                        self.birthPlaceTimeZone = nil
                         completion(nil)
                     }
                 }
             } catch {
+                self.birthPlaceTimeZone = nil
                 completion(nil)
             }
         }
         task.resume()
     }
+
 
     func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {
         let sorted = scores.sorted { $0.value > $1.value }
