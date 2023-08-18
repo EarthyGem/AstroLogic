@@ -7,7 +7,7 @@ import GooglePlaces
 
 
 
-class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
+class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, UITextFieldDelegate {
     var selectedPlace: GMSPlace?
     var birthPlaceTimeZone: TimeZone? {
         didSet {
@@ -170,6 +170,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         
         dateTextField.inputView = datePicker
         view.addSubview(nameTextField)
+        birthPlaceTextField.delegate = self
 
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -278,7 +279,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         // Set the location string to the text field.
         birthPlaceTextField.text = locationString
-
+         birthPlaceTextFieldDidChange() // Add this line
         if let address = place.formattedAddress {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(address) { [self] placemarks, error in
