@@ -7,7 +7,7 @@ import GooglePlaces
 
 
 
-class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     var selectedPlace: GMSPlace?
     var birthPlaceTimeZone: TimeZone? {
         didSet {
@@ -80,6 +80,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, yyyy"
         formatter.timeZone = birthPlaceTimeZone ?? TimeZone.current
+        
         return formatter
     }()
 
@@ -158,7 +159,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
         makeAutocompleteViewController()
         view.addSubview(dateTextField)
         view.addSubview(birthPlaceTextField)
-        birthPlaceTextField.addTarget(self, action: #selector(birthPlaceTextFieldDidChange), for: .editingChanged)
+      
         view.addSubview(birthTimeTextField)
         birthTimeTextField.inputView = timePicker
         view.addSubview(aboutButton)
@@ -170,7 +171,6 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
         
         dateTextField.inputView = datePicker
         view.addSubview(nameTextField)
-        birthPlaceTextField.delegate = self
 
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -279,7 +279,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
 
         // Set the location string to the text field.
         birthPlaceTextField.text = locationString
-         birthPlaceTextFieldDidChange() // Add this line
+        birthPlaceTextField.addTarget(self, action: #selector(birthPlaceTextFieldDidChange), for: .editingChanged)
         if let address = place.formattedAddress {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(address) { [self] placemarks, error in
@@ -298,8 +298,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
                 // Fetch the timezone for the selected place
                 fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { timeZone in
                     DispatchQueue.main.async {
-                        self.birthPlaceTimeZone = timeZone
+                        self.datePicker.timeZone = timeZone
                         self.timePicker.timeZone = timeZone
+                        self.birthTimeTextField.text = "" // Clear the birth time field
                     }
                 }
             }
@@ -307,7 +308,6 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
 
         dismiss(animated: true, completion: nil)
     }
-
 
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         print("Autocomplete error: \(error.localizedDescription)")
@@ -320,6 +320,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
     
     @objc func birthPlaceTextFieldDidChange() {
         updateDatePickerTimeZone()
+        updateTimePickerTimeZone()
     }
 
     
@@ -349,11 +350,33 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
         }
     }
 
-    //    @objc func birthPlaceTextFieldDidChange() {
-    //           updateDatePickerTimeZone()
-    //       }
-    //
+    func updateTimePickerTimeZone() {
+        let geocoder = CLGeocoder()
+        let addressString = birthPlaceTextField.text ?? ""
 
+        geocoder.geocodeAddressString(addressString) { placemarks, error in
+            guard let placemark = placemarks?.first, let location = placemark.location else {
+                // Handle error or default timezone
+                return
+            }
+
+            let timestamp = Int(Date().timeIntervalSince1970)
+            self.fetchTimeZone(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, timestamp: timestamp) { timeZone in
+                DispatchQueue.main.async {
+                    self.timePicker.timeZone = timeZone
+                    self.dateFormatter.timeZone = timeZone
+                    self.birthPlaceTimeZone = timeZone
+
+                    // Update the timePicker's date to reflect the new timezone
+                    let date = self.timePicker.date
+                    let components = Calendar.current.dateComponents(in: timeZone!, from: date)
+                    if let hour = components.hour, let minute = components.minute {
+                        self.timePicker.setDate(Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: date)!, animated: false)
+                    }
+                }
+            }
+        }
+    }
 
 
 
@@ -385,7 +408,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
                 self.timePicker.timeZone = timeZone
                 self.datePicker.timeZone = timeZone
                 self.birthPlaceTimeZone = timeZone
-
+                
+                
                 let chartDate = self.combinedDateAndTime()!
                 self.chart = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
                 self.chartCake = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
@@ -441,6 +465,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
                                                      moonSign: chart.moon.sign.keyName,
                                                      risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
 
+                
+                resetViewController()
+                
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
                 strongestPlanetVC.chartCake = chartCake
@@ -464,6 +491,39 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate, U
             }
         }
     }
+    func resetViewController() {
+        // Clear input fields
+        birthPlaceTextField.text = ""
+        datePicker.setDate(Date(), animated: true)
+        nameTextField
+        // Get the text from the birthPlaceTextField
+        if let birthPlace = birthPlaceTextField.text {
+            // Use the text to determine the time zone identifier
+            let timeZone = TimeZone(identifier: birthPlace)
+            
+            // Set the timeZone property of the UIDatePicker
+            timePicker.timeZone = timeZone
+            
+            
+            func resetViewController() {
+                birthPlaceTextField.text = ""
+                nameTextField.text = ""
+                datePicker.setDate(Date(), animated: true)
+                timePicker.setDate(Date(), animated: true)
+                
+                // Reset the time zone of the UIDatePicker based on the input in the birthPlaceTextField
+                if let birthPlace = birthPlaceTextField.text,
+                   let timeZone = TimeZone(identifier: birthPlace) {
+                    timePicker.timeZone = timeZone
+                }
+                
+                // Reset any other components to their initial state
+                // ...
+            }
+
+        }
+    }
+
 
     func updateTimeZoneForNewLocation(latitude: Double, longitude: Double) {
         let currentTimestamp = Int(Date().timeIntervalSince1970)
@@ -647,12 +707,10 @@ extension ViewController: CLLocationManagerDelegate {
         birthTimeTextField.resignFirstResponder()
     }
     @objc func timePickerValueChanged(_ sender: UIDatePicker) {
-        let selectedTime = sender.date
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "h:mm a"
-        timeFormatter.timeZone = TimeZone.current
-        let timeString = timeFormatter.string(from: selectedTime)
-        birthTimeTextField.text = timeString
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = sender.timeZone
+        dateFormatter.dateFormat = "h:mm a" // Adjust this to your desired format
+        birthTimeTextField.text = dateFormatter.string(from: sender.date)
     }
 
     func combinedDateAndTime() -> Date? {
@@ -663,13 +721,14 @@ extension ViewController: CLLocationManagerDelegate {
         }
 
         var dateComponents = calendar.dateComponents(in: birthPlaceTimeZone, from: datePicker.date)
-        let timeComponents = calendar.dateComponents(in: TimeZone.current, from: timePicker.date)
+        dateComponents.hour = calendar.component(.hour, from: timePicker.date)
+        dateComponents.minute = calendar.component(.minute, from: timePicker.date)
 
-        dateComponents.hour = timeComponents.hour
-        dateComponents.minute = timeComponents.minute
+        print("Combined date and time components: \(dateComponents)")
 
         return calendar.date(from: dateComponents)
     }
+
 }
 
 
