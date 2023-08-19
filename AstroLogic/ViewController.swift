@@ -103,25 +103,23 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
     lazy var getPowerPlanetButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Get Power Planet", for: .normal)
+        button.setTitle("Who is here?", for: .normal)
         button.addTarget(self, action: #selector(getPowerPlanetButtonTapped), for: .touchUpInside)
-        
+
         // Set background color to lavender
         button.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.98, alpha: 1)  // RGB values for lavender
-        
+
         // Make button corners rounded
         button.layer.cornerRadius = 8.0
-        
-        // If you want to set a border
-        // button.layer.borderWidth = 1.0
-        // button.layer.borderColor = UIColor.someColor.cgColor
 
-        // For good measure, you might want to change the title color so it contrasts with the lavender background
-        button.setTitleColor(UIColor.darkGray, for: .normal)
-        
+        // Set the title color to the color you provided
+        button.setTitleColor(UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1), for: .normal)
+
+        // Set font to bold and adjust the size accordingly
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17) // Adjust size to fit your needs
+
         return button
     }()
-
 
     
     lazy var scoresText: UILabel = {
@@ -211,7 +209,19 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         myChartsButton.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)  // RGB values for dark lavender
         navigationItem.rightBarButtonItem = myChartsButton
 
-       
+        self.title = "Astrologics"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        if let customFont = UIFont(name: "Chalkduster", size: 40) {
+            let appearance = UINavigationBarAppearance()
+            appearance.largeTitleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor(red: 0.9, green: 0.9, blue: 0.98, alpha: 1),  // The same color as your button
+                NSAttributedString.Key.font: customFont
+            ]
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+        }
+        navigationController?.navigationBar.barTintColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1)
+
        
         getPowerPlanetButton.frame = CGRect(x: 50, y: 440, width: 300, height: 45)
 
