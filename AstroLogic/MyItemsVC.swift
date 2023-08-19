@@ -131,44 +131,49 @@ extension MyItemsViewController: UITableViewDelegate {
         natalHouseAspects.chartCake = self.chartCake
         
         
-        let transitPlanetsVC = TransitPlanets(transitPlanets: [""])
-      
-        transitPlanetsVC.chartCake = self.chartCake
+        let transitPlanetsVC = TransitPlanetsTimeChangeViewController()
+         transitPlanetsVC.chartCake = self.chartCake
+         transitPlanetsVC.selectedDate = self.selectedDate
+        
+        
+        
+        
+        
 
-        let transitAspectsVC = TransitAspectedPlanetsViewController()
+        let transitAspectsVC = TransitAspectsTimeChangeViewController()
         natalPlanetsVC.title = category.chartType
         transitAspectsVC.chartCake = self.chartCake
-        transitAspectsVC.chart = self.chart
-        let minorProgressionsVC = MinorProgressionsViewController(MP_Planets: placeolder)
-   
+        transitAspectsVC.selectedDate = self.selectedDate
+       
+        let minorProgressionsVC = MinorsPlanetsTimeChangeViewController()
         minorProgressionsVC.title = category.chartType
         minorProgressionsVC.chartCake = self.chartCake
-
+        minorProgressionsVC.selectedDate = self.selectedDate
         
-        let timeChangeVC = TimeChangeViewController()
-        timeChangeVC.chartCake = self.chartCake
-        timeChangeVC.selectedDate = self.selectedDate
+        let transitPlanetstimeChangeVC = TransitPlanetsByHouseTimeChangeViewController()
+        transitPlanetstimeChangeVC.chartCake = self.chartCake
+        transitPlanetstimeChangeVC.selectedDate = self.selectedDate
      
          
 
-        let mp_natalAspectsVC =  mpAspectViewController()
-        minorProgressionsVC.title = category.chartType
+        let mp_natalAspectsVC =  MinorsAspectsTimeChangeViewController()
+        minorProgressionsVC.title = "Minor Progressions"
         mp_natalAspectsVC.chartCake = self.chartCake
-        mp_natalAspectsVC.chart = self.chart
+        mp_natalAspectsVC.selectedDate = self.selectedDate
 //
-        let MP_PlanetsVC = MajorProgressionsViewController(MP_Planets: placeolder)
-  
+        let MP_PlanetsVC = ProgressedPlanetsTimeChangeViewController()
         MP_PlanetsVC.chartCake = self.chartCake
+        MP_PlanetsVC.selectedDate = self.selectedDate
         
-        let progressedAspectsByHouseVC = ProgressedAspectsByHousesVC()
+        let progressedAspectsByHouseVC = ProgressionPlanetsByHouseTimeChangeViewController()
         progressedAspectsByHouseVC.chartCake = self.chartCake
-        progressedAspectsByHouseVC.chart = self.chart
-        let mProgressedAspectsByHouseVC = MinorProgressedAspectsByHousesVC()
+        progressedAspectsByHouseVC.selectedDate = self.selectedDate
+        let mProgressedAspectsByHouseVC = MinorPlanetsByHouseTimeChangeViewController()
         mProgressedAspectsByHouseVC.chartCake = self.chartCake
-        mProgressedAspectsByHouseVC.chart = self.chart
-        let transitAspectsByHouseVC = TransitAspectsByHousesVC()
+        mProgressedAspectsByHouseVC.selectedDate = self.selectedDate
+        let transitAspectsByHouseVC = TransitPlanetsByHouseTimeChangeViewController()
         transitAspectsByHouseVC.chartCake = self.chartCake
-        transitAspectsByHouseVC.chart = self.chart
+        transitAspectsByHouseVC.selectedDate = self.selectedDate
         
         
         
@@ -176,9 +181,9 @@ extension MyItemsViewController: UITableViewDelegate {
 //        let SA_PlanetsVC = SolarArcViewController(MP_Planets: placeolder)
 //        SA_PlanetsVC.getMajorProgresseDate = self.getMajorProgresseDate
 //        SA_PlanetsVC.chart = self.chart
-        let MP_AspectsVC = MPAspectsViewController()
+        let MP_AspectsVC = ProgressedPlanetsTimeChangeViewController()
         MP_AspectsVC.chartCake = self.chartCake
-        MP_AspectsVC.chart = self.chart
+        MP_AspectsVC.selectedDate = self.selectedDate
 //        let RelationshipVC = RelationshipsViewController()
 //        RelationshipVC.natalChart = self.chart
 //
@@ -188,7 +193,7 @@ extension MyItemsViewController: UITableViewDelegate {
         
         MP_PlanetsVC.title = category.chartType
         
-        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalHouseAspects,timeChangeVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC]
+        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalHouseAspects,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC]
         
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
         
