@@ -159,7 +159,7 @@ var mySunText = ""
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
 
-            let timeChangeVC = TimeChangeViewController()
+            let timeChangeVC = TransitPlanetsTimeChangeViewController()
             timeChangeVC.delegate = self
             self.present(timeChangeVC, animated: true)
 
@@ -190,6 +190,12 @@ var mySunText = ""
             view.addSubview(todaysDate)
         }
     }
+    
+    @objc func navigateToTimeChangeVC() {
+        let timeChangeVC = TransitPlanetsTimeChangeViewController()
+        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    }
+
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -230,18 +236,6 @@ var mySunText = ""
 
 
         
-
-        
-        let MovingPlanetVCs = [TodayViewController()]
-        
-//        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
-       
-        
-        let vc = MovingPlanetVCs[indexPath.row]
-        present(UINavigationController(rootViewController: vc), animated: true)
-        
-        
-     
 }
 
 }

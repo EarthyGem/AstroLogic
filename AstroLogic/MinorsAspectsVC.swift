@@ -13,7 +13,7 @@ class mpAspectViewController: UIViewController {
     
     var chart: Chart?
     var chartCake: ChartCake?
-    
+    var selectedDate: Date?
     var sunAspects = [""]
     var moonAspects = [""]
     var mercuryAspects = [""]
@@ -661,7 +661,7 @@ class mpAspectViewController: UIViewController {
 //
     }
     @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TimeChangeViewController()
+        let timeChangeVC = MinorsAspectsTimeChangeViewController()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
     }
 

@@ -23,7 +23,7 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
     var currentLocation: CLLocation?
     var transitSigns: [String] = []
     
-    
+    var selectedDate: Date?
     static var currentDate: Date {
         let dobDate = Date()
         return dobDate
@@ -149,7 +149,7 @@ var mySunText = ""
         super.viewDidLayoutSubviews()
         tableView.frame = CGRect(x: 10, y: 560, width: 380, height: 700)
         
-        let formatted = Date().formatted(date: .complete, time: .omitted)
+        let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
          todaysDate.text = formatted
@@ -168,6 +168,10 @@ var mySunText = ""
         view.addSubview(todaysDate)
     }
 
+    @objc func navigateToTimeChangeVC() {
+        let timeChangeVC = MinorsPlanetsTimeChangeViewController()
+        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    }
 
 
 
@@ -216,10 +220,7 @@ var mySunText = ""
         
      
 }
-    @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TimeChangeViewController()
-        self.navigationController?.pushViewController(timeChangeVC, animated: true)
-    }
+ 
 
 }
 

@@ -12,7 +12,7 @@ class MPAspectsViewController: UIViewController {
    
     var chart: Chart?
     var chartCake: ChartCake?
-    
+    var selectedDate: Date?
     
     
     private let scrollView: UIScrollView = {
@@ -876,5 +876,10 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
             }
+    
+    @objc func navigateToTimeChangeVC() {
+        let timeChangeVC = ProgressedPlanetsTimeChangeViewController()
+        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    }
         
 }

@@ -14,7 +14,7 @@ class MinorProgressedAspectsByHousesVC: UIViewController {
    
 var chart: Chart?
     var chartCake: ChartCake?
-    
+    var selectedDate: Date?
     var sunAspects = [""]
     var moonAspects = [""]
     var mercuryAspects = [""]
@@ -489,7 +489,7 @@ var chart: Chart?
    
 //        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
 //
-        let mySignCusps = [chart?.houseCusps.first.sign.keyName, chart?.houseCusps.second.sign.keyName, chart?.houseCusps.third.sign.keyName, chart?.houseCusps.fourth.sign.keyName, chart?.houseCusps.fifth.sign.keyName, chart?.houseCusps.sixth.sign.keyName, chart?.houseCusps.seventh.sign.keyName, chart?.houseCusps.eighth.sign.keyName, chart?.houseCusps.ninth.sign.keyName, chart?.houseCusps.tenth.sign.keyName, chart?.houseCusps.eleventh.sign.keyName, chart?.houseCusps.twelfth.sign.keyName ]
+        let mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
         
         sunSignGlyph.image = UIImage(named: mySignCusps[0]!)
         sunSignGlyph.image?.withTintColor(UIColor.yellow)
@@ -772,7 +772,7 @@ var chart: Chart?
 //
     }
     @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TimeChangeViewController()
+        let timeChangeVC = TransitPlanetsByHouseTimeChangeViewController()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
     }
 

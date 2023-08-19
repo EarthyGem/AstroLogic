@@ -12,7 +12,7 @@ class TransitAspectedPlanetsViewController: UIViewController {
    
     var chart: Chart?
     var chartCake: ChartCake?
-    
+    var selectedDate: Date?
 
     
     private let scrollView: UIScrollView = {

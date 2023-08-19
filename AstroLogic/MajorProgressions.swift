@@ -16,7 +16,7 @@ class MajorProgressionsViewController: UIViewController, UITableViewDelegate, UI
     var majorsChartView: MajorsBiWheelChartView!
     var chart: Chart?
     var chartCake: ChartCake?
-    
+    var selectedDate: Date?
     static var progressedDate: Date {
         let dobDate = Date()
         return dobDate
@@ -155,7 +155,7 @@ var mySunText = ""
         super.viewDidLayoutSubviews()
         tableView.frame = CGRect(x: 10, y: 560, width: 380, height: 700)
         
-        let formatted = Date().formatted(date: .complete, time: .omitted)
+        let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
          todaysDate.text = formatted
@@ -174,7 +174,7 @@ var mySunText = ""
     }
 
     @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TimeChangeViewController()
+        let timeChangeVC = ProgressedAspectsTimeChangeViewController()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
     }
 

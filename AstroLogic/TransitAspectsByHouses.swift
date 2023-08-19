@@ -11,7 +11,7 @@ import UIKit
 import SwiftEphemeris
 
 class TransitAspectsByHousesVC: UIViewController {
-   
+    var selectedDate: Date?
 var chart: Chart?
     var chartCake: ChartCake?
     
@@ -370,6 +370,24 @@ var chart: Chart?
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
+
+        let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
+         todaysDate.text = formatted
+        todaysDate.font = .systemFont(ofSize: 13)
+         todaysDate.textColor = .white
+        todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
+        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
+        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
+        calendarButton.frame = CGRect(x: 65,
+                                      y: 530,
+                                      width: 30,  // Width of the button
+                                      height: 30) // Height of the button sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+
+
+        view.addSubview(calendarButton)
+        view.addSubview(todaysDate)
 
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
         scrollView.backgroundColor = .clear
@@ -472,7 +490,7 @@ var chart: Chart?
    
 //        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
 //
-        let mySignCusps = [chart?.houseCusps.first.sign.keyName, chart?.houseCusps.second.sign.keyName, chart?.houseCusps.third.sign.keyName, chart?.houseCusps.fourth.sign.keyName, chart?.houseCusps.fifth.sign.keyName, chart?.houseCusps.sixth.sign.keyName, chart?.houseCusps.seventh.sign.keyName, chart?.houseCusps.eighth.sign.keyName, chart?.houseCusps.ninth.sign.keyName, chart?.houseCusps.tenth.sign.keyName, chart?.houseCusps.eleventh.sign.keyName, chart?.houseCusps.twelfth.sign.keyName ]
+        let mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
         
         sunSignGlyph.image = UIImage(named: mySignCusps[0]!)
         sunSignGlyph.image?.withTintColor(UIColor.yellow)
@@ -754,7 +772,10 @@ var chart: Chart?
 //
 //
     }
-
+    @objc func navigateToTimeChangeVC() {
+        let timeChangeVC = TransitAspectsTimeChangeViewController()
+        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    }
 
 }
 
