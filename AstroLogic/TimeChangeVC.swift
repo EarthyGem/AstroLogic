@@ -44,9 +44,10 @@ class TimeChangeViewController: UIViewController  {
         let selectedDate = chateTimeDP.date
         
         // Create an instance of the next view controller
-        let nextViewController = DateTransitPlanets(transitPlanets: [""]) // Correct the class name if needed
+        let nextViewController = TransitPlanets(transitPlanets: [""]) // Correct the class name if needed
         nextViewController.passedData = selectedDate
         nextViewController.chartCake = chartCake
+        nextViewController.selectedDate = selectedDate
         // Push the next view controller to the navigation stack
         navigationController?.pushViewController(nextViewController, animated: true)
     }
