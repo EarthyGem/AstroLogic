@@ -11,7 +11,7 @@ class StrongestPlanetViewController: UIViewController {
     var scores: [Planet: CGFloat]?
     var chart: Chart?
     var chartCake: ChartCake?
-    
+    var name: String = ""
     
     // Add
 //    var getMinors: (() -> Date)?
@@ -59,7 +59,7 @@ class StrongestPlanetViewController: UIViewController {
         view.backgroundColor = .black
        configureStrongestImageView()
       configureStrongestLabel()
-        configureStrongestTitleLabel()
+        configureStrongestTitleLabel(name: name)
         configureHarmoniousImageView()
         configureHarmoniousTitleLabel()
         configureHarmoniousLabel()
@@ -190,8 +190,8 @@ class StrongestPlanetViewController: UIViewController {
 
     
     
-    private func configureStrongestTitleLabel() {
-        titleLabel.text = "Your Power Planet"
+    private func configureStrongestTitleLabel(name: String) {
+        titleLabel.text = "\(name)'s Power Planet"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 24)
         titleLabel.textAlignment = .center

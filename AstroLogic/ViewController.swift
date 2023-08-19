@@ -234,7 +234,30 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+        self.title = "Astrologics"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        if let customFont = UIFont(name: "Chalkduster", size: 40) {
+            let appearance = UINavigationBarAppearance()
+            appearance.largeTitleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor(red: 0.9, green: 0.9, blue: 0.98, alpha: 1),
+                NSAttributedString.Key.font: customFont
+            ]
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.standardAppearance = appearance
+        }
+        navigationController?.navigationBar.barTintColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // Reset the navigation bar appearance to default here
+        navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
+        navigationController?.navigationBar.standardAppearance = UINavigationBarAppearance()
+    }
     @objc func showMyCharts() {
         let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
         navigationController?.pushViewController(myChartsViewController, animated: true)
@@ -505,7 +528,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.chartCake = chartCake
                 strongestPlanetVC.chart = chart
                 strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
-                //
+                strongestPlanetVC.name = nameTextField.text!
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
                 strongestPlanetVC.sentenceText = sentence
