@@ -22,9 +22,9 @@ class ChartsViewController: UIViewController {
 
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "chartCell")
+          tableView.delegate = self
+          tableView.dataSource = self
+          tableView.register(ChartTableViewCell.self, forCellReuseIdentifier: "chartCell")
 
         // Adjust constraints if you have navigation bars, tab bars, etc.
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -93,9 +93,24 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell // Assume you've created a custom cell
+        
         let chart = charts[indexPath.row]
+        
+        let chartDate = chart.birthDate!
+        let latitude = chart.latitude
+        let longitude = chart.longitude
+        let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
+        let scores = chartObj.getTotalPowerScoresForPlanets()
+        let strongestPlanet = getStrongestPlanet(from: scores)
+        
+        // Set the cell label
         cell.textLabel?.text = chart.name
+        
+        // Set the cell image
+        let imageName = strongestPlanet.keyName.lowercased()
+        cell.planetImageView.image = UIImage(named: imageName)
+        
         return cell
     }
 

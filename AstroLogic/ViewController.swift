@@ -75,6 +75,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         return textField
     }()
     
+    let bottomToolbar = UIToolbar()
+
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -154,55 +156,110 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         super.viewDidLoad()
 
        
-        view.backgroundColor = .black
-        view.addSubview(birthPlaceTextField)
-        makeAutocompleteViewController()
-        view.addSubview(dateTextField)
-        view.addSubview(birthPlaceTextField)
-      
-        view.addSubview(birthTimeTextField)
-        birthTimeTextField.inputView = timePicker
-        view.addSubview(aboutButton)
-        aboutButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            aboutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            aboutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-        ])
-        
-        dateTextField.inputView = datePicker
-        view.addSubview(nameTextField)
+        configureUI()
+    }
+    func configureUI() {
+          view.backgroundColor = UIColor.systemBackground
+          
+          setupTextField(birthPlaceTextField)
+          setupTextField(dateTextField)
+          setupTextField(nameTextField)
+          setupTextField(birthTimeTextField)
 
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(datePickerDonePressed))
-        toolBar.setItems([doneBtn], animated: true)
-        dateTextField.inputAccessoryView = toolBar
-        
-        let timePickerToolBar = UIToolbar()
-        timePickerToolBar.sizeToFit()
-        let timePickerDoneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(timePickerDonePressed))
-        timePickerToolBar.setItems([timePickerDoneBtn], animated: true)
-        birthTimeTextField.inputAccessoryView = timePickerToolBar
+          makeAutocompleteViewController()
 
-        let myChartsButton = UIBarButtonItem(title: "My Charts", style: .plain, target: self, action: #selector(showMyCharts))
-          navigationItem.rightBarButtonItem = myChartsButton
+          // Enhanced button visuals
+          getPowerPlanetButton.backgroundColor = UIColor.systemBlue
+          getPowerPlanetButton.layer.cornerRadius = 8.0
+          getPowerPlanetButton.setTitleColor(UIColor.white, for: .normal)
 
-        view.addSubview(getPowerPlanetButton)
-        getPowerPlanetButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            getPowerPlanetButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10), // Add a small space between buttons
-            getPowerPlanetButton.topAnchor.constraint(equalTo: birthPlaceTextField.bottomAnchor, constant: 55)
-        ])
+          aboutButton.backgroundColor = UIColor.systemTeal
+          aboutButton.layer.cornerRadius = 8.0
+          aboutButton.setTitleColor(UIColor.white, for: .normal)
+          
+          setupDateTextFieldToolBar()
+          setupTimePickerToolBar()
+          setupNavigationBar()
+          setupConstraints()
+          startLocationManager()
+      }
+
+    func setupDateTextFieldToolBar() {
+           let toolBar = UIToolbar()
+           toolBar.sizeToFit()
+           let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(datePickerDonePressed))
+           toolBar.setItems([doneBtn], animated: true)
+           dateTextField.inputAccessoryView = toolBar
+       }
+
+    func setupTextField(_ textField: UITextField) {
+            textField.font = UIFont.preferredFont(forTextStyle: .body)
+            textField.textColor = UIColor.label
+            textField.textAlignment = .center
+            view.addSubview(textField)
+        }
         
     
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+      func setupTimePickerToolBar() {
+          let timePickerToolBar = UIToolbar()
+          timePickerToolBar.sizeToFit()
+          let timePickerDoneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(timePickerDonePressed))
+          timePickerToolBar.setItems([timePickerDoneBtn], animated: true)
+          birthTimeTextField.inputAccessoryView = timePickerToolBar
+      }
 
-        
+ 
+    func setupConstraints() {
+            let padding: CGFloat = 25.0
+            let verticalSpacing: CGFloat = 10.0
+
+            birthPlaceTextField.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                birthPlaceTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                birthPlaceTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+                birthPlaceTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+                birthPlaceTextField.heightAnchor.constraint(equalToConstant: 44.0)
+            ])
+
+            nameTextField.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                nameTextField.leadingAnchor.constraint(equalTo: birthPlaceTextField.leadingAnchor),
+                nameTextField.trailingAnchor.constraint(equalTo: birthPlaceTextField.trailingAnchor),
+                nameTextField.topAnchor.constraint(equalTo: birthPlaceTextField.bottomAnchor, constant: verticalSpacing),
+                nameTextField.heightAnchor.constraint(equalTo: birthPlaceTextField.heightAnchor)
+            ])
+            
+            dateTextField.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                dateTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
+                dateTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
+                dateTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: verticalSpacing),
+                dateTextField.heightAnchor.constraint(equalTo: nameTextField.heightAnchor)
+            ])
+
+            birthTimeTextField.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                birthTimeTextField.leadingAnchor.constraint(equalTo: dateTextField.leadingAnchor),
+                birthTimeTextField.trailingAnchor.constraint(equalTo: dateTextField.trailingAnchor),
+                birthTimeTextField.topAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: verticalSpacing),
+                birthTimeTextField.heightAnchor.constraint(equalTo: dateTextField.heightAnchor)
+            ])
+      }
+
+      func startLocationManager() {
+          locationManager.delegate = self
+          locationManager.desiredAccuracy = kCLLocationAccuracyBest
+          locationManager.requestWhenInUseAuthorization()
+          locationManager.startUpdatingLocation()
+      }
+    func setupNavigationBar() {
+        let myChartsButton = UIBarButtonItem(title: "My Charts", style: .plain, target: self, action: #selector(showMyCharts))
+        let myChartsButtonImage = UIImage(systemName: "star.circle.fill") // This uses an Apple system image. Choose another if you prefer.
+        myChartsButton.image = myChartsButtonImage
+
+        navigationItem.rightBarButtonItem = myChartsButton
     }
+
 
     @objc func showMyCharts() {
         let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
