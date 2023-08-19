@@ -18,9 +18,12 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
     var transitsChartView: TransitBiWheelChartView!
     var chartCake: ChartCake?
     var chart: Chart?
-    static var currentDate: Date {
-        let dobDate = Date()
-        return dobDate
+    var selectedDate: Date? {
+        didSet {
+            // Here, you can update any relevant parts of the UI that depend on the selected date.
+            // For example:
+            // updateTransitDateAndRefreshUI(to: selectedDate)
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -36,11 +39,24 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     // transitChart now uses the device's current location
-  
+    func updateTransitDateAndRefreshUI(to newTransitDate: Date) {
+        if let updatedChartCake = chartCake?.withUpdatedTransitDate(newTransitDate) {
+            self.chartCake = updatedChartCake
+
+            // Refresh your transit signs and positions
+            _ = self.setupTransitSigns()
+            _ = self.getTransitPositions()
+
+            // Refresh your table view to reflect the updated data
+            self.tableView.reloadData()
+        }
+    }
+
     
     var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
     
     func setupTransitSigns() -> [String] {
+
         transitSigns = [
             chartCake?.transits.sun.sign.keyName,
             chartCake?.transits.moon.sign.keyName,
@@ -125,34 +141,61 @@ var mySunText = ""
     
     
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
+
+        // Print the value of chartCake
+        print("Value of chartCake: \(String(describing: chartCake))")  // This will print the value or "nil" if it's nil
+
+
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let transitChartView = TransitBiWheelChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
-        locationManager.delegate = self
+        if let safeChartCake = chartCake {
+            let transitChartView = TransitBiWheelChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: safeChartCake)
+            view.addSubview(transitChartView)
+
+            locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
-        
-        
-        view.backgroundColor = .black
-        tableView.backgroundColor = .black
-        tableView.dataSource = self
-        tableView.delegate = self
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
-        
-        view.addSubview(transitChartView)
-        view.addSubview(tableView)
+
+            let timeChangeVC = TimeChangeViewController()
+            timeChangeVC.delegate = self
+            self.present(timeChangeVC, animated: true)
+
+            view.backgroundColor = .black
+            tableView.backgroundColor = .black
+            tableView.dataSource = self
+            tableView.delegate = self
+            view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
+
+            view.addSubview(tableView)
+
+            let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
+
+            let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
+             todaysDate.text = formatted
+            todaysDate.font = .systemFont(ofSize: 13)
+             todaysDate.textColor = .white
+            todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
+            let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
+            calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
+            calendarButton.frame = CGRect(x: 65,
+                                          y: 530,
+                                          width: 30,  // Width of the button
+                                          height: 30) // Height of the button sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+
+
+            view.addSubview(calendarButton)
+            view.addSubview(todaysDate)
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = CGRect(x: 10, y: 550, width: 380, height: 700)
-        
+
     }
-
-
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -203,3 +246,8 @@ var mySunText = ""
 
 }
 
+extension TransitPlanets: DatePickerDelegate {
+    func datePickerDidChangeDate(_ date: Date) {
+        updateTransitDateAndRefreshUI(to: date)
+    }
+}

@@ -165,6 +165,7 @@ var mySunText = ""
       
         calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
         view.addSubview(calendarButton)
+        view.addSubview(todaysDate)
     }
 
 

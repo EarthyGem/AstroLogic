@@ -21,9 +21,10 @@ class TimeChangeViewController: UIViewController  {
     var chartCake: ChartCake?
     var selectedDate: Date?
 
-       @IBAction func datePickerChanged(_ sender: UIDatePicker) {
-           delegate?.datePickerDidChangeDate(sender.date)
-       }
+    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        delegate?.datePickerDidChangeDate(sender.date)
+    }
+
     
 
     
@@ -36,20 +37,20 @@ class TimeChangeViewController: UIViewController  {
        chateTimeDP.date = Date()
         return chateTimeDP
     }()
-    
+
   
- 
     @IBAction func doneButtonTapped(_ sender: UIToolbar) {
-        // Capture the selected date
         let selectedDate = chateTimeDP.date
-        
+
         // Create an instance of the next view controller
-        let nextViewController = TransitPlanets(transitPlanets: [""]) // Correct the class name if needed
-      
-        nextViewController.chartCake = chartCake
-        // Push the next view controller to the navigation stack
+        let nextViewController = TransitPlanets(transitPlanets: [""])
+// Set the
+        nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
+        nextViewController.selectedDate = selectedDate
         navigationController?.pushViewController(nextViewController, animated: true)
     }
+
+
 
 
     

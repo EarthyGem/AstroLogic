@@ -5,8 +5,8 @@ import SwiftEphemeris
 class TransitBiWheelChartView: UIView {
     var chartCake: ChartCake!
     var chart: Chart!
-    var transitChart: ChartCake!
-    
+//    var transitChart: ChartCake!
+//    
     var planetPositions: [CelestialObject: CGFloat] = [:]
     var transitPlanetPositions: [CelestialObject: CGFloat] = [:]
     
