@@ -27,7 +27,7 @@ var chart: Chart?
     var plutoAspects = [""]
     
   
- 
+    
 
     
     private let scrollView: UIScrollView = {
@@ -336,8 +336,7 @@ var chart: Chart?
         twelfthTableView.delegate = self
         view.backgroundColor = .black
         
-
-
+      
         
     }
     
@@ -382,26 +381,7 @@ var chart: Chart?
         topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         view.addSubview(topTransitImage)
         
-     
-
         
-        let formatted = Date().formatted(date: .complete, time: .omitted)
-        let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
-         todaysDate.text = formatted
-        todaysDate.font = .systemFont(ofSize: 13)
-         todaysDate.textColor = .white
-        todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
-         scrollView.addSubview(todaysDate)
-        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
-        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
-        calendarButton.frame = CGRect(x: 65,
-                                      y: 165,
-                                      width: 30,  // Width of the button
-                                      height: 30) // Height of the button
-       
-      
-        calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
-        scrollView.addSubview(calendarButton)
         
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
@@ -775,12 +755,7 @@ var chart: Chart?
 //
     }
 
-    @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TimeChangeViewController()
-        self.navigationController?.pushViewController(timeChangeVC, animated: true)
-    }
 
-    
 }
 
 extension TransitAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {

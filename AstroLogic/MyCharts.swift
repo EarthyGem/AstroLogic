@@ -24,16 +24,13 @@ class ChartsViewController: UIViewController {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-
-        // Register the custom cell instead of the basic UITableViewCell
-        tableView.register(ChartTableViewCell.self, forCellReuseIdentifier: "chartCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "chartCell")
 
         // Adjust constraints if you have navigation bars, tab bars, etc.
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         self.view.addSubview(tableView)
     }
-
 
     func fetchAllCharts() -> [ChartEntity] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -96,24 +93,9 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell // Assume you've created a custom cell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath)
         let chart = charts[indexPath.row]
-        
-        let chartDate = chart.birthDate!
-        let latitude = chart.latitude
-        let longitude = chart.longitude
-        let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
-        let scores = chartObj.getTotalPowerScoresForPlanets()
-        let strongestPlanet = getStrongestPlanet(from: scores)
-        
-        // Set the cell label
         cell.textLabel?.text = chart.name
-        
-        // Set the cell image
-        let imageName = strongestPlanet.keyName.lowercased()
-        cell.planetImageView.image = UIImage(named: imageName)
-        
         return cell
     }
 

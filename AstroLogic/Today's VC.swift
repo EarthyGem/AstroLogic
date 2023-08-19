@@ -28,7 +28,7 @@ class TodayViewController: UIViewController {
         super.viewWillLayoutSubviews()
       
         
-        let formatted = Date().formatted(date: .complete, time: .omitted)
+        let formatted = Date().formatted(date: .complete, time: .standard)
         
 //
 //            if transitPlanets[1].contains("Aries")  {
@@ -192,7 +192,7 @@ class TodayViewController: UIViewController {
         weatherIntro.lineBreakMode = .byWordWrapping
         weatherIntro.numberOfLines = 0
         
-        let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
+        let todaysDate = UILabel(frame: CGRect(x: 50, y: 85, width: 300, height: 20))
          todaysDate.text = formatted
         todaysDate.font = .systemFont(ofSize: 13)
          todaysDate.textColor = .white
@@ -268,7 +268,6 @@ class TodayViewController: UIViewController {
         moonInHouse.textColor = .lightGray
 
         scrollView.addSubview(moonInHouse)
-        
         
         
         let moonHouseText = UILabel(frame: CGRect(x: 35, y: 385, width: 300, height: 120))

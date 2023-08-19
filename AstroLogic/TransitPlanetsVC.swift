@@ -18,13 +18,11 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
     var transitsChartView: TransitBiWheelChartView!
     var chartCake: ChartCake?
     var chart: Chart?
-    var passedData = Date()
-    var myDatePicker = TimeChangeViewController().chateTimeDP
     static var currentDate: Date {
         let dobDate = Date()
         return dobDate
     }
-    var selectedDate: Date?
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             currentLocation = location
@@ -43,7 +41,6 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
     var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
     
     func setupTransitSigns() -> [String] {
-       
         transitSigns = [
             chartCake?.transits.sun.sign.keyName,
             chartCake?.transits.moon.sign.keyName,
@@ -151,32 +148,11 @@ var mySunText = ""
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = CGRect(x: 10, y: 560, width: 380, height: 700)
-        
-        let formatted = Date().formatted(date: .complete, time: .omitted)
-        
-        let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
-         todaysDate.text = formatted
-        todaysDate.font = .systemFont(ofSize: 13)
-         todaysDate.textColor = .white
-        todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
-        view.addSubview(todaysDate)
-        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
-        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
-        calendarButton.frame = CGRect(x: 65,
-                                      y: 530,
-                                      width: 30,  // Width of the button
-                                      height: 30) // Height of the button sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-      
-        calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
-        view.addSubview(calendarButton)
+        tableView.frame = CGRect(x: 10, y: 550, width: 380, height: 700)
         
     }
 
-    @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TimeChangeViewController()
-        self.navigationController?.pushViewController(timeChangeVC, animated: true)
-    }
+
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
