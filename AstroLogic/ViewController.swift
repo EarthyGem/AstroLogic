@@ -103,7 +103,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
     lazy var getPowerPlanetButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Who is here?", for: .normal)
+        button.setTitle("Who's here?", for: .normal)
         button.addTarget(self, action: #selector(getPowerPlanetButtonTapped), for: .touchUpInside)
 
         // Set background color to lavender
