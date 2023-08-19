@@ -22,7 +22,7 @@ class MyItemsViewController: UIViewController {
     
     var chart: Chart?
     var chartCake: ChartCake?
-    
+    var selectedDate: Date?
     var getMinors: (() -> Date)?
     
     var getMajorProgresseDate: (() -> Date)?
@@ -144,6 +144,12 @@ extension MyItemsViewController: UITableViewDelegate {
         minorProgressionsVC.title = category.chartType
         minorProgressionsVC.chartCake = self.chartCake
 
+        
+        let timeChangeVC = TimeChangeViewController()
+        timeChangeVC.chartCake = self.chartCake
+        timeChangeVC.selectedDate = self.selectedDate
+     
+         
 
         let mp_natalAspectsVC =  mpAspectViewController()
         minorProgressionsVC.title = category.chartType
@@ -182,7 +188,7 @@ extension MyItemsViewController: UITableViewDelegate {
         
         MP_PlanetsVC.title = category.chartType
         
-        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalHouseAspects,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC]
+        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalHouseAspects,timeChangeVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC]
         
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
         

@@ -412,7 +412,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 
                 let chartDate = self.combinedDateAndTime()!
                 self.chart = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
-                self.chartCake = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
+                self.chartCake = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude, transitDate: selectedDate)
+
                 guard let chart = self.chart else {
                     assert(false, "There is no chart")
                     return

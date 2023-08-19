@@ -304,7 +304,24 @@ class MPAspectsViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        let formatted = Date().formatted(date: .complete, time: .omitted)
+        let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
+         todaysDate.text = formatted
+        todaysDate.font = .systemFont(ofSize: 13)
+         todaysDate.textColor = .white
+        todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
+         scrollView.addSubview(todaysDate)
+        
+        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
+        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
+        calendarButton.frame = CGRect(x: 65,
+                                      y: 165,
+                                      width: 30,  // Width of the button
+                                      height: 30) // Height of the button
+       
+      
+        calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
+        scrollView.addSubview(calendarButton)
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
         scrollView.backgroundColor = .clear
         view.addSubview(scrollView)
@@ -338,7 +355,7 @@ class MPAspectsViewController: UIViewController {
    
    
         
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: 5000)
         sunTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
 //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
         moonTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForProgressedAspects()).count * 90)
@@ -633,7 +650,10 @@ class MPAspectsViewController: UIViewController {
 //
 //
     }
-
+    @objc func navigateToTimeChangeVC() {
+        let timeChangeVC = TimeChangeViewController()
+        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    }
 
 }
 
