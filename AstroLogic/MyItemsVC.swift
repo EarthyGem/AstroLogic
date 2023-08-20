@@ -181,7 +181,7 @@ extension MyItemsViewController: UITableViewDelegate {
 //        let SA_PlanetsVC = SolarArcViewController(MP_Planets: placeolder)
 //        SA_PlanetsVC.getMajorProgresseDate = self.getMajorProgresseDate
 //        SA_PlanetsVC.chart = self.chart
-        let MP_AspectsVC = ProgressedPlanetsTimeChangeViewController()
+        let MP_AspectsVC = ProgressedAspectsTimeChangeViewController()
         MP_AspectsVC.chartCake = self.chartCake
         MP_AspectsVC.selectedDate = self.selectedDate
 //        let RelationshipVC = RelationshipsViewController()

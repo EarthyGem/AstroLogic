@@ -1,3 +1,4 @@
+
 //
 //  ListViewController.swift
 //  TableviewPassData
@@ -9,25 +10,20 @@ import SwiftEphemeris
 import UIKit
 import CoreLocation
 
-class MajorProgressionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var progressedSigns: [String] = []
-    var getMajorProgresseDate: (() -> Date)?
-    var majorsChartView: MajorsBiWheelChartView!
+    var minorProgressedSigns: [String] = []
+    var getMinors: (() -> Date)?
+    var minorsChartView: MinorsBiWheelChartView!
     var chart: Chart?
     var chartCake: ChartCake?
-    var selectedDate: Date?
-    static var progressedDate: Date {
-        let dobDate = Date()
-        return dobDate
-    }
 
     // Location manager
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var transitSigns: [String] = []
     
-    
+    var selectedDate: Date?
     static var currentDate: Date {
         let dobDate = Date()
         return dobDate
@@ -46,54 +42,54 @@ class MajorProgressionsViewController: UIViewController, UITableViewDelegate, UI
     }
 
     // transitChart now uses the device's current location
-  
+
     
     var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
     
-    func getProgressedSignsSigns() -> [String] {
-       progressedSigns = [
-        chartCake?.major.sun.sign.keyName,
-            chartCake?.major.moon.sign.keyName,
-            chartCake?.major.ascendant.sign.keyName,
-            chartCake?.major.mercury.sign.keyName,
-            chartCake?.major.venus.sign.keyName,
-            chartCake?.major.mars.sign.keyName,
-            chartCake?.major.jupiter.sign.keyName,
-            chartCake?.major.saturn.sign.keyName,
-            chartCake?.major.uranus.sign.keyName,
-            chartCake?.major.neptune.sign.keyName,
-            chartCake?.major.pluto.sign.keyName,
-            chartCake?.major.southNode.sign.keyName
+    func setupTransitSigns() -> [String] {
+        transitSigns = [
+            chartCake?.minor.sun.sign.keyName,
+            chartCake?.minor.moon.sign.keyName,
+            chartCake?.minor.ascendant.sign.keyName,
+            chartCake?.minor.mercury.sign.keyName,
+            chartCake?.minor.venus.sign.keyName,
+            chartCake?.minor.mars.sign.keyName,
+            chartCake?.minor.jupiter.sign.keyName,
+            chartCake?.minor.saturn.sign.keyName,
+            chartCake?.minor.uranus.sign.keyName,
+            chartCake?.minor.neptune.sign.keyName,
+            chartCake?.minor.pluto.sign.keyName,
+            chartCake?.minor.southNode.sign.keyName
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
         
         // This will remove any nil values from the array
         
-        return transitSigns
+        return minorProgressedSigns
     }
     
     func getTransitPositions() -> [String] {
-       transitSigns = [
-            chartCake?.major.sun.formatted,
-            chartCake?.major.moon.formatted,
-            chartCake?.major.ascendant.formatted,
-            chartCake?.major.mercury.formatted,
-            chartCake?.major.venus.formatted,
-            chartCake?.major.mars.formatted,
-            chartCake?.major.jupiter.formatted,
-            chartCake?.major.saturn.formatted,
-            chartCake?.major.uranus.formatted,
-            chartCake?.major.neptune.formatted,
-            chartCake?.major.pluto.formatted,
-            chartCake?.major.southNode.formatted
+       minorProgressedSigns = [
+        chartCake?.minor.sun.formatted,
+        chartCake?.minor.moon.formatted,
+        chartCake?.minor.ascendant.formatted,
+        chartCake?.minor.mercury.formatted,
+        chartCake?.minor.venus.formatted,
+        chartCake?.minor.mars.formatted,
+        chartCake?.minor.jupiter.formatted,
+        chartCake?.minor.saturn.formatted,
+        chartCake?.minor.uranus.formatted,
+        chartCake?.minor.neptune.formatted,
+        chartCake?.minor.pluto.formatted,
+        chartCake?.minor.southNode.formatted
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
         
         // This will remove any nil values from the array
         
-        return transitSigns
+        return minorProgressedSigns
     }
     
     
@@ -133,14 +129,11 @@ var mySunText = ""
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-      
         let screenWidth = UIScreen.main.bounds.width
-        let majorsChartView = MajorsBiWheelChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
-        
+        let minorsChartView = MinorsBiWheelChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
         
         view.backgroundColor = .black
         tableView.backgroundColor = .black
@@ -148,13 +141,16 @@ var mySunText = ""
         tableView.delegate = self
         view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
         view.addSubview(tableView)
-        view.addSubview(majorsChartView)
+        view.addSubview(minorsChartView)
+        
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = CGRect(x: 10, y: 560, width: 380, height: 700)
         
+        
+      //  adding date labet
         let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
@@ -171,12 +167,14 @@ var mySunText = ""
       
         calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
         view.addSubview(calendarButton)
+        view.addSubview(todaysDate)
     }
 
     @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = ProgressedAspectsTimeChangeViewController()
+        let timeChangeVC = MinorsPlanetsTimeChangeViewController()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
     }
+
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -210,8 +208,8 @@ var mySunText = ""
       
 
 
+  
         
-      
         
         let MovingPlanetVCs = [TodayViewController()]
         
@@ -224,6 +222,7 @@ var mySunText = ""
         
      
 }
+ 
 
 }
 

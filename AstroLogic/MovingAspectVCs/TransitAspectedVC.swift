@@ -1,5 +1,5 @@
 //
-//  TransitAspectedPlanetsViewController.swift
+//  TransitAspectedPlanetsViewController  .swift
 //  MVP
 //
 //  Created by Errick Williams on 10/19/22.
@@ -8,24 +8,12 @@
 import UIKit
 import SwiftEphemeris
 
-class mpAspectViewController: UIViewController {
+class TransitAspectedPlanetsViewController  : UIViewController {
    
-    
     var chart: Chart?
     var chartCake: ChartCake?
     var selectedDate: Date?
-    var sunAspects = [""]
-    var moonAspects = [""]
-    var mercuryAspects = [""]
-    var venusAspects = [""]
-    var marsAspects = [""]
-    var jupiterAspects = [""]
-    var saturnAspects = [""]
-    var uranusAspects = [""]
-    var neptuneAspects = [""]
-    var plutoAspects = [""]
-    
-    
+
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -264,6 +252,10 @@ class mpAspectViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+       
+     
         sunTableView.dataSource = self
         sunTableView.delegate = self
        moonTableView.dataSource = self
@@ -320,6 +312,15 @@ class mpAspectViewController: UIViewController {
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
         scrollView.backgroundColor = .clear
         view.addSubview(scrollView)
+        
+        topTransitImage.image = UIImage(named: "clouds")
+        topTransitImage.image?.withTintColor(UIColor.yellow)
+        
+        topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
+        view.addSubview(topTransitImage)
+        
+        // adding date label
+        
         let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
          todaysDate.text = formatted
@@ -338,13 +339,6 @@ class mpAspectViewController: UIViewController {
       
         calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
         scrollView.addSubview(calendarButton)
-        topTransitImage.image = UIImage(named: "clouds")
-        topTransitImage.image?.withTintColor(UIColor.yellow)
-        
-        topTransitImage.frame = CGRect(x: 0, y: 40, width: view.frame.width, height: 350)
-        view.addSubview(topTransitImage)
-        
-        
         
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
@@ -368,19 +362,18 @@ class mpAspectViewController: UIViewController {
    
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
+        sunTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
 //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-        moonTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        mercuryTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        venusTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        marsTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        jupiterTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        saturnTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        uranusTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        neptuneTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
-        plutoTableView.contentSize.height = CGFloat(chartCake!.filterAndFormat(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count * 90)
+        moonTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        mercuryTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        venusTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        marsTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        jupiterTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        saturnTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        uranusTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        neptuneTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
+        plutoTableView.contentSize.height = CGFloat(chartCake!.filterAndFormatTransits(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count * 90)
         
-
         
         scrollView.addSubview(moonScrollView)
 //        moonScrollView.contentSize = CGSize(width: 300, height: 200)
@@ -660,57 +653,57 @@ class mpAspectViewController: UIViewController {
 //
 //
     }
+
     @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = MinorsAspectsTimeChangeViewController()
+        let timeChangeVC = TransitAspectsTimeChangeViewController()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
     }
-
 }
 
-extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
+extension TransitAspectedPlanetsViewController  : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         
         if(tableView == sunTableView) {
 
-            return chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
     }
         else if(tableView == moonTableView){
-            return chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
         }
         
         
             else if(tableView == mercuryTableView){
 
-                return chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+                return chartCake!.filterAndFormatTransits(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
             }
             else if(tableView == venusTableView){
 
-                return chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+                return chartCake!.filterAndFormatTransits(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
                 }
         else if(tableView == marsTableView){
 
-            return chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
                     }
         else if(tableView == jupiterTableView){
 
-            return chartCake!.filterAndFormat(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
                         }
         else if(tableView == saturnTableView){
 
-            return chartCake!.filterAndFormat(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
                             }
         else if(tableView == uranusTableView){
 
-            return chartCake!.filterAndFormat(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
                                 }
         else if(tableView == neptuneTableView){
 
-            return chartCake!.filterAndFormat(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
                                     }
         else {
 
-            return chartCake!.filterAndFormat(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects()).count
+            return chartCake!.filterAndFormatTransits(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits()).count
 
 
 
@@ -728,7 +721,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
 
          
           
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.sun.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
             
 //                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
 ////
@@ -745,7 +738,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
            }
          
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.moon.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
            
            return cell
            
@@ -766,7 +759,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
             
 
             
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
               
            return cell
            
@@ -783,7 +776,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
            
                 
                 
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.venus.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
                   
                return cell
                
@@ -802,7 +795,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
        
 
             
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.mars.celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
               
            return cell
            
@@ -819,7 +812,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
  
 
             
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.jupiter .celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.jupiter .celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
               
            
            return cell
@@ -836,7 +829,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
 //                    var transitSaturnAspects = [plutoSaturn]
 
             
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.saturn .celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.saturn .celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
               
            return cell
            
@@ -852,7 +845,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
        
 
             
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.uranus .celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.uranus .celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
               
            
            return cell
@@ -867,7 +860,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
            }
 
             
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.neptune .celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.neptune .celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
               
            
            return cell
@@ -884,7 +877,7 @@ extension mpAspectViewController: UITableViewDataSource, UITableViewDelegate {
             
 
             
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormat(by: Planet.pluto .celestialObject, aspectsScores: chartCake!.combinedScoresForMinorProgressedAspects())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.filterAndFormatTransits(by: Planet.pluto .celestialObject, aspectsScores: chartCake!.combinedScoresForTransits())[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
               
            
            return cell

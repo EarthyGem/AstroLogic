@@ -15,21 +15,7 @@ class MinorProgressedAspectsByHousesVC: UIViewController {
 var chart: Chart?
     var chartCake: ChartCake?
     var selectedDate: Date?
-    var sunAspects = [""]
-    var moonAspects = [""]
-    var mercuryAspects = [""]
-    var venusAspects = [""]
-    var marsAspects = [""]
-    var jupiterAspects = [""]
-    var saturnAspects = [""]
-    var uranusAspects = [""]
-    var neptuneAspects = [""]
-    var plutoAspects = [""]
-    
-  
-    
-
-    
+   
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
        
@@ -381,8 +367,8 @@ var chart: Chart?
         topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         view.addSubview(topTransitImage)
         
-        
-        let formatted = Date().formatted(date: .complete, time: .omitted)
+        // adding date label
+        let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
          todaysDate.text = formatted
         todaysDate.font = .systemFont(ofSize: 13)
@@ -395,11 +381,11 @@ var chart: Chart?
         calendarButton.frame = CGRect(x: 65,
                                       y: 165,
                                       width: 30,  // Width of the button
-                                      height: 30) // Height of the button
-        sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-      
+                                      height: 30) // Height of the
         calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
         scrollView.addSubview(calendarButton)
+        
+        
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
 //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
