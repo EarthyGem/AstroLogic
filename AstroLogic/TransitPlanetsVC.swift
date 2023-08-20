@@ -159,9 +159,7 @@ var mySunText = ""
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
 
-            let timeChangeVC = TransitPlanetsTimeChangeViewController()
-            timeChangeVC.delegate = self
-            self.present(timeChangeVC, animated: true)
+         
 
             view.backgroundColor = .black
             tableView.backgroundColor = .black
@@ -236,12 +234,8 @@ var mySunText = ""
 
 
         
-}
 
 }
 
-extension TransitPlanets: DatePickerDelegate {
-    func datePickerDidChangeDate(_ date: Date) {
-        updateTransitDateAndRefreshUI(to: date)
-    }
 }
+

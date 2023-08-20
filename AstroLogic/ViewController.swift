@@ -224,7 +224,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
        
         getPowerPlanetButton.frame = CGRect(x: 50, y: 440, width: 300, height: 45)
-
+       // parseAndSaveData()
         view.addSubview(getPowerPlanetButton)
         
         locationManager.delegate = self
