@@ -173,8 +173,41 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
         view.backgroundColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1) // Light grey background for a clean look.
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 150))
+        headerView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.98, alpha: 1)
+        
+        // Create the title label
+        // Create the title label
+        let titleLabel = UILabel(frame: CGRect(x: 15, y: headerView.bounds.height - 50, width: self.view.bounds.width - 30 - 50, height: 40))  // adjust width to leave space for button
+        titleLabel.text = "Astrologics"
+        titleLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)
+        if let customFont = UIFont(name: "Chalkduster", size: 40) {
+            titleLabel.font = customFont
+        } else {
+            titleLabel.font = UIFont.systemFont(ofSize: 20)  // Backup in case the custom font fails
+        }
+       
+
+        // Create the myChartsButton
+        let myChartsButton = UIButton(type: .custom)
+        myChartsButton.setImage(UIImage(systemName: "folder.fill"), for: .normal)
+        myChartsButton.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)  // RGB values for dark lavender
+
+        // Adjust the frame
+        let buttonX = titleLabel.frame.maxX + 10
+        let buttonY = titleLabel.frame.minY
+        myChartsButton.frame = CGRect(x: buttonX, y: buttonY, width: 40, height: 40)
+
+        myChartsButton.addTarget(self, action: #selector(showMyCharts), for: .touchUpInside)
+        headerView.addSubview(myChartsButton)  // Add the button to the headerView
+
+        headerView.addSubview(titleLabel)
+        
+        // Add custom header to the main view BEFORE other subviews to ensure it's not overlapped
+        self.view.addSubview(headerView)
+        
             
         view.addSubview(birthPlaceTextField)
         makeAutocompleteViewController()
@@ -205,22 +238,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         timePickerToolBar.setItems([timePickerDoneBtn], animated: true)
         birthTimeTextField.inputAccessoryView = timePickerToolBar
 
-        let myChartsButton = UIBarButtonItem(image: UIImage(systemName: "folder.fill"), style: .plain, target: self, action: #selector(showMyCharts))
-        myChartsButton.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)  // RGB values for dark lavender
-        navigationItem.rightBarButtonItem = myChartsButton
-
-        self.title = "Astrologics"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        if let customFont = UIFont(name: "Chalkduster", size: 40) {
-            let appearance = UINavigationBarAppearance()
-            appearance.largeTitleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor(red: 0.9, green: 0.9, blue: 0.98, alpha: 1),  // The same color as your button
-                NSAttributedString.Key.font: customFont
-            ]
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.standardAppearance = appearance
-        }
-        navigationController?.navigationBar.barTintColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1)
+       
+       
 
        
         getPowerPlanetButton.frame = CGRect(x: 50, y: 440, width: 300, height: 45)
@@ -232,32 +251,23 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
 
+     
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        self.title = "Astrologics"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        if let customFont = UIFont(name: "Chalkduster", size: 40) {
-            let appearance = UINavigationBarAppearance()
-            appearance.largeTitleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor(red: 0.9, green: 0.9, blue: 0.98, alpha: 1),
-                NSAttributedString.Key.font: customFont
-            ]
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.standardAppearance = appearance
-        }
-        navigationController?.navigationBar.barTintColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        // Reset the navigation bar appearance to default here
-        navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
-        navigationController?.navigationBar.standardAppearance = UINavigationBarAppearance()
+        
+        // Show the navigation bar again
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+
+
     @objc func showMyCharts() {
         let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
         navigationController?.pushViewController(myChartsViewController, animated: true)
