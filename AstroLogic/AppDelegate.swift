@@ -18,6 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
      GMSPlacesClient.provideAPIKey("AIzaSyAGRWdp4rPEWm7yg7fF_i31QaY7YjVXxLk")
 //
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.backgroundColor = .black
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)]  // Assuming you want white text color for better visibility
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)]
+
+        // Set the appearance for all navigation bars
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+
+        // Also, to ensure the bar tint color (which affects the back button and other bar button items) is visible against the black background:
+        UINavigationBar.appearance().tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)
+
         return true
     }
 
