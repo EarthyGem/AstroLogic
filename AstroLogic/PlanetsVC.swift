@@ -19,18 +19,18 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func setupNatalSigns() -> [String] {
         natalSigns = [
-           chart?.sun.sign.keyName,
-           chart?.moon.sign.keyName,
-           chart?.ascendant.sign.keyName,
-           chart?.mercury.sign.keyName,
-           chart?.venus.sign.keyName,
-           chart?.mars.sign.keyName,
-           chart?.jupiter.sign.keyName,
-           chart?.saturn.sign.keyName,
-           chart?.uranus.sign.keyName,
-           chart?.neptune.sign.keyName,
-           chart?.pluto.sign.keyName,
-           chart?.southNode.sign.keyName
+           chartCake!.natal.sun.sign.keyName,
+           chartCake!.natal.moon.sign.keyName,
+           chartCake!.natal.ascendant.sign.keyName,
+           chartCake!.natal.mercury.sign.keyName,
+           chartCake!.natal.venus.sign.keyName,
+           chartCake!.natal.mars.sign.keyName,
+           chartCake!.natal.jupiter.sign.keyName,
+           chartCake!.natal.saturn.sign.keyName,
+           chartCake!.natal.uranus.sign.keyName,
+           chartCake!.natal.neptune.sign.keyName,
+           chartCake!.natal.pluto.sign.keyName,
+           chartCake!.natal.southNode.sign.keyName
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -42,18 +42,18 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getNatalPositions() -> [String] {
         natalSigns = [
-           chart?.sun.formatted,
-           chart?.moon.formatted,
-           chart?.ascendant.formatted,
-           chart?.mercury.formatted,
-           chart?.venus.formatted,
-           chart?.mars.formatted,
-           chart?.jupiter.formatted,
-           chart?.saturn.formatted,
-           chart?.uranus.formatted,
-           chart?.neptune.formatted,
-           chart?.pluto.formatted,
-           chart?.southNode.formatted
+           chartCake!.natal.sun.formatted,
+           chartCake!.natal.moon.formatted,
+           chartCake!.natal.ascendant.formatted,
+           chartCake!.natal.mercury.formatted,
+           chartCake!.natal.venus.formatted,
+           chartCake!.natal.mars.formatted,
+           chartCake!.natal.jupiter.formatted,
+           chartCake!.natal.saturn.formatted,
+           chartCake!.natal.uranus.formatted,
+           chartCake!.natal.neptune.formatted,
+           chartCake!.natal.pluto.formatted,
+           chartCake!.natal.southNode.formatted
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -108,7 +108,7 @@ var mySunText = ""
         super.viewDidLoad()
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chart: chart!)
+        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
      
         
         view.backgroundColor = .black

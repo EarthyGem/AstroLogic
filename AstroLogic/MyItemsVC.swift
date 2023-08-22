@@ -118,7 +118,7 @@ extension MyItemsViewController: UITableViewDelegate {
         planetaryDegreesVC.chart = self.chart
 
         let myNatalHousesVC = MyNatalHousesVC()
-        myNatalHousesVC.chart = self.chart
+        myNatalHousesVC.chart = self.chartCake
 
       
         let myNatalAspectsVC = NatalAspectsViewController()
