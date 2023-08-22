@@ -181,7 +181,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         // Create the title label
         // Create the title label
         let titleLabel = UILabel(frame: CGRect(x: 15, y: headerView.bounds.height - 50, width: self.view.bounds.width - 30 - 50, height: 40))  // adjust width to leave space for button
-        titleLabel.text = "Astrologics"
+        titleLabel.text = "Astrologics ☿"
         titleLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)
         if let customFont = UIFont(name: "Chalkduster", size: 40) {
             titleLabel.font = customFont
