@@ -451,6 +451,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         getPowerPlanetButton.isEnabled = false
         let location = birthPlaceTextField.text!
         getPowerPlanetButton.isEnabled = false
+        
+        
 
         geocoding(location: location) { latitude, longitude in
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -531,7 +533,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                                                      risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
 
                 
-                resetViewController()
+               
                 
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
@@ -543,6 +545,12 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
                 strongestPlanetVC.sentenceText = sentence
                 self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
+                
+                resetViewController()
+                nameTextField.text = ""
+                 birthPlaceTextField.text = ""
+                 dateTextField.text = ""
+                 birthTimeTextField.text = ""
 
                 // ... existing code ...
                 DispatchQueue.main.async {
