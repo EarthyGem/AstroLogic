@@ -180,10 +180,10 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         
         // Create the title label
         // Create the title label
-        let titleLabel = UILabel(frame: CGRect(x: 15, y: headerView.bounds.height - 50, width: self.view.bounds.width - 30 - 50, height: 40))  // adjust width to leave space for button
+        let titleLabel = UILabel(frame: CGRect(x: 15, y: headerView.bounds.height - 50, width: self.view.bounds.width, height: 40))  // adjust width to leave space for button
         titleLabel.text = "Astrologics ☿"
         titleLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)
-        if let customFont = UIFont(name: "Chalkduster", size: 40) {
+        if let customFont = UIFont(name: "Chalkduster", size: 30) {
             titleLabel.font = customFont
         } else {
             titleLabel.font = UIFont.systemFont(ofSize: 20)  // Backup in case the custom font fails
@@ -276,6 +276,16 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     @objc func birthPlaceTextFieldEditingDidBegin() {
         presentAutocompleteViewController()
     }
+    func updateSearchBarTextColor(in view: UIView, to color: UIColor) {
+        if let textField = view as? UITextField {
+            textField.textColor = color
+            return
+        } else {
+            for subview in view.subviews {
+                updateSearchBarTextColor(in: subview, to: color)
+            }
+        }
+    }
 
     func makeAutocompleteViewController() {
         let autocompleteController = GMSAutocompleteViewController()
@@ -294,13 +304,18 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         
         let fields: GMSPlaceField = GMSPlaceField(rawValue: (UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)))
         autocompleteController.placeFields = fields
+       
+        updateSearchBarTextColor(in: autocompleteController.view, to: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1))
+
         
         self.autocompleteController = autocompleteController
     }
 
     func presentAutocompleteViewController() {
         if let autocompleteController = autocompleteController {
-            present(autocompleteController, animated: true, completion: nil)
+            present(autocompleteController, animated: true, completion: {
+                self.updateSearchBarTextColor(in: autocompleteController.view, to: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1))
+            })
         }
     }
 
