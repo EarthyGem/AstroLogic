@@ -110,6 +110,7 @@ extension MyItemsViewController: UITableViewDelegate {
         let decanatesVC = DeacanatesViewController(planets: placeolder)
         decanatesVC.title = category.chartType
         decanatesVC.chart = self.chart
+        decanatesVC.chartCake = self.chartCake
         decanatesVC.strongestPlanet = self.strongestPlanet
         decanatesVC.title = category.chartType
         let planetaryDegreesVC = PlanetDegreeViewController()
