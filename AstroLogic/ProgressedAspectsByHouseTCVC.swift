@@ -40,8 +40,7 @@ class ProgressionPlanetsByHouseTimeChangeViewController: UIViewController  {
         let selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = ProgressedPlanetsTimeChangeViewController()
-// Set the
+        let nextViewController = ProgressedAspectsByHousesVC()
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate
         navigationController?.pushViewController(nextViewController, animated: true)
@@ -98,10 +97,10 @@ class ProgressionPlanetsByHouseTimeChangeViewController: UIViewController  {
       }()
       
       
-    override func viewDidLoad() {
-        super.viewDidLoad()
+      override func viewDidLoad() {
+          super.viewDidLoad()
 
-        tcDP.frame = CGRect(x: 0, y: 150, width: 400, height: 450)
+ tcDP.frame = CGRect(x: 0, y: 150, width: 400, height: 450)
         tcDP.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)
         tcDP.backgroundColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1)
         view.addSubview(tcDP)
@@ -125,8 +124,11 @@ class ProgressionPlanetsByHouseTimeChangeViewController: UIViewController  {
 
         // Set the toolbar as the input accessory view of the date picker
         view.addSubview(toolbar)
-    }
-  
+          
+          
+          // Do any additional setup after loading the view.
+      }
+
       
       override func viewDidLayoutSubviews() {
           super.viewWillLayoutSubviews()

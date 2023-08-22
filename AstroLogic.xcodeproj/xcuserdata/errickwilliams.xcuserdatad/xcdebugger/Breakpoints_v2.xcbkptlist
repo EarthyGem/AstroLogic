@@ -112,7 +112,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "getMinorDate(from:with:)"
+            landmarkName = "init?(birthDate:latitude:longitude:transitDate:searchDate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -128,7 +128,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2951"
             endingLineNumber = "2951"
-            landmarkName = "calculateHouseHarmonyDiscord(_:)"
+            landmarkName = "calculateHouseStrengths(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,8 +142,8 @@
             filePath = "AstroLogic/AspectByHouses.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "viewDidLayoutSubviews()"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "AstroLogic/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "612"
-            endingLineNumber = "612"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "fetchTimeZone(latitude:longitude:timestamp:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,9 +174,9 @@
             filePath = "AstroLogic/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "viewController(_:didAutocompleteWith:)"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "presentAutocompleteViewController()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

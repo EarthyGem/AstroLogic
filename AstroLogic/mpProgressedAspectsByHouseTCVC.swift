@@ -41,7 +41,6 @@ class MinorPlanetsByHouseTimeChangeViewController: UIViewController  {
 
         // Create an instance of the next view controller
         let nextViewController = MinorProgressedAspectsByHousesVC()
-// Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate
         navigationController?.pushViewController(nextViewController, animated: true)

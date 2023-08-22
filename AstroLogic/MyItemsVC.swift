@@ -94,8 +94,8 @@ extension MyItemsViewController: UITableViewDelegate {
        
 //
         let chartVC = ChartViewController()
-        chartVC.chart = chart
-        chartVC.houseScores = chart!.calculateHouseStrengths()
+       
+        chartVC.houseScores = self.chartCake!.calculateHouseStrengths()
         chartVC.chartCake = chartCake
         //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
         chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
@@ -122,7 +122,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
       
         let myNatalAspectsVC = NatalAspectsViewController()
-        myNatalAspectsVC.chart = self.chart
+    
         myNatalAspectsVC.chartCake = self.chartCake
 //        myNatalHousesVC.title = category2.chartType
 
