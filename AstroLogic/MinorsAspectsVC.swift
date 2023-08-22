@@ -331,16 +331,7 @@ class mpAspectViewController: UIViewController {
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
          scrollView.addSubview(todaysDate)
         
-        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
-        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
-        calendarButton.frame = CGRect(x: 65,
-                                      y: 165,
-                                      width: 30,  // Width of the button
-                                      height: 30) // Height of the button
        
-      
-        calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
-        scrollView.addSubview(calendarButton)
         topTransitImage.image = UIImage(named: "clouds")
         topTransitImage.image?.withTintColor(UIColor.yellow)
         

@@ -10,12 +10,12 @@
 import UIKit
 import SwiftEphemeris
 
-class MinorProgressedAspectsByHousesVC: UIViewController {
-   
+class TransitAspectsByHousesVC: UIViewController {
+    var selectedDate: Date?
 var chart: Chart?
     var chartCake: ChartCake?
-    var selectedDate: Date?
-   
+    
+  
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
        
@@ -356,6 +356,8 @@ var chart: Chart?
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+   
 
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
         scrollView.backgroundColor = .clear
@@ -366,6 +368,7 @@ var chart: Chart?
         
         topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         view.addSubview(topTransitImage)
+          
         
         // adding date label
         let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
@@ -376,14 +379,7 @@ var chart: Chart?
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
          scrollView.addSubview(todaysDate)
         
-        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
-        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
-        calendarButton.frame = CGRect(x: 65,
-                                      y: 165,
-                                      width: 30,  // Width of the button
-                                      height: 30) // Height of the
-        calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
-        scrollView.addSubview(calendarButton)
+     
         
         
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
@@ -411,7 +407,7 @@ var chart: Chart?
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         for (index, tableView) in tableViews.enumerated() {
-            let count = chartCake?.minorProgressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
+            let count = chartCake?.transitAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
             tableView.contentSize.height = CGFloat(count * 90)
         }
 
@@ -758,18 +754,18 @@ var chart: Chart?
 //
     }
     @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TransitPlanetsByHouseTimeChangeViewController()
+        let timeChangeVC = TransitAspectsByHousesVC()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
     }
 
 }
 
-extension MinorProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {
+extension TransitAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
         
         if let index = tableViews.firstIndex(of: tableView) {
-            return chartCake?.minorProgressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
+            return chartCake?.transitAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
         }
         
         return 0 // Default return in case tableView is not found
@@ -783,7 +779,7 @@ extension MinorProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDe
                 return UITableViewCell()
             }
             
-            if let keyName = chartCake?.minorProgressedAspectsFilteredByHouseRulers(house: index + 1)[indexPath.row].basicAspectString {
+            if let keyName = chartCake?.transitAspectsFilteredByHouseRulers(house: index + 1)[indexPath.row].basicAspectString {
                 cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: keyName, firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
             }
             
@@ -811,11 +807,4 @@ extension MinorProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDe
     
                 
                 
-                
-                
-                
-                
-//
-//                let selectedVC = FirstFirstHousePlanetViewController.self
-//                performSegue(withIdentifier: "firstHouse1", sender: selectedVC)
-
+ 

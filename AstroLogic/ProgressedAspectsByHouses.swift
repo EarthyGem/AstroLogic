@@ -17,25 +17,10 @@ import Foundation
 import UIKit
 import SwiftEphemeris
 
-class AspectsByNatalHousesVC: UIViewController {
-   
+class ProgressedAspectsByHousesVC: UIViewController {
+    var selectedDate: Date?
 var chart: Chart?
     var chartCake: ChartCake?
-    
-    var sunAspects = [""]
-    var moonAspects = [""]
-    var mercuryAspects = [""]
-    var venusAspects = [""]
-    var marsAspects = [""]
-    var jupiterAspects = [""]
-    var saturnAspects = [""]
-    var uranusAspects = [""]
-    var neptuneAspects = [""]
-    var plutoAspects = [""]
-    
-  
-    
-
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -388,13 +373,22 @@ var chart: Chart?
         topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         view.addSubview(topTransitImage)
         
+        // adding date label
+        let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
+        let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
+         todaysDate.text = formatted
+        todaysDate.font = .systemFont(ofSize: 13)
+         todaysDate.textColor = .white
+        todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
+         scrollView.addSubview(todaysDate)
         
+     
         
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
 //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
         
-        firstTableView.backgroundColor = .orange
+//        firstTableView.backgroundColor = .orange
         secondTableView.backgroundColor = .green
 
        thirdTableView.backgroundColor = .purple
@@ -415,7 +409,7 @@ var chart: Chart?
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         for (index, tableView) in tableViews.enumerated() {
-            let count = chartCake?.getAspectStrings(houseNumber:  index + 1).count ?? 0
+            let count = chartCake?.progressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
             tableView.contentSize.height = CGFloat(count * 90)
         }
 
@@ -761,16 +755,19 @@ var chart: Chart?
 //
 //
     }
-
+    @objc func navigateToTimeChangeVC() {
+        let timeChangeVC = ProgressedAspectsTimeChangeViewController()
+        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    }
 
 }
 
-extension AspectsByNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
+extension ProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
         
         if let index = tableViews.firstIndex(of: tableView) {
-            return chartCake?.getAspectStrings(houseNumber:  index + 1).count ?? 0
+            return chartCake?.progressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
         }
         
         return 0 // Default return in case tableView is not found
@@ -784,9 +781,9 @@ extension AspectsByNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             
-            let aspectString = chartCake?.aspectsFilteredByHouseRulers(house:  index + 1)[indexPath.row].basicAspectString
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectString!, firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
-            
+            if let keyName = chartCake?.progressedAspectsFilteredByHouseRulers(house: index + 1)[indexPath.row].basicAspectString {
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: keyName, firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
+            }
             
             return cell
         }
@@ -810,13 +807,3 @@ extension AspectsByNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
     
     
     
-                
-                
-                
-                
-                
-                
-//
-//                let selectedVC = FirstFirstHousePlanetViewController.self
-//                performSegue(withIdentifier: "firstHouse1", sender: selectedVC)
-

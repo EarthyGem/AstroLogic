@@ -11,7 +11,7 @@ import SwiftEphemeris
 class MyNatalHousesVC: UIViewController {
    
 var chart: Chart?
-    
+    var chartCake: ChartCake?
     var sunAspects = [""]
     var moonAspects = [""]
     var mercuryAspects = [""]
@@ -405,7 +405,7 @@ var chart: Chart?
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         for (index, tableView) in tableViews.enumerated() {
-            let count = chart?.rulingBodies(for: index + 1).count ?? 0
+            let count = chartCake?.rulingPlanets(for: index + 1).count ?? 0
             tableView.contentSize.height = CGFloat(count * 90)
         }
 
@@ -760,7 +760,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
         
         if let index = tableViews.firstIndex(of: tableView) {
-            return chart?.rulingBodies(for: index + 1).count ?? 0
+            return chart?.rulingPlanets(for: index + 1).count ?? 0
         }
         
         return 0 // Default return in case tableView is not found
@@ -774,7 +774,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             
-            if let keyName = chart?.rulingBodies(for: index + 1)[indexPath.row].body.keyName.lowercased() {
+            if let keyName = chart?.rulingPlanets(for: index + 1)[indexPath.row].keyName.lowercased() {
                 cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
             }
             

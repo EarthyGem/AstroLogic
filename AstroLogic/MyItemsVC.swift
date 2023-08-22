@@ -127,7 +127,7 @@ extension MyItemsViewController: UITableViewDelegate {
         myNatalAspectsVC.chartCake = self.chartCake
 //        myNatalHousesVC.title = category2.chartType
 
-        let natalHouseAspects = AspectsByNatalHousesVC()
+        let natalHouseAspects = NatalAspectsByHousesVC()
         natalHouseAspects.chart = self.chart
         natalHouseAspects.chartCake = self.chartCake
         

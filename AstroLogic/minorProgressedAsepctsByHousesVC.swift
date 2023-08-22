@@ -5,23 +5,17 @@
 //  Created by Errick Williams on 8/14/23.
 //
 
-import Foundation
 
-//
-//  TransposedHousesViewController.swift
-//  MVP
-//
-//  Created by Errick Williams on 10/19/22.
-//
 
 import UIKit
 import SwiftEphemeris
 
-class ProgressedAspectsByHousesVC: UIViewController {
-    var selectedDate: Date?
+class MinorProgressedAspectsByHousesVC: UIViewController {
+   
 var chart: Chart?
     var chartCake: ChartCake?
-    
+    var selectedDate: Date?
+   
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
        
@@ -382,14 +376,8 @@ var chart: Chart?
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
          scrollView.addSubview(todaysDate)
         
-        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
-        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
-        calendarButton.frame = CGRect(x: 65,
-                                      y: 165,
-                                      width: 30,  // Width of the button
-                                      height: 30) // Height of the
-        calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
-        scrollView.addSubview(calendarButton)
+     
+        
         
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
@@ -416,7 +404,7 @@ var chart: Chart?
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         for (index, tableView) in tableViews.enumerated() {
-            let count = chartCake?.progressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
+            let count = chartCake?.minorProgressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
             tableView.contentSize.height = CGFloat(count * 90)
         }
 
@@ -763,18 +751,18 @@ var chart: Chart?
 //
     }
     @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = ProgressedAspectsTimeChangeViewController()
+        let timeChangeVC = TransitPlanetsByHouseTimeChangeViewController()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
     }
 
 }
 
-extension ProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {
+extension MinorProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
         
         if let index = tableViews.firstIndex(of: tableView) {
-            return chartCake?.progressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
+            return chartCake?.minorProgressedAspectsFilteredByHouseRulers(house: index + 1).count ?? 0
         }
         
         return 0 // Default return in case tableView is not found
@@ -788,7 +776,7 @@ extension ProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegat
                 return UITableViewCell()
             }
             
-            if let keyName = chartCake?.progressedAspectsFilteredByHouseRulers(house: index + 1)[indexPath.row].basicAspectString {
+            if let keyName = chartCake?.minorProgressedAspectsFilteredByHouseRulers(house: index + 1)[indexPath.row].basicAspectString {
                 cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: keyName, firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
             }
             
@@ -814,3 +802,13 @@ extension ProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegat
     
     
     
+                
+                
+                
+                
+                
+                
+//
+//                let selectedVC = FirstFirstHousePlanetViewController.self
+//                performSegue(withIdentifier: "firstHouse1", sender: selectedVC)
+

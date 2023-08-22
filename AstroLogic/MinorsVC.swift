@@ -158,15 +158,8 @@ var mySunText = ""
         todaysDate.font = .systemFont(ofSize: 13)
          todaysDate.textColor = .white
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
-        let calendarButton = UIButton(type: .system)  // .system to get the default UIButton styling
-        calendarButton.setImage(UIImage(systemName: "calendar"), for: .normal)
-        calendarButton.frame = CGRect(x: 65,
-                                      y: 530,
-                                      width: 30,  // Width of the button
-                                      height: 30) // Height of the button sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-      
-        calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
-        view.addSubview(calendarButton)
+       
+     
         view.addSubview(todaysDate)
     }
 

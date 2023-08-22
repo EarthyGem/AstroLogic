@@ -93,22 +93,146 @@ class ChartViewController: UIViewController {
         // add more if needed...
     ]
     @objc func printButtonTapped() {
+
+        
+        let pdfURL = createSummaryPDF()
+        printPDF(at: pdfURL)
      
-        
-    
-    
-        
-      //  let pdfURL = createPDF(scores2: scores, harmonyDiscordScores2: harmonyDiscordScores!, signScore: signScores, houseScores2: houseScores)
-     //   printPDF(at: pdfURL)
-        
-        
     }
     
+    func createSummaryPDF() -> URL {
+        let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 650))
+
+        let pdfData = renderer.pdfData { ctx in
+            ctx.beginPage()
+            let attributes = [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7)
+            ]
+            
+            var yOffset: CGFloat = 20
+            
+            // Helper function to draw rows for Summary Section
+            func drawSummaryRows(for category: String, elements: [String], withOffset offset: CGFloat) -> CGFloat {
+                var localOffset = offset
+
+                // Draw the category in the first column
+                category.draw(in: CGRect(x: 0, y: localOffset, width: 100, height: 20), withAttributes: attributes) // Adjusted width to fit category names
+                localOffset += 20
+
+                // Draw each element in the second column, and their respective placeholders in columns 3 to 5
+                for element in elements {
+                    element.draw(in: CGRect(x: 0, y: localOffset, width: 100, height: 20), withAttributes: attributes)
+                    "00.00".draw(in: CGRect(x: 100, y: localOffset, width: 100, height: 20), withAttributes: attributes)
+                    "00.0%".draw(in: CGRect(x: 200, y: localOffset, width: 100, height: 20), withAttributes: attributes)
+                    "00.0".draw(in: CGRect(x: 300, y: localOffset, width: 100, height: 20), withAttributes: attributes)
+
+                    localOffset += 20
+                }
+
+                return localOffset + 25
+            }
+
+            // Drawing the Summary Section
+            let summaryCategories = [
+                ("Societies", ["Personal", "Companionship", "Public"]),
+                ("Trinities", ["Life", "Wealth", "Association", "Psychism"]),
+                ("Elements", ["Fire", "Earth", "Air", "Fire"]),
+                ("Qualities", ["Movable", "Fixed", "Mutable"])
+            ]
+
+            for (category, elements) in summaryCategories {
+                yOffset = drawSummaryRows(for: category, elements: elements, withOffset: yOffset)
+            }
+        }
+
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let outputFileURL = documentDirectory.appendingPathComponent("SummaryScores.pdf")
+        
+        do {
+            try pdfData.write(to: outputFileURL)
+            print("Summary PDF successfully written at \(outputFileURL)")
+            return outputFileURL
+        } catch {
+            print("Error writing Summary PDF: \(error)")
+            return documentDirectory
+        }
+    }
+
+    func createPDF() -> URL {
+            let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 650))
+            
+            let pdfData = renderer.pdfData { ctx in
+                ctx.beginPage()
+                let attributes = [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7) // Reduced font size and not bold
+                ]
+                
+                // Column Headers
+                let headers = ["Symbol", "Power", "%", "Harmony"]
+                let columnWidths: [CGFloat] = [50.0, 50.0, 50.0, 50.0]
+
+                var yOffset: CGFloat = 20
+                
+                // Helper function to draw rows
+                func drawRows(for symbols: [String], withOffset offset: CGFloat) -> CGFloat {
+                    var localOffset = offset
+                    
+                    for symbol in symbols {
+                        let xPositionForSymbol = CGFloat(0)
+                        let xPositionForPower = xPositionForSymbol + columnWidths[0]
+                        let xPositionForPercentage = xPositionForPower + columnWidths[1]
+                        let xPositionForHarmony = xPositionForPercentage + columnWidths[2]
+
+                        symbol.draw(in: CGRect(x: xPositionForSymbol, y: localOffset, width: CGFloat(columnWidths[0]), height: 20), withAttributes: attributes)
+                        "00.00".draw(in: CGRect(x: xPositionForPower, y: localOffset, width: CGFloat(columnWidths[1]), height: 20), withAttributes: attributes)
+                        "00.0%".draw(in: CGRect(x: xPositionForPercentage, y: localOffset, width: CGFloat(columnWidths[2]), height: 20), withAttributes: attributes)
+                        "00.0".draw(in: CGRect(x: xPositionForHarmony, y: localOffset, width: CGFloat(columnWidths[3]), height: 20), withAttributes: attributes)
+                        
+                        localOffset += 10
+                    }
+                    
+                    return localOffset + 25 // Additional space after each section
+                }
+                
+                // Drawing Column Headers
+                for (index, header) in headers.enumerated() {
+                    let xPosition = CGFloat(index) * CGFloat(columnWidths[index])
+                    let rect = CGRect(x: xPosition, y: yOffset, width: CGFloat(columnWidths[index]), height: 20)
+                    header.draw(in: rect, withAttributes: attributes)
+                }
+                
+                yOffset += 30 // Increased spacing to account for headers
+                
+                // Drawing each planet row
+                let planetSymbols = Planet.allCases.map { $0.symbol }
+                yOffset = drawRows(for: planetSymbols, withOffset: yOffset)
+
+                // Drawing each house row
+                let houseSymbols = Array(1...12).map { String($0) }
+                yOffset = drawRows(for: houseSymbols, withOffset: yOffset)
+
+                // Drawing each sign row (Assuming you have Sign enum or array)
+                let signSymbols = Zodiac.allCases.map { $0.symbol }
+                yOffset = drawRows(for: signSymbols, withOffset: yOffset)
+            }
+            
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let outputFileURL = documentDirectory.appendingPathComponent("Scores.pdf")
+            
+            do {
+                try pdfData.write(to: outputFileURL)
+                print("PDF successfully written at \(outputFileURL)")
+                return outputFileURL
+            } catch {
+                print("Error writing PDF: \(error)")
+                return documentDirectory
+            }
+        }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chart: chart!)
+        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
         
      //   birthChartView.backgroundColor = .white
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 550, width: screenWidth, height: 1500))
@@ -148,7 +272,7 @@ class ChartViewController: UIViewController {
             scoreLabels.append(label)
         }
         
-        let sortedHarmonyDiscordScores = chart.getTotalHarmonyDiscordScoresForPlanets(chart!.planets).sorted(by: { $0.value.net > $1.value.net }) // Sort by the net score
+        let sortedHarmonyDiscordScores = chartCake.getTotalHarmonyDiscordScoresForPlanets().sorted(by: { $0.value.net > $1.value.net }) // Sort by the net score
         let labelStartY: CGFloat = labelSpacing + CGFloat(sortedScores.count) * (labelHeight + labelSpacing) + 50
         let barStartX2: CGFloat = 110
         let _: CGFloat = 2
@@ -208,7 +332,7 @@ class ChartViewController: UIViewController {
    
      
         
-        let signScores = chart.calculateTotalSignScore(chart.planets)
+        let signScores = chartCake.calculateTotalSignScore()
         let elementScores = calculateTotalElementScores(signScores: signScores)
         let elementPieChartView = createPieChartView(dataEntries: generateElementPieChartData(scores: elementScores))
         elementPieChartView.frame = CGRect(x: 85, y: 750, width: 250, height: 250)
@@ -262,7 +386,7 @@ class ChartViewController: UIViewController {
             scrollView.addSubview(barView)
             
             // Create pie chart for total sign scores
-            let signScores = chart.calculateTotalSignScore(chart.planets)
+            let signScores = chartCake.calculateTotalSignScore()
             let signPieChartView = createPieChartView(dataEntries: generatePieChartData(scores: signScores))
             signPieChartView.frame = CGRect(x: 10, y: 400, width: screenWidth - 20, height: 300)
             
@@ -306,7 +430,7 @@ class ChartViewController: UIViewController {
         
         func displayGroupedPlanetBarChart() {
             // 1. Get the scores
-            let scoresFromFunction = chart.getTotalScoresForPlanets()
+            let scoresFromFunction = chartCake.getTotalScoresForPlanets()
 
             // 2. Convert to String-based Dictionary
             var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
@@ -395,7 +519,7 @@ class ChartViewController: UIViewController {
 
 //        func displayGroupedSignBarChart() {
 //            // 1. Get the scores
-//            let scoresFromFunction = chart.calculateTotalHarmonyDiscordSignScores()
+//            let scoresFromFunction = chartCake.calculateTotalHarmonyDiscordSignScores()
 //
 //            // 2. Convert to String-based Dictionary
 //            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
@@ -415,7 +539,7 @@ class ChartViewController: UIViewController {
 //
 //        func displayGroupedHouseBarChart() {
 //            // 1. Get the scores
-//            let scoresFromFunction = chart.sign()
+//            let scoresFromFunction = chartCake.sign()
 //
 //            // 2. Convert to String-based Dictionary
 //            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
@@ -909,87 +1033,9 @@ func harmonyDiscordScoresToString(_ dict: [String : (harmony: Double, discord: D
 }
 
 
-//@objc func printButtonTapped() {
-//    let ascDeclination = self.ascDeclination ?? 0
-//    let mcDeclination = self.mcDeclination ?? 0
-//
-//    let signScores = calculateTotalSignScore(birthChart: chart, date: selectedDate!, ascDeclination: ascDeclination, mcDeclination: mcDeclination, houseCusps: [], interceptedSigns: [])
-//
-//    let aspectScores = getPositiveNegativeAspectScores(birthChart: chart, date: selectedDate!)
-//
-//    let pdfURL = createPDF(scores2: scores, harmonyDiscordScores2: harmonyDiscordScores!, signScore: signScores, houseScores2: houseScores, aspectScores: aspectScores)
-//    printPDF(at: pdfURL)
-//}
-//
+
 
 // Function to generate the PDF
-func createPDF(scores2: [String: Double], harmonyDiscordScores2: [String: (harmony: Double, discord: Double, difference: Double)], signScore: [String: Double], houseScores2: [Int: Double]) -> URL {
-    let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 650))
-    let pdfData = renderer.pdfData { ctx in
-        ctx.beginPage()
-        let attributes = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10)
-        ]
-        
-        let totalScore = scores2.values.reduce(0, +)
-        let totalHarmony = harmonyDiscordScores2.values.map { $0.harmony }.reduce(0, +)
-        let totalDiscord = harmonyDiscordScores2.values.map { $0.discord }.reduce(0, +)
-        let totalSignScore = signScore.values.reduce(0, +)
-        let totalHouseScore = houseScores2.values.reduce(0, +)
-        
-        let scoresString = dictToPercentageString(scores2, totalScore: totalScore)
-        
-        let harmonyScores: [String] = harmonyDiscordScores2.map { key, value in
-            return "\(key): \(String(format: "%.1f%%", (value.harmony / totalHarmony) * 100))"
-        }
-        
-        let discordScores: [String] = harmonyDiscordScores2.map { key, value in
-            return "\(key): \(String(format: "%.1f%%", (value.discord / totalDiscord) * 100))"
-        }
-        
-        
-        let signScoreString = dictToPercentageString(signScore, totalScore: totalSignScore)
-        let houseScoresString = dictToPercentageString(convertIntToKeyStringDict(houseScores2), totalScore: totalHouseScore)
-        
-        let column1Text = """
-                  Scores:
-                  \(scoresString)
-                  
-                  Harmony Scores:
-                  \(harmonyScores.joined(separator: "\n"))
-                  
-                  Discord Scores:
-                  \(discordScores.joined(separator: "\n"))
-                  
-                  """
-        
-        let column2Text = """
-                  
-                  
-                  Sign Scores:
-                  \(signScoreString)
-                  
-                  House Scores:
-                  \(houseScoresString)
-                  
-                  """
-        
-        column1Text.draw(with: CGRect(x: 0, y: 0, width: 250, height: 650), options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
-        column2Text.draw(with: CGRect(x: 250, y: 0, width: 250, height: 650), options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
-    }
-    
-    let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    let outputFileURL = documentDirectory.appendingPathComponent("Scores.pdf")
-    do {
-        try pdfData.write(to: outputFileURL)
-        print("PDF successfully written at \(outputFileURL)")
-        return outputFileURL
-    } catch {
-        print("Error writing PDF: \(error)")
-        // Return the documentDirectory as a fallback
-        return documentDirectory
-    }
-}
 
 func dictToPercentageString(_ dict: [String: Double], totalScore: Double) -> String {
     let sortedScores = dict.sorted { $0.value > $1.value } // Sort dictionary by value in descending order

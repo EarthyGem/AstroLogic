@@ -8,7 +8,7 @@ import SwiftEphemeris
 import UIKit
 
 class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var chartCake: ChartCake?
     var chart: Chart?
     var birthChartView: BirthChartView!
     var strongestPlanet: String!
@@ -47,13 +47,13 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
             var decanates: String?
             switch planet {
             case "sun":
-                decanates = chart?.sun.decanates.formatted
+                decanates = chartCake!.natal.sun.decanates.formatted
             case "moon":
-                decanates = chart?.moon.decanates.formatted
+                decanates = chartCake!.natal.moon.decanates.formatted
             case "ascendant":
-                decanates = chart?.ascendant.decanates.formatted
+                decanates = chartCake!.natal.ascendant.decanates.formatted
             case "mercury":
-                decanates = chart?.mercury.decanates.formatted
+                decanates = chartCake!.natal.mercury.decanates.formatted
             default:
                 decanates = getDecanates(for: planet)
             }
@@ -81,13 +81,13 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
             var keyword: String?
             switch planet {
             case "sun":
-                keyword = chart?.sun.decanates.keyWord
+                keyword = chartCake!.natal.sun.decanates.keyWord
             case "moon":
-                keyword = chart?.moon.decanates.keyWord
+                keyword = chartCake!.natal.moon.decanates.keyWord
             case "ascendant":
-                keyword = chart?.ascendant.decanates.keyWord
+                keyword = chartCake!.natal.ascendant.decanates.keyWord
             case "mercury":
-                keyword = chart?.mercury.decanates.keyWord
+                keyword = chartCake!.natal.mercury.decanates.keyWord
             default:
                 if let decanate = getDecanates(for: planet) {
                     keyword = getKeyword(for: decanate)
@@ -115,13 +115,13 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
             var text: String?
             switch planet {
             case "sun":
-                text = chart?.sun.decanates.spiritualText
+                text = chartCake!.natal.sun.decanates.spiritualText
             case "moon":
-                text = chart?.moon.decanates.spiritualText
+                text = chartCake!.natal.moon.decanates.spiritualText
             case "ascendant":
-                text = chart?.houseCusps.ascendent.decanates.spiritualText
+                text = chartCake!.natal.houseCusps.ascendent.decanates.spiritualText
             case "mercury":
-                text = chart?.mercury.decanates.spiritualText
+                text = chartCake!.natal.mercury.decanates.spiritualText
             default:
                 if let decanate = getDecanates(for: planet) {
                     text = getText(for: decanate)
@@ -141,27 +141,27 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
     func getDecanates(for planet: String) -> String? {
         switch planet {
         case "Sun":
-            return chart?.sun.decanates.formatted
+            return chartCake!.natal.sun.decanates.formatted
         case "Moon":
-            return chart?.moon.decanates.formatted
+            return chartCake!.natal.moon.decanates.formatted
         case "Mercury":
-            return chart?.mercury.decanates.formatted
+            return chartCake!.natal.mercury.decanates.formatted
         case "Venus":
-            return chart?.venus.decanates.formatted
+            return chartCake!.natal.venus.decanates.formatted
         case "Mars":
-            return chart?.mars.decanates.formatted
+            return chartCake!.natal.mars.decanates.formatted
         case "Jupiter":
-            return chart?.jupiter.decanates.formatted
+            return chartCake!.natal.jupiter.decanates.formatted
         case "Saturn":
-            return chart?.saturn.decanates.formatted
+            return chartCake!.natal.saturn.decanates.formatted
         case "Uranus":
-            return chart?.uranus.decanates.formatted
+            return chartCake!.natal.uranus.decanates.formatted
         case "Neptune":
-            return chart?.neptune.decanates.formatted
+            return chartCake!.natal.neptune.decanates.formatted
         case "Pluto":
-            return chart?.pluto.decanates.formatted
+            return chartCake!.natal.pluto.decanates.formatted
         case "Ascendant":
-            return chart?.houseCusps.ascendent.decanates.formatted
+            return chartCake!.natal.houseCusps.ascendent.decanates.formatted
         default:
             return nil
         }
@@ -173,27 +173,27 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         switch planet {
    
         case "Sun":
-            return chart?.sun.decanates.keyWord
+            return chartCake!.natal.sun.decanates.keyWord
         case "Moon":
-            return chart?.moon.decanates.keyWord
+            return chartCake!.natal.moon.decanates.keyWord
         case "Mercury":
-            return chart?.mercury.decanates.keyWord
+            return chartCake!.natal.mercury.decanates.keyWord
         case "Venus":
-            return chart?.venus.decanates.keyWord
+            return chartCake!.natal.venus.decanates.keyWord
         case "Mars":
-            return chart?.mars.decanates.keyWord
+            return chartCake!.natal.mars.decanates.keyWord
         case "Jupiter":
-            return chart?.jupiter.decanates.keyWord
+            return chartCake!.natal.jupiter.decanates.keyWord
         case "Saturn":
-            return chart?.saturn.decanates.keyWord
+            return chartCake!.natal.saturn.decanates.keyWord
         case "Uranus":
-            return chart?.uranus.decanates.keyWord
+            return chartCake!.natal.uranus.decanates.keyWord
         case "Neptune":
-            return chart?.neptune.decanates.keyWord
+            return chartCake!.natal.neptune.decanates.keyWord
         case "Pluto":
-            return chart?.pluto.decanates.keyWord
+            return chartCake!.natal.pluto.decanates.keyWord
         case "Ascendant":
-            return chart?.houseCusps.ascendent.decanates.keyWord
+            return chartCake!.natal.houseCusps.ascendent.decanates.keyWord
         default:
             return nil
         }
@@ -205,27 +205,27 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         switch planet {
    
         case "Sun":
-            return chart?.sun.decanates.spiritualText
+            return chartCake!.natal.sun.decanates.spiritualText
         case "Moon":
-            return chart?.moon.decanates.spiritualText
+            return chartCake!.natal.moon.decanates.spiritualText
         case "Mercury":
-            return chart?.mercury.decanates.spiritualText
+            return chartCake!.natal.mercury.decanates.spiritualText
         case "Venus":
-            return chart?.venus.decanates.spiritualText
+            return chartCake!.natal.venus.decanates.spiritualText
         case "Mars":
-            return chart?.mars.decanates.spiritualText
+            return chartCake!.natal.mars.decanates.spiritualText
         case "Jupiter":
-            return chart?.jupiter.decanates.spiritualText
+            return chartCake!.natal.jupiter.decanates.spiritualText
         case "Saturn":
-            return chart?.saturn.decanates.spiritualText
+            return chartCake!.natal.saturn.decanates.spiritualText
         case "Uranus":
-            return chart?.uranus.decanates.spiritualText
+            return chartCake!.natal.uranus.decanates.spiritualText
         case "Neptune":
-            return chart?.neptune.decanates.spiritualText
+            return chartCake!.natal.neptune.decanates.spiritualText
         case "Pluto":
-            return chart?.pluto.decanates.spiritualText
+            return chartCake!.natal.pluto.decanates.spiritualText
         case "Ascendant":
-            return chart?.houseCusps.ascendent.decanates.formatted
+            return chartCake!.natal.houseCusps.ascendent.decanates.formatted
         default:
             return nil
         }
@@ -277,7 +277,7 @@ var mySunText = ""
         super.viewDidLoad()
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chart: chart!)
+        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
         print("StrongestPlanet: \(String(describing: strongestPlanet))")
         
         view.backgroundColor = .black
