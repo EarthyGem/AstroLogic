@@ -163,8 +163,6 @@ var mySunText = ""
     }
 
 
-
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 11
     }
@@ -177,9 +175,7 @@ var mySunText = ""
         
         cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getTransitPositions()[indexPath.row], planetTextText: "", headerTextText: "")
         
-//        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
-        
-        
+
          return cell
          
          
@@ -191,23 +187,7 @@ var mySunText = ""
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        print(planets[indexPath.row])
-        
-      
 
-
-
-        
-        let MovingPlanetVCs = [TodayViewController()]
-        
-//        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
-       
-        
-        let vc = MovingPlanetVCs[indexPath.row]
-        present(UINavigationController(rootViewController: vc), animated: true)
-        
-        
-     
 }
     
 

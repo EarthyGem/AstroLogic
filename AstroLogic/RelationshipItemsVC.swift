@@ -81,6 +81,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
         // For example, you can push a new view controller with the selected relationship
         let relationshipsVC = RelationshipsViewController()
         relationshipsVC.otherChart = otherChart
+        relationshipsVC.chartCake = chartCake
         navigationController?.pushViewController(relationshipsVC, animated: true)
     }
 }
