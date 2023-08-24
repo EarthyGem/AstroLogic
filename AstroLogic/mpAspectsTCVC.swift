@@ -40,7 +40,7 @@ class MinorsAspectsTimeChangeViewController: UIViewController  {
         let selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = mpAspectViewController()
+        let nextViewController = SimpleMinorAspectViewController()
 // Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate

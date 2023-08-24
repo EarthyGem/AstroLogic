@@ -646,7 +646,7 @@ class SimpleNatalAspectsViewController: UIViewController {
     @objc func moreAspectsButtonTapped() {
         let flipSynastryVC = NatalAspectsViewController()
         flipSynastryVC.chartCake = self.chartCake
-      //  flipSynastryVC.chart = self.chart
+        flipSynastryVC.selectedDate = self.selectedDate
         self.navigationController?.pushViewController(flipSynastryVC, animated: true)
     }
 

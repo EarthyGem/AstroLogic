@@ -40,7 +40,7 @@ class TransitAspectsTimeChangeViewController: UIViewController  {
         let selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = TransitAspectedPlanetsViewController()
+        let nextViewController = SimpleTransitAspectedPlanetsViewController()
 // Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate

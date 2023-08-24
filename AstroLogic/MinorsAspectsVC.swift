@@ -291,6 +291,12 @@ class mpAspectViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "Less Aspects", style: .plain, target: nil, action: nil)
+    }
+
+    
     override func viewDidAppear(_ animated: Bool) {
         sunTableView.frame = CGRect(x: sunTableView.frame.origin.x, y: sunTableView.frame.origin.y , width: sunTableView.frame.size.width, height: sunTableView.contentSize.height)
         

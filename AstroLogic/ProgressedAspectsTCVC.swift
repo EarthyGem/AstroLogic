@@ -40,7 +40,7 @@ class ProgressedAspectsTimeChangeViewController: UIViewController  {
         let selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = MPAspectsViewController()
+        let nextViewController = SimpleMajorAspectsViewController()
 // Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate

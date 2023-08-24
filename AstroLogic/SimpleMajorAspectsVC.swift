@@ -8,12 +8,12 @@
 import UIKit
 import SwiftEphemeris
 
-class TransitAspectedPlanetsViewController  : UIViewController {
+class SimpleMajorAspectsViewController: UIViewController {
    
     var chart: Chart?
     var chartCake: ChartCake?
     var selectedDate: Date?
-
+    
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -252,10 +252,6 @@ class TransitAspectedPlanetsViewController  : UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-       
-     
         sunTableView.dataSource = self
         sunTableView.delegate = self
        moonTableView.dataSource = self
@@ -280,14 +276,10 @@ class TransitAspectedPlanetsViewController  : UIViewController {
 //        ascTableView.delegate = self
 
         view.backgroundColor = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More Aspects", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
+        view.backgroundColor = .black
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "Less Aspects", style: .plain, target: nil, action: nil)
-    }
-
     
     override func viewDidAppear(_ animated: Bool) {
         sunTableView.frame = CGRect(x: sunTableView.frame.origin.x, y: sunTableView.frame.origin.y , width: sunTableView.frame.size.width, height: sunTableView.contentSize.height)
@@ -312,6 +304,14 @@ class TransitAspectedPlanetsViewController  : UIViewController {
         
         ascTableView.frame = CGRect(x: ascTableView.frame.origin.x, y: ascTableView.frame.origin.y , width: ascTableView.frame.size.width, height: ascTableView.contentSize.height)
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "Less Aspects", style: .plain, target: nil, action: nil)
+    }
+
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -322,7 +322,7 @@ class TransitAspectedPlanetsViewController  : UIViewController {
         topTransitImage.image = UIImage(named: "clouds")
         topTransitImage.image?.withTintColor(UIColor.yellow)
         
-        topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
+        topTransitImage.frame = CGRect(x: 0, y: 40, width: view.frame.width, height: 350)
         view.addSubview(topTransitImage)
         
         // adding date label
@@ -359,17 +359,21 @@ class TransitAspectedPlanetsViewController  : UIViewController {
    
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.sun.celestialObject).count * 90)
+        sunTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.sun.celestialObject).count * 90)
 //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-        moonTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.moon.celestialObject).count * 90)
-        mercuryTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
-        venusTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.venus.celestialObject).count * 90)
-        marsTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.mars.celestialObject).count * 90)
-        jupiterTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
-        saturnTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
-        uranusTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
-        neptuneTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
-        plutoTableView.contentSize.height = CGFloat(chartCake!.transitAspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
+        moonTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.moon.celestialObject).count * 90)
+        mercuryTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
+        venusTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.venus.celestialObject).count * 90)
+        marsTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.mars.celestialObject).count * 90)
+        jupiterTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
+        saturnTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
+        uranusTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
+        neptuneTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
+        plutoTableView.contentSize.height = CGFloat(chartCake!.progressedSimpleAspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
+        
+        
+      
+        
         
         
         scrollView.addSubview(moonScrollView)
@@ -650,242 +654,248 @@ class TransitAspectedPlanetsViewController  : UIViewController {
 //
 //
     }
-
-    @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TransitAspectsTimeChangeViewController()
-        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    
+    @objc func moreAspectsButtonTapped() {
+        let flipSynastryVC = MPAspectsViewController()
+        flipSynastryVC.chartCake = self.chartCake
+        
+        flipSynastryVC.selectedDate = self.selectedDate
+      //  flipSynastryVC.chart = self.chart
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
     }
+
+
 }
 
-extension TransitAspectedPlanetsViewController  : UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-        
-        if(tableView == sunTableView) {
+extension SimpleMajorAspectsViewController: UITableViewDataSource, UITableViewDelegate {
+            func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+               
+                
+                if(tableView == sunTableView) {
 
-            return chartCake!.transitAspectsFiltered(by: Planet.sun.celestialObject).count
-    }
-        else if(tableView == moonTableView){
-            return chartCake!.transitAspectsFiltered(by: Planet.moon.celestialObject).count
-        }
-        
-        
-            else if(tableView == mercuryTableView){
-
-                return chartCake!.transitAspectsFiltered(by: Planet.mercury.celestialObject).count
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.sun.celestialObject).count
             }
-            else if(tableView == venusTableView){
-
-                return chartCake!.transitAspectsFiltered(by: Planet.venus.celestialObject).count
+                else if(tableView == moonTableView){
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.moon.celestialObject).count
                 }
-        else if(tableView == marsTableView){
+                
+                
+                    else if(tableView == mercuryTableView){
 
-            return chartCake!.transitAspectsFiltered(by: Planet.mars.celestialObject).count
+                        return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.mercury.celestialObject).count
                     }
-        else if(tableView == jupiterTableView){
+                    else if(tableView == venusTableView){
 
-            return chartCake!.transitAspectsFiltered(by: Planet.jupiter.celestialObject).count
+                        return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.venus.celestialObject).count
                         }
-        else if(tableView == saturnTableView){
+                else if(tableView == marsTableView){
 
-            return chartCake!.transitAspectsFiltered(by: Planet.saturn.celestialObject).count
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.mars.celestialObject).count
                             }
-        else if(tableView == uranusTableView){
+                else if(tableView == jupiterTableView){
 
-            return chartCake!.transitAspectsFiltered(by: Planet.uranus.celestialObject).count
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.jupiter.celestialObject).count
                                 }
-        else if(tableView == neptuneTableView){
+                else if(tableView == saturnTableView){
 
-            return chartCake!.transitAspectsFiltered(by: Planet.neptune.celestialObject).count
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.saturn.celestialObject).count
                                     }
-        else {
+                else if(tableView == uranusTableView){
 
-            return chartCake!.transitAspectsFiltered(by: Planet.pluto.celestialObject).count
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.uranus.celestialObject).count
+                                        }
+                else if(tableView == neptuneTableView){
+
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.neptune.celestialObject).count
+                                            }
+                else {
+
+                    return chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.pluto.celestialObject).count
 
 
 
-    }
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            }
+            }
+            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+                if(tableView == sunTableView) {
 
-        if(tableView == sunTableView) {
+                    
+                    guard let cell = sunTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-            
-            guard let cell = sunTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+                       return UITableViewCell()
+                   }
 
-               return UITableViewCell()
-           }
-
-         
-          
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.sun.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-            
+                 
+                  
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.sun.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                    
 //                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
 ////
 //                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: MajorMoonAspects2()[indexPath.row], firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: transitSunAspects[indexPath.row],firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-           
-           return cell
-           
-    }
-        else if(tableView == moonTableView){
-            
-            guard let cell = moonTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+                   
+                   return cell
+                   
+            }
+                else if(tableView == moonTableView){
+                    
+                    guard let cell = moonTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
-         
+                       return UITableViewCell()
+                   }
+                 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.moon.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
-           
-           return cell
-           
-        }
-        
-        
-    
-        
-
-        else if(tableView == mercuryTableView){
-
-            
-            guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-               return UITableViewCell()
-           }
-         
-            
-
-            
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.mercury.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-              
-           return cell
-           
-        }
-            else if(tableView == venusTableView){
-
-                
-                guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-           
-           
-                
-                
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.venus.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-                  
-               return cell
-               
-            
-               
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.moon.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                   
+                   return cell
+                   
                 }
-        else if(tableView == marsTableView){
-
+                
+                
             
-            guard let cell = marsTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+                
 
-               return UITableViewCell()
-           }
+                else if(tableView == mercuryTableView){
 
-            
-       
+                    
+                    guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-            
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.mars.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-              
-           return cell
-           
-                    }
-        else if(tableView == jupiterTableView){
+                       return UITableViewCell()
+                   }
+                 
+                    
+    
+                    
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.mercury.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      
+                   return cell
+                   
+                }
+                    else if(tableView == venusTableView){
 
-            
-            guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+                        
+                        guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                           return UITableViewCell()
+                       }
 
-         
- 
-
-            
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.jupiter .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-              
-           
-           return cell
-           
+                   
+                   
+                        
+                        
+                          cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.venus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                          
+                       return cell
+                       
+                    
+                       
                         }
-        else if(tableView == saturnTableView){
+                else if(tableView == marsTableView){
 
-            
-            guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+                    
+                    guard let cell = marsTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                       return UITableViewCell()
+                   }
+
+                    
+               
+
+                    
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.mars.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      
+                   return cell
+                   
+                            }
+                else if(tableView == jupiterTableView){
+
+                    
+                    guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+                       return UITableViewCell()
+                   }
+
+                 
+         
+
+                    
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.jupiter.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      
+                   
+                   return cell
+                   
+                                }
+                else if(tableView == saturnTableView){
+
+                    
+                    guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+                       return UITableViewCell()
+                   }
 
 //                    var transitSaturnAspects = [plutoSaturn]
-
-            
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.saturn .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-              
-           return cell
-           
-                            }
-        else if(tableView == uranusTableView){
-
-            
-            guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-               return UITableViewCell()
-           }
-
-       
-
-            
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.uranus .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-              
-           
-           return cell
-           
-                                }
-        else if(tableView == neptuneTableView){
-
-            
-            guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-               return UITableViewCell()
-           }
-
-            
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.neptune .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-              
-           
-           return cell
-           
+      
+                    
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.saturn.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      
+                   return cell
+                   
                                     }
-        else {
+                else if(tableView == uranusTableView){
 
-            
-            guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+                    
+                    guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                       return UITableViewCell()
+                   }
 
-            
-
-            
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.transitAspectsFiltered(by: Planet.pluto .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-              
-           
-           return cell
-           
-
-
-    }
-    }
-    
                
-           
+       
+                    
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.uranus.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      
+                   
+                   return cell
+                   
+                                        }
+                else if(tableView == neptuneTableView){
+
+                    
+                    guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+                       return UITableViewCell()
+                   }
+
+                    
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.neptune.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      
+                   
+                   return cell
+                   
+                                            }
+                else {
+
+                    
+                    guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+
+                       return UITableViewCell()
+                   }
+
+                    
+
+                    
+                      cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.progressedSimpleAspectsFiltered(chartCake!.major.planets, by: Planet.pluto.celestialObject)[indexPath.row].aspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                      
+                   
+                   return cell
+                   
+
+
+            }
+            }
+            
+               
+               
            
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
@@ -895,5 +905,10 @@ extension TransitAspectedPlanetsViewController  : UITableViewDataSource, UITable
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
             }
+    
+    @objc func navigateToTimeChangeVC() {
+        let timeChangeVC = ProgressedPlanetsTimeChangeViewController()
+        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+    }
         
 }

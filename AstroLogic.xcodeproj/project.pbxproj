@@ -38,6 +38,9 @@
 		395DE51F2A967FBE00B0B451 /* SynastryFlipBiWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE51E2A967FBE00B0B451 /* SynastryFlipBiWheel.swift */; };
 		395DE5212A969E8100B0B451 /* CompositeChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5202A969E8100B0B451 /* CompositeChart.swift */; };
 		395DE5232A969F1F00B0B451 /* CompositePlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5222A969F1F00B0B451 /* CompositePlanetsVC.swift */; };
+		395DE5252A96E8DD00B0B451 /* SimpleTransitAspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5242A96E8DD00B0B451 /* SimpleTransitAspects.swift */; };
+		395DE5272A96EA4600B0B451 /* SimpleMinorAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5262A96EA4600B0B451 /* SimpleMinorAspectsVC.swift */; };
+		395DE5292A96EDB700B0B451 /* SimpleMajorAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5282A96EDB700B0B451 /* SimpleMajorAspectsVC.swift */; };
 		396CDCB92A74712100EDCECC /* DecanatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCB82A74712100EDCECC /* DecanatesVC.swift */; };
 		396CDCBB2A74716A00EDCECC /* CustomDecansTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */; };
 		396CDCBD2A7471A200EDCECC /* PlanetDegreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBC2A7471A200EDCECC /* PlanetDegreeVC.swift */; };
@@ -123,6 +126,9 @@
 		395DE51E2A967FBE00B0B451 /* SynastryFlipBiWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynastryFlipBiWheel.swift; sourceTree = "<group>"; };
 		395DE5202A969E8100B0B451 /* CompositeChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeChart.swift; sourceTree = "<group>"; };
 		395DE5222A969F1F00B0B451 /* CompositePlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositePlanetsVC.swift; sourceTree = "<group>"; };
+		395DE5242A96E8DD00B0B451 /* SimpleTransitAspects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTransitAspects.swift; sourceTree = "<group>"; };
+		395DE5262A96EA4600B0B451 /* SimpleMinorAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMinorAspectsVC.swift; sourceTree = "<group>"; };
+		395DE5282A96EDB700B0B451 /* SimpleMajorAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMajorAspectsVC.swift; sourceTree = "<group>"; };
 		396CDCB82A74712100EDCECC /* DecanatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesVC.swift; sourceTree = "<group>"; };
 		396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDecansTable.swift; sourceTree = "<group>"; };
 		396CDCBC2A7471A200EDCECC /* PlanetDegreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDegreeVC.swift; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 				39A1EC502A5F76E8008D1EC1 /* MinorsVC.swift */,
 				39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */,
 				395DE5042A954A4B00B0B451 /* TransitAspectsVC.swift */,
+				395DE5242A96E8DD00B0B451 /* SimpleTransitAspects.swift */,
 				3955A6652A90963D00DE2051 /* NatalAspectsVC.swift */,
 				39E168632A96D8150003892B /* NatalAspectsSimple.swift */,
 				395DE51A2A967E5000B0B451 /* SynastryChartVC.swift */,
@@ -239,7 +246,9 @@
 				395DE5222A969F1F00B0B451 /* CompositePlanetsVC.swift */,
 				395DE51E2A967FBE00B0B451 /* SynastryFlipBiWheel.swift */,
 				39A1EC522A5F773E008D1EC1 /* MPAspectsVC.swift */,
+				395DE5282A96EDB700B0B451 /* SimpleMajorAspectsVC.swift */,
 				39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */,
+				395DE5262A96EA4600B0B451 /* SimpleMinorAspectsVC.swift */,
 				39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */,
 				395DE5062A95AD1100B0B451 /* Planet Info.swift */,
 				395DE5082A95DC7A00B0B451 /* RelationshipPlanetsVC.swift */,
@@ -373,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395DE5272A96EA4600B0B451 /* SimpleMinorAspectsVC.swift in Sources */,
 				396CDCBF2A7471D400EDCECC /* PlanetDegreeCell.swift in Sources */,
 				3955A6662A90963D00DE2051 /* NatalAspectsVC.swift in Sources */,
 				39A1EC5D2A5F7A96008D1EC1 /* NewAspects.swift in Sources */,
@@ -416,6 +426,7 @@
 				39851F822A93063600E70FF5 /* mpAspectsTCVC.swift in Sources */,
 				39851F7E2A93028D00E70FF5 /* mpProgressedAspectsByHouseTCVC.swift in Sources */,
 				39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */,
+				395DE5252A96E8DD00B0B451 /* SimpleTransitAspects.swift in Sources */,
 				3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */,
 				39851F802A9302A100E70FF5 /* TransitAspectsByHouseTCVC.swift in Sources */,
 				39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */,
@@ -441,6 +452,7 @@
 				396CDCB92A74712100EDCECC /* DecanatesVC.swift in Sources */,
 				39851F6C2A93017800E70FF5 /* TransitPlanetsTCVC.swift in Sources */,
 				395DE5172A96796A00B0B451 /* OtherStrongestPlanetVC.swift in Sources */,
+				395DE5292A96EDB700B0B451 /* SimpleMajorAspectsVC.swift in Sources */,
 				39A1EC362A5F6043008D1EC1 /* MyItemsVC.swift in Sources */,
 				39A1EC3F2A5F6DB6008D1EC1 /* NatalPlanetsVC.swift in Sources */,
 				395DE51F2A967FBE00B0B451 /* SynastryFlipBiWheel.swift in Sources */,
