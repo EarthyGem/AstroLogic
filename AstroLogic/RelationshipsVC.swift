@@ -9,8 +9,8 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     var relationships: [Relationships] = []
     var selectedName: String?
     var name: String?
-    var selectedChart: ChartCake?
-    var natalChart: ChartCake?
+    var otherChart: ChartCake?
+    var chartCake: ChartCake?
     var charts: [ChartEntity] = []
     var strongestPlanetSign: String?
     var strongestPlanet: String?
@@ -83,7 +83,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         
         // Before pushing the AddRelationshipViewController
         let addViewController = AddRelationshipViewController()
-        addViewController.natalChart = natalChart // Assign the value here
+        addViewController.chartCake = chartCake // Assign the value here
         navigationController?.pushViewController(addViewController, animated: true)
 
     }
@@ -130,7 +130,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
 }
 
 extension RelationshipsViewController: AddRelationshipDelegate {
-    func addRelationship(_ relationship: Relationships, chart: ChartCake, natalChart: ChartCake) {
+    func addRelationship(_ relationship: Relationships, chart: ChartCake, chartCake: ChartCake) {
       relationship.chartCake = chart
      
     
@@ -147,14 +147,14 @@ extension RelationshipsViewController: UITableViewDelegate {
 
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedChart = charts[indexPath.row]
+        let otherChart = charts[indexPath.row]
 
         // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
         // Otherwise, adapt accordingly.
-        let latitude = selectedChart.latitude
-        let longitude = selectedChart.longitude
-        let chartDate = selectedChart.birthDate
-        let name = selectedChart.name ?? ""
+        let latitude = otherChart.latitude
+        let longitude = otherChart.longitude
+        let chartDate = otherChart.birthDate
+        let name = otherChart.name ?? ""
 
         let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)

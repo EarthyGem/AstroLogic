@@ -89,7 +89,7 @@ class Relationships {
     var mcDeclination: Double?
     var getMinors: Date? // Add minorProgressionDate property
     var getMajorProgresseDate: Date? // Add getMajorProgresseDate property
-    var natalChart: ChartCake? // Add chart property
+    var otherChart: ChartCake? // Add chart property
     init(name: String, chartCake: ChartCake) {
         self.name = name
         self.chartCake = chartCake

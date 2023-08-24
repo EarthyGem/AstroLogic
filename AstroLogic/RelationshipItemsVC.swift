@@ -17,8 +17,8 @@ struct RelationshipItems {
 class RelationshipItemsViewController: UIViewController {
     
     var relationshipChart: ChartCake?
-    var selectedChart: ChartCake?
-    var natalChart: ChartCake?
+    var otherChart: ChartCake?
+    var chartCake: ChartCake?
     var strongestPlanet: String?
     var placeHolder = [String]()
     var selectedName: String!
@@ -69,7 +69,7 @@ class RelationshipItemsViewController: UIViewController {
 
     }
 extension RelationshipItemsViewController: AddRelationshipDelegate {
-    func addRelationship(_ relationship: Relationships, chart: ChartCake, natalChart: ChartCake) {
+    func addRelationship(_ relationship: Relationships, chart: ChartCake, chartCake: ChartCake) {
         let newRelationship = RelationshipItems(chartType: relationship.name)
         relationshipData.append(newRelationship)
         tableView.reloadData()
@@ -80,7 +80,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
         // You can pass the relationship to the desired view controller or perform any necessary action
         // For example, you can push a new view controller with the selected relationship
         let relationshipsVC = RelationshipsViewController()
-        relationshipsVC.selectedChart = selectedChart
+        relationshipsVC.otherChart = otherChart
         navigationController?.pushViewController(relationshipsVC, animated: true)
     }
 }
@@ -99,17 +99,17 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
 //                   delegate?.didSelectRelationship(selectedRelationship)
 //
                 let OthersPlanetsVC = OthersPlanetsViewController(planets: placeHolder)
-                OthersPlanetsVC.natalChart = self.natalChart
-                OthersPlanetsVC.selectedChart = self.selectedChart
+                OthersPlanetsVC.chartCake = self.chartCake
+                OthersPlanetsVC.otherChart = self.otherChart
                 OthersPlanetsVC.name = self.name
                 OthersPlanetsVC.selectedName = self.selectedName
                 
-             //   print("Suns!!! \(String(describing: todaysVC.selectedChart?.sun.formatted)) and \(String(describing: todaysVC.natalChart?.sun.formatted))")
+             //   print("Suns!!! \(String(describing: todaysVC.otherChart?.sun.formatted)) and \(String(describing: todaysVC.chartCake?.sun.formatted))")
 //
                 
                let SynastryChartVC = SynastryViewController(MP_Planets: [""])
-                SynastryChartVC.natalChart = self.natalChart
-                SynastryChartVC.selectedChart = self.selectedChart
+                SynastryChartVC.chartCake = self.chartCake
+                SynastryChartVC.otherChart = self.otherChart
                 SynastryChartVC.name = self.name
                 SynastryChartVC.selectedName = self.selectedName
                 
@@ -117,11 +117,11 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 let natalPlanetsVC = RelationshipsPlanetsViewController(planets: placeHolder)
                 
 //                natalPlanetsVC.title = category.chartType
-                natalPlanetsVC.natalChart = self.natalChart
-                natalPlanetsVC.selectedChart = self.selectedChart
+                natalPlanetsVC.chartCake = self.chartCake
+                natalPlanetsVC.otherChart = self.otherChart
 //                let compositeVC = CompositePlanetsViewController(planets: [""])
-//                compositeVC.natalChart = self.natalChart
-//                compositeVC.selectedChart = self.selectedChart
+//                compositeVC.chartCake = self.chartCake
+//                compositeVC.otherChart = self.otherChart
                 
                 let myNatalHousesVC = MyNatalHousesVC()
 //                myNatalHousesVC.title = category2.chartType
@@ -131,7 +131,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
 //
           //      let transitPlanetsVC = RelationshipTransitPlanets(transitPlanets: transitPlanets)
 //                natalPlanetsVC.title = category.chartType
-          //      transitPlanetsVC.selectedChart = self.selectedChart
+          //      transitPlanetsVC.otherChart = self.otherChart
             
 //
           //      let transitAspectsVC = TransitAspectedPlanetsViewController()
@@ -140,7 +140,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
          //       let minorProgressionsVC = RelationshipMinorProgressionsViewController(MP_Planets: minorPlanets)
          //       minorProgressionsVC.getMinors = self.getMinors
 //                minorProgressionsVC.title = category.chartType
-          //      minorProgressionsVC.selectedChart = self.selectedChart
+          //      minorProgressionsVC.otherChart = self.otherChart
               //  print("get minors date:  \(String(describing: minorProgressionsVC.getMinors))")
               
                 
@@ -151,7 +151,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
        //         let MP_PlanetsVC = RelationshipMajorProgressionsViewController(MP_Planets: majorPlanets)
            //     MP_PlanetsVC.getMajorProgresseDate = self.getMajorProgresseDate
 //                MP_PlanetsVC.chart = self.chart
-           //     MP_PlanetsVC.selectedChart = self.selectedChart
+           //     MP_PlanetsVC.otherChart = self.otherChart
               //  print("get majors date:  \(String(describing: MP_PlanetsVC.getMajorProgresseDate))")
               
             

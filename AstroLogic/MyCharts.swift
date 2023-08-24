@@ -125,14 +125,14 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedChart = charts[indexPath.row]
+        let otherChart = charts[indexPath.row]
 
         // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
         // Otherwise, adapt accordingly.
-        let latitude = selectedChart.latitude
-        let longitude = selectedChart.longitude
-        let chartDate = selectedChart.birthDate
-        let name = selectedChart.name ?? ""
+        let latitude = otherChart.latitude
+        let longitude = otherChart.longitude
+        let chartDate = otherChart.birthDate
+        let name = otherChart.name ?? ""
 
         let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)

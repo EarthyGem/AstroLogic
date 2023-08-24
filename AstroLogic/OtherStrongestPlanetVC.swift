@@ -11,7 +11,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     var scores: [Planet: CGFloat]?
     var chart: Chart?
     var chartCake: ChartCake?
-    var selectedChart: ChartCake?
+    var otherChart: ChartCake?
     var name: String!
     
     // Add
@@ -80,9 +80,9 @@ class OthersStrongestPlanetViewController: UIViewController {
     @objc func myItemsButtonTapped() {
         // Initialize and push the MyItemsViewController
         let relationshipItemsVC = RelationshipItemsViewController()
-        relationshipItemsVC.natalChart = chartCake.self
+        relationshipItemsVC.chartCake = chartCake.self
         relationshipItemsVC.strongestPlanet = strongestPlanet.self
-        relationshipItemsVC.selectedChart = chartCake.self
+        relationshipItemsVC.otherChart = chartCake.self
         relationshipItemsVC.name = name.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet

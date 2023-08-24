@@ -11,8 +11,8 @@ import SwiftEphemeris
 
 
 class FlipSynastryBiWheelChartView: UIView {
-    var natalChart: ChartCake!
-    var selectedChart: ChartCake!
+    var chartCake: ChartCake!
+    var otherChart: ChartCake!
  
     
     var planetPositions: [CelestialObject: CGFloat] = [:]
@@ -20,9 +20,9 @@ class FlipSynastryBiWheelChartView: UIView {
     
     
     
-init(frame: CGRect, natalChart: ChartCake, selectedChart: ChartCake) {
-        self.natalChart = selectedChart
-        self.selectedChart = natalChart
+init(frame: CGRect, chartCake: ChartCake, otherChart: ChartCake) {
+        self.chartCake = otherChart
+        self.otherChart = chartCake
         super.init(frame: frame)
         setupGestureRecognizers()
         updateBirthChart()
@@ -252,36 +252,36 @@ private func drawTransitZodiacCircle(context: CGContext) {
 
     private func getHouses1() -> [CGFloat] {
         
-        let first = natalChart!.natal.houseCusps.first.value
-        let second = natalChart!.natal.houseCusps.second.value
-        let third = natalChart!.natal.houseCusps.third.value
-        let fourth = natalChart!.natal.houseCusps.fourth.value
-        let fifth = natalChart!.natal.houseCusps.fifth.value
-        let sixth = natalChart!.natal.houseCusps.sixth.value
-        let seventh = natalChart!.natal.houseCusps.seventh.value
-        let eighth = natalChart!.natal.houseCusps.eighth.value
-        let ninth = natalChart!.natal.houseCusps.ninth.value
-        let tenth = natalChart!.natal.houseCusps.tenth.value
-        let eleventh = natalChart!.natal.houseCusps.eleventh.value
-        let twelfth = natalChart!.natal.houseCusps.twelfth.value
+        let first = chartCake!.natal.houseCusps.first.value
+        let second = chartCake!.natal.houseCusps.second.value
+        let third = chartCake!.natal.houseCusps.third.value
+        let fourth = chartCake!.natal.houseCusps.fourth.value
+        let fifth = chartCake!.natal.houseCusps.fifth.value
+        let sixth = chartCake!.natal.houseCusps.sixth.value
+        let seventh = chartCake!.natal.houseCusps.seventh.value
+        let eighth = chartCake!.natal.houseCusps.eighth.value
+        let ninth = chartCake!.natal.houseCusps.ninth.value
+        let tenth = chartCake!.natal.houseCusps.tenth.value
+        let eleventh = chartCake!.natal.houseCusps.eleventh.value
+        let twelfth = chartCake!.natal.houseCusps.twelfth.value
         
         return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
     }
     
     private func getHousesDegree() -> [CGFloat] {
     
-        let first = natalChart!.natal.houseCusps.first.degree
-        let second = natalChart!.natal.houseCusps.second.degree
-        let third = natalChart!.natal.houseCusps.third.degree
-        let fourth = natalChart!.natal.houseCusps.fourth.degree
-        let fifth = natalChart!.natal.houseCusps.fifth.degree
-        let sixth = natalChart!.natal.houseCusps.sixth.degree
-        let seventh = natalChart!.natal.houseCusps.seventh.degree
-        let eighth = natalChart!.natal.houseCusps.eighth.degree
-        let ninth = natalChart!.natal.houseCusps.ninth.degree
-        let tenth = natalChart!.natal.houseCusps.tenth.degree
-        let eleventh = natalChart!.natal.houseCusps.eleventh.degree
-        let twelfth = natalChart!.natal.houseCusps.twelfth.degree
+        let first = chartCake!.natal.houseCusps.first.degree
+        let second = chartCake!.natal.houseCusps.second.degree
+        let third = chartCake!.natal.houseCusps.third.degree
+        let fourth = chartCake!.natal.houseCusps.fourth.degree
+        let fifth = chartCake!.natal.houseCusps.fifth.degree
+        let sixth = chartCake!.natal.houseCusps.sixth.degree
+        let seventh = chartCake!.natal.houseCusps.seventh.degree
+        let eighth = chartCake!.natal.houseCusps.eighth.degree
+        let ninth = chartCake!.natal.houseCusps.ninth.degree
+        let tenth = chartCake!.natal.houseCusps.tenth.degree
+        let eleventh = chartCake!.natal.houseCusps.eleventh.degree
+        let twelfth = chartCake!.natal.houseCusps.twelfth.degree
         
         return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
     }
@@ -289,18 +289,18 @@ private func drawTransitZodiacCircle(context: CGContext) {
     
     private func getHousesMinute() -> [CGFloat] {
         
-        let first = natalChart!.natal.houseCusps.first.minute
-        let second = natalChart!.natal.houseCusps.second.minute
-        let third = natalChart!.natal.houseCusps.third.minute
-        let fourth = natalChart!.natal.houseCusps.fourth.minute
-        let fifth = natalChart!.natal.houseCusps.fifth.minute
-        let sixth = natalChart!.natal.houseCusps.sixth.minute
-        let seventh = natalChart!.natal.houseCusps.seventh.minute
-        let eighth = natalChart!.natal.houseCusps.eighth.minute
-        let ninth = natalChart!.natal.houseCusps.ninth.minute
-        let tenth = natalChart!.natal.houseCusps.tenth.minute
-        let eleventh = natalChart!.natal.houseCusps.eleventh.minute
-        let twelfth = natalChart!.natal.houseCusps.twelfth.minute
+        let first = chartCake!.natal.houseCusps.first.minute
+        let second = chartCake!.natal.houseCusps.second.minute
+        let third = chartCake!.natal.houseCusps.third.minute
+        let fourth = chartCake!.natal.houseCusps.fourth.minute
+        let fifth = chartCake!.natal.houseCusps.fifth.minute
+        let sixth = chartCake!.natal.houseCusps.sixth.minute
+        let seventh = chartCake!.natal.houseCusps.seventh.minute
+        let eighth = chartCake!.natal.houseCusps.eighth.minute
+        let ninth = chartCake!.natal.houseCusps.ninth.minute
+        let tenth = chartCake!.natal.houseCusps.tenth.minute
+        let eleventh = chartCake!.natal.houseCusps.eleventh.minute
+        let twelfth = chartCake!.natal.houseCusps.twelfth.minute
         
         return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
     }
@@ -308,18 +308,18 @@ private func drawTransitZodiacCircle(context: CGContext) {
     
     private func getHouseNames() -> [String] {
         
-        let first = natalChart!.natal.houseCusps.first.sign.keyName
-        let second = natalChart!.natal.houseCusps.second.sign.keyName
-        let third = natalChart!.natal.houseCusps.third.sign.keyName
-        let fourth = natalChart!.natal.houseCusps.fourth.sign.keyName
-        let fifth = natalChart!.natal.houseCusps.fifth.sign.keyName
-        let sixth = natalChart!.natal.houseCusps.sixth.sign.keyName
-        let seventh = natalChart!.natal.houseCusps.seventh.sign.keyName
-        let eighth = natalChart!.natal.houseCusps.eighth.sign.keyName
-        let ninth = natalChart!.natal.houseCusps.ninth.sign.keyName
-        let tenth = natalChart!.natal.houseCusps.tenth.sign.keyName
-        let eleventh = natalChart!.natal.houseCusps.eleventh.sign.keyName
-        let twelfth = natalChart!.natal.houseCusps.twelfth.sign.keyName
+        let first = chartCake!.natal.houseCusps.first.sign.keyName
+        let second = chartCake!.natal.houseCusps.second.sign.keyName
+        let third = chartCake!.natal.houseCusps.third.sign.keyName
+        let fourth = chartCake!.natal.houseCusps.fourth.sign.keyName
+        let fifth = chartCake!.natal.houseCusps.fifth.sign.keyName
+        let sixth = chartCake!.natal.houseCusps.sixth.sign.keyName
+        let seventh = chartCake!.natal.houseCusps.seventh.sign.keyName
+        let eighth = chartCake!.natal.houseCusps.eighth.sign.keyName
+        let ninth = chartCake!.natal.houseCusps.ninth.sign.keyName
+        let tenth = chartCake!.natal.houseCusps.tenth.sign.keyName
+        let eleventh = chartCake!.natal.houseCusps.eleventh.sign.keyName
+        let twelfth = chartCake!.natal.houseCusps.twelfth.sign.keyName
         
         return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
     }
@@ -357,48 +357,48 @@ private func drawTransitZodiacCircle(context: CGContext) {
         ]
         
         let planetDegree: [(planet: CelestialObject, degree: String)] = [
-            (.planet(.sun), "\(Int(natalChart!.natal.sun.degree))°"),
-            (.planet(.moon), "\(Int(natalChart!.natal.moon.degree))°"),
-            (.planet(.mercury), "\(Int(natalChart!.natal.mercury.degree))°"),
-            (.planet(.venus), "\(Int(natalChart!.natal.venus.degree))°"),
-            (.planet(.mars), "\(Int(natalChart!.natal.mars.degree))°"),
-            (.planet(.jupiter), "\(Int(natalChart!.natal.jupiter.degree))°"),
-            (.planet(.saturn), "\(Int(natalChart!.natal.saturn.degree))°"),
-            (.planet(.uranus), "\(Int(natalChart!.natal.uranus.degree))°"),
-            (.planet(.neptune), "\(Int(natalChart!.natal.neptune.degree))°"),
-            (.planet(.pluto), "\(Int(natalChart!.natal.pluto.degree))°"),
-            (.lunarNode(.meanSouthNode), "\(Int(natalChart!.natal.southNode.degree))°")
+            (.planet(.sun), "\(Int(chartCake!.natal.sun.degree))°"),
+            (.planet(.moon), "\(Int(chartCake!.natal.moon.degree))°"),
+            (.planet(.mercury), "\(Int(chartCake!.natal.mercury.degree))°"),
+            (.planet(.venus), "\(Int(chartCake!.natal.venus.degree))°"),
+            (.planet(.mars), "\(Int(chartCake!.natal.mars.degree))°"),
+            (.planet(.jupiter), "\(Int(chartCake!.natal.jupiter.degree))°"),
+            (.planet(.saturn), "\(Int(chartCake!.natal.saturn.degree))°"),
+            (.planet(.uranus), "\(Int(chartCake!.natal.uranus.degree))°"),
+            (.planet(.neptune), "\(Int(chartCake!.natal.neptune.degree))°"),
+            (.planet(.pluto), "\(Int(chartCake!.natal.pluto.degree))°"),
+            (.lunarNode(.meanSouthNode), "\(Int(chartCake!.natal.southNode.degree))°")
           
         ]
         
         let planetSignSymbols: [(planet: CelestialObject, imageName: String)] = [
-            (.planet(.sun), natalChart!.natal.sun.sign.keyName),
-            (.planet(.moon), natalChart!.natal.moon.sign.keyName),
-            (.planet(.mercury), natalChart!.natal.mercury.sign.keyName),
-            (.planet(.venus), natalChart!.natal.venus.sign.keyName),
-            (.planet(.mars), natalChart!.natal.mars.sign.keyName),
-            (.planet(.jupiter), natalChart!.natal.jupiter.sign.keyName),
-            (.planet(.saturn), natalChart!.natal.saturn.sign.keyName),
-            (.planet(.uranus), natalChart!.natal.uranus.sign.keyName),
-            (.planet(.neptune), natalChart!.natal.neptune.sign.keyName),
-            (.planet(.pluto), natalChart!.natal.pluto.sign.keyName),
-            (.lunarNode(.meanSouthNode), natalChart!.natal.southNode.sign.keyName)
+            (.planet(.sun), chartCake!.natal.sun.sign.keyName),
+            (.planet(.moon), chartCake!.natal.moon.sign.keyName),
+            (.planet(.mercury), chartCake!.natal.mercury.sign.keyName),
+            (.planet(.venus), chartCake!.natal.venus.sign.keyName),
+            (.planet(.mars), chartCake!.natal.mars.sign.keyName),
+            (.planet(.jupiter), chartCake!.natal.jupiter.sign.keyName),
+            (.planet(.saturn), chartCake!.natal.saturn.sign.keyName),
+            (.planet(.uranus), chartCake!.natal.uranus.sign.keyName),
+            (.planet(.neptune), chartCake!.natal.neptune.sign.keyName),
+            (.planet(.pluto), chartCake!.natal.pluto.sign.keyName),
+            (.lunarNode(.meanSouthNode), chartCake!.natal.southNode.sign.keyName)
             
         ]
         
         
         let planetMinute: [(planet: CelestialObject, minute: String)] = [
-            (.planet(.sun), "\(Int(natalChart!.natal.sun.minute))°"),
-            (.planet(.moon), "\(Int(natalChart!.natal.moon.minute))°"),
-            (.planet(.mercury), "\(Int(natalChart!.natal.mercury.minute))°"),
-            (.planet(.venus), "\(Int(natalChart!.natal.venus.minute))°"),
-            (.planet(.mars), "\(Int(natalChart!.natal.mars.minute))°"),
-            (.planet(.jupiter), "\(Int(natalChart!.natal.jupiter.minute))°"),
-            (.planet(.saturn), "\(Int(natalChart!.natal.saturn.minute))°"),
-            (.planet(.uranus), "\(Int(natalChart!.natal.uranus.minute))°"),
-            (.planet(.neptune), "\(Int(natalChart!.natal.neptune.minute))°"),
-            (.planet(.pluto), "\(Int(natalChart!.natal.pluto.minute))°"),
-            (.lunarNode(.meanSouthNode), "\(Int(natalChart!.natal.southNode.minute))°")
+            (.planet(.sun), "\(Int(chartCake!.natal.sun.minute))°"),
+            (.planet(.moon), "\(Int(chartCake!.natal.moon.minute))°"),
+            (.planet(.mercury), "\(Int(chartCake!.natal.mercury.minute))°"),
+            (.planet(.venus), "\(Int(chartCake!.natal.venus.minute))°"),
+            (.planet(.mars), "\(Int(chartCake!.natal.mars.minute))°"),
+            (.planet(.jupiter), "\(Int(chartCake!.natal.jupiter.minute))°"),
+            (.planet(.saturn), "\(Int(chartCake!.natal.saturn.minute))°"),
+            (.planet(.uranus), "\(Int(chartCake!.natal.uranus.minute))°"),
+            (.planet(.neptune), "\(Int(chartCake!.natal.neptune.minute))°"),
+            (.planet(.pluto), "\(Int(chartCake!.natal.pluto.minute))°"),
+            (.lunarNode(.meanSouthNode), "\(Int(chartCake!.natal.southNode.minute))°")
         
         ]
         
@@ -555,48 +555,48 @@ private func drawTransitPlanetSymbols(context: CGContext) {
     ]
     
     let planetDegree: [(planet: CelestialObject, degree: String)] = [
-        (.planet(.sun), "\(Int(selectedChart!.natal.sun.degree))°"),
-        (.planet(.moon), "\(Int(selectedChart!.natal.moon.degree))°"),
-        (.planet(.mercury), "\(Int(selectedChart!.natal.mercury.degree))°"),
-        (.planet(.venus), "\(Int(selectedChart!.natal.venus.degree))°"),
-        (.planet(.mars), "\(Int(selectedChart!.natal.mars.degree))°"),
-        (.planet(.jupiter), "\(Int(selectedChart!.natal.jupiter.degree))°"),
-        (.planet(.saturn), "\(Int(selectedChart!.natal.saturn.degree))°"),
-        (.planet(.uranus), "\(Int(selectedChart!.natal.uranus.degree))°"),
-        (.planet(.neptune), "\(Int(selectedChart!.natal.neptune.degree))°"),
-        (.planet(.pluto), "\(Int(selectedChart!.natal.pluto.degree))°"),
-        (.lunarNode(.meanSouthNode), "\(Int(selectedChart!.natal.southNode.degree))°")
+        (.planet(.sun), "\(Int(otherChart!.natal.sun.degree))°"),
+        (.planet(.moon), "\(Int(otherChart!.natal.moon.degree))°"),
+        (.planet(.mercury), "\(Int(otherChart!.natal.mercury.degree))°"),
+        (.planet(.venus), "\(Int(otherChart!.natal.venus.degree))°"),
+        (.planet(.mars), "\(Int(otherChart!.natal.mars.degree))°"),
+        (.planet(.jupiter), "\(Int(otherChart!.natal.jupiter.degree))°"),
+        (.planet(.saturn), "\(Int(otherChart!.natal.saturn.degree))°"),
+        (.planet(.uranus), "\(Int(otherChart!.natal.uranus.degree))°"),
+        (.planet(.neptune), "\(Int(otherChart!.natal.neptune.degree))°"),
+        (.planet(.pluto), "\(Int(otherChart!.natal.pluto.degree))°"),
+        (.lunarNode(.meanSouthNode), "\(Int(otherChart!.natal.southNode.degree))°")
       
     ]
     
     let planetSignSymbols: [(planet: CelestialObject, imageName: String)] = [
-        (.planet(.sun), selectedChart!.natal.sun.sign.keyName),
-        (.planet(.moon), selectedChart!.natal.moon.sign.keyName),
-        (.planet(.mercury), selectedChart!.natal.mercury.sign.keyName),
-        (.planet(.venus), selectedChart!.natal.venus.sign.keyName),
-        (.planet(.mars), selectedChart!.natal.mars.sign.keyName),
-        (.planet(.jupiter), selectedChart!.natal.jupiter.sign.keyName),
-        (.planet(.saturn), selectedChart!.natal.saturn.sign.keyName),
-        (.planet(.uranus), selectedChart!.natal.uranus.sign.keyName),
-        (.planet(.neptune), selectedChart!.natal.neptune.sign.keyName),
-        (.planet(.pluto), selectedChart!.natal.pluto.sign.keyName),
-        (.lunarNode(.meanSouthNode), selectedChart!.natal.southNode.sign.keyName)
+        (.planet(.sun), otherChart!.natal.sun.sign.keyName),
+        (.planet(.moon), otherChart!.natal.moon.sign.keyName),
+        (.planet(.mercury), otherChart!.natal.mercury.sign.keyName),
+        (.planet(.venus), otherChart!.natal.venus.sign.keyName),
+        (.planet(.mars), otherChart!.natal.mars.sign.keyName),
+        (.planet(.jupiter), otherChart!.natal.jupiter.sign.keyName),
+        (.planet(.saturn), otherChart!.natal.saturn.sign.keyName),
+        (.planet(.uranus), otherChart!.natal.uranus.sign.keyName),
+        (.planet(.neptune), otherChart!.natal.neptune.sign.keyName),
+        (.planet(.pluto), otherChart!.natal.pluto.sign.keyName),
+        (.lunarNode(.meanSouthNode), otherChart!.natal.southNode.sign.keyName)
         
     ]
     
     
     let planetMinute: [(planet: CelestialObject, minute: String)] = [
-        (.planet(.sun), "\(Int(selectedChart!.natal.sun.minute))°"),
-        (.planet(.moon), "\(Int(selectedChart!.natal.moon.minute))°"),
-        (.planet(.mercury), "\(Int(selectedChart!.natal.mercury.minute))°"),
-        (.planet(.venus), "\(Int(selectedChart!.natal.venus.minute))°"),
-        (.planet(.mars), "\(Int(selectedChart!.natal.mars.minute))°"),
-        (.planet(.jupiter), "\(Int(selectedChart!.natal.jupiter.minute))°"),
-        (.planet(.saturn), "\(Int(selectedChart!.natal.saturn.minute))°"),
-        (.planet(.uranus), "\(Int(selectedChart!.natal.uranus.minute))°"),
-        (.planet(.neptune), "\(Int(selectedChart!.natal.neptune.minute))°"),
-        (.planet(.pluto), "\(Int(selectedChart!.natal.pluto.minute))°"),
-        (.lunarNode(.meanSouthNode), "\(Int(selectedChart!.natal.southNode.minute))°")
+        (.planet(.sun), "\(Int(otherChart!.natal.sun.minute))°"),
+        (.planet(.moon), "\(Int(otherChart!.natal.moon.minute))°"),
+        (.planet(.mercury), "\(Int(otherChart!.natal.mercury.minute))°"),
+        (.planet(.venus), "\(Int(otherChart!.natal.venus.minute))°"),
+        (.planet(.mars), "\(Int(otherChart!.natal.mars.minute))°"),
+        (.planet(.jupiter), "\(Int(otherChart!.natal.jupiter.minute))°"),
+        (.planet(.saturn), "\(Int(otherChart!.natal.saturn.minute))°"),
+        (.planet(.uranus), "\(Int(otherChart!.natal.uranus.minute))°"),
+        (.planet(.neptune), "\(Int(otherChart!.natal.neptune.minute))°"),
+        (.planet(.pluto), "\(Int(otherChart!.natal.pluto.minute))°"),
+        (.lunarNode(.meanSouthNode), "\(Int(otherChart!.natal.southNode.minute))°")
     
     ]
     
@@ -793,18 +793,18 @@ private func drawTransitPlanetSymbols(context: CGContext) {
     
     
     private func getPlanets() -> [CGFloat] {
-        let sunPosition = natalChart!.natal.sun.value
-        let moonPosition = natalChart!.natal.moon.value
-        let mercuryPosition = natalChart!.natal.mercury.value
-        let venusPosition = natalChart!.natal.venus.value
-        let marsPosition = natalChart!.natal.mars.value
-        let jupiterPosition = natalChart!.natal.jupiter.value
-        let saturnPosition = natalChart!.natal.saturn.value
-        let uranusPosition = natalChart!.natal.uranus.value
-        let neptunePosition = natalChart!.natal.neptune.value
-        let plutoPosition = natalChart!.natal.pluto.value
-//        let northNodePosition = selectedChart!.natal.northNode.value
-        let southNodePosition = natalChart!.natal.southNode.value
+        let sunPosition = chartCake!.natal.sun.value
+        let moonPosition = chartCake!.natal.moon.value
+        let mercuryPosition = chartCake!.natal.mercury.value
+        let venusPosition = chartCake!.natal.venus.value
+        let marsPosition = chartCake!.natal.mars.value
+        let jupiterPosition = chartCake!.natal.jupiter.value
+        let saturnPosition = chartCake!.natal.saturn.value
+        let uranusPosition = chartCake!.natal.uranus.value
+        let neptunePosition = chartCake!.natal.neptune.value
+        let plutoPosition = chartCake!.natal.pluto.value
+//        let northNodePosition = otherChart!.natal.northNode.value
+        let southNodePosition = chartCake!.natal.southNode.value
         
         return [
             sunPosition,
@@ -849,18 +849,18 @@ func updateSynastryChart() {
 
 
 private func getSynastryPlanets() -> [CGFloat] {
-    let sunPosition = selectedChart!.natal.sun.value
-    let moonPosition = selectedChart!.natal.moon.value
-    let mercuryPosition = selectedChart!.natal.mercury.value
-    let venusPosition = selectedChart!.natal.venus.value
-    let marsPosition = selectedChart!.natal.mars.value
-    let jupiterPosition = selectedChart!.natal.jupiter.value
-    let saturnPosition = selectedChart!.natal.saturn.value
-    let uranusPosition = selectedChart!.natal.uranus.value
-    let neptunePosition = selectedChart!.natal.neptune.value
-    let plutoPosition = selectedChart!.natal.pluto.value
-//        let northNodePosition = selectedChart!.natal.northNode.value
-        let southNodePosition = selectedChart!.natal.southNode.value
+    let sunPosition = otherChart!.natal.sun.value
+    let moonPosition = otherChart!.natal.moon.value
+    let mercuryPosition = otherChart!.natal.mercury.value
+    let venusPosition = otherChart!.natal.venus.value
+    let marsPosition = otherChart!.natal.mars.value
+    let jupiterPosition = otherChart!.natal.jupiter.value
+    let saturnPosition = otherChart!.natal.saturn.value
+    let uranusPosition = otherChart!.natal.uranus.value
+    let neptunePosition = otherChart!.natal.neptune.value
+    let plutoPosition = otherChart!.natal.pluto.value
+//        let northNodePosition = otherChart!.natal.northNode.value
+        let southNodePosition = otherChart!.natal.southNode.value
     
     return [
         sunPosition,

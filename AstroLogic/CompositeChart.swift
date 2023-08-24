@@ -8,14 +8,14 @@ struct CompPlanetsData {
 }
 
 class CompositeBirthChartView: UIView {
-    var natalChart: ChartCake!
-    var selectedChart: ChartCake!
+    var chartCake: ChartCake!
+    var otherChart: ChartCake!
     var planetPositions: [CelestialObject: CGFloat] = [:]
     var synastryPlanetPositions: [CelestialObject: CGFloat] = [:]
 
-    init(frame: CGRect, natalChart: ChartCake, selectedChart: ChartCake) {
-        self.natalChart = natalChart
-        self.selectedChart = selectedChart
+    init(frame: CGRect, chartCake: ChartCake, otherChart: ChartCake) {
+        self.chartCake = chartCake
+        self.otherChart = otherChart
         super.init(frame: frame)
         setupGestureRecognizers()
         updateBirthChart()
@@ -531,8 +531,8 @@ class CompositeBirthChartView: UIView {
     }
 
     private func calculateCompHouseComponents() -> ([String], [Int], [Int], [Int]) {
-        guard let chart1 = natalChart else { return ([String](), [Int](), [Int](), [Int]())  }
-        guard let chart2 = selectedChart else { return ([String](), [Int](), [Int](), [Int]())  }
+        guard let chart1 = chartCake else { return ([String](), [Int](), [Int](), [Int]())  }
+        guard let chart2 = otherChart else { return ([String](), [Int](), [Int](), [Int]())  }
         
         let cusps = [
             (chart1.houseCusps.ascendent.value, chart2.houseCusps.ascendent.value),
@@ -562,8 +562,8 @@ class CompositeBirthChartView: UIView {
     
     
     func getCompPlanetsValue() -> [Double] {
-        guard let chart1 = natalChart else { return [Double]() }
-        guard let chart2 = selectedChart else { return [Double]() }
+        guard let chart1 = chartCake else { return [Double]() }
+        guard let chart2 = otherChart else { return [Double]() }
 
         let compSun = getCompositePoint(point1: chart1.natal.sun.value, point2: chart2.natal.sun.value)
         let compMoon = getCompositePoint(point1: chart1.natal.moon.value, point2: chart2.natal.moon.value)
@@ -593,8 +593,8 @@ class CompositeBirthChartView: UIView {
     }
     
     private func getHouses1() -> [CGFloat] {
-        guard let chart1 = natalChart else { return [CGFloat]() }
-        guard let chart2 = selectedChart else { return [CGFloat]() }
+        guard let chart1 = chartCake else { return [CGFloat]() }
+        guard let chart2 = otherChart else { return [CGFloat]() }
         
             let first = getCompositePoint(point1: (chart1.houseCusps.ascendent.value), point2: chart2.houseCusps.ascendent.value)
             
@@ -629,8 +629,8 @@ class CompositeBirthChartView: UIView {
         
     
         func getHousesDegree() -> [Double] {
-            guard let chart1 = natalChart else { return [Double]() }
-            guard let chart2 = selectedChart else { return [Double]() }
+            guard let chart1 = chartCake else { return [Double]() }
+            guard let chart2 = otherChart else { return [Double]() }
 
             let compFirst = getCompositePoint(point1: (chart1.houseCusps.ascendent.value), point2: chart2.houseCusps.ascendent.value)
             
@@ -682,8 +682,8 @@ class CompositeBirthChartView: UIView {
     
     
     func getCompHouseInfo() -> ([String], [Int], [Int], [Int]) {
-        guard let chart1 = natalChart else { return ([String](), [Int](), [Int](), [Int]())  }
-        guard let chart2 = selectedChart else { return ([String](), [Int](), [Int](), [Int]())  }
+        guard let chart1 = chartCake else { return ([String](), [Int](), [Int](), [Int]())  }
+        guard let chart2 = otherChart else { return ([String](), [Int](), [Int](), [Int]())  }
 
         let compFirst = getCompositePoint(point1: (chart1.houseCusps.ascendent.value), point2: chart2.houseCusps.ascendent.value)
         
@@ -777,8 +777,8 @@ class CompositeBirthChartView: UIView {
 //
         
     func getCompPlanets() -> (compositePlanets: [String], compPlanets: [Double], compPlanetsDegree: [Double], compPlanetsSign: [String], compPlanetsMinute: [Double], compPlanetsSecond: [Double]) {
-        guard let chart1 = natalChart else { return ([], [], [], [], [], []) }
-        guard let chart2 = selectedChart else { return ([], [], [], [], [], []) }
+        guard let chart1 = chartCake else { return ([], [], [], [], [], []) }
+        guard let chart2 = otherChart else { return ([], [], [], [], [], []) }
 
         let compSun = getCompositePoint(point1: chart1.natal.sun.longitude, point2: chart2.natal.sun.longitude)
         let compMoon = getCompositePoint(point1: chart1.natal.moon.longitude, point2: chart2.natal.moon.longitude)

@@ -11,7 +11,7 @@ class StrongestPlanetViewController: UIViewController {
     var scores: [Planet: CGFloat]?
     var chart: Chart?
     var chartCake: ChartCake?
-    var selectedChart: ChartCake?
+    var otherChart: ChartCake?
     var name: String = ""
     
     // Add

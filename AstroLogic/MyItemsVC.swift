@@ -21,10 +21,10 @@ class MyItemsViewController: UIViewController {
 // var progPlanets = [String]()
     
     var chart: Chart?
-    var chartCake: ChartCake?
+   
     var selectedDate: Date?
-    var natalChart: ChartCake?
-    var selectedChart: ChartCake?
+    var chartCake: ChartCake?
+    var otherChart: ChartCake?
     var strongestPlanet: String?
 
     // Use `getMinors` closure wherever you need to access the `getMinors` function
@@ -185,8 +185,8 @@ extension MyItemsViewController: UITableViewDelegate {
         MP_AspectsVC.chartCake = self.chartCake
         MP_AspectsVC.selectedDate = self.selectedDate
         let RelationshipVC = RelationshipsViewController()
-        RelationshipVC.natalChart = self.chartCake
-        RelationshipVC.selectedChart = self.selectedChart
+        RelationshipVC.chartCake = self.chartCake
+        RelationshipVC.otherChart = self.otherChart
         RelationshipVC.title = ""
         
         

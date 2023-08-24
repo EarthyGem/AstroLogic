@@ -10,7 +10,7 @@ protocol RelationshipSelectionDelegate: AnyObject {
 
 
 protocol AddRelationshipDelegate: AnyObject {
-    func addRelationship(_ relationship: Relationships, chart: ChartCake, natalChart: ChartCake)
+    func addRelationship(_ relationship: Relationships, chart: ChartCake, chartCake: ChartCake)
 }
 
 
@@ -24,8 +24,8 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
     var minorsDate: Date?
     var getMajorProgresseDate: (() -> Date)?
     var selectedDate: Date?
-    var natalChart: ChartCake?
-    var selectedChart: ChartCake?
+    var chartCake: ChartCake?
+    var otherChart: ChartCake?
     var birthChartView: BirthChartView?
     var strongestPlanetSign: String?
     let locationManager = CLLocationManager()
@@ -478,11 +478,11 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
                 
                 
                 let chartDate = self.combinedDateAndTime()!
-                self.selectedChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude, transitDate: selectedDate)
+                self.otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude, transitDate: selectedDate)
 
              
 
-                guard let chart = self.selectedChart else {
+                guard let chart = self.otherChart else {
                     assert(false, "There is no chart")
                     return
                 }
@@ -493,52 +493,52 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
                 saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude)
 
 
-                let scores = self.selectedChart!.getTotalPowerScoresForPlanets()
+                let scores = self.otherChart!.getTotalPowerScoresForPlanets()
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
 
-                // let signScore = self.selectedChart.natal.calculateTotalSignScore()
-                // let houseStrengths = self.selectedChart.natal.calculatePlanetInHouseScores()
-                // let houseScores = self.selectedChart.natal.calculateHouseStrengths()
+                // let signScore = self.otherChart.natal.calculateTotalSignScore()
+                // let houseStrengths = self.otherChart.natal.calculatePlanetInHouseScores()
+                // let houseScores = self.otherChart.natal.calculateHouseStrengths()
 
-                let tuple = selectedChart!.natal.getTotalHarmonyDiscordScoresForPlanets()
+                let tuple = otherChart!.natal.getTotalHarmonyDiscordScoresForPlanets()
                 let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
                 let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
 
                 if strongestPlanet == Planet.sun.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.sun.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.sun.sign.keyName
                 } else if strongestPlanet == Planet.moon.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.moon.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.moon.sign.keyName
                 } else if strongestPlanet == Planet.mercury.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.mercury.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.mercury.sign.keyName
                 } else if strongestPlanet == Planet.venus.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.venus.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.venus.sign.keyName
                 } else if strongestPlanet == Planet.mars.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.mars.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.mars.sign.keyName
                 } else if strongestPlanet == Planet.jupiter.celestialObject {
                    
-                    strongestPlanetSign = selectedChart!.natal.saturn.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.saturn.sign.keyName
                 } else if strongestPlanet == Planet.uranus.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.uranus.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.uranus.sign.keyName
                 } else if strongestPlanet == Planet.neptune.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.neptune.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.neptune.sign.keyName
                 } else if strongestPlanet == Planet.pluto.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.pluto.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.pluto.sign.keyName
                 } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-                    strongestPlanetSign = selectedChart!.natal.southNode.sign.keyName
+                    strongestPlanetSign = otherChart!.natal.southNode.sign.keyName
                 }
 
                 let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
                                                      strongestPlanetSign: strongestPlanetSign!,
-                                                     sunSign: selectedChart!.natal.sun.sign.keyName,
-                                                     moonSign: selectedChart!.natal.moon.sign.keyName,
-                                                     risingSign: selectedChart!.natal.houseCusps.ascendent.sign.keyName, name: name)
+                                                     sunSign: otherChart!.natal.sun.sign.keyName,
+                                                     moonSign: otherChart!.natal.moon.sign.keyName,
+                                                     risingSign: otherChart!.natal.houseCusps.ascendent.sign.keyName, name: name)
 
                 
                
                 
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
-                strongestPlanetVC.selectedChart = selectedChart
+                strongestPlanetVC.otherChart = otherChart
                 strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                 strongestPlanetVC.name = nameTextField.text!
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
