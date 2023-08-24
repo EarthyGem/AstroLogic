@@ -82,7 +82,7 @@ class OthersStrongestPlanetViewController: UIViewController {
         let relationshipItemsVC = RelationshipItemsViewController()
         relationshipItemsVC.chartCake = chartCake.self
         relationshipItemsVC.strongestPlanet = strongestPlanet.self
-        relationshipItemsVC.otherChart = chartCake.self
+        relationshipItemsVC.otherChart = otherChart.self
         relationshipItemsVC.name = name.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet

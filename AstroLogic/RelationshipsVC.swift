@@ -4,16 +4,17 @@ import SwiftEphemeris
 
 class RelationshipsViewController: UIViewController, UITableViewDataSource, RelationshipSelectionDelegate {
     
-    // Define your table view
+
     private var tableView: UITableView!
     var relationships: [Relationships] = []
     var selectedName: String?
     var name: String?
     var otherChart: ChartCake?
-    var chartCake: ChartCake?
     var charts: [ChartEntity] = []
     var strongestPlanetSign: String?
     var strongestPlanet: String?
+    var chartCake: ChartCake?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -83,7 +84,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         
         // Before pushing the AddRelationshipViewController
         let addViewController = AddRelationshipViewController()
-        addViewController.chartCake = chartCake // Assign the value here
+        addViewController.otherChart = otherChart // Assign the value here
         navigationController?.pushViewController(addViewController, animated: true)
 
     }
@@ -103,17 +104,18 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         
             let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell // Assume you've created a custom cell
             
-            let chart = charts[indexPath.row]
+            let selectedChart = charts[indexPath.row]
             
-            let chartDate = chart.birthDate!
-            let latitude = chart.latitude
-        let longitude = chart.longitude
-            let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
-            let scores = chartObj.getTotalPowerScoresForPlanets()
+            let chartDate = selectedChart.birthDate!
+            let latitude = selectedChart.latitude
+        let longitude = selectedChart.longitude
+        let name = selectedChart.name
+        otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
+        let scores = otherChart!.getTotalPowerScoresForPlanets()
             let strongestPlanet = getStrongestPlanet(from: scores)
             
             // Set the cell label
-            cell.textLabel?.text = chart.name
+            cell.textLabel?.text = name
             
             // Set the cell image
             let imageName = strongestPlanet.keyName.lowercased()
@@ -139,71 +141,69 @@ extension RelationshipsViewController: AddRelationshipDelegate {
   }
 }
     
-    // Implement any other required methods of the AddRelationshipDelegate if applicable
-
 
 extension RelationshipsViewController: UITableViewDelegate {
 
 
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let otherChart = charts[indexPath.row]
+        let selectedEntity = charts[indexPath.row]
 
         // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
         // Otherwise, adapt accordingly.
-        let latitude = otherChart.latitude
-        let longitude = otherChart.longitude
-        let chartDate = otherChart.birthDate
-        let name = otherChart.name ?? ""
+        let latitude = selectedEntity.latitude
+          let longitude = selectedEntity.longitude
+          let chartDate = selectedEntity.birthDate!
+          let name = selectedEntity.name ?? ""
 
-        let chart = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
-        let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
+        let otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
 
-        let scores = chartCake!.getTotalPowerScoresForPlanets()
+
+        let scores = otherChart!.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
 
         // let signScore = self.chart.natal.calculateTotalSignScore()
         // let houseStrengths = self.chart.natal.calculatePlanetInHouseScores()
         // let houseScores = self.chart.natal.calculateHouseStrengths()
 
-        let tuple = chart!.getTotalHarmonyDiscordScoresForPlanets()
+        let tuple = otherChart!.getTotalHarmonyDiscordScoresForPlanets()
         let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
         let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
 
         if strongestPlanet == Planet.sun.celestialObject {
-            strongestPlanetSign = chart!.natal.sun.sign.keyName
+            strongestPlanetSign = otherChart!.natal.sun.sign.keyName
         } else if strongestPlanet == Planet.moon.celestialObject {
-            strongestPlanetSign = chart!.natal.moon.sign.keyName
+            strongestPlanetSign = otherChart!.natal.moon.sign.keyName
         } else if strongestPlanet == Planet.mercury.celestialObject {
-            strongestPlanetSign = chart!.natal.mercury.sign.keyName
+            strongestPlanetSign = otherChart!.natal.mercury.sign.keyName
         } else if strongestPlanet == Planet.venus.celestialObject {
-            strongestPlanetSign = chart!.natal.venus.sign.keyName
+            strongestPlanetSign = otherChart!.natal.venus.sign.keyName
         } else if strongestPlanet == Planet.mars.celestialObject {
-            strongestPlanetSign = chart!.natal.mars.sign.keyName
+            strongestPlanetSign = otherChart!.natal.mars.sign.keyName
         } else if strongestPlanet == Planet.jupiter.celestialObject {
-            strongestPlanetSign = chart!.natal.jupiter.sign.keyName
+            strongestPlanetSign = otherChart!.natal.jupiter.sign.keyName
         } else if strongestPlanet == Planet.saturn.celestialObject {
-            strongestPlanetSign = chart!.natal.saturn.sign.keyName
+            strongestPlanetSign = otherChart!.natal.saturn.sign.keyName
         } else if strongestPlanet == Planet.uranus.celestialObject {
-            strongestPlanetSign = chart!.natal.uranus.sign.keyName
+            strongestPlanetSign = otherChart!.natal.uranus.sign.keyName
         } else if strongestPlanet == Planet.neptune.celestialObject {
-            strongestPlanetSign = chart!.natal.neptune.sign.keyName
+            strongestPlanetSign = otherChart!.natal.neptune.sign.keyName
         } else if strongestPlanet == Planet.pluto.celestialObject {
-            strongestPlanetSign = chart!.natal.pluto.sign.keyName
+            strongestPlanetSign = otherChart!.natal.pluto.sign.keyName
         } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-            strongestPlanetSign = chart!.natal.southNode.sign.keyName
+            strongestPlanetSign = otherChart!.natal.southNode.sign.keyName
         }
 
         let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
                                              strongestPlanetSign: strongestPlanetSign!,
-                                             sunSign: chart!.natal.sun.sign.keyName,
-                                             moonSign: chart!.natal.moon.sign.keyName,
-                                             risingSign: chart!.natal.houseCusps.ascendent.sign.keyName, name: name)
+                                             sunSign: otherChart!.natal.sun.sign.keyName,
+                                             moonSign: otherChart!.natal.moon.sign.keyName,
+                                             risingSign: otherChart!.natal.houseCusps.ascendent.sign.keyName, name: name)
 
         // Initialize and push the StrongestPlanetViewController
         let strongestPlanetVC = OthersStrongestPlanetViewController()
         strongestPlanetVC.chartCake = chartCake
-        strongestPlanetVC.chartCake = chart
+        strongestPlanetVC.otherChart = otherChart
         strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
         strongestPlanetVC.name = name
      //   strongestPlanetVC.selectedName = selectedName
