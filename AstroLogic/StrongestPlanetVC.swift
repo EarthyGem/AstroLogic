@@ -11,6 +11,7 @@ class StrongestPlanetViewController: UIViewController {
     var scores: [Planet: CGFloat]?
     var chart: Chart?
     var chartCake: ChartCake?
+    var selectedChart: ChartCake?
     var name: String = ""
     
     // Add
@@ -159,7 +160,7 @@ class StrongestPlanetViewController: UIViewController {
         let infoViewController = InfoViewController()
         if self.strongestPlanet != nil
          {
-            infoViewController.infoText = ""
+            infoViewController.infoText = theSun
         } else {
             infoViewController.infoText = "Information not found for Strongest Planet"
         }

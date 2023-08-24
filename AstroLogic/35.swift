@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftEphemeris 
 
 // A progressed planet carries 0.5 of its birthchart power
 
@@ -73,3 +73,26 @@ var cadent_reg4 = [0.75]
 var cadent_reg5 = [0.75]
 
 
+
+
+class Relationships {
+    var name: String
+    var birthTime: Date?
+    var birthPlace: String?
+    var strongestPlanet: String?
+    var mostHarmoniousPlanet: String?
+    var mostDiscordantPlanet: String?
+    var sentenceText: String?
+    var chartCake: ChartCake? // Add chart property
+    var scores2: [String: Double]? // Add scores2 property
+    var ascDeclination: Double?
+    var mcDeclination: Double?
+    var getMinors: Date? // Add minorProgressionDate property
+    var getMajorProgresseDate: Date? // Add getMajorProgresseDate property
+    var natalChart: ChartCake? // Add chart property
+    init(name: String, chartCake: ChartCake) {
+        self.name = name
+        self.chartCake = chartCake
+      
+    }
+}

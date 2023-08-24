@@ -8,30 +8,32 @@
 import SwiftEphemeris
 import UIKit
 
-class OthersPlanetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var natalChart: ChartCake?
-    var selectedChart: ChartCake?
-    var birthChartView: BirthChartView!
-    var selectedName: String!
-    var name: String!
+class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var natalChart: ChartCake!
+    var selectedChart: ChartCake!
+    
+    
+    var CompositeChartView: BirthChartView!
+
     var natalSigns: [String] = []
 
     // ... Rest of your code ...
     
     func setupNatalSigns() -> [String] {
         natalSigns = [
-           selectedChart!.natal.sun.sign.keyName,
-           selectedChart!.natal.moon.sign.keyName,
-           selectedChart!.natal.ascendant.sign.keyName,
-           selectedChart!.natal.mercury.sign.keyName,
-           selectedChart!.natal.venus.sign.keyName,
-           selectedChart!.natal.mars.sign.keyName,
-           selectedChart!.natal.jupiter.sign.keyName,
-           selectedChart!.natal.saturn.sign.keyName,
-           selectedChart!.natal.uranus.sign.keyName,
-           selectedChart!.natal.neptune.sign.keyName,
-           selectedChart!.natal.pluto.sign.keyName,
-           selectedChart!.natal.southNode.sign.keyName
+            selectedChart?.natal.sun.sign.keyName,
+            selectedChart?.natal.moon.sign.keyName,
+            selectedChart?.natal.ascendant.sign.keyName,
+            selectedChart?.natal.mercury.sign.keyName,
+            selectedChart?.natal.venus.sign.keyName,
+            selectedChart?.natal.mars.sign.keyName,
+            selectedChart?.natal.jupiter.sign.keyName,
+            selectedChart?.natal.saturn.sign.keyName,
+            selectedChart?.natal.uranus.sign.keyName,
+            selectedChart?.natal.neptune.sign.keyName,
+            selectedChart?.natal.pluto.sign.keyName,
+            selectedChart?.natal.southNode.sign.keyName
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -43,18 +45,18 @@ class OthersPlanetsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func getNatalPositions() -> [String] {
         natalSigns = [
-           selectedChart!.natal.sun.formatted,
-           selectedChart!.natal.moon.formatted,
-           selectedChart!.natal.ascendant.formatted,
-           selectedChart!.natal.mercury.formatted,
-           selectedChart!.natal.venus.formatted,
-           selectedChart!.natal.mars.formatted,
-           selectedChart!.natal.jupiter.formatted,
-           selectedChart!.natal.saturn.formatted,
-           selectedChart!.natal.uranus.formatted,
-           selectedChart!.natal.neptune.formatted,
-           selectedChart!.natal.pluto.formatted,
-           selectedChart!.natal.southNode.formatted
+            selectedChart?.natal.sun.formatted,
+            selectedChart?.natal.moon.formatted,
+            selectedChart?.natal.ascendant.formatted,
+            selectedChart?.natal.mercury.formatted,
+            selectedChart?.natal.venus.formatted,
+            selectedChart?.natal.mars.formatted,
+            selectedChart?.natal.jupiter.formatted,
+            selectedChart?.natal.saturn.formatted,
+            selectedChart?.natal.uranus.formatted,
+            selectedChart?.natal.neptune.formatted,
+            selectedChart?.natal.pluto.formatted,
+            selectedChart?.natal.southNode.formatted
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -65,23 +67,7 @@ class OthersPlanetsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
 var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
-    var segueIdentifiers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 
-var mySunText = ""
-    var myMoonText = ""
-    var myAscText = ""
-    var myMercuryText = ""
-    var myVenusText = ""
-    var myMarsText = ""
-    var myJupiterText = ""
-    var mySaturnText = ""
-    var myUranusText = ""
-    var myNeptuneText = ""
-    var myPlutoText = ""
-    var mySunText1 = ""
-    var mySunText2 = ""
-    var mySunText3 = ""
-    var mySunText4 = ""
 
     
     private let tableView: UITableView = {
@@ -109,8 +95,10 @@ var mySunText = ""
         super.viewDidLoad()
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: selectedChart!)
+        let birthChartView = CompositeBirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), natalChart: natalChart!, selectedChart: selectedChart!)
+        
      
+    //    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Transits", style: .plain, target: self, action: #selector(transitsToCompositeButtonTapped))
         
         view.backgroundColor = .black
         tableView.backgroundColor = .black
@@ -128,7 +116,12 @@ var mySunText = ""
         
     }
 
-
+//    @objc func transitsToCompositeButtonTapped() {
+//        let TransitsToCompositeVC = TransitsToCompositeViewController(MP_Planets: planets)
+//        TransitsToCompositeVC.selectedChart = self.selectedChart
+//        TransitsToCompositeVC.natalChart = self.natalChart
+//        self.navigationController?.pushViewController(TransitsToCompositeVC, animated: true)
+//    }
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -141,7 +134,7 @@ var mySunText = ""
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getNatalPositions()[indexPath.row], planetTextText: "", headerTextText: "")
+        cell.configure(signGlyphImageName: "", planetImageImageName: "", signTextText: "", planetTextText: "", headerTextText: "")
         
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
         
@@ -159,16 +152,10 @@ var mySunText = ""
         tableView.deselectRow(at: indexPath, animated: true)
 //        print(planets[indexPath.row])
         
-      
 
-
-        
-      
         
         let MovingPlanetVCs = [TodayViewController()]
         
-//        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
-       
         
         let vc = MovingPlanetVCs[indexPath.row]
         present(UINavigationController(rootViewController: vc), animated: true)
