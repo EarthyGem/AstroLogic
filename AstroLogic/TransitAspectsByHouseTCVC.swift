@@ -40,7 +40,7 @@ class TransitPlanetsByHouseTimeChangeViewController: UIViewController  {
         let selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = TransitAspectsByHousesVC()
+        let nextViewController = SimpleTransitAspectsByHousesVC()
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate
         navigationController?.pushViewController(nextViewController, animated: true)

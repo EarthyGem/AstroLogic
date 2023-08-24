@@ -92,6 +92,10 @@
 		39E113F22A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */; };
 		39E113F42A8AC220006EA576 /* TransitAspectsByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113F32A8AC220006EA576 /* TransitAspectsByHouses.swift */; };
 		39E168642A96D8150003892B /* NatalAspectsSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E168632A96D8150003892B /* NatalAspectsSimple.swift */; };
+		39E168662A972D3D0003892B /* SimpleAspectsByHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E168652A972D3C0003892B /* SimpleAspectsByHouse.swift */; };
+		39E168682A972F0E0003892B /* SimpleProgressedAspectsByHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E168672A972F0E0003892B /* SimpleProgressedAspectsByHouse.swift */; };
+		39E1686A2A9730290003892B /* SimpleMinorProgressedAspectsByHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E168692A9730290003892B /* SimpleMinorProgressedAspectsByHouse.swift */; };
+		39E1686C2A97314B0003892B /* SimpleTransitAspectsByHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E1686B2A97314B0003892B /* SimpleTransitAspectsByHouse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +182,10 @@
 		39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedAsepctsByHousesVC.swift; sourceTree = "<group>"; };
 		39E113F32A8AC220006EA576 /* TransitAspectsByHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitAspectsByHouses.swift; sourceTree = "<group>"; };
 		39E168632A96D8150003892B /* NatalAspectsSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalAspectsSimple.swift; sourceTree = "<group>"; };
+		39E168652A972D3C0003892B /* SimpleAspectsByHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAspectsByHouse.swift; sourceTree = "<group>"; };
+		39E168672A972F0E0003892B /* SimpleProgressedAspectsByHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleProgressedAspectsByHouse.swift; sourceTree = "<group>"; };
+		39E168692A9730290003892B /* SimpleMinorProgressedAspectsByHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMinorProgressedAspectsByHouse.swift; sourceTree = "<group>"; };
+		39E1686B2A97314B0003892B /* SimpleTransitAspectsByHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTransitAspectsByHouse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,10 +282,14 @@
 				39A1EC642A60EBC0008D1EC1 /* \.swift */,
 				3997F0772A63C6D800741E9D /* 35.swift */,
 				3903A37B2A5F305100245DD2 /* GeoCode.swift */,
-				39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */,
 				39E113ED2A8ABE80006EA576 /* AspectByHouses.swift */,
+				39E168652A972D3C0003892B /* SimpleAspectsByHouse.swift */,
+				39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */,
+				39E168672A972F0E0003892B /* SimpleProgressedAspectsByHouse.swift */,
 				39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */,
+				39E168692A9730290003892B /* SimpleMinorProgressedAspectsByHouse.swift */,
 				39E113F32A8AC220006EA576 /* TransitAspectsByHouses.swift */,
+				39E1686B2A97314B0003892B /* SimpleTransitAspectsByHouse.swift */,
 				3903A3772A5F2F3200245DD2 /* AboutVC.swift */,
 				3997F07D2A68F7DF00741E9D /* AspectarianView.swift */,
 				3903A3752A5F2E8400245DD2 /* BirthChartView.swift */,
@@ -423,9 +435,11 @@
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
 				395DE50B2A95DE8B00B0B451 /* RelationshipBiWHeel.swift in Sources */,
 				395DE5092A95DC7A00B0B451 /* RelationshipPlanetsVC.swift in Sources */,
+				39E168682A972F0E0003892B /* SimpleProgressedAspectsByHouse.swift in Sources */,
 				39851F822A93063600E70FF5 /* mpAspectsTCVC.swift in Sources */,
 				39851F7E2A93028D00E70FF5 /* mpProgressedAspectsByHouseTCVC.swift in Sources */,
 				39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */,
+				39E1686A2A9730290003892B /* SimpleMinorProgressedAspectsByHouse.swift in Sources */,
 				395DE5252A96E8DD00B0B451 /* SimpleTransitAspects.swift in Sources */,
 				3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */,
 				39851F802A9302A100E70FF5 /* TransitAspectsByHouseTCVC.swift in Sources */,
@@ -437,11 +451,13 @@
 				39A1EC472A5F75CF008D1EC1 /* MyNatalHousesVC.swift in Sources */,
 				3903A37C2A5F305100245DD2 /* GeoCode.swift in Sources */,
 				395DE50D2A95E0EF00B0B451 /* RelationshipsVC.swift in Sources */,
+				39E1686C2A97314B0003892B /* SimpleTransitAspectsByHouse.swift in Sources */,
 				395DE5212A969E8100B0B451 /* CompositeChart.swift in Sources */,
 				395DE5072A95AD1100B0B451 /* Planet Info.swift in Sources */,
 				39E113F22A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift in Sources */,
 				39851F782A93022C00E70FF5 /* ProgressedAspectsTCVC.swift in Sources */,
 				395DE50F2A95E29600B0B451 /* AddRelationship.swift in Sources */,
+				39E168662A972D3D0003892B /* SimpleAspectsByHouse.swift in Sources */,
 				395DE5192A967C5900B0B451 /* SynastryBiwheel.swift in Sources */,
 				3903A33B2A5F2D0700245DD2 /* AppDelegate.swift in Sources */,
 				395DE51B2A967E5000B0B451 /* SynastryChartVC.swift in Sources */,

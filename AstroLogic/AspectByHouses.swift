@@ -333,6 +333,12 @@ var chart: Chart?
       
         
     }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "Less Aspects", style: .plain, target: nil, action: nil)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         firstTableView.frame = CGRect(x: firstTableView.frame.origin.x, y: firstTableView.frame.origin.y , width: firstTableView.frame.size.width, height: firstTableView.contentSize.height)
@@ -752,9 +758,13 @@ var chart: Chart?
 //
 //
     }
-    @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TransitAspectsByHousesVC()
-        self.navigationController?.pushViewController(timeChangeVC, animated: true)
+
+
+    @objc func moreAspectsButtonTapped() {
+        let flipSynastryVC = NatalAspectsByHousesVC()
+        flipSynastryVC.chartCake = self.chartCake
+        flipSynastryVC.selectedDate = self.selectedDate
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
     }
 
 }

@@ -126,9 +126,9 @@ extension MyItemsViewController: UITableViewDelegate {
         myNatalAspectsVC.chartCake = self.chartCake
 //        myNatalHousesVC.title = category2.chartType
 
-        let natalHouseAspects = NatalAspectsByHousesVC()
-        natalHouseAspects.chart = self.chart
-        natalHouseAspects.chartCake = self.chartCake
+        let natalAspectsByHouse = SimpleNatalAspectsByHousesVC()
+        natalAspectsByHouse.chart = self.chart
+        natalAspectsByHouse.chartCake = self.chartCake
         
         
         let transitPlanetsVC = TransitPlanetsTimeChangeViewController()
@@ -193,7 +193,7 @@ extension MyItemsViewController: UITableViewDelegate {
         
      //   MP_PlanetsVC.title = category.chartType
         
-        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalHouseAspects,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,RelationshipVC]
+        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,RelationshipVC]
         
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
         
