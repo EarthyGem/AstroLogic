@@ -537,7 +537,7 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
                
                 
                 // Initialize and push the StrongestPlanetViewController
-                let strongestPlanetVC = StrongestPlanetViewController()
+                let strongestPlanetVC = OthersStrongestPlanetViewController()
                 strongestPlanetVC.otherChart = otherChart
                 strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                 strongestPlanetVC.name = nameTextField.text!
