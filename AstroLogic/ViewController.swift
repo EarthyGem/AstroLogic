@@ -380,14 +380,17 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                         self.datePicker.timeZone = timeZone
                         self.timePicker.timeZone = timeZone
                         self.birthTimeTextField.text = "" // Clear the birth time field
+
+
                     }
                 }
             }
         }
 
-        dismiss(animated: true, completion: nil)
-    }
+        clearSearchBarText(in: viewController.view)
 
+           dismiss(animated: true, completion: nil)
+       }
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         print("Autocomplete error: \(error.localizedDescription)")
         dismiss(animated: true, completion: nil)
@@ -396,6 +399,17 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
     }
+    func clearSearchBarText(in view: UIView) {
+        if let searchBar = view as? UISearchBar {
+            searchBar.text = ""
+            return
+        } else {
+            for subview in view.subviews {
+                clearSearchBarText(in: subview)
+            }
+        }
+    }
+
     
     @objc func birthPlaceTextFieldDidChange() {
         updateDatePickerTimeZone()
@@ -623,6 +637,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
             self.timePickerValueChanged(self.timePicker) // Assuming you have a timePicker like your datePicker
         }
     }
+
+
 
 
     func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {

@@ -12,99 +12,99 @@ import SwiftEphemeris
 
 class TransitAspectsByHousesVC: UIViewController {
     var selectedDate: Date?
-var chart: Chart?
+    var chart: Chart?
     var chartCake: ChartCake?
     
-  
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-       
+
         return scrollView
     }()
     
-  
+
     
     
     private let sunScrollView: UIView = {
         let sunScrollView = UIView()
-       
+
         return sunScrollView
     }()
     
     private let moonScrollView: UIView = {
         let moonScrollView = UIView()
-       
+
         return moonScrollView
     }()
     
     private let mercuryScrollView: UIView = {
         let mercuryScrollView = UIView()
-       
+
         return mercuryScrollView
     }()
     private let venusScrollView: UIView = {
         let venusScrollView = UIView()
-       
+
         return venusScrollView
     }()
     private let marsScrollView: UIView = {
         let marsScrollView = UIView()
-       
+
         return marsScrollView
     }()
     private let jupiterScrollView: UIView = {
         let jupiterScrollView = UIView()
-       
+
         return jupiterScrollView
     }()
     private let saturnScrollView: UIView = {
         let saturnScrollView = UIView()
-       
+
         return saturnScrollView
     }()
     private let uranusScrollView: UIView = {
         let uranusScrollView = UIView()
-       
+
         return uranusScrollView
     }()
     private let neptuneScrollView: UIView = {
         let neptuneScrollView = UIView()
-       
+
         return neptuneScrollView
     }()
     private let plutoScrollView: UIView = {
         let plutoScrollView = UIView()
-       
+
         return plutoScrollView
     }()
     
     private let eleventhScrollView: UIView = {
         let eleventhScrollView = UIView()
-       
+
         return eleventhScrollView
     }()
     private let twelfthScrollView: UIView = {
         let twelfthScrollView = UIView()
-       
+
         return twelfthScrollView
     }()
     
     private let firstTableView: UITableView = {
         let firstTableView = UITableView()
-      
-            firstTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
-            
-     
+
+        firstTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
+
+
         
         return firstTableView
     }()
     
     private let ascTableView: UITableView = {
         let ascTableView = UITableView()
-      
+
         ascTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
-            
-     
+
+
         
         return ascTableView
     }()
@@ -119,7 +119,7 @@ var chart: Chart?
     
     private let thirdTableView: UITableView = {
         let thirdTableView = UITableView()
-     
+
         thirdTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return thirdTableView
     }()
@@ -147,7 +147,7 @@ var chart: Chart?
     
     private let seventhTableView: UITableView = {
         let seventhTableView = UITableView()
-     
+
         seventhTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return seventhTableView
     }()
@@ -160,13 +160,13 @@ var chart: Chart?
     }()
     private let ninthTableView: UITableView = {
         let ninthTableView = UITableView()
-     
+
         ninthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return ninthTableView
     }()
     private let tenthTableView: UITableView = {
         let tenthTableView = UITableView()
-     
+
         tenthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return tenthTableView
     }()
@@ -174,13 +174,13 @@ var chart: Chart?
     
     private let eleventhTableView: UITableView = {
         let eleventhTableView = UITableView()
-     
+
         eleventhTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return eleventhTableView
     }()
     private let twelfthTableView: UITableView = {
         let twelfthTableView = UITableView()
-     
+
         twelfthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return twelfthTableView
     }()
@@ -280,23 +280,23 @@ var chart: Chart?
         return topTransitImage
         
     }()
-//         public let transitIntro: UILabel = {
-//            let transitIntro = UILabel()
-//
-//            return transitIntro
-//
-//
-//    }()
+    //         public let transitIntro: UILabel = {
+    //            let transitIntro = UILabel()
+    //
+    //            return transitIntro
+    //
+    //
+    //    }()
     
     var SelectedIndex = -1
     var isCollapsed = false
 
- 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         firstTableView.dataSource = self
         firstTableView.delegate = self
-       secondTableView.dataSource = self
+        secondTableView.dataSource = self
         secondTableView.delegate = self
         thirdTableView.dataSource = self
         thirdTableView.delegate = self
@@ -314,15 +314,15 @@ var chart: Chart?
         ninthTableView.delegate = self
         tenthTableView.dataSource = self
         tenthTableView.delegate = self
-//        ascTableView.dataSource = self
-//        ascTableView.delegate = self
+        //        ascTableView.dataSource = self
+        //        ascTableView.delegate = self
         eleventhTableView.dataSource = self
         eleventhTableView.delegate = self
         twelfthTableView.dataSource = self
         twelfthTableView.delegate = self
         view.backgroundColor = .black
         
-      
+
         
     }
     
@@ -343,12 +343,12 @@ var chart: Chart?
         
         eighthTableView.frame = CGRect(x: eighthTableView.frame.origin.x, y: eighthTableView.frame.origin.y , width: eighthTableView.frame.size.width, height: eighthTableView.contentSize.height)
         
-       ninthTableView.frame = CGRect(x: ninthTableView.frame.origin.x, y: ninthTableView.frame.origin.y , width: ninthTableView.frame.size.width, height: ninthTableView.contentSize.height)
+        ninthTableView.frame = CGRect(x: ninthTableView.frame.origin.x, y: ninthTableView.frame.origin.y , width: ninthTableView.frame.size.width, height: ninthTableView.contentSize.height)
         
         tenthTableView.frame = CGRect(x: tenthTableView.frame.origin.x, y: tenthTableView.frame.origin.y , width: tenthTableView.frame.size.width, height: tenthTableView.contentSize.height)
         
         eleventhTableView.frame = CGRect(x: eleventhTableView.frame.origin.x, y: eleventhTableView.frame.origin.y , width: eleventhTableView.frame.size.width, height: eleventhTableView.contentSize.height)
-         
+
         twelfthTableView.frame = CGRect(x: twelfthTableView.frame.origin.x, y: twelfthTableView.frame.origin.y , width: twelfthTableView.frame.size.width, height: twelfthTableView.contentSize.height)
         
         
@@ -357,8 +357,6 @@ var chart: Chart?
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-   
-
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
         scrollView.backgroundColor = .clear
         view.addSubview(scrollView)
@@ -368,41 +366,31 @@ var chart: Chart?
         
         topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         view.addSubview(topTransitImage)
-          
-        
+
+        print("ScrollView Frame: \(scrollView.frame)")
+        print("ScrollView Content Size: \(scrollView.contentSize)")
+
         // adding date label
         let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
-         todaysDate.text = formatted
+        todaysDate.text = formatted
         todaysDate.font = .systemFont(ofSize: 13)
-         todaysDate.textColor = .white
+        todaysDate.textColor = .white
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
-         scrollView.addSubview(todaysDate)
-        
-     
-        
-        
-        sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-        scrollView.addSubview(sunScrollView)
-//        sunScrollView.contentSize = CGSize(width: 300, height: 200)
-        
-//        firstTableView.backgroundColor = .orange
+        scrollView.addSubview(todaysDate)
+
+
+        firstTableView.backgroundColor = .orange
         secondTableView.backgroundColor = .green
-
-       thirdTableView.backgroundColor = .purple
-
+        thirdTableView.backgroundColor = .purple
         fourthTableView.backgroundColor = .yellow
-       fifthTableView.backgroundColor = .red
-       sixthTableView.backgroundColor = .systemGroupedBackground
+        fifthTableView.backgroundColor = .red
+        sixthTableView.backgroundColor = .systemGroupedBackground
         seventhTableView.backgroundColor = .blue
         eighthTableView.backgroundColor = .white
-       ninthTableView.backgroundColor = .gray
+        ninthTableView.backgroundColor = .gray
         tenthTableView.backgroundColor = .systemPink
 
-//      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
-   
-   
-        
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
@@ -411,66 +399,58 @@ var chart: Chart?
             tableView.contentSize.height = CGFloat(count * 90)
         }
 
+        print("ScrollView Frame: \(scrollView.frame)")
+        print("ScrollView Content Size: \(scrollView.contentSize)")
+
         
-        
-        
+        sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(sunScrollView)
         scrollView.addSubview(moonScrollView)
-//        moonScrollView.contentSize = CGSize(width: 300, height: 200)
-       moonScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+
+        moonScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(mercuryScrollView)
-//        mercuryScrollView.contentSize = CGSize(width: 300, height: 200)
+
         mercuryScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(venusScrollView)
-//        venusScrollView.contentSize = CGSize(width: 300, height: 200)
+
         venusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(marsScrollView)
-//        marsScrollView.contentSize = CGSize(width: 300, height: 200)
+
         marsScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(jupiterScrollView)
-//        jupiterScrollView.contentSize = CGSize(width: 300, height: 200)
+
         jupiterScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(saturnScrollView)
-//        saturnScrollView.contentSize = CGSize(width: 300, height: 200)
+
         saturnScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(uranusScrollView)
-//        uranusScrollView.contentSize = CGSize(width: 300, height: 200)
+
         uranusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(neptuneScrollView)
-//        neptuneScrollView.contentSize = CGSize(width: 300, height: 200)
+
         neptuneScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(plutoScrollView)
-//        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
+
         plutoScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-    
+
         scrollView.addSubview(eleventhScrollView)
-//        neptuneScrollView.contentSize = CGSize(width: 300, height: 200)
+
         eleventhScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(twelfthScrollView)
-//        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
+
         twelfthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-    
+
         
-        
-        
-        
-        
-        
-        
-//        sunScrollView.addSubview(tenthTableView)
-        // Do any additional setup after loading the view.
-        
-   
-//        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
-//
+
         let mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
         
         sunSignGlyph.image = UIImage(named: mySignCusps[0]!)
@@ -544,7 +524,7 @@ var chart: Chart?
         uranusScrollView.addSubview(uranusSignGlyph)
         uranusSignGlyph.backgroundColor = .clear
         
-    
+
         neptuneSignGlyph.image = UIImage(named: mySignCusps[8]!)
         neptuneSignGlyph.image?.withTintColor(UIColor.yellow)
         
@@ -562,7 +542,7 @@ var chart: Chart?
         plutoScrollView.addSubview(plutoSignGlyph)
         plutoSignGlyph.backgroundColor = .clear
         
-     
+
         
         eleventhSignGlyph.image = UIImage(named: mySignCusps[10]!)
         eleventhSignGlyph.image?.withTintColor(UIColor.yellow)
@@ -581,8 +561,8 @@ var chart: Chart?
         twelfthScrollView.addSubview(twelfthSignGlyph)
         twelfthSignGlyph.backgroundColor = .clear
         
-      
-      
+
+
         
         sunScrollView.frame = CGRect(x: 0, y: 200, width: view.frame.size.width, height: firstTableView.contentSize.height + 40)
         
@@ -601,18 +581,18 @@ var chart: Chart?
         
         mercuryScrollView.frame = CGRect(x: 0, y: moonScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: thirdTableView.contentSize.height + 40)
         mercuryScrollView.addSubview(thirdTableView)
-       
+
         
         
         venusScrollView.frame = CGRect(x: 0, y: mercuryScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fourthTableView.contentSize.height + 40)
         venusScrollView.addSubview(fourthTableView)
-      
+
         marsScrollView.frame = CGRect(x: 0, y: venusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fifthTableView.contentSize.height + 40)
         marsScrollView.addSubview(fifthTableView)
-       
+
         jupiterScrollView.frame = CGRect(x: 0, y: marsScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: sixthTableView.contentSize.height + 40)
         jupiterScrollView.addSubview(sixthTableView)
-       
+
         saturnScrollView.frame = CGRect(x: 0, y: jupiterScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: seventhTableView.contentSize.height + 40)
         saturnScrollView.addSubview(seventhTableView)
         
@@ -621,21 +601,21 @@ var chart: Chart?
         
         neptuneScrollView.frame = CGRect(x: 0, y: uranusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: ninthTableView.contentSize.height + 40)
         neptuneScrollView.addSubview(ninthTableView)
-       
+
         plutoScrollView.frame = CGRect(x: 0, y: neptuneScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: tenthTableView.contentSize.height + 40)
         plutoScrollView.addSubview(tenthTableView)
         
         
         eleventhScrollView.frame = CGRect(x: 0, y: plutoScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: eleventhTableView.contentSize.height + 40)
         eleventhScrollView.addSubview(eleventhTableView)
-       
+
         twelfthScrollView.frame = CGRect(x: 0, y: eleventhScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: twelfthTableView.contentSize.height + 40)
         twelfthScrollView.addSubview(twelfthTableView)
-//
-       
-//
-       
-       
+        //
+
+        //
+
+
         thirdTableView.frame = CGRect(x: 10, y: 35, width: mercuryScrollView.frame.size.width , height: mercuryScrollView.frame.size.height - 60)
 
         fourthTableView.frame = CGRect(x: 10, y: 35, width: venusScrollView.frame.size.width , height: venusScrollView.frame.size.height - 60)
@@ -659,85 +639,85 @@ var chart: Chart?
         sunText.text = "First House - Personality"
         sunText.font = .systemFont(ofSize: 16)
         sunText.textColor = .white
-       
-         sunScrollView.addSubview(sunText)
+
+        sunScrollView.addSubview(sunText)
         
         let moonText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         moonText.text = "Second House - Resources"
         moonText.font = .systemFont(ofSize: 16)
         moonText.textColor = .white
-       
-         moonScrollView.addSubview(moonText)
+
+        moonScrollView.addSubview(moonText)
         
         let mercuryText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         mercuryText.text = "Third House - Finding Your Voice"
         mercuryText.font = .systemFont(ofSize: 16)
         mercuryText.textColor = .white
-       
-         mercuryScrollView.addSubview(mercuryText)
+
+        mercuryScrollView.addSubview(mercuryText)
         
         let venusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         venusText.text = "Fourth House - Home and Family"
         venusText.font = .systemFont(ofSize: 16)
         venusText.textColor = .white
-       
-         venusScrollView.addSubview(venusText)
+
+        venusScrollView.addSubview(venusText)
         
         let marsText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         marsText.text = "Fifth House - Fun"
         marsText.font = .systemFont(ofSize: 16)
         marsText.textColor = .white
-       
-         marsScrollView.addSubview(marsText)
+
+        marsScrollView.addSubview(marsText)
         
         let jupiterText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         jupiterText.text = "Sixth House - Skill Development"
         jupiterText.font = .systemFont(ofSize: 16)
         jupiterText.textColor = .white
-       
-         jupiterScrollView.addSubview(jupiterText)
+
+        jupiterScrollView.addSubview(jupiterText)
         
         let saturnText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         saturnText.text = "Seventh House - Partnerships"
         saturnText.font = .systemFont(ofSize: 16)
         saturnText.textColor = .white
-       
-         saturnScrollView.addSubview(saturnText)
+
+        saturnScrollView.addSubview(saturnText)
         
         let uranusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         uranusText.text = "Eighth House - The Occult"
         uranusText.font = .systemFont(ofSize: 16)
         uranusText.textColor = .white
-       
-         uranusScrollView.addSubview(uranusText)
+
+        uranusScrollView.addSubview(uranusText)
         
         let neptuneText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         neptuneText.text = "Ninth House - Philosophy"
         neptuneText.font = .systemFont(ofSize: 16)
         neptuneText.textColor = .white
-       
-         neptuneScrollView.addSubview(neptuneText)
+
+        neptuneScrollView.addSubview(neptuneText)
         
         let plutoText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         plutoText.text = "Tenth House - Role in the Community"
         plutoText.font = .systemFont(ofSize: 16)
         plutoText.textColor = .white
-       
-         plutoScrollView.addSubview(plutoText)
+
+        plutoScrollView.addSubview(plutoText)
         
         let eleventhText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         eleventhText.text = "Eleventh House - Friends"
         eleventhText.font = .systemFont(ofSize: 16)
         eleventhText.textColor = .white
-       
-         eleventhScrollView.addSubview(eleventhText)
+
+        eleventhScrollView.addSubview(eleventhText)
         
         let twelfthText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
         twelfthText.text = "Twelfth House - Endings"
         twelfthText.font = .systemFont(ofSize: 16)
         twelfthText.textColor = .white
-       
-         twelfthScrollView.addSubview(twelfthText)
+
+        twelfthScrollView.addSubview(twelfthText)
         
         
         let transitIntro = UILabel(frame: CGRect(x: 5, y: 30, width: scrollView.frame.width - 10, height: 200))
@@ -747,11 +727,11 @@ var chart: Chart?
         
         transitIntro.numberOfLines = 4
         transitIntro.textAlignment = .center
-       
-       
-         scrollView.addSubview(transitIntro)
-//
-//
+
+
+        scrollView.addSubview(transitIntro)
+        //
+        //
     }
     @objc func navigateToTimeChangeVC() {
         let timeChangeVC = TransitAspectsByHousesVC()
@@ -789,8 +769,8 @@ extension TransitAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {
         return UITableViewCell() // Default cell in case tableView is not found
     }
 
-           
-           
+
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90 // returns fixed height for all rows, regardless of the tableView
     }
@@ -799,12 +779,12 @@ extension TransitAspectsByHousesVC: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         // remove all the code related to expanding and collapsing
     }
- 
 
-    }
-    
-    
-    
-                
-                
- 
+
+}
+
+
+
+
+
+

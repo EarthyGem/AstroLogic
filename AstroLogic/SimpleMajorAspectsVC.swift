@@ -305,13 +305,7 @@ class SimpleMajorAspectsViewController: UIViewController {
         ascTableView.frame = CGRect(x: ascTableView.frame.origin.x, y: ascTableView.frame.origin.y , width: ascTableView.frame.size.width, height: ascTableView.contentSize.height)
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "Less Aspects", style: .plain, target: nil, action: nil)
-    }
-
-    
+   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 

@@ -153,8 +153,10 @@ var mySunText = ""
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = CGRect(x: 10, y: 560, width: 380, height: 700)
-        
+        let yOffset: CGFloat = 550
+        let tableViewHeight = view.bounds.height - yOffset - 20  // Adjust this as per your requirements
+        tableView.frame = CGRect(x: 10, y: yOffset, width: view.bounds.width - 20, height: tableViewHeight)
+  
         let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
@@ -200,24 +202,7 @@ var mySunText = ""
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        print(planets[indexPath.row])
-        
-      
 
-
-        
-      
-        
-        let MovingPlanetVCs = [TodayViewController()]
-        
-//        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
-       
-        
-        let vc = MovingPlanetVCs[indexPath.row]
-        present(UINavigationController(rootViewController: vc), animated: true)
-        
-        
-     
 }
 
 }

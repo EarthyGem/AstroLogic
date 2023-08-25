@@ -21,7 +21,7 @@ class PercentFormatter: NSObject, ValueFormatter {
 }
 
 
-class ChartViewController: UIViewController {
+class ChartViewController: UIViewController, UIScrollViewDelegate {
     var birthChartView: BirthChartView!
     
     var harmonyDiscordLabels: [UILabel] = []
@@ -92,142 +92,7 @@ class ChartViewController: UIViewController {
         "midheaven": .white
         // add more if needed...
     ]
-    @objc func printButtonTapped() {
 
-        
-        let pdfURL = createSummaryPDF()
-        printPDF(at: pdfURL)
-     
-    }
-    
-    func createSummaryPDF() -> URL {
-        let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 650))
-
-        let pdfData = renderer.pdfData { ctx in
-            ctx.beginPage()
-            let attributes = [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7)
-            ]
-            
-            var yOffset: CGFloat = 20
-            
-            // Helper function to draw rows for Summary Section
-            func drawSummaryRows(for category: String, elements: [String], withOffset offset: CGFloat) -> CGFloat {
-                var localOffset = offset
-
-                // Draw the category in the first column
-                category.draw(in: CGRect(x: 0, y: localOffset, width: 100, height: 20), withAttributes: attributes) // Adjusted width to fit category names
-                localOffset += 20
-
-                // Draw each element in the second column, and their respective placeholders in columns 3 to 5
-                for element in elements {
-                    element.draw(in: CGRect(x: 0, y: localOffset, width: 100, height: 20), withAttributes: attributes)
-                    "00.00".draw(in: CGRect(x: 100, y: localOffset, width: 100, height: 20), withAttributes: attributes)
-                    "00.0%".draw(in: CGRect(x: 200, y: localOffset, width: 100, height: 20), withAttributes: attributes)
-                    "00.0".draw(in: CGRect(x: 300, y: localOffset, width: 100, height: 20), withAttributes: attributes)
-
-                    localOffset += 20
-                }
-
-                return localOffset + 25
-            }
-
-            // Drawing the Summary Section
-            let summaryCategories = [
-                ("Societies", ["Personal", "Companionship", "Public"]),
-                ("Trinities", ["Life", "Wealth", "Association", "Psychism"]),
-                ("Elements", ["Fire", "Earth", "Air", "Fire"]),
-                ("Qualities", ["Movable", "Fixed", "Mutable"])
-            ]
-
-            for (category, elements) in summaryCategories {
-                yOffset = drawSummaryRows(for: category, elements: elements, withOffset: yOffset)
-            }
-        }
-
-        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let outputFileURL = documentDirectory.appendingPathComponent("SummaryScores.pdf")
-        
-        do {
-            try pdfData.write(to: outputFileURL)
-            print("Summary PDF successfully written at \(outputFileURL)")
-            return outputFileURL
-        } catch {
-            print("Error writing Summary PDF: \(error)")
-            return documentDirectory
-        }
-    }
-
-    func createPDF() -> URL {
-            let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 650))
-            
-            let pdfData = renderer.pdfData { ctx in
-                ctx.beginPage()
-                let attributes = [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 7) // Reduced font size and not bold
-                ]
-                
-                // Column Headers
-                let headers = ["Symbol", "Power", "%", "Harmony"]
-                let columnWidths: [CGFloat] = [50.0, 50.0, 50.0, 50.0]
-
-                var yOffset: CGFloat = 20
-                
-                // Helper function to draw rows
-                func drawRows(for symbols: [String], withOffset offset: CGFloat) -> CGFloat {
-                    var localOffset = offset
-                    
-                    for symbol in symbols {
-                        let xPositionForSymbol = CGFloat(0)
-                        let xPositionForPower = xPositionForSymbol + columnWidths[0]
-                        let xPositionForPercentage = xPositionForPower + columnWidths[1]
-                        let xPositionForHarmony = xPositionForPercentage + columnWidths[2]
-
-                        symbol.draw(in: CGRect(x: xPositionForSymbol, y: localOffset, width: CGFloat(columnWidths[0]), height: 20), withAttributes: attributes)
-                        "00.00".draw(in: CGRect(x: xPositionForPower, y: localOffset, width: CGFloat(columnWidths[1]), height: 20), withAttributes: attributes)
-                        "00.0%".draw(in: CGRect(x: xPositionForPercentage, y: localOffset, width: CGFloat(columnWidths[2]), height: 20), withAttributes: attributes)
-                        "00.0".draw(in: CGRect(x: xPositionForHarmony, y: localOffset, width: CGFloat(columnWidths[3]), height: 20), withAttributes: attributes)
-                        
-                        localOffset += 10
-                    }
-                    
-                    return localOffset + 25 // Additional space after each section
-                }
-                
-                // Drawing Column Headers
-                for (index, header) in headers.enumerated() {
-                    let xPosition = CGFloat(index) * CGFloat(columnWidths[index])
-                    let rect = CGRect(x: xPosition, y: yOffset, width: CGFloat(columnWidths[index]), height: 20)
-                    header.draw(in: rect, withAttributes: attributes)
-                }
-                
-                yOffset += 30 // Increased spacing to account for headers
-                
-                // Drawing each planet row
-                let planetSymbols = Planet.allCases.map { $0.symbol }
-                yOffset = drawRows(for: planetSymbols, withOffset: yOffset)
-
-                // Drawing each house row
-                let houseSymbols = Array(1...12).map { String($0) }
-                yOffset = drawRows(for: houseSymbols, withOffset: yOffset)
-
-                // Drawing each sign row (Assuming you have Sign enum or array)
-                let signSymbols = Zodiac.allCases.map { $0.symbol }
-                yOffset = drawRows(for: signSymbols, withOffset: yOffset)
-            }
-            
-            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let outputFileURL = documentDirectory.appendingPathComponent("Scores.pdf")
-            
-            do {
-                try pdfData.write(to: outputFileURL)
-                print("PDF successfully written at \(outputFileURL)")
-                return outputFileURL
-            } catch {
-                print("Error writing PDF: \(error)")
-                return documentDirectory
-            }
-        }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -240,8 +105,14 @@ class ChartViewController: UIViewController {
         let totalHeight: CGFloat = 4000
         
         // Adjust the scrollView's contentSize
-        scrollView.contentSize = CGSize(width: screenWidth, height: totalHeight)
-        
+        scrollView.contentSize = CGSize(width: 393.0, height: 5000.0)
+
+        scrollView.isUserInteractionEnabled = true
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.bounces = true
+        scrollView.delegate = self
+        view.bringSubviewToFront(scrollView)
+
         scrollView.backgroundColor = .black
         view.addSubview(scrollView)
         
@@ -309,29 +180,13 @@ class ChartViewController: UIViewController {
             toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        
-        
-        let printButton = UIButton(type: .custom)
-        printButton.setImage(UIImage(systemName: "printer"), for: .normal)
-        printButton.tintColor = .blue
-        printButton.addTarget(self, action: #selector(printButtonTapped), for: .touchUpInside)
-        
-        // Position the print button in the upper right corner
-        printButton.frame = CGRect(x: view.bounds.width - 50, y: 80, width: 40, height: 40)
-        
-        // Add the print button as a subview to the view
-        view.addSubview(printButton)
+
         
         view.addSubview(birthChartView)
         // Customize the view as needed
         birthChartView.backgroundColor = .black
         
-        // Update the planet positions in the view
-    //    birthChartView.updateBirthChart()
-        
-   
-     
-        
+ 
         let signScores = chartCake.calculateTotalSignScore()
         let elementScores = calculateTotalElementScores(signScores: signScores)
         let elementPieChartView = createPieChartView(dataEntries: generateElementPieChartData(scores: elementScores))
@@ -353,28 +208,16 @@ class ChartViewController: UIViewController {
         let trinityPieChartView = createPieChartView(dataEntries: generateTrinityPieChartData(trinityScores: trinityScores))
         trinityPieChartView.frame = CGRect(x: 85, y: 1650, width: 250, height: 250)
         scrollView.addSubview(trinityPieChartView)
-        
-        
-        //        let houseScores = calculateHouseStrengths(birthChart: chart, date: selectedDate!, ascDeclination: ascDeclination, mcDeclination: mcDeclination, houseCusps: [], interceptedSigns: [], planetsInHouses: [:])
-        //   print("House Scores in ChartVC: \(houseScores)")
+
         let domainScores = calculateTotalDomainScores(houseScores: houseScores)
         
         //     print("Domain Scores: \(domainScores)")
         let domainPieChartView = createPieChartView(dataEntries: generateDomainPieChartData(domainScores: domainScores))
         domainPieChartView.frame = CGRect(x: 85, y: 1950, width: 250, height: 250)
         scrollView.addSubview(domainPieChartView)
-        displayGroupedPlanetBarChart()
+      //  displayGroupedPlanetBarChart()
 
-    //    let aspectarianView = AspectarianView(frame: CGRect(x: 0, y: 400, width: screenWidth, height: 400), chart: chart)
-    //    aspectarianView.backgroundColor = .black // Add this line to visually identify the AspectarianView
-             //  view.addSubview(aspectarianView)
 
-        let aspectButton = UIBarButtonItem(title: "Aspects", style: .plain, target: self, action: #selector(showAspectsViewController))
-        navigationItem.rightBarButtonItem = aspectButton
-        
-        
-        
-        
         let barHeight: CGFloat = 20
         let barSpacing: CGFloat = 5
         let _: CGFloat = 100 // The width of the bars when the score is 100
@@ -428,171 +271,7 @@ class ChartViewController: UIViewController {
 
         }
         
-        func displayGroupedPlanetBarChart() {
-            // 1. Get the scores
-            let scoresFromFunction = chartCake.getTotalScoresForPlanets()
 
-            // 2. Convert to String-based Dictionary
-            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
-
-            for (celestialObject, scoreTuple) in scoresFromFunction {
-                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
-                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
-            }
-
-            // 3. Update the Chart
-            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
-         //   self.scrollView.addSubview(barChartView)
-            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
-        }
-        
-        func updateGroupedPlanetBarChart(chartView: BarChartView, scores: [String: (power: Double, harmony: Double, discord: Double)], label: String) {
-            let planetOrder = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
-             var sortedPlanets = scores.sorted {
-                 planetOrder.firstIndex(of: $0.key) ?? 0 < planetOrder.firstIndex(of: $1.key) ?? 0
-             }
-
-            if let southNodeIndex = sortedPlanets.firstIndex(where: { $0.key == "S.Node" }) {
-                let southNode = sortedPlanets.remove(at: southNodeIndex)
-                sortedPlanets.append(southNode)
-            }
-
-            var powerEntries: [BarChartDataEntry] = []
-            var harmonyEntries: [BarChartDataEntry] = []
-            var discordEntries: [BarChartDataEntry] = []
-
-            for (index, planetScore) in sortedPlanets.enumerated() {
-                let powerEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.power)
-                let harmonyEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.harmony)
-                let discordEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.discord)
-                powerEntries.append(powerEntry)
-                harmonyEntries.append(harmonyEntry)
-                discordEntries.append(discordEntry)
-            }
-
-            let powerDataSet = BarChartDataSet(entries: powerEntries, label: "Power")
-            powerDataSet.colors = [UIColor.white]
-            powerDataSet.valueTextColor = UIColor.white
-
-            let harmonyDataSet = BarChartDataSet(entries: harmonyEntries, label: "Harmony")
-            harmonyDataSet.colors = [UIColor.green]
-            harmonyDataSet.valueTextColor = UIColor.green
-
-            let discordDataSet = BarChartDataSet(entries: discordEntries, label: "Discord")
-            discordDataSet.colors = [UIColor.red]
-            discordDataSet.valueTextColor = UIColor.red
-
-            let chartData = BarChartData(dataSets: [powerDataSet, harmonyDataSet, discordDataSet])
-            chartView.data = chartData
-
-            // Bar chart configurations
-            let groupSpace = 0.3
-            let barSpace = 0.05
-            let barWidth = 0.2
-
-            let groupCount = scores.count
-            let startYear = 0
-            chartData.barWidth = barWidth
-            chartView.xAxis.axisMinimum = Double(startYear)
-            let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-            chartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount) - gg + 1.0
-
-            chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-
-            // ... Additional chart configurations ...
-            // Set up the x-axis with the sorted planet names
-              let xAxis = chartView.xAxis
-              xAxis.labelPosition = .bottom
-            xAxis.setLabelCount(sortedPlanets.count, force: true)
-
-              xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedPlanets.map { $0.key })
-              xAxis.labelTextColor = .white
-              xAxis.labelFont = UIFont.systemFont(ofSize: 18)
-              xAxis.yOffset = 2.0
-              chartView.extraBottomOffset = 10.0
-
-            // Disable axis lines
-            chartView.leftAxis.drawAxisLineEnabled = false
-            chartView.rightAxis.drawAxisLineEnabled = false
-            xAxis.drawAxisLineEnabled = false
-        }
-
-//        func displayGroupedSignBarChart() {
-//            // 1. Get the scores
-//            let scoresFromFunction = chartCake.calculateTotalHarmonyDiscordSignScores()
-//
-//            // 2. Convert to String-based Dictionary
-//            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
-//
-//            for (celestialObject, scoreTuple) in scoresFromFunction {
-//                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
-//                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
-//            }
-//
-//            // 3. Update the Chart
-//            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
-//            self.scrollView.addSubview(barChartView)
-//            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
-//        }
-//
-//
-//
-//        func displayGroupedHouseBarChart() {
-//            // 1. Get the scores
-//            let scoresFromFunction = chartCake.sign()
-//
-//            // 2. Convert to String-based Dictionary
-//            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
-//
-//            for (celestialObject, scoreTuple) in scoresFromFunction {
-//                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
-//                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
-//            }
-//
-//            // 3. Update the Chart
-//            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
-//            self.scrollView.addSubview(barChartView)
-//            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
-//        }
-//
-//        func updateGroupedHouseBarChart(chartView: BarChartView, scores: [String: (power: Double, harmony: Double, discord: Double)], label: String) {
-//            var powerEntries: [BarChartDataEntry] = []
-//            var harmonyEntries: [BarChartDataEntry] = []
-//            var discordEntries: [BarChartDataEntry] = []
-//
-//            let sortedPlanets = scores.sorted(by: { $0.key < $1.key })
-//            for (index, planetScore) in sortedPlanets.enumerated() {
-//                let powerEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.power)
-//                let harmonyEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.harmony)
-//                let discordEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.discord)
-//                powerEntries.append(powerEntry)
-//                harmonyEntries.append(harmonyEntry)
-//                discordEntries.append(discordEntry)
-//            }
-//
-//            let powerDataSet = BarChartDataSet(entries: powerEntries, label: "Power")
-//            let harmonyDataSet = BarChartDataSet(entries: harmonyEntries, label: "Harmony")
-//            let discordDataSet = BarChartDataSet(entries: discordEntries, label: "Discord")
-//
-//            let chartData = BarChartData(dataSets: [powerDataSet, harmonyDataSet, discordDataSet])
-//            chartView.data = chartData
-//
-//            let groupSpace = 0.3
-//            let barSpace = 0.05
-//            let barWidth = 0.2 // (0.2 + 0.05) * 3 + 0.3 = 1.00 -> interval per "group"
-//
-//            let groupCount = scores.count
-//            let startYear = 0
-//            chartData.barWidth = barWidth
-//            chartView.xAxis.axisMinimum = Double(startYear)
-//            let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-//            chartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
-//            chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-//
-//            // ... Add any other chart configurations as needed ...
-//        }
-       
-        
         func updateHouseBarChart(chartView: BarChartView, scores: [Int: Double], label: String) {
             var dataEntries: [BarChartDataEntry] = []
             
@@ -647,6 +326,59 @@ class ChartViewController: UIViewController {
             chartView.rightAxis.drawAxisLineEnabled = false
             xAxis.drawAxisLineEnabled = false
         }
+        func updatePlanetBarChart(chartView: BarChartView, scores: [String: Double], label: String) {
+            let planetOrder = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
+            var sortedPlanets = scores.sorted {
+                planetOrder.firstIndex(of: $0.key) ?? 0 < planetOrder.firstIndex(of: $1.key) ?? 0
+            }
+
+            var dataEntries: [BarChartDataEntry] = []
+            let totalScore = scores.values.reduce(0, +)
+
+            if let southNodeIndex = sortedPlanets.firstIndex(where: { $0.key == "S.Node" }) {
+                let southNode = sortedPlanets.remove(at: southNodeIndex)
+                sortedPlanets.append(southNode)
+            }
+
+            for (index, planetScore) in sortedPlanets.enumerated() {
+                let percentage = (planetScore.value / totalScore) * 100
+                let dataEntry = BarChartDataEntry(x: Double(index), y: percentage)
+                dataEntries.append(dataEntry)
+            }
+
+            let chartDataSet = BarChartDataSet(entries: dataEntries, label: label)
+            chartDataSet.drawValuesEnabled = true
+            chartDataSet.valueFormatter = PercentFormatter()
+            chartDataSet.valueColors = [UIColor.white]  // Disable showing values on top of the bars
+            chartDataSet.colors = getCustomPlanetColors(count: dataEntries.count)  // Assign different colors to each bar
+            chartDataSet.valueFont = .systemFont(ofSize: 10) // replace 18 with your desired size
+
+            chartView.legend.enabled = false
+
+
+            let chartData = BarChartData(dataSet: chartDataSet)
+            chartView.data = chartData
+            chartView.drawGridBackgroundEnabled = false
+            chartView.xAxis.drawGridLinesEnabled = false
+            chartView.leftAxis.drawGridLinesEnabled = false
+            chartView.rightAxis.drawGridLinesEnabled = false
+            let xAxis = chartView.xAxis
+            xAxis.labelPosition = .bottom
+            xAxis.setLabelCount(scores.count, force: false)
+            xAxis.axisMinimum = -0.5
+            xAxis.axisMaximum = Double(scores.count) - 0.5
+            xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedPlanets.map { planetSymbolMapping[$0.key] ?? $0.key })
+            xAxis.labelTextColor = .white
+            xAxis.labelFont = UIFont.systemFont(ofSize: 18) // Set the font size to 14
+            xAxis.yOffset = 2.0 // Move the labels up by 5 points
+            chartView.extraBottomOffset = 10.0 // Increase or decrease the offset as needed
+
+            // Disable axis lines
+            chartView.leftAxis.drawAxisLineEnabled = false
+            chartView.rightAxis.drawAxisLineEnabled = false
+            xAxis.drawAxisLineEnabled = false
+        }
+
         
         func updateSignBarChart(chartView: BarChartView, scores: [Zodiac: Double], label: String) {
             let zodiacOrder = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
@@ -702,58 +434,6 @@ class ChartViewController: UIViewController {
             xAxis.drawAxisLineEnabled = false
         }
 
-        func updatePlanetBarChart(chartView: BarChartView, scores: [String: Double], label: String) {
-            let planetOrder = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
-            var sortedPlanets = scores.sorted {
-                planetOrder.firstIndex(of: $0.key) ?? 0 < planetOrder.firstIndex(of: $1.key) ?? 0
-            }
-
-            var dataEntries: [BarChartDataEntry] = []
-            let totalScore = scores.values.reduce(0, +)
-
-            if let southNodeIndex = sortedPlanets.firstIndex(where: { $0.key == "S.Node" }) {
-                let southNode = sortedPlanets.remove(at: southNodeIndex)
-                sortedPlanets.append(southNode)
-            }
-
-            for (index, planetScore) in sortedPlanets.enumerated() {
-                let percentage = (planetScore.value / totalScore) * 100
-                let dataEntry = BarChartDataEntry(x: Double(index), y: percentage)
-                dataEntries.append(dataEntry)
-            }
-            
-            let chartDataSet = BarChartDataSet(entries: dataEntries, label: label)
-            chartDataSet.drawValuesEnabled = true
-            chartDataSet.valueFormatter = PercentFormatter()
-            chartDataSet.valueColors = [UIColor.white]  // Disable showing values on top of the bars
-            chartDataSet.colors = getCustomPlanetColors(count: dataEntries.count)  // Assign different colors to each bar
-            chartDataSet.valueFont = .systemFont(ofSize: 10) // replace 18 with your desired size
-            
-            chartView.legend.enabled = false
-            
-            
-            let chartData = BarChartData(dataSet: chartDataSet)
-            chartView.data = chartData
-            chartView.drawGridBackgroundEnabled = false
-            chartView.xAxis.drawGridLinesEnabled = false
-            chartView.leftAxis.drawGridLinesEnabled = false
-            chartView.rightAxis.drawGridLinesEnabled = false
-            let xAxis = chartView.xAxis
-            xAxis.labelPosition = .bottom
-            xAxis.setLabelCount(scores.count, force: false)
-            xAxis.axisMinimum = -0.5
-            xAxis.axisMaximum = Double(scores.count) - 0.5
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedPlanets.map { planetSymbolMapping[$0.key] ?? $0.key })
-            xAxis.labelTextColor = .white
-            xAxis.labelFont = UIFont.systemFont(ofSize: 18) // Set the font size to 14
-            xAxis.yOffset = 2.0 // Move the labels up by 5 points
-            chartView.extraBottomOffset = 10.0 // Increase or decrease the offset as needed
-               
-            // Disable axis lines
-            chartView.leftAxis.drawAxisLineEnabled = false
-            chartView.rightAxis.drawAxisLineEnabled = false
-            xAxis.drawAxisLineEnabled = false
-        }
 
      
         func getCustomBarColors(count: Int) -> [UIColor] {

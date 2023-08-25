@@ -189,8 +189,23 @@ var mySunText = ""
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = CGRect(x: 10, y: 550, width: 380, height: 700)
+        let yOffset: CGFloat = 550
+        let tableViewHeight = view.bounds.height - yOffset - 20  // Adjust this as per your requirements
+        tableView.frame = CGRect(x: 10, y: yOffset, width: view.bounds.width - 20, height: tableViewHeight)
 
+
+
+      //  adding date labet
+        let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
+
+        let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
+         todaysDate.text = formatted
+        todaysDate.font = .systemFont(ofSize: 13)
+         todaysDate.textColor = .white
+        todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
+
+
+        view.addSubview(todaysDate)
     }
 
 

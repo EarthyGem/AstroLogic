@@ -158,10 +158,12 @@ var mySunText = ""
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = CGRect(x: 10, y: 550, width: 380, height: 700)
-        
-    }
+        let yOffset: CGFloat = 550
+        let tableViewHeight = view.bounds.height - yOffset - 20  // Adjust this as per your requirements
+        tableView.frame = CGRect(x: 10, y: yOffset, width: view.bounds.width - 20, height: tableViewHeight)
 
+
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 11
