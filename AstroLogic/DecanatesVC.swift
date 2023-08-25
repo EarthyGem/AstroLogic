@@ -7,15 +7,93 @@
 import SwiftEphemeris
 import UIKit
 
+
+
 class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     var chartCake: ChartCake?
     var chart: Chart?
     var birthChartView: BirthChartView!
     var strongestPlanet: String!
     var natalDecanates: [String] = []
 
-    // ... Rest of your code ...
-    
+    var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+    var segueIdentifiers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
+
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .black
+        table.register(CustomTableViewCellDeacnates.self, forCellReuseIdentifier: CustomTableViewCellDeacnates.identifier)
+        return table
+    }()
+
+    private let planets: [String]
+
+    // Init
+    init(planets: [String]) {
+        self.planets = planets
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let tableViewHeight: CGFloat = view.bounds.height - 550
+        tableView.frame = CGRect(x: 10, y: 550, width: 380, height: tableViewHeight)
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return getPlanetOrder(strongestPlanet: strongestPlanet).count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCellDeacnates.identifier, for: indexPath) as? CustomTableViewCellDeacnates else {
+            return UITableViewCell()
+        }
+
+        let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet)
+        let planet = planetOrder[indexPath.row]
+        cell.configure(
+               signGlyphImageName: planet,
+               planetImageImageName: planet,
+               signTextText: getNatalPositions().safeIndex(indexPath.row) ?? "",
+               planetTextText: getDecanatesKeyword().safeIndex(indexPath.row) ?? "",
+               headerTextText: getDecanatesText().safeIndex(indexPath.row) ?? ""
+           )
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 170
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+private extension DeacanatesViewController {
+    func configureUI() {
+        view.backgroundColor = .black
+        let screenWidth = UIScreen.main.bounds.width
+        birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
+        print("StrongestPlanet: \(String(describing: strongestPlanet))")
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(birthChartView)
+        view.addSubview(tableView)
+    }
+
+
     func getPlanetOrder(strongestPlanet: String) -> [String] {
         var order: [String] = []
         let defaultOrder = ["sun", "moon", "ascendant", "mercury"]
@@ -33,10 +111,10 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         return order
     }
 
-  
+
 
     func getNatalPositions() -> [String] {
-        var positions: [String] = []
+        var positions = [String]()
         
         // Get the order of the planets
         let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet)
@@ -54,6 +132,20 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
                 decanates = chartCake!.natal.ascendant.decanates.formatted
             case "mercury":
                 decanates = chartCake!.natal.mercury.decanates.formatted
+            case "venus":
+                   decanates = chartCake?.natal.venus.decanates.formatted
+               case "mars":
+                   decanates = chartCake?.natal.mars.decanates.formatted
+               case "jupiter":
+                   decanates = chartCake?.natal.jupiter.decanates.formatted
+               case "saturn":
+                   decanates = chartCake?.natal.saturn.decanates.formatted
+               case "uranus":
+                   decanates = chartCake?.natal.uranus.decanates.formatted
+               case "neptune":
+                   decanates = chartCake?.natal.neptune.decanates.formatted
+               case "pluto":
+                   decanates = chartCake?.natal.pluto.decanates.formatted
             default:
                 decanates = getDecanates(for: planet)
             }
@@ -66,9 +158,9 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         return positions
     }
-        
 
-       
+
+
     func getDecanatesKeyword() -> [String] {
         var keywords: [String] = []
         
@@ -88,6 +180,20 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
                 keyword = chartCake!.natal.ascendant.decanates.keyWord
             case "mercury":
                 keyword = chartCake!.natal.mercury.decanates.keyWord
+            case "venus":
+                keyword = chartCake?.natal.venus.decanates.keyWord
+               case "mars":
+                keyword = chartCake?.natal.mars.decanates.keyWord
+               case "jupiter":
+                keyword = chartCake?.natal.jupiter.decanates.keyWord
+               case "saturn":
+                keyword = chartCake?.natal.saturn.decanates.keyWord
+               case "uranus":
+                keyword = chartCake?.natal.uranus.decanates.keyWord
+               case "neptune":
+                keyword = chartCake?.natal.neptune.decanates.keyWord
+               case "pluto":
+                keyword = chartCake?.natal.pluto.decanates.keyWord
             default:
                 if let decanate = getDecanates(for: planet) {
                     keyword = getKeyword(for: decanate)
@@ -122,6 +228,20 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
                 text = chartCake!.natal.houseCusps.ascendent.decanates.spiritualText
             case "mercury":
                 text = chartCake!.natal.mercury.decanates.spiritualText
+            case "venus":
+                text = chartCake?.natal.venus.decanates.spiritualText
+               case "mars":
+                text = chartCake?.natal.mars.decanates.spiritualText
+               case "jupiter":
+                text = chartCake?.natal.jupiter.decanates.spiritualText
+               case "saturn":
+                text = chartCake?.natal.saturn.decanates.spiritualText
+               case "uranus":
+                text = chartCake?.natal.uranus.decanates.spiritualText
+               case "neptune":
+                text = chartCake?.natal.neptune.decanates.spiritualText
+               case "pluto":
+                text = chartCake?.natal.pluto.decanates.spiritualText
             default:
                 if let decanate = getDecanates(for: planet) {
                     text = getText(for: decanate)
@@ -168,10 +288,10 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func getKeyword(for planet: String) -> String? {
-    
+
         
         switch planet {
-   
+
         case "Sun":
             return chartCake!.natal.sun.decanates.keyWord
         case "Moon":
@@ -200,10 +320,10 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func getText(for planet: String) -> String? {
-    
+
         
         switch planet {
-   
+
         case "Sun":
             return chartCake!.natal.sun.decanates.spiritualText
         case "Moon":
@@ -232,116 +352,11 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     
-var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
-    var segueIdentifiers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 
-var mySunText = ""
-    var myMoonText = ""
-    var myAscText = ""
-    var myMercuryText = ""
-    var myVenusText = ""
-    var myMarsText = ""
-    var myJupiterText = ""
-    var mySaturnText = ""
-    var myUranusText = ""
-    var myNeptuneText = ""
-    var myPlutoText = ""
-    var mySunText1 = ""
-    var mySunText2 = ""
-    var mySunText3 = ""
-    var mySunText4 = ""
-
-    
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.register(CustomTableViewCellDeacnates.self, forCellReuseIdentifier: CustomTableViewCellDeacnates.identifier)
-        return table
-    }()
-
-    private let planets: [String]
-
-    // Init
-
-    init(planets: [String]) {
-        self.planets = planets
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        view.backgroundColor = .black
-        let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
-        print("StrongestPlanet: \(String(describing: strongestPlanet))")
-        
-        view.backgroundColor = .black
-        tableView.backgroundColor = .black
-        tableView.dataSource = self
-        tableView.delegate = self
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
-        
-        view.addSubview(birthChartView)
-        view.addSubview(tableView)
-        
-        
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let tableViewHeight: CGFloat = view.bounds.height - 550 // Adjust the value according to your needs
-           tableView.frame = CGRect(x: 10, y: 550, width: 380, height: tableViewHeight)
-     
-        
-    }
-
-
-
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getPlanetOrder(strongestPlanet: strongestPlanet).count
-    }
-
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCellDeacnates.identifier, for: indexPath) as? CustomTableViewCellDeacnates else {
-             
-             return UITableViewCell()
-         }
-        
-        cell.configure(signGlyphImageName: "\(getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row])", planetImageImageName: "\(getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(getDecanatesKeyword()[indexPath.row])", headerTextText: "\(getDecanatesText()[indexPath.row])" )
-        
-
-        
-         return cell
-         
-         
-     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
-    }
-    
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-//        print(planets[indexPath.row])
-        
-
-     
-//        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
-       
-//
-//        let vc = MovingPlanetVCs[indexPath.row]
-//        present(UINavigationController(rootViewController: vc), animated: true)
-//
-        
-     
-}
 
 }
-
+private extension Array {
+    func safeIndex(_ index: Int) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
