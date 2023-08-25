@@ -53,14 +53,13 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     
-    var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+    var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
     
     func setupTransitSigns() -> [String] {
 
         transitSigns = [
             chartCake?.transits.sun.sign.keyName,
             chartCake?.transits.moon.sign.keyName,
-            chartCake?.transits.ascendant.sign.keyName,
             chartCake?.transits.mercury.sign.keyName,
             chartCake?.transits.venus.sign.keyName,
             chartCake?.transits.mars.sign.keyName,
@@ -83,7 +82,6 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
        transitSigns = [
             chartCake?.transits.sun.formatted,
             chartCake?.transits.moon.formatted,
-            chartCake?.transits.ascendant.formatted,
             chartCake?.transits.mercury.formatted,
             chartCake?.transits.venus.formatted,
             chartCake?.transits.mars.formatted,
@@ -102,22 +100,6 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
         return transitSigns
     }
     
-    
-var mySunText = ""
-    var myMoonText = ""
-    var myAscText = ""
-    var myMercuryText = ""
-    var myVenusText = ""
-    var myMarsText = ""
-    var myJupiterText = ""
-    var mySaturnText = ""
-    var myUranusText = ""
-    var myNeptuneText = ""
-    var myPlutoText = ""
-    var mySunText1 = ""
-    var mySunText2 = ""
-    var mySunText3 = ""
-    var mySunText4 = ""
 
     
     private let tableView: UITableView = {

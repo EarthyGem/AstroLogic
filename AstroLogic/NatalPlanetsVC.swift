@@ -63,7 +63,7 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return natalSigns
     }
     
-var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+var planetGlyphs = ["sun","moon","ascendant","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
     var segueIdentifiers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 
 var mySunText = ""

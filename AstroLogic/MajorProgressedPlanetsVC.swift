@@ -48,7 +48,7 @@ class MajorProgressionsViewController: UIViewController, UITableViewDelegate, UI
     // transitChart now uses the device's current location
   
     
-    var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+    var planetGlyphs = ["sun","moon","ascendant","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
     
     func getProgressedSignsSigns() -> [String] {
        progressedSigns = [
