@@ -14,30 +14,30 @@ func generateAstroSentence(strongestPlanet: String,
                            moonSign: String,
                            risingSign: String, name: String) -> String {
     // Define arrays of arrays for adjectives and archetypes
-    let adjectiveArrays: [String: [String]] = ["Aries": ["The Fiery", "The Bold", "The Courageous"],
-                                               "Taurus": ["The Sensual", "The Peace Loving", "The Grounded"],
-                                               "Gemini": ["The Witty", "The Versatile", "The Curious"],
-                                               "Cancer": ["The Caring", "The Nurturing", "The Emotional"],
-                                               "Leo": ["The Dramatic", "The Confident", "The Generous"],
-                                               "Virgo": ["The Analytical", "The Practical", "The Informative", "Instructive"],
-                                               "Libra": ["The Charming", "The Diplomatic", "The Harmonious", "The Sweet"],
-                                               "Scorpio": ["The Intense", "The Deep", "The Primal", "The Resourceful"],
-                                               "Sagittarius": ["The Adventurous", "The Philosophical", "The Optimistic", "The Sportive"],
-                                               "Capricorn": ["The Ambitious", "The Disciplined", "The Responsible", "The Hardwroking", "The Serious", "The Orderly", "The Practical"],
-                                               "Aquarius": ["The Eccentric", "The Innovative", "The Independent", "The Futuristic"],
-                                               "Pisces": ["The Sensitive", "The Compassionate", "The Visionary", "The Imaginative"]]
+    let adjectiveArrays: [String: [String]] = ["Aries": ["The Fiery", "The Bold", "The Courageous", "The Pioneering", "The Competitive", "The Passionate", "The Energetic", "The Active", "The Independant", "The Assertive", "The Militant", "The Combative", "The Commanding", "The Commanding", "The Pushy"],
+                                               "Taurus": ["The Plodding", "The Peace Loving", "The Grounded", "The Steadfast", "The Dependable", "The Practical", "The Relaible", "The Possesive", "The Patient", "The Industrious", "The Conservative", "The Stubborn", "The Immovable"],
+                                                          "Gemini": ["The Witty", "The Versatile", "The Curious", "The Open-Minded", "The Perceptive", "The Chatty", "The Verbose", "The Thinking", "The Nervous", "The Mercurial", "The Changable", "The Intellectual", "The Restless", "Informative", "Multi-tasking", "The Dexterious"],
+                                               "Cancer": ["The Caring", "The Nurturing", "The Sensitive", "The Family Oriented", "The Protective", "The Shy", "The Emotional", "The Moody", "The Mediumistic", "The Sympathetic", "The Timid", "The Receptive", "The Adaptable", "The Whimsical", "The Tenacious", "The Impressionistic", "The Domestic", "The Kind", "The Dreamy"
+                                                         ],
+                                               "Leo": ["The Shining", "The Dignified", "The Warmhearted", "The Candid", "Forceful", "Dominating","The Majestic", "The Strong", "The Impactful", "The Proud", "The Regal", "The Willful", "The Commanding", "The Bossy"],
+                                               "Virgo": ["The Analytical", "The Practical", "The Informative", "Instructive", "The Studious", "The Critical", "The Discriminating", "The Bold", "The Knowledgeable","The Scientific", "The Mentally Alert", "The Ingenious"],
+                                               "Libra": ["The Pleasing", "The Diplomatic", "The Harmonious", "The Sweet", "The Artistic", "The Peace Loving", "The Harmonizing", "The Appreciative", "The Social", "The Refined", "The Sympathetic", "The Affectionate", "The Polite", "The Courteous"],
+                                               "Scorpio": ["The Intense", "The Deep", "The Dark", "The Resourceful", "The Desirious", "The Penetrating", "The Forceful", "The Magnetic", "The Secretive", "The Brooding", "The Determined"],
+                                               "Sagittarius": ["The Adventurous", "The Philosophical", "The Optimistic", "The Sportive", "The Opinionated", "The Dogmatic", "The Religious", "The Larger-Than-Life", "The Jovial", "The Fun Loving", "The Enthusiastic", "The Outspoken", "The Generous", "The Patriotic", "The Faithful", "The Loyal"],
+                                               "Capricorn": ["The Ambitious", "The Disciplined", "The Responsible", "The Hardworking", "The Serious", "The Orderly", "The Practical", "The Cheap", "The Economical", "The Business-Minded", "The Industrious", "The Cunning", "The Cautious", "The Careful"],
+                                               "Aquarius": ["The Eccentric", "The Innovative", "The Power Hunry", "Independent", "The Futuristic", "The Rebelious", "The Freedom Loving", "The Individualistic", "The One-of-a-Kind", "The Friendly", "The Genius", "The Independant", "The Controlling", "The Progresive", "The Argumentative" ],
+                                               "Pisces": ["The Sensitive", "The Compassionate", "The Visionary", "The Imaginative", "The Spiritual", "The Other Worldly", "The Dreamy", "The Transcendant", "The Poetic", "The Idealitic", "The Mystical", "The Mediumistic", "The Sympathetic", "The Romantic", "The Worrisome", "The Delusional", "The Confused", ]]
     
     let planetArrays: [String: [String]] = [
-        "Sun": [ "Charismatic One","Confident One", "Creative", "Creator", "Entertainer", "Force of Nature", "Gifted One", "Ruler"],
-        "Moon": ["Nurturer", "Comforter", "Healer", "Supporter",  "Caretaker", "Gardener", "Provider"],
+        "Sun": [ "Life of The Party", "Creative", "Creator", "Entertainer", "Golden Child", "Winner", "Leader"],
+        "Moon": ["Nurturer", "Comforter", "Healer", "Supporter",  "Caretaker", "Gardener", "Homebody", "Homemaker", "Feeler", "Popular"],
         "Mercury": [ "Thinker","Communicator","Problem Solver","Storyteller","Messenger",
-                     "Intellectual","Teacher"],
-        "Venus": [ "Romantic", "Artist","Accommodator", "Aesthete", "Harmonizer", "Beautifier",
-                  "Best Friend", "Connector", "Lover",
+                     "Intellectual","Teacher", "Jack-of-all-Trades", "Multi-Tasker"],
+        "Venus": [ "Socialite", "Artist","Accommodator", "Aesthete", "Harmonizer", "Beautifier", "Connector", "Lover",
                   "Partner", "Peacemaker" ],
         "Mars": ["Warrior", "Pioneer", "Adventurer", "Competitor", "Builder", "Fighter",  "Protector", "Trailblazer", "Champion", "Leader"],
         "Jupiter": ["Philosopher", "Adventurer", "Optimist", "Benefactor", "Bestower of Blessings", "Believer"],
-        "Saturn": ["Disciplinarian", "Elder", "Organizer", "Gatekeeper", "Judge", "Planner", "Organizer", "Provider", "Realist", "Rule Maker", "Taskmaster", "Traditionalist", "Wise One", "Authority"],
+        "Saturn": ["Disciplinarian", "Elder", "Organizer", "Gatekeeper", "Judge", "Planner", "Organizer", "Provider", "Realist", "Rule Maker", "Taskmaster", "Traditionalist", "Toiler", "Authority"],
         "Uranus": [ "Awakener", "Genius", "Dissenter", "Free Thinker",
                     "Groundbreaker","Rebel", "Innovator", "Iconoclast", "Activist", "Agent of Change", "Futurist",
                     "Disruptor", "Original", "Maverick", "Outsider", "Whistleblower"],
@@ -49,13 +49,13 @@ func generateAstroSentence(strongestPlanet: String,
 
                                             "Pluto": ["Transformer",
                                                       "Alchemist",
-                                                      "Confidante",
+
                                                       "Deep Thinker",
                                                       "Detective",
                                                       "Excavator",
                                                       "Extremist",
 
-                                                      "Intense One",
+                                                      "Intensity Junkie",
                                                       "Occultist",
                                                       "Penetrator",
                                                       "Phoenix",
@@ -64,7 +64,7 @@ func generateAstroSentence(strongestPlanet: String,
 
                                                      ]]
     
-    let signArrays: [String: [String]] = ["Aries": ["Energetic", "Confident", "Charismatic"],
+    let signArrays: [String: [String]] = ["Aries": ["Energetic", "Confident", "Daring"],
                                           "Taurus": ["Reliable", "Practical", "Sensual"],
                                           "Gemini": [ "Commentator",
                                                     
