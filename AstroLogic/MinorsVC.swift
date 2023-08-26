@@ -44,13 +44,12 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
     // transitChart now uses the device's current location
 
     
-    var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+    var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto","southnode","ascendant", "midheaven"]
     
     func setupTransitSigns() -> [String] {
         transitSigns = [
             chartCake?.minor.sun.sign.keyName,
             chartCake?.minor.moon.sign.keyName,
-            chartCake?.minor.ascendant.sign.keyName,
             chartCake?.minor.mercury.sign.keyName,
             chartCake?.minor.venus.sign.keyName,
             chartCake?.minor.mars.sign.keyName,
@@ -59,7 +58,9 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
             chartCake?.minor.uranus.sign.keyName,
             chartCake?.minor.neptune.sign.keyName,
             chartCake?.minor.pluto.sign.keyName,
-            chartCake?.minor.southNode.sign.keyName
+            chartCake?.minor.southNode.sign.keyName,
+            chartCake?.minor.ascendant.sign.keyName,
+            chartCake?.minor.midheaven.sign.keyName
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -82,7 +83,9 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
         chartCake?.minor.uranus.formatted,
         chartCake?.minor.neptune.formatted,
         chartCake?.minor.pluto.formatted,
-        chartCake?.minor.southNode.formatted
+        chartCake?.minor.southNode.formatted,
+        chartCake?.minor.ascendant.formatted,
+        chartCake?.minor.midheaven.formatted
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -92,22 +95,7 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
         return minorProgressedSigns
     }
     
-    
-var mySunText = ""
-    var myMoonText = ""
-    var myAscText = ""
-    var myMercuryText = ""
-    var myVenusText = ""
-    var myMarsText = ""
-    var myJupiterText = ""
-    var mySaturnText = ""
-    var myUranusText = ""
-    var myNeptuneText = ""
-    var myPlutoText = ""
-    var mySunText1 = ""
-    var mySunText2 = ""
-    var mySunText3 = ""
-    var mySunText4 = ""
+
 
     
     private let tableView: UITableView = {
@@ -184,9 +172,7 @@ var mySunText = ""
          }
         
         cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getTransitPositions()[indexPath.row], planetTextText: "", headerTextText: "")
-        
-//        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
-        
+
         
          return cell
          
@@ -199,24 +185,8 @@ var mySunText = ""
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        print(planets[indexPath.row])
-        
-      
 
 
-  
-        
-        
-        let MovingPlanetVCs = [TodayViewController()]
-        
-//        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
-       
-        
-        let vc = MovingPlanetVCs[indexPath.row]
-        present(UINavigationController(rootViewController: vc), animated: true)
-        
-        
-     
 }
  
 

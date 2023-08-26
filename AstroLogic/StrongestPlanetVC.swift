@@ -117,7 +117,7 @@ class StrongestPlanetViewController: UIViewController {
     }
 
     private func configureHarmoniousTitleLabel() {
-        harmoniousTitleLabel.text = "Angels"
+        harmoniousTitleLabel.text = "Angels😇"
         harmoniousTitleLabel.textColor = .white
         harmoniousTitleLabel.font = UIFont.systemFont(ofSize: 16)
         harmoniousTitleLabel.textAlignment = .center
@@ -191,7 +191,7 @@ class StrongestPlanetViewController: UIViewController {
     
     
     private func configureStrongestTitleLabel(name: String) {
-        titleLabel.text = "\(name)'s Power Planet"
+        titleLabel.text = "\(name)'s Power Planet💪"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 24)
         titleLabel.textAlignment = .center
@@ -268,7 +268,7 @@ class StrongestPlanetViewController: UIViewController {
 
 
             private func configureDiscordantTitleLabel() {
-                discordantTitleLabel.text = "Demons"
+                discordantTitleLabel.text = "Demons👿"
                 discordantTitleLabel.textColor = .white
                 discordantTitleLabel.font = UIFont.systemFont(ofSize: 16)
                 discordantTitleLabel.textAlignment = .center
