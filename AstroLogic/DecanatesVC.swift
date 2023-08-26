@@ -42,6 +42,8 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+
+        configureNavigationBar()
     }
 
     override func viewDidLayoutSubviews() {
@@ -50,6 +52,15 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.frame = CGRect(x: 10, y: 550, width: 380, height: tableViewHeight)
     }
 
+    private func configureNavigationBar() {
+        let infoButton = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(didTapInfoButton))
+        navigationItem.rightBarButtonItem = infoButton
+    }
+
+    @objc func didTapInfoButton() {
+        let aboutDecanatesVC = AboutDecanatesViewController()
+        navigationController?.pushViewController(aboutDecanatesVC, animated: false)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getPlanetOrder(strongestPlanet: strongestPlanet).count
     }
@@ -78,6 +89,7 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
 }
 
 private extension DeacanatesViewController {
@@ -349,6 +361,8 @@ private extension DeacanatesViewController {
         default:
             return nil
         }
+
+        
     }
 
     
