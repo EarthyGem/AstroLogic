@@ -12,8 +12,13 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var chartCake: ChartCake?
     var chart: Chart?
     var birthChartView: BirthChartView!
+    var coverView: UIView!
+    var natalChartLabel: UILabel!
 
-    var natalSigns: [String] = []
+       let birthChartViewCollapsedHeight: CGFloat = 50.0
+       let birthChartViewFullHeight = UIScreen.main.bounds.width + 60
+       var isBirthChartViewCollapsed = false
+    var natalSigns = [String]()
 
     // ... Rest of your code ...
     
@@ -21,7 +26,6 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
         natalSigns = [
            chartCake!.natal.sun.sign.keyName,
            chartCake!.natal.moon.sign.keyName,
-           chartCake!.natal.ascendant.sign.keyName,
            chartCake!.natal.mercury.sign.keyName,
            chartCake!.natal.venus.sign.keyName,
            chartCake!.natal.mars.sign.keyName,
@@ -30,7 +34,10 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
            chartCake!.natal.uranus.sign.keyName,
            chartCake!.natal.neptune.sign.keyName,
            chartCake!.natal.pluto.sign.keyName,
-           chartCake!.natal.southNode.sign.keyName
+           chartCake!.natal.southNode.sign.keyName,
+           chartCake!.natal.ascendant.sign.keyName,
+           chartCake!.natal.midheaven.sign.keyName
+
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -44,8 +51,7 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
         natalSigns = [
            chartCake!.natal.sun.formatted,
            chartCake!.natal.moon.formatted,
-           chartCake!.natal.ascendant.formatted,
-           chartCake!.natal.mercury.formatted,
+               chartCake!.natal.mercury.formatted,
            chartCake!.natal.venus.formatted,
            chartCake!.natal.mars.formatted,
            chartCake!.natal.jupiter.formatted,
@@ -53,6 +59,9 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
            chartCake!.natal.uranus.formatted,
            chartCake!.natal.neptune.formatted,
            chartCake!.natal.pluto.formatted,
+           chartCake!.natal.southNode.formatted,
+           chartCake!.natal.ascendant.formatted,
+           chartCake!.natal.midheaven.formatted,
            chartCake!.natal.southNode.formatted
         ].compactMap { $0 } // This will remove any nil values from the array
     
@@ -63,27 +72,10 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return natalSigns
     }
     
-var planetGlyphs = ["sun","moon","ascendant","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto","southnode","ascendant","midheaven"]
     var segueIdentifiers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 
-var mySunText = ""
-    var myMoonText = ""
-    var myAscText = ""
-    var myMercuryText = ""
-    var myVenusText = ""
-    var myMarsText = ""
-    var myJupiterText = ""
-    var mySaturnText = ""
-    var myUranusText = ""
-    var myNeptuneText = ""
-    var myPlutoText = ""
-    var mySunText1 = ""
-    var mySunText2 = ""
-    var mySunText3 = ""
-    var mySunText4 = ""
-
-    
-    private let tableView: UITableView = {
+ private let tableView: UITableView = {
         let table = UITableView()
         table.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         return table
@@ -104,35 +96,93 @@ var mySunText = ""
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        view.backgroundColor = .black
-        let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
-     
-        
+
         view.backgroundColor = .black
         tableView.backgroundColor = .black
+
+        // BirthChartView setup
+        birthChartView = BirthChartView(frame: CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: birthChartViewFullHeight), chartCake: chartCake!)
+        let tapGestureForBirthChart = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
+
+        birthChartView.addGestureRecognizer(tapGestureForBirthChart)
+        tableView.tableHeaderView = birthChartView
+
+        // TableView setup
         tableView.dataSource = self
         tableView.delegate = self
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
-        
-        view.addSubview(birthChartView)
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         view.addSubview(tableView)
+
+
+        // Set up coverView
+        coverView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: birthChartViewCollapsedHeight))
+        coverView.backgroundColor = .black  // or any desired color
+        coverView.isHidden = false  // Initially hidden because the chart is fully shown on viewDidLoad
+        tableView.addSubview(coverView)
+
+
+        // Set up natalChartLabel
+        natalChartLabel = UILabel()
+        natalChartLabel.text = "Hide Chart"
+        natalChartLabel.textColor = .white  // or any desired color
+        natalChartLabel.textAlignment = .center
+        natalChartLabel.frame = coverView.bounds
+        coverView.addSubview(natalChartLabel)
+
+        // Add tap gesture to coverView
+        let tapGestureForCoverView = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
+        coverView.addGestureRecognizer(tapGestureForCoverView)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let yOffset: CGFloat = 550
-        let tableViewHeight = view.bounds.height - yOffset - 20  // Adjust this as per your requirements
-        tableView.frame = CGRect(x: 10, y: yOffset, width: view.bounds.width - 20, height: tableViewHeight)
+
+
+        override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+
+            let yOffset: CGFloat = 550
+            let tableViewHeight = tableView.contentSize.height + 220  // Use the content size of the table view cells
+
+            tableView.frame = CGRect(x: 10, y: 50, width: view.bounds.width - 20, height: tableViewHeight + 30)
+        }
+
+    @objc func toggleBirthChartView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            if self.isBirthChartViewCollapsed {
+                // Expand birthChartView
+                self.birthChartView.frame.size.height = self.birthChartViewFullHeight
+
+                // Adjusting the y-origin to prevent overlap
+                self.birthChartView.frame.origin.y = self.coverView.frame.origin.y + self.birthChartViewCollapsedHeight - self.birthChartViewFullHeight
+
+                // Adjust tableView frame accordingly
+                self.tableView.frame.origin.y = self.birthChartView.frame.origin.y + self.birthChartViewFullHeight + 20
+                self.tableView.frame.size.height = self.view.bounds.height - self.birthChartViewFullHeight - 20
+
+                // Set the label to "Hide Chart" when the chart is expanded
+                self.natalChartLabel.text = "Hide Chart"
+            } else {
+                // Collapse birthChartView behind the coverView
+                self.birthChartView.frame.size.height = self.birthChartViewCollapsedHeight
+                self.birthChartView.frame.origin.y = self.coverView.frame.origin.y - self.birthChartViewCollapsedHeight
+
+                // Adjust tableView frame accordingly
+                self.tableView.frame.origin.y = self.birthChartViewCollapsedHeight + 10
+                self.tableView.frame.size.height = self.view.bounds.height - self.birthChartViewCollapsedHeight - 20
+
+                // Set the label to "View Chart" when the chart is collapsed
+                self.natalChartLabel.text = "View Chart"
+            }
+
+            self.tableView.tableHeaderView = self.birthChartView
+        })
+
+        isBirthChartViewCollapsed.toggle()
     }
-
-
-
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+
+        return 13
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
