@@ -45,7 +45,8 @@ class RelationshipItemsViewController: UIViewController {
         relationshipData = [
             //RelationshipItems(chartType: "Composite with \(String(describing: selectedName))"),
             RelationshipItems(chartType: "\(String(describing: name!))'s Natal Chart"),
-            RelationshipItems(chartType: "Synastry Chart with \(String(describing: name!))")
+            RelationshipItems(chartType: "Synastry Chart with \(String(describing: name!))"),
+            RelationshipItems(chartType: "Transposed Houses")
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Natal Houses"),
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Natal Aspects"),
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Transit Progressions"),
@@ -113,7 +114,12 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 SynastryChartVC.otherChart = self.otherChart
                 SynastryChartVC.name = self.name
                 SynastryChartVC.selectedName = self.selectedName
-                
+
+
+                let transposedHousesVC = TransposedHousesVC()
+                transposedHousesVC.chartCake = self.chartCake
+                transposedHousesVC.otherChart = self.otherChart
+
                 
                 let natalPlanetsVC = RelationshipsPlanetsViewController(planets: placeHolder)
                 
@@ -125,54 +131,13 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
 //                compositeVC.otherChart = self.otherChart
                 
                 let myNatalHousesVC = MyNatalHousesVC()
-//                myNatalHousesVC.title = category2.chartType
-                
-           //     let myNatalAspectsVC = AspectedPlanetsViewController()
-//                myNatalHousesVC.title = category2.chartType
-//
-          //      let transitPlanetsVC = RelationshipTransitPlanets(transitPlanets: transitPlanets)
-//                natalPlanetsVC.title = category.chartType
-          //      transitPlanetsVC.otherChart = self.otherChart
-            
-//
-          //      let transitAspectsVC = TransitAspectedPlanetsViewController()
-//                natalPlanetsVC.title = category.chartType
-                    
-         //       let minorProgressionsVC = RelationshipMinorProgressionsViewController(MP_Planets: minorPlanets)
-         //       minorProgressionsVC.getMinors = self.getMinors
-//                minorProgressionsVC.title = category.chartType
-          //      minorProgressionsVC.otherChart = self.otherChart
-              //  print("get minors date:  \(String(describing: minorProgressionsVC.getMinors))")
-              
-                
-         //       let mp_natalAspectsVC =  mpAspectViewController()
-//                minorProgressionsVC.title = category.chartType
-                
-        //
-       //         let MP_PlanetsVC = RelationshipMajorProgressionsViewController(MP_Planets: majorPlanets)
-           //     MP_PlanetsVC.getMajorProgresseDate = self.getMajorProgresseDate
-//                MP_PlanetsVC.chart = self.chart
-           //     MP_PlanetsVC.otherChart = self.otherChart
-              //  print("get majors date:  \(String(describing: MP_PlanetsVC.getMajorProgresseDate))")
-              
+
             
                 
-        //        let MP_AspectsVC = MPAspectsViewController()
-               
-           //     let RelationshipVC = RelationshipsViewController()
-               
-                           
-            
-                
-                let categories = [OthersPlanetsVC,SynastryChartVC]
+                let categories = [OthersPlanetsVC,SynastryChartVC,transposedHousesVC]
                 navigationController?.pushViewController(categories[indexPath.row] , animated: true)
                 
-                
-//                let relationshipItemsVC = RelationshipItemsViewController()
-//                relationshipItemsVC.chart = self.chart
-////                relationshipItemsVC.myName = myName // Replace `myName` with the actual name
-//
-//                navigationController?.pushViewController(relationshipItemsVC, animated: true)
+
             }
         }
 

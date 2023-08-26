@@ -12,30 +12,14 @@ class MyNatalHousesVC: UIViewController {
    
 var chart: Chart?
     var chartCake: ChartCake?
-    var sunAspects = [""]
-    var moonAspects = [""]
-    var mercuryAspects = [""]
-    var venusAspects = [""]
-    var marsAspects = [""]
-    var jupiterAspects = [""]
-    var saturnAspects = [""]
-    var uranusAspects = [""]
-    var neptuneAspects = [""]
-    var plutoAspects = [""]
-    
-  
-    
 
-    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
        
         return scrollView
     }()
     
-  
-    
-    
+
     private let sunScrollView: UIView = {
         let sunScrollView = UIView()
        

@@ -18,6 +18,13 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
     var transitsChartView: TransitBiWheelChartView!
     var chartCake: ChartCake?
     var chart: Chart?
+    var coverView: UIView!
+    var natalChartLabel: UILabel!
+
+
+    let birthChartViewCollapsedHeight: CGFloat = 50.0
+    let birthChartViewFullHeight = UIScreen.main.bounds.width + 50
+    var isBirthChartViewCollapsed = false
     var selectedDate: Date? {
         didSet {
             // Here, you can update any relevant parts of the UI that depend on the selected date.
@@ -127,9 +134,7 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
 
         // Print the value of chartCake
-        print("Value of chartCake: \(String(describing: chartCake))")  // This will print the value or "nil" if it's nil
-
-
+        print("Value of chartCake: \(String(describing: chartCake))")  // This will
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
         if let safeChartCake = chartCake {
@@ -158,15 +163,12 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
             todaysDate.font = .systemFont(ofSize: 13)
              todaysDate.textColor = .white
             todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
-           
+
+            
             view.addSubview(todaysDate)
         }
     }
     
-    @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = TransitPlanetsTimeChangeViewController()
-        self.navigationController?.pushViewController(timeChangeVC, animated: true)
-    }
 
 
     override func viewDidLayoutSubviews() {
@@ -189,6 +191,8 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         view.addSubview(todaysDate)
     }
+
+
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
