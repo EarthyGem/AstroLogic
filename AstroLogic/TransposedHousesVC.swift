@@ -12,6 +12,7 @@ class TransposedHousesVC: UIViewController {
     var otherChart: ChartCake?
     var chart: Chart?
     var chartCake: ChartCake?
+    var name: String?
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -765,7 +766,7 @@ extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
 
         flipSynastryVC.otherChart = self.otherChart
         flipSynastryVC.chartCake = self.chartCake
-
+        flipSynastryVC.title = "\(name!)' Houses"
         self.navigationController?.pushViewController(flipSynastryVC, animated: true)
     }
 

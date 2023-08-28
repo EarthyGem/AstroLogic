@@ -461,9 +461,8 @@ class FlipTransposedHousesVC: UIViewController {
         // Do any additional setup after loading the view.
 
 
-//        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
-//
-        let mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
+//        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 2
+        let mySignCusps = [otherChart?.houseCusps.first.sign.keyName, otherChart?.houseCusps.second.sign.keyName, otherChart?.houseCusps.third.sign.keyName, otherChart?.houseCusps.fourth.sign.keyName, otherChart?.houseCusps.fifth.sign.keyName, otherChart?.houseCusps.sixth.sign.keyName, otherChart?.houseCusps.seventh.sign.keyName, otherChart?.houseCusps.eighth.sign.keyName, otherChart?.houseCusps.ninth.sign.keyName, otherChart?.houseCusps.tenth.sign.keyName, otherChart?.houseCusps.eleventh.sign.keyName, otherChart?.houseCusps.twelfth.sign.keyName ]
 
         sunSignGlyph.image = UIImage(named: mySignCusps[0]!)
         sunSignGlyph.image?.withTintColor(UIColor.yellow)
