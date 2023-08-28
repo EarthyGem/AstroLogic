@@ -3,7 +3,7 @@ import CoreData
 import SwiftEphemeris
 
 class RelationshipsViewController: UIViewController, UITableViewDataSource, RelationshipSelectionDelegate {
-    
+
 
     private var tableView: UITableView!
     var relationships: [Relationships] = []
@@ -14,6 +14,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     var strongestPlanetSign: String?
     var strongestPlanet: String?
     var chartCake: ChartCake?
+    var shouldRefreshData = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +23,13 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        charts = fetchAllCharts()
-        tableView.reloadData()
+        if shouldRefreshData {
+            charts = fetchAllCharts()
+            tableView.reloadData()
+            shouldRefreshData = false
+        }
     }
+
 
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
@@ -36,11 +41,11 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         self.view.addSubview(tableView)
-        
+
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
     }
-    
+
     func fetchAllCharts() -> [ChartEntity] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
@@ -56,8 +61,8 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
             return []
         }
     }
-    
-    
+
+
     func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {
         let sorted = scores.sorted { $0.value > $1.value }
         let strongestPlanet = sorted.first!.key
@@ -76,36 +81,36 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         let mostDiscordantPlanet = sorted.first!.key
         return mostDiscordantPlanet
     }
-    
-    
-    
+
+
+
     @objc private func addButtonTapped() {
-      
-        
+
+
         // Before pushing the AddRelationshipViewController
         let addViewController = AddRelationshipViewController()
         addViewController.otherChart = otherChart // Assign the value here
         navigationController?.pushViewController(addViewController, animated: true)
 
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
+
     // MARK: - Table View
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return charts.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell // Assume you've created a custom cell
-            
+
             let selectedChart = charts[indexPath.row]
-            
+
             let chartDate = selectedChart.birthDate!
             let latitude = selectedChart.latitude
         let longitude = selectedChart.longitude
@@ -113,19 +118,19 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
         let scores = otherChart!.getTotalPowerScoresForPlanets()
             let strongestPlanet = getStrongestPlanet(from: scores)
-            
+
             // Set the cell label
             cell.textLabel?.text = name
-            
+
             // Set the cell image
             let imageName = strongestPlanet.keyName.lowercased()
             cell.planetImageView.image = UIImage(named: imageName)
-            
+
         return cell
     }
-    
+
     // MARK: - RelationshipSelectionDelegate
-    
+
     func didSelectRelationship(_ relationship: Relationships) {
         // Handle the selection of a relationship item
     }
@@ -134,18 +139,18 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
 extension RelationshipsViewController: AddRelationshipDelegate {
     func addRelationship(_ relationship: Relationships, chart: ChartCake, chartCake: ChartCake) {
       relationship.chartCake = chartCake
-     
-    
+
+
       relationships.append(relationship)
       tableView.reloadData()
   }
 }
-    
+
 
 extension RelationshipsViewController: UITableViewDelegate {
 
 
-  
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedEntity = charts[indexPath.row]
 
@@ -214,4 +219,3 @@ extension RelationshipsViewController: UITableViewDelegate {
         self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
     }
 }
-

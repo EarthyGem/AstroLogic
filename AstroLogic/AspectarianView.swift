@@ -76,7 +76,7 @@
 //
 //    private func drawGrid(context: CGContext, offsetX: CGFloat, offsetY: CGFloat, compartmentSide: CGFloat, imageSide: CGFloat) {
 //        context.setStrokeColor(UIColor.white.cgColor)
-//        context.setLineWidth(0.5)
+//        context.setLineWidth(0.3)
 //
 //        for i in 0..<14 { // Adjusted to draw an extra line
 //            let x = offsetX + compartmentSide * CGFloat(i)

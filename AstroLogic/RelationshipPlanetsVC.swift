@@ -15,23 +15,23 @@ class RelationshipsPlanetsViewController: UIViewController, UITableViewDelegate,
 
     var natalSigns = [String]()
 
-    var chartCake: ChartCake?
-    var otherChart: ChartCake?
+    var natalChart: ChartCake?
+    var selectedChart: ChartCake?
     
     func setupNatalSigns() -> [String] {
         natalSigns = [
-            chartCake?.natal.sun.sign.keyName,
-            chartCake?.natal.moon.sign.keyName,
-            chartCake?.natal.ascendant.sign.keyName,
-            chartCake?.natal.mercury.sign.keyName,
-            chartCake?.natal.venus.sign.keyName,
-            chartCake?.natal.mars.sign.keyName,
-            chartCake?.natal.jupiter.sign.keyName,
-            chartCake?.natal.saturn.sign.keyName,
-            chartCake?.natal.uranus.sign.keyName,
-            chartCake?.natal.neptune.sign.keyName,
-            chartCake?.natal.pluto.sign.keyName,
-            chartCake?.natal.southNode.sign.keyName
+            natalChart?.natal.sun.sign.keyName,
+            natalChart?.natal.moon.sign.keyName,
+            natalChart?.natal.ascendant.sign.keyName,
+            natalChart?.natal.mercury.sign.keyName,
+            natalChart?.natal.venus.sign.keyName,
+            natalChart?.natal.mars.sign.keyName,
+            natalChart?.natal.jupiter.sign.keyName,
+            natalChart?.natal.saturn.sign.keyName,
+            natalChart?.natal.uranus.sign.keyName,
+            natalChart?.natal.neptune.sign.keyName,
+            natalChart?.natal.pluto.sign.keyName,
+            natalChart?.natal.southNode.sign.keyName
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -43,18 +43,18 @@ class RelationshipsPlanetsViewController: UIViewController, UITableViewDelegate,
     
     func getNatalPositions() -> [String] {
         natalSigns = [
-            chartCake?.natal.sun.formatted,
-            chartCake?.natal.moon.formatted,
-            chartCake?.natal.ascendant.formatted,
-            chartCake?.natal.mercury.formatted,
-            chartCake?.natal.venus.formatted,
-            chartCake?.natal.mars.formatted,
-            chartCake?.natal.jupiter.formatted,
-            chartCake?.natal.saturn.formatted,
-            chartCake?.natal.uranus.formatted,
-            chartCake?.natal.neptune.formatted,
-            chartCake?.natal.pluto.formatted,
-            chartCake?.natal.southNode.formatted
+            natalChart?.natal.sun.formatted,
+            natalChart?.natal.moon.formatted,
+            natalChart?.natal.ascendant.formatted,
+            natalChart?.natal.mercury.formatted,
+            natalChart?.natal.venus.formatted,
+            natalChart?.natal.mars.formatted,
+            natalChart?.natal.jupiter.formatted,
+            natalChart?.natal.saturn.formatted,
+            natalChart?.natal.uranus.formatted,
+            natalChart?.natal.neptune.formatted,
+            natalChart?.natal.pluto.formatted,
+            natalChart?.natal.southNode.formatted
         ].compactMap { $0 } // This will remove any nil values from the array
     
 
@@ -109,7 +109,7 @@ var mySunText = ""
         super.viewDidLoad()
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = RelationshipBirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!, otherChartCake: otherChart!)
+        let birthChartView = RelationshipBirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: natalChart!, otherChartCake: selectedChart!)
      
         
         view.backgroundColor = .black
@@ -124,11 +124,10 @@ var mySunText = ""
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let yOffset: CGFloat = 550
-        let tableViewHeight = view.bounds.height - yOffset - 20  // Adjust this as per your requirements
-        tableView.frame = CGRect(x: 10, y: yOffset, width: view.bounds.width - 20, height: tableViewHeight)
-
+        tableView.frame = CGRect(x: 10, y: 550, width: 380, height: 700)
+        
     }
+
 
 
 

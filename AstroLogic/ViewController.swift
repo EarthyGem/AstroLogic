@@ -25,7 +25,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
     //   var aspects: [AstroAspect?] = []
     var latitude: Double?
     var longitude: Double?
-    let planetsInHouses: [Int: [String]] = [:]
+    let planetsInHouses = [Int: [String]]()
     var signScore: [String : Double] = [:]
     var houseScores: [Int : Double] = [:]
     let houseCusps: [Cusp] = []

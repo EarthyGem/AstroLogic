@@ -46,7 +46,8 @@ class RelationshipItemsViewController: UIViewController {
             //RelationshipItems(chartType: "Composite with \(String(describing: selectedName))"),
             RelationshipItems(chartType: "\(String(describing: name!))'s Natal Chart"),
             RelationshipItems(chartType: "Synastry Chart with \(String(describing: name!))"),
-            RelationshipItems(chartType: "Transposed Houses")
+            RelationshipItems(chartType: "Transposed Houses"),
+            RelationshipItems(chartType: "Composite Chart with \(String(describing: name!))")
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Natal Houses"),
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Natal Aspects"),
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Transit Progressions"),
@@ -100,7 +101,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
 //                let selectedRelationship = // Get the selected relationship (chart) from your data source
 //                   delegate?.didSelectRelationship(selectedRelationship)
 //
-                let OthersPlanetsVC = OthersPlanetsViewController(planets: placeHolder)
+                let OthersPlanetsVC = OthersPlanetsViewController(planets: [""])
                 OthersPlanetsVC.chartCake = self.chartCake
                 OthersPlanetsVC.otherChart = self.otherChart
                 OthersPlanetsVC.name = self.name
@@ -121,20 +122,20 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 transposedHousesVC.otherChart = self.otherChart
 
                 
-                let natalPlanetsVC = RelationshipsPlanetsViewController(planets: placeHolder)
+                let natalPlanetsVC = PlanetsViewController(planets: placeHolder)
                 
 //                natalPlanetsVC.title = category.chartType
                 natalPlanetsVC.chartCake = self.chartCake
-                natalPlanetsVC.otherChart = self.otherChart
-//                let compositeVC = CompositePlanetsViewController(planets: [""])
-//                compositeVC.chartCake = self.chartCake
-//                compositeVC.otherChart = self.otherChart
+            //    natalPlanetsVC.otherChart = self.otherChart
+                let compositeVC = CompositePlanetsViewController(planets: [""])
+                compositeVC.chartCake = self.chartCake
+                compositeVC.otherChart = self.otherChart
                 
                 let myNatalHousesVC = MyNatalHousesVC()
 
             
                 
-                let categories = [OthersPlanetsVC,SynastryChartVC,transposedHousesVC]
+                let categories = [OthersPlanetsVC,SynastryChartVC,transposedHousesVC,compositeVC]
                 navigationController?.pushViewController(categories[indexPath.row] , animated: true)
                 
 

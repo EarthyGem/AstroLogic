@@ -10,7 +10,7 @@ import SwiftEphemeris
 
 class TransposedHousesVC: UIViewController {
     var otherChart: ChartCake?
-  
+    var chart: Chart?
     var chartCake: ChartCake?
 
     private let scrollView: UIScrollView = {
@@ -282,35 +282,36 @@ class TransposedHousesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let tableViews = [
-            ascTableView,
-            firstTableView,
-            secondTableView,
-            thirdTableView,
-            fourthTableView,
-            fifthTableView,
-            sixthTableView,
-            seventhTableView,
-            eighthTableView,
-            ninthTableView,
-            tenthTableView,
-            eleventhTableView,
-            twelfthTableView
-        ]
-
-        // Set data source, delegate, and add to the view
-        for (index, tableView) in tableViews.enumerated() {
-            tableView.dataSource = self
-            tableView.delegate = self
-            tableView.tag = index + 1 // ascTableView will have tag 1, firstTableView will have tag 2, and so on...
-
-            // Assuming a simple layout, stacked vertically (adjust as per your needs)
-            tableView.frame = CGRect(x: 0, y: CGFloat(index) * 100, width: view.frame.size.width, height: 90) // 90 is row height
-            view.addSubview(tableView)
-        }
-
+        firstTableView.dataSource = self
+        firstTableView.delegate = self
+       secondTableView.dataSource = self
+        secondTableView.delegate = self
+        thirdTableView.dataSource = self
+        thirdTableView.delegate = self
+        fourthTableView.dataSource = self
+        fourthTableView.delegate = self
+        fifthTableView.dataSource = self
+        fifthTableView.delegate = self
+        sixthTableView.dataSource = self
+        sixthTableView.delegate = self
+        seventhTableView.dataSource = self
+        seventhTableView.delegate = self
+        eighthTableView.dataSource = self
+        eighthTableView.delegate = self
+        ninthTableView.dataSource = self
+        ninthTableView.delegate = self
+        tenthTableView.dataSource = self
+        tenthTableView.delegate = self
+//        ascTableView.dataSource = self
+//        ascTableView.delegate = self
+        eleventhTableView.dataSource = self
+        eleventhTableView.delegate = self
+        twelfthTableView.dataSource = self
+        twelfthTableView.delegate = self
         view.backgroundColor = .black
+
+
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -381,7 +382,7 @@ class TransposedHousesVC: UIViewController {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         for (_, tableView) in tableViews.enumerated() {
-            let count = chartCake?.planetsInHouse(1).count ?? 0
+            let count = chartCake?.calculatePlanetsInHouses().count ?? 0
             tableView.contentSize.height = CGFloat(count * 90)
         }
 
@@ -433,7 +434,19 @@ class TransposedHousesVC: UIViewController {
         twelfthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
 
-        let mySignCusps = [chartCake?.natal.houseCusps.first.sign.keyName, chartCake?.natal.houseCusps.second.sign.keyName, chartCake?.natal.houseCusps.third.sign.keyName, chartCake?.natal.houseCusps.fourth.sign.keyName, chartCake?.natal.houseCusps.fifth.sign.keyName, chartCake?.natal.houseCusps.sixth.sign.keyName, chartCake?.natal.houseCusps.seventh.sign.keyName, chartCake?.natal.houseCusps.eighth.sign.keyName, chartCake?.natal.houseCusps.ninth.sign.keyName, chartCake?.natal.houseCusps.tenth.sign.keyName, chartCake?.natal.houseCusps.eleventh.sign.keyName, chartCake?.natal.houseCusps.twelfth.sign.keyName ]
+
+
+
+
+
+
+//        sunScrollView.addSubview(tenthTableView)
+        // Do any additional setup after loading the view.
+
+
+//        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
+//
+        let mySignCusps = [chart?.houseCusps.first.sign.keyName, chart?.houseCusps.second.sign.keyName, chart?.houseCusps.third.sign.keyName, chart?.houseCusps.fourth.sign.keyName, chart?.houseCusps.fifth.sign.keyName, chart?.houseCusps.sixth.sign.keyName, chart?.houseCusps.seventh.sign.keyName, chart?.houseCusps.eighth.sign.keyName, chart?.houseCusps.ninth.sign.keyName, chart?.houseCusps.tenth.sign.keyName, chart?.houseCusps.eleventh.sign.keyName, chart?.houseCusps.twelfth.sign.keyName ]
 
         sunSignGlyph.image = UIImage(named: mySignCusps[0]!)
         sunSignGlyph.image?.withTintColor(UIColor.yellow)
@@ -721,26 +734,46 @@ class TransposedHousesVC: UIViewController {
 
 extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chartCake?.planetsInHouse(1).count ?? 0
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+
+        if let index = tableViews.firstIndex(of: tableView) {
+            return chart?.rulingPlanets(for: index + 1).count ?? 0
+        }
+
+        return 0 // Default return in case tableView is not found
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
-            return UITableViewCell()
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+
+        if let index = tableViews.firstIndex(of: tableView) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
+                return UITableViewCell()
+            }
+
+            if let keyName = chart?.rulingPlanets(for: index + 1)[indexPath.row].keyName.lowercased() {
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
+            }
+
+            return cell
         }
 
-        if let keyName = chartCake?.planetsInHouse(1)[indexPath.row].keyName.lowercased() {
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
-        }
-
-        return cell
+        return UITableViewCell() // Default cell in case tableView is not found
     }
 
+
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 90 // returns fixed height for all rows, regardless of the tableView
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        // remove all the code related to expanding and collapsing
     }
-}
+
+
+    }
+
+
+
