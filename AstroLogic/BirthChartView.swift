@@ -84,6 +84,8 @@ class BirthChartView: UIView {
         drawZodiacCircle(context: context)
         drawHouseLines(context: context)
         drawPlanetSymbols(context: context)
+        print(getHousesDegree())
+        print(getHouseNames())
         
     }
     
@@ -91,7 +93,7 @@ class BirthChartView: UIView {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.45
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(1)
+        context.setLineWidth(0.3)
         context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
         context.strokePath()
         
@@ -119,14 +121,16 @@ class BirthChartView: UIView {
         let houseDegrees = getHousesDegree()
         let houseMinutes = getHousesMinute()
         let houseDistances = getHouses2()
+        let houseCuspSignNames = getHouseNames()
 
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(1)
+        context.setLineWidth(0.3)
         context.setLineCap(.round)
         context.setLineJoin(.round)
         
 //        let houseDistances[index] : CGFloat = 30
         var accumulatedAngle: CGFloat = 0
+        var totalDegreesPassed: CGFloat = 0
         
         for index in 0..<12 {
             let angle = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi
@@ -155,17 +159,14 @@ class BirthChartView: UIView {
                 if index == 11 { // House 1
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
-                } else if adjustedIndex < 5 { // Houses 2-6
+                } else if adjustedIndex < 6 { // Houses 2-6
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
                 } else { // Houses 7-12
                     degreeLabelAngleOffset = -0.08
                     minuteLabelAngleOffset = 0.08
                 }
-      //      print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
 
-
-            
           
             // Add the planet number label
             let houseNumberLabel = UILabel()
@@ -196,16 +197,12 @@ class BirthChartView: UIView {
             let labelY1 = center.y + sin(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.height / 2
             houseDegreeLabel.frame.origin = CGPoint(x: labelX1, y: labelY1)
             addSubview(houseDegreeLabel)
-     
-            
-     
-            let signIndex = (Int(accumulatedAngle / 30) + 1) % 12
 
-            print("House \(index + 1) : Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signIndex)")
+            let signName = houseCuspSignNames[(index + 1) % 12]
+// Directly fetch the name for this cusp from the array
 
-           
-            let imageName = getHouseNames()[signIndex]
-            guard let image = UIImage(named: imageName) else { continue }
+               guard let image = UIImage(named: signName) else { continue }
+            print("House \(index + 1) : Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signName)")
 
             let imageSize = min(bounds.width, bounds.height) / 30
             let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
@@ -235,7 +232,11 @@ class BirthChartView: UIView {
         }
     }
 
-   
+    func zodiacSign(for degree: CGFloat) -> Int {
+        let adjustedDegree = degree.truncatingRemainder(dividingBy: 360)
+        return Int(adjustedDegree / 30)
+    }
+
     private func drawPlanetSymbols(context: CGContext) {
         
         _ = CGPoint(x: bounds.midX, y: bounds.midY)
