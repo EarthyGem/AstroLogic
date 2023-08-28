@@ -199,7 +199,8 @@ class BirthChartView: UIView {
             addSubview(houseDegreeLabel)
 
             let signName = houseCuspSignNames[(index + 1) % 12]
-// Directly fetch the name for this cusp from the array
+
+            // Directly fetch the name for this cusp from the array
 
                guard let image = UIImage(named: signName) else { continue }
             print("House \(index + 1) : Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signName)")

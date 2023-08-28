@@ -101,7 +101,7 @@ class TransitBiWheelChartView: UIView {
             let center = CGPoint(x: bounds.midX, y: bounds.midY)
             let radius = min(bounds.width, bounds.height) * 0.45
             context.setStrokeColor(UIColor.white.cgColor)
-            context.setLineWidth(0.5)
+            context.setLineWidth(0.3)
             context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
             context.strokePath()
             
@@ -120,13 +120,14 @@ class TransitBiWheelChartView: UIView {
         let houseDegrees = getHousesDegree()
         let houseMinutes = getHousesMinute()
         let houseDistances = getHouses2()
+        let houseCuspSignNames = getHouseNames()
 
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(0.5)
+        context.setLineWidth(0.3)
         context.setLineCap(.round)
         context.setLineJoin(.round)
         
-//        let houseDistances[index] : CGFloat = 30
+
         var accumulatedAngle: CGFloat = 0
         
         for index in 0..<12 {
@@ -155,7 +156,7 @@ class TransitBiWheelChartView: UIView {
                 if index == 11 { // House 1
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
-                } else if adjustedIndex < 5 { // Houses 2-6
+                } else if adjustedIndex < 6 { // Houses 2-6
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
                 } else { // Houses 7-12
@@ -199,21 +200,21 @@ class TransitBiWheelChartView: UIView {
             addSubview(houseDegreeLabel)
      
             
-                   let signIndex = (Int(accumulatedAngle / 30) + 1) % 12
+            let signName = houseCuspSignNames[(index + 1) % 12]
 
-                   print("House \(index + 1): Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signIndex)")
+            // Directly fetch the name for this cusp from the array
 
-                  
-                   let imageName = getHouseNames()[signIndex]
-                   guard let image = UIImage(named: imageName) else { continue }
+               guard let image = UIImage(named: signName) else { continue }
+            print("House \(index + 1) : Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signName)")
 
-                   let imageSize = min(bounds.width, bounds.height) / 30
-                   let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
-                   let labelAngle2 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + glyphLabelAngleOffset
-                   let labelX2 = center.x + cos(labelAngle2) * labelRadius2 - imageSize / 2
-                   let labelY2 = center.y + sin(labelAngle2) * labelRadius2 - imageSize / 2
-                   let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
-                   image.draw(in: imageRect)
+            let imageSize = min(bounds.width, bounds.height) / 30
+            let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
+            let labelAngle2 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + glyphLabelAngleOffset
+            let labelX2 = center.x + cos(labelAngle2) * labelRadius2 - imageSize / 2
+            let labelY2 = center.y + sin(labelAngle2) * labelRadius2 - imageSize / 2
+            let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
+            image.draw(in: imageRect)
+
             
             // Add the house minute label
             let houseMinuteLabel = UILabel()
@@ -239,7 +240,7 @@ class TransitBiWheelChartView: UIView {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.34
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(0.5)
+        context.setLineWidth(0.3)
         context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
         context.strokePath()
         
@@ -429,7 +430,7 @@ class TransitBiWheelChartView: UIView {
             }
 
             
-            let minSymbolDistance: CGFloat = 10 // Adjust this value to change the minimum distance
+            let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
             var lastSymbolCenter: CGPoint? = nil
             var lastCelestialObject: CelestialObject? = nil
             
@@ -633,7 +634,7 @@ class TransitBiWheelChartView: UIView {
         }
 
         
-        let minSymbolDistance: CGFloat = 20 // Adjust this value to change the minimum distance
+        let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
         var lastSymbolCenter: CGPoint? = nil
         var lastCelestialObject: CelestialObject? = nil
         

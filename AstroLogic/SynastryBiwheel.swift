@@ -101,7 +101,7 @@ init(frame: CGRect, chartCake: ChartCake, otherChart: ChartCake) {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.45
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(0.5)
+        context.setLineWidth(0.3)
         context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
         context.strokePath()
         
@@ -119,69 +119,71 @@ init(frame: CGRect, chartCake: ChartCake, otherChart: ChartCake) {
         let radius = min(bounds.width, bounds.height) * 0.45
         let houseDegrees = getHousesDegree()
         let houseMinutes = getHousesMinute()
+        let houseDistances = getHouses2()
+        let houseCuspSignNames = getHouseNames()
 
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(0.5)
+        context.setLineWidth(0.3)
         context.setLineCap(.round)
         context.setLineJoin(.round)
-        
-        let equalHouseAngle: CGFloat = 30
+
+
         var accumulatedAngle: CGFloat = 0
-        
+
         for index in 0..<12 {
-            let angle = 2 * .pi - ((accumulatedAngle + equalHouseAngle) * .pi / 180) + .pi
+            let angle = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi
             let startX = center.x + cos(angle) * (0.21 * radius)
             let startY = center.y + sin(angle) * (0.21 * radius)
-            
+
             // Line doesn't intersect with the innermost circle, draw full line
             let endX = center.x + cos(angle) * radius
             let endY = center.y + sin(angle) * radius
-                
+
             context.move(to: CGPoint(x: startX, y: startY))
             context.addLine(to: CGPoint(x: endX, y: endY))
             context.strokePath()
-            let houseDegree = houseDegrees[(index + 2) % 12]
-            let houseMinute = houseMinutes[(index + 2) % 12]
-           
-      
-                let glyphLabelAngleOffset: CGFloat = 0.8
-           
-        
+            let houseDegree = houseDegrees[(index + 1) % 12]
+            let houseMinute = houseMinutes[(index + 1) % 12]
+
+
+                let glyphLabelAngleOffset: CGFloat = 0.0
+
             let degreeLabelAngleOffset: CGFloat
                 let minuteLabelAngleOffset: CGFloat
 
                 let adjustedIndex = (index + 1) % 12
 
-                if index == 10 { // House 1
+                if index == 11 { // House 1
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
-                } else if adjustedIndex < 5 { // Houses 2-6
+                } else if adjustedIndex < 6 { // Houses 2-6
                     degreeLabelAngleOffset = 0.11
                     minuteLabelAngleOffset = -0.08
                 } else { // Houses 7-12
                     degreeLabelAngleOffset = -0.08
                     minuteLabelAngleOffset = 0.08
                 }
-//            print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
+            print("House \(index + 1): Degree \(Int(houseDegrees[index]))°, Minute \(Int(houseMinutes[index]))'")
 
 
-            
-          
+
+
+
             // Add the planet number label
             let houseNumberLabel = UILabel()
             houseNumberLabel.textColor = .white
             houseNumberLabel.textAlignment = .center
             houseNumberLabel.text = "\((index + 1) % 12 + 1)"
-            houseNumberLabel.font = UIFont.systemFont(ofSize: 9)
+            houseNumberLabel.font = UIFont.systemFont(ofSize: 10)
             houseNumberLabel.sizeToFit()
             let labelRadius = (0.21 + 0.28) / 2 * radius
-            let labelAngle = angle - equalHouseAngle / 2 * .pi / 180
+            let labelAngle = angle - houseDistances[index]  / 2 * .pi / 180
             let labelX = center.x + cos(labelAngle) * labelRadius - houseNumberLabel.bounds.width / 2
             let labelY = center.y + sin(labelAngle) * labelRadius - houseNumberLabel.bounds.height / 2
             houseNumberLabel.frame.origin = CGPoint(x: labelX, y: labelY)
             addSubview(houseNumberLabel)
-            
-            
+
+
             // Add the house degree label
             let houseDegreeLabel = UILabel()
             houseDegreeLabel.textColor = .white
@@ -191,25 +193,29 @@ init(frame: CGRect, chartCake: ChartCake, otherChart: ChartCake) {
             houseDegreeLabel.font = UIFont.systemFont(ofSize: 10)
             houseDegreeLabel.sizeToFit()
             let labelRadius1 = 1.07 * radius
-            let labelAngle1 = angle - equalHouseAngle * .pi / 180 + degreeLabelAngleOffset
+            let labelAngle1 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + degreeLabelAngleOffset
             let labelX1 = center.x + cos(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.width / 2
             let labelY1 = center.y + sin(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.height / 2
             houseDegreeLabel.frame.origin = CGPoint(x: labelX1, y: labelY1)
             addSubview(houseDegreeLabel)
-     
-            
-            let signIndex = Int((accumulatedAngle + equalHouseAngle / 2) / 30)
-            let imageName = getHouseNames()[signIndex]
-            guard let image = UIImage(named: imageName) else { continue }
+
+
+            let signName = houseCuspSignNames[(index + 1) % 12]
+
+            // Directly fetch the name for this cusp from the array
+
+               guard let image = UIImage(named: signName) else { continue }
+            print("House \(index + 1) : Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(signName)")
 
             let imageSize = min(bounds.width, bounds.height) / 30
             let labelRadius2 = 1.07 * radius // Keep the same radius as the degree and minute labels
-            let labelAngle2 = angle - equalHouseAngle / 2 * .pi / 180 + glyphLabelAngleOffset
+            let labelAngle2 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + glyphLabelAngleOffset
             let labelX2 = center.x + cos(labelAngle2) * labelRadius2 - imageSize / 2
             let labelY2 = center.y + sin(labelAngle2) * labelRadius2 - imageSize / 2
             let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
             image.draw(in: imageRect)
-            
+
+
             // Add the house minute label
             let houseMinuteLabel = UILabel()
             houseMinuteLabel.textColor = .white
@@ -219,21 +225,22 @@ init(frame: CGRect, chartCake: ChartCake, otherChart: ChartCake) {
             houseMinuteLabel.font = UIFont.systemFont(ofSize: 8)
             houseMinuteLabel.sizeToFit()
             let labelRadius3 = 1.07 * radius
-            let labelAngle3 = angle - equalHouseAngle * .pi / 180 + minuteLabelAngleOffset
+            let labelAngle3 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + minuteLabelAngleOffset
             let labelX3 = center.x + cos(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.width / 2
             let labelY3 = center.y + sin(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.height / 2
             houseMinuteLabel.frame.origin = CGPoint(x: labelX3, y: labelY3)
             addSubview(houseMinuteLabel)
-            
-            accumulatedAngle += equalHouseAngle
+
+            accumulatedAngle += houseDistances[index]
         }
     }
+
 
 private func drawTransitZodiacCircle(context: CGContext) {
     let center = CGPoint(x: bounds.midX, y: bounds.midY)
     let radius = min(bounds.width, bounds.height) * 0.30
     context.setStrokeColor(UIColor.white.cgColor)
-    context.setLineWidth(0.5)
+    context.setLineWidth(0.3)
     context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
     context.strokePath()
     
@@ -424,7 +431,7 @@ private func drawTransitZodiacCircle(context: CGContext) {
         }
 
         
-        let minSymbolDistance: CGFloat = 20 // Adjust this value to change the minimum distance
+        let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
         var lastSymbolCenter: CGPoint? = nil
         var lastCelestialObject: CelestialObject? = nil
         
@@ -622,7 +629,7 @@ private func drawTransitPlanetSymbols(context: CGContext) {
     }
 
     
-    let minSymbolDistance: CGFloat = 20 // Adjust this value to change the minimum distance
+    let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
     var lastSymbolCenter: CGPoint? = nil
     var lastCelestialObject: CelestialObject? = nil
     

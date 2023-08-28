@@ -85,6 +85,7 @@ class CompositeBirthChartView: UIView {
         drawZodiacCircle(context: context)
         drawHouseLines(context: context)
         drawPlanetSymbols(context: context)
+        calculateAspects()
         
     }
     
@@ -94,7 +95,7 @@ class CompositeBirthChartView: UIView {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.45
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(1)
+        context.setLineWidth(0.3)
         context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
         context.strokePath()
         
@@ -114,7 +115,7 @@ class CompositeBirthChartView: UIView {
         let houseMinutes = getCompHouseMinutes()
         
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(1)
+        context.setLineWidth(0.3)
         context.setLineCap(.round)
         context.setLineJoin(.round)
         
@@ -193,6 +194,8 @@ class CompositeBirthChartView: UIView {
             
             let signIndex = Int((accumulatedAngle + equalHouseAngle / 2) / 30)
             let imageName = getHouseCuspSign()[signIndex]
+            print("House \(index + 1) : Degree \(Int(houseDegree))°, Minute \(Int(houseMinute))', Sign Index: \(imageName)")
+
             guard let image = UIImage(named: imageName) else { continue }
             
             let imageSize = min(bounds.width, bounds.height) / 30
@@ -315,7 +318,7 @@ class CompositeBirthChartView: UIView {
         }
         
         
-        let minSymbolDistance: CGFloat = 20 // Adjust this value to change the minimum distance
+        let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
         var lastSymbolCenter: CGPoint? = nil
         var lastCelestialObject: CelestialObject? = nil
         
@@ -791,23 +794,25 @@ class CompositeBirthChartView: UIView {
         let compNeptune = getCompositePoint(point1: chart1.natal.neptune.longitude, point2: chart2.natal.neptune.longitude)
         let compPluto = getCompositePoint(point1: chart1.natal.pluto.longitude, point2: chart2.natal.pluto.longitude)
         let compAsc = getCompositePoint(point1: chart1.houseCusps.ascendent.value, point2: chart2.houseCusps.ascendent.value)
+        let compSNode = getCompositePoint(point1: chart1.natal.southNode.longitude, point2: chart2.natal.southNode.longitude)
             
             
-            let compSunSign = Zodiac(rawValue: Int(compSun / 30))!.formatted
+        let compSunSign = Zodiac(rawValue: Int(compSun / 30))!.keyName
             
-            let compMoonSign = Zodiac(rawValue: Int(compMoon / 30))!.formatted
-            let compRisingSign = Zodiac(rawValue: Int(compAsc / 30))!.formatted
-            let compMercurySign = Zodiac(rawValue: Int(compMercury / 30))!.formatted
-            let compVenusSign = Zodiac(rawValue: Int(compVenus / 30))!.formatted
-            let compMarsSign = Zodiac(rawValue: Int(compMars / 30))!.formatted
-            let compJupiterSign = Zodiac(rawValue: Int(compJupiter / 30))!.formatted
-            let compSaturnSign = Zodiac(rawValue: Int(compSaturn / 30))!.formatted
+            let compMoonSign = Zodiac(rawValue: Int(compMoon / 30))!.keyName
+            let compRisingSign = Zodiac(rawValue: Int(compAsc / 30))!.keyName
+            let compMercurySign = Zodiac(rawValue: Int(compMercury / 30))!.keyName
+            let compVenusSign = Zodiac(rawValue: Int(compVenus / 30))!.keyName
+            let compMarsSign = Zodiac(rawValue: Int(compMars / 30))!.keyName
+            let compJupiterSign = Zodiac(rawValue: Int(compJupiter / 30))!.keyName
+            let compSaturnSign = Zodiac(rawValue: Int(compSaturn / 30))!.keyName
             
-            let compUranusSign = Zodiac(rawValue: Int(compUranus / 30))!.formatted
-            let compNeptuneSign = Zodiac(rawValue: Int(compNeptune / 30))!.formatted
-            let compPlutoSign = Zodiac(rawValue: Int(compPluto / 30))!.formatted
+            let compUranusSign = Zodiac(rawValue: Int(compUranus / 30))!.keyName
+            let compNeptuneSign = Zodiac(rawValue: Int(compNeptune / 30))!.keyName
+            let compPlutoSign = Zodiac(rawValue: Int(compPluto / 30))!.keyName
+        let compSNodeSign = Zodiac(rawValue: Int(compSNode / 30))!.keyName
             
-            
+            print(compSNodeSign)
             
             let compSunDegree = compSun.truncatingRemainder(dividingBy: 30)
             
@@ -822,7 +827,7 @@ class CompositeBirthChartView: UIView {
             let compUranusDegree = compUranus.truncatingRemainder(dividingBy: 30)
             let compNeptuneDegree = compNeptune.truncatingRemainder(dividingBy: 30)
             let compPlutoDegree = compPluto.truncatingRemainder(dividingBy: 30)
-            
+        let compSNodeDegree = compSNode.truncatingRemainder(dividingBy: 30)
             
             let compSunMinute = compSun.truncatingRemainder(dividingBy: 1) * 60
             let compRisingMinute = compAsc.truncatingRemainder(dividingBy: 1) * 60
@@ -836,6 +841,7 @@ class CompositeBirthChartView: UIView {
             let compUranusMinute = compUranus.truncatingRemainder(dividingBy: 1) * 60
             let compNeptuneMinute = compNeptune.truncatingRemainder(dividingBy: 1) * 60
             let compPlutoMinute = compPluto.truncatingRemainder(dividingBy: 1) * 60
+        let compSNodeMinute = compSNode.truncatingRemainder(dividingBy: 1) * 60
             
             let compSunSecond = compSunMinute.truncatingRemainder(dividingBy: 1) * 60
             
@@ -850,6 +856,7 @@ class CompositeBirthChartView: UIView {
             let compUranusSecond = compUranusMinute.truncatingRemainder(dividingBy: 1) * 60
             let compNeptuneSecond = compNeptuneMinute.truncatingRemainder(dividingBy: 1) * 60
             let compPlutoSecond = compPlutoMinute.truncatingRemainder(dividingBy: 1) * 60
+        let compSNodeSecond = compSNodeMinute.truncatingRemainder(dividingBy: 1) * 60
             
             
             
@@ -881,27 +888,30 @@ class CompositeBirthChartView: UIView {
             "\(Int(compNeptuneSecond))''"
             let compPlutoFormatted = "\(Int(compPlutoDegree)) Degrees " + "\(compPlutoSign) " + "\(Int(compPlutoMinute))' " +
             "\(Int(compPlutoSecond))''"
+
+        let compSNodeFormatted = "\(Int(compSNodeDegree)) Degrees " + "\(compSNodeSign) " + "\(Int(compSNodeMinute))' " +
+        "\(Int(compSNodeSecond))''"
             
             //        "\(Int(minute))' " +
             //        "\(Int(second))''"
             
             
-            let CompositePlanets = [compSunFormatted,compMoonFormatted,compRisingFormatted, compMercuryFormatted,compVenusFormatted,compMarsFormatted,compJupiterFormatted,compSaturnFormatted,compUranusFormatted,compNeptuneFormatted,compPlutoFormatted]
+            let CompositePlanets = [compSunFormatted,compMoonFormatted,compRisingFormatted, compMercuryFormatted,compVenusFormatted,compMarsFormatted,compJupiterFormatted,compSaturnFormatted,compUranusFormatted,compNeptuneFormatted,compPlutoFormatted, compSNodeSign]
             
-            let compPlanets = [compSun,compMoon,compMercury,compVenus,compMars,compJupiter,compSaturn,compUranus,compNeptune,compPluto]
+            let compPlanets = [compSun,compMoon,compMercury,compVenus,compMars,compJupiter,compSaturn,compUranus,compNeptune,compPluto,compSNode]
             
             let compPlanetsDegree = [compSunDegree,compMoonDegree
-                                     ,compMercuryDegree,compVenusDegree,compMarsDegree,compJupiterDegree,compSaturnDegree,compUranusDegree,compNeptuneDegree,compPlutoDegree]
+                                     ,compMercuryDegree,compVenusDegree,compMarsDegree,compJupiterDegree,compSaturnDegree,compUranusDegree,compNeptuneDegree,compPlutoDegree,compSNodeDegree]
             
             let compPlanetsMinute = [compSunMinute,compMoonMinute
-                                     ,compMercuryMinute,compVenusMinute,compMarsMinute,compJupiterMinute,compSaturnMinute,compUranusMinute,compNeptuneMinute,compPlutoMinute]
+                                     ,compMercuryMinute,compVenusMinute,compMarsMinute,compJupiterMinute,compSaturnMinute,compUranusMinute,compNeptuneMinute,compPlutoMinute,compSNodeMinute]
             
             
             let compPlanetsSecond = [compSunSecond,compMoonSecond
-                                     ,compMercurySecond,compVenusSecond,compMarsSecond,compJupiterSecond,compSaturnSecond,compUranusSecond,compNeptuneSecond,compPlutoSecond]
+                                     ,compMercurySecond,compVenusSecond,compMarsSecond,compJupiterSecond,compSaturnSecond,compUranusSecond,compNeptuneSecond,compPlutoSecond,compSNodeSecond]
             
             
-            let compPlanetsSign = [compSunSign,compMoonSign,compRisingSign,compMercurySign,compVenusSign,compMarsSign,compJupiterSign,compSaturnSign,compUranusSign,compNeptuneSign,compPlutoSign]
+            let compPlanetsSign = [compSunSign,compMoonSign,compRisingSign,compMercurySign,compVenusSign,compMarsSign,compJupiterSign,compSaturnSign,compUranusSign,compNeptuneSign,compPlutoSign,compSNodeSign]
             
             return (CompositePlanets, compPlanets, compPlanetsDegree, compPlanetsSign, compPlanetsSecond, compPlanetsMinute)
         }
@@ -918,11 +928,11 @@ class CompositeBirthChartView: UIView {
                 let aspect = Aspect(a: planet1, b: planet2, orb: 1)
                 
                 if let aspect = aspect {
-                    // The initialization was successful
-                //   print("Aspect between planet \(index1) and planet \(index2): \(aspect)")
+                 //    The initialization was successful
+                    print("Aspect between planet \(planet1) and planet \(planet2): \(aspect)")
                 } else {
-                    // The initialization failed
-                 //   print("Invalid aspect values for planet \(index1) and planet \(index2).")
+                  //   The initialization failed
+                    print("Invalid aspect values for planet \(index1) and planet \(index2).")
                 }
             }
         }

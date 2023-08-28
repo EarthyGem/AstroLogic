@@ -93,7 +93,7 @@ class RelationshipBirthChartView: UIView {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.45
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(1)
+        context.setLineWidth(0.3)
         context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
         context.strokePath()
         
@@ -113,7 +113,7 @@ class RelationshipBirthChartView: UIView {
         let houseMinutes = getHousesMinute()
 
         context.setStrokeColor(UIColor.white.cgColor)
-        context.setLineWidth(1)
+        context.setLineWidth(0.3)
         context.setLineCap(.round)
         context.setLineJoin(.round)
         
@@ -314,7 +314,7 @@ class RelationshipBirthChartView: UIView {
         }
 
         
-        let minSymbolDistance: CGFloat = 20 // Adjust this value to change the minimum distance
+        let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
         var lastSymbolCenter: CGPoint? = nil
         var lastCelestialObject: CelestialObject? = nil
         
