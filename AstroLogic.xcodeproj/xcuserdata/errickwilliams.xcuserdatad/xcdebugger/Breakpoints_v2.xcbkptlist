@@ -128,7 +128,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2951"
             endingLineNumber = "2951"
-            landmarkName = "audit(_:for:)"
+            landmarkName = "getTotalPowerScoresForAngles(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

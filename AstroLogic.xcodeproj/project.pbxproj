@@ -41,6 +41,7 @@
 		395DE5252A96E8DD00B0B451 /* SimpleTransitAspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5242A96E8DD00B0B451 /* SimpleTransitAspects.swift */; };
 		395DE5272A96EA4600B0B451 /* SimpleMinorAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5262A96EA4600B0B451 /* SimpleMinorAspectsVC.swift */; };
 		395DE5292A96EDB700B0B451 /* SimpleMajorAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5282A96EDB700B0B451 /* SimpleMajorAspectsVC.swift */; };
+		396CD6602A9CF48D002C2528 /* FlipTransposedHousesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */; };
 		396CDCB92A74712100EDCECC /* DecanatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCB82A74712100EDCECC /* DecanatesVC.swift */; };
 		396CDCBB2A74716A00EDCECC /* CustomDecansTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */; };
 		396CDCBD2A7471A200EDCECC /* PlanetDegreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBC2A7471A200EDCECC /* PlanetDegreeVC.swift */; };
@@ -137,6 +138,7 @@
 		395DE5242A96E8DD00B0B451 /* SimpleTransitAspects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTransitAspects.swift; sourceTree = "<group>"; };
 		395DE5262A96EA4600B0B451 /* SimpleMinorAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMinorAspectsVC.swift; sourceTree = "<group>"; };
 		395DE5282A96EDB700B0B451 /* SimpleMajorAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMajorAspectsVC.swift; sourceTree = "<group>"; };
+		396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipTransposedHousesViewController.swift; sourceTree = "<group>"; };
 		396CDCB82A74712100EDCECC /* DecanatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesVC.swift; sourceTree = "<group>"; };
 		396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDecansTable.swift; sourceTree = "<group>"; };
 		396CDCBC2A7471A200EDCECC /* PlanetDegreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetDegreeVC.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				39A1EC602A603D8F008D1EC1 /* Houses Custom.swift */,
 				39A1EC682A60F98C008D1EC1 /* Harmony and Discord.swift */,
 				3997F0792A64303F00741E9D /* Progression Sentence.swift */,
+				396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */,
 				3903A3402A5F2D0700245DD2 /* Main.storyboard */,
 				3903A3462A5F2D0900245DD2 /* Assets.xcassets */,
 				3903A3482A5F2D0900245DD2 /* LaunchScreen.storyboard */,
@@ -448,6 +451,7 @@
 				395DE5052A954A4B00B0B451 /* TransitAspectsVC.swift in Sources */,
 				395DE5232A969F1F00B0B451 /* CompositePlanetsVC.swift in Sources */,
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
+				396CD6602A9CF48D002C2528 /* FlipTransposedHousesViewController.swift in Sources */,
 				395DE50B2A95DE8B00B0B451 /* RelationshipBiWHeel.swift in Sources */,
 				395DE5092A95DC7A00B0B451 /* RelationshipPlanetsVC.swift in Sources */,
 				39E168682A972F0E0003892B /* SimpleProgressedAspectsByHouse.swift in Sources */,

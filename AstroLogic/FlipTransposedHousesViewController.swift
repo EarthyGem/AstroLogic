@@ -8,7 +8,7 @@
 import UIKit
 import SwiftEphemeris
 
-class TransposedHousesVC: UIViewController {
+class FlipTransposedHousesVC: UIViewController {
     var otherChart: ChartCake?
     var chart: Chart?
     var chartCake: ChartCake?
@@ -310,9 +310,13 @@ class TransposedHousesVC: UIViewController {
         twelfthTableView.delegate = self
         view.backgroundColor = .black
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Flip Charts", style: .plain, target: self, action: #selector(flipChartsButtonTapped))
-
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "Flip Back", style: .plain, target: nil, action: nil)
+    }
+
 
     override func viewDidAppear(_ animated: Bool) {
         firstTableView.frame = CGRect(x: firstTableView.frame.origin.x, y: firstTableView.frame.origin.y , width: firstTableView.frame.size.width, height: firstTableView.contentSize.height)
@@ -342,6 +346,8 @@ class TransposedHousesVC: UIViewController {
 
 
     }
+
+   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -382,7 +388,7 @@ class TransposedHousesVC: UIViewController {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         // Ensure you have the necessary data before proceeding.
-        guard let houseCusps = chartCake?.houseCusps, let bodies = otherChart?.natal.planets else {
+        guard let houseCusps = otherChart?.houseCusps, let bodies = chartCake?.natal.planets else {
             return
         }
 
@@ -743,12 +749,12 @@ class TransposedHousesVC: UIViewController {
 
 }
 
-extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
+extension FlipTransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         if let index = tableViews.firstIndex(of: tableView) {
-            if let houseCusps = chartCake?.houseCusps, let bodies = otherChart?.natal.planets {
+            if let houseCusps = otherChart?.houseCusps, let bodies = chartCake?.natal.planets {
                 let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
                 let houseNumber = index + 1
 
@@ -760,22 +766,12 @@ extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
         return 0 // Default return in case tableView is not found
     }
 
-    @objc func flipChartsButtonTapped() {
-        let flipSynastryVC = FlipTransposedHousesVC()
-
-        flipSynastryVC.otherChart = self.otherChart
-        flipSynastryVC.chartCake = self.chartCake
-
-        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
-    }
-
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         if let index = tableViews.firstIndex(of: tableView) {
             // Determine which celestial objects are in each house using the `chartCake` instance
-            if let houseCusps = chartCake?.houseCusps, let bodies = otherChart?.natal.planets {
+            if let houseCusps = otherChart?.houseCusps, let bodies = chartCake?.natal.planets {
                 let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
