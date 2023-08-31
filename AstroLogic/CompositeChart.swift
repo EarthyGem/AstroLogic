@@ -896,7 +896,7 @@ class CompositeBirthChartView: UIView {
             //        "\(Int(second))''"
             
             
-            let CompositePlanets = [compSunFormatted,compMoonFormatted,compRisingFormatted, compMercuryFormatted,compVenusFormatted,compMarsFormatted,compJupiterFormatted,compSaturnFormatted,compUranusFormatted,compNeptuneFormatted,compPlutoFormatted, compSNodeSign]
+            let CompositePlanets = [compSunFormatted,compMoonFormatted,compRisingFormatted, compMercuryFormatted,compVenusFormatted,compMarsFormatted,compJupiterFormatted,compSaturnFormatted,compUranusFormatted,compNeptuneFormatted,compPlutoFormatted, compSNodeFormatted]
             
             let compPlanets = [compSun,compMoon,compMercury,compVenus,compMars,compJupiter,compSaturn,compUranus,compNeptune,compPluto,compSNode]
             

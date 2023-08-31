@@ -12,7 +12,12 @@ class StrongestPlanetViewController: UIViewController {
     var chart: Chart?
     var chartCake: ChartCake?
     var name: String = ""
-    
+    var combinedBirthDateTime: Date?
+    var birthPlace: String?
+    private let nameLabel = UILabel()
+    private let placeLabel = UILabel()
+    private let dateTimeLabel = UILabel()
+
     // Add
 //    var getMinors: (() -> Date)?
 //    var getMajorProgresseDate: (() -> Date)?
@@ -75,6 +80,12 @@ class StrongestPlanetViewController: UIViewController {
 
         let myItemsBarButtonItem = UIBarButtonItem(customView: myItemsButton)
         navigationItem.rightBarButtonItem = myItemsBarButtonItem
+
+        configureNameLabel()
+           configurePlaceLabel()
+           configureDateTimeLabel()
+        setupLabels()
+
     }
      
     @objc func myItemsButtonTapped() {
@@ -301,9 +312,59 @@ class StrongestPlanetViewController: UIViewController {
 //                return PlanetData.data[planetOrSign] ?? []
 //            }
 
+    private func setupLabels() {
+        configureNameLabel()
+        configurePlaceLabel()
+        configureDateTimeLabel()
 
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
-    
+            placeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 1),
+            placeLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            placeLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+
+            dateTimeLabel.topAnchor.constraint(equalTo: placeLabel.bottomAnchor, constant: 1),
+            dateTimeLabel.leadingAnchor.constraint(equalTo: placeLabel.leadingAnchor),
+            dateTimeLabel.trailingAnchor.constraint(equalTo: placeLabel.trailingAnchor)
+        ])
+    }
+
+    private func configureNameLabel() {
+        nameLabel.text = name
+        nameLabel.textColor = .white
+        nameLabel.font = UIFont.systemFont(ofSize: 12)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(nameLabel)
+    }
+
+    private func configurePlaceLabel() {
+        
+        placeLabel.text = birthPlace
+        placeLabel.textColor = .white
+        placeLabel.font = UIFont.systemFont(ofSize: 12)
+        placeLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(placeLabel)
+    }
+
+    private func configureDateTimeLabel() {
+        if let combinedDate = combinedBirthDateTime {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .full
+            dateTimeLabel.text = formatter.string(from: combinedDate)
+        } else {
+            dateTimeLabel.text = "Date & Time not set"
+        }
+
+        dateTimeLabel.textColor = .white
+        dateTimeLabel.font = UIFont.systemFont(ofSize: 12)
+        dateTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(dateTimeLabel)
+    }
+
     private func configureBottomLabel() {
            bottomLabel.text = sentenceText
            bottomLabel.textColor = .white

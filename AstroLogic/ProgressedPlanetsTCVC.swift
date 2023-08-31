@@ -121,7 +121,7 @@ class ProgressedPlanetsTimeChangeViewController: UIViewController  {
         // Add flexible spaces and the "Done" button to the toolbar
         toolbar.setItems([flexibleSpace, doneButton, flexibleSpace], animated: true)
         
-        let selectedDate = tcDP.date
+        
 
         // Set the toolbar as the input accessory view of the date picker
         view.addSubview(toolbar)

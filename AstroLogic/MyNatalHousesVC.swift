@@ -477,7 +477,7 @@ class MyNatalHousesVC: UIViewController {
 
 //        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
 //
-        var mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
+        let mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
 
         sunSignGlyph.image = UIImage(named: mySignCusps[0]!)
         sunSignGlyph.image?.withTintColor(UIColor.yellow)

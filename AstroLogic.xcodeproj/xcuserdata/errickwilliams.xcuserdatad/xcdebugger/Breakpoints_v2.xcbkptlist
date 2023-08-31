@@ -243,84 +243,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "310AA060-B0A1-408E-928A-A3B9E08C6B2A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AstroLogic/ChartViewerVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "310AA060-B0A1-408E-928A-A3B9E08C6B2A - 4e36ca0a90ba9175"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AstroLogic.ChartViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "AstroLogic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ChartViewerVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "269"
-                  endingLineNumber = "269"
-                  offsetFromSymbolStart = "21598">
-               </Location>
-               <Location
-                  uuid = "310AA060-B0A1-408E-928A-A3B9E08C6B2A - 4e36ca0a90ba9175"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AstroLogic.ChartViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "AstroLogic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ChartViewerVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "269"
-                  endingLineNumber = "269"
-                  offsetFromSymbolStart = "20925">
-               </Location>
-               <Location
-                  uuid = "310AA060-B0A1-408E-928A-A3B9E08C6B2A - 4e36ca0a90ba9175"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AstroLogic.ChartViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "AstroLogic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ChartViewerVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "269"
-                  endingLineNumber = "269"
-                  offsetFromSymbolStart = "17468">
-               </Location>
-               <Location
-                  uuid = "310AA060-B0A1-408E-928A-A3B9E08C6B2A - 4e36ca0a90ba9175"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AstroLogic.ChartViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "AstroLogic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ChartViewerVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "269"
-                  endingLineNumber = "269"
-                  offsetFromSymbolStart = "4060">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A5A36557-B265-4290-AD4F-FCBDEF2FAE50"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -332,6 +254,102 @@
             endingLineNumber = "120"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C83AF3F-AF25-47C8-8E07-BB8196D35524"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/AddNewRelationshipVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "makeAutocompleteViewController()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC68016B-CE7F-4F80-8128-E9BBE5F88ED9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/ChartViewerVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EAAD5BB0-38E2-4F45-95A5-4BE3EA1842C5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/ChartViewerVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "681E2F53-9596-4D50-8D3E-7D7A03F459F2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "639"
+            endingLineNumber = "639"
+            landmarkName = "updateTimeZoneForNewLocation(latitude:longitude:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "681E2F53-9596-4D50-8D3E-7D7A03F459F2 - 43d756ed1ca49e27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.TimeZone&gt;) -&gt; () in AstroLogic.ViewController.updateTimeZoneForNewLocation(latitude: Swift.Double, longitude: Swift.Double) -&gt; ()"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "640"
+                  endingLineNumber = "640"
+                  offsetFromSymbolStart = "137">
+               </Location>
+               <Location
+                  uuid = "681E2F53-9596-4D50-8D3E-7D7A03F459F2 - 8d248a0508334487"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.ViewController.updateTimeZoneForNewLocation(latitude: Swift.Double, longitude: Swift.Double) -&gt; ()"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "639"
+                  endingLineNumber = "639"
+                  offsetFromSymbolStart = "687">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -140,7 +140,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
 
-            let yOffset: CGFloat = 550
+        
             let tableViewHeight = tableView.contentSize.height + 220  // Use the content size of the table view cells
 
             tableView.frame = CGRect(x: 10, y: 50, width: view.bounds.width - 20, height: tableViewHeight + 30)

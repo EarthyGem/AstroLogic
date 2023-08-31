@@ -131,9 +131,6 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 compositeVC.chartCake = self.chartCake
                 compositeVC.otherChart = self.otherChart
                 
-                let myNatalHousesVC = MyNatalHousesVC()
-
-            
                 
                 let categories = [OthersPlanetsVC,SynastryChartVC,transposedHousesVC,compositeVC]
                 navigationController?.pushViewController(categories[indexPath.row] , animated: true)

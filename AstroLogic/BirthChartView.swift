@@ -130,7 +130,7 @@ class BirthChartView: UIView {
         
 //        let houseDistances[index] : CGFloat = 30
         var accumulatedAngle: CGFloat = 0
-        var totalDegreesPassed: CGFloat = 0
+     
         
         for index in 0..<12 {
             let angle = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi

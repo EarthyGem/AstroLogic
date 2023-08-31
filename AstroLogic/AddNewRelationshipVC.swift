@@ -480,15 +480,7 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
                 let chartDate = self.combinedDateAndTime()!
                 self.otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude, transitDate: selectedDate)
 
-             
 
-                guard let chart = self.otherChart else {
-                    assert(false, "There is no chart")
-                    return
-                }
-
-//                let chartName = nameTextField.text ?? "Unnamed"
-//                saveChart(name: nameTextField.text!, birthDate: chartDate, latitude: latitude, longitude: longitude)
                 let name = nameTextField.text ?? ""
                 saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude)
 
@@ -568,7 +560,7 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
         // Clear input fields
         birthPlaceTextField.text = ""
         datePicker.setDate(Date(), animated: true)
-        nameTextField
+     
         // Get the text from the birthPlaceTextField
         if let birthPlace = birthPlaceTextField.text {
             // Use the text to determine the time zone identifier
@@ -698,11 +690,7 @@ extension AddRelationshipViewController: CLLocationManagerDelegate {
         let context = appDelegate.persistentContainer.viewContext
 
         // Ensure the context is not nil and is ready to use
-        guard context != nil else {
-            print("Managed Object Context is not initialized properly")
-            return
-        }
-
+      
         // Check whether "ChartEntity" is the correct entity name in your .xcdatamodeld file.
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "ChartEntity", in: context) else {
             print("Failed to get the entity description for 'ChartEntity'")

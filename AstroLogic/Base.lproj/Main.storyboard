@@ -24,21 +24,6 @@
             </objects>
             <point key="canvasLocation" x="1063.3587786259541" y="3.5211267605633805"/>
         </scene>
-        <!--Progression Planets By House Time Change View Controller-->
-        <scene sceneID="4pz-Xh-gml">
-            <objects>
-                <viewController id="3Hp-ou-mc2" customClass="ProgressionPlanetsByHouseTimeChangeViewController" customModule="AstroLogic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fYR-d7-bS2">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="ddX-zU-jER"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n1x-sI-eNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1819" y="3"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="37L-hR-OkA">
             <objects>
