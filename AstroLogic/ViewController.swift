@@ -41,9 +41,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         button.addTarget(ViewController.self, action: #selector(showAboutViewController), for: .touchUpInside)
         return button
     }()
-    
-    
-    
+
+
+
     lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Name"
@@ -64,9 +64,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         textField.addTarget(self, action: #selector(birthPlaceTextFieldEditingDidBegin), for: .editingDidBegin)
         return textField
     }()
-    
-    
-    
+
+
+
     lazy var dateTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Date of Birth"
@@ -77,8 +77,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         return textField
     }()
-    
-    
+
+
     lazy var birthTimeTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Time of Birth"
@@ -89,15 +89,15 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         return textField
     }()
 
-    
+
     var autocompleteController: GMSAutocompleteViewController? // Add this line
-    
-    
+
+
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, yyyy"
         formatter.timeZone = birthPlaceTimeZone ?? TimeZone.current
-        
+
         return formatter
     }()
 
@@ -121,19 +121,19 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         return button
     }()
 
-    
+
     lazy var scoresText: UILabel = {
         let scoresText = UILabel()
         scoresText.textColor = .white
         scoresText.numberOfLines = 0
-        
+
         return scoresText
-        
+
     }()
-    
- 
-    
-    
+
+
+
+
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -174,10 +174,10 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1) // Light grey background for a clean look.
-        
+
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 150))
         headerView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.98, alpha: 1)
-        
+
         // Create the title label
         // Create the title label
         let titleLabel = UILabel(frame: CGRect(x: 15, y: headerView.bounds.height - 50, width: self.view.bounds.width - 80, height: 40))  // adjust width to leave space for button
@@ -188,7 +188,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         } else {
             titleLabel.font = UIFont.systemFont(ofSize: 20)  // Backup in case the custom font fails
         }
-       
+
 
         // Create the myChartsButton
         let myChartsButton = UIButton(type: .custom)
@@ -204,16 +204,16 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         headerView.addSubview(myChartsButton)  // Add the button to the headerView
 
         headerView.addSubview(titleLabel)
-        
+
         // Add custom header to the main view BEFORE other subviews to ensure it's not overlapped
         self.view.addSubview(headerView)
-        
-            
+
+
         view.addSubview(birthPlaceTextField)
         makeAutocompleteViewController()
         view.addSubview(dateTextField)
         view.addSubview(birthPlaceTextField)
-      
+
         view.addSubview(birthTimeTextField)
         birthTimeTextField.inputView = timePicker
         view.addSubview(aboutButton)
@@ -222,7 +222,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
             aboutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             aboutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
+
         dateTextField.inputView = datePicker
         view.addSubview(nameTextField)
 
@@ -231,28 +231,28 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(datePickerDonePressed))
         toolBar.setItems([doneBtn], animated: true)
         dateTextField.inputAccessoryView = toolBar
-        
+
         let timePickerToolBar = UIToolbar()
         timePickerToolBar.sizeToFit()
         let timePickerDoneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(timePickerDonePressed))
         timePickerToolBar.setItems([timePickerDoneBtn], animated: true)
         birthTimeTextField.inputAccessoryView = timePickerToolBar
 
-       
-       
 
-       
+
+
+
         getPowerPlanetButton.frame = CGRect(x: 50, y: 440, width: 300, height: 45)
        // parseAndSaveData()
         view.addSubview(getPowerPlanetButton)
-        
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
 
-     
-        
+
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -262,7 +262,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         // Show the navigation bar again
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
@@ -272,7 +272,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
         navigationController?.pushViewController(myChartsViewController, animated: true)
     }
-    
+
     @objc func birthPlaceTextFieldEditingDidBegin() {
         presentAutocompleteViewController()
     }
@@ -292,22 +292,22 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         autocompleteController.delegate = self
         autocompleteController.modalPresentationStyle = .popover
         autocompleteController.modalTransitionStyle = .crossDissolve
-        
+
         let popover = autocompleteController.popoverPresentationController
         popover?.sourceView = birthPlaceTextField
         popover?.sourceRect = birthPlaceTextField.bounds
-        
+
         // Customize the autocomplete filter and place fields if needed
         let filter = GMSAutocompleteFilter()
         filter.type = .city
         autocompleteController.autocompleteFilter = filter
-        
+
         let fields: GMSPlaceField = GMSPlaceField(rawValue: (UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)))
         autocompleteController.placeFields = fields
-       
+
         updateSearchBarTextColor(in: autocompleteController.view, to: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1))
 
-        
+
         self.autocompleteController = autocompleteController
     }
 
@@ -410,18 +410,18 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         }
     }
 
-    
+
     @objc func birthPlaceTextFieldDidChange() {
         updateDatePickerTimeZone()
         updateTimePickerTimeZone()
     }
 
-    
+
     @objc func showAboutViewController() {
         let aboutVC = AboutViewController()
         navigationController?.pushViewController(aboutVC, animated: true)
     }
-    
+
 
     func updateDatePickerTimeZone() {
         let geocoder = CLGeocoder()
@@ -473,15 +473,15 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
 
 
-   
+
 
     @objc func getPowerPlanetButtonTapped() {
 
         getPowerPlanetButton.isEnabled = false
         let location = birthPlaceTextField.text!
         getPowerPlanetButton.isEnabled = false
-        
-        
+
+
 
         geocoding(location: location) { latitude, longitude in
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -503,8 +503,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 self.timePicker.timeZone = timeZone
                 self.datePicker.timeZone = timeZone
                 self.birthPlaceTimeZone = timeZone
-                
-                
+
+
                 let chartDate = self.combinedDateAndTime()!
                 self.chart = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
                 self.chartCake = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude, transitDate: selectedDate)
@@ -517,7 +517,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 //                let chartName = nameTextField.text ?? "Unnamed"
 //                saveChart(name: nameTextField.text!, birthDate: chartDate, latitude: latitude, longitude: longitude)
                 let name = nameTextField.text ?? ""
-                saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude)
+                saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!)
 
 
                 let scores = self.chart!.getTotalPowerScoresForPlanets()
@@ -561,9 +561,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                                                      moonSign: chart.moon.sign.keyName,
                                                      risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
 
-                
-               
-                
+
+
+
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
                 strongestPlanetVC.chartCake = chartCake
@@ -573,8 +573,12 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
                 strongestPlanetVC.sentenceText = sentence
+                strongestPlanetVC.birthPlace = self.birthPlaceTextField.text
+                let combinedDate = self.combinedDateAndTime()!
+                strongestPlanetVC.combinedBirthDateTime = combinedDate
+
                 self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
-                
+
                 resetViewController()
                 nameTextField.text = ""
                  birthPlaceTextField.text = ""
@@ -597,28 +601,28 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         // Clear input fields
         birthPlaceTextField.text = ""
         datePicker.setDate(Date(), animated: true)
-        nameTextField
+
         // Get the text from the birthPlaceTextField
         if let birthPlace = birthPlaceTextField.text {
             // Use the text to determine the time zone identifier
             let timeZone = TimeZone(identifier: birthPlace)
-            
+
             // Set the timeZone property of the UIDatePicker
             timePicker.timeZone = timeZone
-            
-            
+
+
             func resetViewController() {
                 birthPlaceTextField.text = ""
                 nameTextField.text = ""
                 datePicker.setDate(Date(), animated: true)
                 timePicker.setDate(Date(), animated: true)
-                
+
                 // Reset the time zone of the UIDatePicker based on the input in the birthPlaceTextField
                 if let birthPlace = birthPlaceTextField.text,
                    let timeZone = TimeZone(identifier: birthPlace) {
                     timePicker.timeZone = timeZone
                 }
-                
+
                 // Reset any other components to their initial state
                 // ...
             }
@@ -719,7 +723,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 extension ViewController: CLLocationManagerDelegate {
 
 
-    func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double) {
+    func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double, birthPlace: String) {
         // Get the Core Data managed context
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Unable to get AppDelegate")
@@ -729,10 +733,9 @@ extension ViewController: CLLocationManagerDelegate {
         let context = appDelegate.persistentContainer.viewContext
 
         // Ensure the context is not nil and is ready to use
-        guard context != nil else {
-            print("Managed Object Context is not initialized properly")
-            return
-        }
+
+
+
 
         // Check whether "ChartEntity" is the correct entity name in your .xcdatamodeld file.
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "ChartEntity", in: context) else {
@@ -745,6 +748,7 @@ extension ViewController: CLLocationManagerDelegate {
         newChart.setValue(birthDate, forKey: "birthDate")
         newChart.setValue(latitude, forKey: "latitude")
         newChart.setValue(longitude, forKey: "longitude")
+        newChart.setValue(birthPlace, forKey: "birthPlace")
 
         // Try saving the context
         do {
@@ -754,7 +758,7 @@ extension ViewController: CLLocationManagerDelegate {
         }
     }
 
-   
+
     func fetchAndPrintCharts() {
         // Get the Core Data managed context
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -779,9 +783,11 @@ extension ViewController: CLLocationManagerDelegate {
                     if let name = chart.value(forKey: "name") as? String,
                        let birthDate = chart.value(forKey: "birthDate") as? Date,
                        let latitude = chart.value(forKey: "latitude") as? Double,
-                       let longitude = chart.value(forKey: "longitude") as? Double {
+                       let longitude = chart.value(forKey: "longitude") as? Double,
+                      let birthPlace = chart.value(forKey: "birthPlace") as? String
+                    {
 
-                        print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude)")
+                        print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude), BirthPlace: \(birthPlace)")
                     }
                 }
             }
@@ -794,19 +800,19 @@ extension ViewController: CLLocationManagerDelegate {
     func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
     }
-    
+
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
     }
-    
-    
-    
+
+
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location update failed: \(error.localizedDescription)")
-        
-        
+
+
     }
-    
+
     @objc func timePickerDonePressed() {
         birthTimeTextField.resignFirstResponder()
     }
@@ -824,9 +830,19 @@ extension ViewController: CLLocationManagerDelegate {
             return nil // Return early if birthPlaceTimeZone is not set
         }
 
-        var dateComponents = calendar.dateComponents(in: birthPlaceTimeZone, from: datePicker.date)
-        dateComponents.hour = calendar.component(.hour, from: timePicker.date)
-        dateComponents.minute = calendar.component(.minute, from: timePicker.date)
+        datePicker.timeZone = birthPlaceTimeZone
+        timePicker.timeZone = birthPlaceTimeZone
+
+        // Extract date components using birthPlaceTimeZone
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: datePicker.date)
+
+        // Extract time components using the same timezone (birthPlaceTimeZone)
+        let timeComponents = calendar.dateComponents([.hour, .minute], from: timePicker.date)
+
+        // Combine date and time components
+        dateComponents.timeZone = birthPlaceTimeZone
+        dateComponents.hour = timeComponents.hour
+        dateComponents.minute = timeComponents.minute
 
         print("Combined date and time components: \(dateComponents)")
 

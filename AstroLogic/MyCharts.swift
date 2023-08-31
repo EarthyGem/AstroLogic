@@ -9,14 +9,18 @@ class ChartsViewController: UIViewController {
     var tableView: UITableView!
     var charts: [ChartEntity] = []
     var strongestPlanetSign: String?
+    var birthPlace: String?
+    var chartDate: Date?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         charts = fetchAllCharts()
+      //  deleteAllNames()
         tableView.reloadData()
     }
 
@@ -31,6 +35,30 @@ class ChartsViewController: UIViewController {
 
         self.view.addSubview(tableView)
     }
+
+    func deleteAllNames() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
+
+        // 1. Delete all entities from Core Data
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ChartEntity")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try context.execute(batchDeleteRequest)
+
+            // 2. Update the `charts` array
+            charts = []
+
+            // 3. Reload the table view
+            tableView.reloadData()
+        } catch {
+            print("Failed to delete all charts: \(error.localizedDescription)")
+        }
+    }
+
 
     func fetchAllCharts() -> [ChartEntity] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -103,7 +131,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let scores = chartObj.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
-        
+        let birthPlace = chart.birthPlace ?? "No BirthPlace"
         // Set the cell label
         cell.textLabel?.text = chart.name
         
@@ -133,7 +161,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let longitude = otherChart.longitude
         let chartDate = otherChart.birthDate
         let name = otherChart.name ?? ""
-
+        let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
         let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
 
@@ -184,7 +212,9 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         strongestPlanetVC.chart = chart
         strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
         strongestPlanetVC.name = name
-        //
+        strongestPlanetVC.birthPlace = birthPlace
+        strongestPlanetVC.combinedBirthDateTime = chartDate
+
         strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
         strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
         strongestPlanetVC.sentenceText = sentence

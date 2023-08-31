@@ -307,49 +307,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "681E2F53-9596-4D50-8D3E-7D7A03F459F2"
-            shouldBeEnabled = "Yes"
+            uuid = "15CAC151-ACE1-4562-8F4C-A1EA0FD20CDF"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AstroLogic/ViewController.swift"
+            filePath = "AstroLogic/MyCharts.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "639"
-            endingLineNumber = "639"
-            landmarkName = "updateTimeZoneForNewLocation(latitude:longitude:)"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "681E2F53-9596-4D50-8D3E-7D7A03F459F2 - 43d756ed1ca49e27"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.TimeZone&gt;) -&gt; () in AstroLogic.ViewController.updateTimeZoneForNewLocation(latitude: Swift.Double, longitude: Swift.Double) -&gt; ()"
-                  moduleName = "AstroLogic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "640"
-                  endingLineNumber = "640"
-                  offsetFromSymbolStart = "137">
-               </Location>
-               <Location
-                  uuid = "681E2F53-9596-4D50-8D3E-7D7A03F459F2 - 8d248a0508334487"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AstroLogic.ViewController.updateTimeZoneForNewLocation(latitude: Swift.Double, longitude: Swift.Double) -&gt; ()"
-                  moduleName = "AstroLogic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "639"
-                  endingLineNumber = "639"
-                  offsetFromSymbolStart = "687">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
