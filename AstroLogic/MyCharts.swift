@@ -213,7 +213,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
         strongestPlanetVC.name = name
         strongestPlanetVC.birthPlace = birthPlace
-        strongestPlanetVC.combinedBirthDateTime = chartDate
+      //  strongestPlanetVC.combinedBirthDateTime = chartDate
 
         strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
         strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName

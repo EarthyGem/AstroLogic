@@ -1,6 +1,12 @@
 import UIKit
 import SwiftEphemeris
 
+struct DateTimeWithZone {
+    let date: Date
+    let timeZone: TimeZone
+}
+
+
 class StrongestPlanetViewController: UIViewController {
     
     var strongestPlanetName: String!
@@ -12,11 +18,12 @@ class StrongestPlanetViewController: UIViewController {
     var chart: Chart?
     var chartCake: ChartCake?
     var name: String = ""
-    var combinedBirthDateTime: Date?
+    var combinedBirthDateTime: (date: Date?, timeZone: TimeZone?)?
     var birthPlace: String?
     private let nameLabel = UILabel()
     private let placeLabel = UILabel()
     private let dateTimeLabel = UILabel()
+    var dateString: String?
 
     // Add
 //    var getMinors: (() -> Date)?
@@ -61,6 +68,10 @@ class StrongestPlanetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.hidesBackButton = true
+          let newBackButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.back(sender:)))
+          self.navigationItem.leftBarButtonItem = newBackButton
         view.backgroundColor = .black
        configureStrongestImageView()
       configureStrongestLabel()
@@ -87,6 +98,27 @@ class StrongestPlanetViewController: UIViewController {
         setupLabels()
 
     }
+
+    @objc func back(sender: UIBarButtonItem) {
+        // Create a new instance of ViewController
+        let newVC = ViewController()
+
+        // Get the view controllers currently in the navigation stack
+        var viewControllers = navigationController?.viewControllers ?? []
+
+        // Remove the current instance of ViewController
+        viewControllers = viewControllers.filter { !($0 is ViewController) }
+
+        // Add the new instance
+        viewControllers.insert(newVC, at: viewControllers.count - 1)
+
+        // Reset the navigation stack
+        navigationController?.setViewControllers(viewControllers, animated: false)
+
+        // Pop to the new instance
+        self.navigationController?.popViewController(animated: true)
+    }
+
      
     @objc func myItemsButtonTapped() {
         // Initialize and push the MyItemsViewController
@@ -349,14 +381,25 @@ class StrongestPlanetViewController: UIViewController {
         view.addSubview(placeLabel)
     }
 
+
+
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy HH:mm:ss zzzz" // or whatever your desired format is
+
+        // Here is the critical part. Set the time zone of the formatter.
+        if let timeZone = self.combinedBirthDateTime?.timeZone { // assuming you have a way to retrieve the timezone
+            formatter.timeZone = timeZone
+        }
+
+        return formatter.string(from: date)
+    }
+
     private func configureDateTimeLabel() {
-        if let combinedDate = combinedBirthDateTime {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .full
-            dateTimeLabel.text = formatter.string(from: combinedDate)
+        if let dateString = dateString {
+            dateTimeLabel.text = dateString
         } else {
-            dateTimeLabel.text = "Date & Time not set"
+           // dateTimeLabel.text = "Date & Time not set"
         }
 
         dateTimeLabel.textColor = .white

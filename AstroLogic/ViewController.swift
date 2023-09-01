@@ -575,7 +575,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.sentenceText = sentence
                 strongestPlanetVC.birthPlace = self.birthPlaceTextField.text
                 let combinedDate = self.combinedDateAndTime()!
-                strongestPlanetVC.combinedBirthDateTime = combinedDate
+            //    strongestPlanetVC.combinedBirthDateTime = combinedDate
 
                 self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
 
