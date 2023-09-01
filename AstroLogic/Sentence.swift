@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+
+
+var risingSignArray: [String: [String]] = [:]
+
 func generateAstroSentence(strongestPlanet: String,
                            strongestPlanetSign: String,
                            sunSign: String,
@@ -65,8 +69,8 @@ func generateAstroSentence(strongestPlanet: String,
 
                                                      ]]
     
-    let signArrays: [String: [String]] = ["Aries": ["Energetic", "Confident", "Daring"],
-                                          "Taurus": ["Reliable", "Practical", "Sensual"],
+    let signArrays: [String: [String]] = ["Aries": ["Warrior", "Fighter", "Pioneer", "Athlete"],
+                                          "Taurus": ["Banker", "Collector", "Grounded Person"],
                                           "Gemini": [ "Commentator",
                                                     
                                                      
@@ -178,7 +182,17 @@ func generateAstroSentence(strongestPlanet: String,
                                             "Rebel with a Cause"
                                           ],
                                           "Pisces": ["Artist", "Bartender", "Chameleon",  "Dreamer", "Empath", "Enchanter", "Escapist",  "Idealist", "Magician", "Master Actor", "Meditator", "Medium", "Muse", "Mystic", "Partier", "Poet", "Ponderer", "Priest", "Priestess", "Psychic",   "Shapeshifter", "Spiritualist", "Visionary",  "Yogi", "Beach Bum",  "Intuitive", "Lightworker",  "Surrealist", "Transcendentalist", "Utopian", "Visionary Artist"]]
+    let risingSignArrays: [String: [String]] = signArrays.mapValues { attributes in
+        attributes.map { attribute in
+            if let firstChar = attribute.first, "aeiouAEIOU".contains(firstChar) {
+                return "an \(attribute.capitalizingFirstLetter())"
+            } else {
+                return "a \(attribute.capitalizingFirstLetter())"
+            }
+        }
+    }
 
+    print(risingSignArrays)
 
 
     
@@ -187,10 +201,10 @@ func generateAstroSentence(strongestPlanet: String,
     let planetArchetype = planetArrays[strongestPlanet]!.randomElement()!
     let sunArchetype = signArrays[sunSign]!.randomElement()!
     let moonArchetype = signArrays[moonSign]!.randomElement()!
-    let risingArchetype = signArrays[risingSign]!.randomElement()!
+    let risingArchetype = risingSignArrays[risingSign]!.randomElement()!
     
     // Construct and return sentence
-    let sentence = "\(name) is \(adjective) \(planetArchetype), with the Spirit of the \(sunArchetype), and the soul of the \(moonArchetype), who wears the mask of the \(risingArchetype)."
+    let sentence = "\(name) is \(adjective) \(planetArchetype), with the Spirit of the \(sunArchetype), and the soul of the \(moonArchetype), who acts like \(risingArchetype)."
     
     //    print(sentence)
     return sentence

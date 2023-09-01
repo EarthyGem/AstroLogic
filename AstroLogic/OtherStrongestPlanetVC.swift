@@ -160,7 +160,7 @@ class OthersStrongestPlanetViewController: UIViewController {
         let infoViewController = InfoViewController()
         if self.strongestPlanet != nil
          {
-            infoViewController.infoText = theSun
+            infoViewController.infoText = ""
         } else {
             infoViewController.infoText = "Information not found for Strongest Planet"
         }

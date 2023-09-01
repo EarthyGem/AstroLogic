@@ -199,10 +199,10 @@ class StrongestPlanetViewController: UIViewController {
     }
 
     @objc func imageViewTapped() {
-        let infoViewController = InfoViewController()
+        let infoViewController = SPInfoViewController()
         if self.strongestPlanet != nil
          {
-            infoViewController.infoText = theSun
+            infoViewController.infoText = ""
         } else {
             infoViewController.infoText = "Information not found for Strongest Planet"
         }
@@ -210,7 +210,7 @@ class StrongestPlanetViewController: UIViewController {
     }
 //
     @objc func harmoniousImageViewTapped() {
-        let infoViewController = InfoViewController()
+        let infoViewController = SPInfoViewController()
         if self.mostHarmoniousPlanet != nil {
           
             infoViewController.infoText = ""
@@ -221,7 +221,7 @@ class StrongestPlanetViewController: UIViewController {
     }
 
     @objc func discordantImageViewTapped() {
-        let infoViewController = InfoViewController()
+        let infoViewController = SPInfoViewController()
         if self.mostDiscordantPlanet != nil
           {
             infoViewController.infoText = ""
