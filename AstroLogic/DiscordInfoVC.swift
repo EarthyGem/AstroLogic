@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class SPInfoViewController: UIViewController {
+class DiscordInfoViewController: UIViewController {
 
   
     var infoText: String?
@@ -53,20 +53,20 @@ class SPInfoViewController: UIViewController {
     func setupPlanetIntro() {
         // Configure and add planet image view
         planetImageView.contentMode = .scaleAspectFit
-        planetImageView.image = UIImage(named: strongestPlanet.lowercased())
+        planetImageView.image = UIImage(named: mostDiscordantPlanet.lowercased())
         contentView.addSubview(planetImageView)
         
         // Define and configure the planet name label
         let planetNameLabel = UILabel()
         planetNameLabel.textAlignment = .center
-        planetNameLabel.text = strongestPlanet.capitalized
+        planetNameLabel.text = mostDiscordantPlanet.capitalized
         planetNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         contentView.addSubview(planetNameLabel)
         
         // Configure and add planet intro label
         planetIntroLabel.textAlignment = .center
         planetIntroLabel.numberOfLines = 0
-        planetIntroLabel.text = "This is an introduction to \(strongestPlanet)."
+        planetIntroLabel.text = "This is an introduction to \(mostDiscordantPlanet)."
         planetIntroLabel.textColor = .black
         contentView.addSubview(planetIntroLabel)
         

@@ -200,34 +200,22 @@ class StrongestPlanetViewController: UIViewController {
 
     @objc func imageViewTapped() {
         let infoViewController = SPInfoViewController()
-        if self.strongestPlanet != nil
-         {
-            infoViewController.infoText = ""
-        } else {
-            infoViewController.infoText = "Information not found for Strongest Planet"
-        }
+  
+        infoViewController.strongestPlanet = strongestPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }
 //
     @objc func harmoniousImageViewTapped() {
-        let infoViewController = SPInfoViewController()
-        if self.mostHarmoniousPlanet != nil {
-          
-            infoViewController.infoText = ""
-        } else {
-            infoViewController.infoText = "Information not found for Harmonious Planet"
-        }
+        let infoViewController = HarmonyInfoViewController()
+      
+        infoViewController.mostHarmoniousPlanet = mostHarmoniousPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }
 
     @objc func discordantImageViewTapped() {
-        let infoViewController = SPInfoViewController()
-        if self.mostDiscordantPlanet != nil
-          {
-            infoViewController.infoText = ""
-        } else {
-            infoViewController.infoText = "Information not found for Discordant Planet"
-        }
+        let infoViewController = DiscordInfoViewController()
+        
+        infoViewController.mostDiscordantPlanet = mostDiscordantPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }
 
