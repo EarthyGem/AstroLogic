@@ -339,7 +339,13 @@ class SimpleTransitAspectedPlanetsViewController  : UIViewController {
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
          scrollView.addSubview(todaysDate)
         
-       
+        let photoButton = UIButton(frame: CGRect(x: 75, y: 170, width: 20, height: 20))
+        photoButton.setImage(UIImage(systemName: "photo.fill"), for: .normal)
+
+        photoButton.tintColor = .white // Or whichever color you prefer for the icon
+        photoButton.addTarget(self, action: #selector(memoriesButtonTapped), for: .touchUpInside)
+        scrollView.addSubview(photoButton)
+        
         
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
@@ -665,6 +671,15 @@ class SimpleTransitAspectedPlanetsViewController  : UIViewController {
         flipSynastryVC.chartCake = self.chartCake
         flipSynastryVC.selectedDate = self.selectedDate
         self.navigationController?.pushViewController(flipSynastryVC, animated: true)
+    }
+    
+    
+    @objc func memoriesButtonTapped() {
+        let imagePickerVC = ImagePickerViewController()
+        imagePickerVC.selectedDate = selectedDate // assuming `selectedDate` is your date from the date picker
+        self.present(imagePickerVC, animated: true) {
+            imagePickerVC.pickImage()
+        }
     }
 
 }

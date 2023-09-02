@@ -280,9 +280,10 @@ class TransitAspectedPlanetsViewController  : UIViewController {
         //        ascTableView.delegate = self
 
         view.backgroundColor = .black
-        
-    }
-    
+  
+       }
+
+     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "Less Aspects", style: .plain, target: nil, action: nil)
@@ -335,7 +336,13 @@ class TransitAspectedPlanetsViewController  : UIViewController {
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
         scrollView.addSubview(todaysDate)
         
-
+        let photoButton = UIButton(frame: CGRect(x: todaysDate.frame.maxX + 5, y: todaysDate.frame.origin.y, width: 20, height: 20))
+        photoButton.setImage(UIImage(systemName: "photo"), for: .normal)
+        photoButton.tintColor = .white // Or whichever color you prefer for the icon
+        photoButton.addTarget(self, action: #selector(memoriesButtonTapped), for: .touchUpInside)
+        scrollView.addSubview(photoButton)
+        
+        
         sunTableView.backgroundColor = .orange
         moonTableView.backgroundColor = .green
         mercuryTableView.backgroundColor = .purple
@@ -601,6 +608,15 @@ class TransitAspectedPlanetsViewController  : UIViewController {
 
         scrollView.addSubview(transitIntro)
 
+    }
+    
+    
+    @objc func memoriesButtonTapped() {
+        let imagePickerVC = ImagePickerViewController()
+        imagePickerVC.selectedDate = selectedDate // assuming `selectedDate` is your date from the date picker
+        self.present(imagePickerVC, animated: true) {
+            imagePickerVC.pickImage()
+        }
     }
 
 }

@@ -57,6 +57,7 @@
 		39851F822A93063600E70FF5 /* mpAspectsTCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39851F812A93063600E70FF5 /* mpAspectsTCVC.swift */; };
 		398580552AA26D2C007A561B /* HarmoniousInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398580542AA26D2C007A561B /* HarmoniousInfoVC.swift */; };
 		398580572AA26D34007A561B /* DiscordInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398580562AA26D34007A561B /* DiscordInfoVC.swift */; };
+		398580592AA26FC8007A561B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398580582AA26FC8007A561B /* ImagePicker.swift */; };
 		398ECC2F2A8F025900695354 /* ChartDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */; };
 		398ECC312A8F07D300695354 /* MyCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ECC302A8F07D300695354 /* MyCharts.swift */; };
 		3997F0742A63707F00741E9D /* Sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0732A63707F00741E9D /* Sentence.swift */; };
@@ -155,6 +156,7 @@
 		39851F812A93063600E70FF5 /* mpAspectsTCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mpAspectsTCVC.swift; sourceTree = "<group>"; };
 		398580542AA26D2C007A561B /* HarmoniousInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmoniousInfoVC.swift; sourceTree = "<group>"; };
 		398580562AA26D34007A561B /* DiscordInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordInfoVC.swift; sourceTree = "<group>"; };
+		398580582AA26FC8007A561B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		398ECC2E2A8F025900695354 /* ChartDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChartDataModel.xcdatamodel; sourceTree = "<group>"; };
 		398ECC302A8F07D300695354 /* MyCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCharts.swift; sourceTree = "<group>"; };
 		3997F0732A63707F00741E9D /* Sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentence.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */,
 				39A1EC392A5F61AD008D1EC1 /* ChartViewerVC.swift */,
 				39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */,
+				398580582AA26FC8007A561B /* ImagePicker.swift */,
 				395DE5062A95AD1100B0B451 /* Planet Info.swift */,
 				398580542AA26D2C007A561B /* HarmoniousInfoVC.swift */,
 				398580562AA26D34007A561B /* DiscordInfoVC.swift */,
@@ -439,6 +442,7 @@
 				3997F0742A63707F00741E9D /* Sentence.swift in Sources */,
 				3997F0762A637D4700741E9D /* File.swift in Sources */,
 				395DE5152A95E75300B0B451 /* OthersPlanetsVC.swift in Sources */,
+				398580592AA26FC8007A561B /* ImagePicker.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
 				39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */,
 				3903A33F2A5F2D0700245DD2 /* ViewController.swift in Sources */,
