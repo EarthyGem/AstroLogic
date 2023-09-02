@@ -39,7 +39,7 @@ class ImagePickerViewController: UIViewController, UICollectionViewDataSource, U
         ])
         
         // Fetch and display the photos from the selected date
-        pickImage()
+       // pickImage()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -57,46 +57,57 @@ class ImagePickerViewController: UIViewController, UICollectionViewDataSource, U
         return cell
     }
     
-    func fetchPhotos(from date: Date) -> [PHAsset] {
-        let startOfDay = Calendar.current.startOfDay(for: date)
-        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay) ?? startOfDay
-        print("Start of day: \(startOfDay)")
-        print("End of day: \(endOfDay)")
-        
-        // Fetch all moments
-        let assetCollections = PHAssetCollection.fetchMoments(with: nil)
-        
-        var fetchedPhotoAssets: [PHAsset] = []
-        
-        assetCollections.enumerateObjects { (collection, _, _) in
-            // Check if moment's date range overlaps with desired date
-            if let momentStart = collection.startDate, let momentEnd = collection.endDate,
-               momentStart <= endOfDay && momentEnd >= startOfDay {
+    class func fetchPhotos(from date: Date, completion: @escaping ([PHAsset]) -> Void) {
+        // ... rest of your code ...
+    
+
+    // In your other view controller
+        PHPhotoLibrary.requestAuthorization { (status) in
+            switch status {
+            case .authorized:
+                let startOfDay = Calendar.current.startOfDay(for: date)
+                let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay) ?? startOfDay
+
                 let fetchOptions = PHFetchOptions()
                 fetchOptions.predicate = NSPredicate(format: "creationDate > %@ AND creationDate < %@", startOfDay as NSDate, endOfDay as NSDate)
-                
-                let assetsFetchResult = PHAsset.fetchAssets(in: collection, options: fetchOptions)
+
+                let assetsFetchResult = PHAsset.fetchAssets(with: fetchOptions)
+                var fetchedPhotoAssets: [PHAsset] = []
                 assetsFetchResult.enumerateObjects { (asset, _, _) in
                     fetchedPhotoAssets.append(asset)
                 }
+
+                DispatchQueue.main.async {
+                    completion(fetchedPhotoAssets)
+                }
+            default:
+                DispatchQueue.main.async {
+                    completion([])
+                }
             }
         }
-        print("Number of photos fetched: \(fetchedPhotoAssets.count)")
-        
-        return fetchedPhotoAssets
     }
-
 
     func pickImage() {
         print("Selected date: \(String(describing: selectedDate))")
-     
+
         PHPhotoLibrary.requestAuthorization { [weak self] (status) in
             guard let self = self else { return }
             switch status {
             case .authorized:
                 if let date = self.selectedDate {
-                    self.photoAssets = self.fetchPhotos(from: date)
-                    self.collectionView.reloadData()
+                    ImagePickerViewController.fetchPhotos(from: date) { photoAssets in
+                        self.photoAssets = photoAssets
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                            if self.photoAssets.isEmpty {
+                                // Show a message to the user that there are no photos from the selected date
+                                let alert = UIAlertController(title: "No Photos", message: "There are no photos from the selected date.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                    }
                 } else {
                     // Handle error: selectedDate is not set
                 }
@@ -104,14 +115,13 @@ class ImagePickerViewController: UIViewController, UICollectionViewDataSource, U
                 // Handle denied/restricted status, perhaps by showing an alert to the user.
             case .notDetermined: break
                 // Handle the not determined case, if needed.
-            default:
+            default: break
                 // Handle any other cases.
-                break
             }
         }
     }
-}
 
+}
 // Custom UICollectionViewCell to display photos
 class PhotoCell: UICollectionViewCell {
     var photoImageView: UIImageView = {
