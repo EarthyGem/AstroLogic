@@ -26,6 +26,7 @@ class StrongestPlanetViewController: UIViewController {
     private let placeLabel = UILabel()
     private let dateTimeLabel = UILabel()
     var dateString: String?
+    var strongestPlanetSign: String!
 
     // Add
 //    var getMinors: (() -> Date)?
@@ -203,13 +204,17 @@ class StrongestPlanetViewController: UIViewController {
     @objc func imageViewTapped() {
         let infoViewController = SPInfoViewController()
         infoViewController.tarot = tarot
+        infoViewController.name = name
+        infoViewController.strongestPlanetSign = strongestPlanetSign
         infoViewController.strongestPlanet = strongestPlanet
-        self.present(infoViewController, animated: true, completion: nil)
+        
+           self.present(infoViewController, animated: true, completion: nil)
     }
 //
     @objc func harmoniousImageViewTapped() {
         let infoViewController = HarmonyInfoViewController()
         infoViewController.harTarot = harTarot
+        infoViewController.name = name
         infoViewController.mostHarmoniousPlanet = mostHarmoniousPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }
@@ -217,6 +222,7 @@ class StrongestPlanetViewController: UIViewController {
     @objc func discordantImageViewTapped() {
         let infoViewController = DiscordInfoViewController()
         infoViewController.disTarot = disTarot
+        infoViewController.name = name
         infoViewController.mostDiscordantPlanet = mostDiscordantPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }

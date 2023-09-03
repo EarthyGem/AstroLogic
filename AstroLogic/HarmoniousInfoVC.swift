@@ -59,16 +59,16 @@ class HarmonyInfoViewController: UIViewController {
         
         // Define and configure the planet name label
         let planetNameLabel = UILabel()
-        planetNameLabel.textAlignment = .center
+        planetNameLabel.textAlignment = .justified
         planetNameLabel.text = mostHarmoniousPlanet.capitalized
         planetNameLabel.textColor = .white
         planetNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         contentView.addSubview(planetNameLabel)
         
         // Configure and add planet intro label
-        planetIntroLabel.textAlignment = .center
+        planetIntroLabel.textAlignment = .justified
         planetIntroLabel.numberOfLines = 0
-        planetIntroLabel.text = "The best planet is the one receiving the support from the rest of the chart, and thus indicates the kind of things with the greatest ability to bring luck or ease into \(name)'s life. It is important to note it, so that \(name) can be associate as persistently as possible with the various things ruled by \(mostHarmoniousPlanet!) in order to increase their good 'luck'"
+        planetIntroLabel.text = "The best planet is the one receiving the support from the rest of the chart, and thus indicates the kind of things with the greatest ability to bring luck or ease into \(name)'s life. It is important to note it, so that \(name) can associate as persistently as possible with the various things ruled by \(mostHarmoniousPlanet!) in order to increase their good 'luck'"
         planetIntroLabel.font = UIFont.systemFont(ofSize: 15) // adjust the font size as needed
 
                 planetIntroLabel.textColor = .white
@@ -101,7 +101,7 @@ class HarmonyInfoViewController: UIViewController {
     func setupContent() {
         var lastView: UIView? = nil
         let spaceBetweenGroups: CGFloat = 200
-        let initialTopPadding: CGFloat = 250
+        let initialTopPadding: CGFloat = 260
 
         for (index, text) in texts.enumerated() {
             let label = UILabel()
@@ -110,7 +110,7 @@ class HarmonyInfoViewController: UIViewController {
             label.backgroundColor = UIColor(red: 148/255, green: 0, blue: 211/255, alpha: 1) // Dark lavender color
             label.layer.cornerRadius = 8
             label.clipsToBounds = true
-            label.textAlignment = .center
+            label.textAlignment = .justified
             label.numberOfLines = 0
 
             contentView.addSubview(label)

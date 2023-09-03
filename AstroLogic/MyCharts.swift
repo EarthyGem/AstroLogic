@@ -219,6 +219,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
         strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
         strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+        strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
         strongestPlanetVC.sentenceText = sentence
         self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
     }

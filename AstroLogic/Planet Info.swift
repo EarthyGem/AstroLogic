@@ -8,41 +8,22 @@ class SPInfoViewController: UIViewController {
     var infoText: String?
     let scrollView = UIScrollView()
     let contentView = UIView()
-   let texts = ["Text 1", "Text 2", "Text 3", "Text 4", "Text 5", "Text 6", "Text 7", "Text 8", "Text 9"]
+//   let texts = ["Text 1", "Text 2", "Text 3", "Text 4", "Text 5", "Text 6", "Text 7", "Text 8", "Text 9"]
     let planetIntroLabel = UILabel()
     let planetImageView = UIImageView()
-    var planetName: String = "" // Just an example, set this as needed
+    var strongestPlanetName: String! // Just an example, set this as needed
     var strongestPlanet: String!
     var mostHarmoniousPlanet: String!
     var mostDiscordantPlanet: String!
-
-
-    let planetColors: [String: UIColor] = [
-        CelestialObject.planet(.sun).keyName: .orange,
-        CelestialObject.planet(.moon).keyName: .green,
-        CelestialObject.planet(.mercury).keyName: .purple,
-        CelestialObject.planet(.venus).keyName: .yellow,
-        CelestialObject.planet(.mars).keyName: .red,
-        CelestialObject.planet(.jupiter).keyName: .systemIndigo,
-        CelestialObject.planet(.saturn).keyName: .systemBlue,
-        CelestialObject.planet(.uranus).keyName: .systemPurple,
-        CelestialObject.planet(.neptune).keyName: .systemYellow,
-        CelestialObject.planet(.pluto).keyName: .systemGreen,
-        CelestialObject.lunarNode(.meanSouthNode).keyName: .darkGray,
-        "ascendant": .white,
-        "midheaven": .white
-        // add more if needed...
-    ]
-
-
-
+    var strongestPlanetSign: String!
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
         setupScrollView()
         setupPlanetIntro()
-        setupContent()
+        setupContent(selectedPlanet: strongestPlanet)
+        updateContentSize()
     }
 
     func setupScrollView() {
@@ -63,14 +44,24 @@ class SPInfoViewController: UIViewController {
 
         // Setting up contentView
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        ])
+            NSLayoutConstraint.activate([
+                contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: UIScreen.main.bounds.height),
+                contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+                contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            ])
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        guard let lastSubview = contentView.subviews.sorted(by: { $0.frame.maxY < $1.frame.maxY }).last else { return }
+
+        let bottomPadding: CGFloat = 20
+        let contentHeight = lastSubview.frame.maxY + bottomPadding
+        scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentHeight)
+    }
+
 
     func setupPlanetIntro() {
         // Configure and add planet image view
@@ -115,43 +106,112 @@ class SPInfoViewController: UIViewController {
             planetIntroLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
     }
+    func updateContentSize() {
+        guard let lastSubview = contentView.subviews.last else { return }
+        let contentHeight = lastSubview.frame.maxY + 20 // Add some padding at the bottom
+        scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentHeight)
+    }
 
+    // Call this method after adding all subviews in setupContent()
 
-    func setupContent() {
+    func setupContent(selectedPlanet: String) {
         var lastView: UIView? = nil
         let spaceBetweenGroups: CGFloat = 200
         let initialTopPadding: CGFloat = 250
+        let textPadding: CGFloat = 20 // Padding inside the label background
 
-        for (index, text) in texts.enumerated() {
+        var planetInfo: [String]?
+
+        switch selectedPlanet {
+        case "Sun":
+            planetInfo = sunInfo
+        case "Moon":
+            planetInfo = moonInfo
+        case "Mercury":
+            planetInfo = mercuryInfo
+        case "Venus":
+            planetInfo = venusInfo
+        case "Mars":
+            planetInfo = marsInfo
+        case "Jupiter":
+            planetInfo = jupiterInfo
+        case "Saturn":
+            planetInfo = saturnInfo
+        case "Uranus":
+            planetInfo = uranusInfo
+        case "Neptune":
+            planetInfo = neptuneInfo
+        // Add cases for other planets as needed
+        default:
+            break
+        }
+
+        guard let selectedPlanetInfo = planetInfo else {
+            return
+        }
+
+        for (index, text) in selectedPlanetInfo.enumerated() {
+            let containerView = UIView() // Container view to hold the label
+            contentView.addSubview(containerView)
+
+            containerView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+                containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            ])
+
+            if let last = lastView {
+                if index == 0 {
+                    containerView.topAnchor.constraint(equalTo: last.bottomAnchor, constant: spaceBetweenGroups).isActive = true
+                } else {
+                    containerView.topAnchor.constraint(equalTo: last.bottomAnchor, constant: 20).isActive = true
+                }
+            } else {
+                containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: initialTopPadding).isActive = true
+            }
+
+            // Create the label and add it to the container view
             let label = UILabel()
             label.text = text
             label.textColor = .white
             label.backgroundColor = UIColor(red: 148/255, green: 0, blue: 211/255, alpha: 1) // Dark lavender color
             label.layer.cornerRadius = 8
             label.clipsToBounds = true
-            label.textAlignment = .center
+            label.textAlignment = .justified
+            label.font = UIFont.systemFont(ofSize: 15)
             label.numberOfLines = 0
+            containerView.addSubview(label)
 
-            contentView.addSubview(label)
-
+            // Set up constraints for the label inside the container view
             label.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+                label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                label.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: textPadding),
+                label.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -textPadding)
             ])
 
-            if let last = lastView {
-                if index == 5 {  // We check if it's the start of the next group
-                    label.topAnchor.constraint(equalTo: last.bottomAnchor, constant: spaceBetweenGroups).isActive = true
-                } else {
-                    label.topAnchor.constraint(equalTo: last.bottomAnchor, constant: 20).isActive = true
-                }
-            } else {
-                label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: initialTopPadding).isActive = true
-            }
-
-            lastView = label
+            lastView = containerView
         }
+        
+
+        let labelBetweenSections = UILabel()
+           labelBetweenSections.textColor = .white
+           labelBetweenSections.numberOfLines = 0
+           labelBetweenSections.text = """
+           Having covered briefly what \(strongestPlanet!) energy is like if it is dominant, we can then say that such an attitude will predominate in \(name) regardless of what sign or house it is in. The sign will indicate the method by which \(name)'s \(strongestPlanet!) expresses, and the house which area of life the dominant desire will most often express in.
+           """
+        labelBetweenSections.textAlignment = .justified
+           contentView.addSubview(labelBetweenSections)
+
+           // Set up constraints for the label between sections
+           labelBetweenSections.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               labelBetweenSections.topAnchor.constraint(equalTo: lastView?.bottomAnchor ?? contentView.topAnchor, constant: 300),
+               labelBetweenSections.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+               labelBetweenSections.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+           ])
+
 
         // Setup card image
         let cardImage = UIImageView(image: UIImage(named: tarot))
@@ -161,27 +221,67 @@ class SPInfoViewController: UIViewController {
 
         // Setup additional label
         let additionalLabel = UILabel()
-        additionalLabel.text = "Additional Information"
+        additionalLabel.text = ""
         additionalLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(additionalLabel)
 
         // Setup additional button
         let additionalButton = UIButton(type: .system)
-        additionalButton.setTitle("Additional Details", for: .normal)
+        additionalButton.setTitle("", for: .normal)
         additionalButton.addTarget(self, action: #selector(showAdditionalDetails), for: .touchUpInside)
         additionalButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(additionalButton)
 
+        let desiredWidth = 100.0
+        let desiredHeight = 175.0
         // Setup layout constraints
         NSLayoutConstraint.activate([
             cardImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             cardImage.topAnchor.constraint(equalTo: lastView?.bottomAnchor ?? contentView.topAnchor, constant: 50),
-            additionalLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            additionalLabel.topAnchor.constraint(equalTo: cardImage.bottomAnchor, constant: 20),
-            additionalButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            additionalButton.topAnchor.constraint(equalTo: additionalLabel.bottomAnchor, constant: 20),
-            additionalButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            // Adjust the width and height constraints as needed
+            cardImage.widthAnchor.constraint(equalToConstant: desiredWidth),
+            cardImage.heightAnchor.constraint(equalToConstant: desiredHeight)
         ])
+
+        let planetImage = UIImage(named: strongestPlanet.lowercased())
+        let planetImageView = UIImageView(image: planetImage)
+        planetImageView.contentMode = .scaleAspectFit
+        planetImageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(planetImageView)
+
+        // Add sign image
+        let signImage = UIImage(named: strongestPlanetSign)
+        let signImageView = UIImageView(image: signImage)
+        signImageView.contentMode = .scaleAspectFit
+        signImageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(signImageView)
+
+        // Add house emoji
+        let houseEmoji = "🏠" // You can replace this with an appropriate house emoji
+        let houseLabel = UILabel()
+        houseLabel.text = houseEmoji
+        houseLabel.font = UIFont.systemFont(ofSize: 40)
+        houseLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(houseLabel)
+
+        // Set up constraints for planet, sign, and house images
+        NSLayoutConstraint.activate([
+            planetImageView.centerYAnchor.constraint(equalTo: cardImage.centerYAnchor),
+            planetImageView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -20),
+            planetImageView.widthAnchor.constraint(equalToConstant: desiredWidth),
+            planetImageView.heightAnchor.constraint(equalToConstant: desiredHeight),
+
+            signImageView.centerYAnchor.constraint(equalTo: cardImage.centerYAnchor),
+            signImageView.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 20),
+            signImageView.widthAnchor.constraint(equalToConstant: desiredWidth),
+            signImageView.heightAnchor.constraint(equalToConstant: desiredHeight),
+
+            houseLabel.centerYAnchor.constraint(equalTo: cardImage.centerYAnchor),
+            houseLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            houseLabel.topAnchor.constraint(equalTo: cardImage.bottomAnchor, constant: 10)
+        ])
+
+            lastView = houseLabel
 
         lastView = additionalButton
         lastView?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
