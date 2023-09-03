@@ -8,7 +8,9 @@ struct DateTimeWithZone {
 
 
 class StrongestPlanetViewController: UIViewController {
-    
+    var tarot: String = ""
+    var harTarot: String = ""
+    var disTarot: String = ""
     var strongestPlanetName: String!
     var strongestPlanet: String!
     var mostHarmoniousPlanet: String!
@@ -200,21 +202,21 @@ class StrongestPlanetViewController: UIViewController {
 
     @objc func imageViewTapped() {
         let infoViewController = SPInfoViewController()
-  
+        infoViewController.tarot = tarot
         infoViewController.strongestPlanet = strongestPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }
 //
     @objc func harmoniousImageViewTapped() {
         let infoViewController = HarmonyInfoViewController()
-      
+        infoViewController.harTarot = harTarot
         infoViewController.mostHarmoniousPlanet = mostHarmoniousPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }
 
     @objc func discordantImageViewTapped() {
         let infoViewController = DiscordInfoViewController()
-        
+        infoViewController.disTarot = disTarot
         infoViewController.mostDiscordantPlanet = mostDiscordantPlanet
         self.present(infoViewController, animated: true, completion: nil)
     }

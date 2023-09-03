@@ -568,6 +568,9 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 let strongestPlanetVC = StrongestPlanetViewController()
                 strongestPlanetVC.chartCake = chartCake
                 strongestPlanetVC.chart = chart
+                strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
+                strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
+                strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
                 strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                 strongestPlanetVC.name = nameTextField.text!
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
