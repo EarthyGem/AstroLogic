@@ -169,11 +169,14 @@ class BirthChartView: UIView {
 
           
             // Add the planet number label
+            // Add the planet number label
             let houseNumberLabel = UILabel()
             houseNumberLabel.textColor = .white
             houseNumberLabel.textAlignment = .center
             houseNumberLabel.text = "\((index + 1) % 12 + 1)"
-            houseNumberLabel.font = UIFont.systemFont(ofSize: 10)
+            houseNumberLabel.font = UIFont.systemFont(ofSize: adjustedFontSize(for: 10))
+        
+
             houseNumberLabel.sizeToFit()
             let labelRadius = (0.34 + 0.41) / 2 * radius
             let labelAngle = angle - houseDistances[index]  / 2 * .pi / 180
@@ -189,7 +192,8 @@ class BirthChartView: UIView {
             houseDegreeLabel.textAlignment = .center
             houseDegreeLabel.text = "\(Int(houseDegree))°"
 
-            houseDegreeLabel.font = UIFont.systemFont(ofSize: 10)
+            houseDegreeLabel.font = UIFont.systemFont(ofSize: adjustedFontSize(for: 10))
+
             houseDegreeLabel.sizeToFit()
             let labelRadius1 = 1.07 * radius
             let labelAngle1 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + degreeLabelAngleOffset
@@ -220,7 +224,8 @@ class BirthChartView: UIView {
             houseMinuteLabel.textAlignment = .center
             houseMinuteLabel.text = "\(Int(houseMinute))'"
 
-            houseMinuteLabel.font = UIFont.systemFont(ofSize: 8)
+            houseMinuteLabel.font = UIFont.systemFont(ofSize: adjustedFontSize(for: 8))
+
             houseMinuteLabel.sizeToFit()
             let labelRadius3 = 1.07 * radius
             let labelAngle3 = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi + minuteLabelAngleOffset
@@ -237,6 +242,11 @@ class BirthChartView: UIView {
         let adjustedDegree = degree.truncatingRemainder(dividingBy: 360)
         return Int(adjustedDegree / 30)
     }
+    
+    func adjustedFontSize(for size: CGFloat) -> CGFloat {
+        return size * UIScreen.main.scale
+    }
+
 
     private func drawPlanetSymbols(context: CGContext) {
         
@@ -386,7 +396,8 @@ class BirthChartView: UIView {
                 degreeLabel.textColor = .white
                 degreeLabel.textAlignment = .center
                 degreeLabel.text = degree
-                degreeLabel.font = UIFont.systemFont(ofSize: 9)
+                degreeLabel.font = UIFont.systemFont(ofSize: adjustedFontSize(for: 9))
+
                 degreeLabel.sizeToFit()
 
                 let degreeLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: degreeLabelRadius, lastSymbolCenter: &lastDegreeLabelCenter, lastCelestialObject: &lastDegreeLabelCelestialObject, minSymbolDistance: minLabelDistance)
@@ -429,7 +440,8 @@ class BirthChartView: UIView {
                 minuteLabel.textColor = .white
                 minuteLabel.textAlignment = .center
                 minuteLabel.text = minute
-                minuteLabel.font = UIFont.systemFont(ofSize: 6)
+                minuteLabel.font = UIFont.systemFont(ofSize: adjustedFontSize(for: 6))
+
                 minuteLabel.sizeToFit()
 
                 let minuteLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: minuteLabelRadius, lastSymbolCenter: &lastMinuteLabelCenter, lastCelestialObject: &lastMinuteLabelCelestialObject, minSymbolDistance: minLabelDistance)
