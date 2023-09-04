@@ -307,22 +307,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DC68016B-CE7F-4F80-8128-E9BBE5F88ED9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AstroLogic/ChartViewerVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EAAD5BB0-38E2-4F45-95A5-4BE3EA1842C5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -330,8 +314,8 @@
             filePath = "AstroLogic/ChartViewerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

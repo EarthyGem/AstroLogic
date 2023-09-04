@@ -230,15 +230,17 @@ class ChartViewController: UIViewController {
         }
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
+        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 30, width: screenWidth, height: screenWidth), chartCake: chartCake!)
 
      //   birthChartView.backgroundColor = .white
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 550, width: screenWidth, height: 1500))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 1500))
         // Set the total height to 4000
         let totalHeight: CGFloat = 4000
-
+        let adjustedYPos = screenWidth + 50
         // Adjust the scrollView's contentSize
         scrollView.contentSize = CGSize(width: screenWidth, height: totalHeight)
 
@@ -264,7 +266,7 @@ class ChartViewController: UIViewController {
         let barSpacing2: CGFloat = 2.5
 
         for (index, (planet, score)) in sortedScores.enumerated() {
-            let label = UILabel(frame: CGRect(x: 10, y: labelSpacing + CGFloat(index) * (labelHeight + labelSpacing), width: screenWidth - 20, height: labelHeight))
+            let label = UILabel(frame: CGRect(x: 10, y: labelSpacing + CGFloat(index) * (labelHeight + labelSpacing) + adjustedYPos + 40, width: screenWidth - 20, height: labelHeight))
             label.textColor = .white
             label.font = UIFont.systemFont(ofSize: 13)
             label.text = "\(planet): \(Int(score))"
@@ -277,9 +279,12 @@ class ChartViewController: UIViewController {
         let barStartX2: CGFloat = 110
         let _: CGFloat = 2
 
+
+
+        // first try - harmony discord planet labels
         for (index, (planet, scores)) in sortedHarmonyDiscordScores.enumerated() {
             // Difference label
-            let differenceLabel = UILabel(frame: CGRect(x: 10, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing), width: screenWidth - 20, height: labelHeight))
+            let differenceLabel = UILabel(frame: CGRect(x: 10, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + adjustedYPos + 60, width: screenWidth - 20, height: labelHeight))
             differenceLabel.textColor = .white
             differenceLabel.font = UIFont.systemFont(ofSize: 13)
             differenceLabel.text = "\(planet.keyName) : \(Int(scores.net))" // Use net score here
@@ -288,13 +293,13 @@ class ChartViewController: UIViewController {
             // Harmony bar
             let harmonyBarView = UIView()
             harmonyBarView.backgroundColor = .systemBlue
-            harmonyBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing), width: CGFloat(scores.harmony) * 2, height: barHeight2)
+            harmonyBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + adjustedYPos + 60, width: CGFloat(scores.harmony) * 2, height: barHeight2)
             scrollView.addSubview(harmonyBarView)
 
             // Discord bar
             let discordBarView = UIView()
             discordBarView.backgroundColor = .systemRed
-            discordBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + barHeight2 + barSpacing2, width: CGFloat(scores.discord) * 2, height: barHeight2)
+            discordBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + barHeight2 + barSpacing2 + adjustedYPos + 60, width: CGFloat(scores.discord) * 2, height: barHeight2)
             scrollView.addSubview(discordBarView)
         }
 
@@ -322,7 +327,7 @@ class ChartViewController: UIViewController {
         // Add the print button as a subview to the view
         view.addSubview(printButton)
 
-        view.addSubview(birthChartView)
+        scrollView.addSubview(birthChartView)
         // Customize the view as needed
         birthChartView.backgroundColor = .black
 
@@ -335,23 +340,23 @@ class ChartViewController: UIViewController {
         let signScores = chartCake.calculateTotalSignScore()
         let elementScores = calculateTotalElementScores(signScores: signScores)
         let elementPieChartView = createPieChartView(dataEntries: generateElementPieChartData(scores: elementScores))
-        elementPieChartView.frame = CGRect(x: 85, y: 750, width: 250, height: 250)
+        elementPieChartView.frame = CGRect(x: 85, y: 750 + adjustedYPos, width: 250, height: 250)
         scrollView.addSubview(elementPieChartView)
 
 
         let modalityScores = calculateTotalModalityScores(signScores: signScores)
         let modalityPieChartView = createPieChartView(dataEntries: generateModalityPieChartData(scores: modalityScores))
-        modalityPieChartView.frame = CGRect(x: 85, y: 1050, width: 250, height: 250)
+        modalityPieChartView.frame = CGRect(x: 85, y: 1050 + adjustedYPos, width: 250, height: 250)
         scrollView.addSubview(modalityPieChartView)
 
         let emanationScores = calculateTotalEmanationScores(signScores: signScores)
         let emanationPieChartView = createPieChartView(dataEntries: generateEmanationPieChartData(scores: emanationScores))
-        emanationPieChartView.frame = CGRect(x: 85, y: 1350, width: 250, height: 250)
+        emanationPieChartView.frame = CGRect(x: 85, y: 1350 + adjustedYPos, width: 250, height: 250)
         scrollView.addSubview(emanationPieChartView)
 
         let trinityScores = calculateTotalTrinityScores(houseScores: houseScores)
         let trinityPieChartView = createPieChartView(dataEntries: generateTrinityPieChartData(trinityScores: trinityScores))
-        trinityPieChartView.frame = CGRect(x: 85, y: 1650, width: 250, height: 250)
+        trinityPieChartView.frame = CGRect(x: 85, y: 1650 + adjustedYPos, width: 250, height: 250)
         scrollView.addSubview(trinityPieChartView)
 
 
@@ -361,7 +366,7 @@ class ChartViewController: UIViewController {
 
         //     print("Domain Scores: \(domainScores)")
         let domainPieChartView = createPieChartView(dataEntries: generateDomainPieChartData(domainScores: domainScores))
-        domainPieChartView.frame = CGRect(x: 85, y: 1950, width: 250, height: 250)
+        domainPieChartView.frame = CGRect(x: 85, y: 1950 + adjustedYPos, width: 250, height: 250)
         scrollView.addSubview(domainPieChartView)
         displayGroupedPlanetBarChart()
 
@@ -382,36 +387,36 @@ class ChartViewController: UIViewController {
         for (index, (planet, normalizedScore)) in normalizedScores.enumerated() {
             let barView = UIView()
             barView.backgroundColor = planetColors[planet] ?? .black // Use black as a default color
-            barView.frame = CGRect(x: barStartX, y: CGFloat(index) * (barHeight + barSpacing), width: CGFloat(normalizedScore), height: barHeight)
+            barView.frame = CGRect(x: barStartX, y: CGFloat(index) * (barHeight + barSpacing) + adjustedYPos + 40, width: CGFloat(normalizedScore), height: barHeight)
             scrollView.addSubview(barView)
 
             // Create pie chart for total sign scores
             let signScores = chartCake.calculateTotalSignScore()
             let signPieChartView = createPieChartView(dataEntries: generatePieChartData(scores: signScores))
-            signPieChartView.frame = CGRect(x: 10, y: 400, width: screenWidth - 20, height: 300)
+            signPieChartView.frame = CGRect(x: 10, y: 400 + adjustedYPos, width: screenWidth - 20, height: 300)
 
 
             // Create pie chart for total house scores
             let houseScores = houseScores
             let housePieChartView = createPieChartView(dataEntries: generatePieChartData(scores: signScores))
-            housePieChartView.frame = CGRect(x: 10, y: 720, width: screenWidth - 20, height: 300)
+            housePieChartView.frame = CGRect(x: 10, y: 720 + adjustedYPos, width: screenWidth - 20, height: 300)
 
 
             // Sign Scores Bar Chart
-            let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 2250 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateSignBarChart(chartView: signScoresChart, scores: signScores, label: "Sign Scores")
             self.scrollView.addSubview(signScoresChart)
 
 
             // House Scores Bar Chart
-            let houseScoresChart = BarChartView(frame: CGRect(x: 10, y: 2550, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let houseScoresChart = BarChartView(frame: CGRect(x: 10, y: 2550 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateHouseBarChart(chartView: houseScoresChart, scores: houseScores, label: "House Scores")
             self.scrollView.addSubview(houseScoresChart)
 
 
 
             // Planet Scores Bar Chart
-            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: 2850, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: 2850 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updatePlanetBarChart(chartView: planetScoresChart, scores: scores, label: "Planet Scores")
             self.scrollView.addSubview(planetScoresChart)
 
@@ -441,7 +446,7 @@ class ChartViewController: UIViewController {
             }
 
             // 3. Update the Chart
-            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250 , width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
          //   self.scrollView.addSubview(barChartView)
             updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
         }
