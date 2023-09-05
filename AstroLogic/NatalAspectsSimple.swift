@@ -346,17 +346,17 @@ class SimpleNatalAspectsViewController: UIViewController {
 
 
          scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-         sunTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.sun.celestialObject).count * 90)
+         sunTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.sun.celestialObject).count * 90)
  //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-         moonTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.moon.celestialObject).count * 90)
-         mercuryTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
-         venusTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.venus.celestialObject).count * 90)
-         marsTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.mars.celestialObject).count * 90)
-         jupiterTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
-         saturnTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
-         uranusTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
-         neptuneTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
-         plutoTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
+         moonTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.moon.celestialObject).count * 90)
+         mercuryTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
+         venusTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.venus.celestialObject).count * 90)
+         marsTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.mars.celestialObject).count * 90)
+         jupiterTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
+         saturnTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
+         uranusTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
+         neptuneTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
+         plutoTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
 
 
          scrollView.addSubview(moonScrollView)
@@ -555,77 +555,76 @@ class SimpleNatalAspectsViewController: UIViewController {
 
 
          let sunText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         sunText.text = "Sun"
+         sunText.text = "Sun - Power Urges"
          sunText.font = .systemFont(ofSize: 16)
          sunText.textColor = .white
 
           sunScrollView.addSubview(sunText)
 
          let moonText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         moonText.text = "Moon"
+         moonText.text = "Moon - Domestic Urges"
          moonText.font = .systemFont(ofSize: 16)
          moonText.textColor = .white
 
           moonScrollView.addSubview(moonText)
 
          let mercuryText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         mercuryText.text = "Mercury"
+         mercuryText.text = "Mercury - Intellectual Urges"
          mercuryText.font = .systemFont(ofSize: 16)
          mercuryText.textColor = .white
 
           mercuryScrollView.addSubview(mercuryText)
 
          let venusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         venusText.text = "Venus"
+         venusText.text = "Venus - Social Urges"
          venusText.font = .systemFont(ofSize: 16)
          venusText.textColor = .white
 
           venusScrollView.addSubview(venusText)
 
          let marsText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         marsText.text = "Mars"
+         marsText.text = "Mars - Aggressive Urges"
          marsText.font = .systemFont(ofSize: 16)
          marsText.textColor = .white
 
           marsScrollView.addSubview(marsText)
 
          let jupiterText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         jupiterText.text = "Jupiter"
+         jupiterText.text = "Jupiter - Religious Urges"
          jupiterText.font = .systemFont(ofSize: 16)
          jupiterText.textColor = .white
 
           jupiterScrollView.addSubview(jupiterText)
 
          let saturnText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         saturnText.text = "Saturn"
+         saturnText.text = "Saturn - Saftey Urges"
          saturnText.font = .systemFont(ofSize: 16)
          saturnText.textColor = .white
 
           saturnScrollView.addSubview(saturnText)
 
          let uranusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         uranusText.text = "Uranus"
+         uranusText.text = "Uranus - Individualistic Urges"
          uranusText.font = .systemFont(ofSize: 16)
          uranusText.textColor = .white
 
           uranusScrollView.addSubview(uranusText)
 
          let neptuneText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         neptuneText.text = "Neptune"
+         neptuneText.text = "Neptune - Utopian Urges"
          neptuneText.font = .systemFont(ofSize: 16)
          neptuneText.textColor = .white
 
           neptuneScrollView.addSubview(neptuneText)
 
          let plutoText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         plutoText.text = "Pluto"
+         plutoText.text = "Pluto - Universal Welfare Urges"
          plutoText.font = .systemFont(ofSize: 16)
          plutoText.textColor = .white
 
           plutoScrollView.addSubview(plutoText)
-
          let transitIntro = UILabel(frame: CGRect(x: 5, y: 30, width: scrollView.frame.width - 10, height: 200))
-         transitIntro.text = "Week by week, inner forces of nature, represented by the moving planets put parts of you in the spotlight and let other parts of you take a break. Tune into your Astrology Inner weather report"
+         transitIntro.text = "The natal chart shows, by the aspects between the planets, the extent to which experiences of one type have been associated with experiences of other types; and the extent to which these associations will tend towards harmony or discord."
          transitIntro.font = .systemFont(ofSize: 13)
          transitIntro.textColor = .white
 
