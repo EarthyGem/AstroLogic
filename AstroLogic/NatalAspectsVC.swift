@@ -582,7 +582,7 @@ class NatalAspectsViewController: UIViewController {
           mercuryScrollView.addSubview(mercuryText)
          
          let venusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         venusText.text = "Venus - Social Urge"
+         venusText.text = "Venus - Social Urges"
          venusText.font = .systemFont(ofSize: 16)
          venusText.textColor = .white
         
@@ -624,7 +624,7 @@ class NatalAspectsViewController: UIViewController {
           neptuneScrollView.addSubview(neptuneText)
          
          let plutoText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         plutoText.text = "Pluto - Univeral Welfare Urges"
+         plutoText.text = "Pluto - Universal Welfare Urges"
          plutoText.font = .systemFont(ofSize: 16)
          plutoText.textColor = .white
         
