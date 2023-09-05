@@ -162,7 +162,7 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        return (chartCake?.minor.planets.count)!
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -171,8 +171,7 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getTransitPositions()[indexPath.row], planetTextText: "", headerTextText: "")
-
+        cell.configure(signGlyphImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.minor.planets[indexPath.row].formatted)!, planetTextText: "Minor \(String(describing: chartCake!.minor.planets[indexPath.row].body.keyName))", headerTextText: "")
         
          return cell
          

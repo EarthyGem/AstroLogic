@@ -77,7 +77,7 @@
 		39A1EC432A5F7080008D1EC1 /* TransitPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */; };
 		39A1EC472A5F75CF008D1EC1 /* MyNatalHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */; };
 		39A1EC4F2A5F76B8008D1EC1 /* MinorsAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */; };
-		39A1EC512A5F76E8008D1EC1 /* MinorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC502A5F76E8008D1EC1 /* MinorsVC.swift */; };
+		39A1EC512A5F76E8008D1EC1 /* MinorsPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC502A5F76E8008D1EC1 /* MinorsPlanetsVC.swift */; };
 		39A1EC532A5F773E008D1EC1 /* MPAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC522A5F773E008D1EC1 /* MPAspectsVC.swift */; };
 		39A1EC552A5F798F008D1EC1 /* MajorsBiWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC542A5F798F008D1EC1 /* MajorsBiWheel.swift */; };
 		39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC562A5F799E008D1EC1 /* MinorsBiWheel.swift */; };
@@ -176,7 +176,7 @@
 		39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPlanetsVC.swift; sourceTree = "<group>"; };
 		39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNatalHousesVC.swift; sourceTree = "<group>"; };
 		39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorsAspectsVC.swift; sourceTree = "<group>"; };
-		39A1EC502A5F76E8008D1EC1 /* MinorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorsVC.swift; sourceTree = "<group>"; };
+		39A1EC502A5F76E8008D1EC1 /* MinorsPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorsPlanetsVC.swift; sourceTree = "<group>"; };
 		39A1EC522A5F773E008D1EC1 /* MPAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPAspectsVC.swift; sourceTree = "<group>"; };
 		39A1EC542A5F798F008D1EC1 /* MajorsBiWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorsBiWheel.swift; sourceTree = "<group>"; };
 		39A1EC562A5F799E008D1EC1 /* MinorsBiWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorsBiWheel.swift; sourceTree = "<group>"; };
@@ -268,7 +268,7 @@
 				39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */,
 				39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */,
 				395DE5042A954A4B00B0B451 /* TransitAspectsVC.swift */,
-				39A1EC502A5F76E8008D1EC1 /* MinorsVC.swift */,
+				39A1EC502A5F76E8008D1EC1 /* MinorsPlanetsVC.swift */,
 				39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */,
 				39A1EC522A5F773E008D1EC1 /* MPAspectsVC.swift */,
 				395DE5022A9548D400B0B451 /* MajorProgressedPlanetsVC.swift */,
@@ -476,7 +476,7 @@
 				39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */,
 				39A1EC532A5F773E008D1EC1 /* MPAspectsVC.swift in Sources */,
 				39E113F42A8AC220006EA576 /* TransitAspectsByHouses.swift in Sources */,
-				39A1EC512A5F76E8008D1EC1 /* MinorsVC.swift in Sources */,
+				39A1EC512A5F76E8008D1EC1 /* MinorsPlanetsVC.swift in Sources */,
 				39A1EC4F2A5F76B8008D1EC1 /* MinorsAspectsVC.swift in Sources */,
 				39A1EC472A5F75CF008D1EC1 /* MyNatalHousesVC.swift in Sources */,
 				3903A37C2A5F305100245DD2 /* GeoCode.swift in Sources */,
