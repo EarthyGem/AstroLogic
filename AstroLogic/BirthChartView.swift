@@ -244,7 +244,9 @@ class BirthChartView: UIView {
     }
     
     func adjustedFontSize(for size: CGFloat) -> CGFloat {
-        return size * UIScreen.main.scale
+        let screenBounds = UIScreen.main.bounds
+        let adjustmentFactor = screenBounds.width / 375  // 375 is the width of the iPhone 6/7/8
+        return size * adjustmentFactor
     }
 
 
