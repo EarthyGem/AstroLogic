@@ -568,76 +568,78 @@ class MPAspectsViewController: UIViewController {
         neptuneTableView.frame = CGRect(x: 10, y: 35, width: neptuneScrollView.frame.size.width , height: neptuneScrollView.frame.size.height - 60)
         plutoTableView.frame = CGRect(x: 10, y: 35, width: plutoScrollView.frame.size.width , height: plutoScrollView.frame.size.height - 60)
         
-        
         let sunText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        sunText.text = "Sun"
-        sunText.font = .systemFont(ofSize: 16)
+        sunText.text = "Sun - Vitality and Authority"
+        sunText.font = .systemFont(ofSize: 12)
         sunText.textColor = .white
-       
-         sunScrollView.addSubview(sunText)
-        
+
+
+        sunScrollView.addSubview(sunText)
+
         let moonText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        moonText.text = "Moon"
-        moonText.font = .systemFont(ofSize: 16)
+        moonText.text = "Moon -  Mental Attitude and Everyday Affairs"
+        moonText.font = .systemFont(ofSize: 12)
         moonText.textColor = .white
-       
-         moonScrollView.addSubview(moonText)
-        
+
+        moonScrollView.addSubview(moonText)
+
         let mercuryText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        mercuryText.text = "Mercury"
-        mercuryText.font = .systemFont(ofSize: 16)
+        mercuryText.text = "Mercury - Mental Interests, Accurate Perception, Correct Expression"
+        mercuryText.font = .systemFont(ofSize: 12)
         mercuryText.textColor = .white
-       
-         mercuryScrollView.addSubview(mercuryText)
-        
+
+        mercuryScrollView.addSubview(mercuryText)
+
         let venusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        venusText.text = "Venus"
-        venusText.font = .systemFont(ofSize: 16)
+        venusText.text = "Venus -  The Affections and Social Relations"
+        venusText.font = .systemFont(ofSize: 12)
         venusText.textColor = .white
-       
-         venusScrollView.addSubview(venusText)
-        
+
+        venusScrollView.addSubview(venusText)
+
         let marsText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        marsText.text = "Mars"
-        marsText.font = .systemFont(ofSize: 16)
+        marsText.text = "Mars - Strife, and Increased Expenditure of Energy"
+
+        marsText.font = .systemFont(ofSize: 12)
         marsText.textColor = .white
-       
-         marsScrollView.addSubview(marsText)
-        
+
+        marsScrollView.addSubview(marsText)
+
         let jupiterText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        jupiterText.text = "Jupiter"
-        jupiterText.font = .systemFont(ofSize: 16)
+        jupiterText.text = "Jupiter - Abundance and Optimism"
+        jupiterText.font = .systemFont(ofSize: 12)
         jupiterText.textColor = .white
-       
-         jupiterScrollView.addSubview(jupiterText)
-        
+
+        jupiterScrollView.addSubview(jupiterText)
+
         let saturnText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        saturnText.text = "Saturn"
-        saturnText.font = .systemFont(ofSize: 16)
+        saturnText.text = "Saturn - Work, and Economy or Loss."
+        saturnText.font = .systemFont(ofSize: 12)
         saturnText.textColor = .white
-       
-         saturnScrollView.addSubview(saturnText)
-        
+
+        saturnScrollView.addSubview(saturnText)
+
         let uranusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        uranusText.text = "Uranus"
-        uranusText.font = .systemFont(ofSize: 16)
+        uranusText.text = "Uranus - Sudden Events and Radical Changes."
+        uranusText.font = .systemFont(ofSize: 12)
         uranusText.textColor = .white
-       
-         uranusScrollView.addSubview(uranusText)
-        
+
+        uranusScrollView.addSubview(uranusText)
+
         let neptuneText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        neptuneText.text = "Neptune"
-        neptuneText.font = .systemFont(ofSize: 16)
+        neptuneText.text = "Neptune -  The Imagination and Schemes"
+        neptuneText.font = .systemFont(ofSize: 12)
         neptuneText.textColor = .white
-       
-         neptuneScrollView.addSubview(neptuneText)
-        
+
+        neptuneScrollView.addSubview(neptuneText)
+
         let plutoText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        plutoText.text = "Pluto"
-        plutoText.font = .systemFont(ofSize: 16)
+        plutoText.text = "Pluto - Hidden Forces and Coercion or Cooperation"
+        plutoText.font = .systemFont(ofSize: 12)
         plutoText.textColor = .white
-       
-         plutoScrollView.addSubview(plutoText)
+
+        plutoScrollView.addSubview(plutoText)
+        
         
         let transitIntro = UILabel(frame: CGRect(x: 5, y: 30, width: scrollView.frame.width - 10, height: 200))
         transitIntro.text = "Week by week, inner forces of nature, represented by the moving planets put parts of you in the spotlight and let other parts of you take a break. Tune into your Astrology Inner weather report"
