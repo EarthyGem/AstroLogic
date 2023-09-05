@@ -590,7 +590,7 @@ class SimpleMinorAspectViewController: UIViewController {
         moonScrollView.addSubview(moonText)
 
         let mercuryText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        mercuryText.text = "Mercury - Mental Interests, Accurate Perception, Correct Expression"
+        mercuryText.text = "Mercury - Mental Interests and Learning or Teaching"
         mercuryText.font = .systemFont(ofSize: 12)
         mercuryText.textColor = .white
 
@@ -648,7 +648,7 @@ class SimpleMinorAspectViewController: UIViewController {
         
         
         let transitIntro = UILabel(frame: CGRect(x: 5, y: 30, width: scrollView.frame.width - 10, height: 200))
-        transitIntro.text = "Week by week, inner forces of nature, represented by the moving planets put parts of you in the spotlight and let other parts of you take a break. Tune into your Astrology Inner weather report"
+        transitIntro.text = "Month by month, inner forces of nature, represented by the minor progresed planets put parts of us in the spotlight and let other parts of you take a break. Tune into your Astrology  Seasonal weather report"
         transitIntro.font = .systemFont(ofSize: 13)
         transitIntro.textColor = .white
         

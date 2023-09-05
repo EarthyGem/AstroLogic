@@ -543,7 +543,7 @@ class TransitAspectedPlanetsViewController  : UIViewController {
         moonScrollView.addSubview(moonText)
         
         let mercuryText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        mercuryText.text = "Mercury - Mental Interests, Accurate Perception, Correct Expression"
+        mercuryText.text = "Mercury - Mental Interests and Learning or Teaching"
         mercuryText.font = .systemFont(ofSize: 12)
         mercuryText.textColor = .white
 
@@ -572,7 +572,7 @@ class TransitAspectedPlanetsViewController  : UIViewController {
         jupiterScrollView.addSubview(jupiterText)
         
         let saturnText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        saturnText.text = "Saturn - Work, and Economy or Loss."
+        saturnText.text = "Saturn - Work and Economy or Loss."
         saturnText.font = .systemFont(ofSize: 12)
         saturnText.textColor = .white
 
