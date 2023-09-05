@@ -182,7 +182,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 13
+        return (chartCake?.natal.planets.count)!
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -191,7 +191,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getNatalPositions()[indexPath.row], planetTextText: "", headerTextText: "")
+        cell.configure(signGlyphImageName: (chartCake?.natal.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.natal.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.natal.planets[indexPath.row].sign.keyName)!, planetTextText: (chartCake?.natal.planets[indexPath.row].body.urgeTypes)!, headerTextText: "headerTextText")
         
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
         
