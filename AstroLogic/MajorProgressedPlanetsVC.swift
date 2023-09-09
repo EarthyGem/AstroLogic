@@ -188,8 +188,6 @@ var mySunText = ""
         
         cell.configure(signGlyphImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.major.planets[indexPath.row].sign.keyName)!, planetTextText: "Evolving \(String(describing: chartCake!.minor.planets[indexPath.row].body.urgeTypes))", headerTextText: "headerTextText")
         
-//        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
-        
         
          return cell
          
