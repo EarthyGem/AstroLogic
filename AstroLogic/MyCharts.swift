@@ -164,7 +164,9 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
         let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
-
+//        print("get pairs1: \(chartCake?.celestialPairsFromProgressedAspects())")
+//        print("get pairs2: \(chartCake?.filterMinorAndTransitAspects(forMajorAspects: <#[AspectType]#>, fromMinorAspects: <#[AspectType]#>, andTransits: <#[AspectType]#>))")
+      //    print("get pairs3: \(chartCake?.filteredMinorProgressedAspectsFromCelestialPairs())")
         let scores = chart.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
 

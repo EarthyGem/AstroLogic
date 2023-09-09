@@ -14,7 +14,7 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var birthChartView: BirthChartView!
     var coverView: UIView!
     var natalChartLabel: UILabel!
-
+    var sortedPlanets: [CelestialObject] = []
        let birthChartViewCollapsedHeight: CGFloat = 50.0
        let birthChartViewFullHeight = UIScreen.main.bounds.width + 60
        var isBirthChartViewCollapsed = false
@@ -113,7 +113,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         tableView.delegate = self
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         view.addSubview(tableView)
-
+     print("sorted planets \(sortedPlanets)")
 
         // Set up coverView
         coverView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: birthChartViewCollapsedHeight))
@@ -182,7 +182,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return (chartCake?.natal.planets.count)!
+        return sortedPlanets.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -191,7 +191,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: (chartCake?.natal.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.natal.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.natal.planets[indexPath.row].sign.keyName)!, planetTextText: (chartCake?.natal.planets[indexPath.row].body.urgeTypes)!, headerTextText: "headerTextText")
+        cell.configure(signGlyphImageName: (sortedPlanets[indexPath.row].keyName.lowercased()), planetImageImageName: (sortedPlanets[indexPath.row].keyName.lowercased()), signTextText: (sortedPlanets[indexPath.row].keyName), planetTextText: (sortedPlanets[indexPath.row].urgeTypes), headerTextText: "headerTextText")
         
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
         

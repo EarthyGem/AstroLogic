@@ -26,6 +26,7 @@ class MyItemsViewController: UIViewController {
     var chartCake: ChartCake?
     var otherChart: ChartCake?
     var strongestPlanet: String?
+    var sortedPlanets: [CelestialObject] = []
 
     // Use `getMinors` closure wherever you need to access the `getMinors` function
 
@@ -104,6 +105,7 @@ extension MyItemsViewController: UITableViewDelegate {
         natalPlanetsVC.title = category.chartType
         natalPlanetsVC.chart = self.chart
         natalPlanetsVC.chartCake = self.chartCake
+        natalPlanetsVC.sortedPlanets = self.sortedPlanets
 //
 
         let decanatesVC = DeacanatesViewController(planets: placeolder)
