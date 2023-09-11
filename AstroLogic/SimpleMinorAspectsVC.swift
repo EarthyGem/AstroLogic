@@ -666,7 +666,7 @@ class SimpleMinorAspectViewController: UIViewController {
     }
     
     @objc func moreAspectsButtonTapped() {
-        let flipSynastryVC = mpAspectViewController()
+        let flipSynastryVC = MinorProgressedAspectsViewController()
         flipSynastryVC.chartCake = self.chartCake
         flipSynastryVC.selectedDate = self.selectedDate
         self.navigationController?.pushViewController(flipSynastryVC, animated: true)
