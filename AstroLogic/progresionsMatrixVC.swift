@@ -5,6 +5,8 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
     // Inside ProgressionsMatrixViewController
     var majorAspect: AspectType?
     var minorAspectsData: [AspectType: [AspectType]]?
+    var minorAspect: AspectType?
+
 
 
 
@@ -23,17 +25,17 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
     var minorProgressionsData = [String]() // modify as per your needs
 
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
-         
-            if let major = majorAspect,
-                let minorAspects = minorAspectsData?[major] {
-                // Assuming that you'd want to convert the minor aspects into their string representation or some other transformation
-                minorProgressionsData = minorAspects.map { $0.aspectString }
-             }
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-             setupTableViews()
-         }
+        if let major = majorAspect,
+           let minorAspects = minorAspectsData?[major] {
+            // Assuming that you'd want to convert the minor aspects into their string representation or some other transformation
+            minorProgressionsData = minorAspects.map { $0.aspectString }
+        }
+
+        setupTableViews()
+    }
 
 
 
@@ -98,12 +100,35 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
             let cell = tableView.dequeueReusableCell(withIdentifier: "MinorProgressionCell", for: indexPath)
             if let major = majorAspect,
                let minorAspects = minorAspectsData?[major] {
-               cell.textLabel?.text = minorAspects[indexPath.row].aspectString
-               print("Minor aspect data: \(minorAspects)")
+                cell.textLabel?.text = minorAspects[indexPath.row].aspectString
+
             }
             return cell
         }
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == minorProgressionsTableView {
+            if let major = majorAspect, let minorAspects = minorAspectsData?[major] {
+                minorAspect = minorAspects[indexPath.row]
+                if let selectedMinorAspect = minorAspect {
+                    navigateToTransitMatrixViewController(with: selectedMinorAspect)
+                }
+            }
+        }
+        // Deselect the selected row for smooth user experience
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-// Assuming you've already defined ContentCell
+
+    // Moved out of the didSelectRowAt function
+    func navigateToTransitMatrixViewController(with minorAspect: AspectType) {
+        let transitMatrixVC = TransitsMatrixViewController() // Or instantiate from storyboard
+        transitMatrixVC.chartCake = chartCake
+        transitMatrixVC.minorAspect = minorAspect
+        transitMatrixVC.transitAspectsData = [
+            minorAspect: chartCake!.filterTransits(for: minorAspect)
+        ]
+        self.navigationController?.pushViewController(transitMatrixVC, animated: true)
+    }
+}
+

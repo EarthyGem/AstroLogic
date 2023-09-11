@@ -9,7 +9,7 @@ import UIKit
 import SwiftEphemeris
 
 class MPAspectsViewController: UIViewController {
-   
+
     var chart: Chart?
     var chartCake: ChartCake?
     var selectedDate: Date?
@@ -17,82 +17,82 @@ class MPAspectsViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-       
+
         return scrollView
     }()
     
-  
+
     
     
     private let sunScrollView: UIView = {
         let sunScrollView = UIView()
-       
+
         return sunScrollView
     }()
     
     private let moonScrollView: UIView = {
         let moonScrollView = UIView()
-       
+
         return moonScrollView
     }()
     
     private let mercuryScrollView: UIView = {
         let mercuryScrollView = UIView()
-       
+
         return mercuryScrollView
     }()
     private let venusScrollView: UIView = {
         let venusScrollView = UIView()
-       
+
         return venusScrollView
     }()
     private let marsScrollView: UIView = {
         let marsScrollView = UIView()
-       
+
         return marsScrollView
     }()
     private let jupiterScrollView: UIView = {
         let jupiterScrollView = UIView()
-       
+
         return jupiterScrollView
     }()
     private let saturnScrollView: UIView = {
         let saturnScrollView = UIView()
-       
+
         return saturnScrollView
     }()
     private let uranusScrollView: UIView = {
         let uranusScrollView = UIView()
-       
+
         return uranusScrollView
     }()
     private let neptuneScrollView: UIView = {
         let neptuneScrollView = UIView()
-       
+
         return neptuneScrollView
     }()
     private let plutoScrollView: UIView = {
         let plutoScrollView = UIView()
-       
+
         return plutoScrollView
     }()
     
     private let sunTableView: UITableView = {
         let sunTableView = UITableView()
-      
-            sunTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
-            
-     
+
+        sunTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
+
+
         
         return sunTableView
     }()
     
     private let ascTableView: UITableView = {
         let ascTableView = UITableView()
-      
+
         ascTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
-            
-     
+
+
         
         return ascTableView
     }()
@@ -107,7 +107,7 @@ class MPAspectsViewController: UIViewController {
     
     private let mercuryTableView: UITableView = {
         let mercuryTableView = UITableView()
-     
+
         mercuryTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return mercuryTableView
     }()
@@ -135,7 +135,7 @@ class MPAspectsViewController: UIViewController {
     
     private let saturnTableView: UITableView = {
         let saturnTableView = UITableView()
-     
+
         saturnTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return saturnTableView
     }()
@@ -148,13 +148,13 @@ class MPAspectsViewController: UIViewController {
     }()
     private let neptuneTableView: UITableView = {
         let neptuneTableView = UITableView()
-     
+
         neptuneTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return neptuneTableView
     }()
     private let plutoTableView: UITableView = {
         let plutoTableView = UITableView()
-     
+
         plutoTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return plutoTableView
     }()
@@ -237,24 +237,24 @@ class MPAspectsViewController: UIViewController {
         return topTransitImage
         
     }()
-//         public let transitIntro: UILabel = {
-//            let transitIntro = UILabel()
-//
-//            return transitIntro
-//
-//
-//    }()
+    //         public let transitIntro: UILabel = {
+    //            let transitIntro = UILabel()
+    //
+    //            return transitIntro
+    //
+    //
+    //    }()
     
     var SelectedIndex = -1
     var isCollapsed = false
 
-   
-  
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         sunTableView.dataSource = self
         sunTableView.delegate = self
-       moonTableView.dataSource = self
+        moonTableView.dataSource = self
         moonTableView.delegate = self
         mercuryTableView.dataSource = self
         mercuryTableView.delegate = self
@@ -272,23 +272,23 @@ class MPAspectsViewController: UIViewController {
         neptuneTableView.delegate = self
         plutoTableView.dataSource = self
         plutoTableView.delegate = self
-//        ascTableView.dataSource = self
-//        ascTableView.delegate = self
+        //        ascTableView.dataSource = self
+        //        ascTableView.delegate = self
 
         view.backgroundColor = .black
 
         tableViewToPlanetMap = [
-             sunTableView: .sun,
-             moonTableView: .moon,
-             mercuryTableView: .mercury,
-             venusTableView: .venus,
-             marsTableView: .mars,
-             jupiterTableView: .jupiter,
-             saturnTableView: .saturn,
-             uranusTableView: .uranus,
-             neptuneTableView: .neptune,
-             plutoTableView: .pluto
-         ]
+            sunTableView: .sun,
+            moonTableView: .moon,
+            mercuryTableView: .mercury,
+            venusTableView: .venus,
+            marsTableView: .mars,
+            jupiterTableView: .jupiter,
+            saturnTableView: .saturn,
+            uranusTableView: .uranus,
+            neptuneTableView: .neptune,
+            plutoTableView: .pluto
+        ]
 
         
     }
@@ -310,7 +310,7 @@ class MPAspectsViewController: UIViewController {
         
         uranusTableView.frame = CGRect(x: uranusTableView.frame.origin.x, y: uranusTableView.frame.origin.y , width: uranusTableView.frame.size.width, height: uranusTableView.contentSize.height)
         
-       neptuneTableView.frame = CGRect(x: neptuneTableView.frame.origin.x, y: neptuneTableView.frame.origin.y , width: neptuneTableView.frame.size.width, height: neptuneTableView.contentSize.height)
+        neptuneTableView.frame = CGRect(x: neptuneTableView.frame.origin.x, y: neptuneTableView.frame.origin.y , width: neptuneTableView.frame.size.width, height: neptuneTableView.contentSize.height)
         
         plutoTableView.frame = CGRect(x: plutoTableView.frame.origin.x, y: plutoTableView.frame.origin.y , width: plutoTableView.frame.size.width, height: plutoTableView.contentSize.height)
         
@@ -341,34 +341,34 @@ class MPAspectsViewController: UIViewController {
         
         let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
-         todaysDate.text = formatted
+        todaysDate.text = formatted
         todaysDate.font = .systemFont(ofSize: 13)
-         todaysDate.textColor = .white
+        todaysDate.textColor = .white
         todaysDate.font = UIFont.boldSystemFont(ofSize: todaysDate.font.pointSize)
-         scrollView.addSubview(todaysDate)
+        scrollView.addSubview(todaysDate)
         
-       
+
         
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
-//        sunScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
         
-//        sunTableView.backgroundColor = .orange
+        //        sunTableView.backgroundColor = .orange
         moonTableView.backgroundColor = .green
 
-       mercuryTableView.backgroundColor = .purple
+        mercuryTableView.backgroundColor = .purple
 
         venusTableView.backgroundColor = .yellow
-       marsTableView.backgroundColor = .red
-       jupiterTableView.backgroundColor = .systemGroupedBackground
+        marsTableView.backgroundColor = .red
+        jupiterTableView.backgroundColor = .systemGroupedBackground
         saturnTableView.backgroundColor = .blue
         uranusTableView.backgroundColor = .white
-       neptuneTableView.backgroundColor = .gray
+        neptuneTableView.backgroundColor = .gray
         plutoTableView.backgroundColor = .systemPink
 
-//      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
-   
-   
+        //      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
+
+
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
         func setTableContentSize(for celestialBody: String, on tableView: UITableView) {
@@ -396,47 +396,47 @@ class MPAspectsViewController: UIViewController {
 
         
         scrollView.addSubview(moonScrollView)
-//        moonScrollView.contentSize = CGSize(width: 300, height: 200)
-       moonScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        //        moonScrollView.contentSize = CGSize(width: 300, height: 200)
+        moonScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(mercuryScrollView)
-//        mercuryScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        mercuryScrollView.contentSize = CGSize(width: 300, height: 200)
         mercuryScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(venusScrollView)
-//        venusScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        venusScrollView.contentSize = CGSize(width: 300, height: 200)
         venusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(marsScrollView)
-//        marsScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        marsScrollView.contentSize = CGSize(width: 300, height: 200)
         marsScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(jupiterScrollView)
-//        jupiterScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        jupiterScrollView.contentSize = CGSize(width: 300, height: 200)
         jupiterScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(saturnScrollView)
-//        saturnScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        saturnScrollView.contentSize = CGSize(width: 300, height: 200)
         saturnScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(uranusScrollView)
-//        uranusScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        uranusScrollView.contentSize = CGSize(width: 300, height: 200)
         uranusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(neptuneScrollView)
-//        neptuneScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        neptuneScrollView.contentSize = CGSize(width: 300, height: 200)
         neptuneScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         
         scrollView.addSubview(plutoScrollView)
-//        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
         plutoScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-    
-//        sunScrollView.addSubview(plutoTableView)
+
+        //        sunScrollView.addSubview(plutoTableView)
         // Do any additional setup after loading the view.
         
-   
-//        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
-//
+
+        //        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
+        //
         
         
         sunSignGlyph.image = UIImage(named: "sun")
@@ -529,8 +529,8 @@ class MPAspectsViewController: UIViewController {
         plutoSignGlyph.backgroundColor = .clear
         
         
-      
-      
+
+
         
         sunScrollView.frame = CGRect(x: 0, y: 200, width: view.frame.size.width, height: sunTableView.contentSize.height + 40)
         
@@ -549,18 +549,18 @@ class MPAspectsViewController: UIViewController {
         
         mercuryScrollView.frame = CGRect(x: 0, y: moonScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: mercuryTableView.contentSize.height + 40)
         mercuryScrollView.addSubview(mercuryTableView)
-       
+
         
         
         venusScrollView.frame = CGRect(x: 0, y: mercuryScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: venusTableView.contentSize.height + 40)
         venusScrollView.addSubview(venusTableView)
-      
+
         marsScrollView.frame = CGRect(x: 0, y: venusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: marsTableView.contentSize.height + 40)
         marsScrollView.addSubview(marsTableView)
-       
+
         jupiterScrollView.frame = CGRect(x: 0, y: marsScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: jupiterTableView.contentSize.height + 40)
         jupiterScrollView.addSubview(jupiterTableView)
-       
+
         saturnScrollView.frame = CGRect(x: 0, y: jupiterScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: saturnTableView.contentSize.height + 40)
         saturnScrollView.addSubview(saturnTableView)
         
@@ -569,12 +569,12 @@ class MPAspectsViewController: UIViewController {
         
         neptuneScrollView.frame = CGRect(x: 0, y: uranusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: neptuneTableView.contentSize.height + 40)
         neptuneScrollView.addSubview(neptuneTableView)
-       
+
         plutoScrollView.frame = CGRect(x: 0, y: neptuneScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: plutoTableView.contentSize.height + 40)
         plutoScrollView.addSubview(plutoTableView)
-//
-       
-       
+        //
+
+
         mercuryTableView.frame = CGRect(x: 10, y: 35, width: mercuryScrollView.frame.size.width , height: mercuryScrollView.frame.size.height - 60)
 
         venusTableView.frame = CGRect(x: 10, y: 35, width: venusScrollView.frame.size.width , height: venusScrollView.frame.size.height - 60)
@@ -669,53 +669,54 @@ class MPAspectsViewController: UIViewController {
         
         transitIntro.numberOfLines = 4
         transitIntro.textAlignment = .center
-       
-       
-         scrollView.addSubview(transitIntro)
-//
-//
+
+
+        scrollView.addSubview(transitIntro)
+        //
+        //
     }
 
 
 }
 
 extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
-            func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-                        guard let planet = tableViewToPlanetMap[tableView],
-                              let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] else {
-                            return 0
-                        }
-                        return majorAspects.count
-                    }
+        guard let planet = tableViewToPlanetMap[tableView],
+              let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] else {
+            return 0
+        }
+        return majorAspects.count
+    }
 
-                    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-                            return UITableViewCell()
-                        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+            return UITableViewCell()
+        }
 
-                        if let planet = tableViewToPlanetMap[tableView],
-                           let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
-                            let aspect = majorAspects[indexPath.row]
-                            // Modify this part to extract details from the 'aspect'
-                            let aspectString = aspect.aspectString
-                            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectString, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: "")
-                        }
+        if let planet = tableViewToPlanetMap[tableView],
+           let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
+            let aspect = majorAspects[indexPath.row]
+            // Modify this part to extract details from the 'aspect'
+            let aspectString = aspect.aspectString
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectString, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: "")
+        }
 
-                        return cell
-                    }
+        return cell
+    }
 
-               
-               
-           
+
+
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
 
-            
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let planet = tableViewToPlanetMap[tableView],
            let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
+
             let selectedAspect = majorAspects[indexPath.row]
             navigateToMinorAspectViewController(with: selectedAspect)
         }
@@ -723,6 +724,7 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func navigateToMinorAspectViewController(with majorAspect: AspectType) {
         let minorAspectVC = ProgressionsMatrixViewController() // Or instantiate from storyboard
+        minorAspectVC.chartCake = chartCake
         minorAspectVC.majorAspect = majorAspect
         minorAspectVC.minorAspectsData = [
             majorAspect: chartCake!.filterMinors(for: majorAspect)
