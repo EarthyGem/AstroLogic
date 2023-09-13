@@ -49,6 +49,8 @@
 		395E2BA22AAB8DA4003A8439 /* newtv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E2BA12AAB8DA4003A8439 /* newtv.swift */; };
 		39655E3C2AA8BF09008033AB /* progresionsMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39655E3B2AA8BF09008033AB /* progresionsMatrixVC.swift */; };
 		39655E3E2AA8C3B2008033AB /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39655E3D2AA8C3B2008033AB /* Cells.swift */; };
+		396A7B2D2AB01E3900E304D6 /* content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396A7B2C2AB01E3900E304D6 /* content.swift */; };
+		396A7B2F2AB14AAF00E304D6 /* Parsed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396A7B2E2AB14AAF00E304D6 /* Parsed.swift */; };
 		396CD6602A9CF48D002C2528 /* FlipTransposedHousesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */; };
 		396CDCB92A74712100EDCECC /* DecanatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCB82A74712100EDCECC /* DecanatesVC.swift */; };
 		396CDCBB2A74716A00EDCECC /* CustomDecansTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */; };
@@ -156,6 +158,8 @@
 		395E2BA12AAB8DA4003A8439 /* newtv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newtv.swift; sourceTree = "<group>"; };
 		39655E3B2AA8BF09008033AB /* progresionsMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progresionsMatrixVC.swift; sourceTree = "<group>"; };
 		39655E3D2AA8C3B2008033AB /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		396A7B2C2AB01E3900E304D6 /* content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = content.swift; sourceTree = "<group>"; };
+		396A7B2E2AB14AAF00E304D6 /* Parsed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsed.swift; sourceTree = "<group>"; };
 		396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipTransposedHousesViewController.swift; sourceTree = "<group>"; };
 		396CDCB82A74712100EDCECC /* DecanatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesVC.swift; sourceTree = "<group>"; };
 		396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDecansTable.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 				395DE5102A95E2DA00B0B451 /* AddNewRelationshipVC.swift */,
 				3955A6692A909C2E00DE2051 /* ChartTableCell.swift */,
 				398ECC302A8F07D300695354 /* MyCharts.swift */,
+				396A7B2E2AB14AAF00E304D6 /* Parsed.swift */,
 				398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */,
 				39A1EC392A5F61AD008D1EC1 /* ChartViewerVC.swift */,
 				395E2BA12AAB8DA4003A8439 /* newtv.swift */,
@@ -270,6 +275,7 @@
 				398580542AA26D2C007A561B /* HarmoniousInfoVC.swift */,
 				398580562AA26D34007A561B /* DiscordInfoVC.swift */,
 				39655E3B2AA8BF09008033AB /* progresionsMatrixVC.swift */,
+				396A7B2C2AB01E3900E304D6 /* content.swift */,
 				395C0B492AAC298400A28A60 /* transitMatrix.swift */,
 				394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */,
 				394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */,
@@ -471,6 +477,7 @@
 				395DE5152A95E75300B0B451 /* OthersPlanetsVC.swift in Sources */,
 				398580592AA26FC8007A561B /* ImagePicker.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
+				396A7B2F2AB14AAF00E304D6 /* Parsed.swift in Sources */,
 				39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */,
 				3903A33F2A5F2D0700245DD2 /* ViewController.swift in Sources */,
 				39655E3E2AA8C3B2008033AB /* Cells.swift in Sources */,
@@ -524,6 +531,7 @@
 				39A1EC432A5F7080008D1EC1 /* TransitPlanetsVC.swift in Sources */,
 				396CDCB92A74712100EDCECC /* DecanatesVC.swift in Sources */,
 				39851F6C2A93017800E70FF5 /* TransitPlanetsTCVC.swift in Sources */,
+				396A7B2D2AB01E3900E304D6 /* content.swift in Sources */,
 				395DE5172A96796A00B0B451 /* OtherStrongestPlanetVC.swift in Sources */,
 				39B838502AABC8670039AD91 /* NestedProgressedAspects.swift in Sources */,
 				395DE5292A96EDB700B0B451 /* SimpleMajorAspectsVC.swift in Sources */,

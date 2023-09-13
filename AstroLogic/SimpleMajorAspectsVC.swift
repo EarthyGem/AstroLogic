@@ -277,6 +277,9 @@ class SimpleMajorAspectsViewController: UIViewController {
 
         view.backgroundColor = .black
 
+        view.backgroundColor = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More Aspects", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
+        view.backgroundColor = .black
         tableViewToPlanetMap = [
             sunTableView: .sun,
             moonTableView: .moon,
@@ -674,6 +677,13 @@ class SimpleMajorAspectsViewController: UIViewController {
         scrollView.addSubview(transitIntro)
         //
         //
+    }
+
+    @objc func moreAspectsButtonTapped() {
+        let flipSynastryVC = MPAspectsViewController()
+        flipSynastryVC.chartCake = self.chartCake
+        flipSynastryVC.selectedDate = self.selectedDate
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
     }
 
 
