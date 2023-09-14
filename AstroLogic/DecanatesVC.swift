@@ -88,7 +88,14 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet)
+        let selectedPlanet = planetOrder[indexPath.row]
+        
+        let viewerVC = DecanateViewerVC(planet: "", text: "", keyword: "", tarotCardImageName: "aceOfSwords", constellationImageName: "cygnus")// change the image name accordingly
+        navigationController?.pushViewController(viewerVC, animated: true)
     }
+
 
 }
 
@@ -361,12 +368,9 @@ private extension DeacanatesViewController {
         default:
             return nil
         }
-
-        
+   
     }
-
     
-
 
 }
 private extension Array {

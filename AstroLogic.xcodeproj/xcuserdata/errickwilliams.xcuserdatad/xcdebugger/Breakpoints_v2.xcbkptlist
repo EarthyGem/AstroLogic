@@ -323,6 +323,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "15CAC151-ACE1-4562-8F4C-A1EA0FD20CDF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/MyCharts.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "3DC0B1E7-82DB-4702-B3EC-5B9BC61F4CFE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -371,6 +387,54 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "D12A2593-D8D4-4674-BDE7-22EBDB5B7148"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/progresionsMatrixVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D12A2593-D8D4-4674-BDE7-22EBDB5B7148 - 103826cf05608ee5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.ProgressionsMatrixViewController.tableView(_: __C.UITableView, numberOfRowsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/progresionsMatrixVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "630">
+               </Location>
+               <Location
+                  uuid = "D12A2593-D8D4-4674-BDE7-22EBDB5B7148 - 103826cf05608ee5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.ProgressionsMatrixViewController.tableView(_: __C.UITableView, numberOfRowsInSection: Swift.Int) -&gt; Swift.Int"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/progresionsMatrixVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "970">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "1FC32D9B-32CC-4516-AC58-85CCE036A93E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -380,8 +444,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "460"
             endingLineNumber = "460"
-            landmarkName = "constructMinorAspectDictionary()"
-            landmarkType = "7">
+            landmarkName = "ChartCake"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
