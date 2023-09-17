@@ -586,7 +586,8 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
                 strongestPlanetVC.sentenceText = sentence
-                strongestPlanetVC.sortedPlanets = sortedPlanets
+                strongestPlanetVC.sortedPlanets = getPlanetsSortedByStrength(from: scores2)
+                print("sortedPlanets\(getPlanetsSortedByStrength(from: scores2))")
                 strongestPlanetVC.birthPlace = self.birthPlaceTextField.text
                 let combinedDate = self.combinedDateAndTime()!
             //    strongestPlanetVC.combinedBirthDateTime = combinedDate
