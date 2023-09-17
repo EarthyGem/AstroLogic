@@ -4,15 +4,41 @@ import CoreData
 
 
 
+// Assuming you have the data parsed into a structure like this:
+struct ParsedData {
+    var name: String
+    var birthDate: Date
+    var latitude: Double
+    var longitude: Double
+    var birthPlace: String
+    // ... other properties
+}
+
+
 class ChartsViewController: UIViewController {
 
     var tableView: UITableView!
     var charts: [ChartEntity] = []
     var strongestPlanetSign: String?
     var birthPlace: String?
+    var birthPlaceTimeZone: TimeZone?
     var chartDate: Date?
+    
+    @IBAction func importButtonTapped(_ sender: UIBarButtonItem) {
+        // Code to navigate to the new import screen
+        let importVC = ImportAAFViewController()
+        self.navigationController?.pushViewController(importVC, animated: true)
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let importButton = UIBarButtonItem(title: "Import AAF", style: .plain, target: self, action: #selector(importButtonTapped))
+           self.navigationItem.rightBarButtonItem = importButton
+
+        processDetails()
+       
         setupTableView()
 
     }
@@ -20,21 +46,46 @@ class ChartsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         charts = fetchAllCharts()
-      //  deleteAllNames()
+        //  deleteAllNames()
         tableView.reloadData()
     }
 
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
-          tableView.delegate = self
-          tableView.dataSource = self
-          tableView.register(ChartTableViewCell.self, forCellReuseIdentifier: "chartCell")
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ChartTableViewCell.self, forCellReuseIdentifier: "chartCell")
 
         // Adjust constraints if you have navigation bars, tab bars, etc.
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         self.view.addSubview(tableView)
     }
+    func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
+        let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8" // Note: Never hard-code API keys in production apps. Use environment variables or secure storage.
+        let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
+
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                    if let timeZoneId = json["timeZoneId"] as? String {
+                        self.birthPlaceTimeZone = TimeZone(identifier: timeZoneId)
+                        completion(self.birthPlaceTimeZone)
+                    } else {
+                        self.birthPlaceTimeZone = nil
+                        completion(nil)
+                    }
+                }
+            } catch {
+                self.birthPlaceTimeZone = nil
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+
 
     func deleteAllNames() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -110,9 +161,7 @@ class ChartsViewController: UIViewController {
         return mostDiscordantPlanet
     }
 
-
 }
-
 // MARK: - UITableViewDataSource and UITableViewDelegate
 
 extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -164,15 +213,11 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
         let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
-//        print("get pairs1: \(chartCake?.celestialPairsFromProgressedAspects())")
-//        print("get pairs2: \(chartCake?.filterMinorAndTransitAspects(forMajorAspects: <#[AspectType]#>, fromMinorAspects: <#[AspectType]#>, andTransits: <#[AspectType]#>))")
-      //    print("get pairs3: \(chartCake?.filteredMinorProgressedAspectsFromCelestialPairs())")
+
         let scores = chart.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
 
-        // let signScore = self.chart.calculateTotalSignScore()
-        // let houseStrengths = self.chart.calculatePlanetInHouseScores()
-        // let houseScores = self.chart.calculateHouseStrengths()
+
 
         let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
         let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)

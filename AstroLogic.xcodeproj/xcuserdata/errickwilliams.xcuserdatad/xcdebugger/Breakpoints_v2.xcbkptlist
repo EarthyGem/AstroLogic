@@ -95,9 +95,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1183"
-            endingLineNumber = "1183"
-            landmarkName = "rulingPlanets(for:)"
-            landmarkType = "7">
+            endingLineNumber = "1183">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,7 +126,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2951"
             endingLineNumber = "2951"
-            landmarkName = "scoresForMinorProgressedAspects(_:)"
+            landmarkName = "scoresForNatalAspects(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,8 +140,8 @@
             filePath = "AstroLogic/MyCharts.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "9"
-            endingLineNumber = "9"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "ChartsViewController"
             landmarkType = "3">
             <Locations>
@@ -250,8 +248,8 @@
             filePath = "AstroLogic/MyItemsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,8 +328,8 @@
             filePath = "AstroLogic/MyCharts.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,6 +492,85 @@
                   offsetFromSymbolStart = "720">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80755695-0ADB-49FE-9E8C-90D0408816CF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Library/Developer/Xcode/DerivedData/AstroLogic-bvvwyrpclwulgiffawvozzbqddlv/SourcePackages/checkouts/SwiftEphemeris/Sources/SwiftEphemeris/ChartCake.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2376"
+            endingLineNumber = "2376"
+            landmarkName = "calculateProgressedHouseStrengths2(progressedBodies:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "80755695-0ADB-49FE-9E8C-90D0408816CF - 8226ef9a81e68ee4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftEphemeris.ChartCake.calculateProgressedHouseStrengths(allBodies: Swift.Optional&lt;Swift.Array&lt;SwiftEphemeris.Coordinate&gt;&gt;) -&gt; Swift.Dictionary&lt;Swift.Int, Swift.Double&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Developer/Xcode/DerivedData/AstroLogic-bvvwyrpclwulgiffawvozzbqddlv/SourcePackages/checkouts/SwiftEphemeris/Sources/SwiftEphemeris/ChartCake.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2378"
+                  endingLineNumber = "2378"
+                  offsetFromSymbolStart = "397">
+               </Location>
+               <Location
+                  uuid = "80755695-0ADB-49FE-9E8C-90D0408816CF - 7140bcf584f63639"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftEphemeris.ChartCake.calculateProgressedHouseStrengths2(allBodies: Swift.Optional&lt;Swift.Array&lt;SwiftEphemeris.Coordinate&gt;&gt;) -&gt; Swift.Dictionary&lt;Swift.Int, Swift.Double&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Developer/Xcode/DerivedData/AstroLogic-bvvwyrpclwulgiffawvozzbqddlv/SourcePackages/checkouts/SwiftEphemeris/Sources/SwiftEphemeris/ChartCake.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2378"
+                  endingLineNumber = "2378"
+                  offsetFromSymbolStart = "397">
+               </Location>
+               <Location
+                  uuid = "80755695-0ADB-49FE-9E8C-90D0408816CF - 691dc8e602078ece"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftEphemeris.ChartCake.calculateProgressedHouseStrengths2(progressedBodies: Swift.Optional&lt;Swift.Array&lt;SwiftEphemeris.Coordinate&gt;&gt;) -&gt; Swift.Dictionary&lt;Swift.Int, Swift.Double&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Developer/Xcode/DerivedData/AstroLogic-bvvwyrpclwulgiffawvozzbqddlv/SourcePackages/checkouts/SwiftEphemeris/Sources/SwiftEphemeris/ChartCake.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2378"
+                  endingLineNumber = "2378"
+                  offsetFromSymbolStart = "397">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8AC6380-B055-4C3C-BE42-5B255456CEDD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/MPAspectsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -390,6 +390,11 @@ class ChartViewController: UIViewController {
             barView.frame = CGRect(x: barStartX, y: CGFloat(index) * (barHeight + barSpacing) + adjustedYPos + 40, width: CGFloat(normalizedScore), height: barHeight)
             scrollView.addSubview(barView)
 
+
+
+
+
+
             // Create pie chart for total sign scores
             let signScores = chartCake.calculateTotalSignScore()
             let signPieChartView = createPieChartView(dataEntries: generatePieChartData(scores: signScores))
@@ -521,81 +526,6 @@ class ChartViewController: UIViewController {
             chartView.rightAxis.drawAxisLineEnabled = false
             xAxis.drawAxisLineEnabled = false
         }
-
-//        func displayGroupedSignBarChart() {
-//            // 1. Get the scores
-//            let scoresFromFunction = chartCake.calculateTotalHarmonyDiscordSignScores()
-//
-//            // 2. Convert to String-based Dictionary
-//            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
-//
-//            for (celestialObject, scoreTuple) in scoresFromFunction {
-//                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
-//                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
-//            }
-//
-//            // 3. Update the Chart
-//            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
-//            self.scrollView.addSubview(barChartView)
-//            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
-//        }
-//
-//
-//
-//        func displayGroupedHouseBarChart() {
-//            // 1. Get the scores
-//            let scoresFromFunction = chartCake.sign()
-//
-//            // 2. Convert to String-based Dictionary
-//            var stringScores = [String: (power: Double, harmony: Double, discord: Double)]()
-//
-//            for (celestialObject, scoreTuple) in scoresFromFunction {
-//                let objectString = String(describing: celestialObject) // Convert CelestialObject to string.
-//                stringScores[objectString] = (power: scoreTuple.totalScore, harmony: scoreTuple.harmony, discord: scoreTuple.discord)
-//            }
-//
-//            // 3. Update the Chart
-//            let barChartView = BarChartView(frame: CGRect(x: 10, y: 2250, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
-//            self.scrollView.addSubview(barChartView)
-//            updateGroupedPlanetBarChart(chartView: barChartView, scores: stringScores, label: "Planet Scores")
-//        }
-//
-//        func updateGroupedHouseBarChart(chartView: BarChartView, scores: [String: (power: Double, harmony: Double, discord: Double)], label: String) {
-//            var powerEntries: [BarChartDataEntry] = []
-//            var harmonyEntries: [BarChartDataEntry] = []
-//            var discordEntries: [BarChartDataEntry] = []
-//
-//            let sortedPlanets = scores.sorted(by: { $0.key < $1.key })
-//            for (index, planetScore) in sortedPlanets.enumerated() {
-//                let powerEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.power)
-//                let harmonyEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.harmony)
-//                let discordEntry = BarChartDataEntry(x: Double(index), y: planetScore.value.discord)
-//                powerEntries.append(powerEntry)
-//                harmonyEntries.append(harmonyEntry)
-//                discordEntries.append(discordEntry)
-//            }
-//
-//            let powerDataSet = BarChartDataSet(entries: powerEntries, label: "Power")
-//            let harmonyDataSet = BarChartDataSet(entries: harmonyEntries, label: "Harmony")
-//            let discordDataSet = BarChartDataSet(entries: discordEntries, label: "Discord")
-//
-//            let chartData = BarChartData(dataSets: [powerDataSet, harmonyDataSet, discordDataSet])
-//            chartView.data = chartData
-//
-//            let groupSpace = 0.3
-//            let barSpace = 0.05
-//            let barWidth = 0.2 // (0.2 + 0.05) * 3 + 0.3 = 1.00 -> interval per "group"
-//
-//            let groupCount = scores.count
-//            let startYear = 0
-//            chartData.barWidth = barWidth
-//            chartView.xAxis.axisMinimum = Double(startYear)
-//            let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-//            chartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
-//            chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-//
-//            // ... Add any other chart configurations as needed ...
-//        }
 
 
         func updateHouseBarChart(chartView: BarChartView, scores: [Int: Double], label: String) {
