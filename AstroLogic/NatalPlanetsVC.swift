@@ -137,7 +137,20 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         // Add tap gesture to coverView
         let tapGestureForCoverView = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
         coverView.addGestureRecognizer(tapGestureForCoverView)
-    }
+
+        setupRealmButton()
+      }
+
+      func setupRealmButton() {
+          let realmButtonItem = UIBarButtonItem(title: "Realms", style: .plain, target: self, action: #selector(didTapRealmButton))
+          navigationItem.rightBarButtonItem = realmButtonItem
+      }
+
+      @objc func didTapRealmButton() {
+          let realmsVC = RealmsViewController()
+          realmsVC.chartCake = self.chartCake
+          self.navigationController?.pushViewController(realmsVC, animated: true)
+      }
 
 
 

@@ -78,6 +78,7 @@
 		399B62972AB75D77006BAC2E /* ImportAAFVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B62962AB75D77006BAC2E /* ImportAAFVC.swift */; };
 		399B62992AB75DAC006BAC2E /* Charts3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B62982AB75DAC006BAC2E /* Charts3.swift */; };
 		399B629B2AB7A109006BAC2E /* 23Ancestory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B629A2AB7A109006BAC2E /* 23Ancestory.swift */; };
+		399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B629E2AB831B3006BAC2E /* RealmsVC.swift */; };
 		39A1EC342A5F6003008D1EC1 /* StrongestPlanetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */; };
 		39A1EC362A5F6043008D1EC1 /* MyItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */; };
 		39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */; };
@@ -190,6 +191,7 @@
 		399B62962AB75D77006BAC2E /* ImportAAFVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportAAFVC.swift; sourceTree = "<group>"; };
 		399B62982AB75DAC006BAC2E /* Charts3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts3.swift; sourceTree = "<group>"; };
 		399B629A2AB7A109006BAC2E /* 23Ancestory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 23Ancestory.swift; sourceTree = "<group>"; };
+		399B629E2AB831B3006BAC2E /* RealmsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmsVC.swift; sourceTree = "<group>"; };
 		39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrongestPlanetVC.swift; sourceTree = "<group>"; };
 		39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsVC.swift; sourceTree = "<group>"; };
 		39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today's VC.swift"; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				399B62982AB75DAC006BAC2E /* Charts3.swift */,
 				398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */,
 				39A1EC392A5F61AD008D1EC1 /* ChartViewerVC.swift */,
+				399B629E2AB831B3006BAC2E /* RealmsVC.swift */,
 				396A7B302AB4A34100E304D6 /* ChartView Extension.swift */,
 				395E2BA12AAB8DA4003A8439 /* newtv.swift */,
 				39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */,
@@ -488,6 +491,7 @@
 				396A7B312AB4A34100E304D6 /* ChartView Extension.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
 				39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */,
+				399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */,
 				3903A33F2A5F2D0700245DD2 /* ViewController.swift in Sources */,
 				39655E3E2AA8C3B2008033AB /* Cells.swift in Sources */,
 				3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */,
