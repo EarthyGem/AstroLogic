@@ -791,6 +791,8 @@ class ChartViewController: UIViewController {
             return dataEntries
         }
 
+      
+
         func generateModalityPieChartData(scores: [Modality: Double]) -> [PieChartDataEntry] {
             var dataEntries: [PieChartDataEntry] = []
             let totalScore = scores.values.reduce(0, +) // Calculate the total score

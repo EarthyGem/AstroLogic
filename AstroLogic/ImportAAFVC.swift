@@ -33,7 +33,7 @@ class ImportAAFViewController: UIViewController {
             return
         }
 
-        let parsedData = parseDetails(from: inputText)
+        _ = parseDetails(from: inputText)
 
         // Add the parsedData to CoreData and your charts array
 

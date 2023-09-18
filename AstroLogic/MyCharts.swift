@@ -180,7 +180,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let scores = chartObj.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
-        let birthPlace = chart.birthPlace ?? "No BirthPlace"
+        _ = chart.birthPlace ?? "No BirthPlace"
         // Set the cell label
         cell.textLabel?.text = chart.name
         

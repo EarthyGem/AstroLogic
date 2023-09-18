@@ -23,7 +23,7 @@ class TransitsMatrixViewController: UIViewController, UITableViewDelegate, UITab
 
         override func viewDidLoad() {
             super.viewDidLoad()
-            print("Transits data passed: \(transitAspectsData)")
+
             if let minor = minorAspect,
                 let minorAspects = transitAspectsData?[minor] {
                 // Assuming that you'd want to convert the minor aspects into their string representation or some other transformation

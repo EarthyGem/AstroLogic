@@ -333,7 +333,7 @@ class NestedMPAspectsViewController: UIViewController {
     func setTableViewContentSize(for planet: Planet, tableView: UITableView) {
         let height = CGFloat((chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName]?.count ?? 0) * 90)
         let majors = chartCake?.combinedMajorAndNatalAspects()
-        print("Majors: \(majors)")
+        print("Majors: \(String(describing: majors))")
 
       print("Nested Dict: \(chartCake?.constructMajorAspectDictionary())")
 

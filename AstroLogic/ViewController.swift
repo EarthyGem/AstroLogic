@@ -716,53 +716,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         dateTextField.resignFirstResponder()
     }
-    func parseAndSaveChartData(dataString: String) {
-        let chartDataArray = dataString.components(separatedBy: "\n\n") // Split data by empty lines
-
-        for chartDataEntry in chartDataArray {
-            let chartLines = chartDataEntry.components(separatedBy: "\n")
-
-            // Ensure there are enough lines for parsing
-            if chartLines.count >= 3 {
-                let infoLine = chartLines[0]
-                let birthDataLine = chartLines[1]
-
-                // Parse chart info
-                let infoComponents = infoLine.components(separatedBy: ":")
-                if infoComponents.count >= 2 {
-                    let name = infoComponents[1]
-
-                    // Parse birth data
-                    let birthDataComponents = birthDataLine.components(separatedBy: ":")
-                    if birthDataComponents.count >= 2 {
-                        let birthData = birthDataComponents[1]
-                        let birthDataValues = birthData.components(separatedBy: ",")
-
-                        if birthDataValues.count == 6 {
-                            let birthDateComponents = birthDataValues[3].components(separatedBy: ".")
-                            if birthDateComponents.count == 3 {
-                                let day = Int(birthDateComponents[0]) ?? 1
-                                let month = Int(birthDateComponents[1]) ?? 1
-                                let year = Int(birthDateComponents[2]) ?? 2000
-
-                                // Parse other values like time, place, etc.
-                                let time = birthDataValues[4]
-                                let place = birthDataValues[5]
-
-                                // Convert latitude and longitude to appropriate Double values
-                                let latitude = 0.0 // Replace with the actual latitude value
-                                let longitude = 0.0 // Replace with the actual longitude value
-
-                                // Create and save the chart entity
-                                saveChart(name: name, birthDate: createDate(day: day, month: month, year: year)!, latitude: latitude, longitude: longitude, birthPlace: place)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+   
     func createDate(day: Int, month: Int, year: Int) -> Date? {
         let calendar = Calendar.current
         var dateComponents = DateComponents()

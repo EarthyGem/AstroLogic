@@ -136,7 +136,7 @@ class HarmonyInfoViewController: UIViewController {
 
         // Setup card image
         let cardImage = UIImageView(image: UIImage(named: harTarot))
-        print("Tarot: \(harTarot)")
+        print("Tarot: \(String(describing: harTarot))")
         cardImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(cardImage)
 

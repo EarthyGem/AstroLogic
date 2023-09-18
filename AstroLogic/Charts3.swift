@@ -13,10 +13,10 @@ struct PersonDetails: CustomStringConvertible {
 
     var description: String {
         return """
-        Name: \(name)
+        Name: \(String(describing: name))
         Latitude: \(latitude ?? 0.0)
         Longitude: \(longitude ?? 0.0)
-        Date: \(date)
+        Date: \(String(describing: date))
         """
     }
 }
@@ -112,6 +112,7 @@ let dataString = """
 #A93:Miron,Errick,m,21.5.1977,13:57,San Diego,CA (US)
 #B93:2443285.37292,32n43,117w09,8hw00,1
 #: Astrodienst data: nhor=1 sbli=Miron,Errick,m,21,5,1977,13:57,h7w,gad,0
+
 #A93:Rodgers [Adb],Aaron,m,2.12.1983,14:50,Chico,CA (US)
 #B93:2445671.45139,39n44,121w50,8hw00,0
 #: Astrodienst data: nhor=313 sbli=Rodgers [Adb],Aaron,m,2,12,1983,14:50,h8w,gas,0
@@ -140,34 +141,30 @@ let dataString = """
 
 
 // Add this instance variable if it doesn't exist
+// Removed the global variable and passed timeZone directly through the completion handler.
 func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
-    let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8" // Note: Never hard-code API keys in production apps. Use environment variables or secure storage.
+    let API_KEY = "YOUR_API_KEY"
     let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
 
     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
         guard let data = data else {
-            birthPlaceTimeZone = nil
             completion(nil)
             return
         }
 
         do {
-            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                if let timeZoneId = json["timeZoneId"] as? String {
-                    birthPlaceTimeZone = TimeZone(identifier: timeZoneId)
-                    completion(birthPlaceTimeZone)
-                } else {
-                    birthPlaceTimeZone = nil
-                    completion(nil)
-                }
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let timeZoneId = json["timeZoneId"] as? String {
+                completion(TimeZone(identifier: timeZoneId))
+            } else {
+                completion(nil)
             }
         } catch {
-            birthPlaceTimeZone = nil
             completion(nil)
         }
     }
     task.resume()
 }
+
 
 func processDetails() {
     let detailsArray = parseDetails(from: dataString)

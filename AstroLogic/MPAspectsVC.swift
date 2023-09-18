@@ -290,9 +290,7 @@ class MPAspectsViewController: UIViewController {
             plutoTableView: .pluto
         ]
         chartCake?.calculateProgressedHouseStrengths2(progressedBodies: chartCake?.major.planets)
-        print("Progressed House strengths: \(chartCake?.calculateProgressedHouseStrengths2(progressedBodies: chartCake?.major.planets))")
-
-        print(" House strengths: \(chartCake?.calculateHouseStrengths())")
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {

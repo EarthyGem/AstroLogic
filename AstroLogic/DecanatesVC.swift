@@ -90,7 +90,7 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
 
         let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet)
-        let selectedPlanet = planetOrder[indexPath.row]
+        _ = planetOrder[indexPath.row]
         
         let viewerVC = DecanateViewerVC(planet: "", text: "", keyword: "", tarotCardImageName: "aceOfSwords", constellationImageName: "cygnus")// change the image name accordingly
         navigationController?.pushViewController(viewerVC, animated: true)

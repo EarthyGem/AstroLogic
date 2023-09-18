@@ -134,7 +134,7 @@ class DiscordInfoViewController: UIViewController {
 
         // Setup card image
         let cardImage = UIImageView(image: UIImage(named: disTarot))
-        print("Tarot: \(disTarot)")
+        print("Tarot: \(String(describing: disTarot))")
         cardImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(cardImage)
 

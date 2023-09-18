@@ -34,37 +34,21 @@ func generateAstroSentence(strongestPlanet: String,
                                                "Pisces": ["The Sensitive", "The Compassionate", "The Visionary", "The Imaginative", "The Spiritual", "The Other Worldly", "The Dreamy", "The Transcendant", "The Poetic", "The Idealitic", "The Mystical", "The Mediumistic", "The Sympathetic", "The Romantic", "The Worrisome", "The Delusional", "The Confused", ]]
     
     let planetArrays: [String: [String]] = [
-        "Sun": [ "Life of The Party", "Creative", "Creator", "Entertainer", "Golden Child", "Winner", "Leader"],
-        "Moon": ["Nurturer", "Comforter", "Healer", "Supporter",  "Caretaker", "Gardener", "Homebody", "Homemaker", "Feeler", "Popular"],
-        "Mercury": [ "Thinker","Communicator","Problem Solver","Storyteller","Messenger",
-                     "Intellectual","Teacher", "Jack-of-all-Trades", "Multi-Tasker"],
-        "Venus": [ "Socialite", "Artist","Accommodator", "Aesthete", "Harmonizer", "Beautifier", "Connector", "Lover",
-                  "Partner", "Peacemaker" ],
-        "Mars": ["Warrior", "Pioneer", "Adventurer", "Competitor", "Builder", "Fighter",  "Protector", "Trailblazer", "Champion", "Leader"],
-        "Jupiter": ["Philosopher", "Adventurer", "Optimist", "Benefactor", "Bestower of Blessings", "Believer"],
-        "Saturn": ["Disciplinarian", "Elder", "Organizer", "Gatekeeper", "Judge", "Planner", "Organizer", "Provider", "Realist", "Rule Maker", "Taskmaster", "Traditionalist", "Toiler", "Authority"],
-        "Uranus": [ "Awakener", "Genius", "Dissenter", "Free Thinker",
-                    "Groundbreaker","Rebel", "Innovator", "Iconoclast", "Activist", "Agent of Change", "Futurist",
-                    "Disruptor", "Original", "Maverick", "Outsider", "Whistleblower"],
-        "Neptune": ["Mystic", "Dreamer", "Visionary", "Artist", "Enchanter", "Idealist",
-                                                        "Meditator",
-                                                        "Medium",
-                                                        "Muse",
-                                                        "Poet"],
+        "Sun": [ "Creator", "Sovereign", "Leader"],
+        "Moon": ["Nurturer", "Comforter", "Supporter"],
+        "Mercury": [ "Thinker","Storyteller","Messenger",
+                     "Intellectual","Teacher"],
+        "Venus": [ "Harmonizer", "Beautifier", "Connector", "Lover",
+                  "Peacemaker" ],
+        "Mars": ["Warrior", "Builder", "Protector"],
+        "Jupiter": ["Philosopher", "Explorer", "Benefactor", "Bestower of Blessings"],
+        "Saturn": ["Organizer", "Strategist", "Planner", "Security Provider"],
+        "Uranus": [ "Awakener", "Renegade", "Innovator", "Agent of Change",
+                    "Disruptor"],
+        "Neptune": ["Dreamer", "Visionary", "Idealist"],
 
                                             "Pluto": ["Transformer",
                                                       "Alchemist",
-
-                                                      "Deep Thinker",
-                                                      "Detective",
-                                                      "Excavator",
-                                                      "Extremist",
-
-                                                      "Intensity Junkie",
-                                                      "Occultist",
-                                                      "Penetrator",
-                                                      "Phoenix",
-                                        
                                                       "Revealer"
 
                                                      ]]
