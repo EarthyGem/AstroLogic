@@ -4,17 +4,6 @@ import CoreData
 
 
 
-// Assuming you have the data parsed into a structure like this:
-struct ParsedData {
-    var name: String
-    var birthDate: Date
-    var latitude: Double
-    var longitude: Double
-    var birthPlace: String
-    // ... other properties
-}
-
-
 class ChartsViewController: UIViewController {
 
     var tableView: UITableView!

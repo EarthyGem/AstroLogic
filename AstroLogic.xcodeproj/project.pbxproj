@@ -20,6 +20,11 @@
 		3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3772A5F2F3200245DD2 /* AboutVC.swift */; };
 		3903A37C2A5F305100245DD2 /* GeoCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A37B2A5F305100245DD2 /* GeoCode.swift */; };
 		3916F33C2AA777FF00DEABEB /* NatalHousesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916F33B2AA777FF00DEABEB /* NatalHousesCustomCell.swift */; };
+		392434522ABA7C8E00584E26 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434512ABA7C8E00584E26 /* TabBarController.swift */; };
+		392434542ABA7CBC00584E26 /* RechargeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434532ABA7CBC00584E26 /* RechargeVC.swift */; };
+		392434562ABA7CDE00584E26 /* ActionSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434552ABA7CDE00584E26 /* ActionSteps.swift */; };
+		392434582ABA7D0600584E26 /* MonthActionPlanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434572ABA7D0600584E26 /* MonthActionPlanVC.swift */; };
+		3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434592ABA813600584E26 /* CountDownVC.swift */; };
 		392D97BA2AB2CF2F0086BEA1 /* DecanatesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */; };
 		394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */; };
 		394FA19B2AABAA50002BC0A5 /* transitMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */; };
@@ -133,6 +138,11 @@
 		3903A3772A5F2F3200245DD2 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3903A37B2A5F305100245DD2 /* GeoCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCode.swift; sourceTree = "<group>"; };
 		3916F33B2AA777FF00DEABEB /* NatalHousesCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalHousesCustomCell.swift; sourceTree = "<group>"; };
+		392434512ABA7C8E00584E26 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		392434532ABA7CBC00584E26 /* RechargeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RechargeVC.swift; sourceTree = "<group>"; };
+		392434552ABA7CDE00584E26 /* ActionSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSteps.swift; sourceTree = "<group>"; };
+		392434572ABA7D0600584E26 /* MonthActionPlanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthActionPlanVC.swift; sourceTree = "<group>"; };
+		392434592ABA813600584E26 /* CountDownVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownVC.swift; sourceTree = "<group>"; };
 		392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesViewVC.swift; sourceTree = "<group>"; };
 		394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedMatrixVC.swift; sourceTree = "<group>"; };
 		394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitMatrixVC.swift; sourceTree = "<group>"; };
@@ -272,6 +282,11 @@
 				398ECC302A8F07D300695354 /* MyCharts.swift */,
 				399B62962AB75D77006BAC2E /* ImportAAFVC.swift */,
 				399B62982AB75DAC006BAC2E /* Charts3.swift */,
+				392434512ABA7C8E00584E26 /* TabBarController.swift */,
+				392434592ABA813600584E26 /* CountDownVC.swift */,
+				392434532ABA7CBC00584E26 /* RechargeVC.swift */,
+				392434552ABA7CDE00584E26 /* ActionSteps.swift */,
+				392434572ABA7D0600584E26 /* MonthActionPlanVC.swift */,
 				398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */,
 				39A1EC392A5F61AD008D1EC1 /* ChartViewerVC.swift */,
 				399B629E2AB831B3006BAC2E /* RealmsVC.swift */,
@@ -458,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				395DE5272A96EA4600B0B451 /* SimpleMinorAspectsVC.swift in Sources */,
+				392434522ABA7C8E00584E26 /* TabBarController.swift in Sources */,
 				396CDCBF2A7471D400EDCECC /* PlanetDegreeCell.swift in Sources */,
 				3955A6662A90963D00DE2051 /* NatalAspectsVC.swift in Sources */,
 				394FA60D2AA48AE9000CD87B /* planetInfoDictionary.swift in Sources */,
@@ -494,6 +510,7 @@
 				399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */,
 				3903A33F2A5F2D0700245DD2 /* ViewController.swift in Sources */,
 				39655E3E2AA8C3B2008033AB /* Cells.swift in Sources */,
+				3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */,
 				3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */,
 				39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */,
 				3916F33C2AA777FF00DEABEB /* NatalHousesCustomCell.swift in Sources */,
@@ -506,6 +523,7 @@
 				395DE5052A954A4B00B0B451 /* TransitAspectsVC.swift in Sources */,
 				395DE5232A969F1F00B0B451 /* CompositePlanetsVC.swift in Sources */,
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
+				392434542ABA7CBC00584E26 /* RechargeVC.swift in Sources */,
 				396CD6602A9CF48D002C2528 /* FlipTransposedHousesViewController.swift in Sources */,
 				395DE50B2A95DE8B00B0B451 /* RelationshipBiWHeel.swift in Sources */,
 				395DE5092A95DC7A00B0B451 /* RelationshipPlanetsVC.swift in Sources */,
@@ -516,6 +534,7 @@
 				39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */,
 				39E1686A2A9730290003892B /* SimpleMinorProgressedAspectsByHouse.swift in Sources */,
 				395DE5252A96E8DD00B0B451 /* SimpleTransitAspects.swift in Sources */,
+				392434582ABA7D0600584E26 /* MonthActionPlanVC.swift in Sources */,
 				3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */,
 				39851F802A9302A100E70FF5 /* TransitAspectsByHouseTCVC.swift in Sources */,
 				39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */,
@@ -554,6 +573,7 @@
 				399B62972AB75D77006BAC2E /* ImportAAFVC.swift in Sources */,
 				39A1EC362A5F6043008D1EC1 /* MyItemsVC.swift in Sources */,
 				39A1EC3F2A5F6DB6008D1EC1 /* NatalPlanetsVC.swift in Sources */,
+				392434562ABA7CDE00584E26 /* ActionSteps.swift in Sources */,
 				394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */,
 				395DE51F2A967FBE00B0B451 /* SynastryFlipBiWheel.swift in Sources */,
 				3997F07E2A68F7DF00741E9D /* AspectarianView.swift in Sources */,

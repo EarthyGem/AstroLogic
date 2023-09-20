@@ -62,12 +62,6 @@ extension Array {
         return indices.contains(index) ? self[index] : nil
     }
 }
-func dateFromString(_ dateString: String) -> Date? {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "d.M.yyyy HH:mm"
-    return dateFormatter.date(from: dateString)
-}
-
 
 func parseDetails(from data: String) -> [PersonDetails] {
     let lines = data.split(separator: "\n")
@@ -80,14 +74,6 @@ func parseDetails(from data: String) -> [PersonDetails] {
             continue
         }
 
-        // Extracting name
-        let nameParts = nameLine.split(separator: ",")
-        guard nameParts.count > 1 else { continue }
-
-        let lastName = String(nameParts[1])
-        let firstName = String(nameParts[0].split(separator: ":")[1])
-        let fullName = "\(firstName) \(lastName)"
-
         // Extracting latitude and longitude
         let latLongParts = latLongLine.split(separator: ",")
 
@@ -97,16 +83,57 @@ func parseDetails(from data: String) -> [PersonDetails] {
         let latitude = convertToDecimal(coordinate: latitudeString)
         let longitude = convertToDecimal(coordinate: longitudeString)
 
+        // Fetch time zone of birthplace
+        var birthTimeZone: TimeZone?
+        if let latitude = latitude, let longitude = longitude {
+            let group = DispatchGroup()
+            group.enter()
+            fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: Int(Date().timeIntervalSince1970)) { timeZone in
+                birthTimeZone = timeZone
+                group.leave()
+            }
+            group.wait()
+        }
+
+        // Extracting name
+        let nameParts = nameLine.split(separator: ",")
+        guard nameParts.count > 1 else { continue }
+
+        let lastName = String(nameParts[1])
+        let firstName = String(nameParts[0].split(separator: ":")[1])
+        let fullName = "\(firstName) \(lastName)"
+
         // Extracting date
         let dateString = String(nameParts[3]) + " " + String(nameParts[4])
-        let date = dateFromString(dateString)
+        let date = dateFromString(dateString, timeZone: birthTimeZone)
 
-        let personDetails = PersonDetails(name: fullName, latitude: latitude, longitude: longitude, date: date)
+        // Adjust birth date with time zone
+        var adjustedBirthDate: Date?
+        if let latitude = latitude, let longitude = longitude, let date = date {
+            let group = DispatchGroup()
+            group.enter()
+            adjustedBirthDateWithTimeZone(latitude: latitude, longitude: longitude, birthDate: date) { adjustedDate in
+                adjustedBirthDate = adjustedDate
+                group.leave()
+            }
+            group.wait()
+        }
+
+        let personDetails = PersonDetails(name: fullName, latitude: latitude, longitude: longitude, date: adjustedBirthDate)
         results.append(personDetails)
     }
 
     return results
 }
+
+
+func dateFromString(_ dateString: String, timeZone: TimeZone?) -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "d.M.yyyy HH:mm"
+    dateFormatter.timeZone = timeZone // Set time zone to birthplace time zone
+    return dateFormatter.date(from: dateString)
+}
+
 
 let dataString = """
 #A93:Miron,Errick,m,21.5.1977,13:57,San Diego,CA (US)
@@ -140,31 +167,67 @@ let dataString = """
 """
 
 
+func dateFromString(_ dateString: String) -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "d.M.yyyy HH:mm"
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Set time zone to GMT
+    return dateFormatter.date(from: dateString)
+}
+
+
 // Add this instance variable if it doesn't exist
 // Removed the global variable and passed timeZone directly through the completion handler.
 func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
-    let API_KEY = "YOUR_API_KEY"
+    let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8"
     let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
 
     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        if let error = error {
+            print("Error fetching timezone: \(error.localizedDescription)")
+            completion(nil)
+            return
+        }
+
         guard let data = data else {
+            print("No data returned from API")
             completion(nil)
             return
         }
 
         do {
-            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let timeZoneId = json["timeZoneId"] as? String {
-                completion(TimeZone(identifier: timeZoneId))
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                if let timeZoneId = json["timeZoneId"] as? String {
+                    let timeZone = TimeZone(identifier: timeZoneId)
+
+                    // Print the date and time at the location of birth
+                    if let timeZone = timeZone {
+                        let localDate = Date(timeIntervalSince1970: TimeInterval(timestamp))
+                        let formatter = DateFormatter()
+                        formatter.timeZone = timeZone
+                        formatter.dateStyle = .medium
+                        formatter.timeStyle = .medium
+                        let localDateString = formatter.string(from: localDate)
+
+                    }
+
+                    completion(timeZone)
+                } else if let errorMessage = json["errorMessage"] as? String {
+                    print("API error: \(errorMessage)")
+                    completion(nil)
+                } else {
+                    print("Unexpected JSON structure: \(json)")
+                    completion(nil)
+                }
             } else {
                 completion(nil)
             }
         } catch {
+            print("Error decoding JSON: \(error.localizedDescription)")
             completion(nil)
         }
     }
-    task.resume()
+    task.resume()  // Don't forget to start the task.
 }
-
 
 func processDetails() {
     let detailsArray = parseDetails(from: dataString)
@@ -176,56 +239,61 @@ func processDetails() {
            let latitude = details.latitude,
            let longitude = details.longitude {
 
-            // Convert the birthDate to a timestamp (seconds since 1970)
-            let timestamp = Int(birthDate.timeIntervalSince1970)
+            adjustedBirthDateWithTimeZone(latitude: latitude, longitude: longitude, birthDate: birthDate) { adjustedDate in
+                if let adjustedBirthDate = adjustedDate {
+                    saveChart(name: name, latitude: latitude, longitude: latitude, birthDate: adjustedBirthDate)
+                } else {
 
-            fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { timeZone in
-                guard let timeZone = timeZone else {
-                    print("Unable to fetch timezone for \(name)")
-                    return
                 }
-
-                // Adjust the birthDate to the fetched timezone
-                var adjustedBirthDate = birthDate
-                if let birthPlaceTimeZone = birthPlaceTimeZone {
-                    let interval = birthPlaceTimeZone.secondsFromGMT(for: birthDate) - TimeZone.current.secondsFromGMT(for: birthDate)
-                    adjustedBirthDate = birthDate.addingTimeInterval(TimeInterval(interval))
-                }
-
-                saveChart(name: name, birthDate: adjustedBirthDate, latitude: latitude, longitude: longitude)
             }
         }
     }
 }
 
-func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double) {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        print("Unable to get AppDelegate")
-        return
-    }
 
-    let context = appDelegate.persistentContainer.viewContext
-    // Check whether "ChartEntity" is the correct entity name in your .xcdatamodeld file.
-    guard let entityDescription = NSEntityDescription.entity(forEntityName: "ChartEntity", in: context) else {
-        print("Failed to get the entity description for 'ChartEntity'")
-        return
-    }
+func adjustedBirthDateWithTimeZone(latitude: Double, longitude: Double, birthDate: Date, completion: @escaping (Date?) -> Void) {
+    fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: Int(birthDate.timeIntervalSince1970)) { timeZone in
+        if let timeZone = timeZone {
+            // Adjust birthDate using the retrieved time zone
+            var calendar = Calendar.current
+            calendar.timeZone = timeZone
+            let adjustedBirthDate = calendar.date(bySettingHour: calendar.component(.hour, from: birthDate),
+                                                  minute: calendar.component(.minute, from: birthDate),
+                                                  second: calendar.component(.second, from: birthDate),
+                                                  of: birthDate)
 
-    let newChart = NSManagedObject(entity: entityDescription, insertInto: context)
-    newChart.setValue(name, forKey: "name")
-    newChart.setValue(birthDate, forKey: "birthDate")
-    newChart.setValue(latitude, forKey: "latitude")
-    newChart.setValue(longitude, forKey: "longitude")
+            // Print the date and time at the location of birth
+            if let adjustedBirthDate = adjustedBirthDate {
+                let formatter = DateFormatter()
+                formatter.timeZone = timeZone
+                formatter.dateStyle = .medium
+                formatter.timeStyle = .medium
+                let localDateString = formatter.string(from: adjustedBirthDate)
 
-    // Try saving the context
-    do {
-        try context.save()
-    } catch {
-        print("Failed to save chart: \(error.localizedDescription)")
+            }
+
+            completion(adjustedBirthDate)
+        } else {
+
+            completion(nil)
+        }
     }
 }
 
+
+func saveChart(name: String, latitude: Double, longitude: Double, birthDate: Date) {
+    adjustedBirthDateWithTimeZone(latitude: latitude, longitude: longitude, birthDate: birthDate) { adjustedBirthDate in
+        if let adjustedBirthDate = adjustedBirthDate {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .medium
+            let adjustedBirthDateString = formatter.string(from: adjustedBirthDate)
+
+        } else {
+
+        }
+    }
+}
+
+
 // Then, initiate the parsing:
-
-
-

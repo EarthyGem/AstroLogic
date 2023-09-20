@@ -48,7 +48,7 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "Progressed Chart"),
               RicksItems(chartType: "Progressed Aspects"),
         RicksItems(chartType: "Progressed Aspects By House"),
-   //     RicksItems(chartType: "My Solar Arc Progressions"),
+        RicksItems(chartType: "Birthday Wish"),
         RicksItems(chartType: "Relationships")
 
     ]
@@ -185,6 +185,13 @@ extension MyItemsViewController: UITableViewDelegate {
         let MP_AspectsVC = ProgressedAspectsTimeChangeViewController()
         MP_AspectsVC.chartCake = self.chartCake
         MP_AspectsVC.selectedDate = self.selectedDate
+
+        let birthdayWishVC = MainTabBarController()
+        birthdayWishVC.chartCake = self.chartCake
+        birthdayWishVC.otherChart = self.otherChart
+        birthdayWishVC.title = "Other Person"
+
+
         let RelationshipVC = RelationshipsViewController()
         RelationshipVC.chartCake = self.chartCake
         RelationshipVC.otherChart = self.otherChart
@@ -194,7 +201,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,RelationshipVC]
+        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 
