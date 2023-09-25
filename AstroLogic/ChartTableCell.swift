@@ -11,6 +11,7 @@ import UIKit
 
 class ChartTableViewCell: UITableViewCell {
     var planetImageView: UIImageView!
+    var chart: ChartEntity!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

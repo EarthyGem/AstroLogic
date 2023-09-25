@@ -833,7 +833,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
                     cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 1)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 1)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 1)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 1)[indexPath.row].self)!).houseKeywords)"))
 
-print((chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 1)[indexPath.row].self)!)))
+//print((chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 1)[indexPath.row].self)!)))
 
                    return cell
 

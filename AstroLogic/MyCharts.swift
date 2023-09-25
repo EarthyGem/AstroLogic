@@ -152,112 +152,138 @@ class ChartsViewController: UIViewController {
 
 }
 // MARK: - UITableViewDataSource and UITableViewDelegate
-
 extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return charts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell // Assume you've created a custom cell
-        
+
         let chart = charts[indexPath.row]
-        
+
+
+
         let chartDate = chart.birthDate!
         let latitude = chart.latitude
         let longitude = chart.longitude
+        let timestamp = Int(chartDate.timeIntervalSince1970)
         let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let scores = chartObj.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
         _ = chart.birthPlace ?? "No BirthPlace"
         // Set the cell label
-        cell.textLabel?.text = chart.name
-        
+
         // Set the cell image
         let imageName = strongestPlanet.keyName.lowercased()
         cell.planetImageView.image = UIImage(named: imageName)
+
+
         
-        return cell
+
+        cell.textLabel?.text = "\(chart.name!) \(chart.birthDate!) \(chart.birthPlace!)"
+
+          fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { timeZone in
+              DispatchQueue.main.async {
+                  if let timeZone = timeZone {
+                      let formattedDate = self.formatDate(chartDate, withTimeZone: timeZone)
+                      let dateAndPlace = "\(formattedDate) \(chart.birthPlace!)"
+                      let nameString = NSAttributedString(string: "\(chart.name!) ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)])
+                      let dateAndPlaceString = NSAttributedString(string: dateAndPlace, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)])
+
+                      let combinedAttributedString = NSMutableAttributedString()
+                      combinedAttributedString.append(nameString)
+                      combinedAttributedString.append(dateAndPlaceString)
+
+                      cell.textLabel?.attributedText = combinedAttributedString
+                      cell.layoutIfNeeded()  // Force layout update
+                  }
+              }
+          }
+
+          return cell
+      }
+    func formatDate(_ date: Date, withTimeZone timeZone: TimeZone) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy 'at' h:mm a"
+        dateFormatter.timeZone = timeZone
+        return dateFormatter.string(from: date)
     }
 
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            deleteChart(at: indexPath)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+    // Your other tableView functions like didSelectRowAt can remain the same...
+
+
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let otherChart = charts[indexPath.row]
+
+            // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
+            // Otherwise, adapt accordingly.
+            let latitude = otherChart.latitude
+            let longitude = otherChart.longitude
+            let chartDate = otherChart.birthDate
+            let name = otherChart.name ?? ""
+            let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
+            let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
+            let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
+
+            let scores = chart.getTotalPowerScoresForPlanets()
+            let strongestPlanet = getStrongestPlanet(from: scores)
+
+
+
+            let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
+            let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
+            let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
+
+            if strongestPlanet == Planet.sun.celestialObject {
+                strongestPlanetSign = chart.sun.sign.keyName
+            } else if strongestPlanet == Planet.moon.celestialObject {
+                strongestPlanetSign = chart.moon.sign.keyName
+            } else if strongestPlanet == Planet.mercury.celestialObject {
+                strongestPlanetSign = chart.mercury.sign.keyName
+            } else if strongestPlanet == Planet.venus.celestialObject {
+                strongestPlanetSign = chart.venus.sign.keyName
+            } else if strongestPlanet == Planet.mars.celestialObject {
+                strongestPlanetSign = chart.mars.sign.keyName
+            } else if strongestPlanet == Planet.jupiter.celestialObject {
+                strongestPlanetSign = chart.jupiter.sign.keyName
+            } else if strongestPlanet == Planet.saturn.celestialObject {
+                strongestPlanetSign = chart.saturn.sign.keyName
+            } else if strongestPlanet == Planet.uranus.celestialObject {
+                strongestPlanetSign = chart.uranus.sign.keyName
+            } else if strongestPlanet == Planet.neptune.celestialObject {
+                strongestPlanetSign = chart.neptune.sign.keyName
+            } else if strongestPlanet == Planet.pluto.celestialObject {
+                strongestPlanetSign = chart.pluto.sign.keyName
+            } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
+                strongestPlanetSign = chart.southNode.sign.keyName
+            }
+
+            let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
+                                                 strongestPlanetSign: strongestPlanetSign!,
+                                                 sunSign: chart.sun.sign.keyName,
+                                                 moonSign: chart.moon.sign.keyName,
+                                                 risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
+
+            // Initialize and push the StrongestPlanetViewController
+            let strongestPlanetVC = StrongestPlanetViewController()
+            strongestPlanetVC.chartCake = chartCake
+            strongestPlanetVC.chart = chart
+            strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
+            strongestPlanetVC.name = name
+            strongestPlanetVC.birthPlace = birthPlace
+            //  strongestPlanetVC.combinedBirthDateTime = chartDate
+            strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
+            strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
+            strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
+            strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
+            strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+            strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
+            strongestPlanetVC.sentenceText = sentence
+            self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
         }
+
     }
 
-    
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let otherChart = charts[indexPath.row]
-
-        // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
-        // Otherwise, adapt accordingly.
-        let latitude = otherChart.latitude
-        let longitude = otherChart.longitude
-        let chartDate = otherChart.birthDate
-        let name = otherChart.name ?? ""
-        let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
-        let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
-        let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
-
-        let scores = chart.getTotalPowerScoresForPlanets()
-        let strongestPlanet = getStrongestPlanet(from: scores)
-
-
-
-        let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
-        let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
-        let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
-
-        if strongestPlanet == Planet.sun.celestialObject {
-            strongestPlanetSign = chart.sun.sign.keyName
-        } else if strongestPlanet == Planet.moon.celestialObject {
-            strongestPlanetSign = chart.moon.sign.keyName
-        } else if strongestPlanet == Planet.mercury.celestialObject {
-            strongestPlanetSign = chart.mercury.sign.keyName
-        } else if strongestPlanet == Planet.venus.celestialObject {
-            strongestPlanetSign = chart.venus.sign.keyName
-        } else if strongestPlanet == Planet.mars.celestialObject {
-            strongestPlanetSign = chart.mars.sign.keyName
-        } else if strongestPlanet == Planet.jupiter.celestialObject {
-            strongestPlanetSign = chart.jupiter.sign.keyName
-        } else if strongestPlanet == Planet.saturn.celestialObject {
-            strongestPlanetSign = chart.saturn.sign.keyName
-        } else if strongestPlanet == Planet.uranus.celestialObject {
-            strongestPlanetSign = chart.uranus.sign.keyName
-        } else if strongestPlanet == Planet.neptune.celestialObject {
-            strongestPlanetSign = chart.neptune.sign.keyName
-        } else if strongestPlanet == Planet.pluto.celestialObject {
-            strongestPlanetSign = chart.pluto.sign.keyName
-        } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-            strongestPlanetSign = chart.southNode.sign.keyName
-        }
-
-        let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
-                                             strongestPlanetSign: strongestPlanetSign!,
-                                             sunSign: chart.sun.sign.keyName,
-                                             moonSign: chart.moon.sign.keyName,
-                                             risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
-
-        // Initialize and push the StrongestPlanetViewController
-        let strongestPlanetVC = StrongestPlanetViewController()
-        strongestPlanetVC.chartCake = chartCake
-        strongestPlanetVC.chart = chart
-        strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
-        strongestPlanetVC.name = name
-        strongestPlanetVC.birthPlace = birthPlace
-      //  strongestPlanetVC.combinedBirthDateTime = chartDate
-        strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
-        strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
-        strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
-        strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
-        strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
-        strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
-        strongestPlanetVC.sentenceText = sentence
-        self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
-    }
-}
 

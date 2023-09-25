@@ -9,7 +9,7 @@ import SwiftEphemeris
 import UIKit
 
 class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var chartCake: ChartCake?
+    var chartCake: ChartCake!
     var chart: Chart?
     var birthChartView: BirthChartView!
     var coverView: UIView!
@@ -82,7 +82,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
  private let tableView: UITableView = {
         let table = UITableView()
-        table.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        table.register(CustomNatalPlanetsTableViewCell.self, forCellReuseIdentifier: CustomNatalPlanetsTableViewCell.identifier)
         return table
     }()
 
@@ -93,6 +93,8 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
     init(planets: [String]) {
         self.planets = planets
         super.init(nibName: nil, bundle: nil)
+        print("Inside Init: \(String(describing: chartCake))")
+
     }
 
     required init?(coder: NSCoder) {
@@ -100,14 +102,17 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
     }
     
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Inside viewDidLoad: \(String(describing: chartCake))")
+        // ...
 
         view.backgroundColor = .black
         tableView.backgroundColor = .black
 
         // BirthChartView setup
-        birthChartView = BirthChartView(frame: CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: birthChartViewFullHeight), chartCake: chartCake!)
+        birthChartView = BirthChartView(frame: CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: birthChartViewFullHeight), chartCake: chartCake)
         let tapGestureForBirthChart = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
 
         birthChartView.addGestureRecognizer(tapGestureForBirthChart)
@@ -116,9 +121,9 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         // TableView setup
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.register(CustomNatalPlanetsTableViewCell.self, forCellReuseIdentifier: CustomNatalPlanetsTableViewCell.identifier)
         view.addSubview(tableView)
-     print("sorted planets \(sortedPlanets)")
+     //print("sorted planets \(sortedPlanets)")
 
         // Set up coverView
         coverView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: birthChartViewCollapsedHeight))
@@ -203,7 +208,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomNatalPlanetsTableViewCell.identifier, for: indexPath) as? CustomNatalPlanetsTableViewCell else {
             return UITableViewCell()
         }
 
@@ -218,7 +223,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
             planetImageImageName: celestialObject.keyName.lowercased(),
             signTextText: celestialObject.keyName,
             planetTextText: "\(formattedStrength) \(celestialObject.archetype)",
-            headerTextText: celestialObject.planetThoughtTypes
+            headerTextText: celestialObject.innerArchetypes
         )
         return cell
     }

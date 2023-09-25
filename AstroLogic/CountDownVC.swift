@@ -20,9 +20,11 @@ class CountdownViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = .green
         setupCountdownLabel()
      //   setupReflectionSection()
-        setupInsightSection()
+//setupInsightSection()
         startTimer()
         setupSections()
     }
@@ -38,11 +40,11 @@ class CountdownViewController: UIViewController {
     }
 
     func setupInsightSection() {
-        insightsTextView = UITextView(frame: CGRect(x: 20, y: reflectionTextView.frame.maxY + 20, width: self.view.frame.width - 40, height: (self.view.frame.height - reflectionTextView.frame.maxY) / 2 - 30))
-        insightsTextView.font = UIFont.systemFont(ofSize: 18)
-        insightsTextView.isEditable = false
-        insightsTextView.text = "Your insights for the upcoming year: \n\n" // Load this from your astrological insights data source
-        view.addSubview(insightsTextView)
+//        insightsTextView = UITextView(frame: CGRect(x: 20, y: reflectionTextView.frame.maxY + 20, width: self.view.frame.width - 40, height: (self.view.frame.height - reflectionTextView.frame.maxY) / 2 - 30))
+//        insightsTextView.font = UIFont.systemFont(ofSize: 18)
+//        insightsTextView.isEditable = false
+//        insightsTextView.text = "Your insights for the upcoming year: \n\n" // Load this from your astrological insights data source
+//        view.addSubview(insightsTextView)
     }
     
     func setupCountdownLabel() {

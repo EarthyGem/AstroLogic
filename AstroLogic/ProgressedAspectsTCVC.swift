@@ -18,6 +18,10 @@ class ProgressedAspectsTimeChangeViewController: UIViewController  {
     var chartCake: ChartCake?
     var selectedDate: Date?
 
+    deinit {
+         print("Deinitializing ProgressedAspectsTimeChangeViewController")
+     }
+
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         delegate?.datePickerDidChangeDate(sender.date)
     }
@@ -35,18 +39,25 @@ class ProgressedAspectsTimeChangeViewController: UIViewController  {
         return tcDP
     }()
 
-  
     @IBAction func doneButtonTapped(_ sender: UIToolbar) {
-        let selectedDate = tcDP.date
+        selectedDate = tcDP.date
+        print("After setting, selectedDate in TCVC: \(String(describing: selectedDate))")
+        // Update instance variables directly
+        selectedDate = tcDP.date
+        chartCake = chartCake?.withUpdatedTransitDate(selectedDate ?? Date())
 
-        // Create an instance of the next view controller
+        print("Before Setting - chartCake: \(String(describing: chartCake))")
+        print("Before Setting - selectedDate: \(String(describing: selectedDate))")
+
         let nextViewController = SimpleMajorAspectsViewController()
-// Set the
-        nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
+
+        nextViewController.chartCake = chartCake
         nextViewController.selectedDate = selectedDate
+
+        print("Memory address in ProgressedAspectsTimeChangeViewController: \(Unmanaged.passUnretained(self).toOpaque())")
+
         navigationController?.pushViewController(nextViewController, animated: true)
     }
-
 
 
 
@@ -129,6 +140,11 @@ class ProgressedAspectsTimeChangeViewController: UIViewController  {
           
           // Do any additional setup after loading the view.
       }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("In viewWillAppear of TCVC - ProgressionsAspectsTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
+    }
+
 
       
       override func viewDidLayoutSubviews() {

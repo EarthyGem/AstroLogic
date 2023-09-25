@@ -571,7 +571,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                     return getPlanetsSortedByStrength(from: scores2!)
                 }
 
-        print("sorted scores: \((sortedPlanets))")
+     //   print("sorted scores: \((sortedPlanets))")
 
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
@@ -587,7 +587,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
                 strongestPlanetVC.sentenceText = sentence
                 strongestPlanetVC.sortedPlanets = getPlanetsSortedByStrength(from: scores2)
-                print("sortedPlanets\(getPlanetsSortedByStrength(from: scores2))")
+             //   print("sortedPlanets\(getPlanetsSortedByStrength(from: scores2))")
                 strongestPlanetVC.birthPlace = self.birthPlaceTextField.text
                 let combinedDate = self.combinedDateAndTime()!
             //    strongestPlanetVC.combinedBirthDateTime = combinedDate
@@ -817,7 +817,7 @@ extension ViewController: CLLocationManagerDelegate {
                       let birthPlace = chart.value(forKey: "birthPlace") as? String
                     {
 
-                        print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude), BirthPlace: \(birthPlace)")
+                    //    print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude), BirthPlace: \(birthPlace)")
                     }
                 }
             }

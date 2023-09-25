@@ -696,11 +696,30 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
 
         if let planet = tableViewToPlanetMap[tableView],
            let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
+
             let aspect = majorAspects[indexPath.row]
-            // Modify this part to extract details from the 'aspect'
             let aspectString = aspect.aspectString
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectString, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: "")
+
+            // Get the start and end dates for the aspect
+            var edgeDatesString = ""
+            if let celestialAspect = aspect.celestialAspect,
+               let edges = chartCake?.findEdgesForAspectsFilteredByPlanet(targetPlanet: planet.celestialObject.keyName, aspects: [aspect]) {
+
+                if let edgeDates = edges[celestialAspect] {
+                    edgeDatesString = "\(edgeDates?.start) - \(String(describing: edgeDates?.end))"
+                }
+            }
+
+            cell.configure(aspectingPlanet: "",
+                           secondPlanetImageImageName: "",
+                           firstSignTextText: "",
+                           secondSignTextText: aspectString,
+                           secondPlanetTextText: "",
+                           firstPlanetTextText: "",
+                           firstAspectHeaderTextText: "",
+                           secondAspectHeaderTextText: edgeDatesString)
         }
+
 
         return cell
     }

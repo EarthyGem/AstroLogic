@@ -101,12 +101,14 @@ extension MyItemsViewController: UITableViewDelegate {
         chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
         chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
 
-        let natalPlanetsVC = PlanetsViewController(planets: placeolder)
+        let natalPlanetsVC = PlanetsViewController(planets: [""])
         natalPlanetsVC.title = category.chartType
-        natalPlanetsVC.chart = self.chart
         natalPlanetsVC.chartCake = self.chartCake
         natalPlanetsVC.sortedPlanets = self.sortedPlanets
 //
+
+
+
 
         let decanatesVC = DeacanatesViewController(planets: placeolder)
         decanatesVC.title = category.chartType

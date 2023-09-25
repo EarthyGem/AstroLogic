@@ -134,7 +134,7 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
 
         // Print the value of chartCake
-        print("Value of chartCake: \(String(describing: chartCake))")  // This will
+     //   print("Value of chartCake: \(String(describing: chartCake))")  // This will
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
         if let safeChartCake = chartCake {

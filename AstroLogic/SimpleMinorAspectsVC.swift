@@ -339,7 +339,7 @@ class SimpleMinorAspectViewController: UIViewController {
 
         // adding date label
 
-        let formatted = selectedDate!.formatted(date: .complete, time: .omitted)
+        let formatted = selectedDate?.formatted(date: .complete, time: .omitted)
         let todaysDate = UILabel(frame: CGRect(x: 100, y: 170, width: 300, height: 20))
         todaysDate.text = formatted
         todaysDate.font = .systemFont(ofSize: 13)

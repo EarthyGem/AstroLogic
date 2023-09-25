@@ -25,6 +25,9 @@
 		392434562ABA7CDE00584E26 /* ActionSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434552ABA7CDE00584E26 /* ActionSteps.swift */; };
 		392434582ABA7D0600584E26 /* MonthActionPlanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434572ABA7D0600584E26 /* MonthActionPlanVC.swift */; };
 		3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434592ABA813600584E26 /* CountDownVC.swift */; };
+		3924345E2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924345D2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift */; };
+		392434602ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924345F2ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift */; };
+		392434622ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434612ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift */; };
 		392D97BA2AB2CF2F0086BEA1 /* DecanatesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */; };
 		394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */; };
 		394FA19B2AABAA50002BC0A5 /* transitMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */; };
@@ -55,6 +58,8 @@
 		395E2BA22AAB8DA4003A8439 /* newtv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E2BA12AAB8DA4003A8439 /* newtv.swift */; };
 		39655E3C2AA8BF09008033AB /* progresionsMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39655E3B2AA8BF09008033AB /* progresionsMatrixVC.swift */; };
 		39655E3E2AA8C3B2008033AB /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39655E3D2AA8C3B2008033AB /* Cells.swift */; };
+		396989D12ABDF385007EA008 /* CustomNatalPlanetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396989D02ABDF385007EA008 /* CustomNatalPlanetsCell.swift */; };
+		396989D32ABDF751007EA008 /* NatalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396989D22ABDF751007EA008 /* NatalTabBarController.swift */; };
 		396A7B312AB4A34100E304D6 /* ChartView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396A7B302AB4A34100E304D6 /* ChartView Extension.swift */; };
 		396CD6602A9CF48D002C2528 /* FlipTransposedHousesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */; };
 		396CDCB92A74712100EDCECC /* DecanatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396CDCB82A74712100EDCECC /* DecanatesVC.swift */; };
@@ -143,6 +148,9 @@
 		392434552ABA7CDE00584E26 /* ActionSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSteps.swift; sourceTree = "<group>"; };
 		392434572ABA7D0600584E26 /* MonthActionPlanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthActionPlanVC.swift; sourceTree = "<group>"; };
 		392434592ABA813600584E26 /* CountDownVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownVC.swift; sourceTree = "<group>"; };
+		3924345D2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresionsAspectsBartTabController.swift; sourceTree = "<group>"; };
+		3924345F2ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresionsPlanetsBartTabController.swift; sourceTree = "<group>"; };
+		392434612ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresionsAspectsByHouseBarTabController.swift; sourceTree = "<group>"; };
 		392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesViewVC.swift; sourceTree = "<group>"; };
 		394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedMatrixVC.swift; sourceTree = "<group>"; };
 		394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitMatrixVC.swift; sourceTree = "<group>"; };
@@ -173,6 +181,8 @@
 		395E2BA12AAB8DA4003A8439 /* newtv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newtv.swift; sourceTree = "<group>"; };
 		39655E3B2AA8BF09008033AB /* progresionsMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progresionsMatrixVC.swift; sourceTree = "<group>"; };
 		39655E3D2AA8C3B2008033AB /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		396989D02ABDF385007EA008 /* CustomNatalPlanetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNatalPlanetsCell.swift; sourceTree = "<group>"; };
+		396989D22ABDF751007EA008 /* NatalTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalTabBarController.swift; sourceTree = "<group>"; };
 		396A7B302AB4A34100E304D6 /* ChartView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChartView Extension.swift"; sourceTree = "<group>"; };
 		396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipTransposedHousesViewController.swift; sourceTree = "<group>"; };
 		396CDCB82A74712100EDCECC /* DecanatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesVC.swift; sourceTree = "<group>"; };
@@ -283,6 +293,10 @@
 				399B62962AB75D77006BAC2E /* ImportAAFVC.swift */,
 				399B62982AB75DAC006BAC2E /* Charts3.swift */,
 				392434512ABA7C8E00584E26 /* TabBarController.swift */,
+				396989D22ABDF751007EA008 /* NatalTabBarController.swift */,
+				3924345D2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift */,
+				3924345F2ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift */,
+				392434612ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift */,
 				392434592ABA813600584E26 /* CountDownVC.swift */,
 				392434532ABA7CBC00584E26 /* RechargeVC.swift */,
 				392434552ABA7CDE00584E26 /* ActionSteps.swift */,
@@ -378,6 +392,7 @@
 				39A1EC5E2A5FA75E008D1EC1 /* 1.swift */,
 				39A1EC622A605743008D1EC1 /* signs.swift */,
 				39A1EC402A5F6E91008D1EC1 /* CustomTableCell.swift */,
+				396989D02ABDF385007EA008 /* CustomNatalPlanetsCell.swift */,
 				39A1EC602A603D8F008D1EC1 /* Houses Custom.swift */,
 				3997F0792A64303F00741E9D /* Progression Sentence.swift */,
 				396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */,
@@ -504,6 +519,7 @@
 				3997F0762A637D4700741E9D /* File.swift in Sources */,
 				395DE5152A95E75300B0B451 /* OthersPlanetsVC.swift in Sources */,
 				398580592AA26FC8007A561B /* ImagePicker.swift in Sources */,
+				392434602ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift in Sources */,
 				396A7B312AB4A34100E304D6 /* ChartView Extension.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
 				39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */,
@@ -513,6 +529,7 @@
 				3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */,
 				3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */,
 				39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */,
+				3924345E2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift in Sources */,
 				3916F33C2AA777FF00DEABEB /* NatalHousesCustomCell.swift in Sources */,
 				3955A66A2A909C2E00DE2051 /* ChartTableCell.swift in Sources */,
 				39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */,
@@ -523,6 +540,7 @@
 				395DE5052A954A4B00B0B451 /* TransitAspectsVC.swift in Sources */,
 				395DE5232A969F1F00B0B451 /* CompositePlanetsVC.swift in Sources */,
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
+				396989D32ABDF751007EA008 /* NatalTabBarController.swift in Sources */,
 				392434542ABA7CBC00584E26 /* RechargeVC.swift in Sources */,
 				396CD6602A9CF48D002C2528 /* FlipTransposedHousesViewController.swift in Sources */,
 				395DE50B2A95DE8B00B0B451 /* RelationshipBiWHeel.swift in Sources */,
@@ -556,8 +574,10 @@
 				398580572AA26D34007A561B /* DiscordInfoVC.swift in Sources */,
 				39E168662A972D3D0003892B /* SimpleAspectsByHouse.swift in Sources */,
 				395DE5192A967C5900B0B451 /* SynastryBiwheel.swift in Sources */,
+				392434622ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift in Sources */,
 				3903A33B2A5F2D0700245DD2 /* AppDelegate.swift in Sources */,
 				395DE51B2A967E5000B0B451 /* SynastryChartVC.swift in Sources */,
+				396989D12ABDF385007EA008 /* CustomNatalPlanetsCell.swift in Sources */,
 				3903A3452A5F2D0700245DD2 /* AstroLogic.xcdatamodeld in Sources */,
 				39851F7C2A93026900E70FF5 /* ProgressedAspectsByHouseTCVC.swift in Sources */,
 				39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */,
