@@ -521,11 +521,14 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 //                print("get pairs2: \(chartCake?.minorProgressedAspectsForCelestialPairs())")
 //                print("get pairs3: \(chartCake?.filteredMinorProgressedAspectsFromCelestialPairs())")
                 let name = nameTextField.text ?? ""
-                saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!)
+
 
 
                 let scores = self.chart!.getTotalPowerScoresForPlanets()
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
+              
+                saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet: strongestPlanet.keyName)
+
 
                 // let signScore = self.chart.calculateTotalSignScore()
                 // let houseStrengths = self.chart.calculatePlanetInHouseScores()
@@ -753,7 +756,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 extension ViewController: CLLocationManagerDelegate {
 
 
-    func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double, birthPlace: String) {
+    func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double, birthPlace: String, strongestPlanet: String) {
         // Get the Core Data managed context
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Unable to get AppDelegate")
@@ -779,7 +782,7 @@ extension ViewController: CLLocationManagerDelegate {
         newChart.setValue(latitude, forKey: "latitude")
         newChart.setValue(longitude, forKey: "longitude")
         newChart.setValue(birthPlace, forKey: "birthPlace")
-
+        newChart.setValue(strongestPlanet, forKey: "strongestPlanet")
         // Try saving the context
         do {
             try context.save()
@@ -814,7 +817,8 @@ extension ViewController: CLLocationManagerDelegate {
                        let birthDate = chart.value(forKey: "birthDate") as? Date,
                        let latitude = chart.value(forKey: "latitude") as? Double,
                        let longitude = chart.value(forKey: "longitude") as? Double,
-                      let birthPlace = chart.value(forKey: "birthPlace") as? String
+                      let birthPlace = chart.value(forKey: "birthPlace") as? String,
+                        let strongestPlanet = chart.value(forKey: "strongestPlanet") as? String
                     {
 
                     //    print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude), BirthPlace: \(birthPlace)")

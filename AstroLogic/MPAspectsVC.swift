@@ -713,11 +713,11 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configure(aspectingPlanet: "",
                            secondPlanetImageImageName: "",
                            firstSignTextText: "",
-                           secondSignTextText: aspectString,
-                           secondPlanetTextText: "",
+                           secondSignTextText: "",
+                           secondPlanetTextText: aspectString,
                            firstPlanetTextText: "",
                            firstAspectHeaderTextText: "",
-                           secondAspectHeaderTextText: edgeDatesString)
+                           secondAspectHeaderTextText: "")
         }
 
 

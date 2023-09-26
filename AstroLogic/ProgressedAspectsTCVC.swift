@@ -18,10 +18,7 @@ class ProgressedAspectsTimeChangeViewController: UIViewController  {
     var chartCake: ChartCake?
     var selectedDate: Date?
 
-    deinit {
-         print("Deinitializing ProgressedAspectsTimeChangeViewController")
-     }
-
+   
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         delegate?.datePickerDidChangeDate(sender.date)
     }

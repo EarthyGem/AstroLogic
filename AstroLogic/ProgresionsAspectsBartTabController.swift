@@ -14,10 +14,7 @@ class ProgressionsAspectsTabBarController: UITabBarController {
     var selectedDate: Date?
     var chartCake: ChartCake!
     var otherChart: ChartCake!
-    deinit {
-         print("Deinitializing ProgressedAspectsTimeChangeViewController")
-     }
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -103,22 +103,6 @@ class StrongestPlanetViewController: UIViewController {
     }
 
     @objc func back(sender: UIBarButtonItem) {
-        // Create a new instance of ViewController
-        let newVC = ViewController()
-
-        // Get the view controllers currently in the navigation stack
-        var viewControllers = navigationController?.viewControllers ?? []
-
-        // Remove the current instance of ViewController
-        viewControllers = viewControllers.filter { !($0 is ViewController) }
-
-        // Add the new instance
-        viewControllers.insert(newVC, at: viewControllers.count - 1)
-
-        // Reset the navigation stack
-        navigationController?.setViewControllers(viewControllers, animated: false)
-
-        // Pop to the new instance
         self.navigationController?.popViewController(animated: true)
     }
 

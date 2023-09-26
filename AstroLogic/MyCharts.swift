@@ -38,6 +38,7 @@ class ChartsViewController: UIViewController {
         //  deleteAllNames()
         tableView.reloadData()
     }
+    
 
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
@@ -166,20 +167,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
           self.navigationController?.pushViewController(editVC, animated: true)
       }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-           let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completion) in
-               // Navigate to the editing screen for the selected ChartEntity
-               let chartToEdit = self?.charts[indexPath.row]
-               // Assuming you have a method or a view controller to handle editing
-               self?.navigateToEditScreen(for: chartToEdit)
-               completion(true)
-           }
-
-           editAction.backgroundColor = .blue // or any other color you want for the edit button
-
-           let configuration = UISwipeActionsConfiguration(actions: [editAction])
-           return configuration
-       }
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return charts.count
     }
@@ -198,7 +186,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
         let scores = chartObj.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
-        _ = chart.birthPlace ?? "No BirthPlace"
+        let place = chart.birthPlace ?? "No BirthPlace"
         // Set the cell label
 
         // Set the cell image
@@ -208,13 +196,13 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
 
         
 
-        cell.textLabel?.text = "\(chart.name!) \(chart.birthDate!) \(chart.birthPlace!)"
+       cell.textLabel?.text = "\(chart.name!) \(chart.birthDate!)"
 
           fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { timeZone in
               DispatchQueue.main.async {
                   if let timeZone = timeZone {
                       let formattedDate = self.formatDate(chartDate, withTimeZone: timeZone)
-                      let dateAndPlace = "\(formattedDate) \(chart.birthPlace!)"
+                      let dateAndPlace = "\(formattedDate)"
                       let nameString = NSAttributedString(string: "\(chart.name!) ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)])
                       let dateAndPlaceString = NSAttributedString(string: dateAndPlace, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)])
 
@@ -310,16 +298,25 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
         }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, success: @escaping (Bool) -> Void) in
-            self.editChart(at: indexPath)
-            success(true)
-        }
-        editAction.backgroundColor = .blue  // or any color you prefer
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+          let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, success: @escaping (Bool) -> Void) in
+              self.deleteChart(at: indexPath)
+              success(true)
+          }
+          deleteAction.backgroundColor = .red  // or any color you prefer for delete
 
-        return UISwipeActionsConfiguration(actions: [editAction])
-    }
+          return UISwipeActionsConfiguration(actions: [deleteAction])
+      }
 
+      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+          let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, success: @escaping (Bool) -> Void) in
+              self.editChart(at: indexPath)
+              success(true)
+          }
+          editAction.backgroundColor = .blue  // or any color you prefer for edit
+
+          return UISwipeActionsConfiguration(actions: [editAction])
+      }
 
     func editChart(at indexPath: IndexPath) {
         let chartToEdit = charts[indexPath.row]

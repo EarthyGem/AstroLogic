@@ -93,7 +93,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
     init(planets: [String]) {
         self.planets = planets
         super.init(nibName: nil, bundle: nil)
-        print("Inside Init: \(String(describing: chartCake))")
+
 
     }
 

@@ -10,7 +10,7 @@ import SwiftEphemeris
 
 class MyNatalHousesVC: UIViewController {
 
-    
+
     var chart: Chart?
     var chartCake: ChartCake?
     var selectedDate: Date?
@@ -105,7 +105,7 @@ class MyNatalHousesVC: UIViewController {
     private let sunTableView: UITableView = {
         let sunTableView = UITableView()
 
-            sunTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+            sunTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
 
 
@@ -115,7 +115,7 @@ class MyNatalHousesVC: UIViewController {
     private let ascTableView: UITableView = {
         let ascTableView = UITableView()
 
-        ascTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        ascTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
 
 
@@ -124,7 +124,7 @@ class MyNatalHousesVC: UIViewController {
 
     private let moonTableView: UITableView = {
         let moonTableView = UITableView()
-        moonTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        moonTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
 
         return moonTableView
@@ -133,27 +133,27 @@ class MyNatalHousesVC: UIViewController {
     private let mercuryTableView: UITableView = {
         let mercuryTableView = UITableView()
 
-        mercuryTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        mercuryTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return mercuryTableView
     }()
 
     private let venusTableView: UITableView = {
         let venusTableView = UITableView()
-        venusTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        venusTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
         return venusTableView
     }()
 
     private let marsTableView: UITableView = {
         let marsTableView = UITableView()
-        marsTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        marsTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
         return marsTableView
     }()
 
     private let jupiterTableView: UITableView = {
         let jupiterTableView = UITableView()
-        jupiterTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        jupiterTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
         return jupiterTableView
     }()
@@ -161,26 +161,26 @@ class MyNatalHousesVC: UIViewController {
     private let saturnTableView: UITableView = {
         let saturnTableView = UITableView()
 
-        saturnTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        saturnTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return saturnTableView
     }()
 
     private let uranusTableView: UITableView = {
         let uranusTableView = UITableView()
-        uranusTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        uranusTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
         return uranusTableView
     }()
     private let neptuneTableView: UITableView = {
         let neptuneTableView = UITableView()
 
-        neptuneTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        neptuneTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return neptuneTableView
     }()
     private let plutoTableView: UITableView = {
         let plutoTableView = UITableView()
 
-        plutoTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        plutoTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return plutoTableView
     }()
 
@@ -188,13 +188,13 @@ class MyNatalHousesVC: UIViewController {
     private let eleventhTableView: UITableView = {
         let eleventhTableView = UITableView()
 
-        eleventhTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        eleventhTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return eleventhTableView
     }()
     private let twelfthTableView: UITableView = {
         let twelfthTableView = UITableView()
 
-        twelfthTableView.register(NatalHousesCustomCell.self, forCellReuseIdentifier: NatalHousesCustomCell.identifier)
+        twelfthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return twelfthTableView
     }()
 
@@ -404,18 +404,18 @@ class MyNatalHousesVC: UIViewController {
 
 
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 1).count)! * 90)
-       moonTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 2).count)! * 90)
-        mercuryTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 3).count)! * 90)
-        venusTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 4).count)! * 90)
-        marsTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 5).count)! * 90)
-        jupiterTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 6).count)! * 90)
-        saturnTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 7).count)! * 90)
-        uranusTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 8).count)! * 90)
-        neptuneTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 9).count)! * 90)
-        plutoTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 10).count)! * 90)
-        eleventhTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 11).count)! * 90)
-        twelfthTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 12).count)! * 90)
+        sunTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 1).count)! * 90)
+       moonTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 2).count)! * 90)
+        mercuryTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 3).count)! * 90)
+        venusTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 4).count)! * 90)
+        marsTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 5).count)! * 90)
+        jupiterTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 6).count)! * 90)
+        saturnTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 7).count)! * 90)
+        uranusTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 8).count)! * 90)
+        neptuneTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 9).count)! * 90)
+        plutoTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 10).count)! * 90)
+        eleventhTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 11).count)! * 90)
+        twelfthTableView.contentSize.height = CGFloat((chartCake?.rulingPlanets(for: 12).count)! * 90)
 
 
 
@@ -769,52 +769,52 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
                 if(tableView == sunTableView) {
 
-                    return (chartCake?.rulingBodies(for: 1).count)!
+                    return (chartCake?.rulingPlanets(for: 1).count)!
 
                 }
                     else if(tableView == moonTableView){
-                        return (chartCake?.rulingBodies(for: 2).count)!
+                        return (chartCake?.rulingPlanets(for: 2).count)!
 
                     }
                     else if(tableView == mercuryTableView){
 
-                        return (chartCake?.rulingBodies(for: 3).count)!
+                        return (chartCake?.rulingPlanets(for: 3).count)!
                     }
                     else if(tableView == venusTableView){
 
-                        return (chartCake?.rulingBodies(for: 4).count)!
+                        return (chartCake?.rulingPlanets(for: 4).count)!
                         }
                 else if(tableView == marsTableView){
 
-                    return (chartCake?.rulingBodies(for: 5).count)!
+                    return (chartCake?.rulingPlanets(for: 5).count)!
                             }
                 else if(tableView == jupiterTableView){
 
-                    return (chartCake?.rulingBodies(for: 6).count)!
+                    return (chartCake?.rulingPlanets(for: 6).count)!
                                 }
                 else if(tableView == saturnTableView){
 
-                    return (chartCake?.rulingBodies(for: 7).count)!
+                    return (chartCake?.rulingPlanets(for: 7).count)!
                                     }
                 else if(tableView == uranusTableView){
 
-                    return (chartCake?.rulingBodies(for: 8).count)!
+                    return (chartCake?.rulingPlanets(for: 8).count)!
                                         }
                 else if(tableView == neptuneTableView){
 
-                    return (chartCake?.rulingBodies(for: 9).count)!
+                    return (chartCake?.rulingPlanets(for: 9).count)!
                                             }
                 else if(tableView == plutoTableView){
 
-                    return (chartCake?.rulingBodies(for: 10).count)!
+                    return (chartCake?.rulingPlanets(for: 10).count)!
                                         }
                 else if(tableView == eleventhTableView){
 
-                    return (chartCake?.rulingBodies(for: 11).count)!
+                    return (chartCake?.rulingPlanets(for: 11).count)!
                                             }
                 else {
 
-                    return (chartCake?.rulingBodies(for: 12).count)!
+                    return (chartCake?.rulingPlanets(for: 12).count)!
 
             }
             }
@@ -824,29 +824,28 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 if(tableView == sunTableView) {
 
 
-                    guard let cell = sunTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = sunTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
 
 
 
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 1)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 1)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 1)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 1)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 1)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
-//print((chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 1)[indexPath.row].self)!)))
+
 
                    return cell
 
             }
                 else if(tableView == moonTableView){
 
-                    guard let cell = moonTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = moonTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
 
-
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 2)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 2)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 2)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 2)[indexPath.row].self)!).houseKeywords)"))
+                  cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 2)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -859,21 +858,20 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 else if(tableView == mercuryTableView){
 
 
-                    guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
 
 
-
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 3)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 3)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 3)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 3)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 3)[indexPath.row].keyName.lowercased().lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    return cell
 
                 }
                     else if(tableView == venusTableView){
 
 
-                        guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                        guard let cell = venusTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                            return UITableViewCell()
                        }
@@ -881,7 +879,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                        var transitVenusAspects = [mercuryVenus,saturnVenus,uranusVenus]
 
 
-                        cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 4)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 4)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 4)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 4)[indexPath.row].self)!).houseKeywords)"))
+                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 4)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                        return cell
 
 
@@ -890,7 +888,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 else if(tableView == marsTableView){
 
 
-                    guard let cell = marsTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = marsTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
@@ -898,8 +896,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
 
 
-
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 5)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 5)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 5)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 5)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 5)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -907,7 +904,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 else if(tableView == jupiterTableView){
 
 
-                    guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
@@ -916,8 +913,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitJupiterGlyph = ["pluto"]
 //                    var transitJupiterDurantion = [""]
 
-
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 6)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 6)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 6)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 6)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 6)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -925,7 +921,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 else if(tableView == saturnTableView){
 
 
-                    guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
@@ -933,8 +929,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitSaturnAspects = [jupiterSaturn]
 //                    var transitSaturnGlyph = ["jupiter"]
 //                    var transitSaturnDuration = ["jupiter"]
-
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 7)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 7)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 7)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 7)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 7)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -942,7 +937,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 else if(tableView == uranusTableView){
 
 
-                    guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
@@ -951,15 +946,14 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitUranusGlyph = ["mars","neptune"]
 //                    var transitUranusDuration = ["mars","neptune"]
 
-
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 8)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 8)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 8)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 8)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 8)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    return cell
 
                                         }
                 else if(tableView == neptuneTableView){
 
 
-                    guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
@@ -969,8 +963,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitNeptuneDuration = ["mercury"]
 
 
-
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 9)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 9)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 9)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 9)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 9)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 //
                    return cell
 
@@ -979,7 +972,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                else if (tableView == plutoTableView) {
 
 
-                    guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
@@ -987,8 +980,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
 //                    var transitSunAspects = [sunSun,venusSun,jupiterSun]
 
-
-                   cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 10)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 10)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 10)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 10)[indexPath.row].self)!).houseKeywords)"))
+                   cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 10)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -997,14 +989,15 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 else if (tableView == eleventhTableView) {
 
 
-                     guard let cell = eleventhTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                     guard let cell = eleventhTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                         return UITableViewCell()
                     }
 
 
+ //                    var transitSunAspects = [sunSun,venusSun,jupiterSun]
 
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 11)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 11)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 11)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 11)[indexPath.row].self)!).houseKeywords)"))
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 11)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
 
                     return cell
@@ -1015,7 +1008,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                 else {
 
 
-                    guard let cell = twelfthTableView.dequeueReusableCell(withIdentifier: NatalHousesCustomCell.identifier, for: indexPath) as? NatalHousesCustomCell else {
+                    guard let cell = twelfthTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
 
                        return UITableViewCell()
                    }
@@ -1024,8 +1017,8 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitPlutoGlyph = [""]
 //                    var transitPlutoDuration = [""]
 //
+               cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 12)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
-                    cell.configure(aspectingPlanet: (chartCake?.rulingBodies(for: 12)[indexPath.row].body.keyName.lowercased())!, aspectingPlanetSign: (chartCake?.rulingBodies(for: 12)[indexPath.row].sign.keyName)!, aspectingPlanetString: ("\(chartCake!.rulingBodies(for: 12)[indexPath.row].body.planetThoughtTypes) about \(chartCake!.houseCusps.house(of: (chartCake?.rulingBodies(for: 12)[indexPath.row].self)!).houseKeywords)"))
 
                    return cell
 
@@ -1047,7 +1040,10 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
         return 90 // returns fixed height for all rows, regardless of the tableView
     }
 
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // remove all the code related to expanding and collapsing
+    }
 
 
     }
