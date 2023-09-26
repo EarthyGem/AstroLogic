@@ -857,7 +857,7 @@ class ChartViewController: UIViewController {
     }
 
     func calculateTotalElementScores(signScores: [Zodiac: Double]) -> [Element: Double] {
-        var elementScores: [Element: Double] = [.fire: 0, .earth: 0, .air: 0, .water: 0]
+        var elementScores: [Element: Double] = [.inspiration: 0, .practicality: 0, .intellect: 0, .emotion: 0]
 
         for (element, signs) in elementSigns {
             for sign in signs {
@@ -871,7 +871,7 @@ class ChartViewController: UIViewController {
     }
 
     func calculateTotalModalityScores(signScores: [Zodiac: Double]) -> [Modality: Double] {
-        var modalityScores: [Modality: Double] = [.cardinal: 0, .fixed: 0, .mutable: 0]
+        var modalityScores: [Modality: Double] = [.pioneer: 0, .perfector: 0, .developer: 0]
 
         for (modality, signs) in modalitySigns {
             for sign in signs {
@@ -885,7 +885,7 @@ class ChartViewController: UIViewController {
     }
 
     func calculateTotalEmanationScores(signScores: [Zodiac: Double]) -> [Emanation: Double] {
-        var emanationScores: [Emanation: Double] = [.first: 0, .second: 0, .third: 0]
+        var emanationScores: [Emanation: Double] = [.liberty: 0, .modification: 0, .reserve: 0]
 
         for (emanation, signs) in emanationSigns {
             for sign in signs {

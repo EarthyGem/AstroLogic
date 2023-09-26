@@ -11,15 +11,15 @@ import SwiftEphemeris
 
 
 enum Element: String, CaseIterable {
-    case fire, earth, air, water
+    case inspiration, practicality, intellect, emotion
 }
 
 enum Modality: String, CaseIterable {
-    case cardinal, fixed, mutable
+    case pioneer, perfector, developer
 }
 
 enum Emanation: String, CaseIterable {
-    case first, second, third
+    case liberty, modification, reserve
 }
 
 enum Domain: String, CaseIterable {
@@ -27,28 +27,28 @@ enum Domain: String, CaseIterable {
 }
 
 enum Trinity: String, CaseIterable {
-    case life, wealth, association, psychism
+    case action, reality, connections, healing
 }
 
 
 
 let elementSigns: [Element: [Zodiac]] = [
-    .fire: [.aries, .leo, .sagittarius],
-    .earth: [.taurus, .virgo, .capricorn],
-    .air: [.gemini, .libra, .aquarius],
-    .water: [.cancer, .scorpio, .pisces]
+    .inspiration: [.aries, .leo, .sagittarius],
+    .practicality: [.taurus, .virgo, .capricorn],
+    .intellect: [.gemini, .libra, .aquarius],
+    .emotion: [.cancer, .scorpio, .pisces]
 ]
 
 let modalitySigns: [Modality: [Zodiac]] = [
-    .cardinal: [.aries, .cancer, .libra, .capricorn],
-    .fixed: [.taurus, .leo, .scorpio, .aquarius],
-    .mutable: [.gemini, .virgo, .sagittarius, .pisces]
+    .pioneer: [.aries, .cancer, .libra, .capricorn],
+    .perfector: [.taurus, .leo, .scorpio, .aquarius],
+    .developer: [.gemini, .virgo, .sagittarius, .pisces]
 ]
 
 let emanationSigns: [Emanation: [Zodiac]] = [
-    .first: [.aries, .taurus, .gemini, .cancer],
-    .second: [.leo, .virgo, .libra, .scorpio],
-    .third: [.sagittarius, .capricorn, .aquarius, .pisces]
+    .liberty: [.aries, .taurus, .gemini, .cancer],
+    .modification: [.leo, .virgo, .libra, .scorpio],
+    .reserve: [.sagittarius, .capricorn, .aquarius, .pisces]
 ]
 
 let domainHouses: [Domain: [Int]] = [
@@ -58,8 +58,8 @@ let domainHouses: [Domain: [Int]] = [
 ]
 
 let trinityHouses: [Trinity: [Int]] = [
-    .life: [1, 5, 9],
-    .wealth: [2, 6, 10],
-    .association: [3, 7, 11],
-    .psychism: [4, 8, 12]
+    .action: [1, 5, 9],
+    .reality: [2, 6, 10],
+    .connections: [3, 7, 11],
+    .healing: [4, 8, 12]
 ]
