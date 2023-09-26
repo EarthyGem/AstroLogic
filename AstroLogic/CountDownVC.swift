@@ -16,12 +16,12 @@ class CountdownViewController: UIViewController {
 
     var reflectionTextView: UITextView!
     var insightsTextView: UITextView!
-    var birthdayWishTextView: UITextView!
+    var birthdayWishLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .green
+        view.backgroundColor = .black
         setupCountdownLabel()
      //   setupReflectionSection()
 //setupInsightSection()
@@ -80,13 +80,22 @@ class CountdownViewController: UIViewController {
             }
         }
 
-        func setupBirthdayWishSection() {
-            birthdayWishTextView = UITextView(frame: CGRect(x: 20, y: countdownLabel.frame.maxY + 20, width: self.view.frame.width - 40, height: self.view.frame.height - countdownLabel.frame.maxY - 40))
-            birthdayWishTextView.font = UIFont.systemFont(ofSize: 18)
-            birthdayWishTextView.isEditable = false
-            birthdayWishTextView.text = "Your birthday wish: I am extremely magnetic to money and other valuable resources" // Load this from wherever you store the user's birthday wish
-            view.addSubview(birthdayWishTextView)
-        }
+    func setupBirthdayWishSection() {
+        birthdayWishLabel = UILabel()
+        birthdayWishLabel.font = UIFont.systemFont(ofSize: 34)
+        birthdayWishLabel.textColor = .blue
+        birthdayWishLabel.text = "Birthday Wish 🎂" // Load this from wherever you store the user's birthday wish
+        birthdayWishLabel.textAlignment = .center
+        birthdayWishLabel.numberOfLines = 0 // This allows the label to wrap text if needed
+
+        // Set the frame to the view's bounds
+        birthdayWishLabel.frame = view.bounds
+
+        // Allow the label to automatically resize for any changes (like device rotation)
+        birthdayWishLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        view.addSubview(birthdayWishLabel)
+    }
 
         @objc func updateCountdown() {
             guard let targetDate = targetDate else { return }

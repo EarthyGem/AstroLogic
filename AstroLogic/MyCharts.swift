@@ -126,11 +126,18 @@ class ChartsViewController: UIViewController {
         context.delete(chartToDelete)
         do {
             try context.save()
+
+            // 1. Update your data source.
             charts.remove(at: indexPath.row)
+
+            // 2. Tell the tableView to delete the row.
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+
         } catch {
             print("Failed to delete chart: \(error.localizedDescription)")
         }
     }
+
 
     func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {
         let sorted = scores.sorted { $0.value > $1.value }
@@ -228,95 +235,118 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
     // Your other tableView functions like didSelectRowAt can remain the same...
 
 
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let otherChart = charts[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let otherChart = charts[indexPath.row]
 
-            // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
-            // Otherwise, adapt accordingly.
-            let latitude = otherChart.latitude
-            let longitude = otherChart.longitude
-            let chartDate = otherChart.birthDate
-            let name = otherChart.name ?? ""
-            let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
-            let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
-            let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
+        // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
+        // Otherwise, adapt accordingly.
+        let latitude = otherChart.latitude
+        let longitude = otherChart.longitude
+        let chartDate = otherChart.birthDate
+        let name = otherChart.name ?? ""
+        let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
+        let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
+        let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
+        let timestamp = Int(chartDate?.timeIntervalSince1970 ?? 34)
 
-            let scores = chart.getTotalPowerScoresForPlanets()
-            let strongestPlanet = getStrongestPlanet(from: scores)
+        let scores = chart.getTotalPowerScoresForPlanets()
+        let strongestPlanet = getStrongestPlanet(from: scores)
+
+        fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { [self] timeZone in
+            DispatchQueue.main.async { [self] in
+                if let timeZone = timeZone {
+                    let formattedDate = self.formatDate(chartDate!, withTimeZone: timeZone)
+                    let dateAndPlace = "\(formattedDate)"
+                    let nameString = NSAttributedString(string: "\(name) ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)])
+                    let dateAndPlaceString = NSAttributedString(string: dateAndPlace, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)])
+
+                    let combinedAttributedString = NSMutableAttributedString()
+                    combinedAttributedString.append(nameString)
+                    combinedAttributedString.append(dateAndPlaceString)
 
 
+                    let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
+                    let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
+                    let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
 
-            let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
-            let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
-            let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
+                    if strongestPlanet == Planet.sun.celestialObject {
+                        strongestPlanetSign = chart.sun.sign.keyName
+                    } else if strongestPlanet == Planet.moon.celestialObject {
+                        strongestPlanetSign = chart.moon.sign.keyName
+                    } else if strongestPlanet == Planet.mercury.celestialObject {
+                        strongestPlanetSign = chart.mercury.sign.keyName
+                    } else if strongestPlanet == Planet.venus.celestialObject {
+                        strongestPlanetSign = chart.venus.sign.keyName
+                    } else if strongestPlanet == Planet.mars.celestialObject {
+                        strongestPlanetSign = chart.mars.sign.keyName
+                    } else if strongestPlanet == Planet.jupiter.celestialObject {
+                        strongestPlanetSign = chart.jupiter.sign.keyName
+                    } else if strongestPlanet == Planet.saturn.celestialObject {
+                        strongestPlanetSign = chart.saturn.sign.keyName
+                    } else if strongestPlanet == Planet.uranus.celestialObject {
+                        strongestPlanetSign = chart.uranus.sign.keyName
+                    } else if strongestPlanet == Planet.neptune.celestialObject {
+                        strongestPlanetSign = chart.neptune.sign.keyName
+                    } else if strongestPlanet == Planet.pluto.celestialObject {
+                        strongestPlanetSign = chart.pluto.sign.keyName
+                    } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
+                        strongestPlanetSign = chart.southNode.sign.keyName
+                    }
 
-            if strongestPlanet == Planet.sun.celestialObject {
-                strongestPlanetSign = chart.sun.sign.keyName
-            } else if strongestPlanet == Planet.moon.celestialObject {
-                strongestPlanetSign = chart.moon.sign.keyName
-            } else if strongestPlanet == Planet.mercury.celestialObject {
-                strongestPlanetSign = chart.mercury.sign.keyName
-            } else if strongestPlanet == Planet.venus.celestialObject {
-                strongestPlanetSign = chart.venus.sign.keyName
-            } else if strongestPlanet == Planet.mars.celestialObject {
-                strongestPlanetSign = chart.mars.sign.keyName
-            } else if strongestPlanet == Planet.jupiter.celestialObject {
-                strongestPlanetSign = chart.jupiter.sign.keyName
-            } else if strongestPlanet == Planet.saturn.celestialObject {
-                strongestPlanetSign = chart.saturn.sign.keyName
-            } else if strongestPlanet == Planet.uranus.celestialObject {
-                strongestPlanetSign = chart.uranus.sign.keyName
-            } else if strongestPlanet == Planet.neptune.celestialObject {
-                strongestPlanetSign = chart.neptune.sign.keyName
-            } else if strongestPlanet == Planet.pluto.celestialObject {
-                strongestPlanetSign = chart.pluto.sign.keyName
-            } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-                strongestPlanetSign = chart.southNode.sign.keyName
+                    let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
+                                                         strongestPlanetSign: strongestPlanetSign!,
+                                                         sunSign: chart.sun.sign.keyName,
+                                                         moonSign: chart.moon.sign.keyName,
+                                                         risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
+
+                    // Initialize and push the StrongestPlanetViewController
+                    let strongestPlanetVC = StrongestPlanetViewController()
+                    strongestPlanetVC.chartCake = chartCake
+                    strongestPlanetVC.chart = chart
+                    strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
+                    strongestPlanetVC.name = name
+                    strongestPlanetVC.birthPlace = birthPlace
+                    //  strongestPlanetVC.combinedBirthDateTime = chartDate
+                    strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
+                    strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
+                    strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
+                    strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
+                    strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+                    strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
+                    strongestPlanetVC.sentenceText = sentence
+                    strongestPlanetVC.dateString = dateAndPlace
+                    self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
+                }
             }
-
-            let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
-                                                 strongestPlanetSign: strongestPlanetSign!,
-                                                 sunSign: chart.sun.sign.keyName,
-                                                 moonSign: chart.moon.sign.keyName,
-                                                 risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
-
-            // Initialize and push the StrongestPlanetViewController
-            let strongestPlanetVC = StrongestPlanetViewController()
-            strongestPlanetVC.chartCake = chartCake
-            strongestPlanetVC.chart = chart
-            strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
-            strongestPlanetVC.name = name
-            strongestPlanetVC.birthPlace = birthPlace
-            //  strongestPlanetVC.combinedBirthDateTime = chartDate
-            strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
-            strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
-            strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
-            strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
-            strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
-            strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
-            strongestPlanetVC.sentenceText = sentence
-            self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
         }
+    }
 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-          let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, success: @escaping (Bool) -> Void) in
-              self.deleteChart(at: indexPath)
-              success(true)
-          }
-          deleteAction.backgroundColor = .red  // or any color you prefer for delete
 
-          return UISwipeActionsConfiguration(actions: [deleteAction])
-      }
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [self] (contextualAction, view, success: @escaping (Bool) -> Void) in
+            editChart(at: indexPath)
+            success(true)
+        }
+        editAction.backgroundColor = .blue  // or any color you prefer for edit
+
+        return UISwipeActionsConfiguration(actions: [editAction])
+    }
+
+
+
 
       func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-          let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, success: @escaping (Bool) -> Void) in
-              self.editChart(at: indexPath)
-              success(true)
-          }
-          editAction.backgroundColor = .blue  // or any color you prefer for edit
 
-          return UISwipeActionsConfiguration(actions: [editAction])
-      }
+          let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (contextualAction, view, success: @escaping (Bool) -> Void) in
+                self.deleteChart(at: indexPath)
+                success(true)
+            }
+            deleteAction.backgroundColor = .red  // or any color you prefer for delete
+
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+
+
 
     func editChart(at indexPath: IndexPath) {
         let chartToEdit = charts[indexPath.row]

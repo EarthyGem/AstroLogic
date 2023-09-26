@@ -176,7 +176,7 @@ class StrongestPlanetViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -70),
             imageView.widthAnchor.constraint(equalToConstant: 200),
             imageView.heightAnchor.constraint(equalToConstant: 200)
         ])

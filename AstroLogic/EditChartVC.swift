@@ -78,14 +78,18 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
             birthPlaceTextField.text = chart.birthPlace
 
             fetchTimeZone(latitude: chart.latitude, longitude: chart.longitude, timestamp: Int(chart.birthDate!.timeIntervalSince1970)) { [weak self] timeZone in
-                DispatchQueue.main.async {
-                    guard let strongSelf = self else { return }
-                    if let tz = timeZone {
-                        let formattedDate = strongSelf.formattedDateString(from: chart.birthDate!, with: tz)
-                        strongSelf.dateTimeTextField.text = formattedDate
-                    } else {
-                        // Handle the case where you don't have a timeZone, maybe use a default formatter or show an error.
-                    }
+                        DispatchQueue.main.async {
+                            guard let strongSelf = self else { return }
+                            if let tz = timeZone {
+                                let formattedDate = strongSelf.formattedDateString(from: chart.birthDate!, with: tz)
+                                strongSelf.dateTimeTextField.text = formattedDate
+
+                                // Set the timeZone of the dateTimePicker and date:
+                                strongSelf.dateTimePicker.timeZone = tz
+                                strongSelf.dateTimePicker.date = chart.birthDate!
+                            } else {
+                                // Handle the case where you don't have a timeZone, maybe use a default formatter or show an error.
+                            }
                 }
             }
         }
@@ -128,8 +132,12 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 if let tz = timeZone {
-                    let formattedDate = strongSelf.formattedDateString(from: sender.date, with: tz)
+                    let adjustedDate = sender.date.adjusted(to: tz)
+                    let formattedDate = strongSelf.formattedDateString(from: adjustedDate, with: tz)
                     strongSelf.dateTimeTextField.text = formattedDate
+
+                    // Update the dateTimePicker's timeZone (this will not adjust its internal date representation, but will influence future changes):
+                    strongSelf.dateTimePicker.timeZone = tz
                 } else {
                     // Handle the case where you don't have a timeZone, maybe use a default formatter or show an error.
                 }
@@ -213,5 +221,12 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
 
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+}
+extension Date {
+    func adjusted(to timeZone: TimeZone) -> Date {
+        let seconds = TimeInterval(timeZone.secondsFromGMT(for: self))
+        return addingTimeInterval(seconds)
     }
 }
