@@ -154,6 +154,32 @@ class ChartsViewController: UIViewController {
 // MARK: - UITableViewDataSource and UITableViewDelegate
 extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
 
+    func navigateToEditScreen(for chart: ChartEntity?) {
+          // Here, you would instantiate the view controller responsible for editing a ChartEntity,
+          // then push it onto the navigation stack.
+
+          guard let chart = chart else { return }
+
+          let editVC = EditChartViewController() // assuming you have a view controller named EditChartViewController
+          editVC.chartToEdit = chart // assuming you have a property in EditChartViewController to hold the chart being edited
+
+          self.navigationController?.pushViewController(editVC, animated: true)
+      }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+           let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completion) in
+               // Navigate to the editing screen for the selected ChartEntity
+               let chartToEdit = self?.charts[indexPath.row]
+               // Assuming you have a method or a view controller to handle editing
+               self?.navigateToEditScreen(for: chartToEdit)
+               completion(true)
+           }
+
+           editAction.backgroundColor = .blue // or any other color you want for the edit button
+
+           let configuration = UISwipeActionsConfiguration(actions: [editAction])
+           return configuration
+       }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return charts.count
     }
@@ -283,6 +309,25 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
             strongestPlanetVC.sentenceText = sentence
             self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
         }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, success: @escaping (Bool) -> Void) in
+            self.editChart(at: indexPath)
+            success(true)
+        }
+        editAction.backgroundColor = .blue  // or any color you prefer
+
+        return UISwipeActionsConfiguration(actions: [editAction])
+    }
+
+
+    func editChart(at indexPath: IndexPath) {
+        let chartToEdit = charts[indexPath.row]
+        let editChartVC = EditChartViewController()
+        editChartVC.chartToEdit = chartToEdit
+        self.navigationController?.pushViewController(editChartVC, animated: true)
+    }
+
 
     }
 
