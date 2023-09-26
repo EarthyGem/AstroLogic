@@ -158,15 +158,19 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
       }
 
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-        override func viewDidLayoutSubviews() {
-            super.viewDidLayoutSubviews()
+        let birthChartViewHeight = isBirthChartViewCollapsed ? birthChartViewCollapsedHeight : birthChartViewFullHeight
 
-        
-            let tableViewHeight = tableView.contentSize.height + 220  // Use the content size of the table view cells
+        tableView.frame = CGRect(
+            x: 10,
+            y: 0, // Or wherever the Y origin should be, considering other views
+            width: view.bounds.width - 20,
+            height: view.bounds.height - 50 - 20 // Adapted for other UI elements, if any.
+        )
+    }
 
-            tableView.frame = CGRect(x: 10, y: 50, width: view.bounds.width - 20, height: tableViewHeight + 30)
-        }
 
     @objc func toggleBirthChartView() {
         UIView.animate(withDuration: 0.3, animations: {

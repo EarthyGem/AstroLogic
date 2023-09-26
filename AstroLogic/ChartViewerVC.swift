@@ -239,7 +239,7 @@ class ChartViewController: UIViewController {
      //   birthChartView.backgroundColor = .white
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 1500))
         // Set the total height to 4000
-        let totalHeight: CGFloat = 4000
+        let totalHeight: CGFloat = 4200
         let adjustedYPos = screenWidth + 50
         // Adjust the scrollView's contentSize
         scrollView.contentSize = CGSize(width: screenWidth, height: totalHeight)
