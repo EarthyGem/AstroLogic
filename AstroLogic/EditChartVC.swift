@@ -47,18 +47,14 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
         button.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
         return button
     }()
-    let dateTimePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .dateAndTime
-        return picker
-    }()
 
 
     @objc func dateTimePickerDonePressed() {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
-//        dateTimeTextField.text = formatter.string(from: dateTimePicker.date)
+        formatter.timeZone = dateTimePicker.timeZone  // Ensure you're using the same timezone as the UIDatePicker
+        dateTimeTextField.text = formatter.string(from: dateTimePicker.date)
         dateTimeTextField.resignFirstResponder()
         self.view.endEditing(true)
     }
@@ -96,11 +92,6 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
 
         birthPlaceTextField.addTarget(self, action: #selector(birthPlaceTextFieldEditingDidBegin), for: .editingDidBegin)
 
-        let dateTimePicker = UIDatePicker()
-        dateTimePicker.datePickerMode = .dateAndTime
-        dateTimePicker.addTarget(self, action: #selector(dateTimePickerValueChanged(_:)), for: .valueChanged)
-        dateTimePicker.date = (chartToEdit?.birthDate)!
-        dateTimePicker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
 
 
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
@@ -128,21 +119,10 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
         return dateFormatter.string(from: date)
     }
     @objc func dateTimePickerValueChanged(_ sender: UIDatePicker) {
-        fetchTimeZone(latitude: chartToEdit?.latitude ?? 0, longitude: chartToEdit?.longitude ?? 0, timestamp: Int(sender.date.timeIntervalSince1970)) { [weak self] timeZone in
-            DispatchQueue.main.async {
-                guard let strongSelf = self else { return }
-                if let tz = timeZone {
-                    let adjustedDate = sender.date.adjusted(to: tz)
-                    let formattedDate = strongSelf.formattedDateString(from: adjustedDate, with: tz)
-                    strongSelf.dateTimeTextField.text = formattedDate
-
-                    // Update the dateTimePicker's timeZone (this will not adjust its internal date representation, but will influence future changes):
-                    strongSelf.dateTimePicker.timeZone = tz
-                } else {
-                    // Handle the case where you don't have a timeZone, maybe use a default formatter or show an error.
-                }
-            }
-        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        dateTimeTextField.text = formatter.string(from: sender.date)
     }
 
 
@@ -211,8 +191,23 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
 
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         birthPlaceTextField.text = place.formattedAddress
+        let currentTimestamp = Int(Date().timeIntervalSince1970)
+
+        // Fetch the timezone for the selected place
+        fetchTimeZone(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude, timestamp: currentTimestamp) { [weak self] timeZone in
+            DispatchQueue.main.async {
+                // Set the timeZone of the dateTimePicker
+                self?.dateTimePicker.timeZone = timeZone
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
+
+    func updateDateTimeTextField() {
+        let formattedDate = self.formattedDateString(from: dateTimePicker.date, with: dateTimePicker.timeZone ?? TimeZone.current)
+        dateTimeTextField.text = formattedDate
+    }
+
 
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         // Handle error
@@ -222,6 +217,20 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
     }
+
+    let dateTimePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .dateAndTime
+
+        picker.addTarget(self, action: #selector(dateTimePickerValueChanged(_:)), for: .valueChanged)
+
+     //   picker.date = (chartToEdit?.birthDate)
+        picker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
+
+
+        return picker
+    }()
+
     
 }
 extension Date {

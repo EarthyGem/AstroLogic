@@ -318,6 +318,11 @@ class NatalAspectsViewController: UIViewController {
          super.viewDidLayoutSubviews()
 
          scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
+           view.addSubview(scrollView)
+
+           // Assuming topTransitImage needs to be inside the scrollView
+           topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
+           scrollView.addSubview(topTransitImage)
          scrollView.backgroundColor = .clear
          view.addSubview(scrollView)
          
@@ -326,19 +331,14 @@ class NatalAspectsViewController: UIViewController {
          
          topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
          view.addSubview(topTransitImage)
-         
-         // adding date label
-         
+
      
          sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          scrollView.addSubview(sunScrollView)
- //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
-         
- //        sunTableView.backgroundColor = .orange
+
+         sunTableView.backgroundColor = .orange
          moonTableView.backgroundColor = .green
-
         mercuryTableView.backgroundColor = .purple
-
          venusTableView.backgroundColor = .yellow
         marsTableView.backgroundColor = .red
         jupiterTableView.backgroundColor = .systemGroupedBackground
@@ -347,13 +347,9 @@ class NatalAspectsViewController: UIViewController {
         neptuneTableView.backgroundColor = .gray
          plutoTableView.backgroundColor = .systemPink
 
- //      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
-    
-    
          
          scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
          sunTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.sun.celestialObject).count * 90)
- //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
          moonTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.moon.celestialObject).count * 90)
          mercuryTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
          venusTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.venus.celestialObject).count * 90)
@@ -366,48 +362,32 @@ class NatalAspectsViewController: UIViewController {
          
          
          scrollView.addSubview(moonScrollView)
- //        moonScrollView.contentSize = CGSize(width: 300, height: 200)
         moonScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(mercuryScrollView)
- //        mercuryScrollView.contentSize = CGSize(width: 300, height: 200)
          mercuryScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(venusScrollView)
- //        venusScrollView.contentSize = CGSize(width: 300, height: 200)
          venusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(marsScrollView)
- //        marsScrollView.contentSize = CGSize(width: 300, height: 200)
          marsScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(jupiterScrollView)
- //        jupiterScrollView.contentSize = CGSize(width: 300, height: 200)
          jupiterScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(saturnScrollView)
- //        saturnScrollView.contentSize = CGSize(width: 300, height: 200)
          saturnScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(uranusScrollView)
- //        uranusScrollView.contentSize = CGSize(width: 300, height: 200)
          uranusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(neptuneScrollView)
- //        neptuneScrollView.contentSize = CGSize(width: 300, height: 200)
          neptuneScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
          
          scrollView.addSubview(plutoScrollView)
- //        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
          plutoScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-     
- //        sunScrollView.addSubview(plutoTableView)
-         // Do any additional setup after loading the view.
-         
-    
- //        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
- //
-         
+
          
          sunSignGlyph.image = UIImage(named: "sun")
          sunSignGlyph.image?.withTintColor(UIColor.yellow)
