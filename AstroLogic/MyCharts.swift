@@ -26,7 +26,7 @@ class ChartsViewController: UIViewController {
         let importButton = UIBarButtonItem(title: "Import AAF", style: .plain, target: self, action: #selector(importButtonTapped))
            self.navigationItem.rightBarButtonItem = importButton
 
-        processDetails()
+      //  processDetails()
        
         setupTableView()
 
@@ -118,25 +118,19 @@ class ChartsViewController: UIViewController {
     }
 
     func deleteChart(at indexPath: IndexPath) {
-        let chartToDelete = charts[indexPath.row]
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let context = appDelegate.persistentContainer.viewContext
-        context.delete(chartToDelete)
-        do {
-            try context.save()
-
-            // 1. Update your data source.
-            charts.remove(at: indexPath.row)
-
-            // 2. Tell the tableView to delete the row.
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-
-        } catch {
-            print("Failed to delete chart: \(error.localizedDescription)")
-        }
-    }
+           let chartToDelete = charts[indexPath.row]
+           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+           let context = appDelegate.persistentContainer.viewContext
+           context.delete(chartToDelete)
+           do {
+               try context.save()
+               charts.remove(at: indexPath.row)
+           } catch {
+               print("Failed to delete chart: \(error.localizedDescription)")
+           }
+       }
 
 
     func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {

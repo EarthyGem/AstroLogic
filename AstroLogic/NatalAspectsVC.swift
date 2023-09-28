@@ -317,8 +317,7 @@ class NatalAspectsViewController: UIViewController {
      override func viewDidLayoutSubviews() {
          super.viewDidLayoutSubviews()
 
-         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
-           view.addSubview(scrollView)
+         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
 
            // Assuming topTransitImage needs to be inside the scrollView
            topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)

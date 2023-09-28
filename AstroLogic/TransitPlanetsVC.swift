@@ -204,11 +204,21 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
              
              return UITableViewCell()
          }
+        let signGlyphImageName = chartCake?.transits.planets[indexPath.row].body.keyName.lowercased() ?? "defaultSignGlyphImageName"
+        let planetImageImageName = chartCake?.transits.planets[indexPath.row].body.keyName.lowercased() ?? "defaultPlanetImageImageName"
+        let signTextText = chartCake?.transits.planets[indexPath.row].formatted ?? "defaultSignTextText"
+        let planetTextText = chartCake?.transits.planets[indexPath.row].body.transitName ?? "defaultPlanetTextText"
+        let longitude = chartCake?.transits.planets[indexPath.row].longitude ?? 0.0 // You might want to handle this default value differently
+        let houseKeywords = chartCake?.houseCusps.cusp(for: longitude).houseKeywords ?? "unknown"
+
+        cell.configure(signGlyphImageName: signGlyphImageName,
+                       planetImageImageName: planetImageImageName,
+                       signTextText: signTextText,
+                       planetTextText: planetTextText,
+                       headerTextText: "coming from the house of \(houseKeywords)")
+
         
-        cell.configure(signGlyphImageName: (chartCake?.transits.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.transits.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.transits.planets[indexPath.row].formatted)!, planetTextText: "Transit \(String(describing: chartCake!.transits.planets[indexPath.row].body.keyName))", headerTextText: "")
-        
-//        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
-        
+
         
          return cell
          
