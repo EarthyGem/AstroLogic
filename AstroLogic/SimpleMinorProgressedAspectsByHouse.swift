@@ -800,3 +800,16 @@ extension SimpleMinorProgressedAspectsByHousesVC: UITableViewDataSource, UITable
 
 
     }
+
+
+
+
+
+
+
+
+
+//
+//                let selectedVC = FirstFirstHousePlanetViewController.self
+//                performSegue(withIdentifier: "firstHouse1", sender: selectedVC)
+

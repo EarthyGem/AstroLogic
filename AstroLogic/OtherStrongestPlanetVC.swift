@@ -13,8 +13,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     var chartCake: ChartCake?
     var otherChart: ChartCake?
     var name: String!
-    var synastry: SynastryChartCake?
-    var birthDate: Date?
+    
     // Add
 //    var getMinors: (() -> Date)?
 //    var getMajorProgresseDate: (() -> Date)?
@@ -84,7 +83,6 @@ class OthersStrongestPlanetViewController: UIViewController {
         relationshipItemsVC.chartCake = chartCake.self
         relationshipItemsVC.strongestPlanet = strongestPlanet.self
         relationshipItemsVC.otherChart = otherChart.self
-        relationshipItemsVC.synastry = synastry.self
         relationshipItemsVC.name = name.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet

@@ -14,7 +14,7 @@ class SimpleMajorAspectsViewController: UIViewController {
     var chartCake: ChartCake?
     var selectedDate: Date?
     var tableViewToPlanetMap: [UITableView: Planet] = [:]
-    var name: String!
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 
@@ -683,7 +683,6 @@ class SimpleMajorAspectsViewController: UIViewController {
         let flipSynastryVC = MPAspectsViewController()
         flipSynastryVC.chartCake = self.chartCake
         flipSynastryVC.selectedDate = self.selectedDate
-      
         self.navigationController?.pushViewController(flipSynastryVC, animated: true)
     }
 

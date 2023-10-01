@@ -408,7 +408,7 @@ var chart: Chart?
    
    
         
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 6000 )
+        scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         for (index, tableView) in tableViews.enumerated() {
@@ -463,6 +463,19 @@ var chart: Chart?
 //        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
         twelfthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
     
+        
+        
+        
+        
+        
+        
+        
+//        sunScrollView.addSubview(tenthTableView)
+        // Do any additional setup after loading the view.
+        
+   
+//        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
+//
         let mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
         
         sunSignGlyph.image = UIImage(named: mySignCusps[0]!)

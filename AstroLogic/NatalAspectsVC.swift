@@ -317,7 +317,8 @@ class NatalAspectsViewController: UIViewController {
      override func viewDidLayoutSubviews() {
          super.viewDidLayoutSubviews()
 
-         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
+           view.addSubview(scrollView)
 
            // Assuming topTransitImage needs to be inside the scrollView
            topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
@@ -347,7 +348,7 @@ class NatalAspectsViewController: UIViewController {
          plutoTableView.backgroundColor = .systemPink
 
          
-         scrollView.contentSize = CGSize(width: view.frame.width, height: 6000)
+         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
          sunTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.sun.celestialObject).count * 90)
          moonTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.moon.celestialObject).count * 90)
          mercuryTableView.contentSize.height = CGFloat(chartCake!.aspectsFiltered(by: Planet.mercury.celestialObject).count * 90)

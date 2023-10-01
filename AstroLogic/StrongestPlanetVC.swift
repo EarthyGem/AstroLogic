@@ -28,7 +28,6 @@ class StrongestPlanetViewController: UIViewController {
     var dateString: String?
     var strongestPlanetSign: String!
     var sortedPlanets: [CelestialObject] = []
-    var birthDate: Date?
     // Add
 //    var getMinors: (() -> Date)?
 //    var getMajorProgresseDate: (() -> Date)?
@@ -114,9 +113,6 @@ class StrongestPlanetViewController: UIViewController {
         myItemsVC.chart = chart.self
         myItemsVC.strongestPlanet = strongestPlanet.self
         myItemsVC.chartCake = chartCake.self
-        myItemsVC.sortedPlanets = sortedPlanets.self
-        myItemsVC.name = name.self
-        myItemsVC.birthDate = birthDate.self
         myItemsVC.sortedPlanets = sortedPlanets.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet

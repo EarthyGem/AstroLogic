@@ -40,7 +40,7 @@ class ProgressionPlanetsByHouseTimeChangeViewController: UIViewController  {
         let selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = SimpleProgressedAspectsByHousesVC()
+        let nextViewController = ProgressionsAspectsByHouseTabBarController()
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate
         navigationController?.pushViewController(nextViewController, animated: true)

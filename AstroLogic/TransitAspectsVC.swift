@@ -20,7 +20,10 @@ class TransitAspectedPlanetsViewController  : UIViewController {
 
         return scrollView
     }()
+    
 
+    
+    
     private let sunScrollView: UIView = {
         let sunScrollView = UIView()
 

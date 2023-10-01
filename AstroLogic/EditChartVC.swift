@@ -221,7 +221,7 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
     let dateTimePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
-     //   picker.preferredDatePickerStyle = .wheels
+
         picker.addTarget(self, action: #selector(dateTimePickerValueChanged(_:)), for: .valueChanged)
 
      //   picker.date = (chartToEdit?.birthDate)
