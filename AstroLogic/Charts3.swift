@@ -229,26 +229,6 @@ func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completi
     task.resume()  // Don't forget to start the task.
 }
 
-func processDetails() {
-    let detailsArray = parseDetails(from: dataString)
-    for details in detailsArray {
-        print(details)
-
-        if let name = details.name,
-           let birthDate = details.date,
-           let latitude = details.latitude,
-           let longitude = details.longitude {
-
-            adjustedBirthDateWithTimeZone(latitude: latitude, longitude: longitude, birthDate: birthDate) { adjustedDate in
-                if let adjustedBirthDate = adjustedDate {
-                    saveChart(name: name, latitude: latitude, longitude: latitude, birthDate: adjustedBirthDate)
-                } else {
-
-                }
-            }
-        }
-    }
-}
 
 
 func adjustedBirthDateWithTimeZone(latitude: Double, longitude: Double, birthDate: Date, completion: @escaping (Date?) -> Void) {

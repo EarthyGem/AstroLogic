@@ -16,6 +16,7 @@ class MajorProgressionsViewController: UIViewController, UITableViewDelegate, UI
     var majorsChartView: MajorsBiWheelChartView!
     var chart: Chart?
     var chartCake: ChartCake?
+    var name: String!
     var selectedDate: Date?
     static var progressedDate: Date {
         let dobDate = Date()
@@ -116,7 +117,7 @@ var mySunText = ""
     
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        table.register(MinorsCustomTableViewCell.self, forCellReuseIdentifier: MinorsCustomTableViewCell.identifier)
         return table
     }()
 
@@ -181,18 +182,33 @@ var mySunText = ""
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
-             
-             return UITableViewCell()
-         }
-        
-        cell.configure(signGlyphImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.major.planets[indexPath.row].sign.keyName)!, planetTextText: "Evolving \(String(describing: chartCake!.minor.planets[indexPath.row].body.urgeTypes))", headerTextText: "headerTextText")
-        
-        
-         return cell
-         
-         
-     }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MinorsCustomTableViewCell.identifier, for: indexPath) as? MinorsCustomTableViewCell else {
+
+            return UITableViewCell()
+        }
+
+
+        let signGlyphImageName = chartCake?.major.planets[indexPath.row].body.keyName.lowercased() ?? "defaultSignGlyphImageName"
+        let planetImageImageName = chartCake?.major.planets[indexPath.row].body.keyName.lowercased() ?? "defaultPlanetImageImageName"
+        let signTextText = chartCake?.major.planets[indexPath.row].formatted ?? "defaultSignTextText"
+        let planetTextText = chartCake?.major.planets[indexPath.row].body.archetype ?? "defaultPlanetTextText"
+        let longitude = chartCake?.major.planets[indexPath.row].longitude ?? 0.0 // You might want to handle this default value differently
+        let houseKeywords = chartCake?.houseCusps.cusp(for: longitude).houseKeywords ?? "unknown"
+
+        cell.configure(signGlyphImageName: signGlyphImageName,
+                       planetImageImageName: planetImageImageName,
+                       signTextText: signTextText,
+                       planetTextText: "\(name!)'s Evolving \(planetTextText)",
+                       headerTextText: "developing in the house of \(houseKeywords)")
+
+
+
+
+        return cell
+
+
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
     }

@@ -114,6 +114,8 @@ class StrongestPlanetViewController: UIViewController {
         myItemsVC.strongestPlanet = strongestPlanet.self
         myItemsVC.chartCake = chartCake.self
         myItemsVC.sortedPlanets = sortedPlanets.self
+        myItemsVC.name = name.self
+        myItemsVC.sortedPlanets = sortedPlanets.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet
         // myItemsVC.getMinors = self.getMinors

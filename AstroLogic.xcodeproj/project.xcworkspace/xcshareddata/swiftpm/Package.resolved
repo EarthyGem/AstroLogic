@@ -24,7 +24,11 @@
       "location" : "https://github.com/heylila/SwiftEphemeris.git",
       "state" : {
         "branch" : "rickys-branch",
+<<<<<<< HEAD
         "revision" : "d9b91ed54ebd092fde58fe8d75de4bbee92c235b"
+=======
+        "revision" : "7a25eefd3844242093afd847b73489a360f4b6f5"
+>>>>>>> 7fb4034aad0f49fbe237534e5bd7d4aaea018920
       }
     }
   ],
