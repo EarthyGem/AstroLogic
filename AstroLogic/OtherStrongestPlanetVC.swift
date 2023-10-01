@@ -2,7 +2,7 @@ import UIKit
 import SwiftEphemeris
 
 class OthersStrongestPlanetViewController: UIViewController {
-    
+
     var strongestPlanetName: String!
     var strongestPlanet: String!
     var mostHarmoniousPlanet: String!
@@ -13,16 +13,17 @@ class OthersStrongestPlanetViewController: UIViewController {
     var chartCake: ChartCake?
     var otherChart: ChartCake?
     var name: String!
-    
+    var synastry: SynastryChartCake?
+    var birthDate: Date?
     // Add
 //    var getMinors: (() -> Date)?
 //    var getMajorProgresseDate: (() -> Date)?
-    
+
     private let bottomLabel = UILabel()
     private let imageView = UIImageView()
     private let label = UILabel()
     private let titleLabel = UILabel()
-    
+
     private let harmoniousImageView = UIImageView()
     private let harmoniousLabel = UILabel()
     private let harmoniousTitleLabel = UILabel()
@@ -30,7 +31,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     private let discordantImageView = UIImageView()
     private let discordantLabel = UILabel()
     private let discordantTitleLabel = UILabel()
-    
+
 //    let planetTexts = [
 //        "Sun": SunText,
 //        "Moon": MoonText,
@@ -44,7 +45,7 @@ class OthersStrongestPlanetViewController: UIViewController {
 //        "Pluto": PlutoText
 //    ]
 
-    
+
     private let myItemsButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -53,7 +54,7 @@ class OthersStrongestPlanetViewController: UIViewController {
         return button
     }()
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -76,13 +77,14 @@ class OthersStrongestPlanetViewController: UIViewController {
         let myItemsBarButtonItem = UIBarButtonItem(customView: myItemsButton)
         navigationItem.rightBarButtonItem = myItemsBarButtonItem
     }
-     
+
     @objc func myItemsButtonTapped() {
         // Initialize and push the MyItemsViewController
         let relationshipItemsVC = RelationshipItemsViewController()
         relationshipItemsVC.chartCake = chartCake.self
         relationshipItemsVC.strongestPlanet = strongestPlanet.self
         relationshipItemsVC.otherChart = otherChart.self
+        relationshipItemsVC.synastry = synastry.self
         relationshipItemsVC.name = name.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet
@@ -92,7 +94,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     }
 
     // ... existing methods
-    
+
     private func configureHarmoniousImageView() {
         guard let imageName = mostHarmoniousPlanet?.lowercased() else {
                // Handle the case when strongestPlanet is nil
@@ -170,7 +172,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     @objc func harmoniousImageViewTapped() {
         let infoViewController = InfoViewController()
         if self.mostHarmoniousPlanet != nil {
-          
+
             infoViewController.infoText = ""
         } else {
             infoViewController.infoText = "Information not found for Harmonious Planet"
@@ -189,8 +191,8 @@ class OthersStrongestPlanetViewController: UIViewController {
         self.present(infoViewController, animated: true, completion: nil)
     }
 
-    
-    
+
+
     private func configureStrongestTitleLabel(name: String) {
         titleLabel.text = "\(name)'s Power Planet"
         titleLabel.textColor = .white
@@ -198,21 +200,21 @@ class OthersStrongestPlanetViewController: UIViewController {
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
-        
+
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: imageView.topAnchor, constant: -20),
         ])
     }
-    
-  
 
-        
-        
+
+
+
+
         // Initialize and push the ChartViewController
-     
-        
+
+
         //        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
 
 
@@ -304,7 +306,7 @@ class OthersStrongestPlanetViewController: UIViewController {
 
 
 
-    
+
     private func configureBottomLabel() {
            bottomLabel.text = sentenceText
            bottomLabel.textColor = .white
@@ -314,7 +316,7 @@ class OthersStrongestPlanetViewController: UIViewController {
            bottomLabel.textAlignment = .center
            bottomLabel.translatesAutoresizingMaskIntoConstraints = false
            view.addSubview(bottomLabel)
-           
+
            NSLayoutConstraint.activate([
                bottomLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                bottomLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -322,5 +324,5 @@ class OthersStrongestPlanetViewController: UIViewController {
            ])
        }
    }
-            
-           
+
+

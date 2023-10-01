@@ -28,15 +28,16 @@ class StrongestPlanetViewController: UIViewController {
     var dateString: String?
     var strongestPlanetSign: String!
     var sortedPlanets: [CelestialObject] = []
+    var birthDate: Date?
     // Add
 //    var getMinors: (() -> Date)?
 //    var getMajorProgresseDate: (() -> Date)?
-    
+
     private let bottomLabel = UILabel()
     private let imageView = UIImageView()
     private let label = UILabel()
     private let titleLabel = UILabel()
-    
+
     private let harmoniousImageView = UIImageView()
     private let harmoniousLabel = UILabel()
     private let harmoniousTitleLabel = UILabel()
@@ -44,7 +45,7 @@ class StrongestPlanetViewController: UIViewController {
     private let discordantImageView = UIImageView()
     private let discordantLabel = UILabel()
     private let discordantTitleLabel = UILabel()
-    
+
 //    let planetTexts = [
 //        "Sun": SunText,
 //        "Moon": MoonText,
@@ -58,7 +59,7 @@ class StrongestPlanetViewController: UIViewController {
 //        "Pluto": PlutoText
 //    ]
 
-    
+
     private let myItemsButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Go to My Items", for: .normal)
@@ -68,7 +69,7 @@ class StrongestPlanetViewController: UIViewController {
         return button
     }()
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,13 +107,16 @@ class StrongestPlanetViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-     
+
     @objc func myItemsButtonTapped() {
         // Initialize and push the MyItemsViewController
         let myItemsVC = MyItemsViewController()
         myItemsVC.chart = chart.self
         myItemsVC.strongestPlanet = strongestPlanet.self
         myItemsVC.chartCake = chartCake.self
+        myItemsVC.sortedPlanets = sortedPlanets.self
+        myItemsVC.name = name.self
+        myItemsVC.birthDate = birthDate.self
         myItemsVC.sortedPlanets = sortedPlanets.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet
@@ -122,7 +126,7 @@ class StrongestPlanetViewController: UIViewController {
     }
 
     // ... existing methods
-    
+
     private func configureHarmoniousImageView() {
         guard let imageName = mostHarmoniousPlanet?.lowercased() else {
                // Handle the case when strongestPlanet is nil
@@ -192,7 +196,7 @@ class StrongestPlanetViewController: UIViewController {
         infoViewController.name = name
         infoViewController.strongestPlanetSign = strongestPlanetSign
         infoViewController.strongestPlanet = strongestPlanet
-        
+
            self.present(infoViewController, animated: true, completion: nil)
     }
 //
@@ -212,8 +216,8 @@ class StrongestPlanetViewController: UIViewController {
         self.present(infoViewController, animated: true, completion: nil)
     }
 
-    
-    
+
+
     private func configureStrongestTitleLabel(name: String) {
         titleLabel.text = "\(name)'s Power Planet💪"
         titleLabel.textColor = .white
@@ -221,21 +225,21 @@ class StrongestPlanetViewController: UIViewController {
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
-        
+
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: imageView.topAnchor, constant: -20),
         ])
     }
-    
-  
 
-        
-        
+
+
+
+
         // Initialize and push the ChartViewController
-     
-        
+
+
         //        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
 
 
@@ -354,7 +358,7 @@ class StrongestPlanetViewController: UIViewController {
     }
 
     private func configurePlaceLabel() {
-        
+
         placeLabel.text = birthPlace
         placeLabel.textColor = .white
         placeLabel.font = UIFont.systemFont(ofSize: 12)
@@ -398,7 +402,7 @@ class StrongestPlanetViewController: UIViewController {
            bottomLabel.textAlignment = .center
            bottomLabel.translatesAutoresizingMaskIntoConstraints = false
            view.addSubview(bottomLabel)
-           
+
            NSLayoutConstraint.activate([
                bottomLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                bottomLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -406,5 +410,5 @@ class StrongestPlanetViewController: UIViewController {
            ])
        }
    }
-            
+
            

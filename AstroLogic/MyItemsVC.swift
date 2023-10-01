@@ -21,13 +21,13 @@ class MyItemsViewController: UIViewController {
 // var progPlanets = [String]()
 
     var chart: Chart?
-
+    var name: String!
     var selectedDate: Date?
     var chartCake: ChartCake?
     var otherChart: ChartCake?
     var strongestPlanet: String?
     var sortedPlanets: [CelestialObject] = []
-
+    var birthDate: Date?
     // Use `getMinors` closure wherever you need to access the `getMinors` function
 
 
@@ -167,6 +167,7 @@ extension MyItemsViewController: UITableViewDelegate {
         let MP_PlanetsVC = ProgressedPlanetsTimeChangeViewController()
         MP_PlanetsVC.chartCake = self.chartCake
         MP_PlanetsVC.selectedDate = self.selectedDate
+        MP_PlanetsVC.name = self.name
 
         let progressedAspectsByHouseVC = ProgressionPlanetsByHouseTimeChangeViewController()
         progressedAspectsByHouseVC.chartCake = self.chartCake
@@ -182,7 +183,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
 
       //  let SA_PlanetsVC = SolarArcViewController(MP_Planets: placeolder)
-     
+
         let MP_AspectsVC = ProgressedAspectsTimeChangeViewController()
         MP_AspectsVC.chartCake = self.chartCake
         MP_AspectsVC.selectedDate = self.selectedDate
@@ -195,6 +196,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
         let RelationshipVC = RelationshipsViewController()
         RelationshipVC.chartCake = self.chartCake
+        RelationshipVC.birthDate = self.birthDate
         RelationshipVC.otherChart = self.otherChart
         RelationshipVC.title = "Other Person"
 
@@ -223,6 +225,3 @@ extension MyItemsViewController: UITableViewDelegate {
             return cell
         }
     }
-
-
-

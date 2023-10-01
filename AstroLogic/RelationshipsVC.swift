@@ -15,7 +15,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     var strongestPlanet: String?
     var chartCake: ChartCake?
     var shouldRefreshData = true
-
+    var birthDate: Date!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -162,7 +162,7 @@ extension RelationshipsViewController: UITableViewDelegate {
           let name = selectedEntity.name ?? ""
 
         let otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
-
+        let synastry = SynastryChartCake(birthDate: chartDate, otherBirthDate: birthDate, latitude: latitude, longitude: longitude)
 
         let scores = otherChart!.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
@@ -211,11 +211,13 @@ extension RelationshipsViewController: UITableViewDelegate {
         strongestPlanetVC.otherChart = otherChart
         strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
         strongestPlanetVC.name = name
+        strongestPlanetVC.birthDate = birthDate
      //   strongestPlanetVC.selectedName = selectedName
         //
         strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
         strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
         strongestPlanetVC.sentenceText = sentence
+        strongestPlanetVC.synastry = synastry
         self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
     }
 }

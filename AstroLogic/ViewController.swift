@@ -526,7 +526,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
                 let scores = self.chart!.getTotalPowerScoresForPlanets()
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
-              
+
                 saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet: strongestPlanet.keyName)
 
 
@@ -589,6 +589,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
                 strongestPlanetVC.sentenceText = sentence
+                strongestPlanetVC.birthDate = combinedDateAndTime()
                 strongestPlanetVC.sortedPlanets = getPlanetsSortedByStrength(from: scores2)
              //   print("sortedPlanets\(getPlanetsSortedByStrength(from: scores2))")
                 strongestPlanetVC.birthPlace = self.birthPlaceTextField.text
@@ -719,7 +720,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 
         dateTextField.resignFirstResponder()
     }
-   
+
     func createDate(day: Int, month: Int, year: Int) -> Date? {
         let calendar = Calendar.current
         var dateComponents = DateComponents()

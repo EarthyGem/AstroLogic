@@ -12,7 +12,7 @@ class ChartsViewController: UIViewController {
     var birthPlace: String?
     var birthPlaceTimeZone: TimeZone?
     var chartDate: Date?
-    
+
     @IBAction func importButtonTapped(_ sender: UIBarButtonItem) {
         // Code to navigate to the new import screen
         let importVC = ImportAAFViewController()
@@ -26,8 +26,8 @@ class ChartsViewController: UIViewController {
         let importButton = UIBarButtonItem(title: "Import AAF", style: .plain, target: self, action: #selector(importButtonTapped))
            self.navigationItem.rightBarButtonItem = importButton
 
-        processDetails()
-       
+       // processDetails()
+
         setupTableView()
 
     }
@@ -38,7 +38,7 @@ class ChartsViewController: UIViewController {
         //  deleteAllNames()
         tableView.reloadData()
     }
-    
+
 
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
@@ -118,25 +118,19 @@ class ChartsViewController: UIViewController {
     }
 
     func deleteChart(at indexPath: IndexPath) {
-        let chartToDelete = charts[indexPath.row]
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let context = appDelegate.persistentContainer.viewContext
-        context.delete(chartToDelete)
-        do {
-            try context.save()
-
-            // 1. Update your data source.
-            charts.remove(at: indexPath.row)
-
-            // 2. Tell the tableView to delete the row.
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-
-        } catch {
-            print("Failed to delete chart: \(error.localizedDescription)")
-        }
-    }
+           let chartToDelete = charts[indexPath.row]
+           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+           let context = appDelegate.persistentContainer.viewContext
+           context.delete(chartToDelete)
+           do {
+               try context.save()
+               charts.remove(at: indexPath.row)
+           } catch {
+               print("Failed to delete chart: \(error.localizedDescription)")
+           }
+       }
 
 
     func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {
@@ -173,8 +167,8 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
 
           self.navigationController?.pushViewController(editVC, animated: true)
       }
-    
-  
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return charts.count
     }
@@ -201,7 +195,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.planetImageView.image = UIImage(named: imageName)
 
 
-        
+
 
        cell.textLabel?.text = "\(chart.name!) \(chart.birthDate!)"
 
@@ -306,6 +300,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                     strongestPlanetVC.name = name
                     strongestPlanetVC.birthPlace = birthPlace
+                    strongestPlanetVC.birthDate = chartDate
                     //  strongestPlanetVC.combinedBirthDateTime = chartDate
                     strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
                     strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
@@ -357,5 +352,3 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
 
 
     }
-
-
