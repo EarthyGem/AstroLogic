@@ -15,10 +15,11 @@ struct RelationshipItems {
 
 
 class RelationshipItemsViewController: UIViewController {
-    
+    var other: ChartCake?
     var relationshipChart: ChartCake?
     var otherChart: ChartCake?
     var chartCake: ChartCake?
+    var synastry: SynastryChartCake?
     var strongestPlanet: String?
     var placeHolder = [String]()
     var selectedName: String!
@@ -41,11 +42,11 @@ class RelationshipItemsViewController: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
+      
         relationshipData = [
             //RelationshipItems(chartType: "Composite with \(String(describing: selectedName))"),
             RelationshipItems(chartType: "\(String(describing: name!))'s Natal Chart"),
-            RelationshipItems(chartType: "Synastry Chart with \(String(describing: name!))"),
+            RelationshipItems(chartType: "Synastry Chart with \(String(describing: name!))"), RelationshipItems(chartType: "Interaspects with \(String(describing: name!))"),
             RelationshipItems(chartType: "Transposed Houses"),
             RelationshipItems(chartType: "Composite Chart with \(String(describing: name!))")
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Natal Houses"),
@@ -123,6 +124,13 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 transposedHousesVC.title = "\(String(describing: name!))'s Planets"
                 transposedHousesVC.name = self.name
                 let natalPlanetsVC = PlanetsViewController(planets: placeHolder)
+
+                let interAspectsVC = SimpleInteraspectsViewController()
+                interAspectsVC.chartCake = self.chartCake
+                interAspectsVC.otherChart = self.otherChart
+                interAspectsVC.synastry = self.synastry
+                interAspectsVC.title = "Interaspects"
+                interAspectsVC.name = self.name
                 
 //                natalPlanetsVC.title = category.chartType
                 natalPlanetsVC.chartCake = self.chartCake
@@ -132,7 +140,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 compositeVC.otherChart = self.otherChart
                 
                 
-                let categories = [OthersPlanetsVC,SynastryChartVC,transposedHousesVC,compositeVC]
+                let categories = [OthersPlanetsVC,SynastryChartVC,interAspectsVC,transposedHousesVC,compositeVC]
                 navigationController?.pushViewController(categories[indexPath.row] , animated: true)
                 
 

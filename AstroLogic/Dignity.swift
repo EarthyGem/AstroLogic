@@ -8,6 +8,8 @@
 import Foundation
 import SwiftEphemeris
 
+
+
 func calculateDignityScore(chart: Chart) -> [CelestialObject: (harmony: Double, discord: Double)] {
     let mutualReceptions = getMutualReceptions(chart: chart)
     let planets = chart.planets
