@@ -196,7 +196,7 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (chartCake?.transits.planets.count)!
+        return (chartCake?.transits.rickysBodies.count)!
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -205,7 +205,7 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: (chartCake?.transits.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.transits.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.transits.planets[indexPath.row].formatted)!, planetTextText: "Transit \(String(describing: chartCake!.transits.planets[indexPath.row].body.keyName))", headerTextText: "")
+        cell.configure(signGlyphImageName: (chartCake?.transits.rickysBodies[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.transits.rickysBodies[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.transits.rickysBodies[indexPath.row].formatted)!, planetTextText: (chartCake?.transits.rickysBodies[indexPath.row].body.transitName)!, headerTextText: "")
         
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
         
