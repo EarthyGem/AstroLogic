@@ -73,7 +73,7 @@ class MajorProgressionsViewController: UIViewController, UITableViewDelegate, UI
         return transitSigns
     }
 
-    func getTransitPositions() -> [String] {
+    func getMajorPositions() -> [String] {
        transitSigns = [
             chartCake?.major.sun.formatted,
             chartCake?.major.moon.formatted,
@@ -171,7 +171,7 @@ var mySunText = ""
 
         calendarButton.addTarget(self, action: #selector(navigateToTimeChangeVC), for: .touchUpInside)
         view.addSubview(todaysDate)
-        view.addSubview(calendarButton)
+   //     view.addSubview(calendarButton)
 
     }
 
@@ -182,7 +182,7 @@ var mySunText = ""
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        return (chartCake?.major.planets.count)!
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -191,9 +191,8 @@ var mySunText = ""
              return UITableViewCell()
          }
 
-        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getTransitPositions()[indexPath.row], planetTextText: "", headerTextText: "")
+        cell.configure(signGlyphImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.major.planets[indexPath.row].formatted)!, planetTextText: "Evolving \(chartCake!.major.planets[indexPath.row].body.archetype)", headerTextText: "")
 
-//        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
 
 
          return cell
@@ -207,7 +206,6 @@ var mySunText = ""
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        print(planets[indexPath.row])
 
 
 
@@ -217,7 +215,6 @@ var mySunText = ""
 
         let MovingPlanetVCs = [TodayViewController()]
 
-//        [MovingSunViewController(),MovingMoonController(),MovingAscendantController(),MovingMercuryController(),MovingVenusController(),MovingMarsController(),MovingJupiterController(),MovingSaturnController(),MovingUranusController(),MovingNeptuneController(),MovingPlutoController()]
 
 
         let vc = MovingPlanetVCs[indexPath.row]

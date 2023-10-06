@@ -171,7 +171,7 @@ class MinorProgressionsViewController: UIViewController, UITableViewDelegate, UI
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.minor.planets[indexPath.row].formatted)!, planetTextText: "Minor \(String(describing: chartCake!.minor.planets[indexPath.row].body.keyName))", headerTextText: "")
+        cell.configure(signGlyphImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.minor.planets[indexPath.row].formatted)!, planetTextText: chartCake!.minor.planets[indexPath.row].body.minorsName, headerTextText: "")
         
          return cell
          
