@@ -120,7 +120,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     }
 
     private func configureHarmoniousTitleLabel() {
-        harmoniousTitleLabel.text = "Angels"
+        harmoniousTitleLabel.text = "Gift Giver🎁"
         harmoniousTitleLabel.textColor = .white
         harmoniousTitleLabel.font = UIFont.systemFont(ofSize: 16)
         harmoniousTitleLabel.textAlignment = .center
