@@ -243,7 +243,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
         let timestamp = Int(chartDate?.timeIntervalSince1970 ?? 34)
 
-        let scores = chart.getTotalPowerScoresForPlanets()
+        let scores = chart.getTotalPowerScoresForPlanets(chartCake?.natal.rickysBodies)
         let strongestPlanet = getStrongestPlanet(from: scores)
 
         fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { [self] timeZone in
@@ -298,6 +298,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     strongestPlanetVC.chartCake = chartCake
                     strongestPlanetVC.chart = chart
                     strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
+                    strongestPlanetVC.strongestPlanetArchetype = getStrongestPlanet(from: scores).archetype
                     strongestPlanetVC.name = name
                     strongestPlanetVC.birthPlace = birthPlace
                     strongestPlanetVC.birthDate = chartDate
@@ -307,6 +308,8 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
                     strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                     strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+                    strongestPlanetVC.mostDiscordantPlanetArchetype = mostDiscordantPlanet.archetype
+                    strongestPlanetVC.mostHarmoniousPlanetArchetype = mostHarmoniousPlanet.archetype
                     strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
                     strongestPlanetVC.sentenceText = sentence
                     strongestPlanetVC.dateString = dateAndPlace

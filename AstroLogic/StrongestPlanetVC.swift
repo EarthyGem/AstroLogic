@@ -14,12 +14,15 @@ class StrongestPlanetViewController: UIViewController {
     var strongestPlanetName: String!
     var strongestPlanet: String!
     var mostHarmoniousPlanet: String!
+    var strongestPlanetArchetype: String!
+    var mostHarmoniousPlanetArchetype: String!
+    var mostDiscordantPlanetArchetype: String!
     var mostDiscordantPlanet: String!
     var sentenceText: String!
     var scores: [Planet: CGFloat]?
     var chart: Chart?
     var chartCake: ChartCake?
-    var name: String = ""
+    var name: String!
     var combinedBirthDateTime: (date: Date?, timeZone: TimeZone?)?
     var birthPlace: String?
     private let nameLabel = UILabel()
@@ -152,9 +155,9 @@ class StrongestPlanetViewController: UIViewController {
     }
 
     private func configureHarmoniousTitleLabel() {
-        harmoniousTitleLabel.text = "Angels😇"
+        harmoniousTitleLabel.text = "Gift Giver😇"
         harmoniousTitleLabel.textColor = .white
-        harmoniousTitleLabel.font = UIFont.systemFont(ofSize: 16)
+        harmoniousTitleLabel.font = UIFont.systemFont(ofSize: 14)
         harmoniousTitleLabel.textAlignment = .center
         harmoniousTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(harmoniousTitleLabel)
@@ -219,9 +222,9 @@ class StrongestPlanetViewController: UIViewController {
 
 
     private func configureStrongestTitleLabel(name: String) {
-        titleLabel.text = "\(name)'s Power Planet💪"
+        titleLabel.text = "\(name)'s Dharma Path"
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 24)
+        titleLabel.font = UIFont.systemFont(ofSize: 22)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
@@ -244,7 +247,7 @@ class StrongestPlanetViewController: UIViewController {
 
 
     private func configureStrongestLabel() {
-        label.text = strongestPlanet
+        label.text = "The \(strongestPlanetArchetype!)"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20)
         label.textAlignment = .center
@@ -254,14 +257,14 @@ class StrongestPlanetViewController: UIViewController {
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
         ])
     }
 
     private func configureHarmoniousLabel() {
-        harmoniousLabel.text = mostHarmoniousPlanet
+        harmoniousLabel.text = "The \(mostHarmoniousPlanetArchetype!)"
         harmoniousLabel.textColor = .white
-        harmoniousLabel.font = UIFont.systemFont(ofSize: 16)
+        harmoniousLabel.font = UIFont.systemFont(ofSize: 14)
         harmoniousLabel.textAlignment = .center
         harmoniousLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(harmoniousLabel)
@@ -296,9 +299,10 @@ class StrongestPlanetViewController: UIViewController {
 
 
             private func configureDiscordantTitleLabel() {
-                discordantTitleLabel.text = "Demons👿"
+                discordantTitleLabel.text = "Guardian of the Threshold⚔️"
                 discordantTitleLabel.textColor = .white
-                discordantTitleLabel.font = UIFont.systemFont(ofSize: 16)
+                discordantTitleLabel.font = UIFont.systemFont(ofSize: 12)
+                discordantTitleLabel.numberOfLines = 2
                 discordantTitleLabel.textAlignment = .center
                 discordantTitleLabel.translatesAutoresizingMaskIntoConstraints = false
                 view.addSubview(discordantTitleLabel)
@@ -311,9 +315,9 @@ class StrongestPlanetViewController: UIViewController {
             }
 
             private func configureDiscordantLabel() {
-                discordantLabel.text = mostDiscordantPlanet
+                discordantLabel.text = "The \(mostDiscordantPlanetArchetype!)"
                 discordantLabel.textColor = .white
-                discordantLabel.font = UIFont.systemFont(ofSize: 16)
+                discordantLabel.font = UIFont.systemFont(ofSize: 14)
                 discordantLabel.textAlignment = .center
                 discordantLabel.translatesAutoresizingMaskIntoConstraints = false
                 view.addSubview(discordantLabel)

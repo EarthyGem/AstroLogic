@@ -583,11 +583,11 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
                 strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
                 strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
-                strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
+                strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).archetype
                 strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
                 strongestPlanetVC.name = nameTextField.text!
-                strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
-                strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+                strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.archetype
+                strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.archetype
                 strongestPlanetVC.sentenceText = sentence
                 strongestPlanetVC.birthDate = combinedDateAndTime()
                 strongestPlanetVC.sortedPlanets = getPlanetsSortedByStrength(from: scores2)
