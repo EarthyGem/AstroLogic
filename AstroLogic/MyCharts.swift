@@ -127,6 +127,8 @@ class ChartsViewController: UIViewController {
            do {
                try context.save()
                charts.remove(at: indexPath.row)
+               tableView.deleteRows(at: [indexPath], with: .fade)
+
            } catch {
                print("Failed to delete chart: \(error.localizedDescription)")
            }
