@@ -21,9 +21,6 @@ class MPAspectsViewController: UIViewController {
         return scrollView
     }()
     
-
-    
-    
     private let sunScrollView: UIView = {
         let sunScrollView = UIView()
 
@@ -750,9 +747,6 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
         ]
         self.navigationController?.pushViewController(minorAspectVC, animated: true)
     }
-
-
-
 
 
 }
