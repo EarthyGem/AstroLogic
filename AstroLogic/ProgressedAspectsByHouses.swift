@@ -21,6 +21,9 @@ class ProgressedAspectsByHousesVC: UIViewController {
     var selectedDate: Date?
 var chart: Chart?
     var chartCake: ChartCake?
+
+    var tableViewToPlanetMap: [UITableView: Planet] = [:]
+
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -328,7 +331,19 @@ var chart: Chart?
         twelfthTableView.delegate = self
         view.backgroundColor = .black
         
-      
+        tableViewToPlanetMap = [
+            firstTableView: .sun,
+          thirdTableView: .mercury,
+            fourthTableView: .venus,
+            fifthTableView: .mars,
+            sixthTableView: .jupiter,
+            seventhTableView: .saturn,
+            eighthTableView: .uranus,
+            ninthTableView: .neptune,
+            tenthTableView: .pluto,
+            eleventhTableView: .pluto,
+            twelfthTableView: .pluto
+        ]
         
     }
 
@@ -760,10 +775,7 @@ var chart: Chart?
 //
 //
     }
-    @objc func navigateToTimeChangeVC() {
-        let timeChangeVC = ProgressedAspectsTimeChangeViewController()
-        self.navigationController?.pushViewController(timeChangeVC, animated: true)
-    }
+
 
 }
 
@@ -803,12 +815,23 @@ extension ProgressedAspectsByHousesVC: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        // remove all the code related to expanding and collapsing
-    }
- 
+        if let planet = tableViewToPlanetMap[tableView],
+           let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
 
+            let selectedAspect = majorAspects[indexPath.row]
+            navigateToMinorAspectViewController(with: selectedAspect)
+        }
     }
-    
-    
-    
+
+    func navigateToMinorAspectViewController(with majorAspect: AspectType) {
+        let minorAspectVC = ProgressionsMatrixViewController() // Or instantiate from storyboard
+        minorAspectVC.chartCake = chartCake
+        minorAspectVC.majorAspect = majorAspect
+        minorAspectVC.minorAspectsData = [
+            majorAspect: chartCake!.filterMinors(for: majorAspect)
+        ]
+        self.navigationController?.pushViewController(minorAspectVC, animated: true)
+    }
+
+
+}
