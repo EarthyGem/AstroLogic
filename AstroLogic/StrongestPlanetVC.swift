@@ -222,7 +222,7 @@ class StrongestPlanetViewController: UIViewController {
 
 
     private func configureStrongestTitleLabel(name: String) {
-        titleLabel.text = "\(name)'s Dharma Path"
+        titleLabel.text = "\(name)'s Dominant Archetype"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 22)
         titleLabel.textAlignment = .center
