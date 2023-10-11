@@ -236,14 +236,24 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         return 170
     }
     
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Deselect the row after it's tapped, for better user experience.
         tableView.deselectRow(at: indexPath, animated: true)
-//        print(planets[indexPath.row])
-        
 
-     
-}
+        // Get the celestial object for the selected row.
+        let celestialObject = sortedCelestialObjects[indexPath.row].0
+
+        // Navigate to ArchetypeMatrixViewController with the selected celestial object.
+        navigateToArchetypeMatrixViewController(with: celestialObject)
+    }
+
+    func navigateToArchetypeMatrixViewController(with celestialObject: CelestialObject) {
+        let archetypeMatrixVC = ArchetypeMatrixViewController() // Or instantiate from storyboard
+        archetypeMatrixVC.chartCake = chartCake
+        archetypeMatrixVC.selectedCelestialObject = celestialObject
+        self.navigationController?.pushViewController(archetypeMatrixVC, animated: true)
+    }
+
 
 }
 
