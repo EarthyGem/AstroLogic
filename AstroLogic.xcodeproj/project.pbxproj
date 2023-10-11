@@ -30,6 +30,8 @@
 		392434622ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434612ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift */; };
 		392D97BA2AB2CF2F0086BEA1 /* DecanatesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */; };
 		393DDD542AD71A9E00522012 /* ArchetypeBreakdownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD532AD71A9E00522012 /* ArchetypeBreakdownVC.swift */; };
+		393DDD562AD728A300522012 /* MyContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD552AD728A300522012 /* MyContentCell.swift */; };
+		393DDD592AD7364700522012 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 393DDD582AD7364700522012 /* SwiftEphemeris */; };
 		393E1BBE2AC9E4DB0068779B /* SimpleInterAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E1BBD2AC9E4DB0068779B /* SimpleInterAspectsVC.swift */; };
 		394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */; };
 		394FA19B2AABAA50002BC0A5 /* transitMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */; };
@@ -117,7 +119,6 @@
 		39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC662A60F744008D1EC1 /* InfoVC.swift */; };
 		39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6A2A610480008D1EC1 /* Dignity.swift */; };
 		39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6C2A611BFD008D1EC1 /* graph info.swift */; };
-		39B108362A80C72100165E62 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 39B108352A80C72100165E62 /* SwiftEphemeris */; };
 		39B838502AABC8670039AD91 /* NestedProgressedAspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */; };
 		39E113EE2A8ABE80006EA576 /* AspectByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113ED2A8ABE80006EA576 /* AspectByHouses.swift */; };
 		39E113F02A8AC18E006EA576 /* ProgressedAspectsByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */; };
@@ -157,6 +158,7 @@
 		392434612ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresionsAspectsByHouseBarTabController.swift; sourceTree = "<group>"; };
 		392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesViewVC.swift; sourceTree = "<group>"; };
 		393DDD532AD71A9E00522012 /* ArchetypeBreakdownVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchetypeBreakdownVC.swift; sourceTree = "<group>"; };
+		393DDD552AD728A300522012 /* MyContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContentCell.swift; sourceTree = "<group>"; };
 		393E1BBD2AC9E4DB0068779B /* SimpleInterAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInterAspectsVC.swift; sourceTree = "<group>"; };
 		394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedMatrixVC.swift; sourceTree = "<group>"; };
 		394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitMatrixVC.swift; sourceTree = "<group>"; };
@@ -264,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39A1EC3D2A5F61D8008D1EC1 /* DGCharts in Frameworks */,
-				39B108362A80C72100165E62 /* SwiftEphemeris in Frameworks */,
+				393DDD592AD7364700522012 /* SwiftEphemeris in Frameworks */,
 				3903A3742A5F2DF000245DD2 /* GooglePlaces in Frameworks */,
 				3903A3722A5F2DF000245DD2 /* GoogleMaps in Frameworks */,
 			);
@@ -404,6 +406,7 @@
 				39A1EC5E2A5FA75E008D1EC1 /* 1.swift */,
 				39A1EC622A605743008D1EC1 /* signs.swift */,
 				39A1EC402A5F6E91008D1EC1 /* CustomTableCell.swift */,
+				393DDD552AD728A300522012 /* MyContentCell.swift */,
 				396989D02ABDF385007EA008 /* CustomNatalPlanetsCell.swift */,
 				39A1EC602A603D8F008D1EC1 /* Houses Custom.swift */,
 				3997F0792A64303F00741E9D /* Progression Sentence.swift */,
@@ -437,7 +440,7 @@
 				3903A3712A5F2DF000245DD2 /* GoogleMaps */,
 				3903A3732A5F2DF000245DD2 /* GooglePlaces */,
 				39A1EC3C2A5F61D8008D1EC1 /* DGCharts */,
-				39B108352A80C72100165E62 /* SwiftEphemeris */,
+				393DDD582AD7364700522012 /* SwiftEphemeris */,
 			);
 			productName = AstroLogic;
 			productReference = 3903A3372A5F2D0700245DD2 /* AstroLogic.app */;
@@ -470,7 +473,7 @@
 			packageReferences = (
 				3903A3702A5F2DF000245DD2 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
 				39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */,
-				39B108342A80C72100165E62 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
+				393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
 			);
 			productRefGroup = 3903A3382A5F2D0700245DD2 /* Products */;
 			projectDirPath = "";
@@ -610,6 +613,7 @@
 				39A1EC362A5F6043008D1EC1 /* MyItemsVC.swift in Sources */,
 				39A1EC3F2A5F6DB6008D1EC1 /* NatalPlanetsVC.swift in Sources */,
 				392434562ABA7CDE00584E26 /* ActionSteps.swift in Sources */,
+				393DDD562AD728A300522012 /* MyContentCell.swift in Sources */,
 				394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */,
 				395DE51F2A967FBE00B0B451 /* SynastryFlipBiWheel.swift in Sources */,
 				3997F07E2A68F7DF00741E9D /* AspectarianView.swift in Sources */,
@@ -843,20 +847,20 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
+			requirement = {
+				branch = "rickys-branch";
+				kind = branch;
+			};
+		};
 		39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
-			};
-		};
-		39B108342A80C72100165E62 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
-			requirement = {
-				branch = "rickys-branch";
-				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -872,15 +876,15 @@
 			package = 3903A3702A5F2DF000245DD2 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
 			productName = GooglePlaces;
 		};
+		393DDD582AD7364700522012 /* SwiftEphemeris */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;
+			productName = SwiftEphemeris;
+		};
 		39A1EC3C2A5F61D8008D1EC1 /* DGCharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = DGCharts;
-		};
-		39B108352A80C72100165E62 /* SwiftEphemeris */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 39B108342A80C72100165E62 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;
-			productName = SwiftEphemeris;
 		};
 /* End XCSwiftPackageProductDependency section */
 
