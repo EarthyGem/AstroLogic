@@ -16,5 +16,84 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26DF5593-BB78-48D2-A297-011E9C599DE2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/hh.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "fetchCycleChart(for:at:cycleChart:selectedPlanet:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "26DF5593-BB78-48D2-A297-011E9C599DE2 - 198ab0345220d6a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.fetchCycleChart(for: Foundation.Date, at: __C.CLLocationCoordinate2D, selectedPlanet: SwiftEphemeris.Coordinate) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/hh.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "535">
+               </Location>
+               <Location
+                  uuid = "26DF5593-BB78-48D2-A297-011E9C599DE2 - 198ab0345220d6a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.fetchCycleChart(for: Foundation.Date, at: __C.CLLocationCoordinate2D, selectedPlanet: SwiftEphemeris.Coordinate) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/hh.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "552">
+               </Location>
+               <Location
+                  uuid = "26DF5593-BB78-48D2-A297-011E9C599DE2 - 9ae6aa09b32c9e62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.fetchCycleChart(for: Foundation.Date, at: __C.CLLocationCoordinate2D, cycleChart: SwiftEphemeris.ChartCake, selectedPlanet: SwiftEphemeris.Coordinate) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/hh.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "612">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "56B602D0-7AC7-4EB6-8088-FD63E311A532"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/CycleChartTV.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
+            landmarkName = "getCycleChartButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

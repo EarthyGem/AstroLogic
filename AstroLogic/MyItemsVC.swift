@@ -29,7 +29,8 @@ class MyItemsViewController: UIViewController {
     var sortedPlanets: [CelestialObject] = []
     var birthDate: Date?
     // Use `getMinors` closure wherever you need to access the `getMinors` function
-
+    var latitude: Double?
+    var longitude: Double?
 
     private let ricksData: [RicksItems] = [
         RicksItems(chartType: "Charts and Graphs"),
@@ -49,6 +50,7 @@ class MyItemsViewController: UIViewController {
               RicksItems(chartType: "Progressed Aspects"),
         RicksItems(chartType: "Progressed Aspects By House"),
         RicksItems(chartType: "Birthday Wish"),
+        RicksItems(chartType: "Cycle Charts"),
         RicksItems(chartType: "Relationships")
 
     ]
@@ -138,6 +140,8 @@ extension MyItemsViewController: UITableViewDelegate {
          transitPlanetsVC.chartCake = self.chartCake
          transitPlanetsVC.selectedDate = self.selectedDate
 
+        transitPlanetsVC.latitude = self.latitude
+     transitPlanetsVC.longitude = self.longitude
 
 
 
@@ -194,6 +198,13 @@ extension MyItemsViewController: UITableViewDelegate {
         birthdayWishVC.title = "Other Person"
 
 
+        let cycleChartsVC = CycleChartsViewController(MP_Planets: [""])
+       cycleChartsVC.chartCake = self.chartCake
+      //  cycleChartsVC.otherChart = self.otherChart
+        cycleChartsVC.title = "Cycle Charts"
+
+
+
         let RelationshipVC = RelationshipsViewController()
         RelationshipVC.chartCake = self.chartCake
         RelationshipVC.birthDate = self.birthDate
@@ -204,7 +215,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,RelationshipVC]
+        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

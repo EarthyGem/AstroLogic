@@ -37,7 +37,7 @@ class MinorPlanetsByHouseTimeChangeViewController: UIViewController  {
 
   
     @IBAction func doneButtonTapped(_ sender: UIToolbar) {
-        let selectedDate = tcDP.date
+        var selectedDate = tcDP.date
 
         // Create an instance of the next view controller
         let nextViewController = SimpleMinorProgressedAspectsByHousesVC()

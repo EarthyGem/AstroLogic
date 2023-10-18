@@ -640,7 +640,7 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
     }
 
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        let selectedDate = sender.date
+        var selectedDate = sender.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         dateFormatter.timeZone = birthPlaceTimeZone // Use the birthPlaceTimeZone here

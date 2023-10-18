@@ -670,7 +670,7 @@ class SimpleTransitAspectedPlanetsViewController  : UIViewController {
     
     
     @objc func memoriesButtonTapped() {
-        guard let selectedDate = selectedDate else {
+        guard var selectedDate = selectedDate else {
             // Handle case where selectedDate is nil
             return
         }

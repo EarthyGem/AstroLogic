@@ -32,6 +32,10 @@
 		393DDD542AD71A9E00522012 /* ArchetypeBreakdownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD532AD71A9E00522012 /* ArchetypeBreakdownVC.swift */; };
 		393DDD562AD728A300522012 /* MyContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD552AD728A300522012 /* MyContentCell.swift */; };
 		393DDD592AD7364700522012 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 393DDD582AD7364700522012 /* SwiftEphemeris */; };
+		393DDD612ADC90DB00522012 /* hh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD602ADC90DB00522012 /* hh.swift */; };
+		393DDD632ADC96E400522012 /* CycleChartsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD622ADC96E400522012 /* CycleChartsVC.swift */; };
+		393DDD652ADC98E900522012 /* CycleChartTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD642ADC98E900522012 /* CycleChartTV.swift */; };
+		393DDD672ADCBFC400522012 /* CycleTransitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD662ADCBFC400522012 /* CycleTransitVC.swift */; };
 		393E1BBE2AC9E4DB0068779B /* SimpleInterAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E1BBD2AC9E4DB0068779B /* SimpleInterAspectsVC.swift */; };
 		394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */; };
 		394FA19B2AABAA50002BC0A5 /* transitMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */; };
@@ -159,6 +163,10 @@
 		392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesViewVC.swift; sourceTree = "<group>"; };
 		393DDD532AD71A9E00522012 /* ArchetypeBreakdownVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchetypeBreakdownVC.swift; sourceTree = "<group>"; };
 		393DDD552AD728A300522012 /* MyContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContentCell.swift; sourceTree = "<group>"; };
+		393DDD602ADC90DB00522012 /* hh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hh.swift; sourceTree = "<group>"; };
+		393DDD622ADC96E400522012 /* CycleChartsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleChartsVC.swift; sourceTree = "<group>"; };
+		393DDD642ADC98E900522012 /* CycleChartTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleChartTV.swift; sourceTree = "<group>"; };
+		393DDD662ADCBFC400522012 /* CycleTransitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleTransitVC.swift; sourceTree = "<group>"; };
 		393E1BBD2AC9E4DB0068779B /* SimpleInterAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInterAspectsVC.swift; sourceTree = "<group>"; };
 		394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedMatrixVC.swift; sourceTree = "<group>"; };
 		394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitMatrixVC.swift; sourceTree = "<group>"; };
@@ -297,9 +305,11 @@
 				3903A33A2A5F2D0700245DD2 /* AppDelegate.swift */,
 				3903A33C2A5F2D0700245DD2 /* SceneDelegate.swift */,
 				3903A33E2A5F2D0700245DD2 /* ViewController.swift */,
+				393DDD642ADC98E900522012 /* CycleChartTV.swift */,
 				395DE5102A95E2DA00B0B451 /* AddNewRelationshipVC.swift */,
 				3955A6692A909C2E00DE2051 /* ChartTableCell.swift */,
 				398ECC302A8F07D300695354 /* MyCharts.swift */,
+				393DDD602ADC90DB00522012 /* hh.swift */,
 				396989D42AC24543007EA008 /* EditChartVC.swift */,
 				399B62962AB75D77006BAC2E /* ImportAAFVC.swift */,
 				399B62982AB75DAC006BAC2E /* Charts3.swift */,
@@ -325,6 +335,7 @@
 				394FA60C2AA48AE9000CD87B /* planetInfoDictionary.swift */,
 				395DE5062A95AD1100B0B451 /* Planet Info.swift */,
 				39655E3D2AA8C3B2008033AB /* Cells.swift */,
+				393DDD622ADC96E400522012 /* CycleChartsVC.swift */,
 				398580542AA26D2C007A561B /* HarmoniousInfoVC.swift */,
 				398580562AA26D34007A561B /* DiscordInfoVC.swift */,
 				39655E3B2AA8BF09008033AB /* progresionsMatrixVC.swift */,
@@ -348,6 +359,7 @@
 				39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */,
 				396989D62AC2841F007EA008 /* househol;der.swift */,
 				39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */,
+				393DDD662ADCBFC400522012 /* CycleTransitVC.swift */,
 				395DE5042A954A4B00B0B451 /* TransitAspectsVC.swift */,
 				39A1EC502A5F76E8008D1EC1 /* MinorsPlanetsVC.swift */,
 				39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */,
@@ -508,6 +520,7 @@
 				3955A6662A90963D00DE2051 /* NatalAspectsVC.swift in Sources */,
 				394FA60D2AA48AE9000CD87B /* planetInfoDictionary.swift in Sources */,
 				39A1EC5D2A5F7A96008D1EC1 /* NewAspects.swift in Sources */,
+				393DDD612ADC90DB00522012 /* hh.swift in Sources */,
 				3997F07A2A64303F00741E9D /* Progression Sentence.swift in Sources */,
 				39E1687B2A9C8EA70003892B /* SolarArcViewController.swift in Sources */,
 				395DE5032A9548D400B0B451 /* MajorProgressedPlanetsVC.swift in Sources */,
@@ -545,6 +558,7 @@
 				3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */,
 				3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */,
 				39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */,
+				393DDD632ADC96E400522012 /* CycleChartsVC.swift in Sources */,
 				3924345E2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift in Sources */,
 				3916F33C2AA777FF00DEABEB /* NatalHousesCustomCell.swift in Sources */,
 				3955A66A2A909C2E00DE2051 /* ChartTableCell.swift in Sources */,
@@ -587,6 +601,7 @@
 				395DE5072A95AD1100B0B451 /* Planet Info.swift in Sources */,
 				39E113F22A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift in Sources */,
 				39851F782A93022C00E70FF5 /* ProgressedAspectsTCVC.swift in Sources */,
+				393DDD672ADCBFC400522012 /* CycleTransitVC.swift in Sources */,
 				395DE50F2A95E29600B0B451 /* AddRelationship.swift in Sources */,
 				398580572AA26D34007A561B /* DiscordInfoVC.swift in Sources */,
 				39E168662A972D3D0003892B /* SimpleAspectsByHouse.swift in Sources */,
@@ -597,6 +612,7 @@
 				395DE51B2A967E5000B0B451 /* SynastryChartVC.swift in Sources */,
 				396989D12ABDF385007EA008 /* CustomNatalPlanetsCell.swift in Sources */,
 				3903A3452A5F2D0700245DD2 /* AstroLogic.xcdatamodeld in Sources */,
+				393DDD652ADC98E900522012 /* CycleChartTV.swift in Sources */,
 				39851F7C2A93026900E70FF5 /* ProgressedAspectsByHouseTCVC.swift in Sources */,
 				39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */,
 				39A1EC432A5F7080008D1EC1 /* TransitPlanetsVC.swift in Sources */,

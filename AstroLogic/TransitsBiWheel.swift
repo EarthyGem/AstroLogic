@@ -9,7 +9,12 @@ class TransitBiWheelChartView: UIView {
 //    
     var planetPositions: [CelestialObject: CGFloat] = [:]
     var transitPlanetPositions: [CelestialObject: CGFloat] = [:]
-    
+  
+
+     func updateTransitPlanetPositions(_ newPositions: [CelestialObject: CGFloat]) {
+         transitPlanetPositions = newPositions
+         setNeedsDisplay() // Trigger a redraw to reflect the updated positions
+     }
 
         
     init(frame: CGRect, chartCake: ChartCake) {
@@ -862,6 +867,8 @@ class TransitBiWheelChartView: UIView {
         transitPlanetPositions = newTransitPositions
         setNeedsDisplay()
     }
+
+    
     
     func updateTransitChart() {
         let ascendantOffset = getHouses1()[0]

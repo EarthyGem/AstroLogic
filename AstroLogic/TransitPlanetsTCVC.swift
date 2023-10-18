@@ -20,7 +20,8 @@ class TransitPlanetsTimeChangeViewController: UIViewController  {
     var onDateSelected: ((Date, Date) -> Void)?
     var chartCake: ChartCake?
     var selectedDate: Date?
-
+    var latitude: Double?
+    var longitude: Double?
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         delegate?.datePickerDidChangeDate(sender.date)
     }
@@ -40,12 +41,15 @@ class TransitPlanetsTimeChangeViewController: UIViewController  {
 
   
     @IBAction func doneButtonTapped(_ sender: UIToolbar) {
-        let selectedDate = tcDP.date
+        var selectedDate = tcDP.date
 
         // Create an instance of the next view controller
         let nextViewController = TransitPlanets(transitPlanets: [""])
 // Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
+
+        nextViewController.latitude = latitude
+        nextViewController.longitude = longitude
         nextViewController.selectedDate = selectedDate
         navigationController?.pushViewController(nextViewController, animated: true)
     }
