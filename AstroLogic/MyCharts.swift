@@ -23,6 +23,9 @@ class ChartsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        findCrossingZeroDeclination(targetPlanet: targetPlanet, latitude: latitude, longitude: longitude, maxIterations: maxIterations)
+
+
         let importButton = UIBarButtonItem(title: "Import AAF", style: .plain, target: self, action: #selector(importButtonTapped))
            self.navigationItem.rightBarButtonItem = importButton
 
@@ -315,6 +318,8 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
                     strongestPlanetVC.sentenceText = sentence
                     strongestPlanetVC.dateString = dateAndPlace
+                    strongestPlanetVC.latitude = latitude
+                    strongestPlanetVC.longitude = longitude
                     self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
                 }
             }
