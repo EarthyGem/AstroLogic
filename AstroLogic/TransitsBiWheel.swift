@@ -268,7 +268,7 @@ class TransitBiWheelChartView: UIView {
             let tenth = chartCake!.natal.houseCusps.tenth.value
             let eleventh = chartCake!.natal.houseCusps.eleventh.value
             let twelfth = chartCake!.natal.houseCusps.twelfth.value
-            
+            print("First!: \(first)")
             return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
         }
         
@@ -638,6 +638,14 @@ class TransitBiWheelChartView: UIView {
             return false
         }
 
+        for subview in subviews {
+             if let label = subview as? UILabel {
+                 if label.tag == 1001 { // Use a unique tag to identify degree labels
+                     label.removeFromSuperview()
+                 }
+             }
+         }
+
         
         let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
         var lastSymbolCenter: CGPoint? = nil
@@ -683,6 +691,7 @@ class TransitBiWheelChartView: UIView {
                 guard let position = transitPlanetPositions[celestialObject] else { continue }
 
                 let degreeLabel = UILabel()
+                degreeLabel.tag = 1001 // Use a unique tag to identify degree labels
                 degreeLabel.textColor = .white
                 degreeLabel.textAlignment = .center
                 degreeLabel.text = degree
@@ -696,7 +705,6 @@ class TransitBiWheelChartView: UIView {
                 let degreeLabelY = center.y + sin(degreeLabelAngle) * degreeLabelRadius
                 degreeLabel.center = CGPoint(x: degreeLabelX, y: degreeLabelY)
                 addSubview(degreeLabel)
-                
             }
 
             for (_, (celestialObject, imageName)) in sortedPlanetSignSymbol.enumerated() {
@@ -874,17 +882,17 @@ class TransitBiWheelChartView: UIView {
         let ascendantOffset = getHouses1()[0]
         
         let planetPositions: [CelestialObject: CGFloat] = [
-            .planet(.sun): getTransitPlanets()[0] - ascendantOffset,
-            .planet(.moon): getTransitPlanets()[1] - ascendantOffset,
-            .planet(.mercury): getTransitPlanets()[2] - ascendantOffset,
-            .planet(.venus): getTransitPlanets()[3] - ascendantOffset,
-            .planet(.mars): getTransitPlanets()[4] - ascendantOffset,
-            .planet(.jupiter): getTransitPlanets()[5] - ascendantOffset,
-            .planet(.saturn): getTransitPlanets()[6] - ascendantOffset,
-            .planet(.uranus): getTransitPlanets()[7] - ascendantOffset,
-            .planet(.neptune): getTransitPlanets()[8] - ascendantOffset,
-            .planet(.pluto): getTransitPlanets()[9] - ascendantOffset,
-            .lunarNode(.meanSouthNode): getPlanets()[10] - ascendantOffset
+            .planet(.sun): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.moon): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.mercury): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.venus): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.mars): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.jupiter): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.saturn): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.uranus): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.neptune): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .planet(.pluto): chartCake.transits.rickysBodies[0].value - ascendantOffset,
+            .lunarNode(.meanSouthNode): chartCake.transits.rickysBodies[0].value - ascendantOffset
         ]
         updateTransitPlanetPositions(newTransitPositions: planetPositions)
     }

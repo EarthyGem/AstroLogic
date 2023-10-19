@@ -269,6 +269,17 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
                 updatedTransitPositions[body.body] = body.value
             }
 
+            // Update the degree values for planets based on the new positions
+                   let updatedPlanetDegree: [(planet: CelestialObject, degree: String)] = [
+                       (.planet(.sun), "\(Int(updatedChartCake.transits.sun.degree))°"),
+                       (.planet(.moon), "\(Int(updatedChartCake.transits.moon.degree))°"),
+                       (.planet(.mercury), "\(Int(updatedChartCake.transits.mercury.degree))°"),
+                       (.planet(.venus), "\(Int(updatedChartCake.transits.venus.degree))°"),
+                       (.planet(.mars), "\(Int(updatedChartCake.transits.mars.degree))°"),
+                       // Add the remaining planets here
+                   ]
+
+
             transitBiWheelChartView.updateTransitPlanetPositions(newTransitPositions: updatedTransitPositions)
             transitBiWheelChartView.setNeedsDisplay()
 
