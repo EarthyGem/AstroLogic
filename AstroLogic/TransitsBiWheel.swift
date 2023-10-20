@@ -549,25 +549,7 @@ class TransitBiWheelChartView: UIView {
             }
         }
 
-    func getDegree(chartCake: ChartCake) -> [(planet: CelestialObject, degree: String)]  {
-        let planetDegree: [(planet: CelestialObject, degree: String)] = [
-            (.planet(.sun), "\(Int(chartCake.transits.sun.degree))°"),
-            (.planet(.moon), "\(Int(chartCake.transits.moon.degree))°"),
-            (.planet(.mercury), "\(Int(chartCake.transits.mercury.degree))°"),
-            (.planet(.venus), "\(Int(chartCake.transits.venus.degree))°"),
-            (.planet(.mars), "\(Int(chartCake.transits.mars.degree))°"),
-            (.planet(.jupiter), "\(Int(chartCake.transits.jupiter.degree))°"),
-            (.planet(.saturn), "\(Int(chartCake.transits.saturn.degree))°"),
-            (.planet(.uranus), "\(Int(chartCake.transits.uranus.degree))°"),
-            (.planet(.neptune), "\(Int(chartCake.transits.neptune.degree))°"),
-            (.planet(.pluto), "\(Int(chartCake.transits.pluto.degree))°"),
-            (.lunarNode(.meanSouthNode), "\(Int(chartCake.transits.southNode.degree))°")
 
-        ]
-
-return planetDegree
-    }
-        
     private func drawTransitPlanetSymbols(context: CGContext) {
         let planetSymbols: [(planet: CelestialObject, imageName: String)] = [
             (.planet(.sun), "sun"),
@@ -599,6 +581,26 @@ return planetDegree
             (.lunarNode(.meanSouthNode), chartCake!.transits.southNode.sign.keyName)
             
         ]
+
+        func getDegree(chartCake: ChartCake) -> [(planet: CelestialObject, degree: String)]  {
+            let planetDegree: [(planet: CelestialObject, degree: String)] = [
+                (.planet(.sun), "\(Int(chartCake.transits.sun.degree))°"),
+                (.planet(.moon), "\(Int(chartCake.transits.moon.degree))°"),
+                (.planet(.mercury), "\(Int(chartCake.transits.mercury.degree))°"),
+                (.planet(.venus), "\(Int(chartCake.transits.venus.degree))°"),
+                (.planet(.mars), "\(Int(chartCake.transits.mars.degree))°"),
+                (.planet(.jupiter), "\(Int(chartCake.transits.jupiter.degree))°"),
+                (.planet(.saturn), "\(Int(chartCake.transits.saturn.degree))°"),
+                (.planet(.uranus), "\(Int(chartCake.transits.uranus.degree))°"),
+                (.planet(.neptune), "\(Int(chartCake.transits.neptune.degree))°"),
+                (.planet(.pluto), "\(Int(chartCake.transits.pluto.degree))°"),
+                (.lunarNode(.meanSouthNode), "\(Int(chartCake.transits.southNode.degree))°")
+
+            ]
+
+    return planetDegree
+        }
+         
         
         
         let planetMinute: [(planet: CelestialObject, minute: String)] = [

@@ -17,7 +17,9 @@ class MinorsPlanetsTimeChangeViewController: UIViewController  {
     var onDateSelected: ((Date, Date) -> Void)?
     var chartCake: ChartCake?
     var selectedDate: Date?
-
+    var latitude: Double?
+    var longitude: Double?
+   
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         delegate?.datePickerDidChangeDate(sender.date)
     }
@@ -44,6 +46,9 @@ class MinorsPlanetsTimeChangeViewController: UIViewController  {
 // Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate
+        nextViewController.latitude = latitude
+        nextViewController.longitude = longitude
+        
         navigationController?.pushViewController(nextViewController, animated: true)
     }
 

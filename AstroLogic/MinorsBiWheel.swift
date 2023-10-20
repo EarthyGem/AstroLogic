@@ -9,7 +9,9 @@ class MinorsBiWheelChartView: UIView {
     
     var planetPositions: [CelestialObject: CGFloat] = [:]
     var minorPlanetPositions: [CelestialObject: CGFloat] = [:]
-    
+    var minorPlanetDegree: [(planet: CelestialObject, degree: String)] = []
+    var planetDegree: [(planet: CelestialObject, degree: String)] = []
+
     
     
 init(frame: CGRect, chartCake: ChartCake) {
@@ -542,7 +544,27 @@ private func drawTransitZodiacCircle(context: CGContext) {
             }
         }
     }
-  
+
+
+    func getDegree(chartCake: ChartCake) -> [(planet: CelestialObject, degree: String)]  {
+        let planetDegree: [(planet: CelestialObject, degree: String)] = [
+            (.planet(.sun), "\(Int(chartCake.minor.sun.degree))°"),
+            (.planet(.moon), "\(Int(chartCake.minor.moon.degree))°"),
+            (.planet(.mercury), "\(Int(chartCake.minor.mercury.degree))°"),
+            (.planet(.venus), "\(Int(chartCake.minor.venus.degree))°"),
+            (.planet(.mars), "\(Int(chartCake.minor.mars.degree))°"),
+            (.planet(.jupiter), "\(Int(chartCake.minor.jupiter.degree))°"),
+            (.planet(.saturn), "\(Int(chartCake.minor.saturn.degree))°"),
+            (.planet(.uranus), "\(Int(chartCake.minor.uranus.degree))°"),
+            (.planet(.neptune), "\(Int(chartCake.minor.neptune.degree))°"),
+            (.planet(.pluto), "\(Int(chartCake.minor.pluto.degree))°"),
+            (.lunarNode(.meanSouthNode), "\(Int(chartCake.minor.southNode.degree))°")
+
+        ]
+
+return planetDegree
+    }
+
 
 private func drawTransitPlanetSymbols(context: CGContext) {
     let planetSymbols: [(planet: CelestialObject, imageName: String)] = [
@@ -800,29 +822,37 @@ private func drawTransitPlanetSymbols(context: CGContext) {
     }
     
 
-func updateTransitPlanetPositions(newTransitPositions: [CelestialObject: CGFloat]) {
-    minorPlanetPositions = newTransitPositions
-    setNeedsDisplay()
-}
 
-func updateTransitChart() {
-    let ascendantOffset = getHouses1()[0]
-    
-    let planetPositions: [CelestialObject: CGFloat] = [
-        .planet(.sun): getTransitPlanets()[0] - ascendantOffset,
-        .planet(.moon): getTransitPlanets()[1] - ascendantOffset,
-        .planet(.mercury): getTransitPlanets()[2] - ascendantOffset,
-        .planet(.venus): getTransitPlanets()[3] - ascendantOffset,
-        .planet(.mars): getTransitPlanets()[4] - ascendantOffset,
-        .planet(.jupiter): getTransitPlanets()[5] - ascendantOffset,
-        .planet(.saturn): getTransitPlanets()[6] - ascendantOffset,
-        .planet(.uranus): getTransitPlanets()[7] - ascendantOffset,
-        .planet(.neptune): getTransitPlanets()[8] - ascendantOffset,
-        .planet(.pluto): getTransitPlanets()[9] - ascendantOffset,
-            .lunarNode(.meanSouthNode): getPlanets()[10] - ascendantOffset
-    ]
-    updateTransitPlanetPositions(newTransitPositions: planetPositions)
-}
+    func updateTransitChart() {
+        let ascendantOffset = getHouses1()[0]
+
+        let planetPositions: [CelestialObject: CGFloat] = [
+            .planet(.sun): chartCake.minor.rickysBodies[0].value - ascendantOffset,
+            .planet(.moon): chartCake.minor.rickysBodies[1].value - ascendantOffset,
+            .planet(.mercury): chartCake.minor.rickysBodies[2].value - ascendantOffset,
+            .planet(.venus): chartCake.minor.rickysBodies[3].value - ascendantOffset,
+            .planet(.mars): chartCake.minor.rickysBodies[4].value - ascendantOffset,
+            .planet(.jupiter): chartCake.minor.rickysBodies[5].value - ascendantOffset,
+            .planet(.saturn): chartCake.minor.rickysBodies[6].value - ascendantOffset,
+            .planet(.uranus): chartCake.minor.rickysBodies[7].value - ascendantOffset,
+            .planet(.neptune): chartCake.minor.rickysBodies[8].value - ascendantOffset,
+            .planet(.pluto): chartCake.minor.rickysBodies[9].value - ascendantOffset,
+            .lunarNode(.meanSouthNode): chartCake.minor.rickysBodies[10].value - ascendantOffset
+        ]
+        updateTransitPlanetPositions(newTransitPositions: planetPositions)
+    }
+
+
+  
+    func updateMinorDegrees(_ newDegrees: [(planet: CelestialObject, degree: String)]) {
+        planetDegree = newDegrees
+        setNeedsDisplay() // Trigger a redraw to reflect the updated degrees
+    }
+    func updateTransitPlanetPositions(newTransitPositions: [CelestialObject: CGFloat]) {
+        minorPlanetPositions = newTransitPositions
+        setNeedsDisplay()
+    }
+
 
 
 private func getTransitPlanets() -> [CGFloat] {

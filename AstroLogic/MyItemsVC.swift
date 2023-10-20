@@ -156,6 +156,10 @@ extension MyItemsViewController: UITableViewDelegate {
         minorProgressionsVC.title = category.chartType
         minorProgressionsVC.chartCake = self.chartCake
         minorProgressionsVC.selectedDate = self.selectedDate
+        minorProgressionsVC.latitude = self.latitude
+        minorProgressionsVC.longitude = self.longitude
+
+
 
         let transitPlanetstimeChangeVC = TransitPlanetsByHouseTimeChangeViewController()
         transitPlanetstimeChangeVC.chartCake = self.chartCake
@@ -172,6 +176,8 @@ extension MyItemsViewController: UITableViewDelegate {
         MP_PlanetsVC.chartCake = self.chartCake
         MP_PlanetsVC.selectedDate = self.selectedDate
         MP_PlanetsVC.name = self.name
+        MP_PlanetsVC.latitude = self.latitude
+        MP_PlanetsVC.longitude = self.longitude
 
         let progressedAspectsByHouseVC = ProgressionPlanetsByHouseTimeChangeViewController()
         progressedAspectsByHouseVC.chartCake = self.chartCake

@@ -206,18 +206,6 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 
-    func updateTransitDateAndRefreshUI(to newTransitDate: Date) {
-        if let updatedChartCake = chartCake?.withUpdatedTransitDate(newTransitDate) {
-            self.chartCake = updatedChartCake
-
-            // Refresh your transit signs and positions
-            transitSigns = getTransitPositions(for: selectedDate!)
-
-            // Refresh your table view to reflect the updated data
-            self.tableView.reloadData()
-        }
-    }
-
     
     var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
     
@@ -260,6 +248,18 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
         ]
 
 return planetDegree
+    }
+
+    func updateTransitDateAndRefreshUI(to newTransitDate: Date) {
+        if let updatedChartCake = chartCake?.withUpdatedTransitDate(newTransitDate) {
+            self.chartCake = updatedChartCake
+
+            // Refresh your transit signs and positions
+            transitSigns = getTransitPositions(for: selectedDate!)
+
+            // Refresh your table view to reflect the updated data
+            self.tableView.reloadData()
+        }
     }
 
 

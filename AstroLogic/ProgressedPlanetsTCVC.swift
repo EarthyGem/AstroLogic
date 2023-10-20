@@ -18,7 +18,8 @@ class ProgressedPlanetsTimeChangeViewController: UIViewController  {
     var chartCake: ChartCake?
     var selectedDate: Date?
     var name: String!
-
+    var latitude: Double?
+    var longitude: Double?
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         delegate?.datePickerDidChangeDate(sender.date)
     }
@@ -45,6 +46,9 @@ class ProgressedPlanetsTimeChangeViewController: UIViewController  {
 // Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate
+        nextViewController.longitude = longitude
+        nextViewController.latitude = latitude
+
       //  nextViewController.name = name
         navigationController?.pushViewController(nextViewController, animated: true)
     }

@@ -43,7 +43,7 @@
 		3955A6662A90963D00DE2051 /* NatalAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3955A6652A90963D00DE2051 /* NatalAspectsVC.swift */; };
 		3955A66A2A909C2E00DE2051 /* ChartTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3955A6692A909C2E00DE2051 /* ChartTableCell.swift */; };
 		395C0B4A2AAC298400A28A60 /* transitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C0B492AAC298400A28A60 /* transitMatrix.swift */; };
-		395DE5032A9548D400B0B451 /* MajorProgressedPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5022A9548D400B0B451 /* MajorProgressedPlanetsVC.swift */; };
+		395DE5032A9548D400B0B451 /* MPPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5022A9548D400B0B451 /* MPPlanetsVC.swift */; };
 		395DE5052A954A4B00B0B451 /* TransitAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5042A954A4B00B0B451 /* TransitAspectsVC.swift */; };
 		395DE5072A95AD1100B0B451 /* Planet Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5062A95AD1100B0B451 /* Planet Info.swift */; };
 		395DE5092A95DC7A00B0B451 /* RelationshipPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395DE5082A95DC7A00B0B451 /* RelationshipPlanetsVC.swift */; };
@@ -174,7 +174,7 @@
 		3955A6652A90963D00DE2051 /* NatalAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalAspectsVC.swift; sourceTree = "<group>"; };
 		3955A6692A909C2E00DE2051 /* ChartTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableCell.swift; sourceTree = "<group>"; };
 		395C0B492AAC298400A28A60 /* transitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitMatrix.swift; sourceTree = "<group>"; };
-		395DE5022A9548D400B0B451 /* MajorProgressedPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorProgressedPlanetsVC.swift; sourceTree = "<group>"; };
+		395DE5022A9548D400B0B451 /* MPPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPPlanetsVC.swift; sourceTree = "<group>"; };
 		395DE5042A954A4B00B0B451 /* TransitAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitAspectsVC.swift; sourceTree = "<group>"; };
 		395DE5062A95AD1100B0B451 /* Planet Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Planet Info.swift"; sourceTree = "<group>"; };
 		395DE5082A95DC7A00B0B451 /* RelationshipPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipPlanetsVC.swift; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 				39A1EC502A5F76E8008D1EC1 /* MinorsPlanetsVC.swift */,
 				39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */,
 				39A1EC522A5F773E008D1EC1 /* MPAspectsVC.swift */,
-				395DE5022A9548D400B0B451 /* MajorProgressedPlanetsVC.swift */,
+				395DE5022A9548D400B0B451 /* MPPlanetsVC.swift */,
 				39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */,
 				395DE5242A96E8DD00B0B451 /* SimpleTransitAspects.swift */,
 				39E168632A96D8150003892B /* NatalAspectsSimple.swift */,
@@ -523,7 +523,7 @@
 				393DDD612ADC90DB00522012 /* hh.swift in Sources */,
 				3997F07A2A64303F00741E9D /* Progression Sentence.swift in Sources */,
 				39E1687B2A9C8EA70003892B /* SolarArcViewController.swift in Sources */,
-				395DE5032A9548D400B0B451 /* MajorProgressedPlanetsVC.swift in Sources */,
+				395DE5032A9548D400B0B451 /* MPPlanetsVC.swift in Sources */,
 				39E113EE2A8ABE80006EA576 /* AspectByHouses.swift in Sources */,
 				39A1EC342A5F6003008D1EC1 /* StrongestPlanetVC.swift in Sources */,
 				39A1EC5B2A5F7A31008D1EC1 /* Custom Aspects.swift in Sources */,
