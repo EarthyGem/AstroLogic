@@ -243,6 +243,27 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
         transitSigns = getTransitPositions(for: date)
         tableView.reloadData()
     }
+    func getDegree(chartCake: ChartCake) -> [(planet: CelestialObject, degree: String)]  {
+        let planetDegree: [(planet: CelestialObject, degree: String)] = [
+            (.planet(.sun), "\(Int(chartCake.transits.sun.degree))°"),
+            (.planet(.moon), "\(Int(chartCake.transits.moon.degree))°"),
+            (.planet(.mercury), "\(Int(chartCake.transits.mercury.degree))°"),
+            (.planet(.venus), "\(Int(chartCake.transits.venus.degree))°"),
+            (.planet(.mars), "\(Int(chartCake.transits.mars.degree))°"),
+            (.planet(.jupiter), "\(Int(chartCake.transits.jupiter.degree))°"),
+            (.planet(.saturn), "\(Int(chartCake.transits.saturn.degree))°"),
+            (.planet(.uranus), "\(Int(chartCake.transits.uranus.degree))°"),
+            (.planet(.neptune), "\(Int(chartCake.transits.neptune.degree))°"),
+            (.planet(.pluto), "\(Int(chartCake.transits.pluto.degree))°"),
+            (.lunarNode(.meanSouthNode), "\(Int(chartCake.transits.southNode.degree))°")
+
+        ]
+
+return planetDegree
+    }
+
+
+
     func updateChartCakeAndUI(for date: Date) -> ChartCake? {
         // Assuming chartCake is an optional
         guard var chartCake = chartCake else {
@@ -250,7 +271,7 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
         // Update the transitDate property with a new date
-        let newTransitDate = Date() // Replace this with your desired date
+        let newTransitDate = date // Replace this with your desired date
         chartCake.transitDate = newTransitDate
 
         // Create a new ChartCake instance with the updated transit date
@@ -265,32 +286,27 @@ class TransitPlanets: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             // Update transit planet positions for all celestial bodies
             var updatedTransitPositions: [CelestialObject: CGFloat] = [:]
-            for body in chartCake.transits.rickysBodies {
+            for body in updatedChartCake.transits.rickysBodies {
                 updatedTransitPositions[body.body] = body.value
             }
-
-            // Update the degree values for planets based on the new positions
-                   let updatedPlanetDegree: [(planet: CelestialObject, degree: String)] = [
-                       (.planet(.sun), "\(Int(updatedChartCake.transits.sun.degree))°"),
-                       (.planet(.moon), "\(Int(updatedChartCake.transits.moon.degree))°"),
-                       (.planet(.mercury), "\(Int(updatedChartCake.transits.mercury.degree))°"),
-                       (.planet(.venus), "\(Int(updatedChartCake.transits.venus.degree))°"),
-                       (.planet(.mars), "\(Int(updatedChartCake.transits.mars.degree))°"),
-                       // Add the remaining planets here
-                   ]
+            var updatedTransitDegrees: [(planet: CelestialObject, degree: String)] = []
+            for body in updatedChartCake.transits.rickysBodies {
+                updatedTransitDegrees.append((planet: body.body, degree: "\(Int(body.degree))"))
+            }
 
 
-            transitBiWheelChartView.updateTransitPlanetPositions(newTransitPositions: updatedTransitPositions)
-            transitBiWheelChartView.setNeedsDisplay()
+                   // Update the transit positions and degrees in your TransitBiWheelChartView
+                   transitBiWheelChartView.updateTransitPlanetPositions(newTransitPositions: updatedTransitPositions)
+            transitBiWheelChartView.updateTransitDegrees(updatedTransitDegrees)
 
-            return updatedChartCake
-        } else {
-            // Handle the case where creating a new ChartCake instance failed
-            return nil
-        }
-    }
+                   transitBiWheelChartView.setNeedsDisplay()
 
-
+                   return updatedChartCake
+               } else {
+                   // Handle the case where creating a new ChartCake instance failed
+                   return nil
+               }
+           }
     @objc func plusHourButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .hour, value: 1, to: selectedDate!)
         updateUIWithSelectedDate()

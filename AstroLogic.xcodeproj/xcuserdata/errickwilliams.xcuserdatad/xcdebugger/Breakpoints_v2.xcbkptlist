@@ -95,5 +95,83 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A181FC5F-F8D0-4C0F-A7DC-747278F10214"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/TransitPlanetsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "updateChartCakeAndUI(for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A181FC5F-F8D0-4C0F-A7DC-747278F10214 - 1a75b59a22c97f9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.TransitPlanets.updateChartCakeAndUI(for: Foundation.Date) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/TransitPlanetsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "248"
+                  endingLineNumber = "248"
+                  offsetFromSymbolStart = "698">
+               </Location>
+               <Location
+                  uuid = "A181FC5F-F8D0-4C0F-A7DC-747278F10214 - 1a75b59a22c97f9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.TransitPlanets.updateChartCakeAndUI(for: Foundation.Date) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/TransitPlanetsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "248"
+                  endingLineNumber = "248"
+                  offsetFromSymbolStart = "784">
+               </Location>
+               <Location
+                  uuid = "A181FC5F-F8D0-4C0F-A7DC-747278F10214 - 1a75b59a22c97fde"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.TransitPlanets.updateChartCakeAndUI(for: Foundation.Date) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/TransitPlanetsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "684">
+               </Location>
+               <Location
+                  uuid = "A181FC5F-F8D0-4C0F-A7DC-747278F10214 - 1a75b59a22c9796b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.TransitPlanets.updateChartCakeAndUI(for: Foundation.Date) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/TransitPlanetsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "698">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

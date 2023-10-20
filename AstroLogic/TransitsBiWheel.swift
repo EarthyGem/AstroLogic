@@ -9,7 +9,9 @@ class TransitBiWheelChartView: UIView {
 //    
     var planetPositions: [CelestialObject: CGFloat] = [:]
     var transitPlanetPositions: [CelestialObject: CGFloat] = [:]
-  
+    var transitPlanetDegree: [(planet: CelestialObject, degree: String)] = []
+    var planetDegree: [(planet: CelestialObject, degree: String)] = []
+
 
      func updateTransitPlanetPositions(_ newPositions: [CelestialObject: CGFloat]) {
          transitPlanetPositions = newPositions
@@ -546,6 +548,25 @@ class TransitBiWheelChartView: UIView {
                 }
             }
         }
+
+    func getDegree(chartCake: ChartCake) -> [(planet: CelestialObject, degree: String)]  {
+        let planetDegree: [(planet: CelestialObject, degree: String)] = [
+            (.planet(.sun), "\(Int(chartCake.transits.sun.degree))°"),
+            (.planet(.moon), "\(Int(chartCake.transits.moon.degree))°"),
+            (.planet(.mercury), "\(Int(chartCake.transits.mercury.degree))°"),
+            (.planet(.venus), "\(Int(chartCake.transits.venus.degree))°"),
+            (.planet(.mars), "\(Int(chartCake.transits.mars.degree))°"),
+            (.planet(.jupiter), "\(Int(chartCake.transits.jupiter.degree))°"),
+            (.planet(.saturn), "\(Int(chartCake.transits.saturn.degree))°"),
+            (.planet(.uranus), "\(Int(chartCake.transits.uranus.degree))°"),
+            (.planet(.neptune), "\(Int(chartCake.transits.neptune.degree))°"),
+            (.planet(.pluto), "\(Int(chartCake.transits.pluto.degree))°"),
+            (.lunarNode(.meanSouthNode), "\(Int(chartCake.transits.southNode.degree))°")
+
+        ]
+
+return planetDegree
+    }
         
     private func drawTransitPlanetSymbols(context: CGContext) {
         let planetSymbols: [(planet: CelestialObject, imageName: String)] = [
@@ -563,21 +584,7 @@ class TransitBiWheelChartView: UIView {
           
         ]
         
-        let planetDegree: [(planet: CelestialObject, degree: String)] = [
-            (.planet(.sun), "\(Int(chartCake!.transits.sun.degree))°"),
-            (.planet(.moon), "\(Int(chartCake!.transits.moon.degree))°"),
-            (.planet(.mercury), "\(Int(chartCake!.transits.mercury.degree))°"),
-            (.planet(.venus), "\(Int(chartCake!.transits.venus.degree))°"),
-            (.planet(.mars), "\(Int(chartCake!.transits.mars.degree))°"),
-            (.planet(.jupiter), "\(Int(chartCake!.transits.jupiter.degree))°"),
-            (.planet(.saturn), "\(Int(chartCake!.transits.saturn.degree))°"),
-            (.planet(.uranus), "\(Int(chartCake!.transits.uranus.degree))°"),
-            (.planet(.neptune), "\(Int(chartCake!.transits.neptune.degree))°"),
-            (.planet(.pluto), "\(Int(chartCake!.transits.pluto.degree))°"),
-            (.lunarNode(.meanSouthNode), "\(Int(chartCake!.transits.southNode.degree))°")
-          
-        ]
-        
+
         let planetSignSymbols: [(planet: CelestialObject, imageName: String)] = [
             (.planet(.sun), chartCake!.transits.sun.sign.keyName),
             (.planet(.moon), chartCake!.transits.moon.sign.keyName),
@@ -617,7 +624,7 @@ class TransitBiWheelChartView: UIView {
             return false
         }
         
-        let sortedPlanetDegree = planetDegree.sorted { (degree1, degree2) -> Bool in
+        let sortedPlanetDegree = getDegree(chartCake: chartCake).sorted { (degree1, degree2) -> Bool in
             if let position1 = transitPlanetPositions[degree1.planet], let position2 = transitPlanetPositions[degree2.planet] {
                 return position1 < position2
             }
@@ -687,25 +694,26 @@ class TransitBiWheelChartView: UIView {
             let symbolSize = min(bounds.width, bounds.height) / 30
             let symbolRect = CGRect(x: centerX - symbolSize / 2, y: centerY - symbolSize / 2, width: symbolSize, height: symbolSize)
             
-            for (_, (celestialObject, degree)) in sortedPlanetDegree.enumerated() {
-                guard let position = transitPlanetPositions[celestialObject] else { continue }
+            for (_, (celestialObject, degree)) in planetDegree.enumerated() {
+                  guard let position = transitPlanetPositions[celestialObject] else { continue }
 
-                let degreeLabel = UILabel()
-                degreeLabel.tag = 1001 // Use a unique tag to identify degree labels
-                degreeLabel.textColor = .white
-                degreeLabel.textAlignment = .center
-                degreeLabel.text = degree
-                degreeLabel.font = UIFont.systemFont(ofSize: 9)
-                degreeLabel.sizeToFit()
-                degreeLabel.textColor = .white
-                let degreeLabelRadius =  min(bounds.width, bounds.height) * 0.45 - 32
+                  let degreeLabel = UILabel()
+                  degreeLabel.tag = 1001 // Use a unique tag to identify degree labels
+                  degreeLabel.textColor = .white
+                  degreeLabel.textAlignment = .center
+                  degreeLabel.text = degree
+                  degreeLabel.font = UIFont.systemFont(ofSize: 9)
+                  degreeLabel.sizeToFit()
+                  degreeLabel.textColor = .white
+                  let degreeLabelRadius =  min(bounds.width, bounds.height) * 0.45 - 32
 
-                let degreeLabelAngle = 2 * .pi - (position * .pi / 180) + .pi
-                let degreeLabelX = center.x + cos(degreeLabelAngle) * degreeLabelRadius
-                let degreeLabelY = center.y + sin(degreeLabelAngle) * degreeLabelRadius
-                degreeLabel.center = CGPoint(x: degreeLabelX, y: degreeLabelY)
-                addSubview(degreeLabel)
-            }
+                  let degreeLabelAngle = 2 * .pi - (position * .pi / 180) + .pi
+                  let degreeLabelX = center.x + cos(degreeLabelAngle) * degreeLabelRadius
+                  let degreeLabelY = center.y + sin(degreeLabelAngle) * degreeLabelRadius
+                  degreeLabel.center = CGPoint(x: degreeLabelX, y: degreeLabelY)
+                  addSubview(degreeLabel)
+              }
+
 
             for (_, (celestialObject, imageName)) in sortedPlanetSignSymbol.enumerated() {
                 guard let position = transitPlanetPositions[celestialObject] else { continue }
@@ -876,23 +884,27 @@ class TransitBiWheelChartView: UIView {
         setNeedsDisplay()
     }
 
-    
-    
+    func updateTransitDegrees(_ newDegrees: [(planet: CelestialObject, degree: String)]) {
+        planetDegree = newDegrees
+        setNeedsDisplay() // Trigger a redraw to reflect the updated degrees
+    }
+
+
     func updateTransitChart() {
         let ascendantOffset = getHouses1()[0]
         
         let planetPositions: [CelestialObject: CGFloat] = [
             .planet(.sun): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.moon): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.mercury): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.venus): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.mars): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.jupiter): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.saturn): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.uranus): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.neptune): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.pluto): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .lunarNode(.meanSouthNode): chartCake.transits.rickysBodies[0].value - ascendantOffset
+            .planet(.moon): chartCake.transits.rickysBodies[1].value - ascendantOffset,
+            .planet(.mercury): chartCake.transits.rickysBodies[2].value - ascendantOffset,
+            .planet(.venus): chartCake.transits.rickysBodies[3].value - ascendantOffset,
+            .planet(.mars): chartCake.transits.rickysBodies[4].value - ascendantOffset,
+            .planet(.jupiter): chartCake.transits.rickysBodies[5].value - ascendantOffset,
+            .planet(.saturn): chartCake.transits.rickysBodies[6].value - ascendantOffset,
+            .planet(.uranus): chartCake.transits.rickysBodies[7].value - ascendantOffset,
+            .planet(.neptune): chartCake.transits.rickysBodies[8].value - ascendantOffset,
+            .planet(.pluto): chartCake.transits.rickysBodies[9].value - ascendantOffset,
+            .lunarNode(.meanSouthNode): chartCake.transits.rickysBodies[10].value - ascendantOffset
         ]
         updateTransitPlanetPositions(newTransitPositions: planetPositions)
     }
