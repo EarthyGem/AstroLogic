@@ -19,7 +19,7 @@ var myName = ""
 class MyItemsViewController: UIViewController {
 
 // var progPlanets = [String]()
-
+    var phaseName: String?
     var chart: Chart?
     var name: String!
     var selectedDate: Date?
@@ -34,7 +34,7 @@ class MyItemsViewController: UIViewController {
 
     private let ricksData: [RicksItems] = [
         RicksItems(chartType: "Charts and Graphs"),
-      //  RicksItems(chartType: "My Planetary Degrees"),
+        RicksItems(chartType: "Natal Moon Phase"),
         RicksItems(chartType: "Key Decanates"),
         RicksItems(chartType: "Natal Chart"),
         RicksItems(chartType: "Natal Houses"),
@@ -108,7 +108,14 @@ extension MyItemsViewController: UITableViewDelegate {
         natalPlanetsVC.chartCake = self.chartCake
         natalPlanetsVC.sortedPlanets = self.sortedPlanets
 //
+        
+        
+        let moonPhaseVC = MoonPhaseViewController()
+        moonPhaseVC.title = "\(name!)'s \(category.chartType)"
+        moonPhaseVC.chartCake = self.chartCake
+        moonPhaseVC.phaseName = self.phaseName
 
+       
 
 
 
@@ -221,7 +228,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
+        let categories = [chartVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

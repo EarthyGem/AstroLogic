@@ -288,7 +288,7 @@ class AddRelationshipViewController: UIViewController, GMSAutocompleteViewContro
         filter.type = .city
         autocompleteController.autocompleteFilter = filter
         
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: (UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)))
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt64((UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue))))
         autocompleteController.placeFields = fields
        
         updateSearchBarTextColor(in: autocompleteController.view, to: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1))

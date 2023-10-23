@@ -303,7 +303,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
         filter.type = .city
         autocompleteController.autocompleteFilter = filter
 
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: (UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)))
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt64((UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue))))
         autocompleteController.placeFields = fields
 
         updateSearchBarTextColor(in: autocompleteController.view, to: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1))
@@ -522,13 +522,15 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
 //                print("get pairs3: \(chartCake?.filteredMinorProgressedAspectsFromCelestialPairs())")
                 let name = nameTextField.text ?? ""
 
-
+            //    let phaseName = chartCake
 
                 let scores = self.chart!.getTotalPowerScoresForPlanets()
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
 
                 saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet: strongestPlanet.keyName)
 
+                
+                let phaseName = chartCake?.lunarPhase(for: chartCake!.natal)
 
                 // let signScore = self.chart.calculateTotalSignScore()
                 // let houseStrengths = self.chart.calculatePlanetInHouseScores()
@@ -587,6 +589,7 @@ class ViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
                 strongestPlanetVC.strongestPlanetArchetype = getStrongestPlanet(from: scores).archetype
                 strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
                 strongestPlanetVC.name = nameTextField.text!
+                strongestPlanetVC.phaseName = phaseName?.rawValue
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
                 strongestPlanetVC.mostDiscordantPlanetArchetype = mostDiscordantPlanet.archetype

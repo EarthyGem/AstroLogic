@@ -25,6 +25,7 @@ class StrongestPlanetViewController: UIViewController {
     var name: String!
     var latitude: Double?
     var longitude: Double?
+    var phaseName: String?
 
     var combinedBirthDateTime: (date: Date?, timeZone: TimeZone?)?
     var birthPlace: String?
@@ -122,6 +123,7 @@ class StrongestPlanetViewController: UIViewController {
         myItemsVC.chartCake = chartCake.self
         myItemsVC.sortedPlanets = sortedPlanets.self
         myItemsVC.name = name.self
+        myItemsVC.phaseName = phaseName.self
         myItemsVC.birthDate = birthDate.self
         myItemsVC.sortedPlanets = sortedPlanets.self
         myItemsVC.latitude = latitude.self
