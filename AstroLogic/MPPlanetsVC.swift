@@ -485,7 +485,7 @@ return planetDegree
         view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
         view.addSubview(tableView)
         view.addSubview(majorsBiWheelChartView)
-    }sou
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
