@@ -821,6 +821,20 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
             func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+                let rulers1 = chartCake?.rulingBodies(for: 1)
+                let rulers2 = chartCake?.rulingBodies(for: 2)
+                let rulers3 = chartCake?.rulingBodies(for: 3)
+                let rulers4 = chartCake?.rulingBodies(for: 4)
+                let rulers5 = chartCake?.rulingBodies(for: 5)
+                let rulers6 = chartCake?.rulingBodies(for: 6)
+                let rulers7 = chartCake?.rulingBodies(for: 7)
+                let rulers8 = chartCake?.rulingBodies(for: 8)
+                let rulers9 = chartCake?.rulingBodies(for: 9)
+                let rulers10 = chartCake?.rulingBodies(for: 10)
+                let rulers11 = chartCake?.rulingBodies(for: 11)
+                let rulers12 = chartCake?.rulingBodies(for: 12)
+                
+                
                 if(tableView == sunTableView) {
 
 
@@ -831,7 +845,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
 
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 1)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers1![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
 
 
@@ -845,7 +859,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                        return UITableViewCell()
                    }
 
-                  cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 2)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                  cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers2![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -864,7 +878,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
                    }
 
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 3)[indexPath.row].keyName.lowercased().lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers3![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    return cell
 
                 }
@@ -879,7 +893,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                        var transitVenusAspects = [mercuryVenus,saturnVenus,uranusVenus]
 
 
-                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 4)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers4![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                        return cell
 
 
@@ -896,7 +910,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
 
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 5)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers5![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -913,7 +927,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitJupiterGlyph = ["pluto"]
 //                    var transitJupiterDurantion = [""]
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 6)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers6![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -929,7 +943,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitSaturnAspects = [jupiterSaturn]
 //                    var transitSaturnGlyph = ["jupiter"]
 //                    var transitSaturnDuration = ["jupiter"]
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 7)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers7![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -946,7 +960,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitUranusGlyph = ["mars","neptune"]
 //                    var transitUranusDuration = ["mars","neptune"]
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 8)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers8![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
                    return cell
 
                                         }
@@ -963,7 +977,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitNeptuneDuration = ["mercury"]
 
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 9)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers9![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 //
                    return cell
 
@@ -980,7 +994,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
 //                    var transitSunAspects = [sunSun,venusSun,jupiterSun]
 
-                   cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 10)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                   cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers10![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
                    return cell
 
@@ -997,7 +1011,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
  //                    var transitSunAspects = [sunSun,venusSun,jupiterSun]
 
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 11)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers11![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
 
                     return cell
@@ -1017,23 +1031,15 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 //                    var transitPlutoGlyph = [""]
 //                    var transitPlutoDuration = [""]
 //
-               cell.configure(aspectingPlanet: "", secondPlanetImageImageName: (chartCake?.rulingPlanets(for: 12)[indexPath.row].keyName.lowercased())!, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+               cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers12![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
 
                    return cell
 
 
-
             }
 
-
-
-
-
             }
-
-
-
 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -1047,15 +1053,3 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
 
     }
-
-
-
-
-
-
-
-
-
-//
-//                let selectedVC = FirstFirstHousePlanetViewController.self
-//                performSegue(withIdentifier: "firstHouse1", sender: selectedVC)

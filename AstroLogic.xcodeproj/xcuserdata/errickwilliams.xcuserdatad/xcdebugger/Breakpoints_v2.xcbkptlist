@@ -76,6 +76,21 @@
                   endingLineNumber = "79"
                   offsetFromSymbolStart = "612">
                </Location>
+               <Location
+                  uuid = "26DF5593-BB78-48D2-A297-011E9C599DE2 - 9ae6aa09b32c9e62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.fetchCycleChart(for: Foundation.Date, at: __C.CLLocationCoordinate2D, cycleChart: SwiftEphemeris.ChartCake, selectedPlanet: SwiftEphemeris.Coordinate) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/hh.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "272">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -171,6 +186,22 @@
                   offsetFromSymbolStart = "698">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98EFEFB9-2F01-41D4-B77D-FDE6A2BF8416"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/MyNatalHousesVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "824"
+            endingLineNumber = "824"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
