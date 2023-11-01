@@ -34,6 +34,9 @@ class MyItemsViewController: UIViewController {
 
     private let ricksData: [RicksItems] = [
         RicksItems(chartType: "Charts and Graphs"),
+        RicksItems(chartType: "Daily Moon"),
+        RicksItems(chartType: "Daily Sun"),
+        RicksItems(chartType: "Current Moon Phase"),
         RicksItems(chartType: "Natal Moon Phase"),
         RicksItems(chartType: "Key Decanates"),
         RicksItems(chartType: "Natal Chart"),
@@ -43,6 +46,8 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "Transit Chart"),
         RicksItems(chartType: "Transit Aspects"),
         RicksItems(chartType: "Transit Aspects By House"),
+        RicksItems(chartType: "Solar Arc Chart"),
+        RicksItems(chartType: "Solar Arc Aspects"),
         RicksItems(chartType: "Minor Progressed Chart"),
         RicksItems(chartType: "Minor Progressed Aspects"),
         RicksItems(chartType: "Minor Progressed Aspects By House"),
@@ -94,6 +99,19 @@ extension MyItemsViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let category = ricksData[indexPath.row]
 
+        
+        
+        
+        let moonVC = MoonViewController()
+        moonVC.title = category.chartType
+        moonVC.chartCake = self.chartCake
+        moonVC.selectedDate = self.selectedDate
+        
+     let sunVC = SunViewController()
+        sunVC.title = category.chartType
+        sunVC.chartCake = self.chartCake
+        sunVC.selectedDate = self.selectedDate
+        
 //
         let chartVC = ChartViewController()
 
@@ -108,7 +126,13 @@ extension MyItemsViewController: UITableViewDelegate {
         natalPlanetsVC.chartCake = self.chartCake
         natalPlanetsVC.sortedPlanets = self.sortedPlanets
 //
-        
+
+
+        let currentMoonPhaseVC = CurrentMoonPhaseViewController()
+        currentMoonPhaseVC.title = "\(name!)'s \(category.chartType)"
+        currentMoonPhaseVC.chartCake = self.chartCake
+        currentMoonPhaseVC.phaseName = self.phaseName
+
         
         let moonPhaseVC = MoonPhaseViewController()
         moonPhaseVC.title = "\(name!)'s \(category.chartType)"
@@ -158,6 +182,24 @@ extension MyItemsViewController: UITableViewDelegate {
         natalPlanetsVC.title = category.chartType
         transitAspectsVC.chartCake = self.chartCake
         transitAspectsVC.selectedDate = self.selectedDate
+        
+        
+        let solarArcPlanetsVC = SolarArcPlanetsTimeChangeViewController()
+        solarArcPlanetsVC.chartCake = self.chartCake
+        solarArcPlanetsVC.selectedDate = self.selectedDate
+
+        solarArcPlanetsVC.latitude = self.latitude
+        solarArcPlanetsVC.longitude = self.longitude
+
+
+
+
+
+        let solaArcAspectsVC = SolarArcAspectsAspectsTimeChangeViewController()
+        solaArcAspectsVC.title = category.chartType
+        solaArcAspectsVC.chartCake = self.chartCake
+        solaArcAspectsVC.selectedDate = self.selectedDate
+
 
         let minorProgressionsVC = MinorsPlanetsTimeChangeViewController()
         minorProgressionsVC.title = category.chartType
@@ -228,7 +270,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
+        let categories = [chartVC,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 
