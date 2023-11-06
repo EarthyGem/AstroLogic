@@ -133,11 +133,15 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 interAspectsVC.title = "Interaspects"
                 interAspectsVC.name = self.name
 
+                // Later on, when you have the second person's birth date, you call the method like this:
+
+          
+
 //                natalPlanetsVC.title = category.chartType
                 natalPlanetsVC.chartCake = self.chartCake
             //    natalPlanetsVC.otherChart = self.otherChart
                 let compositeVC = CompositePlanetsViewController(planets: [""])
-                compositeVC.chartCake = self.chartCake
+                compositeVC.chartCake = chartCake
                 compositeVC.otherChart = self.otherChart
 
 

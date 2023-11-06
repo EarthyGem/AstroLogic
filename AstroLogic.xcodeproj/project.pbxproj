@@ -17,6 +17,7 @@
 		3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3752A5F2E8400245DD2 /* BirthChartView.swift */; };
 		3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3772A5F2F3200245DD2 /* AboutVC.swift */; };
 		3903A37C2A5F305100245DD2 /* GeoCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A37B2A5F305100245DD2 /* GeoCode.swift */; };
+		3912BD6F2AF88EE300C9A623 /* Suggetions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3912BD6E2AF88EE300C9A623 /* Suggetions.swift */; };
 		3916F33C2AA777FF00DEABEB /* NatalHousesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916F33B2AA777FF00DEABEB /* NatalHousesCustomCell.swift */; };
 		392434522ABA7C8E00584E26 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434512ABA7C8E00584E26 /* TabBarController.swift */; };
 		392434542ABA7CBC00584E26 /* RechargeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434532ABA7CBC00584E26 /* RechargeVC.swift */; };
@@ -33,6 +34,7 @@
 		3939694D2AF096D10011ACF1 /* SAPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939694C2AF096D10011ACF1 /* SAPlanetsVC.swift */; };
 		3939694F2AF097510011ACF1 /* SABiWHeel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939694E2AF097510011ACF1 /* SABiWHeel.swift */; };
 		393969512AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */; };
+		393969532AF208910011ACF1 /* ProgressedMoonPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393969522AF208910011ACF1 /* ProgressedMoonPhase.swift */; };
 		393DDD542AD71A9E00522012 /* ArchetypeBreakdownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD532AD71A9E00522012 /* ArchetypeBreakdownVC.swift */; };
 		393DDD562AD728A300522012 /* MyContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD552AD728A300522012 /* MyContentCell.swift */; };
 		393DDD592AD7364700522012 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 393DDD582AD7364700522012 /* SwiftEphemeris */; };
@@ -165,6 +167,7 @@
 		3903A3752A5F2E8400245DD2 /* BirthChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthChartView.swift; sourceTree = "<group>"; };
 		3903A3772A5F2F3200245DD2 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3903A37B2A5F305100245DD2 /* GeoCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCode.swift; sourceTree = "<group>"; };
+		3912BD6E2AF88EE300C9A623 /* Suggetions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggetions.swift; sourceTree = "<group>"; };
 		3916F33B2AA777FF00DEABEB /* NatalHousesCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalHousesCustomCell.swift; sourceTree = "<group>"; };
 		392434512ABA7C8E00584E26 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		392434532ABA7CBC00584E26 /* RechargeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RechargeVC.swift; sourceTree = "<group>"; };
@@ -181,6 +184,7 @@
 		3939694C2AF096D10011ACF1 /* SAPlanetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAPlanetsVC.swift; sourceTree = "<group>"; };
 		3939694E2AF097510011ACF1 /* SABiWHeel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABiWHeel.swift; sourceTree = "<group>"; };
 		393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMoonPhaseVC.swift; sourceTree = "<group>"; };
+		393969522AF208910011ACF1 /* ProgressedMoonPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressedMoonPhase.swift; sourceTree = "<group>"; };
 		393B32A22AE64E7B00E538EB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		393B32A42AE64F0E00E538EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		393DDD532AD71A9E00522012 /* ArchetypeBreakdownVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchetypeBreakdownVC.swift; sourceTree = "<group>"; };
@@ -337,10 +341,12 @@
 				3903A33A2A5F2D0700245DD2 /* AppDelegate.swift */,
 				3903A33C2A5F2D0700245DD2 /* SceneDelegate.swift */,
 				3903A33E2A5F2D0700245DD2 /* ViewController.swift */,
+				3912BD6E2AF88EE300C9A623 /* Suggetions.swift */,
 				396F3A0B2AF15BE300FF0CAA /* MoonVC.swift */,
 				3926EC532AF165E100606886 /* SunVC.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
 				393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */,
+				393969522AF208910011ACF1 /* ProgressedMoonPhase.swift */,
 				393DDD642ADC98E900522012 /* CycleChartTV.swift */,
 				395DE5102A95E2DA00B0B451 /* AddNewRelationshipVC.swift */,
 				3955A6692A909C2E00DE2051 /* ChartTableCell.swift */,
@@ -608,6 +614,7 @@
 				3926EC542AF165E100606886 /* SunVC.swift in Sources */,
 				393969492AF066E80011ACF1 /* Houses Custom2.swift in Sources */,
 				396A7B312AB4A34100E304D6 /* ChartView Extension.swift in Sources */,
+				3912BD6F2AF88EE300C9A623 /* Suggetions.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
 				39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */,
 				399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */,
@@ -638,6 +645,7 @@
 				39E168682A972F0E0003892B /* SimpleProgressedAspectsByHouse.swift in Sources */,
 				39851F822A93063600E70FF5 /* mpAspectsTCVC.swift in Sources */,
 				39851F7E2A93028D00E70FF5 /* mpProgressedAspectsByHouseTCVC.swift in Sources */,
+				393969532AF208910011ACF1 /* ProgressedMoonPhase.swift in Sources */,
 				39A1EC672A60F744008D1EC1 /* InfoVC.swift in Sources */,
 				39E1686A2A9730290003892B /* SimpleMinorProgressedAspectsByHouse.swift in Sources */,
 				393E1BBE2AC9E4DB0068779B /* SimpleInterAspectsVC.swift in Sources */,

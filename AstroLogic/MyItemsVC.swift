@@ -52,7 +52,8 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "Minor Progressed Aspects"),
         RicksItems(chartType: "Minor Progressed Aspects By House"),
         RicksItems(chartType: "Progressed Chart"),
-              RicksItems(chartType: "Progressed Aspects"),
+        RicksItems(chartType: "Progressed Lunar Phase"),
+        RicksItems(chartType: "Progressed Aspects"),
         RicksItems(chartType: "Progressed Aspects By House"),
         RicksItems(chartType: "Birthday Wish"),
         RicksItems(chartType: "Cycle Charts"),
@@ -140,6 +141,12 @@ extension MyItemsViewController: UITableViewDelegate {
         moonPhaseVC.phaseName = self.phaseName
 
        
+
+
+        let progressedMoonPhaseVC = ProgressedMoonPhaseViewController()
+        progressedMoonPhaseVC.title = "\(name!)'s \(category.chartType)"
+        progressedMoonPhaseVC.chartCake = self.chartCake
+        progressedMoonPhaseVC.phaseName = self.phaseName
 
 
 
@@ -270,7 +277,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
+        let categories = [chartVC,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 
