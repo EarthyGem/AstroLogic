@@ -3,13 +3,13 @@ import CoreData
 import UIKit
 import MapKit
 import CoreLocation
-import GooglePlaces
+
 //import GoogleMaps
 
 
 
 class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLocalSearchCompleterDelegate, UITextFieldDelegate  {
-    var selectedPlace: GMSPlace?
+
     var birthPlaceTimeZone: TimeZone? {
         didSet {
             datePicker.timeZone = birthPlaceTimeZone
@@ -96,7 +96,6 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
     }()
 
 
-    var autocompleteController: GMSAutocompleteViewController? // Add this line
 
 
     lazy var dateFormatter: DateFormatter = {

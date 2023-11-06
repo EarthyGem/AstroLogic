@@ -17,7 +17,7 @@
 		3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3752A5F2E8400245DD2 /* BirthChartView.swift */; };
 		3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A3772A5F2F3200245DD2 /* AboutVC.swift */; };
 		3903A37C2A5F305100245DD2 /* GeoCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903A37B2A5F305100245DD2 /* GeoCode.swift */; };
-		3912BD6F2AF88EE300C9A623 /* Suggetions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3912BD6E2AF88EE300C9A623 /* Suggetions.swift */; };
+		3912BD6F2AF88EE300C9A623 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3912BD6E2AF88EE300C9A623 /* Suggestions.swift */; };
 		3916F33C2AA777FF00DEABEB /* NatalHousesCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916F33B2AA777FF00DEABEB /* NatalHousesCustomCell.swift */; };
 		392434522ABA7C8E00584E26 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434512ABA7C8E00584E26 /* TabBarController.swift */; };
 		392434542ABA7CBC00584E26 /* RechargeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434532ABA7CBC00584E26 /* RechargeVC.swift */; };
@@ -85,9 +85,6 @@
 		396F3A0A2AF09CBE00FF0CAA /* SAAspectsTCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396F3A092AF09CBE00FF0CAA /* SAAspectsTCVC.swift */; };
 		396F3A0C2AF15BE300FF0CAA /* MoonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396F3A0B2AF15BE300FF0CAA /* MoonVC.swift */; };
 		398225812AE652330058C86D /* MPPlanetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398225802AE652330058C86D /* MPPlanetsVC.swift */; };
-		398225842AE6C31C0058C86D /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 398225832AE6C31C0058C86D /* GoogleMaps */; };
-		398225862AE6C31C0058C86D /* GoogleMapsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 398225852AE6C31C0058C86D /* GoogleMapsCore */; };
-		398225882AE6C31C0058C86D /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 398225872AE6C31C0058C86D /* GooglePlaces */; };
 		3982258A2AE6C3880058C86D /* Accessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398225892AE6C3880058C86D /* Accessibility.framework */; };
 		3982258B2AE6C3E00058C86D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393B32A22AE64E7B00E538EB /* CoreTelephony.framework */; };
 		3982258C2AE6C43E0058C86D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393B32A42AE64F0E00E538EB /* SystemConfiguration.framework */; };
@@ -167,7 +164,7 @@
 		3903A3752A5F2E8400245DD2 /* BirthChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthChartView.swift; sourceTree = "<group>"; };
 		3903A3772A5F2F3200245DD2 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3903A37B2A5F305100245DD2 /* GeoCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCode.swift; sourceTree = "<group>"; };
-		3912BD6E2AF88EE300C9A623 /* Suggetions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggetions.swift; sourceTree = "<group>"; };
+		3912BD6E2AF88EE300C9A623 /* Suggestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
 		3916F33B2AA777FF00DEABEB /* NatalHousesCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalHousesCustomCell.swift; sourceTree = "<group>"; };
 		392434512ABA7C8E00584E26 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		392434532ABA7CBC00584E26 /* RechargeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RechargeVC.swift; sourceTree = "<group>"; };
@@ -308,10 +305,7 @@
 				3982258B2AE6C3E00058C86D /* CoreTelephony.framework in Frameworks */,
 				3982258A2AE6C3880058C86D /* Accessibility.framework in Frameworks */,
 				39A1EC3D2A5F61D8008D1EC1 /* DGCharts in Frameworks */,
-				398225862AE6C31C0058C86D /* GoogleMapsCore in Frameworks */,
 				393DDD592AD7364700522012 /* SwiftEphemeris in Frameworks */,
-				398225882AE6C31C0058C86D /* GooglePlaces in Frameworks */,
-				398225842AE6C31C0058C86D /* GoogleMaps in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +335,7 @@
 				3903A33A2A5F2D0700245DD2 /* AppDelegate.swift */,
 				3903A33C2A5F2D0700245DD2 /* SceneDelegate.swift */,
 				3903A33E2A5F2D0700245DD2 /* ViewController.swift */,
-				3912BD6E2AF88EE300C9A623 /* Suggetions.swift */,
+				3912BD6E2AF88EE300C9A623 /* Suggestions.swift */,
 				396F3A0B2AF15BE300FF0CAA /* MoonVC.swift */,
 				3926EC532AF165E100606886 /* SunVC.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
@@ -509,9 +503,6 @@
 			packageProductDependencies = (
 				39A1EC3C2A5F61D8008D1EC1 /* DGCharts */,
 				393DDD582AD7364700522012 /* SwiftEphemeris */,
-				398225832AE6C31C0058C86D /* GoogleMaps */,
-				398225852AE6C31C0058C86D /* GoogleMapsCore */,
-				398225872AE6C31C0058C86D /* GooglePlaces */,
 			);
 			productName = AstroLogic;
 			productReference = 3903A3372A5F2D0700245DD2 /* AstroLogic.app */;
@@ -544,7 +535,6 @@
 			packageReferences = (
 				39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */,
 				393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
-				398225822AE6C31B0058C86D /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
 			);
 			productRefGroup = 3903A3382A5F2D0700245DD2 /* Products */;
 			projectDirPath = "";
@@ -614,7 +604,7 @@
 				3926EC542AF165E100606886 /* SunVC.swift in Sources */,
 				393969492AF066E80011ACF1 /* Houses Custom2.swift in Sources */,
 				396A7B312AB4A34100E304D6 /* ChartView Extension.swift in Sources */,
-				3912BD6F2AF88EE300C9A623 /* Suggetions.swift in Sources */,
+				3912BD6F2AF88EE300C9A623 /* Suggestions.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
 				39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */,
 				399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */,
@@ -934,14 +924,6 @@
 				kind = branch;
 			};
 		};
-		398225822AE6C31B0058C86D /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/YAtechnologies/GoogleMaps-SP.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
-			};
-		};
 		39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
@@ -957,21 +939,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;
 			productName = SwiftEphemeris;
-		};
-		398225832AE6C31C0058C86D /* GoogleMaps */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 398225822AE6C31B0058C86D /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
-			productName = GoogleMaps;
-		};
-		398225852AE6C31C0058C86D /* GoogleMapsCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 398225822AE6C31B0058C86D /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
-			productName = GoogleMapsCore;
-		};
-		398225872AE6C31C0058C86D /* GooglePlaces */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 398225822AE6C31B0058C86D /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
-			productName = GooglePlaces;
 		};
 		39A1EC3C2A5F61D8008D1EC1 /* DGCharts */ = {
 			isa = XCSwiftPackageProductDependency;

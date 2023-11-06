@@ -2,13 +2,13 @@ import SwiftEphemeris
 import CoreData
 import UIKit
 import CoreLocation
-import GooglePlaces
+import MapKit
 //import GoogleMaps
 
 
 
-class CycleChartTableViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
-    var selectedPlace: GMSPlace?
+class CycleChartTableViewController: UIViewController,SuggestionsViewControllerDelegate, MKLocalSearchCompleterDelegate, UITextFieldDelegate  {
+
     var birthPlaceTimeZone: TimeZone? {
         didSet {
             datePicker.timeZone = birthPlaceTimeZone
@@ -25,6 +25,11 @@ class CycleChartTableViewController: UIViewController, GMSAutocompleteViewContro
     var transitDateLabel: String?
     var latitude: Double?
     var longitude: Double?
+    let searchCompleter = MKLocalSearchCompleter()
+    var suggestions: [MKLocalSearchCompletion] = []
+     var searchRequest: MKLocalSearch.Request?
+
+    var autocompleteSuggestions: [String] = []
 
     let houseCusps: [Cusp] = []
 
@@ -75,8 +80,7 @@ class CycleChartTableViewController: UIViewController, GMSAutocompleteViewContro
 
 
 
-    var autocompleteController: GMSAutocompleteViewController? // Add this line
-
+  
 
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -125,7 +129,11 @@ class CycleChartTableViewController: UIViewController, GMSAutocompleteViewContro
         return datePicker
     }()
 
-
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+       let text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+        searchCompleter.queryFragment = text!
+       return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,7 +175,7 @@ class CycleChartTableViewController: UIViewController, GMSAutocompleteViewContro
 
 
         view.addSubview(eventPlaceTextField)
-        makeAutocompleteViewController()
+     
         view.addSubview(dateTextField)
         view.addSubview(eventPlaceTextField)
 
@@ -222,10 +230,13 @@ class CycleChartTableViewController: UIViewController, GMSAutocompleteViewContro
         let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
         navigationController?.pushViewController(myChartsViewController, animated: true)
     }
-
     @objc func eventPlaceTextFieldEditingDidBegin() {
-        presentAutocompleteViewController()
-    }
+          let suggestionsVC = SuggestionsViewController()
+          suggestionsVC.delegate = self
+          present(suggestionsVC, animated: true, completion: nil)
+      }
+
+
     func updateSearchBarTextColor(in view: UIView, to color: UIColor) {
         if let textField = view as? UITextField {
             textField.textColor = color
@@ -237,118 +248,7 @@ class CycleChartTableViewController: UIViewController, GMSAutocompleteViewContro
         }
     }
 
-    func makeAutocompleteViewController() {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        autocompleteController.modalPresentationStyle = .popover
-        autocompleteController.modalTransitionStyle = .crossDissolve
 
-        let popover = autocompleteController.popoverPresentationController
-        popover?.sourceView = eventPlaceTextField
-        popover?.sourceRect = eventPlaceTextField.bounds
-
-        // Customize the autocomplete filter and place fields if needed
-        let filter = GMSAutocompleteFilter()
-        filter.type = .city
-        autocompleteController.autocompleteFilter = filter
-
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt64((UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue))))
-        autocompleteController.placeFields = fields
-
-        updateSearchBarTextColor(in: autocompleteController.view, to: UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1))
-
-
-        self.autocompleteController = autocompleteController
-    }
-
-    func presentAutocompleteViewController() {
-        if let autocompleteController = autocompleteController {
-            present(autocompleteController, animated: true, completion: {
-                self.updateSearchBarTextColor(in: autocompleteController.view, to: UIColor(red: 0, green: 0, blue: 0.5, alpha: 1))
-            })
-        }
-    }
-
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        var city: String?
-        var state: String?
-        var country: String?
-        if let addressComponents = place.addressComponents {
-            for component in addressComponents {
-                switch component.types[0] {
-                case kGMSPlaceTypeLocality:
-                    city = component.name
-                case kGMSPlaceTypeAdministrativeAreaLevel1:
-                    state = component.shortName
-                case kGMSPlaceTypeCountry:
-                    country = component.shortName
-                default:
-                    break
-                }
-            }
-        }
-
-        // Combine city, state, and country into a single string.
-        var locationString = ""
-        if let city = city {
-            locationString += city
-        }
-        if let state = state {
-            if !locationString.isEmpty {
-                locationString += ", "
-            }
-            locationString += state
-        }
-        if let country = country {
-            if !locationString.isEmpty {
-                locationString += ", "
-            }
-            locationString += country
-        }
-
-        // Set the location string to the text field.
-        eventPlaceTextField.text = locationString
-        eventPlaceTextField.addTarget(self, action: #selector(eventPlaceTextFieldDidChange), for: .editingChanged)
-        if let address = place.formattedAddress {
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(address) { [self] placemarks, error in
-                guard let placemark = placemarks?.first,
-                      let location = placemark.location else {
-                    print("Geocoding error: \(error?.localizedDescription ?? "unknown error")")
-                    return
-                }
-
-                let latitude = location.coordinate.latitude
-                let longitude = location.coordinate.longitude
-
-                // Convert the current date to Unix timestamp
-                let timestamp = Int(Date().timeIntervalSince1970)
-
-                // Fetch the timezone for the selected place
-                fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { timeZone in
-                    DispatchQueue.main.async {
-                        self.datePicker.timeZone = timeZone
-
-
-
-
-                    }
-                }
-            }
-        }
-
-        clearSearchBarText(in: viewController.view)
-
-           dismiss(animated: true, completion: nil)
-       }
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        print("Autocomplete error: \(error.localizedDescription)")
-        dismiss(animated: true, completion: nil)
-    }
-
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
-    }
     func clearSearchBarText(in view: UIView) {
         if let searchBar = view as? UISearchBar {
             searchBar.text = ""
@@ -359,6 +259,31 @@ class CycleChartTableViewController: UIViewController, GMSAutocompleteViewContro
             }
         }
     }
+    func suggestionSelected(_ suggestion: MKLocalSearchCompletion) {
+          eventTextField.text = suggestion.title
+      }
+
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        let suggestions = completer.results
+
+        if let suggestionsVC = presentedViewController as? SuggestionsViewController {
+            suggestionsVC.autocompleteSuggestions = suggestions
+            suggestionsVC.tableView.reloadData()
+        }
+    }
+
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // Handle the error
+        print("Search error: \(error.localizedDescription)")
+    }
+
+    func didSelectPlace(_ place: String) {
+        // Handle the selected place, e.g., update the birthplace text field with 'place'
+        eventTextField.text = place
+    }
+
+
+
 
 
     @objc func eventPlaceTextFieldDidChange() {

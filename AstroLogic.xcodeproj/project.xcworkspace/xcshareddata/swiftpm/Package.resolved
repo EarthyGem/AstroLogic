@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "googlemaps-sp",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/YAtechnologies/GoogleMaps-SP.git",
-      "state" : {
-        "revision" : "89ec1adb807c78dd912a30b26a373a46ce8187ab",
-        "version" : "8.0.0"
-      }
-    },
-    {
       "identity" : "swiftephemeris",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heylila/SwiftEphemeris.git",

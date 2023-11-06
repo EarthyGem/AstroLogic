@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-import GooglePlaces
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-     GMSPlacesClient.provideAPIKey("AIzaSyAGRWdp4rPEWm7yg7fF_i31QaY7YjVXxLk")
+    
 //
         
         let navBarAppearance = UINavigationBarAppearance()

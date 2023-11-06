@@ -9,14 +9,18 @@ import Foundation
 
 import UIKit
 import CoreData
+import MapKit
 
 import UIKit
-import GooglePlaces
 
-class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDelegate {
+
+class EditChartViewController: UIViewController, SuggestionsViewControllerDelegate, MKLocalSearchCompleterDelegate, UITextFieldDelegate {
 
     var chartToEdit: ChartEntity?
-
+    let searchCompleter = MKLocalSearchCompleter()
+    var suggestions: [MKLocalSearchCompletion] = []
+     var searchRequest: MKLocalSearch.Request?
+    var autocompleteSuggestions: [String] = []
     let nameTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
@@ -124,6 +128,42 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
         formatter.timeStyle = .short
         dateTimeTextField.text = formatter.string(from: sender.date)
     }
+    func suggestionSelected(_ suggestion: MKLocalSearchCompletion) {
+          birthPlaceTextField.text = suggestion.title
+      }
+
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        let suggestions = completer.results
+
+        if let suggestionsVC = presentedViewController as? SuggestionsViewController {
+            suggestionsVC.autocompleteSuggestions = suggestions
+            suggestionsVC.tableView.reloadData()
+        }
+    }
+
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // Handle the error
+        print("Search error: \(error.localizedDescription)")
+    }
+
+    func didSelectPlace(_ place: String) {
+        // Handle the selected place, e.g., update the birthplace text field with 'place'
+        birthPlaceTextField.text = place
+    }
+
+
+
+    func clearSearchBarText(in view: UIView) {
+        if let searchBar = view as? UISearchBar {
+            searchBar.text = ""
+            return
+        } else {
+            for subview in view.subviews {
+                clearSearchBarText(in: subview)
+            }
+        }
+    }
+
 
 
 
@@ -178,30 +218,15 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
     }
 
     @objc func birthPlaceTextFieldEditingDidBegin() {
-        presentAutocompleteViewController()
-    }
-
-    func presentAutocompleteViewController() {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        present(autocompleteController, animated: true, completion: nil)
-    }
+          let suggestionsVC = SuggestionsViewController()
+          suggestionsVC.delegate = self
+          present(suggestionsVC, animated: true, completion: nil)
+      }
+    
 
     // MARK: - GMSAutocompleteViewControllerDelegate
 
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        birthPlaceTextField.text = place.formattedAddress
-        let currentTimestamp = Int(Date().timeIntervalSince1970)
-
-        // Fetch the timezone for the selected place
-        fetchTimeZone(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude, timestamp: currentTimestamp) { [weak self] timeZone in
-            DispatchQueue.main.async {
-                // Set the timeZone of the dateTimePicker
-                self?.dateTimePicker.timeZone = timeZone
-            }
-        }
-        dismiss(animated: true, completion: nil)
-    }
+   
 
     func updateDateTimeTextField() {
         let formattedDate = self.formattedDateString(from: dateTimePicker.date, with: dateTimePicker.timeZone ?? TimeZone.current)
@@ -209,15 +234,7 @@ class EditChartViewController: UIViewController, GMSAutocompleteViewControllerDe
     }
 
 
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        // Handle error
-        print("Error: ", error.localizedDescription)
-    }
-
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-
+   
     let dateTimePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
