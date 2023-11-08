@@ -106,6 +106,21 @@
                   endingLineNumber = "79"
                   offsetFromSymbolStart = "612">
                </Location>
+               <Location
+                  uuid = "26DF5593-BB78-48D2-A297-011E9C599DE2 - fcec917555dfe53b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.fetchCycleChart(for: Foundation.Date, at: __C.CLLocationCoordinate2D, cycleChart: SwiftEphemeris.ChartCake, selectedPlanet: SwiftEphemeris.Coordinate) -&gt; Swift.Optional&lt;SwiftEphemeris.ChartCake&gt;"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Application%20Support/Quicken/Documents/AstroLogic/AstroLogic/hh.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "1132">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

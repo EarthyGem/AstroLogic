@@ -101,6 +101,7 @@
 		398580552AA26D2C007A561B /* HarmoniousInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398580542AA26D2C007A561B /* HarmoniousInfoVC.swift */; };
 		398580572AA26D34007A561B /* DiscordInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398580562AA26D34007A561B /* DiscordInfoVC.swift */; };
 		398580592AA26FC8007A561B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398580582AA26FC8007A561B /* ImagePicker.swift */; };
+		398832C82AFAE2AB00BCE1A0 /* HoraryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398832C72AFAE2AB00BCE1A0 /* HoraryVC.swift */; };
 		398ECC2F2A8F025900695354 /* ChartDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */; };
 		398ECC312A8F07D300695354 /* MyCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398ECC302A8F07D300695354 /* MyCharts.swift */; };
 		3997F0742A63707F00741E9D /* Sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0732A63707F00741E9D /* Sentence.swift */; };
@@ -137,6 +138,7 @@
 		39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6A2A610480008D1EC1 /* Dignity.swift */; };
 		39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6C2A611BFD008D1EC1 /* graph info.swift */; };
 		39B838502AABC8670039AD91 /* NestedProgressedAspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */; };
+		39C861752AFC00C4007D38A0 /* NameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C861742AFC00C4007D38A0 /* NameVC.swift */; };
 		39E113EE2A8ABE80006EA576 /* AspectByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113ED2A8ABE80006EA576 /* AspectByHouses.swift */; };
 		39E113F02A8AC18E006EA576 /* ProgressedAspectsByHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */; };
 		39E113F22A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */; };
@@ -149,6 +151,7 @@
 		39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E168702A996FB90003892B /* TransposedHousesVC.swift */; };
 		39E168752A9A154C0003892B /* AboutDecanatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E168742A9A154C0003892B /* AboutDecanatesVC.swift */; };
 		39E1687B2A9C8EA70003892B /* SolarArcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E1687A2A9C8EA70003892B /* SolarArcViewController.swift */; };
+		39E1D0272AFAAC5000E56EC5 /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E1D0262AFAAC5000E56EC5 /* WeatherVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +220,7 @@
 		395DE5262A96EA4600B0B451 /* SimpleMinorAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMinorAspectsVC.swift; sourceTree = "<group>"; };
 		395DE5282A96EDB700B0B451 /* SimpleMajorAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMajorAspectsVC.swift; sourceTree = "<group>"; };
 		395E2BA12AAB8DA4003A8439 /* newtv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newtv.swift; sourceTree = "<group>"; };
+		395EF8802AF8E99900ABADE4 /* AstroLogic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AstroLogic.entitlements; sourceTree = "<group>"; };
 		39655E3B2AA8BF09008033AB /* progresionsMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progresionsMatrixVC.swift; sourceTree = "<group>"; };
 		39655E3D2AA8C3B2008033AB /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		396989D02ABDF385007EA008 /* CustomNatalPlanetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNatalPlanetsCell.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 		398580542AA26D2C007A561B /* HarmoniousInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmoniousInfoVC.swift; sourceTree = "<group>"; };
 		398580562AA26D34007A561B /* DiscordInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordInfoVC.swift; sourceTree = "<group>"; };
 		398580582AA26FC8007A561B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		398832C72AFAE2AB00BCE1A0 /* HoraryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoraryVC.swift; sourceTree = "<group>"; };
 		398ECC2E2A8F025900695354 /* ChartDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChartDataModel.xcdatamodel; sourceTree = "<group>"; };
 		398ECC302A8F07D300695354 /* MyCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCharts.swift; sourceTree = "<group>"; };
 		3997F0732A63707F00741E9D /* Sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentence.swift; sourceTree = "<group>"; };
@@ -282,6 +287,7 @@
 		39A1EC6A2A610480008D1EC1 /* Dignity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dignity.swift; sourceTree = "<group>"; };
 		39A1EC6C2A611BFD008D1EC1 /* graph info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "graph info.swift"; sourceTree = "<group>"; };
 		39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedProgressedAspects.swift; sourceTree = "<group>"; };
+		39C861742AFC00C4007D38A0 /* NameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameVC.swift; sourceTree = "<group>"; };
 		39E113ED2A8ABE80006EA576 /* AspectByHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectByHouses.swift; sourceTree = "<group>"; };
 		39E113EF2A8AC18E006EA576 /* ProgressedAspectsByHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressedAspectsByHouses.swift; sourceTree = "<group>"; };
 		39E113F12A8AC1C9006EA576 /* minorProgressedAsepctsByHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedAsepctsByHousesVC.swift; sourceTree = "<group>"; };
@@ -294,6 +300,7 @@
 		39E168702A996FB90003892B /* TransposedHousesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransposedHousesVC.swift; sourceTree = "<group>"; };
 		39E168742A9A154C0003892B /* AboutDecanatesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDecanatesVC.swift; sourceTree = "<group>"; };
 		39E1687A2A9C8EA70003892B /* SolarArcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarArcViewController.swift; sourceTree = "<group>"; };
+		39E1D0262AFAAC5000E56EC5 /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,10 +339,14 @@
 		3903A3392A5F2D0700245DD2 /* AstroLogic */ = {
 			isa = PBXGroup;
 			children = (
+				395EF8802AF8E99900ABADE4 /* AstroLogic.entitlements */,
 				3903A33A2A5F2D0700245DD2 /* AppDelegate.swift */,
 				3903A33C2A5F2D0700245DD2 /* SceneDelegate.swift */,
 				3903A33E2A5F2D0700245DD2 /* ViewController.swift */,
 				3912BD6E2AF88EE300C9A623 /* Suggestions.swift */,
+				39E1D0262AFAAC5000E56EC5 /* WeatherVC.swift */,
+				39C861742AFC00C4007D38A0 /* NameVC.swift */,
+				398832C72AFAE2AB00BCE1A0 /* HoraryVC.swift */,
 				396F3A0B2AF15BE300FF0CAA /* MoonVC.swift */,
 				3926EC532AF165E100606886 /* SunVC.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
@@ -612,6 +623,7 @@
 				39655E3E2AA8C3B2008033AB /* Cells.swift in Sources */,
 				3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */,
 				3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */,
+				39E1D0272AFAAC5000E56EC5 /* WeatherVC.swift in Sources */,
 				39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */,
 				393DDD632ADC96E400522012 /* CycleChartsVC.swift in Sources */,
 				3924345E2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift in Sources */,
@@ -641,11 +653,13 @@
 				393E1BBE2AC9E4DB0068779B /* SimpleInterAspectsVC.swift in Sources */,
 				395DE5252A96E8DD00B0B451 /* SimpleTransitAspects.swift in Sources */,
 				392434582ABA7D0600584E26 /* MonthActionPlanVC.swift in Sources */,
+				398832C82AFAE2AB00BCE1A0 /* HoraryVC.swift in Sources */,
 				3903A3782A5F2F3200245DD2 /* AboutVC.swift in Sources */,
 				39851F802A9302A100E70FF5 /* TransitAspectsByHouseTCVC.swift in Sources */,
 				39A1EC5F2A5FA75E008D1EC1 /* 1.swift in Sources */,
 				3939694F2AF097510011ACF1 /* SABiWHeel.swift in Sources */,
 				39A1EC532A5F773E008D1EC1 /* MPAspectsVC.swift in Sources */,
+				39C861752AFC00C4007D38A0 /* NameVC.swift in Sources */,
 				39E113F42A8AC220006EA576 /* TransitAspectsByHouses.swift in Sources */,
 				39A1EC512A5F76E8008D1EC1 /* MinorsPlanetsVC.swift in Sources */,
 				39A1EC4F2A5F76B8008D1EC1 /* MinorsAspectsVC.swift in Sources */,
@@ -841,6 +855,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AstroLogic/AstroLogic.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UQYCK3883D;
@@ -858,6 +874,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Errick.AstroLogic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -869,6 +886,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AstroLogic/AstroLogic.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UQYCK3883D;
@@ -886,6 +905,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Errick.AstroLogic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

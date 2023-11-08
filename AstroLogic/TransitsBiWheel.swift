@@ -98,7 +98,7 @@ class TransitBiWheelChartView: UIView {
             // Draw the zodiac circle, houses, and planet symbols
             drawZodiacCircle(context: context)
             drawHouseLines(context: context)
-            drawPlanetSymbols(context: context)
+             //    drawPlanetSymbols(context: context)
             drawTransitZodiacCircle(context: context)
             drawTransitPlanetSymbols(context: context)
             

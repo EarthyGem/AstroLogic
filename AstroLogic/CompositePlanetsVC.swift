@@ -9,68 +9,105 @@ import SwiftEphemeris
 import UIKit
 
 class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
     var chartCake: ChartCake!
     var otherChart: ChartCake!
-    
-    
-    var CompositeChartView: BirthChartView!
+    var chart: Chart?
+    var birthChartView: BirthChartView!
+    var coverView: UIView!
+    var natalChartLabel: UILabel!
 
-    var natalSigns: [String] = []
+       let birthChartViewCollapsedHeight: CGFloat = 50.0
+       let birthChartViewFullHeight = UIScreen.main.bounds.width + 60
+       var isBirthChartViewCollapsed = false
+    var natalSigns = [String]()
 
     // ... Rest of your code ...
     
-    func setupNatalSigns() -> [String] {
-        natalSigns = [
-            otherChart?.natal.sun.sign.keyName,
-            otherChart?.natal.moon.sign.keyName,
-            otherChart?.natal.ascendant.sign.keyName,
-            otherChart?.natal.mercury.sign.keyName,
-            otherChart?.natal.venus.sign.keyName,
-            otherChart?.natal.mars.sign.keyName,
-            otherChart?.natal.jupiter.sign.keyName,
-            otherChart?.natal.saturn.sign.keyName,
-            otherChart?.natal.uranus.sign.keyName,
-            otherChart?.natal.neptune.sign.keyName,
-            otherChart?.natal.pluto.sign.keyName,
-            otherChart?.natal.southNode.sign.keyName
-        ].compactMap { $0 } // This will remove any nil values from the array
-    
+       func setupNatalSigns() -> [String] {
+           
+           var compSun = Coordinate(alpha: chartCake.natal.sun, bravo: otherChart.natal.sun)
+           var compMoon = Coordinate(alpha: chartCake.natal.moon, bravo: otherChart.natal.moon)
+           var compMercury = Coordinate(alpha: chartCake.natal.mercury, bravo: otherChart.natal.mercury)
+           var compVenus = Coordinate(alpha: chartCake.natal.venus, bravo: otherChart.natal.venus)
+           var compMars = Coordinate(alpha: chartCake.natal.mars, bravo: otherChart.natal.mars)
+           var compJupiter = Coordinate(alpha: chartCake.natal.jupiter, bravo: otherChart.natal.jupiter)
+           var compSaturn = Coordinate(alpha: chartCake.natal.saturn, bravo: otherChart.natal.saturn)
+           var compUranus = Coordinate(alpha: chartCake.natal.uranus, bravo: otherChart.natal.uranus)
+           var compNeptune = Coordinate(alpha: chartCake.natal.neptune, bravo: otherChart.natal.neptune)
+           var compPluto = Coordinate(alpha: chartCake.natal.pluto, bravo: otherChart.natal.pluto)
+           var compSouthNode = Coordinate(alpha: chartCake.natal.southNode, bravo: otherChart.natal.southNode)
+       var compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           var compMC = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           
+           natalSigns = [
+              compSun.sign.keyName,
+              compMoon.sign.keyName,
+              compMercury.sign.keyName,
+              compVenus.sign.keyName,
+              compMars.sign.keyName,
+              compJupiter.sign.keyName,
+              compSaturn.sign.keyName,
+              compUranus.sign.keyName,
+              compNeptune.sign.keyName,
+              compPluto.sign.keyName,
+              compSouthNode.sign.keyName,
+              compAsc.sign.keyName,
+              compMoon.sign.keyName
 
-        
-        // This will remove any nil values from the array
-        
-        return natalSigns
-    }
-    
-    func getNatalPositions() -> [String] {
-        natalSigns = [
-            otherChart?.natal.sun.formatted,
-            otherChart?.natal.moon.formatted,
-            otherChart?.natal.ascendant.formatted,
-            otherChart?.natal.mercury.formatted,
-            otherChart?.natal.venus.formatted,
-            otherChart?.natal.mars.formatted,
-            otherChart?.natal.jupiter.formatted,
-            otherChart?.natal.saturn.formatted,
-            otherChart?.natal.uranus.formatted,
-            otherChart?.natal.neptune.formatted,
-            otherChart?.natal.pluto.formatted,
-            otherChart?.natal.southNode.formatted
-        ].compactMap { $0 } // This will remove any nil values from the array
-    
+           ].compactMap { $0 } // This will remove any nil values from the array
+       
 
-        
-        // This will remove any nil values from the array
-        
-        return natalSigns
-    }
-    
-var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+           
+           // This will remove any nil values from the array
+           
+           return natalSigns
+       }
+       
+       func getNatalPositions() -> [String] {
+           var compSun = Coordinate(alpha: chartCake.natal.sun, bravo: otherChart.natal.sun)
+           var compMoon = Coordinate(alpha: chartCake.natal.moon, bravo: otherChart.natal.moon)
+           var compMercury = Coordinate(alpha: chartCake.natal.mercury, bravo: otherChart.natal.mercury)
+           var compVenus = Coordinate(alpha: chartCake.natal.venus, bravo: otherChart.natal.venus)
+           var compMars = Coordinate(alpha: chartCake.natal.mars, bravo: otherChart.natal.mars)
+           var compJupiter = Coordinate(alpha: chartCake.natal.jupiter, bravo: otherChart.natal.jupiter)
+           var compSaturn = Coordinate(alpha: chartCake.natal.saturn, bravo: otherChart.natal.saturn)
+           var compUranus = Coordinate(alpha: chartCake.natal.uranus, bravo: otherChart.natal.uranus)
+           var compNeptune = Coordinate(alpha: chartCake.natal.neptune, bravo: otherChart.natal.neptune)
+           var compPluto = Coordinate(alpha: chartCake.natal.pluto, bravo: otherChart.natal.pluto)
+           var compSouthNode = Coordinate(alpha: chartCake.natal.southNode, bravo: otherChart.natal.southNode)
+       var compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           var compMC = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           
+           natalSigns = [
+               compSun.formatted,
+              compMoon.formatted,
+              compMercury.formatted,
+              compVenus.formatted,
+              compMars.formatted,
+              compJupiter.formatted,
+              compSaturn.formatted,
+              compUranus.formatted,
+              compNeptune.formatted,
+              compPluto.formatted,
+              compSouthNode.formatted,
+               compAsc.sign.formatted,
+               compMC.sign.formatted
 
+           ].compactMap { $0 } // This will remove any nil values from the array
+       
 
+           
+           // This will remove any nil values from the array
+           
+           return natalSigns
+       }
+       
     
-    private let tableView: UITableView = {
+    
+var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto","southnode","ascendant","midheaven"]
+    var segueIdentifiers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
+
+ private let tableView: UITableView = {
         let table = UITableView()
         table.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         return table
@@ -91,36 +128,93 @@ var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn",
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        view.backgroundColor = .black
-        let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = CompositeBirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!, otherChart: otherChart!)
-        
-     
-    //    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Transits", style: .plain, target: self, action: #selector(transitsToCompositeButtonTapped))
-        
+
         view.backgroundColor = .black
         tableView.backgroundColor = .black
+
+        // BirthChartView setup
+        birthChartView = BirthChartView(frame: CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: birthChartViewFullHeight), chartCake: chartCake!)
+        let tapGestureForBirthChart = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
+
+        birthChartView.addGestureRecognizer(tapGestureForBirthChart)
+        tableView.tableHeaderView = birthChartView
+
+        // TableView setup
         tableView.dataSource = self
         tableView.delegate = self
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
-        
-        view.addSubview(birthChartView)
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         view.addSubview(tableView)
+
+
+        // Set up coverView
+        coverView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: birthChartViewCollapsedHeight))
+        coverView.backgroundColor = .black  // or any desired color
+        coverView.isHidden = false  // Initially hidden because the chart is fully shown on viewDidLoad
+        tableView.addSubview(coverView)
+
+
+        // Set up natalChartLabel
+        natalChartLabel = UILabel()
+        natalChartLabel.text = "Hide Chart"
+        natalChartLabel.textColor = .white  // or any desired color
+        natalChartLabel.textAlignment = .center
+        natalChartLabel.frame = coverView.bounds
+        coverView.addSubview(natalChartLabel)
+
+        // Add tap gesture to coverView
+        let tapGestureForCoverView = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
+        coverView.addGestureRecognizer(tapGestureForCoverView)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let yOffset: CGFloat = 550
-        let tableViewHeight = view.bounds.height - yOffset - 20  // Adjust this as per your requirements
-        tableView.frame = CGRect(x: 10, y: yOffset, width: view.bounds.width - 20, height: tableViewHeight)
+
+
+        override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+
         
-        
+            let tableViewHeight = tableView.contentSize.height + 220  // Use the content size of the table view cells
+
+            tableView.frame = CGRect(x: 10, y: 50, width: view.bounds.width - 20, height: tableViewHeight + 30)
+        }
+
+    @objc func toggleBirthChartView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            if self.isBirthChartViewCollapsed {
+                // Expand birthChartView
+                self.birthChartView.frame.size.height = self.birthChartViewFullHeight
+
+                // Adjusting the y-origin to prevent overlap
+                self.birthChartView.frame.origin.y = self.coverView.frame.origin.y + self.birthChartViewCollapsedHeight - self.birthChartViewFullHeight
+
+                // Adjust tableView frame accordingly
+                self.tableView.frame.origin.y = self.birthChartView.frame.origin.y + self.birthChartViewFullHeight + 20
+                self.tableView.frame.size.height = self.view.bounds.height - self.birthChartViewFullHeight - 20
+
+                // Set the label to "Hide Chart" when the chart is expanded
+                self.natalChartLabel.text = "Hide Chart"
+            } else {
+                // Collapse birthChartView behind the coverView
+                self.birthChartView.frame.size.height = self.birthChartViewCollapsedHeight
+                self.birthChartView.frame.origin.y = self.coverView.frame.origin.y - self.birthChartViewCollapsedHeight
+
+                // Adjust tableView frame accordingly
+                self.tableView.frame.origin.y = self.birthChartViewCollapsedHeight + 10
+                self.tableView.frame.size.height = self.view.bounds.height - self.birthChartViewCollapsedHeight - 20
+
+                // Set the label to "View Chart" when the chart is collapsed
+                self.natalChartLabel.text = "View Chart"
+            }
+
+            self.tableView.tableHeaderView = self.birthChartView
+        })
+
+        isBirthChartViewCollapsed.toggle()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+
+        return 13
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -129,7 +223,7 @@ var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn",
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: "", planetImageImageName: "", signTextText: "", planetTextText: "", headerTextText: "")
+        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getNatalPositions()[indexPath.row], planetTextText: "", headerTextText: "")
         
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
         
@@ -148,16 +242,7 @@ var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn",
 //        print(planets[indexPath.row])
         
 
-        
-        let MovingPlanetVCs = [TodayViewController()]
-        
-        
-        let vc = MovingPlanetVCs[indexPath.row]
-        present(UINavigationController(rootViewController: vc), animated: true)
-        
-        
      
 }
 
 }
-

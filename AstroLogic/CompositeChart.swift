@@ -84,7 +84,7 @@ class CompositeBirthChartView: UIView {
         // Draw the zodiac circle, houses, and planet symbols
         drawZodiacCircle(context: context)
         drawHouseLines(context: context)
-        drawPlanetSymbols(context: context)
+         //    drawPlanetSymbols(context: context)
         calculateAspects()
         
     }
@@ -242,8 +242,10 @@ class CompositeBirthChartView: UIView {
             
         ]
         
+        var compSun = Coordinate(alpha: chartCake.natal.sun, bravo: otherChart.natal.sun)
+        
         let planetDegree: [(planet: CelestialObject, degree: String)] = [
-            (.planet(.sun), "\(Int(getCompPlanets().compPlanetsDegree[0]))°"),
+            (.planet(.sun), "\(compSun.body)°"),
             (.planet(.moon), "\(Int(getCompPlanets().compPlanetsDegree[1]))°"),
             (.planet(.mercury), "\(Int(getCompPlanets().compPlanetsDegree[2]))°"),
             (.planet(.venus), "\(Int(getCompPlanets().compPlanetsDegree[3]))°"),

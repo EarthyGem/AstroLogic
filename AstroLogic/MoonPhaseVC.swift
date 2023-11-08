@@ -13,6 +13,7 @@ class MoonPhaseViewController: UIViewController {
     
     // This will hold the name of the moon phase.
     var phaseName: String!
+    var archetype: String!
     var phaseNameSentence: String!
     
     private var imageView: UIImageView = {
@@ -23,6 +24,15 @@ class MoonPhaseViewController: UIViewController {
     }()
     
     private var phaseLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.textColor = . lightGray
+        return label
+    }()
+    
+    private var archetypeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -77,30 +87,57 @@ class MoonPhaseViewController: UIViewController {
         }
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
 
-        if let lunarPhase = chartCake?.lunarPhase(for: chartCake!.natal).rawValue,
-           let moonFormatted = chartCake?.natal.moon.sign.keyName.capitalizingFirstLetter(),
-           let _ = chartCake?.houseCusps.house(of: chartCake!.natal.moon).houseKeywords {
-            phaseNameSentence = "\(lunarPhase) Moon in \(moonFormatted)"
+        // Declare lunarPhase outside of the if-let scope so it can be used throughout viewDidLoad
+        let lunarPhase = chartCake?.lunarPhase(for: chartCake!.natal)
+        
+        if let phase = lunarPhase?.rawValue,
+           let moonFormatted = chartCake?.natal.moon.sign.keyName.capitalizingFirstLetter() {
+            archetype = lunarPhase?.archetype
+            phaseNameSentence = "\(phase) Moon in \(moonFormatted)"
         } else {
-            phaseNameSentence = "Unknown Phase" // This is a fallback in case any of the data is missing
+            phaseNameSentence = "Unknown Phase" // Fallback in case any of the data is missing
+            archetype = "Unknown Archetype"
         }
-var lunarPhases = chartCake?.lunarPhase(for: chartCake!.natal).rawValue
 
         setupImageView()
         setupPhaseLabel()
+        setupArchetypeLabel() // Now, this function is called with the archetype variable properly assigned.
         setupSpeedLabel()
         setupDeclinationLabel()
-        
-        imageView.image = UIImage(named: lunarPhases!)
+
+        imageView.image = UIImage(named: lunarPhase?.rawValue ?? "")
         phaseLabel.text = phaseNameSentence
+        archetypeLabel.text = archetype // Now, this line is correct as archetype is in the wider scope.
         speedLabel.text = moonSpeedDescription(speed: chartCake?.natal.moon.speedLongitude)
         declinationLabel.text = moonDeclinationDescription(declination: chartCake?.natal.moon.declination)
     }
+
+
+    func setupArchetypeLabel() {
+        view.addSubview(archetypeLabel)
+
+        NSLayoutConstraint.activate([
+            archetypeLabel.topAnchor.constraint(equalTo: phaseLabel.bottomAnchor, constant: 10),
+            archetypeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            archetypeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: view.frame.width - 40),
+        ])
+    }
+
+    func setupSpeedLabel() {
+        view.addSubview(speedLabel)
+
+        NSLayoutConstraint.activate([
+            speedLabel.topAnchor.constraint(equalTo: archetypeLabel.bottomAnchor, constant: 10), // Position below the archetype label
+            speedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            speedLabel.widthAnchor.constraint(lessThanOrEqualToConstant: view.frame.width - 40),
+        ])
+    }
+
+    // ... rest of your existing code ...
 
     
     
@@ -125,15 +162,6 @@ var lunarPhases = chartCake?.lunarPhase(for: chartCake!.natal).rawValue
         ])
     }
     
-    func setupSpeedLabel() {
-        view.addSubview(speedLabel)
-        
-        NSLayoutConstraint.activate([
-            speedLabel.topAnchor.constraint(equalTo: phaseLabel.bottomAnchor, constant: 10),
-            speedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            speedLabel.widthAnchor.constraint(lessThanOrEqualToConstant: view.frame.width - 40),
-        ])
-    }
 
     func setupDeclinationLabel() {
         view.addSubview(declinationLabel)

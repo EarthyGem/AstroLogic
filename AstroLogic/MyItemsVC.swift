@@ -56,9 +56,12 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "Progressed Aspects"),
         RicksItems(chartType: "Progressed Aspects By House"),
         RicksItems(chartType: "Birthday Wish"),
+        RicksItems(chartType: "What's in a Name?"),
+        RicksItems(chartType: "Horary Chart"),
         RicksItems(chartType: "Cycle Charts"),
+        RicksItems(chartType: "Weather Charts"),
         RicksItems(chartType: "Relationships")
-
+     
     ]
 
  var placeolder = [String]()
@@ -246,9 +249,9 @@ extension MyItemsViewController: UITableViewDelegate {
         transitAspectsByHouseVC.selectedDate = self.selectedDate
 
 
-
-
-      //  let SA_PlanetsVC = SolarArcViewController(MP_Planets: placeolder)
+     
+        let horaryVC = HoraryAstrologyViewController()
+        horaryVC.title = "Horary Chart"
 
         let MP_AspectsVC = ProgressedAspectsTimeChangeViewController()
         MP_AspectsVC.chartCake = self.chartCake
@@ -259,13 +262,22 @@ extension MyItemsViewController: UITableViewDelegate {
         birthdayWishVC.otherChart = self.otherChart
         birthdayWishVC.title = "Other Person"
 
+        
+        let nameVC = NameViewController()
+        nameVC.chartCake = self.chartCake
+      //  cycleChartsVC.otherChart = self.otherChart
+        nameVC.title = "Whats in a Name?"
+        
 
         let cycleChartsVC = CycleChartsViewController(MP_Planets: [""])
        cycleChartsVC.chartCake = self.chartCake
       //  cycleChartsVC.otherChart = self.otherChart
         cycleChartsVC.title = "Cycle Charts"
-
-
+        
+        let weatherVC = WeatherForecastViewController()
+        weatherVC.chartCake = self.chartCake
+      //  cycleChartsVC.otherChart = self.otherChart
+        weatherVC.title = "Weather Charts"
 
         let RelationshipVC = RelationshipsViewController()
         RelationshipVC.chartCake = self.chartCake
@@ -277,7 +289,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,cycleChartsVC,RelationshipVC]
+        let categories = [chartVC,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,nameVC,horaryVC,cycleChartsVC,weatherVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 
