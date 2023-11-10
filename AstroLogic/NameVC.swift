@@ -60,12 +60,7 @@ class NameViewController: UIViewController {
             super.viewDidLoad()
             setupLayout()
             
-            // Debugging - Remove after confirming views appear
-            nameTextField.backgroundColor = .white
-            checkButton.backgroundColor = .blue
-            nameLabel.backgroundColor = .gray
-            resultLabel.backgroundColor = .gray
-            glyphImageView.backgroundColor = .red // So you can see if the imageView is laid out correctly
+   
         }
 
     

@@ -80,15 +80,15 @@ class MoonViewController: UIViewController {
         
         // Configure the "Collective Mood" labels
         collectiveMoodTitleLabel.text = "Collective Mood"
-        collectiveMoodHeaderLabel.text = "Storms often clear the air"
-        collectiveMoodSubheaderLabel.text = "Moon in \(chartCake!.transits.moon.sign.keyName)"
-        collectiveMoodContentLabel.text = "Content about the Collective Mood being governed by being in \(chartCake!.transits.moon.sign.keyName)."
+        collectiveMoodHeaderLabel.text = "Moon in \(chartCake!.transits.moon.sign.keyName)"
+        collectiveMoodSubheaderLabel.text = "\(chartCake!.transits.moon.sign.moonHeaders[0])"
+        collectiveMoodContentLabel.text = "\(chartCake!.transits.moon.sign.moonMessages[0])"
         
         // Configure the "Self-Care Check-in" labels
         selfCareCheckInTitleLabel.text = "Self-Care Check-in"
-        moonHousePlacementLabel.text = "Moon shedding her soft light on your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
-        moonConjunctionLabel.text = "Moon conjunct Jupiter: Time to Nurture your Faith"
-        selfCareCheckInContentLabel.text = "Insights on how to best harness the collective mood to attend to your needs related to..."
+        moonHousePlacementLabel.text = "Moon in the \(chartCake!.houseCusps.house(of: chartCake!.transits.moon).name) house, shedding her soft light on your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
+        moonConjunctionLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).headers[0])"
+        selfCareCheckInContentLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).message)"
     }
     
     private func setupLayout() {

@@ -78,14 +78,14 @@ class SunViewController: UIViewController {
         
         // Configure the "Astrological Season" labels
         astrologicalSeasonTitleLabel.text = "Astrological Season"
-        astrologicalSeasonSignLabel.text = "Sun in \(chartCake!.transits.sun.sign.keyName): Sun Sign Text"
-        astrologicalSeasonContentLabel.text = "The collective energy during \(chartCake!.transits.sun.sign.keyName) Season..."
+        astrologicalSeasonSignLabel.text = " \(chartCake!.transits.sun.sign.sunHeaders[0])"
+        astrologicalSeasonContentLabel.text = "\(chartCake!.transits.sun.sign.sunContent[0])"
         
         // Configure the "Personal Solar Insights" labels
         personalSolarInsightsTitleLabel.text = "Your Solar Season"
         solarHousePlacementLabel.text = "Sun Illuminating Your Attitudes about, \(chartCake!.houseCusps.cusp(for: chartCake!.transits.sun.longitude).houseKeywords)"
-        majorAspectLabel.text = "Sun conjunct Uranus: Let Your Individuality"
-        personalSolarInsightsContentLabel.text = "Insights on how to best harness the collective to futher enliven this area of your life"
+        majorAspectLabel.text = "\(chartCake!.houseCusps.getSunData(for: chartCake!.houseCusps.cusp(for: chartCake!.transits.sun.longitude)).header)"
+        personalSolarInsightsContentLabel.text = "\(chartCake!.houseCusps.getSunData(for: chartCake!.houseCusps.cusp(for: chartCake!.transits.sun.longitude)).header1Text)"
         
         // Add labels to their respective stack views
         [astrologicalSeasonTitleLabel, astrologicalSeasonSignLabel, astrologicalSeasonContentLabel].forEach { label in

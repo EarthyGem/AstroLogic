@@ -82,7 +82,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
         // Handle the selected relationship (chart) here
         // You can pass the relationship to the desired view controller or perform any necessary action
         // For example, you can push a new view controller with the selected relationship
-        let relationshipsVC = RelationshipsViewController()
+        let relationshipsVC = CompositeStrongestPlanetViewController()
         relationshipsVC.otherChart = otherChart
         relationshipsVC.chartCake = chartCake
 
@@ -140,7 +140,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
 //                natalPlanetsVC.title = category.chartType
                 natalPlanetsVC.chartCake = self.chartCake
             //    natalPlanetsVC.otherChart = self.otherChart
-                let compositeVC = CompositePlanetsViewController(planets: [""])
+                let compositeVC = CompositeStrongestPlanetViewController()
                 compositeVC.chartCake = chartCake
                 compositeVC.otherChart = self.otherChart
 

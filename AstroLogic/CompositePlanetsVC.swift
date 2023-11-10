@@ -103,7 +103,7 @@ class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UIT
        }
        
     
-    
+
 var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto","southnode","ascendant","midheaven"]
     var segueIdentifiers = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 
