@@ -52,6 +52,7 @@ class SuggestionsViewController: UIViewController, UITextFieldDelegate, MKLocalS
 
     func setupSearchCompleter() {
         searchCompleter.delegate = self
+        searchCompleter.resultTypes = .address
     }
 
     // MARK: - UITextFieldDelegate
@@ -65,13 +66,28 @@ class SuggestionsViewController: UIViewController, UITextFieldDelegate, MKLocalS
         return true
     }
 
-    // MARK: - MKLocalSearchCompleterDelegate
-
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        // Handle the search suggestions
-        autocompleteSuggestions = completer.results
+        // Street indicators with only the first letter uppercased
+        let streetIndicators = ["St", "Rd", "Ave", "Ct","Cir","Pl","Dr", "Lane", "Blvd", "Drive", "Way", "Street", "Road", "Avenue", "Court", "Ln", "Boulevard", "Drive", "Terrace", "Place", "Path", "Trail", "Tr", "Trl", "Plaza"]
+
+        // Filter results
+        autocompleteSuggestions = completer.results.filter { suggestion in
+            let components = suggestion.title.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+
+            if components.count == 2 {
+                // Likely "City, State" or "City, Country"
+                return true
+            } else if components.count == 1 {
+                // Check for absence of street address indicators
+                let words = components[0].split(separator: " ").map { String($0) }
+                return !words.contains(where: { streetIndicators.contains($0) })
+            }
+            return false
+        }
         tableView.reloadData()
     }
+
+
 }
 
 extension SuggestionsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,9 +98,13 @@ extension SuggestionsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let suggestion = autocompleteSuggestions[indexPath.row]
-        cell.textLabel?.text = suggestion.title
+
+        // Combine the title and subtitle
+        let combinedText = "\(suggestion.title) \(suggestion.subtitle)"
+        cell.textLabel?.text = combinedText
         return cell
     }
+
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedSuggestion = autocompleteSuggestions[indexPath.row]

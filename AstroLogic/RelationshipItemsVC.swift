@@ -15,17 +15,16 @@ struct RelationshipItems {
 
 
 class RelationshipItemsViewController: UIViewController {
-    var other: ChartCake?
-    var relationshipChart: ChartCake?
     var otherChart: ChartCake?
     var chartCake: ChartCake?
-    var synastry: SynastryChartCake?
+    var chart: Chart!
     var strongestPlanet: String?
     var placeHolder = [String]()
     var selectedName: String!
+    var synastry: SynastryChartCake?
     var name: String!
     weak var delegate: RelationshipSelectionDelegate?
-
+    var compositeCake: Chart!
 
     private var relationshipData: [RelationshipItems] = []
 
@@ -82,9 +81,10 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
         // Handle the selected relationship (chart) here
         // You can pass the relationship to the desired view controller or perform any necessary action
         // For example, you can push a new view controller with the selected relationship
-        let relationshipsVC = CompositeStrongestPlanetViewController()
-        relationshipsVC.otherChart = otherChart
-        relationshipsVC.chartCake = chartCake
+        let relationshipsVC = CompositeChartsViewController()
+//        relationshipsVC.otherChart = otherChart
+//        relationshipsVC.chartCake = chartCake
+        relationshipsVC.chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
 
         navigationController?.pushViewController(relationshipsVC, animated: true)
     }
@@ -129,7 +129,8 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 let interAspectsVC = SimpleInteraspectsViewController()
                 interAspectsVC.chartCake = self.chartCake
                 interAspectsVC.otherChart = self.otherChart
-                interAspectsVC.synastry = self.synastry
+               interAspectsVC.synastry = self.synastry
+                print("Synastry: \(synastry?.natal.sun.longitude)")
                 interAspectsVC.title = "Interaspects"
                 interAspectsVC.name = self.name
 
@@ -140,9 +141,19 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
 //                natalPlanetsVC.title = category.chartType
                 natalPlanetsVC.chartCake = self.chartCake
             //    natalPlanetsVC.otherChart = self.otherChart
-                let compositeVC = CompositeStrongestPlanetViewController()
+                
+             
+                
+                let compositeVC = MyCompositeItemsViewController()
+                var chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
                 compositeVC.chartCake = chartCake
-                compositeVC.otherChart = self.otherChart
+                compositeVC.otherChart = otherChart
+                compositeVC.houseScores = self.chartCake!.calculateHouseStrengths()
+                compositeVC.chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
+              //  compositeVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: Chart(alpha: chartCake!.natal, bravo: otherChart!.natal))
+                compositeVC.scores2 = getTotalPowerScoresForPlanets(chart: chart)
+                compositeVC.scores = getTotalPowerScoresForPlanets2(chart: chart)
+                compositeVC.chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
 
 
                 let categories = [OthersPlanetsVC,SynastryChartVC,interAspectsVC,transposedHousesVC,compositeVC]

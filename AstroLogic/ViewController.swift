@@ -6,7 +6,15 @@ import CoreLocation
 
 //import GoogleMaps
 
+class DataManager {
+    static let shared = DataManager()
+    var chartsData: [ChartEntity]?
 
+    func fetchCharts(completion: @escaping ([ChartEntity]?) -> Void) {
+        // Fetch data from Core Data
+        // Call completion with the fetched data
+    }
+}
 
 class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLocalSearchCompleterDelegate, UITextFieldDelegate  {
 

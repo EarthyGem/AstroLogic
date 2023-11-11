@@ -93,6 +93,15 @@ class MyItemsViewController: UIViewController {
 
 
 }
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           
+           DataManager.shared.fetchCharts { [weak self] charts in
+               guard let self = self else { return }
+               // Store the charts data or pass it to RelationshipsViewController
+           }
+       }
+
 
 
 }
@@ -133,7 +142,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
 
         let currentMoonPhaseVC = CurrentMoonPhaseViewController()
-        currentMoonPhaseVC.title = "\(name!)'s \(category.chartType)"
+        currentMoonPhaseVC.title = "\(category.chartType)"
         currentMoonPhaseVC.chartCake = self.chartCake
         currentMoonPhaseVC.phaseName = self.phaseName
 
@@ -283,6 +292,7 @@ extension MyItemsViewController: UITableViewDelegate {
         RelationshipVC.chartCake = self.chartCake
         RelationshipVC.birthDate = self.birthDate
         RelationshipVC.otherChart = self.otherChart
+        RelationshipVC.charts = DataManager.shared.chartsData
         RelationshipVC.title = "Other Person"
 
 

@@ -83,20 +83,26 @@ class CompositeStrongestPlanetViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        var chart = Chart(alpha: otherChart!.natal, bravo: chartCake!.natal)
+      //  var chart = Chart(alpha: otherChart!.natal, bravo: chartCake!.natal)
+        
+        print("Debug: viewDidLoad called")
+         print("Strongest Planet: \(String(describing: strongestPlanet))")
+         print("Most Harmonious Planet: \(String(describing: mostHarmoniousPlanet))")
+         print("Most Discordant Planet: \(String(describing: mostDiscordantPlanet))")
+
         self.navigationItem.hidesBackButton = true
           let newBackButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.back(sender:)))
           self.navigationItem.leftBarButtonItem = newBackButton
         view.backgroundColor = .black
        configureStrongestImageView()
-    //  configureStrongestLabel()
-  //      configureStrongestTitleLabel(name: name)
+      configureStrongestLabel()
+        configureStrongestTitleLabel(name: name)
         configureHarmoniousImageView()
-    //    configureHarmoniousTitleLabel()
-   //     configureHarmoniousLabel()
+        configureHarmoniousTitleLabel()
+        configureHarmoniousLabel()
         configureDiscordantImageView()
-   //     configureDiscordantTitleLabel()
-   //     configureDiscordantLabel()
+        configureDiscordantTitleLabel()
+        configureDiscordantLabel()
         configureBottomLabel()
 
         let myItemsButton = UIButton(type: .system)
@@ -113,15 +119,15 @@ class CompositeStrongestPlanetViewController: UIViewController {
         setupLabels()
         
         
-        let scores = chart.getTotalPowerScoresForPlanets()
+        let scores = chart!.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
         print(strongestPlanet)
+//
+//         let signScore = self.otherChart.natal.calculateTotalSignScore()
+//         let houseStrengths = self.otherChart.natal.calculatePlanetInHouseScores()
+//         let houseScores = self.otherChart.natal.calculateHouseStrengths()
 
-        // let signScore = self.otherChart.natal.calculateTotalSignScore()
-        // let houseStrengths = self.otherChart.natal.calculatePlanetInHouseScores()
-        // let houseScores = self.otherChart.natal.calculateHouseStrengths()
-
-        let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
+        let tuple = chart!.getTotalHarmonyDiscordScoresForPlanets()
         let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
         let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
 var tarot = getStrongestPlanet(from: scores).tarot
@@ -135,35 +141,35 @@ var tarot = getStrongestPlanet(from: scores).tarot
         
         
         if strongestPlanet == Planet.sun.celestialObject {
-            strongestPlanetSign = chart.sun.sign.keyName
+            strongestPlanetSign = chart!.sun.sign.keyName
         } else if strongestPlanet == Planet.moon.celestialObject {
-            strongestPlanetSign = chart.moon.sign.keyName
+            strongestPlanetSign = chart!.moon.sign.keyName
         } else if strongestPlanet == Planet.mercury.celestialObject {
-            strongestPlanetSign = chart.mercury.sign.keyName
+            strongestPlanetSign = chart!.mercury.sign.keyName
         } else if strongestPlanet == Planet.venus.celestialObject {
-            strongestPlanetSign = chart.venus.sign.keyName
+            strongestPlanetSign = chart!.venus.sign.keyName
         } else if strongestPlanet == Planet.mars.celestialObject {
-            strongestPlanetSign = chart.mars.sign.keyName
+            strongestPlanetSign = chart!.mars.sign.keyName
         } else if strongestPlanet == Planet.jupiter.celestialObject {
            
-            strongestPlanetSign = chart.saturn.sign.keyName
+            strongestPlanetSign = chart!.saturn.sign.keyName
         } else if strongestPlanet == Planet.uranus.celestialObject {
-            strongestPlanetSign = chart.uranus.sign.keyName
+            strongestPlanetSign = chart!.uranus.sign.keyName
         } else if strongestPlanet == Planet.neptune.celestialObject {
-            strongestPlanetSign = chart.neptune.sign.keyName
+            strongestPlanetSign = chart!.neptune.sign.keyName
         } else if strongestPlanet == Planet.pluto.celestialObject {
-            strongestPlanetSign = chart.pluto.sign.keyName
+            strongestPlanetSign = chart!.pluto.sign.keyName
         } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-            strongestPlanetSign = chart.southNode.sign.keyName
+            strongestPlanetSign = chart!.southNode.sign.keyName
         }
 
-     //   let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
-//                                             strongestPlanetSign: strongestPlanetSign!,
-//                                             sunSign: chart.sun.sign.keyName,
-//                                             moonSign: chart.moon.sign.keyName,
-//                                             risingSign: chart.houseCusps.ascendent.sign.keyName, name: name)
-//
-//        
+        let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
+                                             strongestPlanetSign: strongestPlanetSign!,
+                                             sunSign: chart!.sun.sign.keyName,
+                                             moonSign: chart!.moon.sign.keyName,
+                                             risingSign: chart!.houseCusps.ascendent.sign.keyName, name: name)
+
+        
        
         
      
@@ -189,9 +195,8 @@ var tarot = getStrongestPlanet(from: scores).tarot
         myItemsVC.latitude = latitude.self
         myItemsVC.longitude = longitude.self
         // Pass other properties if needed
-        // myItemsVC.strongestPlanet = self.strongestPlanet
-        // myItemsVC.getMinors = self.getMinors
-        // myItemsVC.getMajorProgresseDate = self.getMajorProgresseDate
+         myItemsVC.strongestPlanet = self.strongestPlanet
+       
         self.navigationController?.pushViewController(myItemsVC, animated: true)
     }
     
@@ -250,11 +255,11 @@ var tarot = getStrongestPlanet(from: scores).tarot
         harmoniousTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(harmoniousTitleLabel)
 
-//        NSLayoutConstraint.activate([
-//            harmoniousTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//            harmoniousTitleLabel.trailingAnchor.constraint(equalTo: harmoniousImageView.trailingAnchor),
-//            harmoniousTitleLabel.bottomAnchor.constraint(equalTo: harmoniousImageView.topAnchor, constant: -10),
-//        ])
+        NSLayoutConstraint.activate([
+            harmoniousTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            harmoniousTitleLabel.trailingAnchor.constraint(equalTo: harmoniousImageView.trailingAnchor),
+            harmoniousTitleLabel.bottomAnchor.constraint(equalTo: harmoniousImageView.topAnchor, constant: -10),
+        ])
     }
 
     private func configureStrongestImageView() {
@@ -334,35 +339,35 @@ var tarot = getStrongestPlanet(from: scores).tarot
         //        birthChartView = BirthChartView(frame: view.bounds, chartCake: chartCake!)
 
 
-//    private func configureStrongestLabel() {
-//        label.text = "The"
-//        label.textColor = .white
-//        label.font = UIFont.systemFont(ofSize: 20)
-//        label.textAlignment = .center
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(label)
-//
-//        NSLayoutConstraint.activate([
-//            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
-//        ])
-//    }
+    private func configureStrongestLabel() {
+        label.text = "The"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
 
-//    private func configureHarmoniousLabel() {
-//        harmoniousLabel.text = "The "
-//        harmoniousLabel.textColor = .white
-//        harmoniousLabel.font = UIFont.systemFont(ofSize: 14)
-//        harmoniousLabel.textAlignment = .center
-//        harmoniousLabel.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(harmoniousLabel)
-//
-//        NSLayoutConstraint.activate([
-//            harmoniousLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//            harmoniousLabel.trailingAnchor.constraint(equalTo: harmoniousImageView.trailingAnchor),
-//            harmoniousLabel.topAnchor.constraint(equalTo: harmoniousImageView.bottomAnchor, constant: 10),
-//        ])
-//    }
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
+        ])
+    }
+
+    private func configureHarmoniousLabel() {
+        harmoniousLabel.text = "The "
+        harmoniousLabel.textColor = .white
+        harmoniousLabel.font = UIFont.systemFont(ofSize: 14)
+        harmoniousLabel.textAlignment = .center
+        harmoniousLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(harmoniousLabel)
+
+        NSLayoutConstraint.activate([
+            harmoniousLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            harmoniousLabel.trailingAnchor.constraint(equalTo: harmoniousImageView.trailingAnchor),
+            harmoniousLabel.topAnchor.constraint(equalTo: harmoniousImageView.bottomAnchor, constant: 10),
+        ])
+    }
 
     private func configureDiscordantImageView() {
         guard let imageName = mostDiscordantPlanet?.lowercased() else {
@@ -395,27 +400,27 @@ var tarot = getStrongestPlanet(from: scores).tarot
                 discordantTitleLabel.translatesAutoresizingMaskIntoConstraints = false
                 view.addSubview(discordantTitleLabel)
 
-//                NSLayoutConstraint.activate([
-//                    discordantTitleLabel.leadingAnchor.constraint(equalTo: discordantImageView.leadingAnchor),
-//                    discordantTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-//                    discordantTitleLabel.bottomAnchor.constraint(equalTo: discordantImageView.topAnchor, constant: -10),
-//                ])
+                NSLayoutConstraint.activate([
+                    discordantTitleLabel.leadingAnchor.constraint(equalTo: discordantImageView.leadingAnchor),
+                    discordantTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                    discordantTitleLabel.bottomAnchor.constraint(equalTo: discordantImageView.topAnchor, constant: -10),
+                ])
             }
 
-//            private func configureDiscordantLabel() {
-//                discordantLabel.text = "The \(mostDiscordantPlanetArchetype!)"
-//                discordantLabel.textColor = .white
-//                discordantLabel.font = UIFont.systemFont(ofSize: 14)
-//                discordantLabel.textAlignment = .center
-//                discordantLabel.translatesAutoresizingMaskIntoConstraints = false
-//                view.addSubview(discordantLabel)
-//
-//                NSLayoutConstraint.activate([
-//                    discordantLabel.leadingAnchor.constraint(equalTo: discordantImageView.leadingAnchor),
-//                    discordantLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-//                    discordantLabel.topAnchor.constraint(equalTo: discordantImageView.bottomAnchor, constant: 10),
-//                ])
-//            }
+            private func configureDiscordantLabel() {
+                discordantLabel.text = "The \(mostDiscordantPlanetArchetype!)"
+                discordantLabel.textColor = .white
+                discordantLabel.font = UIFont.systemFont(ofSize: 14)
+                discordantLabel.textAlignment = .center
+                discordantLabel.translatesAutoresizingMaskIntoConstraints = false
+                view.addSubview(discordantLabel)
+
+                NSLayoutConstraint.activate([
+                    discordantLabel.leadingAnchor.constraint(equalTo: discordantImageView.leadingAnchor),
+                    discordantLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                    discordantLabel.topAnchor.constraint(equalTo: discordantImageView.bottomAnchor, constant: 10),
+                ])
+            }
 
 //            func getPlanetOrSignData(planetOrSign: String) -> [String] {
 //                return PlanetData.data[planetOrSign] ?? []

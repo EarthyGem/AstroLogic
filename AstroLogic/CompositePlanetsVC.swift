@@ -12,7 +12,7 @@ class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UIT
     var chartCake: ChartCake!
     var otherChart: ChartCake!
     var chart: Chart?
-    var birthChartView: BirthChartView!
+    var birthChartView: CompositeBirthChartView!
     var coverView: UIView!
     var natalChartLabel: UILabel!
 
@@ -64,22 +64,22 @@ class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UIT
        }
        
        func getNatalPositions() -> [String] {
-           var compSun = Coordinate(alpha: chartCake.natal.sun, bravo: otherChart.natal.sun)
-           var compMoon = Coordinate(alpha: chartCake.natal.moon, bravo: otherChart.natal.moon)
-           var compMercury = Coordinate(alpha: chartCake.natal.mercury, bravo: otherChart.natal.mercury)
-           var compVenus = Coordinate(alpha: chartCake.natal.venus, bravo: otherChart.natal.venus)
-           var compMars = Coordinate(alpha: chartCake.natal.mars, bravo: otherChart.natal.mars)
-           var compJupiter = Coordinate(alpha: chartCake.natal.jupiter, bravo: otherChart.natal.jupiter)
-           var compSaturn = Coordinate(alpha: chartCake.natal.saturn, bravo: otherChart.natal.saturn)
-           var compUranus = Coordinate(alpha: chartCake.natal.uranus, bravo: otherChart.natal.uranus)
-           var compNeptune = Coordinate(alpha: chartCake.natal.neptune, bravo: otherChart.natal.neptune)
-           var compPluto = Coordinate(alpha: chartCake.natal.pluto, bravo: otherChart.natal.pluto)
-           var compSouthNode = Coordinate(alpha: chartCake.natal.southNode, bravo: otherChart.natal.southNode)
+           var compSun = chart!.sun
+           var compMoon = chart!.moon
+           var compMercury = chart!.mercury
+           var compVenus = chart!.venus
+           var compMars = chart!.mars
+           var compJupiter = chart!.jupiter
+           var compSaturn = chart!.saturn
+           var compUranus = chart!.uranus
+           var compNeptune = chart!.neptune
+           var compPluto = chart!.pluto
+           var compSouthNode = chart!.southNode
        var compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
            var compMC = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
            
            natalSigns = [
-               compSun.formatted,
+            compSun.formatted,
               compMoon.formatted,
               compMercury.formatted,
               compVenus.formatted,
@@ -134,7 +134,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         tableView.backgroundColor = .black
 
         // BirthChartView setup
-        birthChartView = BirthChartView(frame: CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: birthChartViewFullHeight), chartCake: chartCake!)
+        birthChartView = CompositeBirthChartView(frame: CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: birthChartViewFullHeight), chart: chart!)
         let tapGestureForBirthChart = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
 
         birthChartView.addGestureRecognizer(tapGestureForBirthChart)

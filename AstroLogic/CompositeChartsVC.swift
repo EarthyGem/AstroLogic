@@ -12,10 +12,11 @@ import SwiftEphemeris
 
 
 class CompositeChartsViewController: UIViewController {
-    var birthChartView: BirthChartView!
+    var birthChartView: CompositeBirthChartView!
 
     var harmonyDiscordLabels: [UILabel] = []
-
+    var chartCake: ChartCake!
+    var otherChart: ChartCake!
     var harmonyDiscordScores: [String: (harmony: Double, discord: Double, difference: Double)]?
     var chart: Chart!
     var scrollView: UIScrollView!
@@ -221,10 +222,10 @@ class CompositeChartsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+var chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        //let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 30, width: screenWidth, height: screenWidth), chart: chartCake!)
+        let birthChartView = CompositeBirthChartView(frame: CGRect(x: 0, y: 30, width: screenWidth, height: screenWidth), chart: chart)
 
      //   birthChartView.backgroundColor = .white
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 1500))
