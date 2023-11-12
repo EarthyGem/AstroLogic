@@ -19,6 +19,7 @@ var myName = ""
 class MyItemsViewController: UIViewController {
 
 // var progPlanets = [String]()
+    var charts: [ChartEntity]?
     var phaseName: String?
     var chart: Chart?
     var name: String!
@@ -93,15 +94,7 @@ class MyItemsViewController: UIViewController {
 
 
 }
-    override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
-           
-           DataManager.shared.fetchCharts { [weak self] charts in
-               guard let self = self else { return }
-               // Store the charts data or pass it to RelationshipsViewController
-           }
-       }
-
+   
 
 
 }
@@ -292,7 +285,7 @@ extension MyItemsViewController: UITableViewDelegate {
         RelationshipVC.chartCake = self.chartCake
         RelationshipVC.birthDate = self.birthDate
         RelationshipVC.otherChart = self.otherChart
-        RelationshipVC.charts = DataManager.shared.chartsData
+        RelationshipVC.charts = charts!
         RelationshipVC.title = "Other Person"
 
 

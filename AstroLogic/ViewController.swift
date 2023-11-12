@@ -6,15 +6,32 @@ import CoreLocation
 
 //import GoogleMaps
 
+import CoreData
+
 class DataManager {
     static let shared = DataManager()
-    var chartsData: [ChartEntity]?
+    var charts: [ChartEntity]?
 
     func fetchCharts(completion: @escaping ([ChartEntity]?) -> Void) {
-        // Fetch data from Core Data
-        // Call completion with the fetched data
+        // Assuming you have a Core Data stack set up
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            completion(nil)
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<ChartEntity>(entityName: "ChartEntity")
+
+        do {
+            let charts = try context.fetch(fetchRequest)
+            self.charts = charts
+            completion(charts)
+        } catch {
+            print("Failed to fetch charts: \(error.localizedDescription)")
+            completion(nil)
+        }
     }
 }
+
 
 class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLocalSearchCompleterDelegate, UITextFieldDelegate  {
 
@@ -293,10 +310,15 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
 
     }
+  
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+           super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
+           DataManager.shared.fetchCharts { [weak self] charts in
+               guard let self = self else { return }
+               // Store the charts data or pass it to RelationshipsViewController
+           }
+       }
 
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -550,6 +572,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
                 strongestPlanetVC.chart = chart
                 strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
                 strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
+               // strongestPlanetVC.charts = charts
                 strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
                 strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                 strongestPlanetVC.strongestPlanetArchetype = getStrongestPlanet(from: scores).archetype

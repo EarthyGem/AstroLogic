@@ -26,7 +26,7 @@ class StrongestPlanetViewController: UIViewController {
     var latitude: Double?
     var longitude: Double?
     var phaseName: String?
-
+    var charts: [ChartEntity]?
     var combinedBirthDateTime: (date: Date?, timeZone: TimeZone?)?
     var birthPlace: String?
     private let nameLabel = UILabel()
@@ -128,6 +128,8 @@ class StrongestPlanetViewController: UIViewController {
         myItemsVC.sortedPlanets = sortedPlanets.self
         myItemsVC.latitude = latitude.self
         myItemsVC.longitude = longitude.self
+        myItemsVC.charts = charts.self
+      
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet
         // myItemsVC.getMinors = self.getMinors

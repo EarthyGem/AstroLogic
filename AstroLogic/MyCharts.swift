@@ -305,6 +305,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                     strongestPlanetVC.strongestPlanetArchetype = getStrongestPlanet(from: scores).archetype
                     strongestPlanetVC.name = name
+                    strongestPlanetVC.charts = charts
                     strongestPlanetVC.birthPlace = birthPlace
                     strongestPlanetVC.birthDate = chartDate
                     //  strongestPlanetVC.combinedBirthDateTime = chartDate
