@@ -60,7 +60,7 @@ class HoraryAstrologyViewController: UIViewController, CLLocationManagerDelegate
            if let currentLocation = locations.first {
                      let timeZone = TimeZone.current // or use currentLocation to fetch timezone
                      // Now use currentLocation and timeZone as needed
-               createChart(for: currentLocation, with: timeZone, at: Date())
+               createChart(for: currentLocation, at: Date(), with: timeZone)
                  }
        }
 
@@ -68,17 +68,23 @@ class HoraryAstrologyViewController: UIViewController, CLLocationManagerDelegate
            print("Failed to find user's location: \(error.localizedDescription)")
        }
 
-    private func createChart(for location: CLLocation, with: TimeZone, at date: Date) {
-           let latitude = location.coordinate.latitude
-           let longitude = location.coordinate.longitude
-           
-           // Use the current date and location to create a ChartCake
-           if let chartCake = ChartCake(birthDate: date, latitude: latitude, longitude: longitude) {
-               // Handle the chart as needed
-           } else {
-               print("Failed to generate chart")
-           }
-       }
+    private func createChart(for location: CLLocation, at date: Date, with timeZone: TimeZone) {
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        // Assuming ChartCake initialization is correct
+        if let chartCake = ChartCake(birthDate: date, latitude: latitude, longitude: longitude) {
+            // Handle the chart as needed
+
+            // Create and add BirthChartView
+            let screenWidth = UIScreen.main.bounds.width
+            let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 100, width: screenWidth, height: screenWidth), chartCake: chartCake)
+            view.addSubview(birthChartView)
+        } else {
+            print("Failed to generate chart")
+        }
+    }
+
     
     private func setupViews() {
         // Add subviews
@@ -159,7 +165,7 @@ class HoraryAstrologyViewController: UIViewController, CLLocationManagerDelegate
                 
                 let chartDate = Date()
                 chart = Chart(date: Date(), latitude: latitude, longitude: longitude, houseSystem: .placidus)
-                var chartCake = createChart(for:locationManager.location!, with: timeZone, at: Date())
+                var chartCake: () = createChart(for:locationManager.location!, at: Date(), with: timeZone)
                 
                 guard let chart = chart else {
                     assert(false, "There is no chart")

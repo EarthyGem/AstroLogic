@@ -4,7 +4,7 @@ import SwiftEphemeris
 
 class BirthChartView: UIView {
     var planetPositions: [CelestialObject: CGFloat] = [:]
-    var chart = ViewController().chart
+    var chart: Chart?
     var chartCake: ChartCake?
     init(frame: CGRect, chartCake: ChartCake) {
         self.chartCake = chartCake
