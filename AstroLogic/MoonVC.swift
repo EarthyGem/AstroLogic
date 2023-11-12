@@ -47,6 +47,17 @@ class MoonViewController: UIViewController {
     }
     
     private func setupViews() {
+        
+        setupRoundedView(collectiveMoodView, withBackgroundColor: .purple)
+          setupRoundedView(selfCareCheckInView, withBackgroundColor: .green)
+
+          // Setup for stack views
+          setupStackView(collectiveMoodStackView)
+          setupStackView(selfCareCheckInStackView)
+
+          // Add subviews to their respective views
+          collectiveMoodView.addSubview(collectiveMoodStackView)
+          selfCareCheckInView.addSubview(selfCareCheckInStackView)
          // Set up the stack views
          contentStackView.axis = .vertical
          contentStackView.spacing = 10
@@ -74,21 +85,43 @@ class MoonViewController: UIViewController {
          tableView2.translatesAutoresizingMaskIntoConstraints = false
      }
     private func setupLabels() {
+        configureLabelForMultiLine(pageTitleLabel)
+        configureLabelForMultiLine(currentDateLabel)
         // Page title and date labels
         pageTitleLabel.text = "The ever changing Moon lights up new pathways and casts shade on others, Let the Moon light your path"
         currentDateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
         
         // Configure the "Collective Mood" labels
-        collectiveMoodTitleLabel.text = "Collective Mood"
-        collectiveMoodHeaderLabel.text = "Moon in \(chartCake!.transits.moon.sign.keyName)"
+        collectiveMoodTitleLabel.text = "Self-Care Check-in"
+        collectiveMoodHeaderLabel.text = "From  now until then, Luna sheds her healing and nurturing \(chartCake!.transits.moon.sign.keyName) rays, urging you tend to your feelings about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
+        
         collectiveMoodSubheaderLabel.text = "\(chartCake!.transits.moon.sign.moonHeaders[0])"
         collectiveMoodContentLabel.text = "\(chartCake!.transits.moon.sign.moonMessages[0])"
         
         // Configure the "Self-Care Check-in" labels
-        selfCareCheckInTitleLabel.text = "Self-Care Check-in"
-        moonHousePlacementLabel.text = "Moon in the \(chartCake!.houseCusps.house(of: chartCake!.transits.moon).name) house, shedding her soft light on your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
+     //   selfCareCheckInTitleLabel.text = "Self-Care Check-in"
+        moonHousePlacementLabel.text = ""
         moonConjunctionLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).headers[0])"
         selfCareCheckInContentLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).message)"
+    }
+
+    private func setupRoundedView(_ view: UIView, withBackgroundColor color: UIColor) {
+        view.backgroundColor = color
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+    }
+
+    private func setupStackView(_ stackView: UIStackView) {
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        stackView.isLayoutMarginsRelativeArrangement = true
+    }
+
+    private func configureLabelForMultiLine(_ label: UILabel) {
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        // Adjust text alignment and other properties as needed
     }
     
     private func setupLayout() {

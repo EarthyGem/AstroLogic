@@ -44,6 +44,14 @@ class SunViewController: UIViewController {
     }
     
     private func setupViews() {
+        
+        setupRoundedView(astrologicalSeasonView, withBackgroundColor: .blue)
+           setupRoundedView(personalSolarInsightsView, withBackgroundColor: .red)
+
+           // Setup for stack views
+           setupStackView(astrologicalSeasonStackView)
+           setupStackView(personalSolarInsightsStackView)
+
         // Set up the stack views
         contentStackView.axis = .vertical
          contentStackView.spacing = 10
@@ -75,7 +83,8 @@ class SunViewController: UIViewController {
         // Page title and date labels
         pageTitleLabel.text = "Harnessing the Sun's Energy: From Universal Seasons to Personal Illuminations"
         currentDateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
-        
+        configureLabelForMultiLine(pageTitleLabel)
+        configureLabelForMultiLine(currentDateLabel)
         // Configure the "Astrological Season" labels
         astrologicalSeasonTitleLabel.text = "Astrological Season"
         astrologicalSeasonSignLabel.text = " \(chartCake!.transits.sun.sign.sunHeaders[0])"
@@ -133,5 +142,24 @@ class SunViewController: UIViewController {
         contentStackView.addArrangedSubview(personalSolarInsightsStackView)
         contentStackView.addArrangedSubview(tableView1)
         contentStackView.addArrangedSubview(tableView2)
+    }
+    
+    private func setupRoundedView(_ view: UIView, withBackgroundColor color: UIColor) {
+        view.backgroundColor = color
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+    }
+
+    private func setupStackView(_ stackView: UIStackView) {
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        stackView.isLayoutMarginsRelativeArrangement = true
+    }
+
+    private func configureLabelForMultiLine(_ label: UILabel) {
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        // Adjust text alignment and other properties as needed
     }
 }
