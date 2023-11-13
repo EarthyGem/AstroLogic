@@ -20,7 +20,10 @@ class WeatherForecastViewController: UIViewController, UITextFieldDelegate, Sugg
     var forecasts: [String] = []
     let temperatureLabel = UILabel()
      let airQualityLabel = UILabel()
-     let weatherConditionLabel = UILabel()
+     let weatherConditionLabel1 = UILabel()
+    let weatherConditionLabel2 = UILabel()
+    let weatherConditionLabel3 = UILabel()
+    let weatherConditionLabel4 = UILabel()
 
      // WeatherService instance
      let weatherService = WeatherService()
@@ -107,38 +110,62 @@ class WeatherForecastViewController: UIViewController, UITextFieldDelegate, Sugg
          configureDatePicker()
      }
     private func setupWeatherInfoViews() {
-            // Configure labels and add them to the view
-            temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-            airQualityLabel.translatesAutoresizingMaskIntoConstraints = false
-            weatherConditionLabel.translatesAutoresizingMaskIntoConstraints = false
+        // Configure labels and add them to the view
+        temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+        airQualityLabel.translatesAutoresizingMaskIntoConstraints = false
+        weatherConditionLabel1.translatesAutoresizingMaskIntoConstraints = false
+        weatherConditionLabel2.translatesAutoresizingMaskIntoConstraints = false
+        weatherConditionLabel3.translatesAutoresizingMaskIntoConstraints = false
+        weatherConditionLabel4.translatesAutoresizingMaskIntoConstraints = false
 
-            view.addSubview(temperatureLabel)
-            view.addSubview(airQualityLabel)
-            view.addSubview(weatherConditionLabel)
+        view.addSubview(temperatureLabel)
+        view.addSubview(airQualityLabel)
+        view.addSubview(weatherConditionLabel1)
+        view.addSubview(weatherConditionLabel2)
+        view.addSubview(weatherConditionLabel3)
+        view.addSubview(weatherConditionLabel4)
 
-            // Define the labels' appearance
-            temperatureLabel.font = UIFont.systemFont(ofSize: 16)
+        // Define the labels' appearance
+        temperatureLabel.font = UIFont.systemFont(ofSize: 16)
         temperatureLabel.textColor = .orange
-            airQualityLabel.font = UIFont.systemFont(ofSize: 16)
+        airQualityLabel.font = UIFont.systemFont(ofSize: 16)
         airQualityLabel.textColor = .magenta
+        weatherConditionLabel1.font = UIFont.systemFont(ofSize: 16)
+        weatherConditionLabel1.textColor = .systemGreen
+        weatherConditionLabel2.font = UIFont.systemFont(ofSize: 16)
+        weatherConditionLabel2.textColor = .systemBlue
+        weatherConditionLabel3.font = UIFont.systemFont(ofSize: 16)
+        weatherConditionLabel3.textColor = .systemRed
+        weatherConditionLabel4.font = UIFont.systemFont(ofSize: 16)
+        weatherConditionLabel4.textColor = .systemPurple
 
-        weatherConditionLabel.font = UIFont.systemFont(ofSize: 16)
-        weatherConditionLabel.textColor = .systemGreen
-            // Constraints for the weather information labels
-            NSLayoutConstraint.activate([
-                temperatureLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 20),
-                temperatureLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                temperatureLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+        // Constraints for the weather information labels
+        NSLayoutConstraint.activate([
+            temperatureLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 20),
+            temperatureLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            temperatureLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
-                airQualityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 10),
-                airQualityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                airQualityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            airQualityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 10),
+            airQualityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            airQualityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
-                weatherConditionLabel.topAnchor.constraint(equalTo: airQualityLabel.bottomAnchor, constant: 10),
-                weatherConditionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                weatherConditionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            ])
-        }
+            weatherConditionLabel1.topAnchor.constraint(equalTo: airQualityLabel.bottomAnchor, constant: 10),
+            weatherConditionLabel1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            weatherConditionLabel1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
+            weatherConditionLabel2.topAnchor.constraint(equalTo: weatherConditionLabel1.bottomAnchor, constant: 10),
+            weatherConditionLabel2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            weatherConditionLabel2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
+            weatherConditionLabel3.topAnchor.constraint(equalTo: weatherConditionLabel2.bottomAnchor, constant: 10),
+            weatherConditionLabel3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            weatherConditionLabel3.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
+            weatherConditionLabel4.topAnchor.constraint(equalTo: weatherConditionLabel3.bottomAnchor, constant: 10),
+            weatherConditionLabel4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            weatherConditionLabel4.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+    }
 
 
     private func configureDatePicker() {
@@ -225,13 +252,31 @@ class WeatherForecastViewController: UIViewController, UITextFieldDelegate, Sugg
         do {
             let weather = try await weatherService.weather(for: location)
             DispatchQueue.main.async { [weak self] in
-                self?.temperatureLabel.text = "Temperature: \(weather.currentWeather.temperature)"
-                self?.airQualityLabel.text = "Air Movement: \(weather.currentWeather.wind)"
-                self?.weatherConditionLabel.text = "Conditions: \(weather.currentWeather.condition)"
+                // Assuming weather.currentWeather.temperature is in Celsius and converting it to Fahrenheit
+                let temperatureInFahrenheit = weather.currentWeather.temperature.converted(to: .fahrenheit).value
+                let windSpeedInMPH = weather.currentWeather.wind.speed * 2.237 // Assuming wind speed is in m/s and converting to mph
+
+                self?.temperatureLabel.text = "Temperature: \(temperatureInFahrenheit.rounded())°F (High: \(weather.currentWeather.cloudCover)°F, Low: \(weather.currentWeather.temperature.value)°F)"
+                self?.airQualityLabel.text = "Humidity: \(weather.currentWeather.humidity)%\nFeels Like: \(weather.currentWeather.apparentTemperature)°F"
+                self?.weatherConditionLabel4.text = "Wind: \(weather.currentWeather.wind.speed) mph \(weather.currentWeather.wind.direction)"
+                
+                self?.weatherConditionLabel1.text = "Wind: \(weather.currentWeather.wind.gust) mph \(weather.currentWeather.wind.direction)"
+                
+                self?.weatherConditionLabel2.text = "Wind: \(weather.currentWeather.symbolName) mph \(weather.currentWeather.wind.direction)"
+                
+                self?.weatherConditionLabel3.text = "Daily Forcast: \(weather.dailyForecast) Hourly Forcast \(weather.hourlyForecast)"
             }
         } catch {
-            print(error.localizedDescription)
+            DispatchQueue.main.async {
+                self.presentErrorAlert()
+            }
         }
+    }
+
+    private func presentErrorAlert() {
+        let alertController = UIAlertController(title: "Error", message: "Failed to fetch weather information.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func generateChart(for coordinate: CLLocationCoordinate2D) {
