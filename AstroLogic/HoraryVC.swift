@@ -78,7 +78,7 @@ class HoraryAstrologyViewController: UIViewController, CLLocationManagerDelegate
 
             // Create and add BirthChartView
             let screenWidth = UIScreen.main.bounds.width
-            let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 100, width: screenWidth, height: screenWidth), chartCake: chartCake)
+            let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 250, width: screenWidth, height: screenWidth), chartCake: chartCake)
             view.addSubview(birthChartView)
         } else {
             print("Failed to generate chart")

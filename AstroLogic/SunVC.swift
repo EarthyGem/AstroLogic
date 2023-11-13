@@ -1,5 +1,5 @@
 //
-//  SunVC.swift
+//  MoonVC.swift
 //  AstroLogic
 //
 //  Created by Errick Williams on 10/31/23.
@@ -9,31 +9,166 @@ import Foundation
 import UIKit
 import SwiftEphemeris
 
+
 class SunViewController: UIViewController {
+    
     var chartCake: ChartCake?
     var selectedDate: Date?
     
-    let scrollView = UIScrollView()
-    let contentStackView = UIStackView()
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     
-    let pageTitleLabel = UILabel()
-    let currentDateLabel = UILabel()
-
-    let astrologicalSeasonView = UIView()
-    let astrologicalSeasonStackView = UIStackView()
-    let astrologicalSeasonTitleLabel = UILabel()
-    let astrologicalSeasonSignLabel = UILabel()
-    let astrologicalSeasonContentLabel = UILabel()
-
-    let personalSolarInsightsView = UIView()
-    let personalSolarInsightsStackView = UIStackView()
-    let personalSolarInsightsTitleLabel = UILabel()
-    let solarHousePlacementLabel = UILabel()
-    let majorAspectLabel = UILabel()
-    let personalSolarInsightsContentLabel = UILabel()
-
-    let tableView1 = UITableView()
-    let tableView2 = UITableView()
+    let contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let pageTitleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "The Sun sets the Season"
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties like font, text alignment, etc.
+        return label
+    }()
+    
+    let currentDateLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let collectiveSeasonView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .purple
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let collectiveSeasonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }()
+    
+    let collectiveSeasonTitleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "The Current Astrological Season"
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let collectiveSeasonHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        // Text will be set later based on `chartCake`
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let collectiveSeasonSubheaderLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        // Text will be set later based on `chartCake`
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let collectiveSeasonContentLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        // Text will be set later based on `chartCake`
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let vitalityCheckInView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemOrange
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let vitalityCheckInStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }()
+    
+    let vitalityCheckInTitleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Energy Check-in"
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let moonHousePlacementLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        // Text will be set later based on `chartCake`
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let moonConjunctionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        // Text will be set later based on `chartCake`
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    let vitalityCheckInContentLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        // Text will be set later based on `chartCake`
+        label.lineBreakMode = .byWordWrapping
+        // Configure other label properties
+        return label
+    }()
+    
+    
+    let tableView1: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        // Configure tableView properties like dataSource, delegate, etc.
+        return tableView
+    }()
+    
+    let tableView2: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        // Configure tableView properties
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,75 +180,81 @@ class SunViewController: UIViewController {
     
     private func setupViews() {
         
-        setupRoundedView(astrologicalSeasonView, withBackgroundColor: .blue)
-           setupRoundedView(personalSolarInsightsView, withBackgroundColor: .red)
-
-           // Setup for stack views
-           setupStackView(astrologicalSeasonStackView)
-           setupStackView(personalSolarInsightsStackView)
-
+        setupRoundedView(collectiveSeasonView, withBackgroundColor: .purple)
+        setupRoundedView(vitalityCheckInView, withBackgroundColor: .green)
+        
+        // Setup for stack views
+        setupStackView(collectiveSeasonStackView)
+        setupStackView(vitalityCheckInStackView)
+        
+        // Add subviews to their respective views
+        collectiveSeasonView.addSubview(collectiveSeasonStackView)
+        vitalityCheckInView.addSubview(vitalityCheckInStackView)
         // Set up the stack views
         contentStackView.axis = .vertical
-         contentStackView.spacing = 10
-         contentStackView.alignment = .fill
-         contentStackView.distribution = .equalSpacing
-         contentStackView.translatesAutoresizingMaskIntoConstraints = false
-
-         astrologicalSeasonStackView.axis = .vertical
-         astrologicalSeasonStackView.spacing = 5
-         
-         personalSolarInsightsStackView.axis = .vertical
-         personalSolarInsightsStackView.spacing = 5
-         
-         // Set up colored views
-         astrologicalSeasonView.backgroundColor = .blue
-         personalSolarInsightsView.backgroundColor = .red
-
-         // Set up scroll view
-         scrollView.translatesAutoresizingMaskIntoConstraints = false
-         view.addSubview(scrollView)
-         scrollView.addSubview(contentStackView)
-         
-         // Add the table views
-         tableView1.translatesAutoresizingMaskIntoConstraints = false
-         tableView2.translatesAutoresizingMaskIntoConstraints = false
-     }
-
+        contentStackView.spacing = 10
+        contentStackView.alignment = .fill
+        contentStackView.distribution = .equalSpacing
+        
+        collectiveSeasonStackView.axis = .vertical
+        collectiveSeasonStackView.spacing = 5
+        
+        vitalityCheckInStackView.axis = .vertical
+        vitalityCheckInStackView.spacing = 5
+        
+        // Set up colored views
+        collectiveSeasonView.backgroundColor = .purple
+        vitalityCheckInView.backgroundColor = .green
+        
+        // Set up scroll view
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentStackView)
+        
+        
+        // Add the table views
+        tableView1.translatesAutoresizingMaskIntoConstraints = false
+        tableView2.translatesAutoresizingMaskIntoConstraints = false
+    }
     private func setupLabels() {
-        // Page title and date labels
-        pageTitleLabel.text = "Harnessing the Sun's Energy: From Universal Seasons to Personal Illuminations"
-        currentDateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
         configureLabelForMultiLine(pageTitleLabel)
         configureLabelForMultiLine(currentDateLabel)
-        // Configure the "Astrological Season" labels
-        astrologicalSeasonTitleLabel.text = "Astrological Season"
-        astrologicalSeasonSignLabel.text = " \(chartCake!.transits.sun.sign.sunHeaders[0])"
-        astrologicalSeasonContentLabel.text = "\(chartCake!.transits.sun.sign.sunContent[0])"
+        // Page title and date labels
+    
+        currentDateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
         
-        // Configure the "Personal Solar Insights" labels
-        personalSolarInsightsTitleLabel.text = "Your Solar Season"
-        solarHousePlacementLabel.text = "Sun Illuminating Your Attitudes about, \(chartCake!.houseCusps.cusp(for: chartCake!.transits.sun.longitude).houseKeywords)"
-        majorAspectLabel.text = "\(chartCake!.houseCusps.getSunData(for: chartCake!.houseCusps.cusp(for: chartCake!.transits.sun.longitude)).header)"
-        personalSolarInsightsContentLabel.text = "\(chartCake!.houseCusps.getSunData(for: chartCake!.houseCusps.cusp(for: chartCake!.transits.sun.longitude)).header1Text)"
+        // Configure the "Collective Season" labels
+        collectiveSeasonTitleLabel.text = "The Current Astrological Season"
+        collectiveSeasonHeaderLabel.text = "This \(chartCake!.transits.moon.sign.keyName) season, which lasts from October 23rd to November 22. Sol shines his life-giving rays, urging you enliven your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.sun.longitude)).houseKeywords)"
         
-        // Add labels to their respective stack views
-        [astrologicalSeasonTitleLabel, astrologicalSeasonSignLabel, astrologicalSeasonContentLabel].forEach { label in
-            astrologicalSeasonStackView.addArrangedSubview(label)
-            astrologicalSeasonView.addSubview(astrologicalSeasonStackView)
-        }
+        collectiveSeasonSubheaderLabel.text = "\(chartCake!.transits.sun.sign.sunHeaders.randomElement())"
+        collectiveSeasonContentLabel.text = "\(chartCake!.transits.sun.sign.sunContent)"
         
-        [personalSolarInsightsTitleLabel, solarHousePlacementLabel, majorAspectLabel, personalSolarInsightsContentLabel].forEach { label in
-            personalSolarInsightsStackView.addArrangedSubview(label)
-            personalSolarInsightsView.addSubview(personalSolarInsightsStackView)
-        }
-        
-        // Add stack views to the main content stack view
-        contentStackView.addArrangedSubview(pageTitleLabel)
-        contentStackView.addArrangedSubview(currentDateLabel)
-        contentStackView.addArrangedSubview(astrologicalSeasonView)
-        contentStackView.addArrangedSubview(personalSolarInsightsView)
-        contentStackView.addArrangedSubview(tableView1)
-        contentStackView.addArrangedSubview(tableView2)
+        // Configure the "Self-Care Check-in" labels
+        //   vitalityCheckInTitleLabel.text = "Self-Care Check-in"
+        moonHousePlacementLabel.text = ""
+ //       moonConjunctionLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).headers[0])"
+    //    vitalityCheckInContentLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).message)"
+    }
+    
+    private func setupRoundedView(_ view: UIView, withBackgroundColor color: UIColor) {
+        view.backgroundColor = color
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+    }
+    
+    private func setupStackView(_ stackView: UIStackView) {
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        stackView.isLayoutMarginsRelativeArrangement = true
+    }
+    
+    private func configureLabelForMultiLine(_ label: UILabel) {
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        // Adjust text alignment and other properties as needed
     }
     
     private func setupLayout() {
@@ -132,34 +273,15 @@ class SunViewController: UIViewController {
         ])
         
         // Add labels to their respective stack views
-        [astrologicalSeasonTitleLabel, astrologicalSeasonSignLabel, astrologicalSeasonContentLabel].forEach(astrologicalSeasonStackView.addArrangedSubview)
-        [personalSolarInsightsTitleLabel, solarHousePlacementLabel, majorAspectLabel, personalSolarInsightsContentLabel].forEach(personalSolarInsightsStackView.addArrangedSubview)
+        [collectiveSeasonTitleLabel, collectiveSeasonHeaderLabel, collectiveSeasonSubheaderLabel, collectiveSeasonContentLabel].forEach(collectiveSeasonStackView.addArrangedSubview)
+        [vitalityCheckInTitleLabel, moonHousePlacementLabel, moonConjunctionLabel, vitalityCheckInContentLabel].forEach(vitalityCheckInStackView.addArrangedSubview)
         
         // Add stack views to the main content stack view
         contentStackView.addArrangedSubview(pageTitleLabel)
         contentStackView.addArrangedSubview(currentDateLabel)
-        contentStackView.addArrangedSubview(astrologicalSeasonStackView)
-        contentStackView.addArrangedSubview(personalSolarInsightsStackView)
+        contentStackView.addArrangedSubview(collectiveSeasonStackView)
+        contentStackView.addArrangedSubview(vitalityCheckInStackView)
         contentStackView.addArrangedSubview(tableView1)
         contentStackView.addArrangedSubview(tableView2)
-    }
-    
-    private func setupRoundedView(_ view: UIView, withBackgroundColor color: UIColor) {
-        view.backgroundColor = color
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-    }
-
-    private func setupStackView(_ stackView: UIStackView) {
-        stackView.axis = .vertical
-        stackView.spacing = 5
-        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        stackView.isLayoutMarginsRelativeArrangement = true
-    }
-
-    private func configureLabelForMultiLine(_ label: UILabel) {
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        // Adjust text alignment and other properties as needed
     }
 }

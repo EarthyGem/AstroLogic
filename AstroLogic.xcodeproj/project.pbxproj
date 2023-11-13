@@ -138,6 +138,7 @@
 		39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6A2A610480008D1EC1 /* Dignity.swift */; };
 		39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6C2A611BFD008D1EC1 /* graph info.swift */; };
 		39B838502AABC8670039AD91 /* NestedProgressedAspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */; };
+		39BF3DA22B01D69A006FD001 /* pp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BF3DA12B01D69A006FD001 /* pp.swift */; };
 		39C861752AFC00C4007D38A0 /* NameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C861742AFC00C4007D38A0 /* NameVC.swift */; };
 		39C861772AFC79A7007D38A0 /* CompositStrongestPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C861762AFC79A7007D38A0 /* CompositStrongestPlanet.swift */; };
 		39C861792AFCAF5F007D38A0 /* MyCompositeItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C861782AFCAF5F007D38A0 /* MyCompositeItemsVC.swift */; };
@@ -290,6 +291,7 @@
 		39A1EC6A2A610480008D1EC1 /* Dignity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dignity.swift; sourceTree = "<group>"; };
 		39A1EC6C2A611BFD008D1EC1 /* graph info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "graph info.swift"; sourceTree = "<group>"; };
 		39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedProgressedAspects.swift; sourceTree = "<group>"; };
+		39BF3DA12B01D69A006FD001 /* pp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pp.swift; sourceTree = "<group>"; };
 		39C861742AFC00C4007D38A0 /* NameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameVC.swift; sourceTree = "<group>"; };
 		39C861762AFC79A7007D38A0 /* CompositStrongestPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositStrongestPlanet.swift; sourceTree = "<group>"; };
 		39C861782AFCAF5F007D38A0 /* MyCompositeItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCompositeItemsVC.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				398832C72AFAE2AB00BCE1A0 /* HoraryVC.swift */,
 				396F3A0B2AF15BE300FF0CAA /* MoonVC.swift */,
 				3926EC532AF165E100606886 /* SunVC.swift */,
+				39BF3DA12B01D69A006FD001 /* pp.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
 				393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */,
 				393969522AF208910011ACF1 /* ProgressedMoonPhase.swift */,
@@ -677,6 +680,7 @@
 				39A1EC472A5F75CF008D1EC1 /* MyNatalHousesVC.swift in Sources */,
 				3903A37C2A5F305100245DD2 /* GeoCode.swift in Sources */,
 				395DE50D2A95E0EF00B0B451 /* RelationshipsVC.swift in Sources */,
+				39BF3DA22B01D69A006FD001 /* pp.swift in Sources */,
 				395C0B4A2AAC298400A28A60 /* transitMatrix.swift in Sources */,
 				39E1686C2A97314B0003892B /* SimpleTransitAspectsByHouse.swift in Sources */,
 				394FA19B2AABAA50002BC0A5 /* transitMatrixVC.swift in Sources */,

@@ -285,7 +285,7 @@ extension MyItemsViewController: UITableViewDelegate {
         RelationshipVC.chartCake = self.chartCake
         RelationshipVC.birthDate = self.birthDate
         RelationshipVC.otherChart = self.otherChart
-        RelationshipVC.charts = charts!
+        RelationshipVC.charts = charts.unsafelyUnwrapped
         RelationshipVC.title = "Other Person"
 
 
