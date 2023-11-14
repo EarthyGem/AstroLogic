@@ -139,6 +139,7 @@
 		39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC6C2A611BFD008D1EC1 /* graph info.swift */; };
 		39B838502AABC8670039AD91 /* NestedProgressedAspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */; };
 		39BF3DA22B01D69A006FD001 /* pp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BF3DA12B01D69A006FD001 /* pp.swift */; };
+		39C5A5822B03308D007881CC /* SimpleInterAspectsFlipped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5A5812B03308D007881CC /* SimpleInterAspectsFlipped.swift */; };
 		39C861752AFC00C4007D38A0 /* NameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C861742AFC00C4007D38A0 /* NameVC.swift */; };
 		39C861772AFC79A7007D38A0 /* CompositStrongestPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C861762AFC79A7007D38A0 /* CompositStrongestPlanet.swift */; };
 		39C861792AFCAF5F007D38A0 /* MyCompositeItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C861782AFCAF5F007D38A0 /* MyCompositeItemsVC.swift */; };
@@ -292,6 +293,7 @@
 		39A1EC6C2A611BFD008D1EC1 /* graph info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "graph info.swift"; sourceTree = "<group>"; };
 		39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedProgressedAspects.swift; sourceTree = "<group>"; };
 		39BF3DA12B01D69A006FD001 /* pp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pp.swift; sourceTree = "<group>"; };
+		39C5A5812B03308D007881CC /* SimpleInterAspectsFlipped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInterAspectsFlipped.swift; sourceTree = "<group>"; };
 		39C861742AFC00C4007D38A0 /* NameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameVC.swift; sourceTree = "<group>"; };
 		39C861762AFC79A7007D38A0 /* CompositStrongestPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositStrongestPlanet.swift; sourceTree = "<group>"; };
 		39C861782AFCAF5F007D38A0 /* MyCompositeItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCompositeItemsVC.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				392434592ABA813600584E26 /* CountDownVC.swift */,
 				392434532ABA7CBC00584E26 /* RechargeVC.swift */,
 				393E1BBD2AC9E4DB0068779B /* SimpleInterAspectsVC.swift */,
+				39C5A5812B03308D007881CC /* SimpleInterAspectsFlipped.swift */,
 				392434552ABA7CDE00584E26 /* ActionSteps.swift */,
 				392434572ABA7D0600584E26 /* MonthActionPlanVC.swift */,
 				398ECC2D2A8F025900695354 /* ChartDataModel.xcdatamodeld */,
@@ -635,6 +638,7 @@
 				399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */,
 				3903A33F2A5F2D0700245DD2 /* ViewController.swift in Sources */,
 				39655E3E2AA8C3B2008033AB /* Cells.swift in Sources */,
+				39C5A5822B03308D007881CC /* SimpleInterAspectsFlipped.swift in Sources */,
 				3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */,
 				3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */,
 				39E1D0272AFAAC5000E56EC5 /* WeatherVC.swift in Sources */,

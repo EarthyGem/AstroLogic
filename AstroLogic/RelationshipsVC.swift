@@ -10,38 +10,49 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     var selectedName: String?
     var name: String?
     var otherChart: ChartCake?
-    var charts: [ChartEntity] = []
+    var charts: [ChartEntity]?
     var strongestPlanetSign: String?
     var strongestPlanet: String?
     var chartCake: ChartCake?
     var shouldRefreshData = true
     var birthDate: Date!
+
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupTableView()
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
    
-        
-    }
+            // Data has not been pre-fetched
+            charts = fetchAllCharts()
+      
 
+        // Reload the table view with either pre-fetched or freshly fetched data
+        tableView.reloadData()
+    }
 
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
-          tableView.delegate = self
-          tableView.dataSource = self
-          tableView.register(ChartTableViewCell.self, forCellReuseIdentifier: "chartCell")
-
-        // Adjust constraints if you have navigation bars, tab bars, etc.
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ChartTableViewCell.self, forCellReuseIdentifier: "chartCell")
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
         self.view.addSubview(tableView)
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addButton
     }
+
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if shouldRefreshData {
+            fetchAllCharts()
+            shouldRefreshData = false
+        }
+    }
+
+
+
 
     func fetchAllCharts() -> [ChartEntity] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -99,14 +110,14 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     // MARK: - Table View
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return charts.count
+        return charts!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell // Assume you've created a custom cell
 
-            let selectedChart = charts[indexPath.row]
+        let selectedChart = charts![indexPath.row]
 
             let chartDate = selectedChart.birthDate!
             let latitude = selectedChart.latitude
@@ -149,7 +160,7 @@ extension RelationshipsViewController: UITableViewDelegate {
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedEntity = charts[indexPath.row]
+        let selectedEntity = charts![indexPath.row]
 
         // We assume that your ChartEntity has properties like latitude, longitude, birthDate, name, etc.
         // Otherwise, adapt accordingly.
@@ -159,7 +170,7 @@ extension RelationshipsViewController: UITableViewDelegate {
           let name = selectedEntity.name ?? ""
 
         let otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
-        let synastry = SynastryChartCake(birthDate: chartDate, otherBirthDate: birthDate, latitude: latitude, longitude: longitude)
+        let synastry = SynastryChartCake(birthDate: chartDate, otherBirthDate: birthDate, latitude: latitude, longitude: longitude, name1: "Ricky's", name2: "\(selectedName)'s")
 
         let scores = otherChart!.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)

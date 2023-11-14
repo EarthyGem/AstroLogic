@@ -8,7 +8,7 @@
 import UIKit
 import SwiftEphemeris
 
-class SimpleInteraspectsViewController: UIViewController {
+class FlippedSimpleInteraspectsViewController: UIViewController {
 
     var synastry: SynastryChartCake?
 
@@ -351,25 +351,25 @@ class SimpleInteraspectsViewController: UIViewController {
 
 
          scrollView.contentSize = CGSize(width: view.frame.width, height: 6000)
-         sunTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by:  Planet.sun.celestialObject).count)! * 90)
+         sunTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by:  Planet.sun.celestialObject).count)! * 90)
 
-         moonTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.moon.celestialObject).count)! * 90)
+         moonTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.moon.celestialObject).count)! * 90)
 
-         mercuryTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mercury.celestialObject).count)! * 90)
+         mercuryTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mercury.celestialObject).count)! * 90)
 
-         venusTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.venus.celestialObject).count)! * 90)
+         venusTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.venus.celestialObject).count)! * 90)
 
-         marsTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mars.celestialObject).count)! * 90)
+         marsTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mars.celestialObject).count)! * 90)
 
-         jupiterTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.jupiter.celestialObject).count)! * 90)
+         jupiterTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.jupiter.celestialObject).count)! * 90)
 
-         saturnTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.saturn.celestialObject).count)! * 90)
+         saturnTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.saturn.celestialObject).count)! * 90)
 
-         uranusTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.uranus.celestialObject).count)! * 90)
+         uranusTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.uranus.celestialObject).count)! * 90)
 
-         neptuneTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.neptune.celestialObject).count)! * 90)
+         neptuneTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.neptune.celestialObject).count)! * 90)
 
-         plutoTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.pluto.celestialObject).count)! * 90)
+         plutoTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.pluto.celestialObject).count)! * 90)
 
 
 
@@ -553,28 +553,28 @@ class SimpleInteraspectsViewController: UIViewController {
 
 
          let sunText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         sunText.text = "Ricky's Sovereign - Power Urges"
+         sunText.text = "Sun - Power Urges"
          sunText.font = .systemFont(ofSize: 16)
          sunText.textColor = .white
 
           sunScrollView.addSubview(sunText)
 
          let moonText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         moonText.text = "Ricky's Nurturer - Domestic Urges"
+         moonText.text = "Moon - Domestic Urges"
          moonText.font = .systemFont(ofSize: 16)
          moonText.textColor = .white
 
           moonScrollView.addSubview(moonText)
 
          let mercuryText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         mercuryText.text = "Ricky's Messenger - Intellectual Urges"
+         mercuryText.text = "Mercury - Intellectual Urges"
          mercuryText.font = .systemFont(ofSize: 16)
          mercuryText.textColor = .white
 
           mercuryScrollView.addSubview(mercuryText)
 
          let venusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-         venusText.text = "Ricky's Lover - Social Urges"
+         venusText.text = "Venus - Social Urges"
          venusText.font = .systemFont(ofSize: 16)
          venusText.textColor = .white
 
@@ -644,50 +644,52 @@ class SimpleInteraspectsViewController: UIViewController {
 
 }
 
-extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDelegate {
+extension FlippedSimpleInteraspectsViewController: UITableViewDataSource, UITableViewDelegate {
+    
+ 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
 
         if(tableView == sunTableView) {
 
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.sun.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.sun.celestialObject).count)!
     }
         else if(tableView == moonTableView){
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.moon.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.moon.celestialObject).count)!
         }
 
 
             else if(tableView == mercuryTableView){
 
-                return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mercury.celestialObject).count)!
+                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mercury.celestialObject).count)!
             }
             else if(tableView == venusTableView){
 
-                return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.venus.celestialObject).count)!
+                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.venus.celestialObject).count)!
                 }
         else if(tableView == marsTableView){
 
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mars.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mars.celestialObject).count)!
                     }
         else if(tableView == jupiterTableView){
 
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.jupiter.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.jupiter.celestialObject).count)!
                         }
         else if(tableView == saturnTableView){
 
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.saturn.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.saturn.celestialObject).count)!
                             }
         else if(tableView == uranusTableView){
 
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.uranus.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.uranus.celestialObject).count)!
                                 }
         else if(tableView == neptuneTableView){
 
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.neptune.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.neptune.celestialObject).count)!
                                     }
         else {
 
-            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.pluto.celestialObject).count)!
+            return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.pluto.celestialObject).count)!
 
 
 
@@ -705,8 +707,7 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.kind) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.body1.body.keyName) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.kind) Linnea's \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.body2.body.keyName)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
 //                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
@@ -724,7 +725,8 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
            }
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.moon.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.moon.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.moon.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.moon.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -746,15 +748,13 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mercury.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mercury.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mercury.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mercury.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
 
         }
-
-
-        if(tableView == venusTableView){
+            else if(tableView == venusTableView){
 
 
                 guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
@@ -766,13 +766,10 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-               
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.venus.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.venus.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.venus.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.venus.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
-           return cell
-
-        
+               return cell
 
 
 
@@ -789,13 +786,10 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-           
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mars.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mars.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mars.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mars.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
-
-        
 
                     }
         else if(tableView == jupiterTableView){
@@ -811,8 +805,7 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.jupiter.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.jupiter.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.jupiter.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.jupiter.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
 
@@ -831,9 +824,7 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.saturn.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.saturn.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.saturn.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.saturn.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -849,9 +840,8 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.uranus.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.uranus.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.uranus.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
-
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.uranus.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -866,8 +856,7 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
            }
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.neptune.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.neptune.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.neptune.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.neptune.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
 
@@ -885,9 +874,7 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.pluto.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.pluto.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.pluto.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.pluto.celestialObject)[indexPath.row].basicInterAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
