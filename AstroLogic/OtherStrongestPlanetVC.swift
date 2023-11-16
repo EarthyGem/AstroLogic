@@ -13,6 +13,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     var chartCake: ChartCake?
     var otherChart: ChartCake?
     var name: String!
+    var otherName: String!
     var synastry: SynastryChartCake?
     var birthDate: Date?
     // Add
@@ -60,7 +61,7 @@ class OthersStrongestPlanetViewController: UIViewController {
         view.backgroundColor = .black
        configureStrongestImageView()
       configureStrongestLabel()
-        configureStrongestTitleLabel(name: name)
+        configureStrongestTitleLabel(name: otherName!)
         configureHarmoniousImageView()
         configureHarmoniousTitleLabel()
         configureHarmoniousLabel()
@@ -70,7 +71,7 @@ class OthersStrongestPlanetViewController: UIViewController {
         configureBottomLabel()
 
         let myItemsButton = UIButton(type: .system)
-        myItemsButton.setTitle("\(name!)'s Info", for: .normal)
+        myItemsButton.setTitle("\(otherName!)'s Info", for: .normal)
         myItemsButton.addTarget(self, action: #selector(myItemsButtonTapped), for: .touchUpInside)
         myItemsButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -85,7 +86,9 @@ class OthersStrongestPlanetViewController: UIViewController {
         relationshipItemsVC.strongestPlanet = strongestPlanet.self
         relationshipItemsVC.otherChart = otherChart.self
         relationshipItemsVC.synastry = synastry.self
-        relationshipItemsVC.name = name.self
+        relationshipItemsVC.name = name
+        print(name!)
+        relationshipItemsVC.otherName = otherName.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet
         // myItemsVC.getMinors = self.getMinors
@@ -120,7 +123,7 @@ class OthersStrongestPlanetViewController: UIViewController {
     }
 
     private func configureHarmoniousTitleLabel() {
-        harmoniousTitleLabel.text = "Gift Giver🎁"
+        harmoniousTitleLabel.text = " 😇 Angels 😇"
         harmoniousTitleLabel.textColor = .white
         harmoniousTitleLabel.font = UIFont.systemFont(ofSize: 16)
         harmoniousTitleLabel.textAlignment = .center
@@ -194,7 +197,7 @@ class OthersStrongestPlanetViewController: UIViewController {
 
 
     private func configureStrongestTitleLabel(name: String) {
-        titleLabel.text = "\(name)'s Power Planet"
+        titleLabel.text = "\(otherName!)'s Dharma Path"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 24)
         titleLabel.textAlignment = .center
@@ -271,7 +274,7 @@ class OthersStrongestPlanetViewController: UIViewController {
 
 
             private func configureDiscordantTitleLabel() {
-                discordantTitleLabel.text = "Demons"
+                discordantTitleLabel.text = "😈 Demons 👿"
                 discordantTitleLabel.textColor = .white
                 discordantTitleLabel.font = UIFont.systemFont(ofSize: 16)
                 discordantTitleLabel.textAlignment = .center

@@ -219,7 +219,7 @@ class NewAspectsCustomTableViewCell: UITableViewCell {
             contentView.addSubview(firstPlanetText)
            
            secondPlanetText.text = "Sun"
-           secondPlanetText.font = .systemFont(ofSize: 16)
+           secondPlanetText.font = .systemFont(ofSize: 14)
            secondPlanetText.textColor = .white
 //           secondPlanetText.font = UIFont.boldSystemFont(ofSize: secondPlanetText.font.pointSize)
             contentView.addSubview(secondPlanetText)

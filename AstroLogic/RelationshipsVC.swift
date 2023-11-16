@@ -10,6 +10,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     var selectedName: String?
     var name: String?
     var otherChart: ChartCake?
+    var otherName: String?
     var charts: [ChartEntity]?
     var strongestPlanetSign: String?
     var strongestPlanet: String?
@@ -98,6 +99,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         // Before pushing the AddRelationshipViewController
         let addViewController = AddRelationshipViewController()
         addViewController.otherChart = otherChart // Assign the value here
+        addViewController.otherName = otherName
         navigationController?.pushViewController(addViewController, animated: true)
 
     }
@@ -122,13 +124,13 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
             let chartDate = selectedChart.birthDate!
             let latitude = selectedChart.latitude
         let longitude = selectedChart.longitude
-        let name = selectedChart.name
+        let otherName = selectedChart.name
         otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
         let scores = otherChart!.getTotalPowerScoresForPlanets()
             let strongestPlanet = getStrongestPlanet(from: scores)
 
             // Set the cell label
-            cell.textLabel?.text = name
+            cell.textLabel?.text = otherName
 
             // Set the cell image
             let imageName = strongestPlanet.keyName.lowercased()
@@ -167,10 +169,10 @@ extension RelationshipsViewController: UITableViewDelegate {
         let latitude = selectedEntity.latitude
           let longitude = selectedEntity.longitude
           let chartDate = selectedEntity.birthDate!
-          let name = selectedEntity.name ?? ""
+          let otherName = selectedEntity.name ?? ""
 
         let otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
-        let synastry = SynastryChartCake(birthDate: chartDate, otherBirthDate: birthDate, latitude: latitude, longitude: longitude, name1: "Ricky's", name2: "\(selectedName)'s")
+        let synastry = SynastryChartCake(birthDate: chartDate, otherBirthDate: birthDate, latitude: latitude, longitude: longitude, name1: "\(name)", name2: "\(otherName)'s")
 
         let scores = otherChart!.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
@@ -211,13 +213,14 @@ extension RelationshipsViewController: UITableViewDelegate {
                                              strongestPlanetSign: strongestPlanetSign!,
                                              sunSign: otherChart!.natal.sun.sign.keyName,
                                              moonSign: otherChart!.natal.moon.sign.keyName,
-                                             risingSign: otherChart!.natal.houseCusps.ascendent.sign.keyName, name: name)
+                                             risingSign: otherChart!.natal.houseCusps.ascendent.sign.keyName, name: otherName)
 
         // Initialize and push the StrongestPlanetViewController
         let strongestPlanetVC = OthersStrongestPlanetViewController()
         strongestPlanetVC.chartCake = chartCake
         strongestPlanetVC.otherChart = otherChart
         strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
+        strongestPlanetVC.otherName = otherName
         strongestPlanetVC.name = name
         strongestPlanetVC.birthDate = birthDate
      //   strongestPlanetVC.selectedName = selectedName

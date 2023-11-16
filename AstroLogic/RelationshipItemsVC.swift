@@ -23,6 +23,7 @@ class RelationshipItemsViewController: UIViewController {
     var selectedName: String!
     var synastry: SynastryChartCake?
     var name: String!
+    var otherName: String!
     weak var delegate: RelationshipSelectionDelegate?
     var compositeCake: Chart!
 
@@ -44,10 +45,10 @@ class RelationshipItemsViewController: UIViewController {
 
         relationshipData = [
             //RelationshipItems(chartType: "Composite with \(String(describing: selectedName))"),
-            RelationshipItems(chartType: "\(String(describing: name!))'s Natal Chart"),
-            RelationshipItems(chartType: "Synastry Chart with \(String(describing: name!))"), RelationshipItems(chartType: "Interaspects with \(String(describing: name!))"),
-            RelationshipItems(chartType: "Transposed Houses"),
-            RelationshipItems(chartType: "Composite Chart with \(String(describing: name!))")
+            RelationshipItems(chartType: "\(String(describing: otherName!))'s Natal Chart"),
+            RelationshipItems(chartType: "\(String(describing: name!))'s Synastry Chart with \(String(describing: otherName!))"), RelationshipItems(chartType: "Interaspects between \(String(describing: name!)) and \(String(describing: otherName!))"),
+            RelationshipItems(chartType: "\(String(describing: name!)) and \(String(describing: otherName!))'s Transposed Houses"),
+            RelationshipItems(chartType: "\(String(describing: name!)) and \(String(describing: otherName!))'s Relationship Chart"),
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Natal Houses"),
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Natal Aspects"),
        //     RelationshipItems(chartType: "\(selectedName ?? "")'s Transit Progressions"),
@@ -133,6 +134,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 print("Synastry: \(synastry?.natal.sun.longitude)")
                 interAspectsVC.title = "Interaspects"
                 interAspectsVC.name = self.name
+                interAspectsVC.otherName = self.otherName
 
                 // Later on, when you have the second person's birth date, you call the method like this:
 

@@ -23,6 +23,7 @@ class MyItemsViewController: UIViewController {
     var phaseName: String?
     var chart: Chart?
     var name: String!
+    var otherName: String!
     var selectedDate: Date?
     var chartCake: ChartCake?
     var otherChart: ChartCake?
@@ -267,6 +268,7 @@ extension MyItemsViewController: UITableViewDelegate {
         
         let nameVC = NameViewController()
         nameVC.chartCake = self.chartCake
+        nameVC.name = self.name
       //  cycleChartsVC.otherChart = self.otherChart
         nameVC.title = "Whats in a Name?"
         
@@ -285,6 +287,7 @@ extension MyItemsViewController: UITableViewDelegate {
         RelationshipVC.chartCake = self.chartCake
         RelationshipVC.birthDate = self.birthDate
         RelationshipVC.otherChart = self.otherChart
+        RelationshipVC.name = self.name
     //    RelationshipVC.charts = charts.unsafelyUnwrapped
         RelationshipVC.title = "Other Person"
 

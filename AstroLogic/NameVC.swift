@@ -13,6 +13,7 @@ class NameViewController: UIViewController {
     var chartCake: ChartCake!
     var harmoniousSigns: [Zodiac] = []
     var harmoniousPlanets: [CelestialObject] = []
+    var name: String?
     
     let nameTextField: UITextField = {
         let textField = UITextField()
@@ -48,6 +49,15 @@ class NameViewController: UIViewController {
         return label
     }()
     
+    let elementLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .white
+        return label
+    }()
+
+    
     let glyphImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "mercury")
@@ -68,20 +78,22 @@ class NameViewController: UIViewController {
     func setupLayout() {
         view.backgroundColor = .black
 
+        
+        
         // Add subviews
         view.addSubview(nameTextField)
         view.addSubview(checkButton)
         view.addSubview(nameLabel)
         view.addSubview(glyphImageView)
         view.addSubview(resultLabel)
-
+        view.addSubview(elementLabel)
         // Disable autoresizing masks
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         checkButton.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         glyphImageView.translatesAutoresizingMaskIntoConstraints = false
         resultLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        elementLabel.translatesAutoresizingMaskIntoConstraints = false
         // Set up constraints
         NSLayoutConstraint.activate([
             // nameTextField constraints
@@ -89,6 +101,10 @@ class NameViewController: UIViewController {
             nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             nameTextField.heightAnchor.constraint(equalToConstant: 40),
+            
+            elementLabel.topAnchor.constraint(equalTo: glyphImageView.bottomAnchor, constant: 10),
+                  elementLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                  elementLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
 
             // checkButton constraints
             checkButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
@@ -107,10 +123,12 @@ class NameViewController: UIViewController {
             glyphImageView.heightAnchor.constraint(equalToConstant: 100),
 
             // resultLabel constraints
-            resultLabel.topAnchor.constraint(equalTo: glyphImageView.bottomAnchor, constant: 20),
+            resultLabel.topAnchor.constraint(equalTo: elementLabel.bottomAnchor, constant: 10),
             resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             resultLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            resultLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 200)
+            resultLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 200),
+            
+            
         ])
     }
 
@@ -134,30 +152,44 @@ class NameViewController: UIViewController {
     }
     
     func displayResult(result: (isHarmonious: Bool, element: String)) {
-        let imageName = result.isHarmonious ? result.element : "notHarmonious" // "notHarmonious" is a placeholder
+        let imageName: String
+        if ["Aries", "taurus", "Gemini", "cancer", "leo", "Virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].contains(result.element.lowercased()) {
+            imageName = result.element.capitalized
+        } else {
+            imageName = result.element.lowercased()
+        }
+        print("Element: \(result.element)") // Debug print to confirm the element being set
+            elementLabel.text = result.element.capitalized
+        print("Attempting to display image: \(imageName)") // Debug print
         glyphImageView.image = UIImage(named: imageName)
-        
-        resultLabel.text = result.isHarmonious ? "Harmonious! Score: \(result.element)" : "Not Harmonious"
+        print("displayResult called with element: \(result.element), isHarmonious: \(result.isHarmonious)") // Debug print        resultLabel.text = result.isHarmonious ? "Harmonious! Score: \(result.element)" : "Not Harmonious"
     }
+
     
     @objc func checkNameHarmony() {
+        print("checkNameHarmony called")  // Debug print
+
         guard let name = nameTextField.text, !name.isEmpty else {
             resultLabel.text = "Please enter a name."
             return
         }
-        
+
         let nameScore = calculateNameScore(name: name)
-        
+        print("Name Score: \(nameScore)")  // Debug print
+
         // Make sure chartCake has been initialized and has the necessary data
         // before calling these methods to get harmonious elements and planets.
         harmoniousSigns = chartCake.getHarmoniousElements(fromScores: chartCake.calculateTotalSignHarmonyDiscord())
         harmoniousPlanets = chartCake.getHarmoniousPlanets(fromNetScores: chartCake.getTotalHarmonyDiscordNetScoresForPlanets())
 
         let element = mapScoreToPlanetOrSign(score: nameScore)
-        
+        print("Element: \(element)")  // Debug print
+
         let isHarmonious = harmoniousSigns.contains(where: { $0.keyName == element }) ||
         harmoniousPlanets.contains(where: { $0.keyName.lowercased() == element })
         
+        print("Is Harmonious: \(isHarmonious)")  // Debug print
+
         // Display the result
         displayResult(isHarmonious: isHarmonious, element: element)
     }

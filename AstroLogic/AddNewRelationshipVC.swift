@@ -34,6 +34,7 @@ class AddRelationshipViewController: UIViewController,SuggestionsViewControllerD
     var selectedDate: Date?
     var chartCake: ChartCake?
     var otherChart: ChartCake?
+    var otherName: String?
     var birthChartView: BirthChartView?
     var strongestPlanetSign: String?
     let locationManager = CLLocationManager()
@@ -444,8 +445,8 @@ class AddRelationshipViewController: UIViewController,SuggestionsViewControllerD
                 // let houseScores = self.otherChart.natal.calculateHouseStrengths()
 
                 let tuple = otherChart!.natal.getTotalHarmonyDiscordScoresForPlanets()
-                let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
-                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
+                let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple).archetypeShadows
+                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple).archetypeGifts
 
                 if strongestPlanet == Planet.sun.celestialObject {
                     strongestPlanetSign = otherChart!.natal.sun.sign.keyName
@@ -482,10 +483,11 @@ class AddRelationshipViewController: UIViewController,SuggestionsViewControllerD
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = OthersStrongestPlanetViewController()
                 strongestPlanetVC.otherChart = otherChart
-                strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
+                strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).archetype
                 strongestPlanetVC.name = nameTextField.text!
-                strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
-                strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+                strongestPlanetVC.otherName = otherName
+                strongestPlanetVC.mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple).archetypeShadows
+                strongestPlanetVC.mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple).archetypeGifts
                 strongestPlanetVC.sentenceText = sentence
                 self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
                 
