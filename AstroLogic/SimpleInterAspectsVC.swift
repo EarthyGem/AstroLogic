@@ -651,48 +651,49 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
         if(tableView == sunTableView) {
 
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.sun.celestialObject).count)!
-    }
+        }
         else if(tableView == moonTableView){
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.moon.celestialObject).count)!
         }
 
 
-            else if(tableView == mercuryTableView){
+        else if(tableView == mercuryTableView){
 
-                return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mercury.celestialObject).count)!
-            }
-            else if(tableView == venusTableView){
+            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mercury.celestialObject).count)!
+        }
+        else if(tableView == venusTableView){
 
-                return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.venus.celestialObject).count)!
-                }
+            return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.venus.celestialObject).count)!
+        }
         else if(tableView == marsTableView){
 
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.mars.celestialObject).count)!
-                    }
+        }
         else if(tableView == jupiterTableView){
 
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.jupiter.celestialObject).count)!
-                        }
+        }
         else if(tableView == saturnTableView){
 
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.saturn.celestialObject).count)!
-                            }
+        }
         else if(tableView == uranusTableView){
 
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.uranus.celestialObject).count)!
-                                }
+        }
         else if(tableView == neptuneTableView){
 
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.neptune.celestialObject).count)!
-                                    }
+        }
         else {
 
             return (synastry?.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!,  by: Planet.pluto.celestialObject).count)!
 
 
 
+        }
     }
-    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if(tableView == sunTableView) {
@@ -700,8 +701,8 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
             guard let cell = sunTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
 
@@ -709,25 +710,25 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.kind) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.sun.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
-//                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
-////
-//                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: MajorMoonAspects2()[indexPath.row], firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: transitSunAspects[indexPath.row],firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+            //                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
+            ////
+            //                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: MajorMoonAspects2()[indexPath.row], firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: transitSunAspects[indexPath.row],firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
-           return cell
+            return cell
 
-    }
+        }
         else if(tableView == moonTableView){
 
             guard let cell = moonTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.moon.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.moon.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.moon.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
-           return cell
+            return cell
 
         }
 
@@ -740,8 +741,8 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
             guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
 
@@ -749,7 +750,7 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mercury.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mercury.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mercury.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
-           return cell
+            return cell
 
         }
 
@@ -757,54 +758,54 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
         if(tableView == venusTableView){
 
 
-                guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
+            guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-                   return UITableViewCell()
-               }
-
-
+                return UITableViewCell()
+            }
 
 
 
-               
+
+
+
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.venus.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.venus.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.venus.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
-           return cell
-
-        
+            return cell
 
 
 
-                }
+
+
+        }
         else if(tableView == marsTableView){
 
 
             guard let cell = marsTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
 
 
 
-           
+
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mars.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mars.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.mars.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
-           return cell
+            return cell
 
-        
 
-                    }
+
+        }
         else if(tableView == jupiterTableView){
 
 
             guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
 
@@ -816,18 +817,18 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-           return cell
+            return cell
 
-                        }
+        }
         else if(tableView == saturnTableView){
 
 
             guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
-//                    var transitSaturnAspects = [plutoSaturn]
+            //                    var transitSaturnAspects = [plutoSaturn]
 
 
 
@@ -836,16 +837,16 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-           return cell
+            return cell
 
-                            }
+        }
         else if(tableView == uranusTableView){
 
 
             guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
 
@@ -854,16 +855,16 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-           return cell
+            return cell
 
-                                }
+        }
         else if(tableView == neptuneTableView){
 
 
             guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "Ricky's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.neptune.celestialObject)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.neptune.celestialObject)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) Linnea's \(synastry!.aspectsFromChart2ToChart1(chart1: (chartCake?.natal.allBodies)!, chart2: (otherChart?.natal.allBodies)!, by: Planet.neptune.celestialObject)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
@@ -871,16 +872,16 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-           return cell
+            return cell
 
-                                    }
+        }
         else {
 
 
             guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
 
-               return UITableViewCell()
-           }
+                return UITableViewCell()
+            }
 
 
 
@@ -890,11 +891,11 @@ extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-           return cell
+            return cell
 
 
 
-    }
+        }
     }
 
 
