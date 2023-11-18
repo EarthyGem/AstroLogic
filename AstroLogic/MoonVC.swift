@@ -122,7 +122,7 @@ class MoonViewController: UIViewController {
     let selfCareCheckInTitleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Self-Care Check-in"
+        label.text = "Current Moon Phase"
         label.lineBreakMode = .byWordWrapping
         // Configure other label properties
         return label
@@ -172,7 +172,8 @@ class MoonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = UIColor(red: 0.6, green: 0.8, blue: 0.7, alpha: 1.0)
+
         setupViews()
         setupLabels()
         setupLayout()
@@ -197,7 +198,7 @@ class MoonViewController: UIViewController {
         contentStackView.distribution = .equalSpacing
         
         collectiveMoodStackView.axis = .vertical
-        collectiveMoodStackView.spacing = 5
+        collectiveMoodStackView.spacing = 10
         
         selfCareCheckInStackView.axis = .vertical
         selfCareCheckInStackView.spacing = 5
@@ -228,14 +229,15 @@ class MoonViewController: UIViewController {
         collectiveMoodTitleLabel.text = "Self-Care Check-in"
         collectiveMoodHeaderLabel.text = "From now until then, Luna sheds her healing and nurturing \(chartCake!.transits.moon.sign.keyName) rays, urging you tend to feelings about your \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
         
-        collectiveMoodSubheaderLabel.text = "\(chartCake!.transits.moon.sign.moonHeaders[0])"
-        collectiveMoodContentLabel.text = "\(chartCake!.transits.moon.sign.moonMessages[0])"
+        collectiveMoodSubheaderLabel.text = "\(chartCake!.transits.moon.sign.moonHeaders.randomElement())"
+        collectiveMoodContentLabel.text = "\(chartCake!.transits.moon.sign.moonMessages.randomElement() ?? "")"
         
         // Configure the "Self-Care Check-in" labels
         //   selfCareCheckInTitleLabel.text = "Self-Care Check-in"
         moonHousePlacementLabel.text = ""
-        moonConjunctionLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).headers[0])"
-        selfCareCheckInContentLabel.text = "\(chartCake!.houseCusps.getMoonData(for: (chartCake?.houseCusps.house(of: (chartCake!.transits.moon)))!).message)"
+        moonConjunctionLabel.text = "\(chartCake!.lunarPhase(for: chartCake!.transits).rawValue )  \(chartCake!.lunarPhase(for: chartCake!.transits).emoji )"
+        
+        selfCareCheckInContentLabel.text = "\(chartCake!.lunarPhase(for: chartCake!.transits).messages[0] )"
     }
     
     private func setupRoundedView(_ view: UIView, withBackgroundColor color: UIColor) {
@@ -246,7 +248,7 @@ class MoonViewController: UIViewController {
     
     private func setupStackView(_ stackView: UIStackView) {
         stackView.axis = .vertical
-        stackView.spacing = 5
+        stackView.spacing = 10
         stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
     }
@@ -284,4 +286,18 @@ class MoonViewController: UIViewController {
         contentStackView.addArrangedSubview(tableView1)
         contentStackView.addArrangedSubview(tableView2)
     }
+    
+    
+    func getMoonPhaseText() -> String {
+        guard let lunarPhase = chartCake?.lunarPhase(for: chartCake!.transits) else {
+            return "Moon phase information is currently unavailable."
+        }
+        
+        // Get the current month as an integer
+        let currentMonth = Calendar.current.component(.month, from: Date())
+        
+        // Retrieve the message for the current lunar phase and month
+        return lunarPhase.messageFor(month: currentMonth)
+    }
+
 }
