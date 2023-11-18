@@ -12,7 +12,7 @@ import SwiftEphemeris
 
 class SunViewController: UIViewController {
     
-    var chartCake: ChartCake?
+    var chartCake: ChartCake!
     var selectedDate: Date?
     
     let scrollView: UIScrollView = {
@@ -172,7 +172,8 @@ class SunViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.6, alpha: 1.0)
+
         setupViews()
         setupLabels()
         setupLayout()
@@ -226,10 +227,19 @@ class SunViewController: UIViewController {
         
         // Configure the "Collective Season" labels
         collectiveSeasonTitleLabel.text = "The Current Astrological Season"
-        collectiveSeasonHeaderLabel.text = "This \(chartCake!.transits.moon.sign.keyName) season, which lasts from October 23rd to November 22. Sol shines his life-giving rays, urging you enliven your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.sun.longitude)).houseKeywords)"
-        
-        collectiveSeasonSubheaderLabel.text = "\(chartCake!.transits.sun.sign.sunHeaders.randomElement())"
-        collectiveSeasonContentLabel.text = "\(chartCake!.transits.sun.sign.sunContent)"
+        collectiveSeasonHeaderLabel.text = "This \(chartCake!.transits.sun.sign.keyName) season, which lasts from October 23rd to November 22. Sol shines his life-giving rays, urging you enliven your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.sun.longitude)).houseKeywords)"
+        if let sunHeader = chartCake?.transits.sun.sign.sunHeaders.randomElement() {
+            collectiveSeasonSubheaderLabel.text = sunHeader
+        } else {
+            collectiveSeasonSubheaderLabel.text = "Default Header" // or some appropriate default
+        }
+
+        if let sunContent = chartCake?.transits.sun.sign.sunContent.randomElement() {
+            collectiveSeasonContentLabel.text = sunContent
+        } else {
+            collectiveSeasonContentLabel.text = "Default Content" // or some appropriate default
+        }
+
         
         // Configure the "Self-Care Check-in" labels
         //   vitalityCheckInTitleLabel.text = "Self-Care Check-in"
