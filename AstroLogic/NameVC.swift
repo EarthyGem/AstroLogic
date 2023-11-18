@@ -37,7 +37,7 @@ class NameViewController: UIViewController {
     let checkButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Check Harmony", for: .normal)
-        button.addTarget(self, action: #selector(checkNameHarmony), for: .touchUpInside)
+        button.addTarget(self, action: #selector(calculateHarmony), for: .touchUpInside)
         return button
     }()
     
@@ -65,13 +65,67 @@ class NameViewController: UIViewController {
         return imageView
     }()
     
+  
+   //    let checkButton = UIButton()
+       let resultsLabel = UILabel()
+     
+    
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setupLayout()
-            
-   
-        }
+    override func viewDidLoad() {
+         super.viewDidLoad()
+         setupUI()
+     }
+
+    private func setupUI() {
+           // Define the frames
+           nameTextField.frame = CGRect(x: 20, y: 100, width: view.bounds.width - 40, height: 40)
+        checkButton.frame = CGRect(x: 20, y: 160, width: view.bounds.width - 40, height: 50)
+           resultsLabel.frame = CGRect(x: 20, y: 220, width: view.bounds.width - 40, height: 80)
+           glyphImageView.frame = CGRect(x: (view.bounds.width - 100) / 2, y: 320, width: 100, height: 100)
+
+           // Additional UI setup...
+           // Example: setting the placeholder for the text field
+           nameTextField.placeholder = "Enter your name"
+
+           // Example: setting the title for the button
+        checkButton.setTitle("Calculate Harmony", for: .normal)
+
+           // Add elements to the view
+           view.addSubview(nameTextField)
+           view.addSubview(checkButton)
+           view.addSubview(resultsLabel)
+           view.addSubview(glyphImageView)
+       }
+     @objc private func calculateHarmony() {
+         guard let name = nameTextField.text, !name.isEmpty else {
+                return // Handle empty name
+            }
+
+            let score = calculateNameScore(name: name)
+            var planetOrSign = mapScoreToPlanetOrSign(score: score)
+
+         
+         let zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+            // Check if the result is a planet or a sign and format accordingly
+         if zodiacSigns.contains(planetOrSign.capitalized) {
+             planetOrSign = planetOrSign.prefix(1).capitalized + planetOrSign.dropFirst()
+         }
+                // Capitalize the first letter if it's a sign
+         
+         // Get harmony scores
+         let harmoniousPlanets = chartCake!.getHarmoniousPlanetsWithScores(fromNetScores: /* Your planets scores data */)
+         let harmoniousElements = chartCake!.getHarmoniousElementsWithScores(fromScores: /* Your zodiac scores data */)
+
+         // Determine the image and score for the glyph
+         let glyphImage = UIImage(named: planetOrSign) // Fetch the image
+         let harmonyScore = // Determine the harmony score from harmoniousPlanets or harmoniousElements
+
+         // Update UI
+         resultsLabel.text = "\(name)\nHarmony Score: \(score)"
+         print("\(name)\nHarmony Score: \(score)")
+         glyphImageView.image = glyphImage
+     }
+
 
     
     
