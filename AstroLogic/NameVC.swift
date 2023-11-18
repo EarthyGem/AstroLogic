@@ -45,6 +45,8 @@ class NameViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.text = "Pisces"
         label.textColor = .white
         return label
     }()
@@ -53,6 +55,17 @@ class NameViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
+        label.text = "PiscesElement"
+        label.textColor = .white
+        return label
+    }()
+    
+    let harmonyLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.text = "Harmony Label"
         label.textColor = .white
         return label
     }()
@@ -66,10 +79,6 @@ class NameViewController: UIViewController {
     }()
     
   
-   //    let checkButton = UIButton()
-       let resultsLabel = UILabel()
-     
-    
 
     override func viewDidLoad() {
          super.viewDidLoad()
@@ -80,54 +89,101 @@ class NameViewController: UIViewController {
            // Define the frames
            nameTextField.frame = CGRect(x: 20, y: 100, width: view.bounds.width - 40, height: 40)
         checkButton.frame = CGRect(x: 20, y: 160, width: view.bounds.width - 40, height: 50)
-           resultsLabel.frame = CGRect(x: 20, y: 220, width: view.bounds.width - 40, height: 80)
+           resultLabel.frame = CGRect(x: 20, y: 220, width: view.bounds.width - 40, height: 80)
            glyphImageView.frame = CGRect(x: (view.bounds.width - 100) / 2, y: 320, width: 100, height: 100)
+        harmonyLabel.frame = CGRect(x: 20, y: 250, width: view.bounds.width - 40, height: 80)
+        
+    
 
            // Additional UI setup...
            // Example: setting the placeholder for the text field
-           nameTextField.placeholder = "Enter your name"
+           nameTextField.placeholder = "Enter name"
 
            // Example: setting the title for the button
-        checkButton.setTitle("Calculate Harmony", for: .normal)
+        checkButton.setTitle("What's in this Name?", for: .normal)
 
            // Add elements to the view
            view.addSubview(nameTextField)
            view.addSubview(checkButton)
-           view.addSubview(resultsLabel)
+           view.addSubview(resultLabel)
+        view.addSubview(harmonyLabel)
            view.addSubview(glyphImageView)
        }
-     @objc private func calculateHarmony() {
-         guard let name = nameTextField.text, !name.isEmpty else {
-                return // Handle empty name
-            }
+    @objc private func calculateHarmony() {
+        guard let name = nameTextField.text, !name.isEmpty else {
+            print("Name is empty")
+            return // Handle empty name
+        }
 
-            let score = calculateNameScore(name: name)
-            var planetOrSign = mapScoreToPlanetOrSign(score: score)
+        let score = calculateNameScore(name: name)
+        var planetOrSign = mapScoreToPlanetOrSign(score: score)
 
-         
-         let zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
-            // Check if the result is a planet or a sign and format accordingly
-         if zodiacSigns.contains(planetOrSign.capitalized) {
-             planetOrSign = planetOrSign.prefix(1).capitalized + planetOrSign.dropFirst()
-         }
-                // Capitalize the first letter if it's a sign
-         
-         // Get harmony scores
-         let harmoniousPlanets = chartCake!.getHarmoniousPlanetsWithScores(fromNetScores: /* Your planets scores data */)
-         let harmoniousElements = chartCake!.getHarmoniousElementsWithScores(fromScores: /* Your zodiac scores data */)
+        let zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
 
-         // Determine the image and score for the glyph
-         let glyphImage = UIImage(named: planetOrSign) // Fetch the image
-         let harmonyScore = // Determine the harmony score from harmoniousPlanets or harmoniousElements
+        let isZodiacSign = zodiacSigns.contains(planetOrSign.capitalized)
+        if isZodiacSign {
+            planetOrSign = planetOrSign.prefix(1).capitalized + planetOrSign.dropFirst()
+        }
 
-         // Update UI
-         resultsLabel.text = "\(name)\nHarmony Score: \(score)"
-         print("\(name)\nHarmony Score: \(score)")
-         glyphImageView.image = glyphImage
-     }
+        print("Planet/Sign: \(planetOrSign)")
 
+        // Get harmony scores
+        let harmoniousPlanets = chartCake!.getPlanetsWithHarmonyScores(fromNetScores: chartCake.getTotalHarmonyDiscordNetScoresForPlanets())
+        let harmoniousElements = chartCake!.getSignsWithHarmonyScores(fromScores: chartCake.calculateTotalSignHarmonyDiscord())
+        
+        let planetPower = chartCake!.getHarmoniousPlanetsWithScores(fromNetScores: chartCake.getTotalPowerScoresForPlanets())
+        let signPower = chartCake!.getHarmoniousElementsWithScores(fromScores: chartCake.calculateTotalSignScore())
+        
+        
+        
 
-    
+        print("Harmonious Planets: \(harmoniousPlanets)")
+        print("Harmonious Elements: \(harmoniousElements)")
+
+        // Determine the image and score for the glyph
+        let glyphImage = UIImage(named: planetOrSign) // Fetch the image
+        var harmonyScore: Double = 0.0
+        
+        
+        
+        if isZodiacSign {
+            // Extract score for zodiac sign
+            harmonyScore = harmoniousElements.first(where: { $0.zodiac.keyName == planetOrSign })?.score ?? 0.0
+            print("Harmony Scores for Signs: \(harmonyScore)")
+        } else {
+            // Extract score for planet
+            harmonyScore = harmoniousPlanets.first(where: { $0.planet.keyName == planetOrSign })?.score ?? 0.0
+            print("Harmony Scores for Planets: \(harmonyScore)")
+        }
+
+        print("Harmony Score: \(harmonyScore)")
+
+        // Determine harmony status
+           let harmonyStatus = determineHarmonyStatus(score: harmonyScore)
+
+           // Update UI
+           resultLabel.text = "\(name)\nHarmony Score: \(harmonyScore)"
+           harmonyLabel.text = harmonyStatus
+           glyphImageView.image = glyphImage
+       }
+
+    func determineHarmonyStatus(score: Double) -> String {
+        switch score {
+        case let x where x > 25.0:
+            return "Very Harmonious"
+        case let x where x > 10.0:
+            return "Harmonious"
+        case let x where x > 5.0:
+            return "Slightly Harmonious"
+        case let x where x > -5.0:
+            return "Mildly Discordant"
+        case let x where x > -10.0:
+            return "Discordant"
+        default:
+            return "Highly Discordant"
+        }
+    }
+
     
     func setupLayout() {
         view.backgroundColor = .black
@@ -219,34 +275,50 @@ class NameViewController: UIViewController {
         print("displayResult called with element: \(result.element), isHarmonious: \(result.isHarmonious)") // Debug print        resultLabel.text = result.isHarmonious ? "Harmonious! Score: \(result.element)" : "Not Harmonious"
     }
 
-    
-    @objc func checkNameHarmony() {
-        print("checkNameHarmony called")  // Debug print
-
+    @objc private func checkNameHarmony() {
         guard let name = nameTextField.text, !name.isEmpty else {
-            resultLabel.text = "Please enter a name."
-            return
+            print("Name is empty")
+            return // Handle empty name
         }
 
-        let nameScore = calculateNameScore(name: name)
-        print("Name Score: \(nameScore)")  // Debug print
+        let score = calculateNameScore(name: name)
+        var planetOrSign = mapScoreToPlanetOrSign(score: score)
 
-        // Make sure chartCake has been initialized and has the necessary data
-        // before calling these methods to get harmonious elements and planets.
-        harmoniousSigns = chartCake.getHarmoniousElements(fromScores: chartCake.calculateTotalSignHarmonyDiscord())
-        harmoniousPlanets = chartCake.getHarmoniousPlanets(fromNetScores: chartCake.getTotalHarmonyDiscordNetScoresForPlanets())
+        let zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
 
-        let element = mapScoreToPlanetOrSign(score: nameScore)
-        print("Element: \(element)")  // Debug print
+        let isZodiacSign = zodiacSigns.contains(planetOrSign.capitalized)
+        if isZodiacSign {
+            planetOrSign = planetOrSign.prefix(1).capitalized + planetOrSign.dropFirst()
+        }
 
-        let isHarmonious = harmoniousSigns.contains(where: { $0.keyName == element }) ||
-        harmoniousPlanets.contains(where: { $0.keyName.lowercased() == element })
-        
-        print("Is Harmonious: \(isHarmonious)")  // Debug print
+        print("Planet/Sign: \(planetOrSign)")
 
-        // Display the result
-        displayResult(isHarmonious: isHarmonious, element: element)
+        // Get all scores, regardless of harmony
+        let allPlanetScores = chartCake!.getPlanetsWithHarmonyScores(fromNetScores: chartCake.getTotalHarmonyDiscordNetScoresForPlanets())
+        let allElementScores = chartCake!.getSignsWithHarmonyScores(fromScores: chartCake.calculateTotalSignHarmonyDiscord())
+
+        print("All Planet Scores: \(allPlanetScores)")
+        print("All Element Scores: \(allElementScores)")
+
+        // Determine the image and score for the glyph
+        let glyphImage = UIImage(named: planetOrSign) // Fetch the image
+        var harmonyScore: Double = 0.0
+
+        if isZodiacSign {
+            // Extract score for zodiac sign
+            harmonyScore = allElementScores.first(where: { $0.zodiac.keyName == planetOrSign })?.score ?? 0.0
+        } else {
+            // Extract score for planet
+            harmonyScore = allPlanetScores.first(where: { $0.planet.keyName == planetOrSign })?.score ?? 0.0
+        }
+
+        print("Harmony Score: \(harmonyScore)")
+
+        // Update UI
+        resultLabel.text = "\(name)\nHarmony Score: \(harmonyScore)"
+        glyphImageView.image = glyphImage
     }
+
 
     func displayResult(isHarmonious: Bool, element: String) {
         // Assuming 'element' is the name of the sign or planet and

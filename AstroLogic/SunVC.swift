@@ -234,7 +234,7 @@ class SunViewController: UIViewController {
             collectiveSeasonSubheaderLabel.text = "Default Header" // or some appropriate default
         }
 
-        if let sunContent = chartCake?.transits.sun.sign.sunContent.randomElement() {
+        if let sunContent = chartCake?.transits.sun.sign.sunSeasonContent.randomElement() {
             collectiveSeasonContentLabel.text = sunContent
         } else {
             collectiveSeasonContentLabel.text = "Default Content" // or some appropriate default
