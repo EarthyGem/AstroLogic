@@ -132,7 +132,65 @@ class ChartViewController: UIViewController {
         
         scrollView.backgroundColor = .black
         view.addSubview(scrollView)
-        
+    var signScores = chartCake!.calculateTotalSignScore()
+        // Assuming you have these dictionaries
+        var signHarmonyScores: [Zodiac: Double] = (chartCake?.calculateTotalSignHarmonyDiscord())! // Replace with actual data
+        var houseHarmonyScores: [Int: Double] = (chartCake?.calculateHouseHarmonyDiscord())! // Replace with actual data
+
+        let maxSignScore = signHarmonyScores.values.max() ?? 1
+        let maxHouseScore = houseHarmonyScores.values.max() ?? 1
+
+        var currentYPosition: CGFloat = adjustedYPos + 1030 // Start position for the bars, replace with actual value
+
+        // Function to add score bars to the scrollView
+        func addScoreBars(scores: [(name: String, score: Double)], maxScore: Double) {
+            
+            let labelHeight: CGFloat = 15
+               let labelSpacing: CGFloat = 5
+               let barHeight: CGFloat = 15
+               let barSpacing: CGFloat = 5
+               let labelWidth: CGFloat = 90
+               let barStartingX: CGFloat = labelWidth + 15 // Start bars after the label
+
+               for (name, score) in scores {
+                   let normalizedScore = abs((score / maxScore) * 100)
+                   let barColor = score >= 0 ? UIColor.blue : UIColor.red
+
+                   // Position the label to the left
+                   let label = UILabel(frame: CGRect(x: 10, y: currentYPosition, width: labelWidth, height: labelHeight))
+                   label.textColor = .white
+                   label.font = UIFont.systemFont(ofSize: 13)
+                   label.textAlignment = .right // Text aligned to the right within the label
+                   label.text = "\(name): \(Int(score))"
+                   scrollView.addSubview(label)
+
+                   // Position the bar to start right after the label
+                   let barView = UIView()
+                   barView.backgroundColor = barColor
+                   barView.frame = CGRect(x: barStartingX, y: currentYPosition, width: CGFloat(normalizedScore), height: barHeight)
+                   scrollView.addSubview(barView)
+
+                   currentYPosition += labelHeight + barSpacing
+            }
+        }
+
+
+        // Convert signScores and houseScores to a suitable format for the addScoreBars function
+        let signScoresFormatted = signHarmonyScores.sorted { $0.value > $1.value }.map { ($0.key.keyName, $0.value) } // Replace stringValue with the appropriate property/method
+        let houseScoresFormatted = houseHarmonyScores.sorted { $0.value > $1.value }.map { ("H\($0.key)", $0.value) }
+
+        // Add score bars for signs
+        addScoreBars(scores: signScoresFormatted, maxScore: maxSignScore)
+
+        let additionalSpacing: CGFloat = 450 // Adjust this value as needed
+           currentYPosition += additionalSpacing
+
+           // Add score bars for houses
+           addScoreBars(scores: houseScoresFormatted, maxScore: maxHouseScore)
+
+           // Update the scrollView's contentSize to fit all the content
+           scrollView.contentSize = CGSize(width: screenWidth, height: currentYPosition + 1500)
+
         
         let maxScore = scores2.map({ $0.1 }).max() ?? 1
         
@@ -190,6 +248,8 @@ class ChartViewController: UIViewController {
         }
         
         
+        
+        
         let toolbar = UIToolbar()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(toolbar)
@@ -223,7 +283,7 @@ class ChartViewController: UIViewController {
         
         
         
-        let signScores = chartCake!.calculateTotalSignScore()
+      
         
         
         
@@ -251,20 +311,20 @@ class ChartViewController: UIViewController {
         
             
             // Sign Scores Bar Chart
-            let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 750 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 725 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateSignBarChart(chartView: signScoresChart, scores: signScores, label: "Sign Scores")
             self.scrollView.addSubview(signScoresChart)
             
             
             // House Scores Bar Chart
-            let houseScoresChart = BarChartView(frame: CGRect(x: 10, y: 1050 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let houseScoresChart = BarChartView(frame: CGRect(x: 10, y: 1390 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updateHouseBarChart(chartView: houseScoresChart, scores: houseScores, label: "House Scores")
             self.scrollView.addSubview(houseScoresChart)
             
             
             
             // Planet Scores Bar Chart
-            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: 1350 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: 2030 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updatePlanetBarChart(chartView: planetScoresChart, scores: scores, label: "Planet Scores")
             self.scrollView.addSubview(planetScoresChart)
             
