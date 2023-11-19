@@ -27,7 +27,7 @@ enum Domain: String, CaseIterable {
 }
 
 enum Trinity: String, CaseIterable {
-    case action, reality, connections, healing
+    case action, reality, connecting, healing
 }
 
 
@@ -60,6 +60,6 @@ let domainHouses: [Domain: [Int]] = [
 let trinityHouses: [Trinity: [Int]] = [
     .action: [1, 5, 9],
     .reality: [2, 6, 10],
-    .connections: [3, 7, 11],
+    .connecting: [3, 7, 11],
     .healing: [4, 8, 12]
 ]
