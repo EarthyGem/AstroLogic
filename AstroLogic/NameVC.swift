@@ -162,15 +162,19 @@ class NameViewController: UIViewController {
 
     func determineHarmonyStatus(score: Double) -> String {
         switch score {
-        case let x where x > 25.0:
+        case let x where x > 15.0:
             return "Very Harmonious"
-        case let x where x > 10.0:
+        case let x where x > 7.0:
             return "Harmonious"
-        case let x where x > 5.0:
+        case let x where x > 3.0:
+            return "Mildly Harmonious"
+        case let x where x > 0.0:
             return "Slightly Harmonious"
-        case let x where x > -5.0:
+        case let x where x < 0.0:
+            return "Slightly Discordant"
+        case let x where x < -5.0:
             return "Mildly Discordant"
-        case let x where x > -10.0:
+        case let x where x < -10.0:
             return "Discordant"
         default:
             return "Highly Discordant"
