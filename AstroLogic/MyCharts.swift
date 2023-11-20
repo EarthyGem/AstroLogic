@@ -1,6 +1,7 @@
 import UIKit
 import SwiftEphemeris
 import CoreData
+import SystemConfiguration
 
 
 
@@ -55,14 +56,35 @@ class ChartsViewController: UIViewController {
         self.view.addSubview(tableView)
     }
     func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
+        // Check for network availability
+        if !isNetworkAvailable() {
+            completion(nil)
+            return
+        }
+
         let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8" // Note: Never hard-code API keys in production apps. Use environment variables or secure storage.
-        let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
+        guard let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)") else {
+            completion(nil)
+            return
+        }
 
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self else { return }
 
+            if let error = error {
+                // Handle the error, e.g., no internet connection
+                print("Error: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else {
+                completion(nil)
+                return
+            }
 
             do {
-                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     if let timeZoneId = json["timeZoneId"] as? String {
                         self.birthPlaceTimeZone = TimeZone(identifier: timeZoneId)
                         completion(self.birthPlaceTimeZone)
@@ -72,6 +94,7 @@ class ChartsViewController: UIViewController {
                     }
                 }
             } catch {
+                print("JSON parsing error: \(error.localizedDescription)")
                 self.birthPlaceTimeZone = nil
                 completion(nil)
             }
@@ -79,6 +102,36 @@ class ChartsViewController: UIViewController {
         task.resume()
     }
 
+    // Utility function to check network availability
+    func isNetworkAvailable() -> Bool {
+       var zeroAddress = sockaddr_in()
+       zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+       zeroAddress.sin_family = sa_family_t(AF_INET)
+
+       let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+           $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+               SCNetworkReachabilityCreateWithAddress(nil, $0)
+           }
+       }
+
+       var flags: SCNetworkReachabilityFlags = []
+       if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+           return false
+       }
+       let isReachable = flags.contains(.reachable)
+       let needsConnection = flags.contains(.connectionRequired)
+
+       if !(isReachable && !needsConnection) {
+           DispatchQueue.main.async {
+               let alertController = UIAlertController(title: "No Network Connection", message: "This app requires a network connection to work. Please disable Airplane Mode or connect to Wi-Fi.", preferredStyle: .alert)
+               let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+               alertController.addAction(okAction)
+               self.present(alertController, animated: true, completion: nil)
+           }
+       }
+
+       return (isReachable && !needsConnection)
+    }
 
     func deleteAllNames() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
