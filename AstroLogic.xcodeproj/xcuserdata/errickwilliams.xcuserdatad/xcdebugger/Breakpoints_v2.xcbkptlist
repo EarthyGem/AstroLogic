@@ -293,6 +293,38 @@
             endingLineNumber = "752"
             landmarkName = "navigateProgressionsMatrixViewController(with:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "787033D5-9DC1-4932-A445-CF56F2BAD558 - cd813e69c10c6473"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.MPAspectsViewController.navigateProgressionsMatrixViewController(with: AstroLogic.PlanetAspect) -&gt; ()"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Application%20Support/Quicken/Documents/AstroLogic/AstroLogic/MPAspectsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "753"
+                  endingLineNumber = "753"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "787033D5-9DC1-4932-A445-CF56F2BAD558 - cd813e69c10c6473"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.MPAspectsViewController.navigateProgressionsMatrixViewController(with: AstroLogic.PlanetAspect) -&gt; ()"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Application%20Support/Quicken/Documents/AstroLogic/AstroLogic/MPAspectsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "753"
+                  endingLineNumber = "753"
+                  offsetFromSymbolStart = "224">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -309,6 +341,38 @@
             endingLineNumber = "724"
             landmarkName = "navigateProgressionsMatrixViewController(with:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9ED86E79-0BF9-403D-B94A-DA4B0AD82481 - d21c4464e55d340b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.NestedMPAspectsViewController.navigateProgressionsMatrixViewController(with: AstroLogic.PlanetAspect) -&gt; ()"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Application%20Support/Quicken/Documents/AstroLogic/AstroLogic/NestedProgressedAspects.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "725"
+                  endingLineNumber = "725"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "9ED86E79-0BF9-403D-B94A-DA4B0AD82481 - d21c4464e55d340b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.NestedMPAspectsViewController.navigateProgressionsMatrixViewController(with: AstroLogic.PlanetAspect) -&gt; ()"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Library/Application%20Support/Quicken/Documents/AstroLogic/AstroLogic/NestedProgressedAspects.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "725"
+                  endingLineNumber = "725"
+                  offsetFromSymbolStart = "224">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -79,6 +79,7 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
                planetTextText: getDecanatesKeyword().safeIndex(indexPath.row) ?? "",
                headerTextText: getDecanatesText().safeIndex(indexPath.row) ?? ""
            )
+        print("TAROT: \(getTarot(for: "Sun")!)")
         return cell
     }
 
@@ -92,7 +93,7 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet)
         _ = planetOrder[indexPath.row]
         
-        let viewerVC = DecanateViewerVC(planet: "", text: "", keyword: "", tarotCardImageName: "aceOfSwords", constellationImageName: "cygnus")// change the image name accordingly
+        let viewerVC = DecanateViewerVC(planet: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row], text: getDescription(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row].capitalizingFirstLetter())!, keyword: "", tarotCardImageName: getTarot(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row].capitalizingFirstLetter())!, constellationImageName: getDecanates(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row].capitalizingFirstLetter())!)
         navigationController?.pushViewController(viewerVC, animated: true)
     }
 
@@ -301,6 +302,66 @@ private extension DeacanatesViewController {
             return chartCake!.natal.pluto.decanates.formatted
         case "Ascendant":
             return chartCake!.natal.houseCusps.ascendent.decanates.formatted
+        default:
+            return nil
+        }
+    }
+    
+    func getTarot(for planet: String) -> String? {
+        switch planet {
+        case "Sun":
+            return chartCake!.natal.sun.decanates.tarotCard
+        case "Moon":
+            return chartCake!.natal.moon.decanates.tarotCard
+        case "Mercury":
+            return chartCake!.natal.mercury.decanates.tarotCard
+        case "Venus":
+            return chartCake!.natal.venus.decanates.tarotCard
+        case "Mars":
+            return chartCake!.natal.mars.decanates.tarotCard
+        case "Jupiter":
+            return chartCake!.natal.jupiter.decanates.tarotCard
+        case "Saturn":
+            return chartCake!.natal.saturn.decanates.tarotCard
+        case "Uranus":
+            return chartCake!.natal.uranus.decanates.tarotCard
+        case "Neptune":
+            return chartCake!.natal.neptune.decanates.tarotCard
+        case "Pluto":
+            return chartCake!.natal.pluto.decanates.tarotCard
+        case "Ascendant":
+            return chartCake!.natal.houseCusps.ascendent.decanates.tarotCard
+        default:
+            return nil
+        }
+    }
+    
+    
+    
+    func getDescription(for planet: String) -> String? {
+        switch planet {
+        case "Sun":
+            return chartCake!.natal.sun.decanates.decanateDescription
+        case "Moon":
+            return chartCake!.natal.moon.decanates.decanateDescription
+        case "Mercury":
+            return chartCake!.natal.mercury.decanates.decanateDescription
+        case "Venus":
+            return chartCake!.natal.venus.decanates.decanateDescription
+        case "Mars":
+            return chartCake!.natal.mars.decanates.decanateDescription
+        case "Jupiter":
+            return chartCake!.natal.jupiter.decanates.decanateDescription
+        case "Saturn":
+            return chartCake!.natal.saturn.decanates.decanateDescription
+        case "Uranus":
+            return chartCake!.natal.uranus.decanates.decanateDescription
+        case "Neptune":
+            return chartCake!.natal.neptune.decanates.decanateDescription
+        case "Pluto":
+            return chartCake!.natal.pluto.decanates.decanateDescription
+        case "Ascendant":
+            return chartCake!.natal.houseCusps.ascendent.decanates.decanateDescription
         default:
             return nil
         }
