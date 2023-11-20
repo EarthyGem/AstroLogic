@@ -123,7 +123,7 @@ class ChartsViewController: UIViewController {
 
        if !(isReachable && !needsConnection) {
            DispatchQueue.main.async {
-               let alertController = UIAlertController(title: "No Network Connection", message: "This app requires a network connection to work. Please disable Airplane Mode or connect to Wi-Fi.", preferredStyle: .alert)
+               let alertController = UIAlertController(title: "No Network Connection", message: "This app requires a network connection to work correctly. Please disable Airplane Mode or connect to Wi-Fi.", preferredStyle: .alert)
                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                alertController.addAction(okAction)
                self.present(alertController, animated: true, completion: nil)
