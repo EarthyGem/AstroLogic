@@ -678,35 +678,35 @@ class MPAspectsViewController: UIViewController {
 
 extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         guard let planet = tableViewToPlanetMap[tableView],
               let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] else {
             return 0
         }
         return majorAspects.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
             return UITableViewCell()
         }
-
+        
         if let planet = tableViewToPlanetMap[tableView],
            let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
-
+            
             let aspect = majorAspects[indexPath.row]
             let aspectString = aspect.aspectString
-
+            
             // Get the start and end dates for the aspect
             var edgeDatesString = ""
             if let celestialAspect = aspect.celestialAspect,
                let edges = chartCake?.findEdgesForAspectsFilteredByPlanet(targetPlanet: planet.celestialObject.keyName, aspects: [aspect]) {
-
+                
                 if let edgeDates = edges[celestialAspect] {
                     edgeDatesString = "\(edgeDates?.start) - \(String(describing: edgeDates?.end))"
                 }
             }
-
+            
             cell.configure(aspectingPlanet: "",
                            secondPlanetImageImageName: "",
                            firstSignTextText: "",
@@ -716,37 +716,47 @@ extension MPAspectsViewController: UITableViewDataSource, UITableViewDelegate {
                            firstAspectHeaderTextText: "",
                            secondAspectHeaderTextText: "")
         }
-
-
+        
+        
         return cell
     }
-
-
-
-
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
-
-
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let planet = tableViewToPlanetMap[tableView],
            let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
-
+            print("Row selected at indexPath: \(indexPath)")
             let selectedAspect = majorAspects[indexPath.row]
-            navigateToMinorAspectViewController(with: selectedAspect)
+            print("Planet: \(planet), Major Aspects Count: \(majorAspects.count)")
+            // Assuming celestialAspect has the names of the contacting and contacted bodies
+            if let celestialAspect = selectedAspect.celestialAspect {
+                let contactingPlanet = celestialAspect.body1.body.keyName
+                let contactedPlanet = celestialAspect.body2.body.keyName
+                
+                // Create the PlanetAspect instance
+                let planetAspect = PlanetAspect(contacting: contactingPlanet, contacted: contactedPlanet)
+                
+                // Navigate to ProgressionsMatrixViewController with the selected aspect
+                navigateProgressionsMatrixViewController(with: planetAspect)
+            }
         }
     }
-
-    func navigateToMinorAspectViewController(with majorAspect: AspectType) {
-        let minorAspectVC = ProgressionsMatrixViewController() // Or instantiate from storyboard
-        minorAspectVC.chartCake = chartCake
-        minorAspectVC.majorAspect = majorAspect
-        minorAspectVC.minorAspectsData = [
-            majorAspect: chartCake!.filterMinors(for: majorAspect)
-        ]
-        self.navigationController?.pushViewController(minorAspectVC, animated: true)
+    
+    func navigateProgressionsMatrixViewController(with planetAspect: PlanetAspect) {
+        let progressionsMatrixVC = ProgressionsMatrixViewController() // Or instantiate from storyboard
+        print("Selected Aspect: \(planetAspect.contacting) contacting \(planetAspect.contacted)")
+        progressionsMatrixVC.chartCake = chartCake
+        progressionsMatrixVC.updateContentForPassedAspect(planetAspect)
+        
+        self.navigationController?.pushViewController(progressionsMatrixVC, animated: true)
     }
-
-
+    
+    
 }

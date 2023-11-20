@@ -1,12 +1,74 @@
 import UIKit
 import SwiftEphemeris
 
+// Inside your custom UITableViewCell class
+
+struct AspectContent {
+    var aspect: PlanetAspect
+    var heading: String
+    var detail: String
+}
+
+struct PlanetAspect {
+    var contacting: String // Planet doing the contacting
+    var contacted: String  // Planet being contacted
+}
+
+
+class AspectContentCell: UITableViewCell {
+    let titleLabel = UILabel()
+    let contentLabel = UILabel()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        // Add titleLabel and contentLabel as subviews
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(contentLabel)
+
+        // Set up constraints
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        // Constraints for titleLabel
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+
+        // Constraints for contentLabel
+        contentLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+        contentLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        contentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        contentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+        contentLabel.numberOfLines = 0
+
+        // Additional constraints
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
+        contentLabel.setContentHuggingPriority(.required, for: .vertical)
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        contentLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func configure(with content: AspectContent) {
+           titleLabel.text = content.heading
+           contentLabel.text = content.detail
+       }
+}
+
+
 class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Inside ProgressionsMatrixViewController
     var majorAspect: AspectType?
     var minorAspectsData: [AspectType: [AspectType]]?
     var minorAspect: AspectType?
-
+    var majorAspectsDict: [String: [AspectType]] = [:]
+    var selectedAspect: PlanetAspect?
+    var filteredAspectContent: [AspectContent] = []
 
 
 
@@ -15,12 +77,13 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
     let minorProgressionsTableView = UITableView()
     var progressedPlanets = [CelestialObject]()
     // Data arrays (placeholders, modify as per your needs)
-    let contentData: [String: [String]] = [
-        "Section1": ["Content1", "Content2"],
-        "Section2": ["Content1"],
-        "Section3": ["Content1", "Content2", "Content3"],
-        // ... add more sections as required
-    ]
+    
+  
+    // Define your content as an ordered array
+   
+        // Add more aspects as needed
+    
+
 
     var minorProgressionsData = [String]() // modify as per your needs
 
@@ -33,17 +96,30 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
             // Assuming that you'd want to convert the minor aspects into their string representation or some other transformation
             minorProgressionsData = minorAspects.map { $0.aspectString }
         }
-
+        majorAspectsDict = (chartCake?.constructMajorAspectDictionary2())!
         setupTableViews()
+        contentTableView.rowHeight = UITableView.automaticDimension
+        contentTableView.estimatedRowHeight = 100 // Adjust this value as needed
+
+
     }
 
+    func updateContentForSelectedAspect() {
+        guard let selectedAspect = selectedAspect else { return }
+        filteredAspectContent = contentData.filter {
+            $0.aspect.contacting == selectedAspect.contacting &&
+            $0.aspect.contacted == selectedAspect.contacted
+        }
+        contentTableView.reloadData()
+    }
 
 
     // MARK: - Setup methods
     func setupTableViews() {
         contentTableView.delegate = self
         contentTableView.dataSource = self
-        contentTableView.register(ContentCell.self, forCellReuseIdentifier: "ContentCell")
+        // Register the cell class if you are not using a NIB
+        contentTableView.register(AspectContentCell.self, forCellReuseIdentifier: "AspectContentCell")
 
         minorProgressionsTableView.delegate = self
         minorProgressionsTableView.dataSource = self
@@ -59,7 +135,7 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
             contentTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             contentTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             contentTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6), // 60% height
+           contentTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6), // 60% height
 
             minorProgressionsTableView.topAnchor.constraint(equalTo: contentTableView.bottomAnchor),
             minorProgressionsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -71,16 +147,17 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
     // MARK: - TableView Delegate & DataSource methods
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == contentTableView {
-            return contentData.count
+            // You have only one section per aspect type
+            return 1
         }
         return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == contentTableView {
-            let sectionData = Array(contentData.values)[section]
-            return sectionData.count
-        } else { // assuming this is for minorProgressionsTableView
+              // Return the count of your contentData array
+              return filteredAspectContent.count
+        } else {
             if let major = majorAspect, let minorAspects = minorAspectsData?[major] {
                 print("Minor Aspects Count: \(minorAspects.count)")
                 return minorAspects.count
@@ -92,10 +169,10 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == contentTableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
-            let sectionData = Array(contentData.values)[indexPath.section]
-            cell.configure(with: sectionData[indexPath.row])
-            return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AspectContentCell", for: indexPath) as! AspectContentCell
+              let aspectContent = filteredAspectContent[indexPath.row]
+              cell.configure(with: aspectContent)
+              return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MinorProgressionCell", for: indexPath)
             if let major = majorAspect,
@@ -130,5 +207,22 @@ class ProgressionsMatrixViewController: UIViewController, UITableViewDelegate, U
         ]
         self.navigationController?.pushViewController(transitMatrixVC, animated: true)
     }
+    
+    func updateContentForPassedAspect(_ aspect: PlanetAspect) {
+        selectedAspect = aspect
+        print("Updating for aspect: \(aspect.contacting) contacting \(aspect.contacted)")
+        filteredAspectContent = contentData.filter {
+            $0.aspect.contacting == aspect.contacting &&
+            $0.aspect.contacted == aspect.contacted
+        }
+        print("Filtered content count: \(filteredAspectContent.count)")
+        contentTableView.reloadData()
+    }
+
 }
 
+            extension PlanetAspect: Equatable {
+                static func == (lhs: PlanetAspect, rhs: PlanetAspect) -> Bool {
+                    return lhs.contacting == rhs.contacting && lhs.contacted == rhs.contacted
+                }
+            }

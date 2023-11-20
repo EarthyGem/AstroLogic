@@ -739,6 +739,19 @@ extension SimpleMajorAspectsViewController: UITableViewDataSource, UITableViewDe
         minorAspectVC.minorAspectsData = [
             majorAspect: chartCake!.filterSimpleMinors(for: majorAspect)
         ]
+
+        // Extracting the planet names from majorAspect
+        if let celestialAspect = majorAspect.celestialAspect {
+            let contactingPlanet = celestialAspect.body1.body.keyName
+            let contactedPlanet = celestialAspect.body2.body.keyName
+
+            // Create the PlanetAspect instance
+            let planetAspect = PlanetAspect(contacting: contactingPlanet, contacted: contactedPlanet)
+
+            // Pass this aspect to the ProgressionsMatrixViewController
+            minorAspectVC.updateContentForPassedAspect(planetAspect)
+        }
+
         self.navigationController?.pushViewController(minorAspectVC, animated: true)
     }
 

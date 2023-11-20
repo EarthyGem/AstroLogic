@@ -48,7 +48,7 @@ class EditChartViewController: UIViewController, SuggestionsViewControllerDelega
     let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Save", for: .normal)
-        button.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
+        button.addTarget(EditChartViewController.self, action: #selector(saveChanges), for: .touchUpInside)
         return button
     }()
 

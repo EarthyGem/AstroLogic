@@ -69,7 +69,7 @@ class MoonViewController: UIViewController {
     let collectiveMoodTitleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Self-Care Check-in"
+        label.text = ""
         label.lineBreakMode = .byWordWrapping
         // Configure other label properties
         return label
@@ -226,18 +226,18 @@ class MoonViewController: UIViewController {
         currentDateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
         
         // Configure the "Collective Mood" labels
-        collectiveMoodTitleLabel.text = "Self-Care Check-in"
-        collectiveMoodHeaderLabel.text = "From now until then, Luna sheds her healing and nurturing \(chartCake!.transits.moon.sign.keyName) rays, urging you tend to feelings about your \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
+        collectiveMoodTitleLabel.text = "Daily Lunar Horoscope"
+        collectiveMoodHeaderLabel.text = "\(chartCake!.transits.moon.decanates.moonHeader)\n\(chartCake!.transits.moon.decanates.moonMessage)"
         
-        collectiveMoodSubheaderLabel.text = "\(chartCake!.transits.moon.sign.moonHeaders.randomElement())"
-        collectiveMoodContentLabel.text = "\(chartCake!.transits.moon.sign.moonMessages.randomElement() ?? "")"
+        collectiveMoodSubheaderLabel.text = "For the next day or so, Luna sheds her tender caring \(chartCake!.transits.moon.sign.keyName) rays on your  \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).name) house, inviting you to tend to your \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
+        collectiveMoodContentLabel.text = "\(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).moonHeaders[0])\n\(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).moonMessages[0])"
         
         // Configure the "Self-Care Check-in" labels
-        //   selfCareCheckInTitleLabel.text = "Self-Care Check-in"
-        moonHousePlacementLabel.text = ""
-        moonConjunctionLabel.text = "\(chartCake!.lunarPhase(for: chartCake!.transits).rawValue )  \(chartCake!.lunarPhase(for: chartCake!.transits).emoji )"
+          selfCareCheckInTitleLabel.text =  ""
+        moonHousePlacementLabel.text = "Current Moon Phase\n\n\(chartCake!.lunarPhase(for: chartCake!.transits).rawValue )  \(chartCake!.lunarPhase(for: chartCake!.transits).emoji)\n\(chartCake!.lunarPhase(for: chartCake!.transits).messages[0])"
+        moonConjunctionLabel.text = ""
         
-        selfCareCheckInContentLabel.text = "\(chartCake!.lunarPhase(for: chartCake!.transits).messages[0] )"
+        selfCareCheckInContentLabel.text = ""
     }
     
     private func setupRoundedView(_ view: UIView, withBackgroundColor color: UIColor) {

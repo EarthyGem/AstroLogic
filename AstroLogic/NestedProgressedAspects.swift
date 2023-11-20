@@ -704,16 +704,33 @@ extension NestedMPAspectsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let planet = tableViewToPlanetMap[tableView],
            let majorAspects = chartCake?.constructMajorAspectDictionary2()[planet.celestialObject.keyName] {
+            print("Row selected at indexPath: \(indexPath)")
             let selectedAspect = majorAspects[indexPath.row]
-            navigateToMinorAspectViewController(with: selectedAspect)
+            print("Planet: \(planet), Major Aspects Count: \(majorAspects.count)")
+            // Assuming celestialAspect has the names of the contacting and contacted bodies
+            if let celestialAspect = selectedAspect.celestialAspect {
+                let contactingPlanet = celestialAspect.body1.body.keyName
+                let contactedPlanet = celestialAspect.body2.body.keyName
+                
+                // Create the PlanetAspect instance
+                let planetAspect = PlanetAspect(contacting: contactingPlanet, contacted: contactedPlanet)
+                
+                // Navigate to ProgressionsMatrixViewController with the selected aspect
+                navigateProgressionsMatrixViewController(with: planetAspect)
+            }
         }
     }
-
-    func navigateToMinorAspectViewController(with majorAspect: AspectType) {
-        let minorAspectVC = ProgressionsMatrixViewController() // Or instantiate from storyboard
-        minorAspectVC.majorAspect = majorAspect
-        self.navigationController?.pushViewController(minorAspectVC, animated: true)
+    
+    func navigateProgressionsMatrixViewController(with planetAspect: PlanetAspect) {
+        let progressionsMatrixVC = ProgressionsMatrixViewController() // Or instantiate from storyboard
+        print("Selected Aspect: \(planetAspect.contacting) contacting \(planetAspect.contacted)")
+        progressionsMatrixVC.chartCake = chartCake
+        progressionsMatrixVC.updateContentForPassedAspect(planetAspect)
+        
+        self.navigationController?.pushViewController(progressionsMatrixVC, animated: true)
     }
-
-
+    
+    
 }
+
+
