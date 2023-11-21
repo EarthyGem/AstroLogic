@@ -131,7 +131,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 interAspectsVC.chartCake = self.chartCake
                 interAspectsVC.otherChart = self.otherChart
                interAspectsVC.synastry = self.synastry
-                print("Synastry: \(synastry?.natal.sun.longitude)")
+              //  print("Synastry: \(synastry?.natal.sun.longitude)")
                 interAspectsVC.title = "Interaspects"
                 interAspectsVC.name = self.name
                 interAspectsVC.otherName = self.otherName
@@ -147,7 +147,7 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
              
                 
                 let compositeVC = MyCompositeItemsViewController()
-                var chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
+                let chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
                 compositeVC.chartCake = chartCake
                 compositeVC.otherChart = otherChart
                 compositeVC.houseScores = self.chartCake!.calculateHouseStrengths()

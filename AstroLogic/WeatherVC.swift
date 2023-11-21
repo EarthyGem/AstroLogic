@@ -51,7 +51,7 @@ class WeatherForecastViewController: UIViewController, UITextFieldDelegate, Sugg
     let forecastButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Get Forecast", for: .normal)
-        button.addTarget(self, action: #selector(getForecastButtonTapped), for: .touchUpInside)
+        button.addTarget(WeatherForecastViewController.self, action: #selector(getForecastButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -335,7 +335,7 @@ class WeatherForecastViewController: UIViewController, UITextFieldDelegate, Sugg
             self?.weatherConditionLabel1.text = windText
             
             // Wind gust label update
-            let windGustText = isHistorical ? "Wind Gust: \(weatherData.currentWeather.wind.gust) mph" : "Wind Gust: N/A"
+            let windGustText = isHistorical ? "Wind Gust: \(String(describing: weatherData.currentWeather.wind.gust)) mph" : "Wind Gust: N/A"
             self?.weatherConditionLabel2.text = windGustText
             
             // Cloud Cover label update

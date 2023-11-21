@@ -445,8 +445,8 @@ class AddRelationshipViewController: UIViewController,SuggestionsViewControllerD
                 // let houseScores = self.otherChart.natal.calculateHouseStrengths()
 
                 let tuple = otherChart!.natal.getTotalHarmonyDiscordScoresForPlanets()
-                let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple).archetypeShadows
-                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple).archetypeGifts
+                _ = getMostDiscordantPlanet(from: tuple).archetypeShadows
+                _ = getMostHarmoniousPlanet(from: tuple).archetypeGifts
 
                 if strongestPlanet == Planet.sun.celestialObject {
                     strongestPlanetSign = otherChart!.natal.sun.sign.keyName
@@ -593,7 +593,7 @@ class AddRelationshipViewController: UIViewController,SuggestionsViewControllerD
     }
 
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        var selectedDate = sender.date
+        let selectedDate = sender.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         dateFormatter.timeZone = birthPlaceTimeZone // Use the birthPlaceTimeZone here
@@ -691,7 +691,7 @@ extension AddRelationshipViewController: CLLocationManagerDelegate {
                        let latitude = chart.value(forKey: "latitude") as? Double,
                        let longitude = chart.value(forKey: "longitude") as? Double {
 
-                        print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude)")
+                      //  print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude)")
                     }
                 }
             }
@@ -738,7 +738,7 @@ extension AddRelationshipViewController: CLLocationManagerDelegate {
         dateComponents.hour = calendar.component(.hour, from: timePicker.date)
         dateComponents.minute = calendar.component(.minute, from: timePicker.date)
 
-        print("Combined date and time components: \(dateComponents)")
+      //  print("Combined date and time components: \(dateComponents)")
 
         return calendar.date(from: dateComponents)
     }

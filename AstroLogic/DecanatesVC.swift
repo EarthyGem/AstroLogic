@@ -310,27 +310,27 @@ private extension DeacanatesViewController {
     func getTarot(for planet: String) -> String? {
         switch planet {
         case "Sun":
-            return chartCake!.natal.sun.decanates.tarotCard
+            return chartCake!.natal.sun.decanates.tarotCard2
         case "Moon":
-            return chartCake!.natal.moon.decanates.tarotCard
+            return chartCake!.natal.moon.decanates.tarotCard2
         case "Mercury":
-            return chartCake!.natal.mercury.decanates.tarotCard
+            return chartCake!.natal.mercury.decanates.tarotCard2
         case "Venus":
-            return chartCake!.natal.venus.decanates.tarotCard
+            return chartCake!.natal.venus.decanates.tarotCard2
         case "Mars":
-            return chartCake!.natal.mars.decanates.tarotCard
+            return chartCake!.natal.mars.decanates.tarotCard2
         case "Jupiter":
-            return chartCake!.natal.jupiter.decanates.tarotCard
+            return chartCake!.natal.jupiter.decanates.tarotCard2
         case "Saturn":
-            return chartCake!.natal.saturn.decanates.tarotCard
+            return chartCake!.natal.saturn.decanates.tarotCard2
         case "Uranus":
-            return chartCake!.natal.uranus.decanates.tarotCard
+            return chartCake!.natal.uranus.decanates.tarotCard2
         case "Neptune":
-            return chartCake!.natal.neptune.decanates.tarotCard
+            return chartCake!.natal.neptune.decanates.tarotCard2
         case "Pluto":
-            return chartCake!.natal.pluto.decanates.tarotCard
+            return chartCake!.natal.pluto.decanates.tarotCard2
         case "Ascendant":
-            return chartCake!.natal.houseCusps.ascendent.decanates.tarotCard
+            return chartCake!.natal.houseCusps.ascendent.decanates.tarotCard2
         default:
             return nil
         }

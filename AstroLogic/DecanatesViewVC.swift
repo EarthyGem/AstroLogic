@@ -25,13 +25,6 @@ class DecanateViewerVC: UIViewController {
     private let constellationImageName: String // Assuming you have this
     private let constellationDescriptionLabel: UILabel = {
            
-        let scrollView: UIScrollView = {
-            let scrollView = UIScrollView()
-            let screenWidth = UIScreen.main.bounds.width
-            scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 1500)
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-            return scrollView
-        }()
         
         
         let constellationDescriptionLabel = UILabel()
@@ -39,6 +32,7 @@ class DecanateViewerVC: UIViewController {
         constellationDescriptionLabel.lineBreakMode = .byWordWrapping
         constellationDescriptionLabel.textAlignment = .center
         constellationDescriptionLabel.textColor = .white
+        constellationDescriptionLabel.font = UIFont.systemFont(ofSize: 13)
         constellationDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
             return constellationDescriptionLabel
         }()
@@ -61,8 +55,7 @@ class DecanateViewerVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    
+
         setupImageViews()
         layoutViews()
     }
@@ -88,20 +81,21 @@ class DecanateViewerVC: UIViewController {
 
         NSLayoutConstraint.activate([
 
-            tarotCardImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            tarotCardImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            tarotCardImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            tarotCardImageView.heightAnchor.constraint(equalToConstant: 200),
-            
-            constellationImageView.topAnchor.constraint(equalTo: tarotCardImageView.bottomAnchor, constant: 20),
+           
+            constellationImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             constellationImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             constellationImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             constellationImageView.heightAnchor.constraint(equalToConstant: 200),
             
-            constellationDescriptionLabel.topAnchor.constraint(equalTo: constellationImageView.bottomAnchor, constant: 8), // Adjust the constant for spacing
+            constellationDescriptionLabel.topAnchor.constraint(equalTo: constellationImageView.bottomAnchor, constant: 35), // Adjust the constant for spacing
                constellationDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16), // Left side padding
                constellationDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16), // Right side padding
-               // Add any other constraints as needed
+               
+            tarotCardImageView.topAnchor.constraint(equalTo: constellationDescriptionLabel.bottomAnchor, constant: 8),
+            tarotCardImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tarotCardImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tarotCardImageView.heightAnchor.constraint(equalToConstant: 200),
+            
         ])
     }
 }

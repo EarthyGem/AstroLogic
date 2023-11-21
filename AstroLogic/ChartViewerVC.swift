@@ -113,7 +113,7 @@ class ChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var chartCake = chartCake
+        let chartCake = chartCake
         
         let pieChartsButton = UIBarButtonItem(title: "Pie Charts", style: .plain, target: self, action: #selector(pieChartButton))
         navigationItem.rightBarButtonItem = pieChartsButton
@@ -132,10 +132,10 @@ class ChartViewController: UIViewController {
         
         scrollView.backgroundColor = .black
         view.addSubview(scrollView)
-    var signScores = chartCake!.calculateTotalSignScore()
+        _ = chartCake!.calculateTotalSignScore()
         // Assuming you have these dictionaries
-        var signHarmonyScores: [Zodiac: Double] = (chartCake?.calculateTotalSignHarmonyDiscord())! // Replace with actual data
-        var houseHarmonyScores: [Int: Double] = (chartCake?.calculateHouseHarmonyDiscord())! // Replace with actual data
+        let signHarmonyScores: [Zodiac: Double] = (chartCake?.calculateTotalSignHarmonyDiscord())! // Replace with actual data
+        let houseHarmonyScores: [Int: Double] = (chartCake?.calculateHouseHarmonyDiscord())! // Replace with actual data
 
         let maxSignScore = signHarmonyScores.values.max() ?? 1
         let maxHouseScore = houseHarmonyScores.values.max() ?? 1
@@ -146,7 +146,7 @@ class ChartViewController: UIViewController {
         func addScoreBars(scores: [(name: String, score: Double)], maxScore: Double) {
             
             let labelHeight: CGFloat = 15
-               let labelSpacing: CGFloat = 5
+            let _: CGFloat = 5
                let barHeight: CGFloat = 15
                let barSpacing: CGFloat = 5
                let labelWidth: CGFloat = 90

@@ -360,7 +360,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
                      cycleChartVC.selectedPlanetName = selectedPlanetName
                 cycleChartVC.selectedPlanet = selectedPlanet
                     cycleChartVC.chartCake = chartCake
-                print("chartCake: \(chartCake?.natal.sun.formatted)")
+         //       print("chartCake: \(chartCake?.natal.sun.formatted ?? <#default value#>)")
                 cycleChartVC.eventDate = eventDate
 
                      // Push the new view controller onto the navigation stack
