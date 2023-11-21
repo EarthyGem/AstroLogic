@@ -163,44 +163,41 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
     }()
 
-
-
-
     lazy var datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
-        datePicker.timeZone = TimeZone.current // Use birthPlaceTimeZone
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .wheels
+        picker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
+        picker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        picker.timeZone = TimeZone.current // Use birthPlaceTimeZone
 
-        // Set default date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        if let date = dateFormatter.date(from: "1978/03/03") {
-            datePicker.date = date
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let date = df.date(from: "1976-03-03 14:51:00") {
+            picker.date = date
         }
 
-        return datePicker
+        return picker
     }()
 
 
     lazy var timePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.datePickerMode = .time
-        datePicker.timeZone = TimeZone.current // Use birthPlaceTimeZone
-        datePicker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
-        datePicker.addTarget(self, action: #selector(timePickerValueChanged), for: .valueChanged)
+        let picker = UIDatePicker()
+        picker.preferredDatePickerStyle = .wheels
+        picker.datePickerMode = .time
+        picker.timeZone = TimeZone.current // Use birthPlaceTimeZone
+        picker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
+        picker.addTarget(self, action: #selector(timePickerValueChanged), for: .valueChanged)
 
-        // Set default time to noon
-        let calendar = Calendar.current
-        if let noonDate = calendar.date(bySettingHour: 14, minute: 51, second: 0, of: Date()) {
-            datePicker.date = noonDate
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let date = df.date(from: "1976-03-03 14:51:00") {
+            picker.date = date
         }
 
-        return datePicker
+        return picker
     }()
+
     func searchPlace(_ place: String) {
        let searchRequest = MKLocalSearch.Request()
        searchRequest.naturalLanguageQuery = place
@@ -312,7 +309,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
     }
   
     override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
+        super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
            DataManager.shared.fetchCharts { [weak self] charts in
                guard let self = self else { return }
@@ -588,8 +585,6 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
                 strongestPlanetVC.sortedPlanets = getPlanetsSortedByStrength(from: scores2)
              //   print("sortedPlanets\(getPlanetsSortedByStrength(from: scores2))")
                 strongestPlanetVC.birthPlace = self.birthPlaceTextField.text
-                let combinedDate = self.combinedDateAndTime()!
-            //    strongestPlanetVC.combinedBirthDateTime = combinedDate
 
                 self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
 
@@ -656,9 +651,6 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         }
     }
 
-
-
-
     func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
         let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8" // Note: Never hard-code API keys in production apps. Use environment variables or secure storage.
         let url = URL(string: "https://maps.googleapis.com/maps/api/timezone/json?location=\(latitude),\(longitude)&timestamp=\(timestamp)&key=\(API_KEY)")!
@@ -702,7 +694,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
     }
 
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        var selectedDate = sender.date
+        let selectedDate = sender.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         dateFormatter.timeZone = birthPlaceTimeZone // Use the birthPlaceTimeZone here
@@ -875,8 +867,10 @@ extension ViewController: CLLocationManagerDelegate {
         dateComponents.minute = timeComponents.minute
 
         print("Combined date and time components: \(dateComponents)")
-
-        return calendar.date(from: dateComponents)
+        let date = calendar.date(from: dateComponents)!
+        let offset = birthPlaceTimeZone.secondsFromGMT(for: date)
+        print("Date AFTER date components conversion: \(date.toString(format: .cocoaDateTime, timeZone: .custom(offset))!)")
+        return date
     }
 
 }
