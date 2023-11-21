@@ -37,7 +37,7 @@ class NameViewController: UIViewController {
     let checkButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Check Harmony", for: .normal)
-        button.addTarget(NameViewController.self, action: #selector(calculateHarmony), for: .touchUpInside)
+        button.addTarget(self, action: #selector(calculateHarmony), for: .touchUpInside)
         return button
     }()
     
@@ -118,7 +118,7 @@ class NameViewController: UIViewController {
         let score = calculateNameScore(name: name)
         var planetOrSign = mapScoreToPlanetOrSign(score: score)
         
-      //  print("Mapped Planet/Sign: \(planetOrSign)")
+        print("Mapped Planet/Sign: \(planetOrSign)")
         let zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
 
         let isZodiacSign = zodiacSigns.contains(planetOrSign.capitalized)
@@ -126,14 +126,14 @@ class NameViewController: UIViewController {
             planetOrSign = planetOrSign.prefix(1).capitalized + planetOrSign.dropFirst()
         }
 
-       // print("Planet/Sign: \(planetOrSign)")
+        print("Planet/Sign: \(planetOrSign)")
 
         // Get all scores, regardless of harmony
         let allPlanetScores = chartCake!.getPlanetsWithHarmonyScores(fromNetScores: chartCake.getTotalHarmonyDiscordNetScoresForPlanets())
         let allElementScores = chartCake!.getSignsWithHarmonyScores(fromScores: chartCake.calculateTotalSignHarmonyDiscord())
 
-      //  print("All Planet Scores: \(allPlanetScores)")
-       // print("All Element Scores: \(allElementScores)")
+        print("All Planet Scores: \(allPlanetScores)")
+        print("All Element Scores: \(allElementScores)")
 
         // Determine the image and score for the glyph
         let glyphImage = UIImage(named: planetOrSign) // Fetch the image
@@ -146,10 +146,10 @@ class NameViewController: UIViewController {
             // Extract score for planet
             // Adjust comparison to be case-insensitive
             harmonyScore = allPlanetScores.first(where: { $0.planet.keyName.lowercased() == planetOrSign.lowercased() })?.score ?? 0.0
-          //  print("Pre-UI Update Harmony Score for Planet: \(harmonyScore)")
+            print("Pre-UI Update Harmony Score for Planet: \(harmonyScore)")
         }
 
-     //   print("Harmony Score: \(harmonyScore)")
+        print("Harmony Score: \(harmonyScore)")
         let harmonyStatus = determineHarmonyStatus(score: harmonyScore)
         // Update UI
         DispatchQueue.main.async { // Ensure UI updates are on the main thread
@@ -162,19 +162,15 @@ class NameViewController: UIViewController {
 
     func determineHarmonyStatus(score: Double) -> String {
         switch score {
-        case let x where x > 15.0:
+        case let x where x > 25.0:
             return "Very Harmonious"
-        case let x where x > 7.0:
+        case let x where x > 10.0:
             return "Harmonious"
-        case let x where x > 3.0:
-            return "Mildly Harmonious"
-        case let x where x > 0.0:
+        case let x where x > 5.0:
             return "Slightly Harmonious"
-        case let x where x < 0.0:
-            return "Slightly Discordant"
-        case let x where x < -5.0:
+        case let x where x > -5.0:
             return "Mildly Discordant"
-        case let x where x < -10.0:
+        case let x where x > -10.0:
             return "Discordant"
         default:
             return "Highly Discordant"
