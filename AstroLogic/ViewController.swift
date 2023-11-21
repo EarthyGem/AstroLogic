@@ -81,7 +81,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         textField.font = UIFont.systemFont(ofSize: 17)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
-        textField.frame = CGRect(x: 50, y: 200, width: 300, height: 45)  // Adjust y to position it above dateTextField
+     //   textField.frame = CGRect(x: 50, y: 200, width: 300, height: 45)  // Adjust y to position it above dateTextField
         return textField
     }()
 
@@ -91,7 +91,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         textField.font = UIFont.systemFont(ofSize: 17)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
-        textField.frame = CGRect(x: 50, y: 260, width: 300, height: 45)
+     //   textField.frame = CGRect(x: 50, y: 260, width: 300, height: 45)
         textField.addTarget(self, action: #selector(birthPlaceTextFieldEditingDidBegin), for: .editingDidBegin)
         return textField
     }()
@@ -104,7 +104,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         textField.font = UIFont.systemFont(ofSize: 17)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
-        textField.frame = CGRect(x: 50, y: 320, width: 300, height: 45)
+   //     textField.frame = CGRect(x: 50, y: 320, width: 300, height: 45)
 
         return textField
     }()
@@ -116,7 +116,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         textField.font = UIFont.systemFont(ofSize: 17)
         textField.textAlignment = .center // This centers the text horizontally
         textField.borderStyle = .roundedRect
-        textField.frame = CGRect(x: 50, y: 380, width: 300, height: 45)
+//textField.frame = CGRect(x: 50, y: 380, width: 300, height: 45)
         return textField
     }()
 
@@ -275,6 +275,58 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
             aboutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             aboutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        view.addSubview(nameTextField)
+           nameTextField.translatesAutoresizingMaskIntoConstraints = false
+
+           // Add the birthPlaceTextField to the view and set up constraints
+           view.addSubview(birthPlaceTextField)
+           birthPlaceTextField.translatesAutoresizingMaskIntoConstraints = false
+
+           // Add the dateTextField to the view and set up constraints
+           view.addSubview(dateTextField)
+           dateTextField.translatesAutoresizingMaskIntoConstraints = false
+
+           // Add the birthTimeTextField to the view and set up constraints
+           view.addSubview(birthTimeTextField)
+           birthTimeTextField.translatesAutoresizingMaskIntoConstraints = false
+
+           // Add the getPowerPlanetButton to the view and set up constraints
+           view.addSubview(getPowerPlanetButton)
+           getPowerPlanetButton.translatesAutoresizingMaskIntoConstraints = false
+
+           // Set the Auto Layout constraints
+           NSLayoutConstraint.activate([
+               // Center the nameTextField and set its width and height
+               nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+               nameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150), // Adjust this constant as needed
+               nameTextField.widthAnchor.constraint(equalToConstant: 300),
+               nameTextField.heightAnchor.constraint(equalToConstant: 45),
+               
+               // Center the birthPlaceTextField and set its width and height
+               birthPlaceTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+               birthPlaceTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20), // Space between the text fields
+               birthPlaceTextField.widthAnchor.constraint(equalToConstant: 300),
+               birthPlaceTextField.heightAnchor.constraint(equalToConstant: 45),
+               
+               // Center the dateTextField and set its width and height
+               dateTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+               dateTextField.topAnchor.constraint(equalTo: birthPlaceTextField.bottomAnchor, constant: 20), // Space between the text fields
+               dateTextField.widthAnchor.constraint(equalToConstant: 300),
+               dateTextField.heightAnchor.constraint(equalToConstant: 45),
+               
+               // Center the birthTimeTextField and set its width and height
+               birthTimeTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+               birthTimeTextField.topAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: 20), // Space between the text fields
+               birthTimeTextField.widthAnchor.constraint(equalToConstant: 300),
+               birthTimeTextField.heightAnchor.constraint(equalToConstant: 45),
+               
+               // Center the getPowerPlanetButton and set its width and height
+               getPowerPlanetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+               getPowerPlanetButton.topAnchor.constraint(equalTo: birthTimeTextField.bottomAnchor, constant: 30), // Space between the text field and the button
+               getPowerPlanetButton.widthAnchor.constraint(equalToConstant: 300),
+               getPowerPlanetButton.heightAnchor.constraint(equalToConstant: 45)
+           ])
 
         dateTextField.inputView = datePicker
         view.addSubview(nameTextField)
@@ -296,7 +348,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
              birthPlaceTextField.addTarget(self, action: #selector(birthPlaceTextFieldEditingDidBegin), for: .editingDidBegin) // Add this line
 
 
-        getPowerPlanetButton.frame = CGRect(x: 50, y: 440, width: 300, height: 45)
+      // getPowerPlanetButton.frame = CGRect(x: 50, y: 440, width: 300, height: 45)
        // parseAndSaveData()
         view.addSubview(getPowerPlanetButton)
 
