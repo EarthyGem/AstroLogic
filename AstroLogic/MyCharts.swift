@@ -298,10 +298,10 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let name = otherChart.name ?? ""
         let birthPlace = otherChart.birthPlace ?? "No BirthPlace"
         let chart = Chart(date: chartDate!, latitude: latitude, longitude: longitude, houseSystem: .placidus)
-        let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)
+        let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)!
         let timestamp = Int(chartDate?.timeIntervalSince1970 ?? 34)
 
-        let scores = chart.getTotalPowerScoresForPlanets(chartCake?.natal.rickysBodies)
+        let scores = chart.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
 
         fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { [self] timeZone in
@@ -341,8 +341,8 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                         strongestPlanetSign = chart.neptune.sign.keyName
                     } else if strongestPlanet == Planet.pluto.celestialObject {
                         strongestPlanetSign = chart.pluto.sign.keyName
-                    } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-                        strongestPlanetSign = chart.southNode.sign.keyName
+//                    } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
+//                        strongestPlanetSign = chart.southNode.sign.keyName
                     }
 
                     let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
