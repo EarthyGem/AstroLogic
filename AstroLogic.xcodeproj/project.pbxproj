@@ -112,6 +112,10 @@
 		399B62992AB75DAC006BAC2E /* Charts3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B62982AB75DAC006BAC2E /* Charts3.swift */; };
 		399B629B2AB7A109006BAC2E /* 23Ancestory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B629A2AB7A109006BAC2E /* 23Ancestory.swift */; };
 		399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B629E2AB831B3006BAC2E /* RealmsVC.swift */; };
+		39A0ED0F2B1D7FEE00A6CD39 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0ED0E2B1D7FEE00A6CD39 /* Calendar.swift */; };
+		39A0ED122B1D8EF100A6CD39 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 39A0ED112B1D8EF100A6CD39 /* FSCalendar */; };
+		39A0ED142B1D931D00A6CD39 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0ED132B1D931D00A6CD39 /* CalendarCell.swift */; };
+		39A0ED162B1D9B0300A6CD39 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0ED152B1D9B0300A6CD39 /* CalendarHeaderView.swift */; };
 		39A0FBB42B1D26E000FD7A72 /* SunMoonSeasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */; };
 		39A0FBB72B1D29B400FD7A72 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 39A0FBB62B1D29B400FD7A72 /* SwiftEphemeris */; };
 		39A0FBB92B1D5EEE00FD7A72 /* SunMoonHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0FBB82B1D5EEE00FD7A72 /* SunMoonHouse.swift */; };
@@ -279,6 +283,9 @@
 		399B62982AB75DAC006BAC2E /* Charts3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts3.swift; sourceTree = "<group>"; };
 		399B629A2AB7A109006BAC2E /* 23Ancestory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 23Ancestory.swift; sourceTree = "<group>"; };
 		399B629E2AB831B3006BAC2E /* RealmsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmsVC.swift; sourceTree = "<group>"; };
+		39A0ED0E2B1D7FEE00A6CD39 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		39A0ED132B1D931D00A6CD39 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		39A0ED152B1D9B0300A6CD39 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunMoonSeasonVC.swift; sourceTree = "<group>"; };
 		39A0FBB82B1D5EEE00FD7A72 /* SunMoonHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunMoonHouse.swift; sourceTree = "<group>"; };
 		39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrongestPlanetVC.swift; sourceTree = "<group>"; };
@@ -341,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39A0FBB72B1D29B400FD7A72 /* SwiftEphemeris in Frameworks */,
+				39A0ED122B1D8EF100A6CD39 /* FSCalendar in Frameworks */,
 				3982258C2AE6C43E0058C86D /* SystemConfiguration.framework in Frameworks */,
 				3982258B2AE6C3E00058C86D /* CoreTelephony.framework in Frameworks */,
 				3982258A2AE6C3880058C86D /* Accessibility.framework in Frameworks */,
@@ -383,6 +391,9 @@
 				3926EC532AF165E100606886 /* SunVC.swift */,
 				39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */,
 				39A0FBB82B1D5EEE00FD7A72 /* SunMoonHouse.swift */,
+				39A0ED0E2B1D7FEE00A6CD39 /* Calendar.swift */,
+				39A0ED132B1D931D00A6CD39 /* CalendarCell.swift */,
+				39A0ED152B1D9B0300A6CD39 /* CalendarHeaderView.swift */,
 				39BF3DA12B01D69A006FD001 /* pp.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
 				393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */,
@@ -562,6 +573,7 @@
 			packageProductDependencies = (
 				39A1EC3C2A5F61D8008D1EC1 /* DGCharts */,
 				39A0FBB62B1D29B400FD7A72 /* SwiftEphemeris */,
+				39A0ED112B1D8EF100A6CD39 /* FSCalendar */,
 			);
 			productName = AstroLogic;
 			productReference = 3903A3372A5F2D0700245DD2 /* AstroLogic.app */;
@@ -594,6 +606,7 @@
 			packageReferences = (
 				39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */,
 				39A0FBB52B1D29B400FD7A72 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
+				39A0ED102B1D8EF100A6CD39 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 3903A3382A5F2D0700245DD2 /* Products */;
 			projectDirPath = "";
@@ -677,11 +690,13 @@
 				39C5A5822B03308D007881CC /* SimpleInterAspectsFlipped.swift in Sources */,
 				3924345A2ABA813600584E26 /* CountDownVC.swift in Sources */,
 				3903A3762A5F2E8400245DD2 /* BirthChartView.swift in Sources */,
+				39A0ED0F2B1D7FEE00A6CD39 /* Calendar.swift in Sources */,
 				39E1D0272AFAAC5000E56EC5 /* WeatherVC.swift in Sources */,
 				39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */,
 				393DDD632ADC96E400522012 /* CycleChartsVC.swift in Sources */,
 				3924345E2ABB431F00584E26 /* ProgresionsAspectsBartTabController.swift in Sources */,
 				3916F33C2AA777FF00DEABEB /* NatalHousesCustomCell.swift in Sources */,
+				39A0ED162B1D9B0300A6CD39 /* CalendarHeaderView.swift in Sources */,
 				3955A66A2A909C2E00DE2051 /* ChartTableCell.swift in Sources */,
 				393969512AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift in Sources */,
 				39A1EC6B2A610480008D1EC1 /* Dignity.swift in Sources */,
@@ -690,6 +705,7 @@
 				396CDCBB2A74716A00EDCECC /* CustomDecansTable.swift in Sources */,
 				39851F742A93020A00E70FF5 /* mpPlanetsTCVC.swift in Sources */,
 				395DE5052A954A4B00B0B451 /* TransitAspectsVC.swift in Sources */,
+				39A0ED142B1D931D00A6CD39 /* CalendarCell.swift in Sources */,
 				395DE5232A969F1F00B0B451 /* CompositePlanetsVC.swift in Sources */,
 				39A1EC592A5F79A8008D1EC1 /* TransitsBiWheel.swift in Sources */,
 				396989D32ABDF751007EA008 /* NatalTabBarController.swift in Sources */,
@@ -1000,6 +1016,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		39A0ED102B1D8EF100A6CD39 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 		39A0FBB52B1D29B400FD7A72 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
@@ -1019,6 +1043,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		39A0ED112B1D8EF100A6CD39 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39A0ED102B1D8EF100A6CD39 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		39A0FBB62B1D29B400FD7A72 /* SwiftEphemeris */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 39A0FBB52B1D29B400FD7A72 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;

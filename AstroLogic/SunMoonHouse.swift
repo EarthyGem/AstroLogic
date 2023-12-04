@@ -9,6 +9,8 @@ import Foundation
 import CoreLocation
 import UIKit
 import SwiftEphemeris
+import EventKit
+import FSCalendar
 //
 //struct DateAndHouse {
 //    var date: Date4
@@ -17,27 +19,111 @@ import SwiftEphemeris
 //}
 
 
-class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, FSCalendarDataSource, FSCalendarDelegate {
     var tableView: UITableView!
     var DateAndHouses: [ChartCake.DateAndHouse] = []
     var chartCake: ChartCake!
     let locationManager = CLLocationManager()
-
-    // ... similar setup and methods as in SunMoonSeasonVC ...
+    let eventStore = EKEventStore()
+    var calendar: FSCalendar!
     override func viewDidLoad() {
             super.viewDidLoad()
-            setupTableView()
+        setupTableView(below: 500)
+        requestCalendarAccess()
             configureLocationManager()
             requestHouseTransitionData()
+        setupCalendar()
+     //   setupCustomCalendarHeader()
+        addCustomHeaderLabel1()
+        addCustomHeaderLabel2()
         }
+    private func requestCalendarAccess() {
+        eventStore.requestAccess(to: .event) { granted, error in
+            DispatchQueue.main.async {
+                if granted {
+                    print("Access Granted")
+                } else if let error = error {
+                    print("Error requesting calendar access: \(error)")
+                } else {
+                    print("Access Denied")
+                    // Consider alerting the user to enable access in Settings
+                }
+            }
+        }
+    }
+    private func addCustomHeaderLabel1() {
+        let customHeaderLabel = UILabel()
+        customHeaderLabel.backgroundColor = .clear
+        customHeaderLabel.textAlignment = .center
+        customHeaderLabel.textColor = .black
+        customHeaderLabel.text = "♐️" // Your custom text here
 
-        private func setupTableView() {
-            tableView = UITableView(frame: self.view.bounds, style: .plain)
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-            self.view.addSubview(tableView)
-        }
+        // Add constraints or set the frame of the label to position it correctly
+        // This is just an example using frames
+        customHeaderLabel.frame = CGRect(
+            x: 0,
+            y: calendar.frame.minY, // Adjust this as needed
+            width: calendar.frame.width,
+            height: 20 // The height of your custom label
+        )
+
+        // Insert the label into the view hierarchy
+       // view.insertSubview(customHeaderLabel, aboveSubview: calendar)
+    }
+    
+    private func addCustomHeaderLabel2() {
+        let customHeaderLabel = UILabel()
+        customHeaderLabel.backgroundColor = .clear
+        customHeaderLabel.textAlignment = .center
+        customHeaderLabel.textColor = .black
+        customHeaderLabel.text = "\(chartCake.transits.sun.sign.shortName)" // Your custom text here
+
+        // Add constraints or set the frame of the label to position it correctly
+        // This is just an example using frames
+        customHeaderLabel.frame = CGRect(
+            x: 0,
+            y: calendar.frame.minY, // Adjust this as needed
+            width: calendar.frame.width,
+            height: 20 // The height of your custom label
+        
+        )
+
+        // Insert the label into the view hierarchy
+      //  view.insertSubview(customHeaderLabel, aboveSubview: calendar)
+    }
+    private func getCurrentSunSign() -> String {
+        // Logic to determine the current Sun sign
+        // Example:
+        return chartCake.transits.sun.sign.keyName
+    }
+
+    private func setupCalendar() {
+        let calendarHeight: CGFloat = 300
+        calendar = FSCalendar(frame: CGRect(x: 0, y: 80, width: self.view.bounds.width, height: calendarHeight))
+        
+        // Customization
+        calendar.backgroundColor = UIColor.white
+        calendar.appearance.titleDefaultColor = UIColor.black
+        calendar.appearance.headerTitleColor = UIColor.black
+        calendar.appearance.weekdayTextColor = UIColor.black
+        calendar.calendarHeaderView.backgroundColor = UIColor.lightGray
+
+        calendar.dataSource = self
+        calendar.delegate = self
+        self.view.addSubview(calendar)
+        calendar.register(CustomCalendarCell.self, forCellReuseIdentifier: "CELL")
+        setupTableView(below: calendarHeight + 20)
+    }
+
+
+    private func setupTableView(below yOffset: CGFloat) {
+        let tableViewFrame = CGRect(x: 0, y: 380, width: self.view.bounds.width, height: self.view.bounds.height - yOffset)
+        tableView = UITableView(frame: tableViewFrame, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.view.addSubview(tableView)
+    }
 
         private func configureLocationManager() {
             locationManager.delegate = self
@@ -100,6 +186,32 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
                self.tableView.reloadData()
         }
     }
+    
+    func addTransitionToCalendar(transition: ChartCake.DateAndHouse) {
+        guard let calendar = eventStore.defaultCalendarForNewEvents else {
+               // Handle the case where there is no default calendar
+               return
+           }
+
+        let event = EKEvent(eventStore: eventStore)
+        event.calendar = calendar
+        event.title = "\(transition.celestialBody) enters House \(transition.house)"
+        event.startDate = transition.date
+        // Assume a default duration for the event or customize as needed
+        event.endDate = transition.date.addingTimeInterval(2 * 60 * 60)
+
+        do {
+            try eventStore.save(event, span: .thisEvent)
+        } catch {
+            // Handle errors
+        }
+    }
+    func findTransitions(for date: Date) -> (Int?) {
+     //   let signTransition = DateAndSigns.first { $0.date.isSameDay(as: date) }
+        let houseTransition = DateAndHouses.first { $0.date.isSameDay(as: date) }
+        return (houseTransition?.house)
+    }
+
 
     // Helper function to adjust dates for a given timezone
     private func adjustForTimezone(date: Date, timezone: TimeZone) -> Date {
@@ -110,6 +222,24 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
         let localDateString = dateFormatter.string(from: date)
         return dateFormatter.date(from: localDateString) ?? date
     }
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        let cell = calendar.dequeueReusableCell(withIdentifier: "CELL", for: date, at: position) as! CustomCalendarCell
+        
+        if let house = findTransitions(for: date) {
+            cell.houseLabel.text = "\(house)"
+            // Set the sign image if necessary
+          
+            
+        } else {
+            // Reset to default state if no transition
+            cell.houseLabel.text = nil
+            cell.signImageView.image = nil
+        }
+
+        return cell
+    }
+    
+
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return DateAndHouses.count
@@ -138,6 +268,7 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.textLabel?.text = "\(celestialBodyName) enters H\(houseTransition.house) on \(dateString) \(timeZoneAbbreviation)"
         }
         
+        
 
         // Set background color based on celestial body
         if houseTransition.celestialBody == chartCake.transits.sun.body {
@@ -150,6 +281,13 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let transition = DateAndHouses[indexPath.row]
+        addTransitionToCalendar(transition: transition)
+        // Maybe show an alert or confirmation to the user
+    }
+
 
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             if let location = locations.first {
@@ -164,3 +302,9 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
             print("Failed to find user's location: \(error.localizedDescription)")
         }
     }
+extension Date {
+    func isSameDay(as otherDate: Date) -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDate(self, inSameDayAs: otherDate)
+    }
+}

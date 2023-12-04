@@ -9,6 +9,8 @@ import Foundation
 import CoreLocation
 import UIKit
 import SwiftEphemeris
+import EventKit
+import FSCalendar
 
 // Assuming you have a struct or class to hold your moon sign change data
 struct DateAndSign {
@@ -43,32 +45,74 @@ extension Date {
     }
 }
 
-class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
-
-
+class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, FSCalendarDataSource, FSCalendarDelegate {
+    var calendar: FSCalendar!
+    let eventStore = EKEventStore()
     var tableView: UITableView!
     var DateAndSigns: [DateAndSign] = []
     var chartCake: ChartCake!
     let locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-
+        setupTableView(below: 300 + 20)
+        requestCalendarAccess()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        setupCalendar()
+        
+    }
+    private func requestCalendarAccess() {
+            eventStore.requestAccess(to: .event) { granted, error in
+                if granted {
+                    // Access granted
+                } else {
+                    // Handle access denied
+                }
+            }
+        }
+    private func setupCustomCalendarHeader() {
+        let headerView = CustomCalendarHeaderView(frame: CGRect(x: 0, y: 20, width: self.view.bounds.width, height: 40))
+        headerView.updateHeader(for: Date(), sunSign: getCurrentSunSign())
+        self.view.addSubview(headerView)
+    }
+    private func getCurrentSunSign() -> String {
+        // Logic to determine the current Sun sign
+        // Example:
+        return chartCake.transits.sun.sign.keyName
+    }
+    
+    private func setupCalendar() {
+        let calendarHeight: CGFloat = 300
+        calendar = FSCalendar(frame: CGRect(x: 0, y: 80, width: self.view.bounds.width, height: calendarHeight))
+        
+        
+        // Customization
+        calendar.backgroundColor = UIColor.white
+        calendar.appearance.titleDefaultColor = UIColor.black
+        calendar.appearance.headerTitleColor = UIColor.black
+        calendar.appearance.weekdayTextColor = UIColor.black
+        calendar.calendarHeaderView.backgroundColor = UIColor.lightGray
+
+        calendar.dataSource = self
+        calendar.delegate = self
+        self.view.addSubview(calendar)
+        calendar.register(CustomCalendarCell.self, forCellReuseIdentifier: "customCell")
+        setupTableView(below: calendarHeight + 20)
+        
+     
     }
 
 
-    func setupTableView() {
-        tableView = UITableView(frame: self.view.bounds, style: .plain)
+    private func setupTableView(below yOffset: CGFloat) {
+        let tableViewFrame = CGRect(x: 0, y: 380, width: self.view.bounds.width, height: self.view.bounds.height - yOffset)
+        tableView = UITableView(frame: tableViewFrame, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(tableView)
     }
-    
     // Assume you have a method to fetch raw DateAndSigns data
     func fetchDateAndSigns() async -> [DateAndSign] {
         // Fetch your raw DateAndSigns data here
@@ -96,6 +140,19 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to find user's location: \(error.localizedDescription)")
         // Handle the error appropriately, maybe set a default location or show an error message
+    }
+    func addSignTransitionToCalendar(transition: DateAndSign) {
+        let event = EKEvent(eventStore: eventStore)
+        event.calendar = eventStore.defaultCalendarForNewEvents
+        event.title = "\(transition.celestialBody) enters \(transition.sign)"
+        event.startDate = transition.date
+        event.endDate = transition.date.addingTimeInterval(3600) // Example duration
+
+        do {
+            try eventStore.save(event, span: .thisEvent)
+        } catch {
+            // Handle the error
+        }
     }
 
 
@@ -147,7 +204,21 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             return DateAndSign(date: adjustedDate, sign: transition.sign, celestialBody: transition.celestialBody)
         }
     }
+    
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at monthPosition: FSCalendarMonthPosition) -> FSCalendarCell {
+           let cell = calendar.dequeueReusableCell(withIdentifier: "customCell", for: date, at: monthPosition) as! CustomCalendarCell
 
+           // Configure your cell here
+           // For example, setting images based on the date
+           if let transitionData = findTransitionDataForDate(date) {
+               cell.signImageView.image = UIImage(named: transitionData.signImageName)
+               cell.celestialBodyImageView.image = UIImage(named: transitionData.celestialBodyImageName)
+           }
+
+           return cell
+       }
+
+       // Helper function to find transition data for a given date
 
     // TableView DataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -195,5 +266,39 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let transition = DateAndSigns[indexPath.row]
+        addSignTransitionToCalendar(transition: transition)
+        // Maybe show an alert or confirmation to the user
+    }
 
+
+}
+extension SunMoonSeasonVC {
+
+    // Helper function to find transition data for a given date
+    func findTransitionDataForDate(_ date: Date) -> (signImageName: String, celestialBodyImageName: String)? {
+        // Example logic to find the transition data
+        if let signTransition = DateAndSigns.first(where: { $0.date.isSameDay(as: date) }) {
+            let signImageName = signTransition.sign.keyName // Assuming you have a method to get the image name
+            let celestialBodyImageName = getCelestialBodyImageName(celestialBody: signTransition.celestialBody)
+            return (signImageName, celestialBodyImageName)
+        }
+
+        // Return nil if there's no transition data for the given date
+        return nil
+    }
+
+    // Helper function to get the celestial body image name
+    func getCelestialBodyImageName(celestialBody: CelestialObject) -> String {
+        // Example implementation, adjust as needed
+        switch celestialBody {
+        case chartCake.transits.sun.body:
+            return "sun" // Replace with your actual image name for the sun
+        case chartCake.transits.moon.body:
+            return "moon" // Replace with your actual image name for the moon
+        default:
+            return "defaultImage" // Replace with a default image name
+        }
+    }
 }

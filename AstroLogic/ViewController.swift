@@ -702,6 +702,8 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
             self.timePickerValueChanged(self.timePicker) // Assuming you have a timePicker like your datePicker
         }
     }
+    
+    
 
     func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completion: @escaping (TimeZone?) -> Void) {
         let API_KEY = "AIzaSyA5sA9Mz9AOMdRoHy4ex035V3xsJxSJU_8" // Note: Never hard-code API keys in production apps. Use environment variables or secure storage.
