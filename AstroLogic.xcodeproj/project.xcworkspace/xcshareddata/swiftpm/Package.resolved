@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/heylila/SwiftEphemeris.git",
       "state" : {
-        "branch" : "new-branch-name",
-        "revision" : "d4fec01cc128eeb5ea40d1e7aa559ed29e45454e"
+        "branch" : "t-square",
+        "revision" : "bdea9e8f2c0fdaaeb7bada5e1df85d60a2108b6a"
       }
     }
   ],

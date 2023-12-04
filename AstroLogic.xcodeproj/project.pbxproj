@@ -1028,7 +1028,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
 			requirement = {
-				branch = "new-branch-name";
+				branch = "t-square";
 				kind = branch;
 			};
 		};
