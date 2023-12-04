@@ -239,7 +239,7 @@ class EditChartViewController: UIViewController, SuggestionsViewControllerDelega
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
 
-        picker.addTarget(self, action: #selector(dateTimePickerValueChanged(_:)), for: .valueChanged)
+        picker.addTarget(EditChartViewController.self, action: #selector(dateTimePickerValueChanged(_:)), for: .valueChanged)
 
      //   picker.date = (chartToEdit?.birthDate)
         picker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)

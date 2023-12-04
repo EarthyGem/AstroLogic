@@ -37,7 +37,6 @@
 		393969532AF208910011ACF1 /* ProgressedMoonPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393969522AF208910011ACF1 /* ProgressedMoonPhase.swift */; };
 		393DDD542AD71A9E00522012 /* ArchetypeBreakdownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD532AD71A9E00522012 /* ArchetypeBreakdownVC.swift */; };
 		393DDD562AD728A300522012 /* MyContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD552AD728A300522012 /* MyContentCell.swift */; };
-		393DDD592AD7364700522012 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 393DDD582AD7364700522012 /* SwiftEphemeris */; };
 		393DDD612ADC90DB00522012 /* hh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD602ADC90DB00522012 /* hh.swift */; };
 		393DDD632ADC96E400522012 /* CycleChartsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD622ADC96E400522012 /* CycleChartsVC.swift */; };
 		393DDD652ADC98E900522012 /* CycleChartTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393DDD642ADC98E900522012 /* CycleChartTV.swift */; };
@@ -113,6 +112,8 @@
 		399B62992AB75DAC006BAC2E /* Charts3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B62982AB75DAC006BAC2E /* Charts3.swift */; };
 		399B629B2AB7A109006BAC2E /* 23Ancestory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B629A2AB7A109006BAC2E /* 23Ancestory.swift */; };
 		399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B629E2AB831B3006BAC2E /* RealmsVC.swift */; };
+		39A0FBB42B1D26E000FD7A72 /* SunMoonSeasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */; };
+		39A0FBB72B1D29B400FD7A72 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 39A0FBB62B1D29B400FD7A72 /* SwiftEphemeris */; };
 		39A1EC342A5F6003008D1EC1 /* StrongestPlanetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */; };
 		39A1EC362A5F6043008D1EC1 /* MyItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */; };
 		39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */; };
@@ -277,6 +278,7 @@
 		399B62982AB75DAC006BAC2E /* Charts3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts3.swift; sourceTree = "<group>"; };
 		399B629A2AB7A109006BAC2E /* 23Ancestory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 23Ancestory.swift; sourceTree = "<group>"; };
 		399B629E2AB831B3006BAC2E /* RealmsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmsVC.swift; sourceTree = "<group>"; };
+		39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunMoonSeasonVC.swift; sourceTree = "<group>"; };
 		39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrongestPlanetVC.swift; sourceTree = "<group>"; };
 		39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsVC.swift; sourceTree = "<group>"; };
 		39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today's VC.swift"; sourceTree = "<group>"; };
@@ -336,11 +338,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39A0FBB72B1D29B400FD7A72 /* SwiftEphemeris in Frameworks */,
 				3982258C2AE6C43E0058C86D /* SystemConfiguration.framework in Frameworks */,
 				3982258B2AE6C3E00058C86D /* CoreTelephony.framework in Frameworks */,
 				3982258A2AE6C3880058C86D /* Accessibility.framework in Frameworks */,
 				39A1EC3D2A5F61D8008D1EC1 /* DGCharts in Frameworks */,
-				393DDD592AD7364700522012 /* SwiftEphemeris in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +379,7 @@
 				398832C72AFAE2AB00BCE1A0 /* HoraryVC.swift */,
 				396F3A0B2AF15BE300FF0CAA /* MoonVC.swift */,
 				3926EC532AF165E100606886 /* SunVC.swift */,
+				39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */,
 				39BF3DA12B01D69A006FD001 /* pp.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
 				393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */,
@@ -555,7 +558,7 @@
 			name = AstroLogic;
 			packageProductDependencies = (
 				39A1EC3C2A5F61D8008D1EC1 /* DGCharts */,
-				393DDD582AD7364700522012 /* SwiftEphemeris */,
+				39A0FBB62B1D29B400FD7A72 /* SwiftEphemeris */,
 			);
 			productName = AstroLogic;
 			productReference = 3903A3372A5F2D0700245DD2 /* AstroLogic.app */;
@@ -587,7 +590,7 @@
 			mainGroup = 3903A32E2A5F2D0700245DD2;
 			packageReferences = (
 				39A1EC3B2A5F61D8008D1EC1 /* XCRemoteSwiftPackageReference "Charts" */,
-				393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
+				39A0FBB52B1D29B400FD7A72 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */,
 			);
 			productRefGroup = 3903A3382A5F2D0700245DD2 /* Products */;
 			projectDirPath = "";
@@ -761,6 +764,7 @@
 				39A1EC3F2A5F6DB6008D1EC1 /* NatalPlanetsVC.swift in Sources */,
 				392434562ABA7CDE00584E26 /* ActionSteps.swift in Sources */,
 				393DDD562AD728A300522012 /* MyContentCell.swift in Sources */,
+				39A0FBB42B1D26E000FD7A72 /* SunMoonSeasonVC.swift in Sources */,
 				394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */,
 				395DE51F2A967FBE00B0B451 /* SynastryFlipBiWheel.swift in Sources */,
 				3997F07E2A68F7DF00741E9D /* AspectarianView.swift in Sources */,
@@ -992,11 +996,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */ = {
+		39A0FBB52B1D29B400FD7A72 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/heylila/SwiftEphemeris.git";
 			requirement = {
-				branch = "rickys-branch";
+				branch = "new-branch-name";
 				kind = branch;
 			};
 		};
@@ -1011,9 +1015,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		393DDD582AD7364700522012 /* SwiftEphemeris */ = {
+		39A0FBB62B1D29B400FD7A72 /* SwiftEphemeris */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 393DDD572AD7364700522012 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;
+			package = 39A0FBB52B1D29B400FD7A72 /* XCRemoteSwiftPackageReference "SwiftEphemeris" */;
 			productName = SwiftEphemeris;
 		};
 		39A1EC3C2A5F61D8008D1EC1 /* DGCharts */ = {
