@@ -169,6 +169,8 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         var cellText: String = ""
         
         if indexPath.row == 0, change.celestialBody == Planet.sun.celestialObject {
+            cell.textLabel?.numberOfLines = 0 // Allow multiple lines
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
             let sunTransitionText = "☀️ enters \(change.sign.shortName) \(change.sign.emoji) on \(dateString) \(timeZoneAbbreviation)"
             let moonSignAtSunTransition = chartCake.moonSignForDate(change.date)
             cellText = "\(sunTransitionText)\nMoon in \(moonSignAtSunTransition.shortName) \(moonSignAtSunTransition.emoji) at this time"
@@ -177,6 +179,7 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             // Configuration for moon transitions and default case
             switch change.celestialBody {
             case Planet.moon.celestialObject:
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
                 let lunarPhase = chartCake.lunarPhaseForDate(change.date, chart: chartCake)
                 cellText = "\(lunarPhase.emoji) Moon in \(change.sign.shortName) \(change.sign.emoji) \(dateString) \(timeZoneAbbreviation)"
                 cell.backgroundColor = UIColor.systemOrange.withAlphaComponent(0.1)
@@ -186,8 +189,8 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
         }
 
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
-        cell.textLabel?.numberOfLines = 0 // Allow multiple lines
+        
+    
         cell.textLabel?.text = cellText
 
         return cell

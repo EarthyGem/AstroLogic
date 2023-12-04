@@ -9,12 +9,12 @@ import Foundation
 import CoreLocation
 import UIKit
 import SwiftEphemeris
-
-struct DateAndHouse {
-    var date: Date
-    var house: Int
-    var celestialBody: CelestialObject
-}
+//
+//struct DateAndHouse {
+//    var date: Date4
+//    var house: Int
+//    var celestialBody: CelestialObject
+//}
 
 
 class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
@@ -62,6 +62,19 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
             return
         }
         
+        let currentDate = Date()
+        let currentSunCoordinate = chartCake.getCoordinate(for: chartCake.transits.sun.body, on: currentDate)
+            let currentMoonCoordinate = chartCake.getCoordinate(for: chartCake.transits.moon.body, on: currentDate)
+            
+            let currentSunHouse = chartCake.houseCusps.house(of: currentSunCoordinate)
+            let currentMoonHouse = chartCake.houseCusps.house(of: currentMoonCoordinate)
+            
+            // Create an array for the first cell with current house data
+            let currentHouses = [
+                ChartCake.DateAndHouse(date: currentDate, house: currentSunHouse.number, celestialBody: chartCake.transits.sun.body),
+                ChartCake.DateAndHouse(date: currentDate, house: currentMoonHouse.number, celestialBody: chartCake.transits.moon.body)
+            ]
+        
         // Assume you have a start date for your search, e.g., the current date
         let startDate = Date()
 
@@ -81,9 +94,10 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
         }
 
         // Update your data source and refresh the table view
-        self.DateAndHouses = adjustedTransitions
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        DateAndHouses = currentHouses + adjustedTransitions
+
+           DispatchQueue.main.async {
+               self.tableView.reloadData()
         }
     }
 
@@ -110,16 +124,27 @@ class HouseTransitionVC: UIViewController, UITableViewDelegate, UITableViewDataS
         dateFormatter.locale = Locale.current
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "E, MMM d, yyyy 'at' h:mma"
-        let timeZoneAbbreviation = dateFormatter.timeZone.abbreviation() ?? "TZ" // Fallback to "TZ" if abbreviation is nil
+
         let dateString = dateFormatter.string(from: houseTransition.date)
-        let celestialBodyName = (houseTransition.celestialBody == chartCake.transits.sun.body) ? "🌞" : "🌖"
-        cell.textLabel?.text = "\(celestialBodyName) enters H\(houseTransition.house) on \(dateString) \(timeZoneAbbreviation)"
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
+        let timeZoneAbbreviation = dateFormatter.timeZone.abbreviation() ?? "TZ"
+        
+        if indexPath.row < 2 { 
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)// Assuming the first two entries are the current Sun and Moon positions
+            let celestialBodyName = (houseTransition.celestialBody == chartCake.transits.sun.body) ? "🌞" : "🌖"
+            cell.textLabel?.text = "Current \(celestialBodyName) House: \(houseTransition.house)"
+        } else {
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
+            let celestialBodyName = (houseTransition.celestialBody == chartCake.transits.sun.body) ? "🌞" : "🌖"
+            cell.textLabel?.text = "\(celestialBodyName) enters H\(houseTransition.house) on \(dateString) \(timeZoneAbbreviation)"
+        }
+        
 
         // Set background color based on celestial body
         if houseTransition.celestialBody == chartCake.transits.sun.body {
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell.backgroundColor = UIColor.systemOrange.withAlphaComponent(0.1) // Light orange for Sun
         } else {
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1) // Light green for Moon
         }
 
