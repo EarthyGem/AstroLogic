@@ -37,6 +37,7 @@ class MyItemsViewController: UIViewController {
     private let ricksData: [RicksItems] = [
         RicksItems(chartType: "Charts and Graphs"),
         RicksItems(chartType: "Collective Mood"),
+        RicksItems(chartType: "Moon Through Houses"),
         RicksItems(chartType: "Daily Moon"),
         RicksItems(chartType: "Daily Sun"),
         RicksItems(chartType: "Current Moon Phase"),
@@ -112,6 +113,11 @@ extension MyItemsViewController: UITableViewDelegate {
 //        collectiveMood.chart = self.chart
         collectiveMood.chartCake = self.chartCake
         collectiveMood.title = "Collective Mood"
+        
+        let sunMoonHouses = HouseTransitionVC()
+//        collectiveMood.chart = self.chart
+        sunMoonHouses.chartCake = self.chartCake
+        sunMoonHouses.title = "Moon in the Houses"
         
         let moonVC = MoonViewController()
         moonVC.title = category.chartType
@@ -299,7 +305,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC,collectiveMood,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,nameVC,horaryVC,cycleChartsVC,weatherVC,RelationshipVC]
+        let categories = [chartVC,collectiveMood,sunMoonHouses,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,nameVC,horaryVC,cycleChartsVC,weatherVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

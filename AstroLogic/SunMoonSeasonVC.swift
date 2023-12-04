@@ -162,13 +162,14 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         dateFormatter.locale = Locale.current
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "E, MMM d, yyyy 'at' h:mma"
+        let timeZoneAbbreviation = dateFormatter.timeZone.abbreviation() ?? "TZ" // Fallback to "TZ" if abbreviation is nil
 
         let dateString = dateFormatter.string(from: change.date)
         
         var cellText: String = ""
         
         if indexPath.row == 0, change.celestialBody == Planet.sun.celestialObject {
-            let sunTransitionText = "☀️ enters \(change.sign.shortName) \(change.sign.emoji) on \(dateString)"
+            let sunTransitionText = "☀️ enters \(change.sign.shortName) \(change.sign.emoji) on \(dateString) \(timeZoneAbbreviation)"
             let moonSignAtSunTransition = chartCake.moonSignForDate(change.date)
             cellText = "\(sunTransitionText)\nMoon in \(moonSignAtSunTransition.shortName) \(moonSignAtSunTransition.emoji) at this time"
             cell.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1)
@@ -177,7 +178,7 @@ class SunMoonSeasonVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             switch change.celestialBody {
             case Planet.moon.celestialObject:
                 let lunarPhase = chartCake.lunarPhaseForDate(change.date, chart: chartCake)
-                cellText = "\(lunarPhase.emoji) Moon in \(change.sign.shortName) \(change.sign.emoji) \(dateString)"
+                cellText = "\(lunarPhase.emoji) Moon in \(change.sign.shortName) \(change.sign.emoji) \(dateString) \(timeZoneAbbreviation)"
                 cell.backgroundColor = UIColor.systemOrange.withAlphaComponent(0.1)
             default:
                 cellText = "Transition on \(dateString)"

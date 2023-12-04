@@ -114,6 +114,7 @@
 		399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399B629E2AB831B3006BAC2E /* RealmsVC.swift */; };
 		39A0FBB42B1D26E000FD7A72 /* SunMoonSeasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */; };
 		39A0FBB72B1D29B400FD7A72 /* SwiftEphemeris in Frameworks */ = {isa = PBXBuildFile; productRef = 39A0FBB62B1D29B400FD7A72 /* SwiftEphemeris */; };
+		39A0FBB92B1D5EEE00FD7A72 /* SunMoonHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0FBB82B1D5EEE00FD7A72 /* SunMoonHouse.swift */; };
 		39A1EC342A5F6003008D1EC1 /* StrongestPlanetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */; };
 		39A1EC362A5F6043008D1EC1 /* MyItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */; };
 		39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */; };
@@ -279,6 +280,7 @@
 		399B629A2AB7A109006BAC2E /* 23Ancestory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 23Ancestory.swift; sourceTree = "<group>"; };
 		399B629E2AB831B3006BAC2E /* RealmsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmsVC.swift; sourceTree = "<group>"; };
 		39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunMoonSeasonVC.swift; sourceTree = "<group>"; };
+		39A0FBB82B1D5EEE00FD7A72 /* SunMoonHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunMoonHouse.swift; sourceTree = "<group>"; };
 		39A1EC332A5F6003008D1EC1 /* StrongestPlanetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrongestPlanetVC.swift; sourceTree = "<group>"; };
 		39A1EC352A5F6043008D1EC1 /* MyItemsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsVC.swift; sourceTree = "<group>"; };
 		39A1EC372A5F60DA008D1EC1 /* Today's VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today's VC.swift"; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				396F3A0B2AF15BE300FF0CAA /* MoonVC.swift */,
 				3926EC532AF165E100606886 /* SunVC.swift */,
 				39A0FBB32B1D26E000FD7A72 /* SunMoonSeasonVC.swift */,
+				39A0FBB82B1D5EEE00FD7A72 /* SunMoonHouse.swift */,
 				39BF3DA12B01D69A006FD001 /* pp.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
 				393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */,
@@ -745,6 +748,7 @@
 				3939694B2AF096A90011ACF1 /* SAAspectsVC.swift in Sources */,
 				39A1EC382A5F60DA008D1EC1 /* Today's VC.swift in Sources */,
 				39A1EC432A5F7080008D1EC1 /* TransitPlanetsVC.swift in Sources */,
+				39A0FBB92B1D5EEE00FD7A72 /* SunMoonHouse.swift in Sources */,
 				396CDCB92A74712100EDCECC /* DecanatesVC.swift in Sources */,
 				39851F6C2A93017800E70FF5 /* TransitPlanetsTCVC.swift in Sources */,
 				39CFBE872B09CD5600BCBC4E /* Harmony Discord BarView.swift in Sources */,
