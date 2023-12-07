@@ -5,3 +5,1324 @@ Build/
 /*.xcodeproj
 */xcschemes/*
 */xcuserdata/*
+.gitignore 2
+Fake 2.swift
+TestPlan 2.xctestplan
+AstroLogic/1 3.swift
+AstroLogic/1 4.swift
+AstroLogic/23Ancestory 2.swift
+AstroLogic/34 2.swift
+AstroLogic/35 2.swift
+AstroLogic/AboutDecanatesVC 2.swift
+AstroLogic/AboutVC 2.swift
+AstroLogic/ActionSteps 2.swift
+AstroLogic/AddNewRelationshipVC 2.swift
+AstroLogic/AddRelationship 2.swift
+AstroLogic/AppDelegate 2.swift
+AstroLogic/ArchetypeBreakdownVC 2.swift
+AstroLogic/AspectarianView 2.swift
+AstroLogic/AspectByHouses 2.swift
+AstroLogic/AstroLogic 2.entitlements
+AstroLogic/BirthChartView 3.swift
+AstroLogic/BirthChartView 4.swift
+AstroLogic/Calendar 2.swift
+AstroLogic/CalendarCell 2.swift
+AstroLogic/CalendarHeaderView 2.swift
+AstroLogic/Cells 3.swift
+AstroLogic/Cells 4.swift
+AstroLogic/Charts3 3.swift
+AstroLogic/Charts3 4.swift
+AstroLogic/ChartTableCell 3.swift
+AstroLogic/ChartTableCell 4.swift
+AstroLogic/ChartView Extension 3.swift
+AstroLogic/ChartView Extension 4.swift
+AstroLogic/ChartViewerVC 3.swift
+AstroLogic/ChartViewerVC 4.swift
+AstroLogic/CompositeChart 3.swift
+AstroLogic/CompositeChart 4.swift
+AstroLogic/CompositeChartsVC 2.swift
+AstroLogic/CompositePlanetsVC 3.swift
+AstroLogic/CompositePlanetsVC 4.swift
+AstroLogic/CompositStrongestPlanet 2.swift
+AstroLogic/content 3.swift
+AstroLogic/content 4.swift
+AstroLogic/ContentData 2.swift
+AstroLogic/CountDownVC 3.swift
+AstroLogic/CountDownVC 4.swift
+AstroLogic/CurrentMoonPhaseVC 2.swift
+AstroLogic/Custom Aspects 3.swift
+AstroLogic/Custom Aspects 4.swift
+AstroLogic/CustomDecansTable 3.swift
+AstroLogic/CustomDecansTable 4.swift
+AstroLogic/CustomNatalPlanetsCell 3.swift
+AstroLogic/CustomNatalPlanetsCell 4.swift
+AstroLogic/CustomTableCell 3.swift
+AstroLogic/CustomTableCell 4.swift
+AstroLogic/CycleChartsVC 3.swift
+AstroLogic/CycleChartsVC 4.swift
+AstroLogic/CycleChartTV 3.swift
+AstroLogic/CycleChartTV 4.swift
+AstroLogic/CycleTransitVC 3.swift
+AstroLogic/CycleTransitVC 4.swift
+AstroLogic/DateChangeMajorsPlanetsVC 3.swift
+AstroLogic/DateChangeMajorsPlanetsVC 4.swift
+AstroLogic/DateChangeMinors 3.swift
+AstroLogic/DateChangeMinors 4.swift
+AstroLogic/DateChangeMinorsVC 3.swift
+AstroLogic/DateChangeMinorsVC 4.swift
+AstroLogic/DateChangeTransitPlanetsVC 3.swift
+AstroLogic/DateChangeTransitPlanetsVC 4.swift
+AstroLogic/DecanatesVC 3.swift
+AstroLogic/DecanatesVC 4.swift
+AstroLogic/DecanatesViewVC 3.swift
+AstroLogic/DecanatesViewVC 4.swift
+AstroLogic/Dignity 3.swift
+AstroLogic/Dignity 4.swift
+AstroLogic/DiscordInfoVC 3.swift
+AstroLogic/DiscordInfoVC 4.swift
+AstroLogic/DomainsVC 2.swift
+AstroLogic/EditChartVC 3.swift
+AstroLogic/EditChartVC 4.swift
+AstroLogic/ElementsVC 2.swift
+AstroLogic/EmanationsVC 2.swift
+AstroLogic/File 3.swift
+AstroLogic/File 4.swift
+AstroLogic/FlipSynastryVC 3.swift
+AstroLogic/FlipSynastryVC 4.swift
+AstroLogic/FlipTransposedHousesViewController 3.swift
+AstroLogic/FlipTransposedHousesViewController 4.swift
+AstroLogic/GeoCode 3.swift
+AstroLogic/GeoCode 4.swift
+AstroLogic/graph info 3.swift
+AstroLogic/graph info 4.swift
+AstroLogic/HarmoniousInfoVC 3.swift
+AstroLogic/HarmoniousInfoVC 4.swift
+AstroLogic/Harmony Discord BarView 2.swift
+AstroLogic/hh 3.swift
+AstroLogic/hh 4.swift
+AstroLogic/HoraryVC 2.swift
+AstroLogic/househol;der 3.swift
+AstroLogic/househol;der 4.swift
+AstroLogic/Houses Custom 3.swift
+AstroLogic/Houses Custom 4.swift
+AstroLogic/Houses Custom2 2.swift
+AstroLogic/ImagePicker 3.swift
+AstroLogic/ImagePicker 4.swift
+AstroLogic/ImportAAFVC 3.swift
+AstroLogic/ImportAAFVC 4.swift
+AstroLogic/Info 3.plist
+AstroLogic/Info 4.plist
+AstroLogic/InfoVC 3.swift
+AstroLogic/InfoVC 4.swift
+AstroLogic/MajorProgressions 3.swift
+AstroLogic/MajorProgressions 4.swift
+AstroLogic/MajorsBiWheel 3.swift
+AstroLogic/MajorsBiWheel 4.swift
+AstroLogic/minorProgressedAsepctsByHousesVC 3.swift
+AstroLogic/minorProgressedAsepctsByHousesVC 4.swift
+AstroLogic/minorProgressedMatrixVC 3.swift
+AstroLogic/minorProgressedMatrixVC 4.swift
+AstroLogic/MinorsAspectsVC 3.swift
+AstroLogic/MinorsAspectsVC 4.swift
+AstroLogic/MinorsBiWheel 3.swift
+AstroLogic/MinorsBiWheel 4.swift
+AstroLogic/MinorsPlanetsVC 3.swift
+AstroLogic/MinorsPlanetsVC 4.swift
+AstroLogic/ModesVC 2.swift
+AstroLogic/MonthActionPlanVC 3.swift
+AstroLogic/MonthActionPlanVC 4.swift
+AstroLogic/MoonPhaseVC 4.swift
+AstroLogic/MoonPhaseVC 5.swift
+AstroLogic/MoonPhaseVC 6.swift
+AstroLogic/MoonVC 2.swift
+AstroLogic/more scores 3.swift
+AstroLogic/more scores 4.swift
+AstroLogic/mpAspectsTCVC 3.swift
+AstroLogic/mpAspectsTCVC 4.swift
+AstroLogic/MPAspectsVC 3.swift
+AstroLogic/MPAspectsVC 4.swift
+AstroLogic/mpPlanetsTCVC 3.swift
+AstroLogic/mpPlanetsTCVC 4.swift
+AstroLogic/MPPlanetsVC 5.swift
+AstroLogic/MPPlanetsVC 6.swift
+AstroLogic/MPPlanetsVC 7.swift
+AstroLogic/MPPlanetsVC 8.swift
+AstroLogic/mpProgressedAspectsByHouseTCVC 3.swift
+AstroLogic/mpProgressedAspectsByHouseTCVC 4.swift
+AstroLogic/MyCharts 3.swift
+AstroLogic/MyCharts 4.swift
+AstroLogic/MyCompositeItemsVC 2.swift
+AstroLogic/MyContentCell 3.swift
+AstroLogic/MyContentCell 4.swift
+AstroLogic/MyItemsVC 3.swift
+AstroLogic/MyItemsVC 4.swift
+AstroLogic/MyNatalHousesVC 3.swift
+AstroLogic/MyNatalHousesVC 4.swift
+AstroLogic/NameVC 2.swift
+AstroLogic/NatalAspectsSimple 3.swift
+AstroLogic/NatalAspectsSimple 4.swift
+AstroLogic/NatalAspectsVC 3.swift
+AstroLogic/NatalAspectsVC 4.swift
+AstroLogic/NatalAspectsVC copy 3.swift
+AstroLogic/NatalAspectsVC copy 4.swift
+AstroLogic/NatalHousesCustomCell 3.swift
+AstroLogic/NatalHousesCustomCell 4.swift
+AstroLogic/NatalPlanetsVC 3.swift
+AstroLogic/NatalPlanetsVC 4.swift
+AstroLogic/NatalTabBarController 3.swift
+AstroLogic/NatalTabBarController 4.swift
+AstroLogic/NestedProgressedAspects 3.swift
+AstroLogic/NestedProgressedAspects 4.swift
+AstroLogic/NewAspects 3.swift
+AstroLogic/NewAspects 4.swift
+AstroLogic/newtv 3.swift
+AstroLogic/newtv 4.swift
+AstroLogic/OthersPlanetsVC 3.swift
+AstroLogic/OthersPlanetsVC 4.swift
+AstroLogic/OtherStrongestPlanetVC 3.swift
+AstroLogic/OtherStrongestPlanetVC 4.swift
+AstroLogic/Parse Data 3.swift
+AstroLogic/Parse Data 4.swift
+AstroLogic/Parsed 3.swift
+AstroLogic/Parsed 4.swift
+AstroLogic/Parsing 3.swift
+AstroLogic/Parsing 4.swift
+AstroLogic/PieChartsTBC 2.swift
+AstroLogic/Planet Info 3.swift
+AstroLogic/Planet Info 4.swift
+AstroLogic/PlanetDegreeCell 3.swift
+AstroLogic/PlanetDegreeCell 4.swift
+AstroLogic/PlanetDegreeVC 3.swift
+AstroLogic/PlanetDegreeVC 4.swift
+AstroLogic/planetInfoDictionary 3.swift
+AstroLogic/planetInfoDictionary 4.swift
+AstroLogic/pp 2.swift
+AstroLogic/ProgresionsAspectsBartTabController 3.swift
+AstroLogic/ProgresionsAspectsBartTabController 4.swift
+AstroLogic/ProgresionsAspectsByHouseBarTabController 3.swift
+AstroLogic/ProgresionsAspectsByHouseBarTabController 4.swift
+AstroLogic/progresionsMatrixVC 3.swift
+AstroLogic/progresionsMatrixVC 4.swift
+AstroLogic/ProgresionsPlanetsBartTabController 3.swift
+AstroLogic/ProgresionsPlanetsBartTabController 4.swift
+AstroLogic/ProgressedAspectsByHouses 3.swift
+AstroLogic/ProgressedAspectsByHouses 4.swift
+AstroLogic/ProgressedAspectsByHouseTCVC 3.swift
+AstroLogic/ProgressedAspectsByHouseTCVC 4.swift
+AstroLogic/ProgressedAspectsTCVC 3.swift
+AstroLogic/ProgressedAspectsTCVC 4.swift
+AstroLogic/ProgressedMoonPhase 2.swift
+AstroLogic/ProgressedPlanetsTCVC 3.swift
+AstroLogic/ProgressedPlanetsTCVC 4.swift
+AstroLogic/Progression Sentence 3.swift
+AstroLogic/Progression Sentence 4.swift
+AstroLogic/Progressions DATA 2.swift
+AstroLogic/Racheal Ray 3.hsn
+AstroLogic/Racheal Ray 4.hsn
+AstroLogic/realm 3.swift
+AstroLogic/realm 4.swift
+AstroLogic/RealmsVC 3.swift
+AstroLogic/RealmsVC 4.swift
+AstroLogic/RechargeVC 3.swift
+AstroLogic/RechargeVC 4.swift
+AstroLogic/RelationshipBiWHeel 3.swift
+AstroLogic/RelationshipBiWHeel 4.swift
+AstroLogic/RelationshipItemsVC 3.swift
+AstroLogic/RelationshipItemsVC 4.swift
+AstroLogic/RelationshipPlanetsVC 3.swift
+AstroLogic/RelationshipPlanetsVC 4.swift
+AstroLogic/RelationshipsVC 3.swift
+AstroLogic/RelationshipsVC 4.swift
+AstroLogic/rr 2.swift
+AstroLogic/RVC 3.swift
+AstroLogic/RVC 4.swift
+AstroLogic/RVCViewController 3.swift
+AstroLogic/RVCViewController 4.swift
+AstroLogic/SAAspectsTCVC 2.swift
+AstroLogic/SAAspectsVC 2.swift
+AstroLogic/SABiWHeel 2.swift
+AstroLogic/SAPlanetsTCVC 2.swift
+AstroLogic/SAPlanetsVC 2.swift
+AstroLogic/SceneDelegate 3.swift
+AstroLogic/SceneDelegate 4.swift
+AstroLogic/Sentence 3.swift
+AstroLogic/Sentence 4.swift
+AstroLogic/signs 3.swift
+AstroLogic/signs 4.swift
+AstroLogic/SimpleAspectsByHouse 3.swift
+AstroLogic/SimpleAspectsByHouse 4.swift
+AstroLogic/SimpleInterAspectsFlipped 2.swift
+AstroLogic/SimpleInterAspectsVC 3.swift
+AstroLogic/SimpleInterAspectsVC 4.swift
+AstroLogic/SimpleMajorAspectsVC 3.swift
+AstroLogic/SimpleMajorAspectsVC 4.swift
+AstroLogic/SimpleMinorAspectsVC 3.swift
+AstroLogic/SimpleMinorAspectsVC 4.swift
+AstroLogic/SimpleMinorProgressedAspectsByHouse 3.swift
+AstroLogic/SimpleMinorProgressedAspectsByHouse 4.swift
+AstroLogic/SimpleProgressedAspectsByHouse 3.swift
+AstroLogic/SimpleProgressedAspectsByHouse 4.swift
+AstroLogic/SimpleTransitAspects 3.swift
+AstroLogic/SimpleTransitAspects 4.swift
+AstroLogic/SimpleTransitAspectsByHouse 3.swift
+AstroLogic/SimpleTransitAspectsByHouse 4.swift
+AstroLogic/SolarArcViewController 3.swift
+AstroLogic/SolarArcViewController 4.swift
+AstroLogic/StrongestPlanetVC 3.swift
+AstroLogic/StrongestPlanetVC 4.swift
+AstroLogic/Suggestions 2.swift
+AstroLogic/SunMoonHouse 2.swift
+AstroLogic/SunMoonSeasonVC 2.swift
+AstroLogic/SunVC 2.swift
+AstroLogic/Susan 3.hsn
+AstroLogic/Susan 4.hsn
+AstroLogic/SynastryBiwheel 3.swift
+AstroLogic/SynastryBiwheel 4.swift
+AstroLogic/SynastryChartVC 3.swift
+AstroLogic/SynastryChartVC 4.swift
+AstroLogic/SynastryFlipBiWheel 3.swift
+AstroLogic/SynastryFlipBiWheel 4.swift
+AstroLogic/TabBarController 3.swift
+AstroLogic/TabBarController 4.swift
+AstroLogic/TimeChangeVC 3.swift
+AstroLogic/TimeChangeVC 4.swift
+AstroLogic/Today's VC 3.swift
+AstroLogic/Today's VC 4.swift
+AstroLogic/TransitAspectsByHouses 3.swift
+AstroLogic/TransitAspectsByHouses 4.swift
+AstroLogic/TransitAspectsByHouseTCVC 3.swift
+AstroLogic/TransitAspectsByHouseTCVC 4.swift
+AstroLogic/TransitAspectsTCVC 3.swift
+AstroLogic/TransitAspectsTCVC 4.swift
+AstroLogic/TransitAspectsVC 3.swift
+AstroLogic/TransitAspectsVC 4.swift
+AstroLogic/TransitByHouseChangedateVC 3.swift
+AstroLogic/TransitByHouseChangedateVC 4.swift
+AstroLogic/transitMatrix 3.swift
+AstroLogic/transitMatrix 4.swift
+AstroLogic/transitMatrixVC 3.swift
+AstroLogic/transitMatrixVC 4.swift
+AstroLogic/TransitPlanetsTCVC 3.swift
+AstroLogic/TransitPlanetsTCVC 4.swift
+AstroLogic/TransitPlanetsVC 3.swift
+AstroLogic/TransitPlanetsVC 4.swift
+AstroLogic/TransitsBiWheel 3.swift
+AstroLogic/TransitsBiWheel 4.swift
+AstroLogic/transitsMatrix 3.swift
+AstroLogic/transitsMatrix 4.swift
+AstroLogic/TransposedHousesVC 3.swift
+AstroLogic/TransposedHousesVC 4.swift
+AstroLogic/TrinitiesVC 2.swift
+AstroLogic/ViewController 3.swift
+AstroLogic/ViewController 4.swift
+AstroLogic/WeatherVC 2.swift
+AstroLogic/Assets.xcassets/Contents 6.json
+AstroLogic/Assets.xcassets/Contents 7.json
+AstroLogic/Assets.xcassets/Contents 70.json
+AstroLogic/Assets.xcassets/Contents 71.json
+AstroLogic/Assets.xcassets/Contents 72.json
+AstroLogic/Assets.xcassets/Contents 73.json
+AstroLogic/Assets.xcassets/Contents 74.json
+AstroLogic/Assets.xcassets/Contents 8.json
+AstroLogic/Assets.xcassets/Contents 9.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 10.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 11.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 12.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 13.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 14.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 15.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 16.json
+AstroLogic/Assets.xcassets/AccentColor.colorset/Contents 9.json
+AstroLogic/Assets.xcassets/Ace of Pentacles.imageset/Ace of Pentacles 2.png
+AstroLogic/Assets.xcassets/Ace of Pentacles.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Ace of Swords.imageset/Ace of Swords 2.png
+AstroLogic/Assets.xcassets/Ace of Swords.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Ace of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Ace of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Ace of Wands.imageset/Ace of Wands 2.png
+AstroLogic/Assets.xcassets/Ace of Wands.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/action.imageset/03-Source 2.jpg
+AstroLogic/Assets.xcassets/action.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/action.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/adept.imageset/21-Openness 2.jpg
+AstroLogic/Assets.xcassets/adept.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/adept.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Contents 10.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Contents 11.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Contents 12.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Contents 13.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Contents 14.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Contents 8.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Contents 9.json
+AstroLogic/Assets.xcassets/AppIcon.appiconset/Icon-1024 2.png
+AstroLogic/Assets.xcassets/Coins 1.imageset/Coins 1 2.jpg
+AstroLogic/Assets.xcassets/Coins 1.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Coins 1.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 2.imageset/Coins 3.jpg
+AstroLogic/Assets.xcassets/Coins 2.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 2.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Coins 2.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Coins 3.imageset/Coins 4.jpg
+AstroLogic/Assets.xcassets/Coins 3.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Coins 3.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 4.imageset/Coins 5.jpg
+AstroLogic/Assets.xcassets/Coins 4.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Coins 4.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 5.imageset/Coins 6.jpg
+AstroLogic/Assets.xcassets/Coins 5.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Coins 5.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 6.imageset/Coins 7.jpg
+AstroLogic/Assets.xcassets/Coins 6.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Coins 6.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 7.imageset/Coins 8.jpg
+AstroLogic/Assets.xcassets/Coins 7.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 7.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Coins 7.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Coins 8.imageset/Coins 9.jpg
+AstroLogic/Assets.xcassets/Coins 8.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Coins 8.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Coins 8.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Coins 9.imageset/Coins 10.jpg
+AstroLogic/Assets.xcassets/Coins 9.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Coins 9.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 3.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Cups 3.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 3.imageset/Cups 4.jpg
+AstroLogic/Assets.xcassets/Cups 4.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Cups 4.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 4.imageset/Cups 5.jpg
+AstroLogic/Assets.xcassets/Cups 5.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Cups 5.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 5.imageset/Cups 6.jpg
+AstroLogic/Assets.xcassets/Cups 6.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Cups 6.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 6.imageset/Cups 7.jpg
+AstroLogic/Assets.xcassets/Cups 7.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Cups 7.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 7.imageset/Cups 8.jpg
+AstroLogic/Assets.xcassets/Cups 8.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Cups 8.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 8.imageset/Cups 9.jpg
+AstroLogic/Assets.xcassets/Cups 9.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Cups 9.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Cups 9.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Cups 9.imageset/Cups 10.jpg
+AstroLogic/Assets.xcassets/Decans/Contents 3.json
+AstroLogic/Assets.xcassets/Decans/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Andromeda.imageset/Andromeda 2.jpg
+AstroLogic/Assets.xcassets/Decans/Andromeda.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Andromeda.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Aquila.imageset/Aquila 2.jpg
+AstroLogic/Assets.xcassets/Decans/Aquila.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Aquila.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Ara.imageset/Ara 2.jpg
+AstroLogic/Assets.xcassets/Decans/Ara.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Ara.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Ara.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Argo.imageset/Argo 2.jpg
+AstroLogic/Assets.xcassets/Decans/Argo.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Decans/Argo.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Auriga.imageset/Auriga 2.jpg
+AstroLogic/Assets.xcassets/Decans/Auriga.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Auriga.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Bootes.imageset/Bootes 2.jpg
+AstroLogic/Assets.xcassets/Decans/Bootes.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Bootes.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Bootes.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Canis Major.imageset/Canis Major 2.jpg
+AstroLogic/Assets.xcassets/Decans/Canis Major.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Canis Major.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Canis Major.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Canis Minor.imageset/Canis Minor 2.jpg
+AstroLogic/Assets.xcassets/Decans/Canis Minor.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Canis Minor.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Canis Minor.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Cassiopeia.imageset/Cassiopeia 2.jpg
+AstroLogic/Assets.xcassets/Decans/Cassiopeia.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Cassiopeia.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Centaurus.imageset/Centaurus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Centaurus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Centaurus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Centaurus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Cepheus.imageset/Cepheus 2.png
+AstroLogic/Assets.xcassets/Decans/Cepheus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Cepheus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Cepheus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Cetus.imageset/Cetus 2.png
+AstroLogic/Assets.xcassets/Decans/Cetus.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Corona Australis.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Corona Australis.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Corona Australis.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Corona Australis.imageset/Corona Australis 2.jpg
+AstroLogic/Assets.xcassets/Decans/Corona Borealis.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Corona Borealis.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Corona Borealis.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Corona Borealis.imageset/Corona Borealis 2.jpg
+AstroLogic/Assets.xcassets/Decans/Corvus.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Corvus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Corvus.imageset/Corvus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Crater.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Crater.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Crater.imageset/Crater 2.png
+AstroLogic/Assets.xcassets/Decans/cygnus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/cygnus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/cygnus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/cygnus.imageset/Cygnus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Delphinus.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Decans/Delphinus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Delphinus.imageset/Delphinus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Draco.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Draco.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Draco.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Draco.imageset/Draco 2.jpg
+AstroLogic/Assets.xcassets/Decans/Equulus.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Decans/Equulus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Equulus.imageset/Equulus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Eridanus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Eridanus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Eridanus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Eridanus.imageset/Eridanus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Hercules.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Hercules.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Hercules.imageset/Hercules 2.png
+AstroLogic/Assets.xcassets/Decans/Hydra.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Hydra.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Hydra.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Hydra.imageset/Hydra 2.jpg
+AstroLogic/Assets.xcassets/Decans/Lepus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Lepus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Lepus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Lepus.imageset/Lepus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Lupus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Lupus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Lupus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Lupus.imageset/Lupus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Lyra.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Lyra.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Lyra.imageset/Lyra 2.png
+AstroLogic/Assets.xcassets/Decans/Ophiuchus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Ophiuchus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Ophiuchus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Ophiuchus.imageset/Ophiuchus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Orion.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Orion.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Orion.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Orion.imageset/Orion 2.png
+AstroLogic/Assets.xcassets/Decans/Pegasus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Pegasus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Pegasus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Pegasus.imageset/Pegasus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Perseus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Perseus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Perseus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Perseus.imageset/Perseus 2.jpg
+AstroLogic/Assets.xcassets/Decans/Pisces Australis.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Pisces Australis.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Pisces Australis.imageset/Pisces Australis 2.jpg
+AstroLogic/Assets.xcassets/Decans/pluto.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/pluto.imageset/pluto 2.png
+AstroLogic/Assets.xcassets/Decans/Sagitta.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Sagitta.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Sagitta.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Sagitta.imageset/Sagitta 2.jpg
+AstroLogic/Assets.xcassets/Decans/saturn.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/saturn.imageset/saturn 2.png
+AstroLogic/Assets.xcassets/Decans/Serpens.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/Serpens.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Serpens.imageset/Serpens 2.jpg
+AstroLogic/Assets.xcassets/Decans/theCentaur.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Decans/theCentaur.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/theCentaur.imageset/theCentaur 2.jpg
+AstroLogic/Assets.xcassets/Decans/Triangulum.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Decans/Triangulum.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Triangulum.imageset/Triangulum 2.jpg
+AstroLogic/Assets.xcassets/Decans/Ursa Major.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Ursa Major.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Decans/Ursa Major.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Decans/Ursa Major.imageset/Ursa Major 2.jpg
+AstroLogic/Assets.xcassets/Decans/Ursa Minor.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Decans/Ursa Minor.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Decans/Ursa Minor.imageset/Ursa Minor 2.jpg
+AstroLogic/Assets.xcassets/Decans/venus.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Decans/venus.imageset/venus 2.png
+AstroLogic/Assets.xcassets/deception.imageset/18-Offering 2.jpg
+AstroLogic/Assets.xcassets/deception.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/deception.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Eight of Cups.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Eight of Cups.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Eight of Cups.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Eight of Cups.imageset/Eight of Cups 2.png
+AstroLogic/Assets.xcassets/Eight of Pentacles.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Eight of Pentacles.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Eight of Pentacles.imageset/Eight of Pentacles 2.png
+AstroLogic/Assets.xcassets/Eight of Swords.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Eight of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Eight of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Eight of Swords.imageset/Eight of Swords 2.png
+AstroLogic/Assets.xcassets/enchantress.imageset/11-Vampire 2.jpg
+AstroLogic/Assets.xcassets/enchantress.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/enchantress.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/enchantress.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/equilibrium.imageset/08-Faith 2.jpg
+AstroLogic/Assets.xcassets/equilibrium.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/equilibrium.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/equilibrium.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/faith.imageset/05-Receiving 2.jpg
+AstroLogic/Assets.xcassets/faith.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/faith.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/First Quarter.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/First Quarter.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/First Quarter.imageset/First Quarter 2.png
+AstroLogic/Assets.xcassets/Five of Cups.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Five of Cups.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Five of Cups.imageset/Five of Cups 2.png
+AstroLogic/Assets.xcassets/Five of Pentacles.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Five of Pentacles.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Five of Pentacles.imageset/Five of Pentacles 2.png
+AstroLogic/Assets.xcassets/Five of Swords.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Five of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Five of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Five of Swords.imageset/Five of Swords 2.png
+AstroLogic/Assets.xcassets/Five of Wands.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Five of Wands.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Five of Wands.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Five of Wands.imageset/Five of Wands 2.png
+AstroLogic/Assets.xcassets/Four of Cups.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Four of Cups.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Four of Cups.imageset/Four of Cups 2.png
+AstroLogic/Assets.xcassets/Four of Pentacles.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Four of Pentacles.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Four of Pentacles.imageset/Four of Pentacles 2.png
+AstroLogic/Assets.xcassets/Four of Swords.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Four of Swords.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Four of Swords.imageset/Four of Swords 2.png
+AstroLogic/Assets.xcassets/Four of Wands.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Four of Wands.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Four of Wands.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Four of Wands.imageset/Four of Wands 2.png
+AstroLogic/Assets.xcassets/Full Moon.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Full Moon.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Full Moon.imageset/Full Moon-6 2.png
+AstroLogic/Assets.xcassets/hope.imageset/17-Mystery 2.jpg
+AstroLogic/Assets.xcassets/hope.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/hope.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Icon-152.imageset/Icon-152 1 2.png
+AstroLogic/Assets.xcassets/Icon-152.imageset/Icon-152 3.png
+AstroLogic/Assets.xcassets/Icon-152.imageset/Icon-152 4.png
+AstroLogic/Assets.xcassets/Icon-167.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Icon-167.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Icon-167.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Icon-167.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Icon-167.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Icon-167.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Icon-167.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Icon-167.imageset/Icon-167 1 2.png
+AstroLogic/Assets.xcassets/Icon-167.imageset/Icon-167 3.png
+AstroLogic/Assets.xcassets/Icon-167.imageset/Icon-167 4.png
+AstroLogic/Assets.xcassets/Image.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Image.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Image.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Image.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Jupiter.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Jupiter.imageset/jupiter 4.png
+AstroLogic/Assets.xcassets/Last Quarter.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Last Quarter.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Last Quarter.imageset/Last Quarter 2.png
+AstroLogic/Assets.xcassets/magus.imageset/01-Needs 2.jpg
+AstroLogic/Assets.xcassets/magus.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/magus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/magus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Mars.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Mars.imageset/mars 4.png
+AstroLogic/Assets.xcassets/materialist.imageset/0 2.jpg
+AstroLogic/Assets.xcassets/materialist.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/materialist.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/materialist.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Mercury.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Mercury.imageset/mercury 4.png
+AstroLogic/Assets.xcassets/Moon.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Moon.imageset/moon 2.png
+AstroLogic/Assets.xcassets/mundaneAstrology.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/mundaneAstrology.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/mundaneAstrology.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/mundaneAstrology.imageset/mundaneAstrology 2.jpg
+AstroLogic/Assets.xcassets/New App icon.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/New App icon.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/New App icon.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/New App icon.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/New App icon.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/New App icon.imageset/Icon-120 1 2.png
+AstroLogic/Assets.xcassets/New App icon.imageset/Icon-120 3.png
+AstroLogic/Assets.xcassets/New App icon.imageset/Icon-120 4.png
+AstroLogic/Assets.xcassets/New Moon.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/New Moon.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/New Moon.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/New Moon.imageset/unnamed-1 2.png
+AstroLogic/Assets.xcassets/Nine of Cups.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Nine of Cups.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Nine of Cups.imageset/Nine of Cups 2.png
+AstroLogic/Assets.xcassets/Nine of Pentacles.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Nine of Pentacles.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Nine of Pentacles.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Nine of Pentacles.imageset/Nine of Pentacles 2.png
+AstroLogic/Assets.xcassets/Nine of Swords.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Nine of Swords.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Nine of Swords.imageset/Nine of Swords 2.png
+AstroLogic/Assets.xcassets/Nine of Wands.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Nine of Wands.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Nine of Wands.imageset/Nine of Wands 2.png
+AstroLogic/Assets.xcassets/page10image2804992.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/page10image2804992.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/page10image2804992.imageset/page10image2804992 2.jpg
+AstroLogic/Assets.xcassets/Planets/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/14-Discernment.imageset/14-Discernment 2.jpg
+AstroLogic/Assets.xcassets/Planets/14-Discernment.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/14-Discernment.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/14-Discernment.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/15.imageset/15 2.jpg
+AstroLogic/Assets.xcassets/Planets/15.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/15.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/15.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Ace of Cups.imageset/Ace of Cups 2.png
+AstroLogic/Assets.xcassets/Planets/Ace of Cups.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/Ace of Cups.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Ace of Cups.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/aceOfSwords.imageset/Ace of Swords 2.png
+AstroLogic/Assets.xcassets/Planets/aceOfSwords.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/aceOfSwords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/aceOfSwords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Aquarius.imageset/Aqarius 2.png
+AstroLogic/Assets.xcassets/Planets/Aquarius.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Aquarius.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/Aquarius.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/Aquarius.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Aquarius.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/Aquarius.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Aries.imageset/Aries 2.png
+AstroLogic/Assets.xcassets/Planets/Aries.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/Aries.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Aries.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Aries.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/ascendant.imageset/ascendant 2.png
+AstroLogic/Assets.xcassets/Planets/ascendant.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/ascendant.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/ascendant.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/ascendant.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/ascendant.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/ascendant.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Cancer.imageset/Cancer 2.png
+AstroLogic/Assets.xcassets/Planets/Cancer.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Cancer.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/Cancer.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Cancer.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/Cancer.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Capricorn.imageset/Capricorn 2.png
+AstroLogic/Assets.xcassets/Planets/Capricorn.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Capricorn.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Capricorn.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Capricorn.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/Capricorn.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/clouds-1.imageset/TransitsBackground_Clouds_Top 2.png
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/clouds.imageset/TransitsBackground_Clouds_Top 2.png
+AstroLogic/Assets.xcassets/Planets/conjunction.imageset/conjunction 2.png
+AstroLogic/Assets.xcassets/Planets/conjunction.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/conjunction.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/conjunction.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/conjunction.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/conjunction.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/conjunction.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Cups 1.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/Cups 1.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Cups 1.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Cups 1.imageset/Cups 1 2.jpg
+AstroLogic/Assets.xcassets/Planets/Cups 2.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Planets/Cups 2.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/Cups 2.imageset/Cups 3.jpg
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Gemini.imageset/Gemini 2.png
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/inconjunct.imageset/Inconjunction 2.png
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/jupiter.imageset/jupiter 2.png
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Leo.imageset/Leo 2.png
+AstroLogic/Assets.xcassets/Planets/Libra.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Planets/Libra.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/Libra.imageset/Libra 2.png
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/Lila.imageset/LILA 2.png
+AstroLogic/Assets.xcassets/Planets/mars.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/mars.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/mars.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/mars.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/mars.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/mars.imageset/mars 2.png
+AstroLogic/Assets.xcassets/Planets/mercury.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/mercury.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/mercury.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/mercury.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/mercury.imageset/mercury 2.png
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/midheaven.imageset/midheaven 2.png
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/moon.imageset/moon 2.png
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/N.Node.imageset/rahu 2.png
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/neptune.imageset/neptune 2.png
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/opposition.imageset/Opposition 2.png
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/parallel.imageset/parallel 2.png
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Pisces.imageset/Pisces 2.png
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/pluto.imageset/pluto 2.png
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/rising.imageset/Rising2 2.png
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/s.node.imageset/s.node 2.png
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Sagittarius.imageset/Sagittarius 2.png
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 23.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 24.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/saturn.imageset/saturn 2.png
+AstroLogic/Assets.xcassets/Planets/Scepter 1.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 1.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 1.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Scepter 1.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/Scepter 1.imageset/Scepter 1 2.jpg
+AstroLogic/Assets.xcassets/Planets/Scepter 2.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Scepter 2.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 2.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 2.imageset/Scepter 3.jpg
+AstroLogic/Assets.xcassets/Planets/Scepter 3.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Scepter 3.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 3.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 3.imageset/Scepter 4.jpg
+AstroLogic/Assets.xcassets/Planets/Scepter 4.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Scepter 4.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 4.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 4.imageset/Scepter 5.jpg
+AstroLogic/Assets.xcassets/Planets/Scepter 5.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Scepter 5.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 5.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 5.imageset/Scepter 6.jpg
+AstroLogic/Assets.xcassets/Planets/Scepter 6.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Scepter 6.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 6.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 6.imageset/Scepter 7.jpg
+AstroLogic/Assets.xcassets/Planets/Scepter 7.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 7.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 7.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/Scepter 7.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/Scepter 7.imageset/Scepter 8.jpg
+AstroLogic/Assets.xcassets/Planets/Scepter 8.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Scepter 8.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scepter 8.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scepter 8.imageset/Scepter 9.jpg
+AstroLogic/Assets.xcassets/Planets/Scorpio.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Scorpio.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/Scorpio.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/Scorpio.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Scorpio.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Scorpio.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Scorpio.imageset/Scorpio 2.png
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 23.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 24.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 25.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 26.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/semisextile.imageset/Semisextile 2.png
+AstroLogic/Assets.xcassets/Planets/semisquare.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/semisquare.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/semisquare.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/semisquare.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/semisquare.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/semisquare.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/semisquare.imageset/semisquare 2.png
+AstroLogic/Assets.xcassets/Planets/sesquisquare.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/sesquisquare.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/sesquisquare.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/sesquisquare.imageset/Sesiquadrate 2.png
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 13.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 14.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 15.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 16.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 7.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 8.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/sextile.imageset/unnamed 2.png
+AstroLogic/Assets.xcassets/Planets/southnode.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/southnode.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/southnode.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/southnode.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/southnode.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/southnode.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/southnode.imageset/southnode 2.svg
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 23.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 24.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/square.imageset/Square 2.png
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 23.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 24.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 25.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 26.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/sun.imageset/Sun 2.png
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 23.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 24.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 25.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 26.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Taurus.imageset/Tarus 2.png
+AstroLogic/Assets.xcassets/Planets/Three of Wands.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Three of Wands.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Three of Wands.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Three of Wands.imageset/Three of Wands 2.png
+AstroLogic/Assets.xcassets/Planets/Triangulum.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Triangulum.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Triangulum.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Triangulum.imageset/Triangulum 2.jpg
+AstroLogic/Assets.xcassets/Planets/trine.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/trine.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/trine.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/trine.imageset/Trine 2.png
+AstroLogic/Assets.xcassets/Planets/Two of Wands.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Planets/Two of Wands.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/Two of Wands.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/Two of Wands.imageset/Two of Wands 2.png
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 23.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 24.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/uranus.imageset/uranus 2.png
+AstroLogic/Assets.xcassets/Planets/venus.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/venus.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/venus.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/venus.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Planets/venus.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Planets/venus.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/venus.imageset/venus 2.png
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 10.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 11.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 12.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 17.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 18.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 19.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 20.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 21.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 22.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 23.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 24.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Contents 9.json
+AstroLogic/Assets.xcassets/Planets/Virgo.imageset/Virgo 2.png
+AstroLogic/Assets.xcassets/prudence.imageset/09-Channel 2.jpg
+AstroLogic/Assets.xcassets/prudence.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/prudence.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/prudence.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/realization.imageset/04-Acceptance 2.jpg
+AstroLogic/Assets.xcassets/realization.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/realization.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/realization.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/resurrection.imageset/20-Surrender 2.jpg
+AstroLogic/Assets.xcassets/resurrection.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/resurrection.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/resurrection.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/ruin.imageset/16-Resource 2.jpg
+AstroLogic/Assets.xcassets/ruin.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/ruin.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/ruin.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/sacrifice.imageset/12-Guidance 2.jpg
+AstroLogic/Assets.xcassets/sacrifice.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/sacrifice.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/sacrifice.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Scepter 9.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Scepter 9.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Scepter 9.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Scepter 9.imageset/Scepter 10.jpg
+AstroLogic/Assets.xcassets/science.imageset/02-Release 2.jpg
+AstroLogic/Assets.xcassets/science.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/science.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/science.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Seven of Cups.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Seven of Cups.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Seven of Cups.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Seven of Cups.imageset/Seven of Cups 2.png
+AstroLogic/Assets.xcassets/Seven of Pentacles.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Seven of Pentacles.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Seven of Pentacles.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Seven of Pentacles.imageset/Seven of Pentacles 2.png
+AstroLogic/Assets.xcassets/Seven of Swords.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Seven of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Seven of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Seven of Swords.imageset/Seven of Swords 2.png
+AstroLogic/Assets.xcassets/Seven of Wands.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Seven of Wands.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Seven of Wands.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Seven of Wands.imageset/Seven of Wands 2.png
+AstroLogic/Assets.xcassets/Six of Cups.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Six of Cups.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Six of Cups.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Six of Cups.imageset/Six of Cups 2.png
+AstroLogic/Assets.xcassets/Six of Pentacles.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Six of Pentacles.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Six of Pentacles.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Six of Pentacles.imageset/Six of Pentacles 2.png
+AstroLogic/Assets.xcassets/Six of Swords.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Six of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Six of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Six of Swords.imageset/Six of Swords 2.png
+AstroLogic/Assets.xcassets/Six of Wands.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Six of Wands.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Six of Wands.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Six of Wands.imageset/Six of Wands 2.png
+AstroLogic/Assets.xcassets/spirituality.imageset/22 2.jpg
+AstroLogic/Assets.xcassets/spirituality.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/spirituality.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/spirituality.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Sun.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Sun.imageset/Sun 2.png
+AstroLogic/Assets.xcassets/Swords 1.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 1.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 1.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 1.imageset/Swords 1 2.jpg
+AstroLogic/Assets.xcassets/Swords 10.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 10.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 10.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 10.imageset/Swords 11.jpg
+AstroLogic/Assets.xcassets/Swords 2.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 2.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 2.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 2.imageset/Swords 3.jpg
+AstroLogic/Assets.xcassets/Swords 3.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 3.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 3.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 3.imageset/Swords 4.jpg
+AstroLogic/Assets.xcassets/Swords 4.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 4.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 4.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 4.imageset/Swords 5.jpg
+AstroLogic/Assets.xcassets/Swords 5.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 5.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 5.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 5.imageset/Swords 6.jpg
+AstroLogic/Assets.xcassets/Swords 6.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 6.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 6.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 6.imageset/Swords 7.jpg
+AstroLogic/Assets.xcassets/Swords 7.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 7.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 7.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 7.imageset/Swords 8.jpg
+AstroLogic/Assets.xcassets/Swords 8.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 8.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 8.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 8.imageset/Swords 9.jpg
+AstroLogic/Assets.xcassets/Swords 9.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Swords 9.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Swords 9.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Swords 9.imageset/Swords 10.jpg
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 13.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 14.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 15.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 16.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 17.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 18.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 7.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 8.json
+AstroLogic/Assets.xcassets/Symbol.symbolset/Contents 9.json
+AstroLogic/Assets.xcassets/temptation.imageset/06-Trust 2.jpg
+AstroLogic/Assets.xcassets/temptation.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/temptation.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/temptation.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Ten of Pentacles.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Ten of Pentacles.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Ten of Pentacles.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Ten of Pentacles.imageset/Ten of Pentacles 2.png
+AstroLogic/Assets.xcassets/Ten of Swords.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Ten of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Ten of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Ten of Swords.imageset/Ten of Swords 2.png
+AstroLogic/Assets.xcassets/Three of Cups.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Three of Cups.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Three of Cups.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Three of Cups.imageset/Three of Cups 2.png
+AstroLogic/Assets.xcassets/Three of Pentacles.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Three of Pentacles.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Three of Pentacles.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Three of Pentacles.imageset/Three of Pentacles 2.png
+AstroLogic/Assets.xcassets/Three of Swords.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Three of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Three of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Three of Swords.imageset/Three of Swords 2.png
+AstroLogic/Assets.xcassets/transformation.imageset/13-Strength 2.jpg
+AstroLogic/Assets.xcassets/transformation.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/transformation.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/transformation.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Two of Cups.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Two of Cups.imageset/Two of Cups 2.png
+AstroLogic/Assets.xcassets/Two of Pentacles.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Two of Pentacles.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Two of Pentacles.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Two of Pentacles.imageset/Two of Pentacles 2.png
+AstroLogic/Assets.xcassets/Two of Swords.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/Two of Swords.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Two of Swords.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Two of Swords.imageset/Two of Swords 2.png
+AstroLogic/Assets.xcassets/unnamed-3.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/unnamed-3.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/unnamed-3.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/unnamed-3.imageset/unnamed-3 2.png
+AstroLogic/Assets.xcassets/victory.imageset/07-Worthiness 2.jpg
+AstroLogic/Assets.xcassets/victory.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/victory.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/victory.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Waning Crescent.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Waning Crescent.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Waning Crescent.imageset/Waning Crescent 2.png
+AstroLogic/Assets.xcassets/Waning Gibbous 1.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Waning Gibbous 1.imageset/Waning Gibbous 2.png
+AstroLogic/Assets.xcassets/Waning Gibbous.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Waning Gibbous.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Waning Gibbous.imageset/Waning Gibbous 2.png
+AstroLogic/Assets.xcassets/Waxing Crescent.imageset/Contents 4.json
+AstroLogic/Assets.xcassets/Waxing Crescent.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/Waxing Crescent.imageset/Contents 6.json
+AstroLogic/Assets.xcassets/Waxing Crescent.imageset/Waxing Crescent 2.png
+AstroLogic/Assets.xcassets/Waxing Gibbous.imageset/Contents 2.json
+AstroLogic/Assets.xcassets/Waxing Gibbous.imageset/Waxing Gibbous 2.png
+AstroLogic/Assets.xcassets/wheelOfFortune.imageset/10-Understanding 2.jpg
+AstroLogic/Assets.xcassets/wheelOfFortune.imageset/Contents 3.json
+AstroLogic/Assets.xcassets/wheelOfFortune.imageset/Contents 5.json
+AstroLogic/Assets.xcassets/wheelOfFortune.imageset/Contents 6.json
+AstroLogic/AstroLogic 5.xcdatamodeld/.xccurrentversion
+AstroLogic/AstroLogic 6.xcdatamodeld/.xccurrentversion
+AstroLogic/AstroLogic 7.xcdatamodeld/.xccurrentversion
+AstroLogic/AstroLogic 7.xcdatamodeld/AstroLogic.xcdatamodel/contents
+AstroLogic/AstroLogic 8.xcdatamodeld/.xccurrentversion
+AstroLogic/AstroLogic 8.xcdatamodeld/AstroLogic.xcdatamodel/contents
+AstroLogic/Base.lproj/LaunchScreen 3.storyboard
+AstroLogic/Base.lproj/LaunchScreen 4.storyboard
+AstroLogic/Base.lproj/Main 3.storyboard
+AstroLogic/Base.lproj/Main 4.storyboard
+AstroLogic/BiWheels/MajorsBiWheel 3.swift
+AstroLogic/BiWheels/MajorsBiWheel 4.swift
+AstroLogic/BiWheels/MinorsBiWheel 3.swift
+AstroLogic/BiWheels/MinorsBiWheel 4.swift
+AstroLogic/BiWheels/TransitsBiWheel 3.swift
+AstroLogic/BiWheels/TransitsBiWheel 4.swift
+AstroLogic/ChartDataModel 3.xcdatamodeld/ChartDataModel.xcdatamodel/contents
+AstroLogic/ChartDataModel 4.xcdatamodeld/ChartDataModel.xcdatamodel/contents
