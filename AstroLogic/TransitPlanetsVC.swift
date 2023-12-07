@@ -297,7 +297,7 @@ return planetDegree
 
                    // Update the transit positions and degrees in your TransitBiWheelChartView
                    transitBiWheelChartView.updateTransitPlanetPositions(newTransitPositions: updatedTransitPositions)
-            transitBiWheelChartView.updateTransitDegrees(updatedTransitDegrees)
+       //     transitBiWheelChartView.updateTransitDegrees(updatedTransitDegrees)
 
                    transitBiWheelChartView.setNeedsDisplay()
 

@@ -24,9 +24,7 @@ class ChartsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        findCrossingZeroDeclination(targetPlanet: targetPlanet, latitude: latitude, longitude: longitude, maxIterations: maxIterations)
-
-
+        
         let importButton = UIBarButtonItem(title: "Import AAF", style: .plain, target: self, action: #selector(importButtonTapped))
            self.navigationItem.rightBarButtonItem = importButton
 

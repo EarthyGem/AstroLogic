@@ -51,6 +51,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
         textField.frame = CGRect(x: 50, y: 200, width: 300, height: 45)  // Adjust y to position it above dateTextField
+
         return textField
     }()
 
@@ -137,6 +138,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchCompleter.delegate = self
 
         view.backgroundColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1) // Light grey background for a clean look.
 
@@ -153,7 +155,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
 
 
         
-
+        eventPlaceTextField.isUserInteractionEnabled = true
 
         // Create the myChartsButton
         let myChartsButton = UIButton(type: .custom)
@@ -259,9 +261,13 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
             }
         }
     }
-    func suggestionSelected(_ suggestion: MKLocalSearchCompletion) {
-          eventTextField.text = suggestion.title
-      }
+
+        func suggestionSelected(_ suggestion: MKLocalSearchCompletion) {
+            eventPlaceTextField.text = suggestion.title
+        }
+
+
+
 
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         let suggestions = completer.results
@@ -272,6 +278,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
         }
     }
 
+  
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         // Handle the error
         print("Search error: \(error.localizedDescription)")
@@ -350,16 +357,17 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
 
                 // Create a date using the date and time picked by the user
                 let eventDate = self.datePicker.date
-
+                let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 // Fetch the cycle chart for the specified date and location
-                let chartCake = fetchCycleChart(for: eventDate, at: coordinate, cycleChart: chartCake!, selectedPlanet: selectedPlanet!)
+                let cycleChartCake = findCycleStartDate(forPlanet: selectedPlanet!.body, startingFromDate: eventDate, at: coordinates, on: eventDate)
+                print("CycleCharts: \(cycleChartCake)")
                      // Create an instance of the destination view controller
                     let cycleChartVC = CycleTransitPlanets(transitPlanets: [""]) // Replace with the actual view controller class
 
                      // Set any data you need to pass to the new view controller
                      cycleChartVC.selectedPlanetName = selectedPlanetName
                 cycleChartVC.selectedPlanet = selectedPlanet
-                    cycleChartVC.chartCake = chartCake
+                cycleChartVC.chartCake = findCycleStartDate(forPlanet: selectedPlanet!.body, startingFromDate: eventDate, at: coordinates, on: eventDate)
          //       print("chartCake: \(chartCake?.natal.sun.formatted ?? <#default value#>)")
                 cycleChartVC.eventDate = eventDate
 
@@ -511,17 +519,6 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
         ) }
 
 
-    func getMostHarmoniousPlanet(from scores: [CelestialObject: (harmony: Double, discord: Double, net: Double)]) -> CelestialObject {
-        let sorted = scores.sorted { $0.value.net > $1.value.net }
-        let mostHarmoniousPlanet = sorted.first!.key
-        return mostHarmoniousPlanet
-    }
-
-    func getMostDiscordantPlanet(from scores: [CelestialObject: (harmony: Double, discord: Double, net: Double)]) -> CelestialObject {
-        let sorted = scores.sorted { $0.value.net < $1.value.net }
-        let mostDiscordantPlanet = sorted.first!.key
-        return mostDiscordantPlanet
-    }
 
 }
 

@@ -216,7 +216,7 @@ class CycleTransitPlanets: UIViewController, UITableViewDelegate, UITableViewDat
              return UITableViewCell()
          }
 
-        cell.configure(signGlyphImageName: (chartCake?.transits.rickysBodies[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.transits.rickysBodies[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.transits.rickysBodies[indexPath.row].formatted)!, planetTextText: (chartCake?.transits.rickysBodies[indexPath.row].body.transitName)!, headerTextText: "")
+        cell.configure(signGlyphImageName: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.natal.rickysBodies[indexPath.row].formatted)!, planetTextText: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName)!, headerTextText: "")
 
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
 

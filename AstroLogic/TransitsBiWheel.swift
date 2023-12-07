@@ -6,80 +6,73 @@ class TransitBiWheelChartView: UIView {
     var chartCake: ChartCake!
     var chart: Chart!
 //    var transitChart: ChartCake!
-//    
+//
     var planetPositions: [CelestialObject: CGFloat] = [:]
     var transitPlanetPositions: [CelestialObject: CGFloat] = [:]
-    var transitPlanetDegree: [(planet: CelestialObject, degree: String)] = []
-    var planetDegree: [(planet: CelestialObject, degree: String)] = []
 
 
-     func updateTransitPlanetPositions(_ newPositions: [CelestialObject: CGFloat]) {
-         transitPlanetPositions = newPositions
-         setNeedsDisplay() // Trigger a redraw to reflect the updated positions
-     }
 
-        
     init(frame: CGRect, chartCake: ChartCake) {
             self.chartCake = chartCake
-          
+
             super.init(frame: frame)
             setupGestureRecognizers()
             updateChart()
         updateTransitChart()
         }
-        
-       
-        
+
+
+
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-        
-      
-        
+
+
+
         private var pinchGesture: UIPinchGestureRecognizer!
         private var panGesture: UIPanGestureRecognizer!
         private var currentScale: CGFloat = 1.0
         private var lastLocation: CGPoint = .zero
-        
-        
-        
-        
+
+
+
+
         override func layoutSubviews() {
             super.layoutSubviews()
-            
+
             let radius = min(bounds.width, bounds.height) / 2
             layer.cornerRadius = radius
             layer.masksToBounds = true
         }
-        
-        
-        
+
+
+
         private func setupGestureRecognizers() {
             pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
             addGestureRecognizer(pinchGesture)
-            
+
             panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
             addGestureRecognizer(panGesture)
         }
-        
+
         @objc private func handlePinchGesture(_ gestureRecognizer: UIPinchGestureRecognizer) {
             if gestureRecognizer.state == .began {
                 currentScale = gestureRecognizer.scale
             }
-            
+
             let minScale: CGFloat = 0.1
             let maxScale: CGFloat = 3.0
-            
+
             var newScale = currentScale * gestureRecognizer.scale
             newScale = min(newScale, maxScale)
             newScale = max(newScale, minScale)
-            
+
             let scaleTransform = CGAffineTransform(scaleX: newScale, y: newScale)
             transform = scaleTransform
-            
+
             currentScale = gestureRecognizer.scale
         }
-        
+
         @objc private func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
             let translation = gestureRecognizer.translation(in: self.superview)
             switch gestureRecognizer.state {
@@ -94,16 +87,16 @@ class TransitBiWheelChartView: UIView {
         }
         override func draw(_ rect: CGRect) {
             guard let context = UIGraphicsGetCurrentContext() else { return }
-            
+
             // Draw the zodiac circle, houses, and planet symbols
             drawZodiacCircle(context: context)
             drawHouseLines(context: context)
             drawPlanetSymbols(context: context)
             drawTransitZodiacCircle(context: context)
             drawTransitPlanetSymbols(context: context)
-            
+
         }
-        
+
         private func drawZodiacCircle(context: CGContext) {
             let center = CGPoint(x: bounds.midX, y: bounds.midY)
             let radius = min(bounds.width, bounds.height) * 0.45
@@ -111,16 +104,16 @@ class TransitBiWheelChartView: UIView {
             context.setLineWidth(0.3)
             context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
             context.strokePath()
-            
+
             let innerRadius1 = radius * 0.21
             let innerRadius2 = radius * 0.28
             context.addEllipse(in: CGRect(x: center.x - innerRadius1, y: center.y - innerRadius1, width: innerRadius1 * 2, height: innerRadius1 * 2))
             context.strokePath()
-            
+
             context.addEllipse(in: CGRect(x: center.x - innerRadius2, y: center.y - innerRadius2, width: innerRadius2 * 2, height: innerRadius2 * 2))
             context.strokePath()
         }
-        
+
     private func drawHouseLines(context: CGContext) {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = min(bounds.width, bounds.height) * 0.45
@@ -133,28 +126,28 @@ class TransitBiWheelChartView: UIView {
         context.setLineWidth(0.3)
         context.setLineCap(.round)
         context.setLineJoin(.round)
-        
+
 
         var accumulatedAngle: CGFloat = 0
-        
+
         for index in 0..<12 {
             let angle = 2 * .pi - ((accumulatedAngle + houseDistances[index] ) * .pi / 180) + .pi
             let startX = center.x + cos(angle) * (0.21 * radius)
             let startY = center.y + sin(angle) * (0.21 * radius)
-            
+
             // Line doesn't intersect with the innermost circle, draw full line
             let endX = center.x + cos(angle) * radius
             let endY = center.y + sin(angle) * radius
-                
+
             context.move(to: CGPoint(x: startX, y: startY))
             context.addLine(to: CGPoint(x: endX, y: endY))
             context.strokePath()
             let houseDegree = houseDegrees[(index + 1) % 12]
             let houseMinute = houseMinutes[(index + 1) % 12]
-           
-      
+
+
                 let glyphLabelAngleOffset: CGFloat = 0.0
-        
+
             let degreeLabelAngleOffset: CGFloat
                 let minuteLabelAngleOffset: CGFloat
 
@@ -174,8 +167,8 @@ class TransitBiWheelChartView: UIView {
 
 
 
-            
-          
+
+
             // Add the planet number label
             let houseNumberLabel = UILabel()
             houseNumberLabel.textColor = .white
@@ -189,8 +182,8 @@ class TransitBiWheelChartView: UIView {
             let labelY = center.y + sin(labelAngle) * labelRadius - houseNumberLabel.bounds.height / 2
             houseNumberLabel.frame.origin = CGPoint(x: labelX, y: labelY)
             addSubview(houseNumberLabel)
-            
-            
+
+
             // Add the house degree label
             let houseDegreeLabel = UILabel()
             houseDegreeLabel.textColor = .white
@@ -205,8 +198,8 @@ class TransitBiWheelChartView: UIView {
             let labelY1 = center.y + sin(labelAngle1) * labelRadius1 - houseDegreeLabel.bounds.height / 2
             houseDegreeLabel.frame.origin = CGPoint(x: labelX1, y: labelY1)
             addSubview(houseDegreeLabel)
-     
-            
+
+
             let signName = houseCuspSignNames[(index + 1) % 12]
 
             // Directly fetch the name for this cusp from the array
@@ -222,7 +215,7 @@ class TransitBiWheelChartView: UIView {
             let imageRect = CGRect(x: labelX2, y: labelY2, width: imageSize, height: imageSize)
             image.draw(in: imageRect)
 
-            
+
             // Add the house minute label
             let houseMinuteLabel = UILabel()
             houseMinuteLabel.textColor = .white
@@ -237,7 +230,7 @@ class TransitBiWheelChartView: UIView {
             let labelY3 = center.y + sin(labelAngle3) * labelRadius3 - houseMinuteLabel.bounds.height / 2
             houseMinuteLabel.frame.origin = CGPoint(x: labelX3, y: labelY3)
             addSubview(houseMinuteLabel)
-            
+
             accumulatedAngle += houseDistances[index]
         }
     }
@@ -250,14 +243,14 @@ class TransitBiWheelChartView: UIView {
         context.setLineWidth(0.3)
         context.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
         context.strokePath()
-        
-     
+
+
     }
-    
-    
-    
+
+
+
         private func getHouses1() -> [CGFloat] {
-            
+
             let first = chartCake!.natal.houseCusps.first.value
             let second = chartCake!.natal.houseCusps.second.value
             let third = chartCake!.natal.houseCusps.third.value
@@ -270,12 +263,12 @@ class TransitBiWheelChartView: UIView {
             let tenth = chartCake!.natal.houseCusps.tenth.value
             let eleventh = chartCake!.natal.houseCusps.eleventh.value
             let twelfth = chartCake!.natal.houseCusps.twelfth.value
-            print("First!: \(first)")
+
             return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
         }
-        
+
         private func getHousesDegree() -> [CGFloat] {
-        
+
             let first = chartCake!.natal.houseCusps.first.degree
             let second = chartCake!.natal.houseCusps.second.degree
             let third = chartCake!.natal.houseCusps.third.degree
@@ -288,13 +281,13 @@ class TransitBiWheelChartView: UIView {
             let tenth = chartCake!.natal.houseCusps.tenth.degree
             let eleventh = chartCake!.natal.houseCusps.eleventh.degree
             let twelfth = chartCake!.natal.houseCusps.twelfth.degree
-            
+
             return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
         }
-        
-        
+
+
         private func getHousesMinute() -> [CGFloat] {
-            
+
             let first = chartCake!.natal.houseCusps.first.minute
             let second = chartCake!.natal.houseCusps.second.minute
             let third = chartCake!.natal.houseCusps.third.minute
@@ -307,13 +300,13 @@ class TransitBiWheelChartView: UIView {
             let tenth = chartCake!.natal.houseCusps.tenth.minute
             let eleventh = chartCake!.natal.houseCusps.eleventh.minute
             let twelfth = chartCake!.natal.houseCusps.twelfth.minute
-            
+
             return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
         }
-        
-        
+
+
         private func getHouseNames() -> [String] {
-            
+
             let first = chartCake!.natal.houseCusps.first.sign.keyName
             let second = chartCake!.natal.houseCusps.second.sign.keyName
             let third = chartCake!.natal.houseCusps.third.sign.keyName
@@ -326,26 +319,26 @@ class TransitBiWheelChartView: UIView {
             let tenth = chartCake!.natal.houseCusps.tenth.sign.keyName
             let eleventh = chartCake!.natal.houseCusps.eleventh.sign.keyName
             let twelfth = chartCake!.natal.houseCusps.twelfth.sign.keyName
-            
+
             return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
         }
-        
-        
+
+
         private func getHouses2() -> [CGFloat] {
             let houseCusps = getHouses1()
-            
+
             var houseDistances: [CGFloat] = []
-            
+
             for i in 0..<houseCusps.count {
                 let nextIndex = (i + 1) % houseCusps.count
                 let distance = (houseCusps[nextIndex] - houseCusps[i] + 360).truncatingRemainder(dividingBy: 360)
                 houseDistances.append(distance)
             }
-            
+
             return houseDistances
         }
-        
-        
+
+
         private func drawPlanetSymbols(context: CGContext) {
             let planetSymbols: [(planet: CelestialObject, imageName: String)] = [
                 (.planet(.sun), "sun"),
@@ -359,9 +352,9 @@ class TransitBiWheelChartView: UIView {
                 (.planet(.neptune), "neptune"),
                 (.planet(.pluto), "pluto"),
                 (.lunarNode(.meanSouthNode), "s.node")
-              
+
             ]
-            
+
             let planetDegree: [(planet: CelestialObject, degree: String)] = [
                 (.planet(.sun), "\(Int(chartCake!.natal.sun.degree))°"),
                 (.planet(.moon), "\(Int(chartCake!.natal.moon.degree))°"),
@@ -374,9 +367,9 @@ class TransitBiWheelChartView: UIView {
                 (.planet(.neptune), "\(Int(chartCake!.natal.neptune.degree))°"),
                 (.planet(.pluto), "\(Int(chartCake!.natal.pluto.degree))°"),
                 (.lunarNode(.meanSouthNode), "\(Int(chartCake!.natal.southNode.degree))°")
-              
+
             ]
-            
+
             let planetSignSymbols: [(planet: CelestialObject, imageName: String)] = [
                 (.planet(.sun), chartCake!.natal.sun.sign.keyName),
                 (.planet(.moon), chartCake!.natal.moon.sign.keyName),
@@ -389,10 +382,10 @@ class TransitBiWheelChartView: UIView {
                 (.planet(.neptune), chartCake!.natal.neptune.sign.keyName),
                 (.planet(.pluto), chartCake!.natal.pluto.sign.keyName),
                 (.lunarNode(.meanSouthNode), chartCake!.natal.southNode.sign.keyName)
-                
+
             ]
-            
-            
+
+
             let planetMinute: [(planet: CelestialObject, minute: String)] = [
                 (.planet(.sun), "\(Int(chartCake!.natal.sun.minute))°"),
                 (.planet(.moon), "\(Int(chartCake!.natal.moon.minute))°"),
@@ -405,16 +398,16 @@ class TransitBiWheelChartView: UIView {
                 (.planet(.neptune), "\(Int(chartCake!.natal.neptune.minute))°"),
                 (.planet(.pluto), "\(Int(chartCake!.natal.pluto.minute))°"),
                 (.lunarNode(.meanSouthNode), "\(Int(chartCake!.natal.southNode.minute))°")
-            
+
             ]
-            
+
             let sortedPlanetSymbols = planetSymbols.sorted { (symbol1, symbol2) -> Bool in
                 if let position1 = planetPositions[symbol1.planet], let position2 = planetPositions[symbol2.planet] {
                     return position1 < position2
                 }
                 return false
             }
-            
+
             let sortedPlanetDegree = planetDegree.sorted { (degree1, degree2) -> Bool in
                 if let position1 = planetPositions[degree1.planet], let position2 = planetPositions[degree2.planet] {
                     return position1 < position2
@@ -436,11 +429,11 @@ class TransitBiWheelChartView: UIView {
                 return false
             }
 
-            
+
             let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
             var lastSymbolCenter: CGPoint? = nil
             var lastCelestialObject: CelestialObject? = nil
-            
+
             for (_, (celestialObject, imageName)) in sortedPlanetSymbols.enumerated() {
                 guard let position = planetPositions[celestialObject] else { continue }
                 let angle = 2 * .pi - (position * .pi / 180) + .pi
@@ -448,10 +441,10 @@ class TransitBiWheelChartView: UIView {
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 var centerX = center.x + cos(angle) * radius
                 var centerY = center.y + sin(angle) * radius
-                
+
                 if let lastCenter = lastSymbolCenter, let lastPosition = lastCelestialObject.flatMap({ planetPositions[$0] }) {
                     let distance = hypot(centerX - lastCenter.x, centerY - lastCenter.y)
-                    
+
                     if distance < minSymbolDistance {
                         if position > lastPosition {
                             let angleAdjustment = -minSymbolDistance / radius
@@ -464,19 +457,19 @@ class TransitBiWheelChartView: UIView {
                             centerX = center.x + cos(adjustedAngle) * radius
                             centerY = center.y + sin(adjustedAngle) * radius
                         }
-                        
-                        
+
+
                     }
                 }
-                
+
                 lastSymbolCenter = CGPoint(x: centerX, y: centerY)
                 lastCelestialObject = celestialObject
-                
-                
-                
+
+
+
                 let symbolSize = min(bounds.width, bounds.height) / 25
                 let symbolRect = CGRect(x: centerX - symbolSize / 2, y: centerY - symbolSize / 2, width: symbolSize, height: symbolSize)
-                
+
                 let degreeLabelRadius = min(bounds.width, bounds.height) * 0.34 - 32
                 var lastDegreeLabelCenter: CGPoint? = nil
                 var lastDegreeLabelCelestialObject: CelestialObject? = nil
@@ -496,7 +489,7 @@ class TransitBiWheelChartView: UIView {
                     addSubview(degreeLabel)
                 }
 
-                
+
 
                 let signSymbolLabelRadius = min(bounds.width, bounds.height) * 0.34 - 49
                 var lastSignSymbolLabelCenter: CGPoint? = nil
@@ -519,7 +512,7 @@ class TransitBiWheelChartView: UIView {
                     addSubview(symbolImageView)
                 }
 
-                
+
                 let minuteLabelRadius = min(bounds.width, bounds.height) * 0.34 - 62
                 var lastMinuteLabelCenter: CGPoint? = nil
                 var lastMinuteLabelCelestialObject: CelestialObject? = nil
@@ -540,15 +533,14 @@ class TransitBiWheelChartView: UIView {
                 }
 
 
-                
+
                 if let image = UIImage(named: imageName) {
                     image.draw(in: symbolRect)
 
-                
+
                 }
             }
         }
-
 
     private func drawTransitPlanetSymbols(context: CGContext) {
         let planetSymbols: [(planet: CelestialObject, imageName: String)] = [
@@ -563,9 +555,23 @@ class TransitBiWheelChartView: UIView {
             (.planet(.neptune), "neptune"),
             (.planet(.pluto), "pluto"),
             (.lunarNode(.meanSouthNode), "s.node")
-          
+
         ]
-        
+
+        let planetDegree: [(planet: CelestialObject, degree: String)] = [
+            (.planet(.sun), "\(Int(chartCake!.transits.sun.degree))°"),
+            (.planet(.moon), "\(Int(chartCake!.transits.moon.degree))°"),
+            (.planet(.mercury), "\(Int(chartCake!.transits.mercury.degree))°"),
+            (.planet(.venus), "\(Int(chartCake!.transits.venus.degree))°"),
+            (.planet(.mars), "\(Int(chartCake!.transits.mars.degree))°"),
+            (.planet(.jupiter), "\(Int(chartCake!.transits.jupiter.degree))°"),
+            (.planet(.saturn), "\(Int(chartCake!.transits.saturn.degree))°"),
+            (.planet(.uranus), "\(Int(chartCake!.transits.uranus.degree))°"),
+            (.planet(.neptune), "\(Int(chartCake!.transits.neptune.degree))°"),
+            (.planet(.pluto), "\(Int(chartCake!.transits.pluto.degree))°"),
+            (.lunarNode(.meanSouthNode), "\(Int(chartCake!.transits.southNode.degree))°")
+
+        ]
 
         let planetSignSymbols: [(planet: CelestialObject, imageName: String)] = [
             (.planet(.sun), chartCake!.transits.sun.sign.keyName),
@@ -579,30 +585,10 @@ class TransitBiWheelChartView: UIView {
             (.planet(.neptune), chartCake!.transits.neptune.sign.keyName),
             (.planet(.pluto), chartCake!.transits.pluto.sign.keyName),
             (.lunarNode(.meanSouthNode), chartCake!.transits.southNode.sign.keyName)
-            
+
         ]
 
-        func getDegree(chartCake: ChartCake) -> [(planet: CelestialObject, degree: String)]  {
-            let planetDegree: [(planet: CelestialObject, degree: String)] = [
-                (.planet(.sun), "\(Int(chartCake.transits.sun.degree))°"),
-                (.planet(.moon), "\(Int(chartCake.transits.moon.degree))°"),
-                (.planet(.mercury), "\(Int(chartCake.transits.mercury.degree))°"),
-                (.planet(.venus), "\(Int(chartCake.transits.venus.degree))°"),
-                (.planet(.mars), "\(Int(chartCake.transits.mars.degree))°"),
-                (.planet(.jupiter), "\(Int(chartCake.transits.jupiter.degree))°"),
-                (.planet(.saturn), "\(Int(chartCake.transits.saturn.degree))°"),
-                (.planet(.uranus), "\(Int(chartCake.transits.uranus.degree))°"),
-                (.planet(.neptune), "\(Int(chartCake.transits.neptune.degree))°"),
-                (.planet(.pluto), "\(Int(chartCake.transits.pluto.degree))°"),
-                (.lunarNode(.meanSouthNode), "\(Int(chartCake.transits.southNode.degree))°")
 
-            ]
-
-    return planetDegree
-        }
-         
-        
-        
         let planetMinute: [(planet: CelestialObject, minute: String)] = [
             (.planet(.sun), "\(Int(chartCake!.transits.sun.minute))°"),
             (.planet(.moon), "\(Int(chartCake!.transits.moon.minute))°"),
@@ -615,18 +601,18 @@ class TransitBiWheelChartView: UIView {
             (.planet(.neptune), "\(Int(chartCake!.transits.neptune.minute))°"),
             (.planet(.pluto), "\(Int(chartCake!.transits.pluto.minute))°"),
             (.lunarNode(.meanSouthNode), "\(Int(chartCake!.transits.southNode.minute))°")
-        
+
         ]
-        
-        
+
+
         let sortedPlanetSymbols = planetSymbols.sorted { (symbol1, symbol2) -> Bool in
             if let position1 = transitPlanetPositions[symbol1.planet], let position2 = transitPlanetPositions[symbol2.planet] {
                 return position1 < position2
             }
             return false
         }
-        
-        let sortedPlanetDegree = getDegree(chartCake: chartCake).sorted { (degree1, degree2) -> Bool in
+
+        let sortedPlanetDegree = planetDegree.sorted { (degree1, degree2) -> Bool in
             if let position1 = transitPlanetPositions[degree1.planet], let position2 = transitPlanetPositions[degree2.planet] {
                 return position1 < position2
             }
@@ -647,19 +633,11 @@ class TransitBiWheelChartView: UIView {
             return false
         }
 
-        for subview in subviews {
-             if let label = subview as? UILabel {
-                 if label.tag == 1001 { // Use a unique tag to identify degree labels
-                     label.removeFromSuperview()
-                 }
-             }
-         }
 
-        
         let minSymbolDistance: CGFloat = 0 // Adjust this value to change the minimum distance
         var lastSymbolCenter: CGPoint? = nil
         var lastCelestialObject: CelestialObject? = nil
-        
+
         for (_, (celestialObject, imageName)) in sortedPlanetSymbols.enumerated() {
             guard let position = transitPlanetPositions[celestialObject] else { continue }
             let angle = 2 * .pi - (position * .pi / 180) + .pi
@@ -667,10 +645,10 @@ class TransitBiWheelChartView: UIView {
             let center = CGPoint(x: bounds.midX, y: bounds.midY)
             var centerX = center.x + cos(angle) * radius
             var centerY = center.y + sin(angle) * radius
-            
+
             if let lastCenter = lastSymbolCenter, let lastPosition = lastCelestialObject.flatMap({ transitPlanetPositions[$0] }) {
                 let distance = hypot(centerX - lastCenter.x, centerY - lastCenter.y)
-                
+
                 if distance < minSymbolDistance {
                     if position > lastPosition {
                         let angleAdjustment = -minSymbolDistance / radius
@@ -683,39 +661,38 @@ class TransitBiWheelChartView: UIView {
                         centerX = center.x + cos(adjustedAngle) * radius
                         centerY = center.y + sin(adjustedAngle) * radius
                     }
-                    
-                    
+
+
                 }
             }
-            
+
             lastSymbolCenter = CGPoint(x: centerX, y: centerY)
             lastCelestialObject = celestialObject
-            
-            
-            
+
+
+
             let symbolSize = min(bounds.width, bounds.height) / 30
             let symbolRect = CGRect(x: centerX - symbolSize / 2, y: centerY - symbolSize / 2, width: symbolSize, height: symbolSize)
-            
-            for (_, (celestialObject, degree)) in planetDegree.enumerated() {
-                  guard let position = transitPlanetPositions[celestialObject] else { continue }
 
-                  let degreeLabel = UILabel()
-                  degreeLabel.tag = 1001 // Use a unique tag to identify degree labels
-                  degreeLabel.textColor = .white
-                  degreeLabel.textAlignment = .center
-                  degreeLabel.text = degree
-                  degreeLabel.font = UIFont.systemFont(ofSize: 9)
-                  degreeLabel.sizeToFit()
-                  degreeLabel.textColor = .white
-                  let degreeLabelRadius =  min(bounds.width, bounds.height) * 0.45 - 32
+            for (_, (celestialObject, degree)) in sortedPlanetDegree.enumerated() {
+                guard let position = transitPlanetPositions[celestialObject] else { continue }
 
-                  let degreeLabelAngle = 2 * .pi - (position * .pi / 180) + .pi
-                  let degreeLabelX = center.x + cos(degreeLabelAngle) * degreeLabelRadius
-                  let degreeLabelY = center.y + sin(degreeLabelAngle) * degreeLabelRadius
-                  degreeLabel.center = CGPoint(x: degreeLabelX, y: degreeLabelY)
-                  addSubview(degreeLabel)
-              }
+                let degreeLabel = UILabel()
+                degreeLabel.textColor = .white
+                degreeLabel.textAlignment = .center
+                degreeLabel.text = degree
+                degreeLabel.font = UIFont.systemFont(ofSize: 9)
+                degreeLabel.sizeToFit()
+                degreeLabel.textColor = .white
+                let degreeLabelRadius =  min(bounds.width, bounds.height) * 0.45 - 32
 
+                let degreeLabelAngle = 2 * .pi - (position * .pi / 180) + .pi
+                let degreeLabelX = center.x + cos(degreeLabelAngle) * degreeLabelRadius
+                let degreeLabelY = center.y + sin(degreeLabelAngle) * degreeLabelRadius
+                degreeLabel.center = CGPoint(x: degreeLabelX, y: degreeLabelY)
+                addSubview(degreeLabel)
+
+            }
 
             for (_, (celestialObject, imageName)) in sortedPlanetSignSymbol.enumerated() {
                 guard let position = transitPlanetPositions[celestialObject] else { continue }
@@ -724,7 +701,7 @@ class TransitBiWheelChartView: UIView {
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let centerX = center.x + cos(angle) * radius
                 let centerY = center.y + sin(angle) * radius
-                
+
                 let symbolSize = min(bounds.width, bounds.height) / 40
                 let symbolImageView = UIImageView(image: UIImage(named: imageName))
                 symbolImageView.contentMode = .scaleAspectFit
@@ -743,35 +720,35 @@ class TransitBiWheelChartView: UIView {
                 minuteLabel.text = minute // Generate a random minute value
                 minuteLabel.font = UIFont.systemFont(ofSize: 8)
                 minuteLabel.sizeToFit()
-                
+
                 let minuteLabelRadius = min(bounds.width, bounds.height) * 0.45 - 69
                 let minuteLabelAngle = 2 * .pi - (position * .pi / 180) + .pi
                 let minuteLabelX = center.x + cos(minuteLabelAngle) * minuteLabelRadius
                 let minuteLabelY = center.y + sin(minuteLabelAngle) * minuteLabelRadius
-                
+
                 minuteLabel.center = CGPoint(x: minuteLabelX, y: minuteLabelY)
 //                addSubview(minuteLabel)
             }
 
-            
+
             if let image = UIImage(named: imageName) {
                 image.draw(in: symbolRect)
 
-            
+
             }
         }
     }
-    
-    
+
+
         func calculateNonOverlappingPosition(celestialObject: CelestialObject, position: CGFloat, radius: CGFloat, lastSymbolCenter: inout CGPoint?, lastCelestialObject: inout CelestialObject?, minSymbolDistance: CGFloat) -> CGPoint {
             let angle = 2 * .pi - (position * .pi / 180) + .pi
             let center = CGPoint(x: bounds.midX, y: bounds.midY)
             var centerX = center.x + cos(angle) * radius
             var centerY = center.y + sin(angle) * radius
-            
+
             if let lastCenter = lastSymbolCenter, let lastPosition = lastCelestialObject.flatMap({ planetPositions[$0] }) {
                 let distance = hypot(centerX - lastCenter.x, centerY - lastCenter.y)
-                
+
                 if distance < minSymbolDistance {
                     if position > lastPosition {
                         let angleAdjustment = -minSymbolDistance / radius
@@ -786,22 +763,22 @@ class TransitBiWheelChartView: UIView {
                     }
                 }
             }
-            
+
             lastSymbolCenter = CGPoint(x: centerX, y: centerY)
             lastCelestialObject = celestialObject
-            
+
             return CGPoint(x: centerX, y: centerY)
         }
-    
+
     func transitCalculateNonOverlappingPosition(celestialObject: CelestialObject, position: CGFloat, radius: CGFloat, lastSymbolCenter: inout CGPoint?, lastCelestialObject: inout CelestialObject?, minSymbolDistance: CGFloat) -> CGPoint {
         let angle = 2 * .pi - (position * .pi / 180) + .pi
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         var centerX = center.x + cos(angle) * radius
         var centerY = center.y + sin(angle) * radius
-        
+
         if let lastCenter = lastSymbolCenter, let lastPosition = lastCelestialObject.flatMap({ transitPlanetPositions[$0] }) {
             let distance = hypot(centerX - lastCenter.x, centerY - lastCenter.y)
-            
+
             if distance < minSymbolDistance {
                 if position > lastPosition {
                     let angleAdjustment = -minSymbolDistance / radius
@@ -816,23 +793,23 @@ class TransitBiWheelChartView: UIView {
                 }
             }
         }
-        
+
         lastSymbolCenter = CGPoint(x: centerX, y: centerY)
         lastCelestialObject = celestialObject
-        
+
         return CGPoint(x: centerX, y: centerY)
     }
 
 
-        
+
         func updatePlanetPositions(newPositions: [CelestialObject: CGFloat]) {
             planetPositions = newPositions
             setNeedsDisplay()
         }
-        
+
         func updateChart() {
             let ascendantOffset = getHouses1()[0]
-            
+
             let planetPositions: [CelestialObject: CGFloat] = [
                 .planet(.sun): getPlanets()[0] - ascendantOffset,
                 .planet(.moon): getPlanets()[1] - ascendantOffset,
@@ -848,8 +825,8 @@ class TransitBiWheelChartView: UIView {
             ]
             updatePlanetPositions(newPositions: planetPositions)
         }
-        
-        
+
+
         private func getPlanets() -> [CGFloat] {
             let sunPosition = chartCake!.natal.sun.value
             let moonPosition = chartCake!.natal.moon.value
@@ -863,7 +840,7 @@ class TransitBiWheelChartView: UIView {
             let plutoPosition = chartCake!.natal.pluto.value
     //        let northNodePosition = chartCake!.natal.northNode.value
            let southNodePosition = chartCake!.natal.southNode.value
-            
+
             return [
                 sunPosition,
                 moonPosition,
@@ -879,39 +856,33 @@ class TransitBiWheelChartView: UIView {
                 southNodePosition
             ]
         }
-        
-    
+
+
     func updateTransitPlanetPositions(newTransitPositions: [CelestialObject: CGFloat]) {
         transitPlanetPositions = newTransitPositions
         setNeedsDisplay()
     }
 
-    func updateTransitDegrees(_ newDegrees: [(planet: CelestialObject, degree: String)]) {
-        planetDegree = newDegrees
-        setNeedsDisplay() // Trigger a redraw to reflect the updated degrees
-    }
-
-
     func updateTransitChart() {
         let ascendantOffset = getHouses1()[0]
-        
+
         let planetPositions: [CelestialObject: CGFloat] = [
-            .planet(.sun): chartCake.transits.rickysBodies[0].value - ascendantOffset,
-            .planet(.moon): chartCake.transits.rickysBodies[1].value - ascendantOffset,
-            .planet(.mercury): chartCake.transits.rickysBodies[2].value - ascendantOffset,
-            .planet(.venus): chartCake.transits.rickysBodies[3].value - ascendantOffset,
-            .planet(.mars): chartCake.transits.rickysBodies[4].value - ascendantOffset,
-            .planet(.jupiter): chartCake.transits.rickysBodies[5].value - ascendantOffset,
-            .planet(.saturn): chartCake.transits.rickysBodies[6].value - ascendantOffset,
-            .planet(.uranus): chartCake.transits.rickysBodies[7].value - ascendantOffset,
-            .planet(.neptune): chartCake.transits.rickysBodies[8].value - ascendantOffset,
-            .planet(.pluto): chartCake.transits.rickysBodies[9].value - ascendantOffset,
-            .lunarNode(.meanSouthNode): chartCake.transits.rickysBodies[10].value - ascendantOffset
+            .planet(.sun): getTransitPlanets()[0] - ascendantOffset,
+            .planet(.moon): getTransitPlanets()[1] - ascendantOffset,
+            .planet(.mercury): getTransitPlanets()[2] - ascendantOffset,
+            .planet(.venus): getTransitPlanets()[3] - ascendantOffset,
+            .planet(.mars): getTransitPlanets()[4] - ascendantOffset,
+            .planet(.jupiter): getTransitPlanets()[5] - ascendantOffset,
+            .planet(.saturn): getTransitPlanets()[6] - ascendantOffset,
+            .planet(.uranus): getTransitPlanets()[7] - ascendantOffset,
+            .planet(.neptune): getTransitPlanets()[8] - ascendantOffset,
+            .planet(.pluto): getTransitPlanets()[9] - ascendantOffset,
+            .lunarNode(.meanSouthNode): getPlanets()[10] - ascendantOffset
         ]
         updateTransitPlanetPositions(newTransitPositions: planetPositions)
     }
-    
-    
+
+
     private func getTransitPlanets() -> [CGFloat] {
         let sunPosition = chartCake!.transits.sun.value
         let moonPosition = chartCake!.transits.moon.value
@@ -925,7 +896,7 @@ class TransitBiWheelChartView: UIView {
         let plutoPosition = chartCake!.transits.pluto.value
 //        let northNodePosition = chart!.northNode.value
         let southNodePosition = chartCake!.transits.southNode.value
-        
+
         return [
             sunPosition,
             moonPosition,
@@ -941,7 +912,7 @@ class TransitBiWheelChartView: UIView {
             southNodePosition
         ]
     }
-        
-        
+
+
 
     }

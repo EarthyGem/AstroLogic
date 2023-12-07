@@ -59,7 +59,8 @@ class MyItemsViewController: UIViewController {
         RicksItems(chartType: "Progressed Lunar Phase"),
         RicksItems(chartType: "Progressed Aspects"),
         RicksItems(chartType: "Progressed Aspects By House"),
-        RicksItems(chartType: "Birthday Wish"),
+
+        RicksItems(chartType: "Vocational Astrology"),        RicksItems(chartType: "Birthday Wish"),
         RicksItems(chartType: "What's in a Name?"),
         RicksItems(chartType: "Horary Chart"),
         RicksItems(chartType: "Cycle Charts"),
@@ -281,7 +282,13 @@ extension MyItemsViewController: UITableViewDelegate {
         nameVC.name = self.name
       //  cycleChartsVC.otherChart = self.otherChart
         nameVC.title = "Whats in a Name?"
-        
+
+
+
+        let vocationalTVC = VocationalTableViewController()
+        vocationalTVC.chartCake = self.chartCake
+      //  cycleChartsVC.otherChart = self.otherChart
+        vocationalTVC.title = "Vocational Astrology"
 
         let cycleChartsVC = CycleChartsViewController(MP_Planets: [""])
        cycleChartsVC.chartCake = self.chartCake
@@ -305,7 +312,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC,collectiveMood,sunMoonHouses,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC,birthdayWishVC,nameVC,horaryVC,cycleChartsVC,weatherVC,RelationshipVC]
+        let categories = [chartVC,collectiveMood,sunMoonHouses,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC,vocationalTVC,birthdayWishVC,nameVC,horaryVC,cycleChartsVC,weatherVC,RelationshipVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 
