@@ -561,7 +561,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
             //    let phaseName = chartCake
 
-                let scores = self.chart!.getTotalPowerScoresForPlanets()
+                let scores = chartCake!.getTotalPowerScoresForPlanets()
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
 
                 saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet: strongestPlanet.keyName)
