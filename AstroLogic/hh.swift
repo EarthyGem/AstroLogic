@@ -225,5 +225,48 @@ func getCoordinate(forCelestialBody body: CelestialObject, onDate date: Date) ->
     return coordinate
 }
 
+func findAspectsInYear(forPlanets planet1: CelestialObject,
+                       planet2: CelestialObject,
+                       year: Int,
+                       at location: CLLocationCoordinate2D,
+                       orb: Double) -> [ChartCake] {
+
+    // Construct the date range for the specified year
+    var components = DateComponents()
+    components.year = year
+    components.month = 1
+    components.day = 1
+    guard let startDate = Calendar.current.date(from: components) else { return [] }
+
+    components.month = 12
+    components.day = 31
+    guard let endDate = Calendar.current.date(from: components) else { return [] }
+
+    var currentDate = startDate
+    var foundChartCakes: [ChartCake] = []
+
+    // Check for aspects every day of the year
+    while currentDate <= endDate {
+        let coordinate1 = Coordinate(body: planet1, date: currentDate)
+        let coordinate2 = Coordinate(body: planet2, date: currentDate)
+
+        for aspectKind in Kind.majorAspects { // Assuming Kind includes all your aspect types
+            if let celestialAspect = CelestialAspect(body1: coordinate1, body2: coordinate2, orb: orb),
+
+                celestialAspect.kind == aspectKind {
+
+                let chartCake = ChartCake(birthDate: currentDate, latitude: location.latitude, longitude: location.longitude, transitDate: currentDate)
+                foundChartCakes.append(chartCake!)
+            }
+        }
+
+        currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
+    }
+
+    return foundChartCakes
+}
+
+
+
     // Example usage:
 

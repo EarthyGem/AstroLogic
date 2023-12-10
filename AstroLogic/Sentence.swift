@@ -176,7 +176,7 @@ func generateAstroSentence(strongestPlanet: String,
         }
     }
 
-    print(risingSignArrays)
+  //  print(risingSignArrays)
 
 
     
