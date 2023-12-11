@@ -28,8 +28,23 @@ struct Headline: Codable {
 }
 
 
-func fetchNYTArchive(forMonth month: Int, year: Int, apiKey: String, completion: @escaping ([Article]?) -> Void) {
-    let urlString = "https://api.nytimes.com/svc/archive/v1/\(year)/\(month).json?api-key=\(apiKey)"
+func fetchNYTArchive(forMonth month: Int, year: Int, apiKey: String, query: String? = nil, newsDesk: String? = nil, completion: @escaping ([Article]?) -> Void) {
+    var urlString = "https://api.nytimes.com/svc/archive/v1/\(year)/\(month).json?api-key=\(apiKey)"
+
+    // Constructing filter query if parameters are provided
+    var fqParts = [String]()
+    if let query = query, !query.isEmpty {
+        fqParts.append("(\(query))")
+    }
+    if let newsDesk = newsDesk, !newsDesk.isEmpty {
+        fqParts.append("news_desk:(\"\(newsDesk)\")")
+    }
+
+    if !fqParts.isEmpty {
+        let fqString = fqParts.joined(separator: " AND ")
+        urlString += "&fq=\(fqString)"
+    }
+  
 
     guard let url = URL(string: urlString) else {
         print("Invalid URL")

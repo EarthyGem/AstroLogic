@@ -392,7 +392,7 @@ class AspectChartTableViewController: UIViewController,SuggestionsViewController
 
                     // Filter and print articles that match the eventDate
                     for article in articles where article.pub_date.starts(with: formattedEventDate) {
-                        print(article.headline.main)
+                        print(article.headline,article.abstract,article.pub_date)
                     }
 
                     // Enable the button after processing
