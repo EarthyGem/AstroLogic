@@ -48,6 +48,8 @@
 		394FA1992AABAA45002BC0A5 /* minorProgressedMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */; };
 		394FA19B2AABAA50002BC0A5 /* transitMatrixVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */; };
 		394FA60D2AA48AE9000CD87B /* planetInfoDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394FA60C2AA48AE9000CD87B /* planetInfoDictionary.swift */; };
+		395156B72B29490B0040C5DD /* interpretations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395156B62B29490B0040C5DD /* interpretations.swift */; };
+		395156B92B2961AC0040C5DD /* PlanetaryHoursVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395156B82B2961AC0040C5DD /* PlanetaryHoursVC.swift */; };
 		3955A6662A90963D00DE2051 /* NatalAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3955A6652A90963D00DE2051 /* NatalAspectsVC.swift */; };
 		3955A66A2A909C2E00DE2051 /* ChartTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3955A6692A909C2E00DE2051 /* ChartTableCell.swift */; };
 		395C0B4A2AAC298400A28A60 /* transitMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C0B492AAC298400A28A60 /* transitMatrix.swift */; };
@@ -227,6 +229,8 @@
 		394FA1982AABAA45002BC0A5 /* minorProgressedMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minorProgressedMatrixVC.swift; sourceTree = "<group>"; };
 		394FA19A2AABAA50002BC0A5 /* transitMatrixVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitMatrixVC.swift; sourceTree = "<group>"; };
 		394FA60C2AA48AE9000CD87B /* planetInfoDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = planetInfoDictionary.swift; sourceTree = "<group>"; };
+		395156B62B29490B0040C5DD /* interpretations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = interpretations.swift; sourceTree = "<group>"; };
+		395156B82B2961AC0040C5DD /* PlanetaryHoursVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetaryHoursVC.swift; sourceTree = "<group>"; };
 		3955A6652A90963D00DE2051 /* NatalAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatalAspectsVC.swift; sourceTree = "<group>"; };
 		3955A6692A909C2E00DE2051 /* ChartTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableCell.swift; sourceTree = "<group>"; };
 		395C0B492AAC298400A28A60 /* transitMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitMatrix.swift; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 				3998A2AC2B210861008A57C5 /* HarmonyHouse.swift */,
 				3998A2AE2B210899008A57C5 /* VocationalHouses.swift */,
 				39BF3DA12B01D69A006FD001 /* pp.swift */,
+				395156B82B2961AC0040C5DD /* PlanetaryHoursVC.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
 				393969502AF1CCD20011ACF1 /* CurrentMoonPhaseVC.swift */,
 				393969522AF208910011ACF1 /* ProgressedMoonPhase.swift */,
@@ -481,6 +486,7 @@
 				396CDCBA2A74716A00EDCECC /* CustomDecansTable.swift */,
 				399B629A2AB7A109006BAC2E /* 23Ancestory.swift */,
 				3955A6652A90963D00DE2051 /* NatalAspectsVC.swift */,
+				395156B62B29490B0040C5DD /* interpretations.swift */,
 				39A1EC462A5F75CF008D1EC1 /* MyNatalHousesVC.swift */,
 				396989D62AC2841F007EA008 /* househol;der.swift */,
 				39A1EC422A5F7080008D1EC1 /* TransitPlanetsVC.swift */,
@@ -779,6 +785,8 @@
 				396F3A0A2AF09CBE00FF0CAA /* SAAspectsTCVC.swift in Sources */,
 				395DE5192A967C5900B0B451 /* SynastryBiwheel.swift in Sources */,
 				396989D52AC24543007EA008 /* EditChartVC.swift in Sources */,
+				395156B72B29490B0040C5DD /* interpretations.swift in Sources */,
+				395156B92B2961AC0040C5DD /* PlanetaryHoursVC.swift in Sources */,
 				39CFBE812B096AA600BCBC4E /* TrinitiesVC.swift in Sources */,
 				392434622ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift in Sources */,
 				3998A2A92B20ED8A008A57C5 /* VocationTVC.swift in Sources */,
