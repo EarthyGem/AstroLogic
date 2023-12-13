@@ -181,45 +181,45 @@ class CycleChartsViewController: UIViewController, UITableViewDelegate, UITableV
 
         let planetIdeas: [String: [String]] = [
             "sun": [
-                "politics.",
-                "executive work and administration.",
-                "bosses and the ruling class."
+                "In thought: politics.",
+                "In business: executive work and administration.",
+                "In politics: bosses and the ruling class."
             ],
             "moon": [
-                "the family and home.",
-                "groceries and other commodities.",
-                "women and the common people."
+                "In thought: the family and home.",
+                "In business: groceries and other commodities.",
+                "In politics: women and the common people."
             ],
 
             "mars": [
-                "mechanics.",
-                "manufacturing and the military profession.",
-                "militarism."
+                "In thought: mechanics.",
+                "In business: manufacturing and the military profession.",
+                "In politics: militarism."
             ],
             "jupiter": [
-                "religion and philosophy.",
-                "finances and commerce.",
-                "capitalism."
+                "In thought: religion and philosophy.",
+                "In business: finances and commerce.",
+                "In politics: capitalism."
             ],
             "saturn": [
-                "orthodoxy.",
-                "land and basic utilities.",
-                "conservatism, the farmer and the miner."
+                "In thought: orthodoxy.",
+                "In business: land and basic utilities.",
+                "In politics: conservatism, the farmer and the miner."
             ],
             "uranus": [
-                "the occult and ultra-progressive.",
-                "invention and unusual methods.",
-                "the radical element."
+                "In thought: the occult and ultra-progressive.",
+                "In business: invention and unusual methods.",
+                "In politics: the radical element."
             ],
             "neptune": [
-                "the mystical and psychic.",
-                "promotion and stock companies.",
-                "the ideal."
+                "In thought: the mystical and psychic.",
+                "In business: promotion and stock companies.",
+                "In politics: the ideal."
             ],
             "pluto": [
-                "spirituality or inversion, and the influence of invisible intelligences.",
-                "group activity, either for the selfish advantage of the group or for universal good.",
-                "compulsory cooperation."
+                "In thought: spirituality or inversion, and the influence of invisible intelligences.",
+                "In business: group activity, either for the selfish advantage of the group or for universal good.",
+                "In politics: compulsory cooperation."
             ]
         ]
 
