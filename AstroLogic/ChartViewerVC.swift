@@ -214,7 +214,7 @@ class ChartViewController: UIViewController {
             label.textColor = .white
             label.font = UIFont.systemFont(ofSize: 13)
             label.text = "\(planet): \(Int(score))"
-            scrollView.addSubview(label)
+                //      scrollView.addSubview(label)
             scoreLabels.append(label)
         }
         
@@ -296,8 +296,8 @@ class ChartViewController: UIViewController {
             let barView = UIView()
             barView.backgroundColor = planetColors[planet] ?? .black // Use black as a default color
             barView.frame = CGRect(x: barStartX, y: CGFloat(index) * (barHeight + barSpacing) + adjustedYPos + 40, width: CGFloat(normalizedScore), height: barHeight)
-            scrollView.addSubview(barView)
-            
+                //  scrollView.addSubview(barView)
+
             
             
             
@@ -322,9 +322,9 @@ class ChartViewController: UIViewController {
             self.scrollView.addSubview(houseScoresChart)
             
             
-            
+
             // Planet Scores Bar Chart
-            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: 2030 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
+            let planetScoresChart = BarChartView(frame: CGRect(x: 10, y: screenWidth + 100, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
             updatePlanetBarChart(chartView: planetScoresChart, scores: scores, label: "Planet Scores")
             self.scrollView.addSubview(planetScoresChart)
             
