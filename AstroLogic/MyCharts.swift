@@ -299,6 +299,10 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)!
         let timestamp = Int(chartDate?.timeIntervalSince1970 ?? 34)
 
+        // var bodiesArgument: [Coordinate]? = (toggleSwitch == true) ? chart.rickysBodies : nil
+        // let scores = chart.getTotalPowerScoresForPlanets(bodiesArgument)
+
+        // Comment this next line out when the toggleSwitch is wired up
         let scores = chart.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
 
