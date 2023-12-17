@@ -51,7 +51,10 @@ func generateAstroSentence(strongestPlanet: String,
                                                       "Alchemist",
                                                       "Revealer"
 
-                                                     ]]
+                                                     ],
+        "S.Node": ["Karma",
+                  "Karma",
+                  "Karma"]]
     
     let signArrays: [String: [String]] = ["Aries": ["Warrior", "Fighter", "Pioneer", "Athlete"],
                                           "Taurus": ["Banker", "Collector", "Grounded Person"],

@@ -19,7 +19,7 @@ class StrongestPlanetViewController: UIViewController {
     var mostDiscordantPlanetArchetype: String!
     var mostDiscordantPlanet: String!
     var sentenceText: String!
-    var scores: [Planet: CGFloat]?
+    var scores: [CelestialObject: Double]?
     var chart: Chart?
     var chartCake: ChartCake?
     var name: String!
@@ -36,6 +36,11 @@ class StrongestPlanetViewController: UIViewController {
     var strongestPlanetSign: String!
     var sortedPlanets: [CelestialObject] = []
     var birthDate: Date?
+    var harmonyDiscordtuple: [CelestialObject: (harmony: Double, discord: Double, net: Double)] = [:]
+    var houseScores: [Int : Double] = [:]
+    var signScores: [Zodiac : Double] = [:]
+    var signHarmonyDisharmony: [Zodiac: Double] = [:]
+    var houseHarmonyDisharmony: [Int: Double] = [:]
     // Add
 //    var getMinors: (() -> Date)?
 //    var getMajorProgresseDate: (() -> Date)?
@@ -123,13 +128,18 @@ class StrongestPlanetViewController: UIViewController {
         myItemsVC.chartCake = chartCake.self
         myItemsVC.sortedPlanets = sortedPlanets.self
         myItemsVC.name = name.self
+        myItemsVC.scores = scores!.self
         myItemsVC.phaseName = phaseName.self
         myItemsVC.birthDate = birthDate.self
         myItemsVC.sortedPlanets = sortedPlanets.self
         myItemsVC.latitude = latitude.self
         myItemsVC.longitude = longitude.self
         myItemsVC.charts = charts.self
-      
+        myItemsVC.signScores = signScores.self
+        myItemsVC.houseScores = houseScores.self
+        myItemsVC.harmonyDiscordtuple = harmonyDiscordtuple.self
+        myItemsVC.signHarmonyDisharmony = signHarmonyDisharmony.self
+        myItemsVC.houseHarmonyDisharmony = houseHarmonyDisharmony.self
         // Pass other properties if needed
         // myItemsVC.strongestPlanet = self.strongestPlanet
         // myItemsVC.getMinors = self.getMinors

@@ -30,10 +30,17 @@ class MyItemsViewController: UIViewController {
     var strongestPlanet: String?
     var sortedPlanets: [CelestialObject] = []
     var birthDate: Date?
+    var scores: [CelestialObject: Double] = [:]
+    var houseScores: [Int : Double] = [:]
+    var signScores: [Zodiac : Double] = [:]
     // Use `getMinors` closure wherever you need to access the `getMinors` function
     var latitude: Double?
     var longitude: Double?
-
+    var harmonyDiscordtuple: [CelestialObject: (harmony: Double, discord: Double, net: Double)] = [:]
+    
+    var signHarmonyDisharmony: [Zodiac: Double] = [:]
+    var houseHarmonyDisharmony: [Int: Double] = [:]
+    
     private let ricksData: [RicksItems] = [
         RicksItems(chartType: "Charts and Graphs"),
         RicksItems(chartType: "Collective Mood"),
@@ -138,9 +145,14 @@ extension MyItemsViewController: UITableViewDelegate {
         chartVC.houseScores = self.chartCake!.calculateHouseStrengths()
         chartVC.chartCake = chartCake
         //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
-        chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
-        chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
-
+     //   chartVC.scores2 = scores
+        chartVC.scores = scores
+        chartVC.harmonyDiscordtuple = harmonyDiscordtuple
+        chartVC.signHarmonyDisharmony = signHarmonyDisharmony
+        chartVC.houseHarmonyDisharmony = houseHarmonyDisharmony
+        chartVC.signScores = signScores
+        chartVC.houseScores = houseScores
+        
         let natalPlanetsVC = PlanetsViewController(planets: [""])
         natalPlanetsVC.title = category.chartType
         natalPlanetsVC.chartCake = self.chartCake

@@ -31,17 +31,17 @@ class ChartViewController: UIViewController {
     var scrollView: UIScrollView!
     var scoreLabels: [UILabel] = []
     var chartCake: ChartCake!
-
-    var scores2: [(String, Double)] = []
-    var signScore: [String : Double] = [:]
-    var scores = [String : Double]()
+    var harmonyDiscordtuple: [CelestialObject: (harmony: Double, discord: Double, net: Double)] = [:]
+    var scores2: [(CelestialObject, Double)] = []
+    var scores = [CelestialObject : Double]()
     var houseScores: [Int : Double] = [:]
-    var signScore2: [String : Double] = [:]
-    var signScores: [String : Double] = [:]
+    var signScores: [Zodiac : Double] = [:]
     var harmonyDiscordScores2: [String: (harmony: Double, discord: Double, difference: Double)]?
     var houseScores2: [String : Double] = [:]
     //    var scores = [Planet : Double] = [:]
-
+    var signHarmonyDisharmony: [Zodiac: Double] = [:]
+    var houseHarmonyDisharmony: [Int: Double] = [:]
+    
 
     let planetSymbolMapping: [String: String] = [
         "Sun": "☉",
@@ -132,10 +132,9 @@ class ChartViewController: UIViewController {
         
         scrollView.backgroundColor = .black
         view.addSubview(scrollView)
-        _ = chartCake!.calculateTotalSignScore()
-        // Assuming you have these dictionaries
-        let signHarmonyScores: [Zodiac: Double] = (chartCake?.calculateTotalSignHarmonyDiscord())! // Replace with actual data
-        let houseHarmonyScores: [Int: Double] = (chartCake?.calculateHouseHarmonyDiscord())! // Replace with actual data
+                // Assuming you have these dictionaries
+        let signHarmonyScores: [Zodiac: Double] = (signHarmonyDisharmony) // Replace with actual data
+        let houseHarmonyScores: [Int: Double] = (houseHarmonyDisharmony) // Replace with actual data
 
         let maxSignScore = signHarmonyScores.values.max() ?? 1
         let maxHouseScore = houseHarmonyScores.values.max() ?? 1
@@ -157,7 +156,7 @@ class ChartViewController: UIViewController {
                    let barColor = score >= 0 ? UIColor.blue : UIColor.red
 
                    // Position the label to the left
-                   let label = UILabel(frame: CGRect(x: 10, y: currentYPosition, width: labelWidth, height: labelHeight))
+                   let label = UILabel(frame: CGRect(x: 10, y: currentYPosition , width: labelWidth, height: labelHeight))
                    label.textColor = .white
                    label.font = UIFont.systemFont(ofSize: 13)
                    label.textAlignment = .right // Text aligned to the right within the label
@@ -192,12 +191,12 @@ class ChartViewController: UIViewController {
            scrollView.contentSize = CGSize(width: screenWidth, height: currentYPosition + 1500)
 
         
-        let maxScore = scores2.map({ $0.1 }).max() ?? 1
+        let maxScore = scores.map({ $0.1 }).max() ?? 1
         
         var normalizedScores: [(String, Double)] = []
-        for (planet, score) in scores2 {
+        for (planet, score) in scores {
             let normalizedScore = (score / maxScore) * 100
-            normalizedScores.append((planet, normalizedScore))
+            normalizedScores.append((planet.keyName, normalizedScore))
         }
         
         
@@ -218,7 +217,7 @@ class ChartViewController: UIViewController {
             scoreLabels.append(label)
         }
         
-        let sortedHarmonyDiscordScores = chartCake!.getTotalHarmonyDiscordScoresForPlanets().sorted(by: { $0.value.net > $1.value.net }) // Sort by the net score
+        let sortedHarmonyDiscordScores = harmonyDiscordtuple.sorted(by: { $0.value.net > $1.value.net }) // Sort by the net score
         let labelStartY: CGFloat = labelSpacing + CGFloat(sortedScores.count) * (labelHeight + labelSpacing) + 50
         let barStartX2: CGFloat = 110
         let _: CGFloat = 2
@@ -228,7 +227,7 @@ class ChartViewController: UIViewController {
         // first try - harmony discord planet labels
         for (index, (planet, scores)) in sortedHarmonyDiscordScores.enumerated() {
             // Difference label
-            let differenceLabel = UILabel(frame: CGRect(x: 10, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + adjustedYPos + 60, width: screenWidth - 20, height: labelHeight))
+            let differenceLabel = UILabel(frame: CGRect(x: 10, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + adjustedYPos + 300, width: screenWidth - 20, height: labelHeight))
             differenceLabel.textColor = .white
             differenceLabel.font = UIFont.systemFont(ofSize: 13)
             differenceLabel.text = "\(planet.keyName) : \(Int(scores.net))" // Use net score here
@@ -237,13 +236,13 @@ class ChartViewController: UIViewController {
             // Harmony bar
             let harmonyBarView = UIView()
             harmonyBarView.backgroundColor = .systemBlue
-            harmonyBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + adjustedYPos + 60, width: CGFloat(scores.harmony) * 2, height: barHeight2)
+            harmonyBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + adjustedYPos + 300, width: CGFloat(scores.harmony) * 2, height: barHeight2)
             scrollView.addSubview(harmonyBarView)
             
             // Discord bar
             let discordBarView = UIView()
             discordBarView.backgroundColor = .systemRed
-            discordBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + barHeight2 + barSpacing2 + adjustedYPos + 60, width: CGFloat(scores.discord) * 2, height: barHeight2)
+            discordBarView.frame = CGRect(x: barStartX2, y: labelStartY + CGFloat(index) * (labelHeight + 2 * labelSpacing) + barHeight2 + barSpacing2 + adjustedYPos + 300, width: CGFloat(scores.discord) * 2, height: barHeight2)
             scrollView.addSubview(discordBarView)
         }
         
@@ -301,14 +300,7 @@ class ChartViewController: UIViewController {
             
             
             
-            
-            
-            // Create pie chart for total sign scores
-            let signScores = chartCake!.calculateTotalSignScore()
-   //         let signPieChartView = createPieChartView(dataEntries: generatePieChartData(scores: signScores))
-      //      signPieChartView.frame = CGRect(x: 10, y: 400 + adjustedYPos, width: screenWidth - 20, height: 300)
-            
-        
+    
             
             // Sign Scores Bar Chart
             let signScoresChart = BarChartView(frame: CGRect(x: 10, y: 725 + adjustedYPos, width: self.view.frame.size.width - 20, height: self.view.frame.size.height / 4))
@@ -330,7 +322,7 @@ class ChartViewController: UIViewController {
             
             let chartView = BarChartView()
             chartView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)  // Adjust these values to fit your needs
-            view.addSubview(chartView)
+         //   view.addSubview(chartView)
             
             
             let lastYPositionOfContent = planetScoresChart.frame.origin.y + planetScoresChart.frame.size.height
@@ -344,7 +336,7 @@ class ChartViewController: UIViewController {
         func updateHouseBarChart(chartView: BarChartView, scores: [Int: Double], label: String) {
             var dataEntries: [BarChartDataEntry] = []
             
-            let totalScore = scores.values.reduce(0, +)  // Calculate the total score
+            let totalScore = houseScores.values.reduce(0, +)  // Calculate the total score
             
             for (index, key) in scores.keys.sorted().enumerated() {
                 if let value = scores[key] {
@@ -403,7 +395,7 @@ class ChartViewController: UIViewController {
             }
             
             var dataEntries: [BarChartDataEntry] = []
-            let totalScore = scores.values.reduce(0, +)
+            let totalScore = signScores.values.reduce(0, +)
             
             for (index, zodiacScore) in sortedZodiacs.enumerated() {
                 let percentage = (zodiacScore.value / totalScore) * 100
@@ -450,16 +442,16 @@ class ChartViewController: UIViewController {
             xAxis.drawAxisLineEnabled = false
         }
         
-        func updatePlanetBarChart(chartView: BarChartView, scores: [String: Double], label: String) {
+        func updatePlanetBarChart(chartView: BarChartView, scores: [CelestialObject: Double], label: String) {
             let planetOrder = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
             var sortedPlanets = scores.sorted {
-                planetOrder.firstIndex(of: $0.key) ?? 0 < planetOrder.firstIndex(of: $1.key) ?? 0
+                planetOrder.firstIndex(of: $0.key.keyName) ?? 0 < planetOrder.firstIndex(of: $1.key.keyName) ?? 0
             }
             
             var dataEntries: [BarChartDataEntry] = []
             let totalScore = scores.values.reduce(0, +)
             
-            if let southNodeIndex = sortedPlanets.firstIndex(where: { $0.key == "S.Node" }) {
+            if let southNodeIndex = sortedPlanets.firstIndex(where: { $0.key.keyName == "S.Node" }) {
                 let southNode = sortedPlanets.remove(at: southNodeIndex)
                 sortedPlanets.append(southNode)
             }
@@ -491,7 +483,7 @@ class ChartViewController: UIViewController {
             xAxis.setLabelCount(scores.count, force: false)
             xAxis.axisMinimum = -0.5
             xAxis.axisMaximum = Double(scores.count) - 0.5
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedPlanets.map { planetSymbolMapping[$0.key] ?? $0.key })
+            xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedPlanets.map { planetSymbolMapping[$0.key.keyName] ?? $0.key.keyName })
             xAxis.labelTextColor = .white
             xAxis.labelFont = UIFont.systemFont(ofSize: 18) // Set the font size to 14
             xAxis.yOffset = 2.0 // Move the labels up by 5 points

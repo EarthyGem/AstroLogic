@@ -13,7 +13,8 @@ class ChartsViewController: UIViewController {
     var birthPlace: String?
     var birthPlaceTimeZone: TimeZone?
     var chartDate: Date?
-
+ 
+    var toggleSwitch: UISwitch!
     @IBAction func importButtonTapped(_ sender: UIBarButtonItem) {
         // Code to navigate to the new import screen
         let importVC = ImportAAFViewController()
@@ -23,10 +24,21 @@ class ChartsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Create and configure the UISwitch
+         toggleSwitch = UISwitch()
+        toggleSwitch.isOn = false // Set the initial state to "on"// Set the initial state as needed
+         toggleSwitch.addTarget(self, action: #selector(toggleSwitchChanged(sender:)), for: .valueChanged)
 
-        
-        let importButton = UIBarButtonItem(title: "Import AAF", style: .plain, target: self, action: #selector(importButtonTapped))
-           self.navigationItem.rightBarButtonItem = importButton
+         // Create a UIBarButtonItem with the UISwitch
+         let switchBarButtonItem = UIBarButtonItem(customView: toggleSwitch)
+
+         // Set the UIBarButtonItem as the right bar button item
+         navigationItem.rightBarButtonItem = switchBarButtonItem
+
+       
+
+//        let importButton = UIBarButtonItem(title: "Import AAF", style: .plain, target: self, action: #selector(importButtonTapped))
+//           self.navigationItem.rightBarButtonItem = importButton
 
        // processDetails()
 
@@ -39,6 +51,18 @@ class ChartsViewController: UIViewController {
         charts = fetchAllCharts()
         //  deleteAllNames()
         tableView.reloadData()
+    }
+
+    @objc func toggleSwitchChanged(sender: UISwitch) {
+        // Handle switch state changes here
+        // You can access sender.isOn to determine the new state (true for on, false for off)
+        
+        // Apply changes to all the charts based on the new switch state
+        if sender.isOn {
+            // Apply changes when the switch is on
+        } else {
+            // Apply changes when the switch is off
+        }
     }
 
 
@@ -241,6 +265,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let longitude = chart.longitude
         let timestamp = Int(chartDate.timeIntervalSince1970)
         let chartObj = Chart(date: chartDate, latitude: latitude, longitude: longitude, houseSystem: .placidus)
+        
         let scores = chartObj.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
         let place = chart.birthPlace ?? "No BirthPlace"
@@ -299,11 +324,18 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
         let chartCake = ChartCake(birthDate: chartDate!, latitude: latitude, longitude: longitude)!
         let timestamp = Int(chartDate?.timeIntervalSince1970 ?? 34)
 
-        // var bodiesArgument: [Coordinate]? = (toggleSwitch == true) ? chart.rickysBodies : nil
-        // let scores = chart.getTotalPowerScoresForPlanets(bodiesArgument)
+        var bodiesArgument: [Coordinate]? = (toggleSwitch.isOn) ? chart.rickysBodies : nil
 
+        
+ 
+    let scores = chart.getTotalPowerScoresForPlanets(bodiesArgument)
+        let signHarmonyScores = chart.calculateTotalSignHarmonyDiscord(bodiesArgument)
+        
+        let houseHarmonyScores = chart.calculateHouseHarmonyDiscord(bodiesArgument)
+        let houseScores = chart.calculateHouseStrengths(bodiesArgument)
+        let signScores = chart.calculateTotalSignScore(bodiesArgument)
         // Comment this next line out when the toggleSwitch is wired up
-        let scores = chart.getTotalPowerScoresForPlanets()
+      //  let scores = chart.getTotalPowerScoresForPlanets()
         let strongestPlanet = getStrongestPlanet(from: scores)
 
         fetchTimeZone(latitude: latitude, longitude: longitude, timestamp: timestamp) { [self] timeZone in
@@ -319,7 +351,7 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     combinedAttributedString.append(dateAndPlaceString)
 
 
-                    let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
+                    let tuple = chart.getTotalHarmonyDiscordScoresForPlanets(bodiesArgument)
                     let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
                     let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
 
@@ -343,8 +375,8 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                         strongestPlanetSign = chart.neptune.sign.keyName
                     } else if strongestPlanet == Planet.pluto.celestialObject {
                         strongestPlanetSign = chart.pluto.sign.keyName
-//                    } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
-//                        strongestPlanetSign = chart.southNode.sign.keyName
+                    } else if strongestPlanet == LunarNode.meanSouthNode.celestialObject {
+                        strongestPlanetSign = chart.southNode.sign.keyName
                     }
 
                     let sentence = generateAstroSentence(strongestPlanet: strongestPlanet.keyName,
@@ -360,6 +392,8 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                     strongestPlanetVC.strongestPlanetArchetype = getStrongestPlanet(from: scores).archetype
                     strongestPlanetVC.name = name
+                    strongestPlanetVC.harmonyDiscordtuple = tuple
+                    strongestPlanetVC.scores = scores
                     strongestPlanetVC.charts = charts
                     strongestPlanetVC.birthPlace = birthPlace
                     strongestPlanetVC.birthDate = chartDate
@@ -372,6 +406,10 @@ extension ChartsViewController: UITableViewDataSource, UITableViewDelegate {
                     strongestPlanetVC.mostDiscordantPlanetArchetype = mostDiscordantPlanet.archetype
                     strongestPlanetVC.mostHarmoniousPlanetArchetype = mostHarmoniousPlanet.archetype
                     strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
+                    strongestPlanetVC.signHarmonyDisharmony = signHarmonyScores
+                    strongestPlanetVC.houseHarmonyDisharmony = houseHarmonyScores
+                    strongestPlanetVC.houseScores = houseScores
+                    strongestPlanetVC.signScores = signScores
                     strongestPlanetVC.sentenceText = sentence
                     strongestPlanetVC.dateString = dateAndPlace
                     strongestPlanetVC.latitude = latitude
