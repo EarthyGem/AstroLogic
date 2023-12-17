@@ -31,6 +31,7 @@ class ChartsViewController: UIViewController {
 
          // Create a UIBarButtonItem with the UISwitch
          let switchBarButtonItem = UIBarButtonItem(customView: toggleSwitch)
+        switchBarButtonItem.title = "Include SN"
 
          // Set the UIBarButtonItem as the right bar button item
          navigationItem.rightBarButtonItem = switchBarButtonItem
@@ -214,23 +215,38 @@ class ChartsViewController: UIViewController {
 
 
     func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {
-        let sorted = scores.sorted { $0.value > $1.value }
+        // Exclude the South Node from consideration
+        var filteredScores = scores
+        filteredScores.removeValue(forKey: LunarNode.meanSouthNode.celestialObject)
+
+        let sorted = filteredScores.sorted { $0.value > $1.value }
         let strongestPlanet = sorted.first!.key
 
         return strongestPlanet
     }
 
     func getMostHarmoniousPlanet(from scores: [CelestialObject: (harmony: Double, discord: Double, net: Double)]) -> CelestialObject {
-        let sorted = scores.sorted { $0.value.net > $1.value.net }
+        // Exclude the South Node from consideration
+        var filteredScores = scores
+        filteredScores.removeValue(forKey: LunarNode.meanSouthNode.celestialObject)
+
+        let sorted = filteredScores.sorted { $0.value.net > $1.value.net }
         let mostHarmoniousPlanet = sorted.first!.key
+
         return mostHarmoniousPlanet
     }
 
     func getMostDiscordantPlanet(from scores: [CelestialObject: (harmony: Double, discord: Double, net: Double)]) -> CelestialObject {
-        let sorted = scores.sorted { $0.value.net < $1.value.net }
+        // Exclude the South Node from consideration
+        var filteredScores = scores
+        filteredScores.removeValue(forKey: LunarNode.meanSouthNode.celestialObject)
+
+        let sorted = filteredScores.sorted { $0.value.net < $1.value.net }
         let mostDiscordantPlanet = sorted.first!.key
+
         return mostDiscordantPlanet
     }
+
 
 }
 // MARK: - UITableViewDataSource and UITableViewDelegate
