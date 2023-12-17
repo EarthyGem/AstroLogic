@@ -404,18 +404,18 @@ class MyNatalHousesVC: UIViewController {
 
 
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 1).count)! * 90)
-       moonTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 2).count)! * 90)
-        mercuryTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 3).count)! * 90)
-        venusTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 4).count)! * 90)
-        marsTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 5).count)! * 90)
-        jupiterTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 6).count)! * 90)
-        saturnTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 7).count)! * 90)
-        uranusTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 8).count)! * 90)
-        neptuneTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 9).count)! * 90)
-        plutoTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 10).count)! * 90)
-        eleventhTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 11).count)! * 90)
-        twelfthTableView.contentSize.height = CGFloat((chartCake?.myRulingBodies(for: 12).count)! * 90)
+        sunTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 1).count)! * 90)
+       moonTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 2).count)! * 90)
+        mercuryTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 3).count)! * 90)
+        venusTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 4).count)! * 90)
+        marsTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 5).count)! * 90)
+        jupiterTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 6).count)! * 90)
+        saturnTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 7).count)! * 90)
+        uranusTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 8).count)! * 90)
+        neptuneTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 9).count)! * 90)
+        plutoTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 10).count)! * 90)
+        eleventhTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 11).count)! * 90)
+        twelfthTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 12).count)! * 90)
 
 
 
@@ -769,52 +769,52 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
                 if(tableView == sunTableView) {
 
-                    return (chartCake?.myRulingBodies(for: 1).count)!
+                    return (chartCake?.rulingBodies(for: 1).count)!
 
                 }
                     else if(tableView == moonTableView){
-                        return (chartCake?.myRulingBodies(for: 2).count)!
+                        return (chartCake?.rulingBodies(for: 2).count)!
 
                     }
                     else if(tableView == mercuryTableView){
 
-                        return (chartCake?.myRulingBodies(for: 3).count)!
+                        return (chartCake?.rulingBodies(for: 3).count)!
                     }
                     else if(tableView == venusTableView){
 
-                        return (chartCake?.myRulingBodies(for: 4).count)!
+                        return (chartCake?.rulingBodies(for: 4).count)!
                         }
                 else if(tableView == marsTableView){
 
-                    return (chartCake?.myRulingBodies(for: 5).count)!
+                    return (chartCake?.rulingBodies(for: 5).count)!
                             }
                 else if(tableView == jupiterTableView){
 
-                    return (chartCake?.myRulingBodies(for: 6).count)!
+                    return (chartCake?.rulingBodies(for: 6).count)!
                                 }
                 else if(tableView == saturnTableView){
 
-                    return (chartCake?.myRulingBodies(for: 7).count)!
+                    return (chartCake?.rulingBodies(for: 7).count)!
                                     }
                 else if(tableView == uranusTableView){
 
-                    return (chartCake?.myRulingBodies(for: 8).count)!
+                    return (chartCake?.rulingBodies(for: 8).count)!
                                         }
                 else if(tableView == neptuneTableView){
 
-                    return (chartCake?.myRulingBodies(for: 9).count)!
+                    return (chartCake?.rulingBodies(for: 9).count)!
                                             }
                 else if(tableView == plutoTableView){
 
-                    return (chartCake?.myRulingBodies(for: 10).count)!
+                    return (chartCake?.rulingBodies(for: 10).count)!
                                         }
                 else if(tableView == eleventhTableView){
 
-                    return (chartCake?.myRulingBodies(for: 11).count)!
+                    return (chartCake?.rulingBodies(for: 11).count)!
                                             }
                 else {
 
-                    return (chartCake?.myRulingBodies(for: 12).count)!
+                    return (chartCake?.rulingBodies(for: 12).count)!
 
             }
             }
