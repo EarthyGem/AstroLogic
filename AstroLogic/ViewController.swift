@@ -65,6 +65,8 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
     var scores: [String : Double] = [:]
     var chartCake: ChartCake?
     var scores2: [CelestialObject : Double] = [:]
+    
+    var toggleSwitch: UISwitch!
     let aboutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("About", for: .normal)
@@ -261,7 +263,11 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         // Add custom header to the main view BEFORE other subviews to ensure it's not overlapped
         self.view.addSubview(headerView)
 
+        toggleSwitch = UISwitch()
+       toggleSwitch.isOn = false // Set the initial state to "on"// Set the initial state as needed
+        toggleSwitch.addTarget(self, action: #selector(toggleSwitchChanged(sender:)), for: .valueChanged)
 
+        // Create a UIBarButtonItem with the UISwitch
         view.addSubview(birthPlaceTextField)
 
         view.addSubview(dateTextField)
@@ -369,6 +375,17 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
            }
        }
 
+    @objc func toggleSwitchChanged(sender: UISwitch) {
+        // Handle switch state changes here
+        // You can access sender.isOn to determine the new state (true for on, false for off)
+        
+        // Apply changes to all the charts based on the new switch state
+        if sender.isOn {
+            // Apply changes when the switch is on
+        } else {
+            // Apply changes when the switch is off
+        }
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -561,7 +578,11 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
             //    let phaseName = chartCake
 
-                let scores = chartCake!.getTotalPowerScoresForPlanets()
+                var bodiesArgument: [Coordinate]? = (toggleSwitch.isOn) ? chart.rickysBodies : nil
+
+                
+         
+            let scores = chart.getTotalPowerScoresForPlanets(bodiesArgument)
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
 
                 saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet: strongestPlanet.keyName)
@@ -630,6 +651,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
                 strongestPlanetVC.phaseName = phaseName?.rawValue
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
+                strongestPlanetVC.scores = scores
                 strongestPlanetVC.mostDiscordantPlanetArchetype = mostDiscordantPlanet.archetype
                 strongestPlanetVC.mostHarmoniousPlanetArchetype = mostHarmoniousPlanet.archetype
                 strongestPlanetVC.sentenceText = sentence

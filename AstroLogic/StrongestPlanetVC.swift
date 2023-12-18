@@ -128,7 +128,7 @@ class StrongestPlanetViewController: UIViewController {
         myItemsVC.chartCake = chartCake.self
         myItemsVC.sortedPlanets = sortedPlanets.self
         myItemsVC.name = name.self
-        myItemsVC.scores = scores!.self
+       myItemsVC.scores = scores!.self
         myItemsVC.phaseName = phaseName.self
         myItemsVC.birthDate = birthDate.self
         myItemsVC.sortedPlanets = sortedPlanets.self
