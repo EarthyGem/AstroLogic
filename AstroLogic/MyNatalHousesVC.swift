@@ -10,32 +10,16 @@ import SwiftEphemeris
 
 class MyNatalHousesVC: UIViewController {
 
-
-    var chart: Chart?
     var chartCake: ChartCake?
-    var selectedDate: Date?
-    var sunAspects = [""]
-    var moonAspects = [""]
-    var mercuryAspects = [""]
-    var venusAspects = [""]
-    var marsAspects = [""]
-    var jupiterAspects = [""]
-    var saturnAspects = [""]
-    var uranusAspects = [""]
-    var neptuneAspects = [""]
-    var plutoAspects = [""]
-
-
-
-
+    var chart: Chart?
+    //var chartCake: ChartCake?
+    var name: String?
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 
         return scrollView
     }()
-
-
 
 
     private let sunScrollView: UIView = {
@@ -102,99 +86,99 @@ class MyNatalHousesVC: UIViewController {
         return twelfthScrollView
     }()
 
-    private let sunTableView: UITableView = {
-        let sunTableView = UITableView()
+    private let firstTableView: UITableView = {
+        let firstTableView = UITableView()
 
-            sunTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+            firstTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
 
 
-        return sunTableView
+        return firstTableView
     }()
 
     private let ascTableView: UITableView = {
         let ascTableView = UITableView()
 
-        ascTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+        ascTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
 
 
         return ascTableView
     }()
 
-    private let moonTableView: UITableView = {
-        let moonTableView = UITableView()
-        moonTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+    private let secondTableView: UITableView = {
+        let secondTableView = UITableView()
+        secondTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
 
-        return moonTableView
+        return secondTableView
     }()
 
-    private let mercuryTableView: UITableView = {
-        let mercuryTableView = UITableView()
+    private let thirdTableView: UITableView = {
+        let thirdTableView = UITableView()
 
-        mercuryTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
-        return mercuryTableView
+        thirdTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
+        return thirdTableView
     }()
 
-    private let venusTableView: UITableView = {
-        let venusTableView = UITableView()
-        venusTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+    private let fourthTableView: UITableView = {
+        let fourthTableView = UITableView()
+        fourthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
-        return venusTableView
+        return fourthTableView
     }()
 
-    private let marsTableView: UITableView = {
-        let marsTableView = UITableView()
-        marsTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+    private let fifthTableView: UITableView = {
+        let fifthTableView = UITableView()
+        fifthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
-        return marsTableView
+        return fifthTableView
     }()
 
-    private let jupiterTableView: UITableView = {
-        let jupiterTableView = UITableView()
-        jupiterTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+    private let sixthTableView: UITableView = {
+        let sixthTableView = UITableView()
+        sixthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
-        return jupiterTableView
+        return sixthTableView
     }()
 
-    private let saturnTableView: UITableView = {
-        let saturnTableView = UITableView()
+    private let seventhTableView: UITableView = {
+        let seventhTableView = UITableView()
 
-        saturnTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
-        return saturnTableView
+        seventhTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
+        return seventhTableView
     }()
 
-    private let uranusTableView: UITableView = {
-        let uranusTableView = UITableView()
-        uranusTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+    private let eighthTableView: UITableView = {
+        let eighthTableView = UITableView()
+        eighthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
 
-        return uranusTableView
+        return eighthTableView
     }()
-    private let neptuneTableView: UITableView = {
-        let neptuneTableView = UITableView()
+    private let ninthTableView: UITableView = {
+        let ninthTableView = UITableView()
 
-        neptuneTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
-        return neptuneTableView
+        ninthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
+        return ninthTableView
     }()
-    private let plutoTableView: UITableView = {
-        let plutoTableView = UITableView()
+    private let tenthTableView: UITableView = {
+        let tenthTableView = UITableView()
 
-        plutoTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
-        return plutoTableView
+        tenthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
+        return tenthTableView
     }()
 
 
     private let eleventhTableView: UITableView = {
         let eleventhTableView = UITableView()
 
-        eleventhTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+        eleventhTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return eleventhTableView
     }()
     private let twelfthTableView: UITableView = {
         let twelfthTableView = UITableView()
 
-        twelfthTableView.register(HousesCustomTableViewCell2.self, forCellReuseIdentifier: HousesCustomTableViewCell2.identifier)
+        twelfthTableView.register(HousesCustomTableViewCell.self, forCellReuseIdentifier: HousesCustomTableViewCell.identifier)
         return twelfthTableView
     }()
 
@@ -293,13 +277,6 @@ class MyNatalHousesVC: UIViewController {
         return topTransitImage
 
     }()
-//         public let transitIntro: UILabel = {
-//            let transitIntro = UILabel()
-//
-//            return transitIntro
-//
-//
-//    }()
 
     var SelectedIndex = -1
     var isCollapsed = false
@@ -307,26 +284,26 @@ class MyNatalHousesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sunTableView.dataSource = self
-        sunTableView.delegate = self
-       moonTableView.dataSource = self
-        moonTableView.delegate = self
-        mercuryTableView.dataSource = self
-        mercuryTableView.delegate = self
-        venusTableView.dataSource = self
-        venusTableView.delegate = self
-        marsTableView.dataSource = self
-        marsTableView.delegate = self
-        jupiterTableView.dataSource = self
-        jupiterTableView.delegate = self
-        saturnTableView.dataSource = self
-        saturnTableView.delegate = self
-        uranusTableView.dataSource = self
-        uranusTableView.delegate = self
-        neptuneTableView.dataSource = self
-        neptuneTableView.delegate = self
-        plutoTableView.dataSource = self
-        plutoTableView.delegate = self
+        firstTableView.dataSource = self
+        firstTableView.delegate = self
+       secondTableView.dataSource = self
+        secondTableView.delegate = self
+        thirdTableView.dataSource = self
+        thirdTableView.delegate = self
+        fourthTableView.dataSource = self
+        fourthTableView.delegate = self
+        fifthTableView.dataSource = self
+        fifthTableView.delegate = self
+        sixthTableView.dataSource = self
+        sixthTableView.delegate = self
+        seventhTableView.dataSource = self
+        seventhTableView.delegate = self
+        eighthTableView.dataSource = self
+        eighthTableView.delegate = self
+        ninthTableView.dataSource = self
+        ninthTableView.delegate = self
+        tenthTableView.dataSource = self
+        tenthTableView.delegate = self
 //        ascTableView.dataSource = self
 //        ascTableView.delegate = self
         eleventhTableView.dataSource = self
@@ -335,30 +312,30 @@ class MyNatalHousesVC: UIViewController {
         twelfthTableView.delegate = self
         view.backgroundColor = .black
 
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Flip Charts", style: .plain, target: self, action: #selector(flipChartsButtonTapped))
 
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        sunTableView.frame = CGRect(x: sunTableView.frame.origin.x, y: sunTableView.frame.origin.y , width: sunTableView.frame.size.width, height: sunTableView.contentSize.height)
+        firstTableView.frame = CGRect(x: firstTableView.frame.origin.x, y: firstTableView.frame.origin.y , width: firstTableView.frame.size.width, height: firstTableView.contentSize.height)
 
-        moonTableView.frame = CGRect(x: moonTableView.frame.origin.x, y: moonTableView.frame.origin.y , width: moonTableView.frame.size.width, height: moonTableView.contentSize.height)
+        secondTableView.frame = CGRect(x: secondTableView.frame.origin.x, y: secondTableView.frame.origin.y , width: secondTableView.frame.size.width, height: secondTableView.contentSize.height)
 
-        mercuryTableView.frame = CGRect(x: mercuryTableView.frame.origin.x, y: mercuryTableView.frame.origin.y , width: mercuryTableView.frame.size.width, height: mercuryTableView.contentSize.height)
+        thirdTableView.frame = CGRect(x: thirdTableView.frame.origin.x, y: thirdTableView.frame.origin.y , width: thirdTableView.frame.size.width, height: thirdTableView.contentSize.height)
 
-        venusTableView.frame = CGRect(x: venusTableView.frame.origin.x, y: venusTableView.frame.origin.y, width: venusTableView.frame.size.width, height: venusTableView.contentSize.height)
+        fourthTableView.frame = CGRect(x: fourthTableView.frame.origin.x, y: fourthTableView.frame.origin.y, width: fourthTableView.frame.size.width, height: fourthTableView.contentSize.height)
 
-        marsTableView.frame = CGRect(x: marsTableView.frame.origin.x, y: marsTableView.frame.origin.y , width: marsTableView.frame.size.width, height: marsTableView.contentSize.height)
+        fifthTableView.frame = CGRect(x: fifthTableView.frame.origin.x, y: fifthTableView.frame.origin.y , width: fifthTableView.frame.size.width, height: fifthTableView.contentSize.height)
 
-        jupiterTableView.frame = CGRect(x: jupiterTableView.frame.origin.x, y: jupiterTableView.frame.origin.y , width: jupiterTableView.frame.size.width, height: jupiterTableView.contentSize.height)
+        sixthTableView.frame = CGRect(x: sixthTableView.frame.origin.x, y: sixthTableView.frame.origin.y , width: sixthTableView.frame.size.width, height: sixthTableView.contentSize.height)
 
-        saturnTableView.frame = CGRect(x: saturnTableView.frame.origin.x, y: saturnTableView.frame.origin.y , width: saturnTableView.frame.size.width, height: saturnTableView.contentSize.height)
+        seventhTableView.frame = CGRect(x: seventhTableView.frame.origin.x, y: seventhTableView.frame.origin.y , width: seventhTableView.frame.size.width, height: seventhTableView.contentSize.height)
 
-        uranusTableView.frame = CGRect(x: uranusTableView.frame.origin.x, y: uranusTableView.frame.origin.y , width: uranusTableView.frame.size.width, height: uranusTableView.contentSize.height)
+        eighthTableView.frame = CGRect(x: eighthTableView.frame.origin.x, y: eighthTableView.frame.origin.y , width: eighthTableView.frame.size.width, height: eighthTableView.contentSize.height)
 
-       neptuneTableView.frame = CGRect(x: neptuneTableView.frame.origin.x, y: neptuneTableView.frame.origin.y , width: neptuneTableView.frame.size.width, height: neptuneTableView.contentSize.height)
+       ninthTableView.frame = CGRect(x: ninthTableView.frame.origin.x, y: ninthTableView.frame.origin.y , width: ninthTableView.frame.size.width, height: ninthTableView.contentSize.height)
 
-        plutoTableView.frame = CGRect(x: plutoTableView.frame.origin.x, y: plutoTableView.frame.origin.y , width: plutoTableView.frame.size.width, height: plutoTableView.contentSize.height)
+        tenthTableView.frame = CGRect(x: tenthTableView.frame.origin.x, y: tenthTableView.frame.origin.y , width: tenthTableView.frame.size.width, height: tenthTableView.contentSize.height)
 
         eleventhTableView.frame = CGRect(x: eleventhTableView.frame.origin.x, y: eleventhTableView.frame.origin.y , width: eleventhTableView.frame.size.width, height: eleventhTableView.contentSize.height)
 
@@ -384,39 +361,44 @@ class MyNatalHousesVC: UIViewController {
 
         sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
         scrollView.addSubview(sunScrollView)
-//        sunScrollView.contentSize = CGSize(width: 300, height: 200)
+        //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
 
-//        sunTableView.backgroundColor = .orange
-        moonTableView.backgroundColor = .green
+        //        firstTableView.backgroundColor = .orange
+        secondTableView.backgroundColor = .green
 
-       mercuryTableView.backgroundColor = .purple
+        thirdTableView.backgroundColor = .purple
 
-        venusTableView.backgroundColor = .yellow
-       marsTableView.backgroundColor = .red
-       jupiterTableView.backgroundColor = .systemGroupedBackground
-        saturnTableView.backgroundColor = .blue
-        uranusTableView.backgroundColor = .white
-       neptuneTableView.backgroundColor = .gray
-        plutoTableView.backgroundColor = .systemPink
+        fourthTableView.backgroundColor = .yellow
+        fifthTableView.backgroundColor = .red
+        sixthTableView.backgroundColor = .systemGroupedBackground
+        seventhTableView.backgroundColor = .blue
+        eighthTableView.backgroundColor = .white
+        ninthTableView.backgroundColor = .gray
+        tenthTableView.backgroundColor = .systemPink
 
-//      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
+        //      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
 
 
 
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 1).count)! * 90)
-       moonTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 2).count)! * 90)
-        mercuryTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 3).count)! * 90)
-        venusTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 4).count)! * 90)
-        marsTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 5).count)! * 90)
-        jupiterTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 6).count)! * 90)
-        saturnTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 7).count)! * 90)
-        uranusTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 8).count)! * 90)
-        neptuneTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 9).count)! * 90)
-        plutoTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 10).count)! * 90)
-        eleventhTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 11).count)! * 90)
-        twelfthTableView.contentSize.height = CGFloat((chartCake?.rulingBodies(for: 12).count)! * 90)
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
+        // Ensure you have the necessary data before proceeding.
+        guard let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets else {
+            return
+        }
+
+        // Get planets in houses using the function.
+        let planetsInHouses = chartCake?.othersPlanetInHouses(using: houseCusps, with: bodies) ?? [:]
+
+        for (index, tableView) in tableViews.enumerated() {
+            let houseNumber = index + 1
+            let count = planetsInHouses[houseNumber]?.count ?? 0
+
+            // Update the height of the table view based on the number of rows it has.
+            // Each row's height is 90 as per your previous implementation.
+            tableView.contentSize.height = CGFloat(count * 90)
+        }
 
 
 
@@ -471,7 +453,7 @@ class MyNatalHousesVC: UIViewController {
 
 
 
-//        sunScrollView.addSubview(plutoTableView)
+//        sunScrollView.addSubview(tenthTableView)
         // Do any additional setup after loading the view.
 
 
@@ -590,46 +572,46 @@ class MyNatalHousesVC: UIViewController {
 
 
 
-        sunScrollView.frame = CGRect(x: 0, y: 200, width: view.frame.size.width, height: sunTableView.contentSize.height + 40)
+        sunScrollView.frame = CGRect(x: 0, y: 200, width: view.frame.size.width, height: firstTableView.contentSize.height + 40)
 
-        sunTableView.frame = CGRect(x: 10, y: 35, width: sunScrollView.frame.size.width , height: sunTableView.contentSize.height)
+        firstTableView.frame = CGRect(x: 10, y: 35, width: sunScrollView.frame.size.width , height: firstTableView.contentSize.height)
 
-        sunScrollView.addSubview(sunTableView)
-
-
-        moonScrollView.frame = CGRect(x: 0, y: sunScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: moonTableView.contentSize.height + 40)
-        moonTableView.frame = CGRect(x: 10, y: 35, width: moonScrollView.frame.size.width , height: moonScrollView.frame.size.height - 60)
-
-        moonScrollView.addSubview(moonTableView)
+        sunScrollView.addSubview(firstTableView)
 
 
+        moonScrollView.frame = CGRect(x: 0, y: sunScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: secondTableView.contentSize.height + 40)
+        secondTableView.frame = CGRect(x: 10, y: 35, width: moonScrollView.frame.size.width , height: moonScrollView.frame.size.height - 60)
 
-
-        mercuryScrollView.frame = CGRect(x: 0, y: moonScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: mercuryTableView.contentSize.height + 40)
-        mercuryScrollView.addSubview(mercuryTableView)
+        moonScrollView.addSubview(secondTableView)
 
 
 
-        venusScrollView.frame = CGRect(x: 0, y: mercuryScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: venusTableView.contentSize.height + 40)
-        venusScrollView.addSubview(venusTableView)
 
-        marsScrollView.frame = CGRect(x: 0, y: venusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: marsTableView.contentSize.height + 40)
-        marsScrollView.addSubview(marsTableView)
+        mercuryScrollView.frame = CGRect(x: 0, y: moonScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: thirdTableView.contentSize.height + 40)
+        mercuryScrollView.addSubview(thirdTableView)
 
-        jupiterScrollView.frame = CGRect(x: 0, y: marsScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: jupiterTableView.contentSize.height + 40)
-        jupiterScrollView.addSubview(jupiterTableView)
 
-        saturnScrollView.frame = CGRect(x: 0, y: jupiterScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: saturnTableView.contentSize.height + 40)
-        saturnScrollView.addSubview(saturnTableView)
 
-        uranusScrollView.frame = CGRect(x: 0, y: saturnScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: uranusTableView.contentSize.height + 40)
-        uranusScrollView.addSubview(uranusTableView)
+        venusScrollView.frame = CGRect(x: 0, y: mercuryScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fourthTableView.contentSize.height + 40)
+        venusScrollView.addSubview(fourthTableView)
 
-        neptuneScrollView.frame = CGRect(x: 0, y: uranusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: neptuneTableView.contentSize.height + 40)
-        neptuneScrollView.addSubview(neptuneTableView)
+        marsScrollView.frame = CGRect(x: 0, y: venusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fifthTableView.contentSize.height + 40)
+        marsScrollView.addSubview(fifthTableView)
 
-        plutoScrollView.frame = CGRect(x: 0, y: neptuneScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: plutoTableView.contentSize.height + 40)
-        plutoScrollView.addSubview(plutoTableView)
+        jupiterScrollView.frame = CGRect(x: 0, y: marsScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: sixthTableView.contentSize.height + 40)
+        jupiterScrollView.addSubview(sixthTableView)
+
+        saturnScrollView.frame = CGRect(x: 0, y: jupiterScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: seventhTableView.contentSize.height + 40)
+        saturnScrollView.addSubview(seventhTableView)
+
+        uranusScrollView.frame = CGRect(x: 0, y: saturnScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: eighthTableView.contentSize.height + 40)
+        uranusScrollView.addSubview(eighthTableView)
+
+        neptuneScrollView.frame = CGRect(x: 0, y: uranusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: ninthTableView.contentSize.height + 40)
+        neptuneScrollView.addSubview(ninthTableView)
+
+        plutoScrollView.frame = CGRect(x: 0, y: neptuneScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: tenthTableView.contentSize.height + 40)
+        plutoScrollView.addSubview(tenthTableView)
 
 
         eleventhScrollView.frame = CGRect(x: 0, y: plutoScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: eleventhTableView.contentSize.height + 40)
@@ -642,19 +624,19 @@ class MyNatalHousesVC: UIViewController {
 //
 
 
-        mercuryTableView.frame = CGRect(x: 10, y: 35, width: mercuryScrollView.frame.size.width , height: mercuryScrollView.frame.size.height - 60)
+        thirdTableView.frame = CGRect(x: 10, y: 35, width: mercuryScrollView.frame.size.width , height: mercuryScrollView.frame.size.height - 60)
 
-        venusTableView.frame = CGRect(x: 10, y: 35, width: venusScrollView.frame.size.width , height: venusScrollView.frame.size.height - 60)
+        fourthTableView.frame = CGRect(x: 10, y: 35, width: venusScrollView.frame.size.width , height: venusScrollView.frame.size.height - 60)
 
-        marsTableView.frame = CGRect(x: 10, y: 35, width: marsScrollView.frame.size.width , height: marsScrollView.frame.size.height - 60)
+        fifthTableView.frame = CGRect(x: 10, y: 35, width: marsScrollView.frame.size.width , height: marsScrollView.frame.size.height - 60)
 
-        jupiterTableView.frame = CGRect(x: 10, y: 35, width: jupiterScrollView.frame.size.width , height: jupiterScrollView.frame.size.height - 60)
+        sixthTableView.frame = CGRect(x: 10, y: 35, width: jupiterScrollView.frame.size.width , height: jupiterScrollView.frame.size.height - 60)
 
-        saturnTableView.frame = CGRect(x: 10, y: 35, width: saturnScrollView.frame.size.width , height: saturnScrollView.frame.size.height - 60)
+        seventhTableView.frame = CGRect(x: 10, y: 35, width: saturnScrollView.frame.size.width , height: saturnScrollView.frame.size.height - 60)
 
-        uranusTableView.frame = CGRect(x: 10, y: 35, width: uranusScrollView.frame.size.width , height: uranusScrollView.frame.size.height - 20)
-        neptuneTableView.frame = CGRect(x: 10, y: 35, width: neptuneScrollView.frame.size.width , height: neptuneScrollView.frame.size.height - 60)
-        plutoTableView.frame = CGRect(x: 10, y: 35, width: plutoScrollView.frame.size.width , height: plutoScrollView.frame.size.height - 60)
+        eighthTableView.frame = CGRect(x: 10, y: 35, width: uranusScrollView.frame.size.width , height: uranusScrollView.frame.size.height - 20)
+        ninthTableView.frame = CGRect(x: 10, y: 35, width: neptuneScrollView.frame.size.width , height: neptuneScrollView.frame.size.height - 60)
+        tenthTableView.frame = CGRect(x: 10, y: 35, width: plutoScrollView.frame.size.width , height: plutoScrollView.frame.size.height - 60)
 
 
         eleventhTableView.frame = CGRect(x: 10, y: 35, width: eleventhScrollView.frame.size.width , height: eleventhScrollView.frame.size.height - 60)
@@ -764,301 +746,61 @@ class MyNatalHousesVC: UIViewController {
 }
 
 extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
-            func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
+        if let index = tableViews.firstIndex(of: tableView) {
+            if let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets {
+                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+                let houseNumber = index + 1
 
-                if(tableView == sunTableView) {
-
-                    return (chartCake?.rulingBodies(for: 1).count)!
-
-                }
-                    else if(tableView == moonTableView){
-                        return (chartCake?.rulingBodies(for: 2).count)!
-
-                    }
-                    else if(tableView == mercuryTableView){
-
-                        return (chartCake?.rulingBodies(for: 3).count)!
-                    }
-                    else if(tableView == venusTableView){
-
-                        return (chartCake?.rulingBodies(for: 4).count)!
-                        }
-                else if(tableView == marsTableView){
-
-                    return (chartCake?.rulingBodies(for: 5).count)!
-                            }
-                else if(tableView == jupiterTableView){
-
-                    return (chartCake?.rulingBodies(for: 6).count)!
-                                }
-                else if(tableView == saturnTableView){
-
-                    return (chartCake?.rulingBodies(for: 7).count)!
-                                    }
-                else if(tableView == uranusTableView){
-
-                    return (chartCake?.rulingBodies(for: 8).count)!
-                                        }
-                else if(tableView == neptuneTableView){
-
-                    return (chartCake?.rulingBodies(for: 9).count)!
-                                            }
-                else if(tableView == plutoTableView){
-
-                    return (chartCake?.rulingBodies(for: 10).count)!
-                                        }
-                else if(tableView == eleventhTableView){
-
-                    return (chartCake?.rulingBodies(for: 11).count)!
-                                            }
-                else {
-
-                    return (chartCake?.rulingBodies(for: 12).count)!
-
+                // Return the count of planets in the specific house
+                return planetsInHouses[houseNumber]?.count ?? 0
             }
-            }
+        }
 
-            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return 0 // Default return in case tableView is not found
+    }
 
-                let rulers1 = chartCake?.rulingBodies(for: 1)
-                let rulers2 = chartCake?.rulingBodies(for: 2)
-                let rulers3 = chartCake?.rulingBodies(for: 3)
-                let rulers4 = chartCake?.rulingBodies(for: 4)
-                let rulers5 = chartCake?.rulingBodies(for: 5)
-                let rulers6 = chartCake?.rulingBodies(for: 6)
-                let rulers7 = chartCake?.rulingBodies(for: 7)
-                let rulers8 = chartCake?.rulingBodies(for: 8)
-                let rulers9 = chartCake?.rulingBodies(for: 9)
-                let rulers10 = chartCake?.rulingBodies(for: 10)
-                let rulers11 = chartCake?.rulingBodies(for: 11)
-                let rulers12 = chartCake?.rulingBodies(for: 12)
-                
-                
-                if(tableView == sunTableView) {
+    @objc func flipChartsButtonTapped() {
+        let flipSynastryVC = FlipTransposedHousesVC()
+
+        flipSynastryVC.chartCake = self.chartCake
+        flipSynastryVC.chartCake = self.chartCake
+        flipSynastryVC.title = "\(name!)' Houses"
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
+    }
 
 
-                    guard let cell = sunTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
-                       return UITableViewCell()
-                   }
+        if let index = tableViews.firstIndex(of: tableView) {
+            // Determine which celestial objects are in each house using the `chartCake` instance
+            if let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets {
+                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
 
-
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers1![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers1![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers1![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-
-                   return cell
-
-            }
-                else if(tableView == moonTableView){
-
-                    guard let cell = moonTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers2![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers2![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers2![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-
-                   return cell
-
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
+                    return UITableViewCell()
                 }
 
+                let houseNumber = index + 1
 
+                // Extracting the CelestialObjects for this house
+                if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
+                    // Extracting the name for the specific celestial object in this row
+                    let keyName = celestialObjectsInHouse[indexPath.row].keyName.lowercased()
 
-
-
-                else if(tableView == mercuryTableView){
-
-
-                    guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers3![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers3![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers3![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-                   return cell
-
-                }
-                    else if(tableView == venusTableView){
-
-
-                        guard let cell = venusTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                           return UITableViewCell()
-                       }
-
-//                        var transitVenusAspects = [mercuryVenus,saturnVenus,uranusVenus]
-
-
-                        cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers4![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers4![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers4![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-                       return cell
-
-
-
-                        }
-                else if(tableView == marsTableView){
-
-
-                    guard let cell = marsTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-
-
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers5![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers5![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers5![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-
-                   return cell
-
-                            }
-                else if(tableView == jupiterTableView){
-
-
-                    guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-//                    var transitJupiterAspects = [plutoJupiter]
-//                    var transitJupiterGlyph = ["pluto"]
-//                    var transitJupiterDurantion = [""]
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers6![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers6![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers6![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-
-                   return cell
-
-                                }
-                else if(tableView == saturnTableView){
-
-
-                    guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-//                    var transitSaturnAspects = [jupiterSaturn]
-//                    var transitSaturnGlyph = ["jupiter"]
-//                    var transitSaturnDuration = ["jupiter"]
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers7![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers7![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers7![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-
-                   return cell
-
-                                    }
-                else if(tableView == uranusTableView){
-
-
-                    guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-//                    var transitUranusAspects = [marsUranus,neptuneUranus]
-//                    var transitUranusGlyph = ["mars","neptune"]
-//                    var transitUranusDuration = ["mars","neptune"]
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers8![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers8![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers8![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-                   return cell
-
-                                        }
-                else if(tableView == neptuneTableView){
-
-
-                    guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-//                    var transitNeptuneAspects = [sunNeptune,venusNeptune]
-//                    var transitNeptuneGlyph = ["sun","venus"]
-//                    var transitNeptuneDuration = ["mercury"]
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers9![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers9![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers9![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-//
-                   return cell
-
-                                            }
-
-               else if (tableView == plutoTableView) {
-
-
-                    guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-
-//                    var transitSunAspects = [sunSun,venusSun,jupiterSun]
-
-                   cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers10![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers10![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers10![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-
-                   return cell
-
-            }
-
-                else if (tableView == eleventhTableView) {
-
-
-                     guard let cell = eleventhTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                        return UITableViewCell()
-                    }
-
-
- //                    var transitSunAspects = [sunSun,venusSun,jupiterSun]
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers11![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers11![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers11![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
 
                     return cell
-
-             }
-
-
-                else {
-
-
-                    guard let cell = twelfthTableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell2.identifier, for: indexPath) as? HousesCustomTableViewCell2 else {
-
-                       return UITableViewCell()
-                   }
-
-//                    var transitPlutoAspects = [""]
-//                    var transitPlutoGlyph = [""]
-//                    var transitPlutoDuration = [""]
-//
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: rulers12![indexPath.row].body.keyName.lowercased(), firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(chartCake!.houseCusps.cusp(for: rulers12![indexPath.row].longitude).houseKeywords)", firstPlanetTextText: "\(rulers12![indexPath.row].body.planetThoughtTypes) about",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: "" )
-
-
-
-
-                   return cell
-
-
+                }
             }
+        }
 
-            }
+        return UITableViewCell() // Default cell in case tableView is not found or data is not available
+    }
+
 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -1072,3 +814,6 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
 
     }
+
+
+
