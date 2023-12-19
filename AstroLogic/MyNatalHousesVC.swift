@@ -312,7 +312,7 @@ class MyNatalHousesVC: UIViewController {
         twelfthTableView.delegate = self
         view.backgroundColor = .black
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Flip Charts", style: .plain, target: self, action: #selector(flipChartsButtonTapped))
+       
 
     }
 
@@ -389,18 +389,16 @@ class MyNatalHousesVC: UIViewController {
         }
 
         // Get planets in houses using the function.
-        let planetsInHouses = chartCake?.othersPlanetInHouses(using: houseCusps, with: bodies) ?? [:]
+        let planetsInHouses = chartCake?.planetsAndRulersInHouses(using: houseCusps, with: bodies) ?? [:]
 
         for (index, tableView) in tableViews.enumerated() {
             let houseNumber = index + 1
-            let count = planetsInHouses[houseNumber]?.count ?? 0
+            let count = planetsInHouses[houseNumber]?.count ?? 0  // Adjusted to get the count of combined planets and rulers
 
             // Update the height of the table view based on the number of rows it has.
             // Each row's height is 90 as per your previous implementation.
             tableView.contentSize.height = CGFloat(count * 90)
         }
-
-
 
         scrollView.addSubview(moonScrollView)
 //        moonScrollView.contentSize = CGSize(width: 300, height: 200)
@@ -751,10 +749,10 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
         if let index = tableViews.firstIndex(of: tableView) {
             if let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets {
-                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+                let planetsInHouses = chartCake!.planetsAndRulersInHouses(using: houseCusps, with: bodies)
                 let houseNumber = index + 1
 
-                // Return the count of planets in the specific house
+                // Return the combined count of planets in the house and the ruling planets
                 return planetsInHouses[houseNumber]?.count ?? 0
             }
         }
@@ -762,23 +760,13 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
         return 0 // Default return in case tableView is not found
     }
 
-    @objc func flipChartsButtonTapped() {
-        let flipSynastryVC = FlipTransposedHousesVC()
-
-        flipSynastryVC.chartCake = self.chartCake
-        flipSynastryVC.chartCake = self.chartCake
-        flipSynastryVC.title = "\(name!)' Houses"
-        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
-    }
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         if let index = tableViews.firstIndex(of: tableView) {
-            // Determine which celestial objects are in each house using the `chartCake` instance
             if let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets {
-                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+                let planetsInHouses = chartCake!.planetsAndRulersInHouses(using: houseCusps, with: bodies)
 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
                     return UITableViewCell()
@@ -786,11 +774,13 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
                 let houseNumber = index + 1
 
-                // Extracting the CelestialObjects for this house
                 if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
-                    // Extracting the name for the specific celestial object in this row
-                    let keyName = celestialObjectsInHouse[indexPath.row].keyName.lowercased()
-
+                    let object = celestialObjectsInHouse[indexPath.row]
+                    
+                    // Assuming the object has a property or method 'keyName' to get its name
+                    // You need to adjust this part based on your actual data structure.
+                    let keyName = object.keyName.lowercased()
+                    
                     cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
 
                     return cell
@@ -800,6 +790,7 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
         return UITableViewCell() // Default cell in case tableView is not found or data is not available
     }
+
 
 
 
