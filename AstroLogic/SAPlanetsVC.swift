@@ -541,3 +541,9 @@ return planetDegree
 
 }
 
+extension SolarArcProgressionsViewController: DatePickerDelegate {
+    func datePickerDidChangeDate(_ date: Date) {
+        self.selectedDate = date
+        // Update the view controller as needed
+    }
+}

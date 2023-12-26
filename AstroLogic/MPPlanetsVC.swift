@@ -558,3 +558,9 @@ return planetDegree
 }
 
 }
+extension MajorProgressionsViewController: DatePickerDelegate {
+    func datePickerDidChangeDate(_ date: Date) {
+        self.selectedDate = date
+        // Update the view controller as needed
+    }
+}

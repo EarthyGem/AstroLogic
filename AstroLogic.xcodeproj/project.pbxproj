@@ -30,6 +30,8 @@
 		392434602ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924345F2ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift */; };
 		392434622ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392434612ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift */; };
 		3926EC542AF165E100606886 /* SunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926EC532AF165E100606886 /* SunVC.swift */; };
+		39293C352B3A602500240AED /* TimingTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C342B3A602500240AED /* TimingTBC.swift */; };
+		39293C372B3A6D9D00240AED /* TimingTimeChangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C362B3A6D9D00240AED /* TimingTimeChangeVC.swift */; };
 		392D97BA2AB2CF2F0086BEA1 /* DecanatesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */; };
 		393969492AF066E80011ACF1 /* Houses Custom2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393969482AF066E80011ACF1 /* Houses Custom2.swift */; };
 		3939694B2AF096A90011ACF1 /* SAAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939694A2AF096A90011ACF1 /* SAAspectsVC.swift */; };
@@ -209,6 +211,8 @@
 		3924345F2ABB432D00584E26 /* ProgresionsPlanetsBartTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresionsPlanetsBartTabController.swift; sourceTree = "<group>"; };
 		392434612ABB433E00584E26 /* ProgresionsAspectsByHouseBarTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgresionsAspectsByHouseBarTabController.swift; sourceTree = "<group>"; };
 		3926EC532AF165E100606886 /* SunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunVC.swift; sourceTree = "<group>"; };
+		39293C342B3A602500240AED /* TimingTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingTBC.swift; sourceTree = "<group>"; };
+		39293C362B3A6D9D00240AED /* TimingTimeChangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingTimeChangeVC.swift; sourceTree = "<group>"; };
 		392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesViewVC.swift; sourceTree = "<group>"; };
 		393969482AF066E80011ACF1 /* Houses Custom2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Houses Custom2.swift"; sourceTree = "<group>"; };
 		3939694A2AF096A90011ACF1 /* SAAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAspectsVC.swift; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 				3998A2AA2B20EDBA008A57C5 /* VocationalVC.swift */,
 				3998A2AC2B210861008A57C5 /* HarmonyHouse.swift */,
 				3998A2AE2B210899008A57C5 /* VocationalHouses.swift */,
+				39293C342B3A602500240AED /* TimingTBC.swift */,
 				39BF3DA12B01D69A006FD001 /* pp.swift */,
 				395156B82B2961AC0040C5DD /* PlanetaryHoursVC.swift */,
 				3982258D2AE6C6340058C86D /* MoonPhaseVC.swift */,
@@ -516,6 +521,7 @@
 				39A1EC6A2A610480008D1EC1 /* Dignity.swift */,
 				39A1EC5C2A5F7A96008D1EC1 /* NewAspects.swift */,
 				39851F6B2A93017800E70FF5 /* TransitPlanetsTCVC.swift */,
+				39293C362B3A6D9D00240AED /* TimingTimeChangeVC.swift */,
 				396F3A072AF09C6B00FF0CAA /* SAPlanetsTCVC.swift */,
 				39851F6D2A93019E00E70FF5 /* TransitAspectsTCVC.swift */,
 				396F3A092AF09CBE00FF0CAA /* SAAspectsTCVC.swift */,
@@ -711,6 +717,7 @@
 				396A7B312AB4A34100E304D6 /* ChartView Extension.swift in Sources */,
 				3912BD6F2AF88EE300C9A623 /* Suggestions.swift in Sources */,
 				39A1EC612A603D8F008D1EC1 /* Houses Custom.swift in Sources */,
+				39293C372B3A6D9D00240AED /* TimingTimeChangeVC.swift in Sources */,
 				39E168712A996FB90003892B /* TransposedHousesVC.swift in Sources */,
 				399B629F2AB831B3006BAC2E /* RealmsVC.swift in Sources */,
 				3903A33F2A5F2D0700245DD2 /* ViewController.swift in Sources */,
@@ -721,6 +728,7 @@
 				39A0ED0F2B1D7FEE00A6CD39 /* Calendar.swift in Sources */,
 				3998A2AF2B210899008A57C5 /* VocationalHouses.swift in Sources */,
 				3998A2AD2B210861008A57C5 /* HarmonyHouse.swift in Sources */,
+				39293C352B3A602500240AED /* TimingTBC.swift in Sources */,
 				39E1D0272AFAAC5000E56EC5 /* WeatherVC.swift in Sources */,
 				39A1EC572A5F799E008D1EC1 /* MinorsBiWheel.swift in Sources */,
 				393DDD632ADC96E400522012 /* CycleChartsVC.swift in Sources */,

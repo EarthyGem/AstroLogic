@@ -1,16 +1,15 @@
 //
-//  TimeChangeViewController.swift
-//  MVP
+//  TimingTimeChangeVC.swift
+//  AstroLogic
 //
-//  Created by Errick Williams on 2/25/23.
-//
+//  Created by Errick Williams on 12/25/23.
 
 import UIKit
 import SwiftEphemeris
 
 
 
-class TransitAspectsTimeChangeViewController: UIViewController  {
+class TimingTimeChangeViewController: UIViewController  {
     
     
     weak var delegate: DatePickerDelegate?
@@ -19,11 +18,25 @@ class TransitAspectsTimeChangeViewController: UIViewController  {
     var selectedDate: Date?
     var latitude: Double?
     var longitude: Double?
+    var delegates: [DatePickerDelegate] = []
+
+       func notifyDateChange(newDate: Date) {
+           self.selectedDate = newDate
+           delegates.forEach { $0.datePickerDidChangeDate(newDate) }
+       }
+  
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
-        delegate?.datePickerDidChangeDate(sender.date)
+        let newDate = sender.date
+        delegate?.datePickerDidChangeDate(newDate)
+        notifyDateChange(newDate: newDate)
     }
 
-    
+
+    func datePickerDidChangeDate(_ date: Date) {
+        // Handle the date change
+        self.selectedDate = date
+        // Optionally notify other components that need to be aware of the date change
+    }
 
     
    public let tcDP: UIDatePicker = {
@@ -38,15 +51,12 @@ class TransitAspectsTimeChangeViewController: UIViewController  {
 
   
     @IBAction func doneButtonTapped(_ sender: UIToolbar) {
-        var selectedDate = tcDP.date
+        let selectedDate = tcDP.date
+        notifyDateChange(newDate: selectedDate)
 
-        // Create an instance of the next view controller
-        let nextViewController = SimpleTransitAspectedPlanetsViewController()
-// Set the
-        nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
-        nextViewController.selectedDate = selectedDate
-        navigationController?.pushViewController(nextViewController, animated: true)
+        // Other necessary actions, such as dismissing the view controller or updating UI, can be added here
     }
+
 
 
 
@@ -122,7 +132,7 @@ class TransitAspectsTimeChangeViewController: UIViewController  {
         // Add flexible spaces and the "Done" button to the toolbar
         toolbar.setItems([flexibleSpace, doneButton, flexibleSpace], animated: true)
         
-        
+     
 
         // Set the toolbar as the input accessory view of the date picker
         view.addSubview(toolbar)
