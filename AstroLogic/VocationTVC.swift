@@ -11,7 +11,7 @@ import SwiftEphemeris
 
 class VocationalTableViewController: UITableViewController {
     var chartCake: ChartCake!
-
+    var strongestPlanet: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellIdentifier")
@@ -56,6 +56,7 @@ class VocationalTableViewController: UITableViewController {
             let vocationalAstrologyVC = VocationalAstrologyViewController()
             vocationalAstrologyVC.chartCake = self.chartCake // Pass the chartCake if needed
             vocationalAstrologyVC.title = "Temperament Indicators"
+            vocationalAstrologyVC.strongestPlanet = strongestPlanet
             self.navigationController?.pushViewController(vocationalAstrologyVC, animated: true)
 
         } else if indexPath.row == 1 {

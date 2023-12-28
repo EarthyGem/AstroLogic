@@ -9,7 +9,7 @@ class VocationalAstrologyViewController: UIViewController {
     let scrollView = UIScrollView()
     let stackView = UIStackView()
     let introLabel = UILabel()
-
+    var strongestPlanet: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -35,6 +35,71 @@ class VocationalAstrologyViewController: UIViewController {
         introLabel.font = UIFont.systemFont(ofSize: 14)
         view.addSubview(introLabel)
     }
+    func getPlanetOrder(strongestPlanet: String) -> [String] {
+        var order: [String] = []
+        let defaultOrder = ["sun", "moon", "ascendant"]
+        
+        // Add the strongest planet to the order list
+        order.append(strongestPlanet.lowercased())
+        
+        // Add the rest of the planets to the order list, excluding the strongest planet
+        for planet in defaultOrder {
+            if planet != strongestPlanet.lowercased() {
+                order.append(planet)
+            }
+        }
+        
+        return order
+    }
+
+
+
+    func getNatalPositions() -> [String] {
+        var positions = [String]()
+        
+        // Get the order of the planets
+        let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet!)
+        
+        // Iterate over the planet order
+        for planet in planetOrder {
+            // Get the decanates for the current planet
+            var temperement: String?
+            switch planet {
+            case "sun":
+                temperement = Planet.sun.planetVocations
+            case "moon":
+                temperement = Planet.moon.planetVocations
+            case "ascendant":
+                temperement = ""
+            case "mercury":
+                temperement = Planet.mercury.planetVocations
+            case "venus":
+                temperement = Planet.venus.planetVocations
+               case "mars":
+                temperement = Planet.mars.planetVocations
+               case "jupiter":
+                temperement = Planet.jupiter.planetVocations
+               case "saturn":
+                temperement = Planet.saturn.planetVocations
+               case "uranus":
+                temperement = Planet.uranus.planetVocations
+               case "neptune":
+                temperement = Planet.neptune.planetVocations
+               case "pluto":
+                temperement = Planet.pluto.planetVocations
+            default:
+                temperement = ""
+            }
+            
+            // Add the decanates to the positions array
+            if let temperement = temperement {
+                positions.append(temperement)
+            }
+        }
+        
+        return positions
+    }
+
 
 
     private func configureScrollViewAndStackView() {
@@ -55,14 +120,18 @@ class VocationalAstrologyViewController: UIViewController {
         // Add the intro label to the stack view
         stackView.addArrangedSubview(introLabel)
 
-        // Add custom views for Sun, Moon, and Ascendant details
-        let sunView = createDetailView(text: chartCake.natal.sun.sign.keyName)
-        let moonView = createDetailView(text: chartCake.natal.moon.sign.moonVocation)
-        let ascendantView = createDetailView(text: chartCake.natal.ascendant.sign.ascVocation)
+        let strongestPlanetView = createDetailView(text: getNatalPositions()[0])
+          let sunView = createDetailView(text: chartCake.natal.sun.sign.sunVocation)
+          let moonView = createDetailView(text: chartCake.natal.moon.sign.moonVocation)
+          let ascendantView = createDetailView(text: chartCake.natal.ascendant.sign.ascVocation)
 
-        stackView.addArrangedSubview(sunView)
-        stackView.addArrangedSubview(moonView)
-        stackView.addArrangedSubview(ascendantView)
+          // Add the views to the stack view in the correct order
+          stackView.addArrangedSubview(introLabel)
+          stackView.addArrangedSubview(strongestPlanetView) // Add the strongestPlanetView here
+          stackView.addArrangedSubview(sunView)
+          stackView.addArrangedSubview(moonView)
+          stackView.addArrangedSubview(ascendantView)
+
 
         // Constraints for scrollView
         NSLayoutConstraint.activate([

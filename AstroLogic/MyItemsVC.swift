@@ -313,7 +313,7 @@ print("chartCake (myItems): \(chartCake)")
 
         let vocationalTVC = VocationalTableViewController()
         vocationalTVC.chartCake = self.chartCake
-      //  cycleChartsVC.otherChart = self.otherChart
+        vocationalTVC.strongestPlanet = self.strongestPlanet
         vocationalTVC.title = "Vocational Astrology"
 
         let cycleChartsVC = CycleChartsViewController(MP_Planets: [""])
