@@ -32,6 +32,7 @@
 		3926EC542AF165E100606886 /* SunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926EC532AF165E100606886 /* SunVC.swift */; };
 		39293C352B3A602500240AED /* TimingTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C342B3A602500240AED /* TimingTBC.swift */; };
 		39293C372B3A6D9D00240AED /* TimingTimeChangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C362B3A6D9D00240AED /* TimingTimeChangeVC.swift */; };
+		39293C392B411ABB00240AED /* SimpleSAAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C382B411ABB00240AED /* SimpleSAAspectsVC.swift */; };
 		392D97BA2AB2CF2F0086BEA1 /* DecanatesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */; };
 		393969492AF066E80011ACF1 /* Houses Custom2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393969482AF066E80011ACF1 /* Houses Custom2.swift */; };
 		3939694B2AF096A90011ACF1 /* SAAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939694A2AF096A90011ACF1 /* SAAspectsVC.swift */; };
@@ -213,6 +214,7 @@
 		3926EC532AF165E100606886 /* SunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunVC.swift; sourceTree = "<group>"; };
 		39293C342B3A602500240AED /* TimingTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingTBC.swift; sourceTree = "<group>"; };
 		39293C362B3A6D9D00240AED /* TimingTimeChangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingTimeChangeVC.swift; sourceTree = "<group>"; };
+		39293C382B411ABB00240AED /* SimpleSAAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSAAspectsVC.swift; sourceTree = "<group>"; };
 		392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesViewVC.swift; sourceTree = "<group>"; };
 		393969482AF066E80011ACF1 /* Houses Custom2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Houses Custom2.swift"; sourceTree = "<group>"; };
 		3939694A2AF096A90011ACF1 /* SAAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAspectsVC.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				39A1EC4E2A5F76B8008D1EC1 /* MinorsAspectsVC.swift */,
 				39A1EC522A5F773E008D1EC1 /* MPAspectsVC.swift */,
 				3939694A2AF096A90011ACF1 /* SAAspectsVC.swift */,
+				39293C382B411ABB00240AED /* SimpleSAAspectsVC.swift */,
 				39B8384F2AABC8670039AD91 /* NestedProgressedAspects.swift */,
 				398225802AE652330058C86D /* MPPlanetsVC.swift */,
 				3939694C2AF096D10011ACF1 /* SAPlanetsVC.swift */,
@@ -696,6 +699,7 @@
 				396989D72AC2841F007EA008 /* househol;der.swift in Sources */,
 				39851F762A93021C00E70FF5 /* ProgressedPlanetsTCVC.swift in Sources */,
 				39C861772AFC79A7007D38A0 /* CompositStrongestPlanet.swift in Sources */,
+				39293C392B411ABB00240AED /* SimpleSAAspectsVC.swift in Sources */,
 				395E2BA22AAB8DA4003A8439 /* newtv.swift in Sources */,
 				39A1EC632A605743008D1EC1 /* signs.swift in Sources */,
 				395DE51D2A967F1600B0B451 /* FlipSynastryVC.swift in Sources */,

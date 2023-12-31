@@ -219,9 +219,11 @@ class NewAspectsCustomTableViewCell: UITableViewCell {
             contentView.addSubview(firstPlanetText)
            
            secondPlanetText.text = "Sun"
-           secondPlanetText.font = .systemFont(ofSize: 14)
+           secondPlanetText.font = .systemFont(ofSize: 12)
            secondPlanetText.textColor = .white
-//           secondPlanetText.font = UIFont.boldSystemFont(ofSize: secondPlanetText.font.pointSize)
+           secondPlanetText.numberOfLines = 0 // Allows for unlimited lines
+           secondPlanetText.lineBreakMode = .byWordWrapping // Breaks lines by words, not characters
+
             contentView.addSubview(secondPlanetText)
            
 
@@ -421,7 +423,7 @@ class NewAspectsCustomTableViewCell: UITableViewCell {
            myTransit1.frame = CGRect(x: 20, y: 60, width: 325, height: 80)
         
            
-           secondPlanetText.frame = CGRect(x: 20, y: 25, width: 300, height: 40)
+           secondPlanetText.frame = CGRect(x: 20, y: 5, width: 300, height: 80)
            
            firstPlanetImageView.frame = CGRect(x: 20, y: 75, width: 55, height: 55)
           
