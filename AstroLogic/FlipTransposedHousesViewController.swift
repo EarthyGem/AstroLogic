@@ -12,7 +12,8 @@ class FlipTransposedHousesVC: UIViewController {
     var otherChart: ChartCake?
     var chart: Chart?
     var chartCake: ChartCake?
-
+    var userA: String?
+    var userB: String?
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 
@@ -749,64 +750,87 @@ class FlipTransposedHousesVC: UIViewController {
 }
 
 extension FlipTransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+  
 
-        if let index = tableViews.firstIndex(of: tableView) {
-            if let houseCusps = otherChart?.houseCusps, let bodies = chartCake?.natal.planets {
-                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
-                let houseNumber = index + 1
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
-                // Return the count of planets in the specific house
-                return planetsInHouses[houseNumber]?.count ?? 0
+    if let index = tableViews.firstIndex(of: tableView) {
+        // Determine which celestial objects are in each house using the `chartCake` instance
+        if let houseCusps = otherChart?.houseCusps, let bodies = chartCake?.natal.planets {
+            let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
+                return UITableViewCell()
+            }
+
+            let houseNumber = index + 1
+
+            // Extracting the CelestialObjects for this house
+            if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
+                // Extracting the name for the specific celestial object in this row
+                let keyName = celestialObjectsInHouse[indexPath.row].keyName.lowercased()
+
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
+
+                return cell
             }
         }
-
-        return 0 // Default return in case tableView is not found
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+    return UITableViewCell() // Default cell in case tableView is not found or data is not available
+}
 
-        if let index = tableViews.firstIndex(of: tableView) {
-            // Determine which celestial objects are in each house using the `chartCake` instance
-            if let houseCusps = otherChart?.houseCusps, let bodies = chartCake?.natal.planets {
-                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
-                    return UITableViewCell()
-                }
+    if let index = tableViews.firstIndex(of: tableView) {
+        if let houseCusps = otherChart?.houseCusps, let bodies = chartCake?.natal.planets {
+            let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+            let houseNumber = index + 1
 
-                let houseNumber = index + 1
-
-                // Extracting the CelestialObjects for this house
-                if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
-                    // Extracting the name for the specific celestial object in this row
-                    let keyName = celestialObjectsInHouse[indexPath.row].keyName.lowercased()
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
-
-                    return cell
-                }
-            }
+            // Return the count of planets in the specific house
+            return planetsInHouses[houseNumber]?.count ?? 0
         }
-
-        return UITableViewCell() // Default cell in case tableView is not found or data is not available
     }
 
+    return 0 // Default return in case tableView is not found
+}
 
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90 // returns fixed height for all rows, regardless of the tableView
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+
+    let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+    
+    if let index = tableViews.firstIndex(of: tableView),
+       let houseCusps = otherChart?.houseCusps,
+       let bodies = chartCake?.natal.planets {
+        let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+        let houseNumber = index + 1
+
+        if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
+            let celestialBody = celestialObjectsInHouse[indexPath.row]
+
+            let interpretationVC = InterpretationViewController()
+            interpretationVC.celestialBody = celestialBody
+            interpretationVC.houseNumber = houseNumber
+            interpretationVC.userA = self.userB
+            interpretationVC.userB = self.userA
+            navigationController?.pushViewController(interpretationVC, animated: true)
+        }
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        // remove all the code related to expanding and collapsing
-    }
+}
 
 
-    }
+func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 90 // returns fixed height for all rows, regardless of the tableView
+}
+
+
+
+
+}
 
 
 
