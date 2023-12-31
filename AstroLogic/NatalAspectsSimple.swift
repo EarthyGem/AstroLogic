@@ -714,20 +714,13 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
             guard let cell = sunTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-             
+
                return UITableViewCell()
            }
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.sun.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.sun.celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 //                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
 ////
@@ -743,15 +736,8 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
                return UITableViewCell()
            }
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.moon.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
 
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
-
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.moon.celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -769,17 +755,10 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
                return UITableViewCell()
            }
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.mercury.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
 
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.mercury.celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -793,17 +772,10 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
                }
 
 
-                var scoringString = ""
-                if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.venus.celestialObject)[indexPath.row]) {
-                        let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                        let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                    scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                    }
 
 
 
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.venus.celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
                return cell
 
@@ -819,17 +791,10 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
            }
 
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.mars.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.mars.celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -843,17 +808,10 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
            }
 
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.jupiter.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
 
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.jupiter .celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -867,17 +825,10 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
                return UITableViewCell()
            }
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.saturn.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
+//                    var transitSaturnAspects = [plutoSaturn]
 
 
-
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.saturn .celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -891,16 +842,9 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
            }
 
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.uranus.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.uranus .celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -914,15 +858,8 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
                return UITableViewCell()
            }
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.neptune.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
 
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
-
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.neptune .celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -936,17 +873,10 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
                return UITableViewCell()
            }
 
-            var scoringString = ""
-            if let celestialAspect = getCelestialAspect(from: chartCake!.simpleAspectsFiltered(chartCake?.natal.rickysBodies,by: Planet.pluto.celestialObject)[indexPath.row]) {
-                    let scoreTuple = chartCake?.getCelestialAspectHarmonyAndDiscordScoresByAspect()[celestialAspect] ?? (harmony: 0.0, discord: 0.0, net: 0.0)
-                    let aspectScore = chartCake?.allCelestialAspectScoresbyAspect()[celestialAspect] ?? 0.0
-
-                scoringString = celestialAspect.scoringString(with: chartCake!.natal, aspectScore, tuple: scoreTuple)
-                }
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: scoringString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.pluto .celestialObject)[indexPath.row].mostBasicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -967,14 +897,5 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
             }
-    
-    private func getCelestialAspect(from aspectType: AspectType) -> CelestialAspect? {
-        switch aspectType {
-        case .celestialAspect(let celestialAspect):
-            return celestialAspect
-        default:
-            return nil
-        }
-    }
 
 }

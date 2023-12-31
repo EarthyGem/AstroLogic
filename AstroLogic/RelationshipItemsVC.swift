@@ -123,8 +123,9 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 let transposedHousesVC = TransposedHousesVC()
                 transposedHousesVC.chartCake = self.chartCake
                 transposedHousesVC.otherChart = self.otherChart
-                transposedHousesVC.title = "\(String(describing: name!))'s Planets"
+                transposedHousesVC.title = "\(String(describing: name!))'s Houses"
                 transposedHousesVC.name = self.name
+                transposedHousesVC.selectedName = self.otherName
                 let natalPlanetsVC = PlanetsViewController(planets: placeHolder)
 
                 let interAspectsVC = SimpleInteraspectsViewController()

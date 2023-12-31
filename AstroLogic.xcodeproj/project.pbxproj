@@ -33,6 +33,10 @@
 		39293C352B3A602500240AED /* TimingTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C342B3A602500240AED /* TimingTBC.swift */; };
 		39293C372B3A6D9D00240AED /* TimingTimeChangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C362B3A6D9D00240AED /* TimingTimeChangeVC.swift */; };
 		39293C392B411ABB00240AED /* SimpleSAAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C382B411ABB00240AED /* SimpleSAAspectsVC.swift */; };
+		39293C3B2B420A1A00240AED /* HouseTranspositionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C3A2B420A1A00240AED /* HouseTranspositionStruct.swift */; };
+		39293C3D2B420D1900240AED /* InterpretationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C3C2B420D1900240AED /* InterpretationViewController.swift */; };
+		39293C3F2B4215DB00240AED /* InteraspectsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C3E2B4215DB00240AED /* InteraspectsStruct.swift */; };
+		39293C412B421FCC00240AED /* InterAspectsInterpreataionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39293C402B421FCC00240AED /* InterAspectsInterpreataionVC.swift */; };
 		392D97BA2AB2CF2F0086BEA1 /* DecanatesViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */; };
 		393969492AF066E80011ACF1 /* Houses Custom2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393969482AF066E80011ACF1 /* Houses Custom2.swift */; };
 		3939694B2AF096A90011ACF1 /* SAAspectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3939694A2AF096A90011ACF1 /* SAAspectsVC.swift */; };
@@ -215,6 +219,10 @@
 		39293C342B3A602500240AED /* TimingTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingTBC.swift; sourceTree = "<group>"; };
 		39293C362B3A6D9D00240AED /* TimingTimeChangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingTimeChangeVC.swift; sourceTree = "<group>"; };
 		39293C382B411ABB00240AED /* SimpleSAAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSAAspectsVC.swift; sourceTree = "<group>"; };
+		39293C3A2B420A1A00240AED /* HouseTranspositionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseTranspositionStruct.swift; sourceTree = "<group>"; };
+		39293C3C2B420D1900240AED /* InterpretationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpretationViewController.swift; sourceTree = "<group>"; };
+		39293C3E2B4215DB00240AED /* InteraspectsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteraspectsStruct.swift; sourceTree = "<group>"; };
+		39293C402B421FCC00240AED /* InterAspectsInterpreataionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterAspectsInterpreataionVC.swift; sourceTree = "<group>"; };
 		392D97B92AB2CF2F0086BEA1 /* DecanatesViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecanatesViewVC.swift; sourceTree = "<group>"; };
 		393969482AF066E80011ACF1 /* Houses Custom2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Houses Custom2.swift"; sourceTree = "<group>"; };
 		3939694A2AF096A90011ACF1 /* SAAspectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAspectsVC.swift; sourceTree = "<group>"; };
@@ -517,6 +525,7 @@
 				395DE5282A96EDB700B0B451 /* SimpleMajorAspectsVC.swift */,
 				395DE5262A96EA4600B0B451 /* SimpleMinorAspectsVC.swift */,
 				39E168702A996FB90003892B /* TransposedHousesVC.swift */,
+				39293C3C2B420D1900240AED /* InterpretationViewController.swift */,
 				395DE5082A95DC7A00B0B451 /* RelationshipPlanetsVC.swift */,
 				395DE50C2A95E0EF00B0B451 /* RelationshipsVC.swift */,
 				395DE50E2A95E29600B0B451 /* AddRelationship.swift */,
@@ -570,6 +579,9 @@
 				393969482AF066E80011ACF1 /* Houses Custom2.swift */,
 				3997F0792A64303F00741E9D /* Progression Sentence.swift */,
 				396CD65F2A9CF48D002C2528 /* FlipTransposedHousesViewController.swift */,
+				39293C3A2B420A1A00240AED /* HouseTranspositionStruct.swift */,
+				39293C3E2B4215DB00240AED /* InteraspectsStruct.swift */,
+				39293C402B421FCC00240AED /* InterAspectsInterpreataionVC.swift */,
 				39CFBE8A2B0AFCC300BCBC4E /* ContentData.swift */,
 				3903A3402A5F2D0700245DD2 /* Main.storyboard */,
 				3903A3462A5F2D0900245DD2 /* Assets.xcassets */,
@@ -692,6 +704,7 @@
 				39A1EC3A2A5F61AD008D1EC1 /* ChartViewerVC.swift in Sources */,
 				3982258E2AE6C6340058C86D /* MoonPhaseVC.swift in Sources */,
 				39E168752A9A154C0003892B /* AboutDecanatesVC.swift in Sources */,
+				39293C3F2B4215DB00240AED /* InteraspectsStruct.swift in Sources */,
 				39A1EC552A5F798F008D1EC1 /* MajorsBiWheel.swift in Sources */,
 				395DE5112A95E2DA00B0B451 /* AddNewRelationshipVC.swift in Sources */,
 				395DE5132A95E4BE00B0B451 /* RelationshipItemsVC.swift in Sources */,
@@ -707,6 +720,7 @@
 				39A1EC6D2A611BFD008D1EC1 /* graph info.swift in Sources */,
 				39851F6E2A93019E00E70FF5 /* TransitAspectsTCVC.swift in Sources */,
 				39A1EC652A60EBC0008D1EC1 /* 34.swift in Sources */,
+				39293C3D2B420D1900240AED /* InterpretationViewController.swift in Sources */,
 				3997F0742A63707F00741E9D /* Sentence.swift in Sources */,
 				3997F0762A637D4700741E9D /* File.swift in Sources */,
 				39C8617B2AFCB147007D38A0 /* CompositeChartsVC.swift in Sources */,
@@ -776,6 +790,7 @@
 				39A1EC532A5F773E008D1EC1 /* MPAspectsVC.swift in Sources */,
 				39C861752AFC00C4007D38A0 /* NameVC.swift in Sources */,
 				39E113F42A8AC220006EA576 /* TransitAspectsByHouses.swift in Sources */,
+				39293C3B2B420A1A00240AED /* HouseTranspositionStruct.swift in Sources */,
 				39A1EC512A5F76E8008D1EC1 /* MinorsPlanetsVC.swift in Sources */,
 				39A1EC4F2A5F76B8008D1EC1 /* MinorsAspectsVC.swift in Sources */,
 				39A1EC472A5F75CF008D1EC1 /* MyNatalHousesVC.swift in Sources */,
@@ -804,6 +819,7 @@
 				3998A2A92B20ED8A008A57C5 /* VocationTVC.swift in Sources */,
 				3903A33B2A5F2D0700245DD2 /* AppDelegate.swift in Sources */,
 				395DE51B2A967E5000B0B451 /* SynastryChartVC.swift in Sources */,
+				39293C412B421FCC00240AED /* InterAspectsInterpreataionVC.swift in Sources */,
 				396989D12ABDF385007EA008 /* CustomNatalPlanetsCell.swift in Sources */,
 				3903A3452A5F2D0700245DD2 /* AstroLogic.xcdatamodeld in Sources */,
 				393DDD652ADC98E900522012 /* CycleChartTV.swift in Sources */,
