@@ -40,7 +40,7 @@ class SolarArcAspectsAspectsTimeChangeViewController: UIViewController  {
         let selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = SAAspectsPlanetsViewController()
+        let nextViewController = SimpleSAAspectsPlanetsViewController()
 // Set the
         nextViewController.chartCake = chartCake
         nextViewController.selectedDate = selectedDate
