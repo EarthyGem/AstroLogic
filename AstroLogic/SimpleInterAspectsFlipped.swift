@@ -22,6 +22,7 @@ class FlippedSimpleInteraspectsViewController: UIViewController {
 
          var selectedDate: Date?
         var name: String?
+    
         var otherName: String?
         var otherChart: ChartCake?
         var chartCake: ChartCake?

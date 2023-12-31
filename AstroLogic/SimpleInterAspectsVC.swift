@@ -284,7 +284,7 @@ class SimpleInteraspectsViewController: UIViewController {
              plutoTableView.delegate = self
      //        ascTableView.dataSource = self
      //        ascTableView.delegate = self
-
+             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Flip Charts", style: .plain, target: self, action: #selector(flipChartsButtonTapped))
              view.backgroundColor = .black
 
 
@@ -639,255 +639,72 @@ class SimpleInteraspectsViewController: UIViewController {
      //
          }
 
-         @objc func navigateToTimeChangeVC() {
-             let timeChangeVC = TransitAspectsTimeChangeViewController()
-             self.navigationController?.pushViewController(timeChangeVC, animated: true)
-         }
+    @objc func flipChartsButtonTapped() {
+        let flipSynastryVC = FlippedSimpleInteraspectsViewController()
+
+        flipSynastryVC.otherChart = self.otherChart
+        flipSynastryVC.chartCake = self.chartCake
+        flipSynastryVC.otherName = self.otherName
+        flipSynastryVC.name = self.name
+        flipSynastryVC.title = "\(name!)' Planets"
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
+    }
 
 
     }
 
     extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDelegate {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-
-            if(tableView == sunTableView) {
-
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.sun)!).count)!
-        }
-            else if(tableView == moonTableView){
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.moon)!).count)!
+            guard let chart1 = chartCake?.natal.rickysBodies, let chart2 = otherChart?.natal.rickysBodies else {
+                return 0
             }
 
-
-                else if(tableView == mercuryTableView){
-
-                    return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.mercury)!).count)!
-                }
-                else if(tableView == venusTableView){
-
-                    return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.venus)!).count)!
-                    }
-            else if(tableView == marsTableView){
-
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.mars)!).count)!
-                        }
-            else if(tableView == jupiterTableView){
-
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.jupiter)!).count)!
-                            }
-            else if(tableView == saturnTableView){
-
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.saturn)!).count)!
-                                }
-            else if(tableView == uranusTableView){
-
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.uranus)!).count)!
-                                    }
-            else if(tableView == neptuneTableView){
-
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.neptune)!).count)!
-                                        }
-            else {
-
-                return (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.pluto)!).count)!
-
-
-
+            let targetBody = getTargetBody(for: tableView)
+            return synastry?.aspectsFromChart1ToChart2(chart1: chart1, chart2: chart2, by: targetBody).count ?? 0
         }
+
+        private func getTargetBody(for tableView: UITableView) -> Coordinate {
+            if tableView == sunTableView {
+                return (otherChart?.natal.sun)!
+            } else if tableView == moonTableView {
+                return (otherChart?.natal.moon)! 
+            } else if tableView == mercuryTableView {
+                return (otherChart?.natal.mercury)! 
+            } else if tableView == venusTableView {
+                return (otherChart?.natal.venus)! 
+            } else if tableView == marsTableView {
+                return (otherChart?.natal.mars)! 
+            } else if tableView == jupiterTableView {
+                return (otherChart?.natal.jupiter)! 
+            } else if tableView == saturnTableView {
+                return (otherChart?.natal.saturn)! 
+            } else if tableView == uranusTableView {
+                return (otherChart?.natal.uranus)! 
+            } else if tableView == neptuneTableView {
+                return (otherChart?.natal.neptune)! 
+            } else if tableView == plutoTableView {
+                return (otherChart?.natal.pluto)! 
+            }
+            // Default case
+            return (otherChart?.natal.sun)!
         }
+
+
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-            if(tableView == sunTableView) {
-
-
-                guard let cell = sunTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-
-
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.sun)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.sun)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.sun)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-               return cell
-
-        }
-            else if(tableView == moonTableView){
-
-                guard let cell = moonTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.moon)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.moon)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.moon)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-               return cell
-
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell,
+                  let chart1 = chartCake?.natal.rickysBodies, let chart2 = otherChart?.natal.rickysBodies else {
+                return UITableViewCell()
             }
 
-            else if(tableView == mercuryTableView){
-
-
-                guard let cell = mercuryTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.mercury)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.mercury)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.mercury)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-               return cell
-
+            let targetBody = getTargetBody(for: tableView)
+            if let aspect = synastry?.aspectsFromChart1ToChart2(chart1: chart1, chart2: chart2, by: targetBody)[indexPath.row] {
+                let aspectText = "\(name!)'s \(aspect.celestialAspect!.body1.body.archetype) \(aspect.celestialAspect!.rickysInterAspectKeywords) \(otherName!)'s \(aspect.celestialAspect!.body2.body.archetype)"
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectText, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: " ")
             }
 
-
-            if(tableView == venusTableView){
-
-
-                    guard let cell = venusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                       return UITableViewCell()
-                   }
-
-
-
-
-
-                   
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.venus)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.venus)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.venus)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-               return cell
-
-            
-
-
-
-                    }
-            else if(tableView == marsTableView){
-
-
-                guard let cell = marsTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-
-
-
-
-               
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.mars)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.mars)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.mars)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-               return cell
-
-            
-
-                        }
-            else if(tableView == jupiterTableView){
-
-
-                guard let cell = jupiterTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-
-
-
-
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.jupiter)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.jupiter)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.jupiter)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-
-
-               return cell
-
-                            }
-            else if(tableView == saturnTableView){
-
-
-                guard let cell = saturnTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-    //                    var transitSaturnAspects = [plutoSaturn]
-
-
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.saturn)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.saturn)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.saturn)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-
-
-               return cell
-
-                                }
-            else if(tableView == uranusTableView){
-
-
-                guard let cell = uranusTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.uranus)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.uranus)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.uranus)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-
-
-               return cell
-
-                                    }
-            else if(tableView == neptuneTableView){
-
-
-                guard let cell = neptuneTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(otherName!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.neptune)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.neptune)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.neptune)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-
-
-               return cell
-
-                                        }
-            else {
-
-
-                guard let cell = plutoTableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-
-                   return UITableViewCell()
-               }
-
-
-
-
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "\(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.pluto)!)[indexPath.row].celestialAspect!.body1.body.archetype) \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.pluto)!)[indexPath.row].celestialAspect!.rickysInterAspectKeywords) \(name!)'s \(synastry!.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by: (otherChart?.natal.pluto)!)[indexPath.row].celestialAspect!.body2.body.archetype)", firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
-
-
-
-
-               return cell
-
-
-
+            return cell
         }
-        }
+
 
 
 
@@ -897,8 +714,38 @@ class SimpleInteraspectsViewController: UIViewController {
         }
 
 
-                func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
 
-                }
+            guard let chart1 = chartCake?.natal.rickysBodies, let chart2 = otherChart?.natal.rickysBodies else {
+                return
+            }
+
+            let targetBody = getTargetBody(for: tableView)
+            guard let aspect = synastry?.aspectsFromChart1ToChart2(chart1: chart1, chart2: chart2, by: targetBody)[indexPath.row] else {
+                return
+            }
+
+            // Extract the necessary data from the selected aspect
+            let userAName = name ?? "User A"
+            let userBName = otherName ?? "User B"
+            let planetA = aspect.celestialAspect?.body1.body.keyName ?? ""
+            let planetB = aspect.celestialAspect?.body2.body.keyName ?? ""
+            let aspectType = aspect.celestialAspect?.keyword ?? ""
+            let aspectTypeCap = aspect.celestialAspect?.Keyword ?? ""
+            let aspectKind = aspect.celestialAspect?.kind
+
+            // Instantiate and set up the InteraspectInterpretationViewController
+            let interpretationVC = InteraspectInterpretationViewController()
+            interpretationVC.userAName = userAName
+            interpretationVC.userBName = userBName
+            interpretationVC.planetA = planetA
+            interpretationVC.planetB = planetB
+            interpretationVC.aspect = aspectType
+            interpretationVC.aspectCap = aspectTypeCap
+            interpretationVC.kind = aspectKind
+            // Present or push the view controller
+            navigationController?.pushViewController(interpretationVC, animated: true)
+        }
 
     }

@@ -13,6 +13,7 @@ class TransposedHousesVC: UIViewController {
     var chart: Chart?
     var chartCake: ChartCake?
     var name: String?
+    var selectedName: String?
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -745,32 +746,6 @@ class TransposedHousesVC: UIViewController {
 }
 
 extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
-
-        if let index = tableViews.firstIndex(of: tableView) {
-            if let houseCusps = chartCake?.houseCusps, let bodies = otherChart?.natal.planets {
-                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
-                let houseNumber = index + 1
-
-                // Return the count of planets in the specific house
-                return planetsInHouses[houseNumber]?.count ?? 0
-            }
-        }
-
-        return 0 // Default return in case tableView is not found
-    }
-
-    @objc func flipChartsButtonTapped() {
-        let flipSynastryVC = FlipTransposedHousesVC()
-
-        flipSynastryVC.otherChart = self.otherChart
-        flipSynastryVC.chartCake = self.chartCake
-        flipSynastryVC.title = "\(name!)' Houses"
-        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
-    }
-
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
@@ -799,17 +774,64 @@ extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
 
         return UITableViewCell() // Default cell in case tableView is not found or data is not available
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
+        if let index = tableViews.firstIndex(of: tableView) {
+            if let houseCusps = chartCake?.houseCusps, let bodies = otherChart?.natal.planets {
+                let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+                let houseNumber = index + 1
+
+                // Return the count of planets in the specific house
+                return planetsInHouses[houseNumber]?.count ?? 0
+            }
+        }
+
+        return 0 // Default return in case tableView is not found
+    }
+
+    @objc func flipChartsButtonTapped() {
+        let flipSynastryVC = FlipTransposedHousesVC()
+
+        flipSynastryVC.otherChart = self.otherChart
+        flipSynastryVC.chartCake = self.chartCake
+        flipSynastryVC.userA = self.selectedName
+        flipSynastryVC.userB = self.name
+        flipSynastryVC.title = "\(name!)' Planets"
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+        
+        if let index = tableViews.firstIndex(of: tableView),
+           let houseCusps = chartCake?.houseCusps,
+           let bodies = otherChart?.natal.planets {
+            let planetsInHouses = chartCake!.othersPlanetInHouses(using: houseCusps, with: bodies)
+            let houseNumber = index + 1
+
+            if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
+                let celestialBody = celestialObjectsInHouse[indexPath.row]
+
+                let interpretationVC = InterpretationViewController()
+                interpretationVC.celestialBody = celestialBody
+                interpretationVC.houseNumber = houseNumber
+                interpretationVC.userA = self.selectedName
+                interpretationVC.userB = self.name
+                navigationController?.pushViewController(interpretationVC, animated: true)
+            }
+        }
+    }
 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90 // returns fixed height for all rows, regardless of the tableView
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        // remove all the code related to expanding and collapsing
-    }
+   
 
 
     }
