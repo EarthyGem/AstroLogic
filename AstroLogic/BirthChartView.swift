@@ -561,7 +561,7 @@ class BirthChartView: UIView {
         let tenth = chartCake!.natal.houseCusps.tenth.value
         let eleventh = chartCake!.natal.houseCusps.eleventh.value
         let twelfth = chartCake!.natal.houseCusps.twelfth.value
-        print("House cusps: \(first), \(second), \(third), \(fourth), \(fifth), \(sixth), \(seventh), \(eighth), \(ninth), \(tenth), \(eleventh), \(twelfth)")
+    //    print("House cusps: \(first), \(second), \(third), \(fourth), \(fifth), \(sixth), \(seventh), \(eighth), \(ninth), \(tenth), \(eleventh), \(twelfth)")
 
         return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
     }
@@ -625,7 +625,7 @@ class BirthChartView: UIView {
     
     private func getHouses2() -> [CGFloat] {
         let houseCusps = getHouses1()
-        print("House cusps: \(houseCusps)")
+       // print("House cusps: \(houseCusps)")
 
         var houseDistances: [CGFloat] = []
         

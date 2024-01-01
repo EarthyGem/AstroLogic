@@ -310,13 +310,24 @@ class MyNatalHousesVC: UIViewController {
         eleventhTableView.delegate = self
         twelfthTableView.dataSource = self
         twelfthTableView.delegate = self
+        
+       
         view.backgroundColor = .black
 
        
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+
+           // Set the navigation items specific to this view controller
+    
+       }
 
     override func viewDidAppear(_ animated: Bool) {
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Aspects by Houses", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
         firstTableView.frame = CGRect(x: firstTableView.frame.origin.x, y: firstTableView.frame.origin.y , width: firstTableView.frame.size.width, height: firstTableView.contentSize.height)
 
         secondTableView.frame = CGRect(x: secondTableView.frame.origin.x, y: secondTableView.frame.origin.y , width: secondTableView.frame.size.width, height: secondTableView.contentSize.height)
@@ -740,7 +751,12 @@ class MyNatalHousesVC: UIViewController {
 //
     }
 
-
+    @objc func moreAspectsButtonTapped() {
+        let flipSynastryVC = NatalAspectsByHousesVC()
+        flipSynastryVC.chartCake = self.chartCake
+      //  flipSynastryVC.selectedDate = self.selectedDate
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
+    }
 }
 
 extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {

@@ -13,6 +13,8 @@ import CoreLocation
 struct RicksItems {
     let chartType: String
 }
+
+
 var myName = ""
 
 
@@ -43,38 +45,37 @@ class MyItemsViewController: UIViewController {
     
     private let ricksData: [RicksItems] = [
         RicksItems(chartType: "Charts and Graphs"),
-        RicksItems(chartType: "Collective Mood"),
-        RicksItems(chartType: "Moon Through Houses"),
-        RicksItems(chartType: "Daily Moon"),
-        RicksItems(chartType: "Daily Sun"),
-        RicksItems(chartType: "Current Moon Phase"),
+        RicksItems(chartType: "Current Sky"),
+//        RicksItems(chartType: "Moon Through Houses"),
+//        RicksItems(chartType: "Daily Moon"),
+//        RicksItems(chartType: "Daily Sun"),
+//        RicksItems(chartType: "Current Moon Phase"),
         RicksItems(chartType: "Natal Moon Phase"),
         RicksItems(chartType: "Key Decanates"),
         RicksItems(chartType: "Natal Chart"),
-        RicksItems(chartType: "Natal Houses"),
-        RicksItems(chartType: "Natal Aspects"),
-        RicksItems(chartType: "Natal Aspects By House"),
-        RicksItems(chartType: "Transit Chart"),
-        RicksItems(chartType: "Transit Aspects"),
-        RicksItems(chartType: "Transit Aspects By House"),
-        RicksItems(chartType: "Solar Arc Chart"),
-        RicksItems(chartType: "Solar Arc Aspects"),
-        RicksItems(chartType: "Minor Progressed Chart"),
-        RicksItems(chartType: "Minor Progressed Aspects"),
-        RicksItems(chartType: "Minor Progressed Aspects By House"),
-        RicksItems(chartType: "Progressed Chart"),
-        RicksItems(chartType: "Progressed Lunar Phase"),
-        RicksItems(chartType: "Progressed Aspects"),
-        RicksItems(chartType: "Progressed Aspects By House"),
         RicksItems(chartType: "Relationships"),
-        RicksItems(chartType: "Vocational Astrology"),        RicksItems(chartType: "Birthday Wish"),
-        RicksItems(chartType: "What's in a Name?"),
-        RicksItems(chartType: "Horary Chart"),
-        RicksItems(chartType: "Cycle Charts"),
-        RicksItems(chartType: "Aspect Charts"),
-        RicksItems(chartType: "Weather Charts"),
         RicksItems(chartType: "Timing"),
-        RicksItems(chartType: "Planetary Hours")
+        RicksItems(chartType: "Special Features"),
+//        RicksItems(chartType: "Transit Aspects"),
+//        RicksItems(chartType: "Transit Aspects By House"),
+//        RicksItems(chartType: "Solar Arc Chart"),
+//        RicksItems(chartType: "Solar Arc Aspects"),
+//        RicksItems(chartType: "Minor Progressed Chart"),
+//        RicksItems(chartType: "Minor Progressed Aspects"),
+//        RicksItems(chartType: "Minor Progressed Aspects By House"),
+//        RicksItems(chartType: "Progressed Chart"),
+//        RicksItems(chartType: "Progressed Lunar Phase"),
+//        RicksItems(chartType: "Progressed Aspects"),
+//        RicksItems(chartType: "Progressed Aspects By House"),
+//        RicksItems(chartType: "Relationships"),
+//        RicksItems(chartType: "Vocational Astrology"),        RicksItems(chartType: "Birthday Wish"),
+//        RicksItems(chartType: "What's in a Name?"),
+//        RicksItems(chartType: "Horary Chart"),
+//        RicksItems(chartType: "Cycle Charts"),
+//        RicksItems(chartType: "Aspect Charts"),
+//        RicksItems(chartType: "Weather Charts"),
+//        RicksItems(chartType: "Timing"),
+//        RicksItems(chartType: "Planetary Hours")
 
     ]
 
@@ -119,7 +120,7 @@ extension MyItemsViewController: UITableViewDelegate {
         let category = ricksData[indexPath.row]
 
         
-        let collectiveMood = SunMoonSeasonVC()
+        let collectiveMood = DailyTabBarController(chartCake: chartCake!)
 //        collectiveMood.chart = self.chart
         collectiveMood.chartCake = self.chartCake
         collectiveMood.title = "Collective Mood"
@@ -153,7 +154,7 @@ extension MyItemsViewController: UITableViewDelegate {
         chartVC.signScores = signScores
         chartVC.houseScores = houseScores
         
-        let natalPlanetsVC = PlanetsViewController(planets: [""])
+        let natalPlanetsVC = NatalTabBarController2(chartCake: chartCake!, sortedPlanets: self.sortedPlanets)
         natalPlanetsVC.title = category.chartType
         natalPlanetsVC.chartCake = self.chartCake
         natalPlanetsVC.sortedPlanets = self.sortedPlanets
@@ -208,7 +209,7 @@ extension MyItemsViewController: UITableViewDelegate {
         let transitPlanetsVC = TransitPlanetsTimeChangeViewController()
          transitPlanetsVC.chartCake = self.chartCake
          transitPlanetsVC.selectedDate = self.selectedDate
-print("chartCake (myItems): \(chartCake)")
+//print("chartCake (myItems): \(chartCake)")
         transitPlanetsVC.latitude = self.latitude
      transitPlanetsVC.longitude = self.longitude
 
@@ -216,7 +217,7 @@ print("chartCake (myItems): \(chartCake)")
         let timingVC = AstrologyTabBarController()
         timingVC.chartCake = self.chartCake
         timingVC.selectedDate = self.selectedDate
-print("chartCake (myItems): \(chartCake)")
+//print("chartCake (myItems): \(chartCake)")
         timingVC.latitude = self.latitude
         timingVC.longitude = self.longitude
 
@@ -341,11 +342,21 @@ print("chartCake (myItems): \(chartCake)")
     //    RelationshipVC.charts = charts.unsafelyUnwrapped
         RelationshipVC.title = "Other Person"
 
-
+        let timingTVC = TimingViewController()
+        timingTVC.chartCake = self.chartCake
+        timingTVC.name = self.name
+      //  cycleChartsVC.otherChart = self.otherChart
+        timingTVC.title = "Timing"
+        
+        let specialTVC = SpecialFeaturesViewController()
+        specialTVC.chartCake = self.chartCake
+        specialTVC.name = self.name
+      //  cycleChartsVC.otherChart = self.otherChart
+        specialTVC.title = "Special Features"
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC,collectiveMood,sunMoonHouses,moonVC,sunVC,currentMoonPhaseVC,moonPhaseVC, decanatesVC,natalPlanetsVC, myNatalHousesVC, myNatalAspectsVC,natalAspectsByHouse,transitPlanetsVC,transitAspectsVC,transitAspectsByHouseVC,solarArcPlanetsVC,solaArcAspectsVC, minorProgressionsVC,mp_natalAspectsVC,mProgressedAspectsByHouseVC,MP_PlanetsVC,progressedMoonPhaseVC,MP_AspectsVC,progressedAspectsByHouseVC, RelationshipVC, vocationalTVC,birthdayWishVC,nameVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC,timingVC, planetaryHoursVC]
+        let categories = [chartVC,collectiveMood,moonPhaseVC, decanatesVC,natalPlanetsVC,RelationshipVC,timingTVC,specialTVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

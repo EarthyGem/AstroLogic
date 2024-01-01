@@ -227,7 +227,7 @@ class SunViewController: UIViewController {
         
         // Configure the "Collective Season" labels
         collectiveSeasonTitleLabel.text = "The Current Astrological Season"
-        collectiveSeasonHeaderLabel.text = "This \(chartCake!.transits.sun.sign.keyName) season, which lasts from October 23rd to November 22. Sol shines his life-giving rays, urging you enliven your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.sun.longitude)).houseKeywords)"
+        collectiveSeasonHeaderLabel.text = "This \(chartCake!.transits.sun.sign.keyName) season, which lasts from \(chartCake!.transits.sun.sign.dateRange). Sol shines his life-giving rays, urging you enliven your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.sun.longitude)).houseKeywords)"
         if let sunHeader = chartCake?.transits.sun.sign.sunHeaders.randomElement() {
             collectiveSeasonSubheaderLabel.text = sunHeader
         } else {

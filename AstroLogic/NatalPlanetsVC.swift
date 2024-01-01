@@ -227,7 +227,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
             planetImageImageName: celestialObject.keyName.lowercased(),
             signTextText: celestialObject.keyName,
             planetTextText: "\(formattedStrength) \(celestialObject.archetype)",
-            headerTextText: celestialObject.innerArchetypes
+            headerTextText: celestialObject.planetHeaders
         )
         return cell
     }
@@ -242,15 +242,16 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
         // Get the celestial object for the selected row.
         let celestialObject = sortedCelestialObjects[indexPath.row].0
-
+//print("celestialObjectTest: \(celestialObject)")
         // Navigate to ArchetypeMatrixViewController with the selected celestial object.
         navigateToArchetypeMatrixViewController(with: celestialObject)
     }
 
     func navigateToArchetypeMatrixViewController(with celestialObject: CelestialObject) {
-        let archetypeMatrixVC = ArchetypeMatrixViewController() // Or instantiate from storyboard
+        let archetypeMatrixVC = NatalTabBarController(chartCake: chartCake, sortedPlanets: self.sortedPlanets, celstialObject: celestialObject)
+        print("celestialObjectTest: \(celestialObject)")
         archetypeMatrixVC.chartCake = chartCake
-        archetypeMatrixVC.selectedCelestialObject = celestialObject
+     //   archetypeMatrixVC.celestialObject = celestialObject
         self.navigationController?.pushViewController(archetypeMatrixVC, animated: true)
     }
 

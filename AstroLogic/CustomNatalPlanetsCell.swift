@@ -95,7 +95,7 @@ contentView.addSubview(tableCell)
 
 
         headerText.text = "You chose to be a Gemini: to develop a radically open mind, to perceive..."
-        headerText.font = .systemFont(ofSize: 11)
+        headerText.font = .systemFont(ofSize: 13)
         headerText.textColor = .white
         headerText.lineBreakMode = .byWordWrapping
         headerText.numberOfLines = 4
@@ -172,7 +172,7 @@ contentView.addSubview(tableCell)
 
         planetImageView.frame = CGRect(x: 255, y: 40, width: 55, height: 55)
 
-        headerText.frame = CGRect(x: 10, y: 50, width: 240, height: 100)
+        headerText.frame = CGRect(x: 10, y: planetText.frame.minY - 5, width: 240, height: 100)
 
     }
 

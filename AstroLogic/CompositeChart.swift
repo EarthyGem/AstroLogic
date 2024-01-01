@@ -561,7 +561,7 @@ class CompositeBirthChartView: UIView {
         let tenth = chart!.houseCusps.tenth.value
         let eleventh = chart!.houseCusps.eleventh.value
         let twelfth = chart!.houseCusps.twelfth.value
-        print("House cusps: \(first), \(second), \(third), \(fourth), \(fifth), \(sixth), \(seventh), \(eighth), \(ninth), \(tenth), \(eleventh), \(twelfth)")
+       // print("House cusps: \(first), \(second), \(third), \(fourth), \(fifth), \(sixth), \(seventh), \(eighth), \(ninth), \(tenth), \(eleventh), \(twelfth)")
 
         return [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth]
     }
@@ -625,7 +625,7 @@ class CompositeBirthChartView: UIView {
     
     private func getHouses2() -> [CGFloat] {
         let houseCusps = getHouses1()
-        print("House cusps: \(houseCusps)")
+      //  print("House cusps: \(houseCusps)")
 
         var houseDistances: [CGFloat] = []
         
@@ -633,7 +633,7 @@ class CompositeBirthChartView: UIView {
             let nextIndex = (i + 1) % houseCusps.count
             let distance = (houseCusps[nextIndex] - houseCusps[i] + 360).truncatingRemainder(dividingBy: 360)
             houseDistances.append(distance)
-            print("House \(i + 1) to \(nextIndex + 1) distance: \(distance)")
+          //  print("House \(i + 1) to \(nextIndex + 1) distance: \(distance)")
 
         }
         

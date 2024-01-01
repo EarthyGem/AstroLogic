@@ -74,7 +74,7 @@ class StrongestPlanetViewController: UIViewController {
 
     private let myItemsButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Go to My Items", for: .normal)
+        button.setTitle("Get More Info", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.addTarget(StrongestPlanetViewController.self, action: #selector(myItemsButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ class StrongestPlanetViewController: UIViewController {
         configureBottomLabel()
 
         let myItemsButton = UIButton(type: .system)
-        myItemsButton.setTitle("Go to My Items", for: .normal)
+        myItemsButton.setTitle("More Info", for: .normal)
         myItemsButton.addTarget(self, action: #selector(myItemsButtonTapped), for: .touchUpInside)
         myItemsButton.translatesAutoresizingMaskIntoConstraints = false
 

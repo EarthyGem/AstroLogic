@@ -179,6 +179,8 @@ class MoonViewController: UIViewController {
         setupLayout()
     }
     
+    
+    
     private func setupViews() {
         
         setupRoundedView(collectiveMoodView, withBackgroundColor: .purple)
@@ -222,15 +224,20 @@ class MoonViewController: UIViewController {
         configureLabelForMultiLine(pageTitleLabel)
         configureLabelForMultiLine(currentDateLabel)
         // Page title and date labels
-        pageTitleLabel.text = "The ever changing Moon lights up new pathways and casts shade on others, Let the Moon light your path"
-        currentDateLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
+        pageTitleLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
+        currentDateLabel.text = "Current Moon Position: \(chartCake!.transits.moon.formatted)"
+        
+        collectiveMoodSubheaderLabel.text = "\(chartCake!.transits.moon.decanates.moonHeader)\n\(chartCake!.transits.moon.decanates.moonMessage)"
+        
         
         // Configure the "Collective Mood" labels
-        collectiveMoodTitleLabel.text = "Daily Lunar Horoscope"
-        collectiveMoodHeaderLabel.text = "\(chartCake!.transits.moon.decanates.moonHeader)\n\(chartCake!.transits.moon.decanates.moonMessage)"
+        collectiveMoodTitleLabel.text = "For the next day or so, Luna's glow reaches us all through the sign of \(chartCake!.transits.moon.sign.keyName) suggesting that you:\n\n \(collectiveMoodSubheaderLabel.text!)"
         
-        collectiveMoodSubheaderLabel.text = "For the next day or so, Luna sheds her tender caring \(chartCake!.transits.moon.sign.keyName) rays on your  \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).name) house, inviting you to tend to your \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords)"
         collectiveMoodContentLabel.text = "\(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).moonHeaders[0])\n\(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).moonMessages[0])"
+        
+        
+        collectiveMoodHeaderLabel.text = "Luna's soft light is currently falling on your \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).name) house, inviting you to tend to your attitudes about \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseKeywords) be remebering to:\n\n\(collectiveMoodContentLabel.text!)"
+      
         
         // Configure the "Self-Care Check-in" labels
           selfCareCheckInTitleLabel.text =  ""
@@ -275,7 +282,7 @@ class MoonViewController: UIViewController {
         ])
         
         // Add labels to their respective stack views
-        [collectiveMoodTitleLabel, collectiveMoodHeaderLabel, collectiveMoodSubheaderLabel, collectiveMoodContentLabel].forEach(collectiveMoodStackView.addArrangedSubview)
+        [collectiveMoodTitleLabel, collectiveMoodHeaderLabel].forEach(collectiveMoodStackView.addArrangedSubview)
         [selfCareCheckInTitleLabel, moonHousePlacementLabel, moonConjunctionLabel, selfCareCheckInContentLabel].forEach(selfCareCheckInStackView.addArrangedSubview)
         
         // Add stack views to the main content stack view

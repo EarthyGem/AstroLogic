@@ -139,7 +139,7 @@ class ProgressedAspectsTimeChangeViewController: UIViewController  {
       }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("In viewWillAppear of TCVC - ProgressionsAspectsTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
+      //  print("In viewWillAppear of TCVC - ProgressionsAspectsTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
     }
 
 

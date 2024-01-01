@@ -49,7 +49,7 @@ class ProgressionsAspectsTabBarController: UITabBarController {
        }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("In viewWillAppear of TabBarController - ProgressionsAspectsTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
+     //   print("In viewWillAppear of TabBarController - ProgressionsAspectsTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
     }
 
     }

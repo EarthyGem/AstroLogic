@@ -105,7 +105,7 @@ class ChartViewController: UIViewController {
     @objc private func pieChartButton() {
        let pieChartTBC = PieChartTabBarController()
        pieChartTBC.chartCake = chartCake
-       print("CHARTCAKE \(chartCake.natal.sun.sign.keyName)")
+     //  print("CHARTCAKE \(chartCake.natal.sun.sign.keyName)")
        navigationController?.pushViewController(pieChartTBC, animated: true)
     }
 
