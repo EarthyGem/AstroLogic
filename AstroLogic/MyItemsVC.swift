@@ -123,7 +123,11 @@ extension MyItemsViewController: UITableViewDelegate {
         let collectiveMood = DailyTabBarController(chartCake: chartCake!)
 //        collectiveMood.chart = self.chart
         collectiveMood.chartCake = self.chartCake
-        collectiveMood.title = "Collective Mood"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"// You can adjust the date format as needed
+        let currentDate = dateFormatter.string(from: Date())
+
+        collectiveMood.title = currentDate
         
         let sunMoonHouses = HouseTransitionVC()
 //        collectiveMood.chart = self.chart
