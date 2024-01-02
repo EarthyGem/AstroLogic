@@ -1,4 +1,5 @@
 import Foundation
+import SwiftEphemeris
 import UIKit
 
 class HarmonyInfoViewController: UIViewController {
@@ -8,7 +9,7 @@ class HarmonyInfoViewController: UIViewController {
     var infoText: String?
     let scrollView = UIScrollView()
     let contentView = UIView()
-    let texts = ["Text 1", "Text 2", "Text 3", "Text 4", "Text 5", "Text 6", "Text 7", "Text 8", "Text 9"]
+    let texts = ["Text 1"]
     let planetIntroLabel = UILabel()
     let planetImageView = UIImageView()
     var planetName: String = "" // Just an example, set this as needed
@@ -97,42 +98,51 @@ class HarmonyInfoViewController: UIViewController {
     }
 
        
-    
     func setupContent() {
         var lastView: UIView? = nil
         let spaceBetweenGroups: CGFloat = 200
         let initialTopPadding: CGFloat = 260
+        let labelSidePadding: CGFloat = 0 // Increase padding space as needed
 
         for (index, text) in texts.enumerated() {
-            let label = UILabel()
-            label.text = text
-            label.textColor = .white
-            label.backgroundColor = UIColor(red: 148/255, green: 0, blue: 211/255, alpha: 1) // Dark lavender color
-            label.layer.cornerRadius = 8
-            label.clipsToBounds = true
-            label.textAlignment = .justified
-            label.numberOfLines = 0
+                let container = UIView()
+            container.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1) // Dark grey color
 
-            contentView.addSubview(label)
+                container.layer.cornerRadius = 8
+                container.clipsToBounds = true
+                contentView.addSubview(container)
+                
+            container.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    container.topAnchor.constraint(equalTo: lastView?.bottomAnchor ?? contentView.topAnchor, constant: lastView == nil ? initialTopPadding : 20),
+                    container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: labelSidePadding),
+                    container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -labelSidePadding)
+                    // ... other constraints ...
+                ])
+                
+                let label = UILabel()
+                label.text = planetInfo(for: mostHarmoniousPlanet)
+                label.textColor = .white
+                label.numberOfLines = 0
+                container.addSubview(label)
 
-            label.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
-            ])
+                label.translatesAutoresizingMaskIntoConstraints = false
+                let labelPadding: CGFloat = 10 // Add padding inside the container
+                NSLayoutConstraint.activate([
+                    label.topAnchor.constraint(equalTo: container.topAnchor, constant: labelPadding),
+                    label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -labelPadding),
+                    label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: labelPadding),
+                    label.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -labelPadding)
+                ])
 
-            if let last = lastView {
-                if index == 5 {  // We check if it's the start of the next group
-                    label.topAnchor.constraint(equalTo: last.bottomAnchor, constant: spaceBetweenGroups).isActive = true
+                if let last = lastView {
+                    container.topAnchor.constraint(equalTo: last.bottomAnchor, constant: 20).isActive = true
                 } else {
-                    label.topAnchor.constraint(equalTo: last.bottomAnchor, constant: 20).isActive = true
+                    container.topAnchor.constraint(equalTo: contentView.topAnchor, constant: initialTopPadding).isActive = true
                 }
-            } else {
-                label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: initialTopPadding).isActive = true
-            }
 
-            lastView = label
-        }
+                lastView = container
+            }
 
         // Setup card image
         let cardImage = UIImageView(image: UIImage(named: harTarot))
@@ -170,6 +180,33 @@ class HarmonyInfoViewController: UIViewController {
 
     @objc func showAdditionalDetails() {
         // your code to show additional details
+    }
+    
+    func planetInfo(for planet: String) -> String? {
+        switch planet {
+        case "Sun":
+            return Planet.sun.rennArchetypes
+        case "Moon":
+            return Planet.moon.rennArchetypes
+        case "Mercury":
+            return Planet.mercury.rennArchetypes
+        case "Venus":
+            return Planet.venus.rennArchetypes
+        case "Mars":
+            return Planet.mars.rennArchetypes
+        case "Jupiter":
+            return Planet.jupiter.rennArchetypes
+        case "Saturn":
+            return Planet.saturn.rennArchetypes
+        case "Uranus":
+            return Planet.uranus.rennArchetypes
+        case "Neptune":
+            return Planet.neptune.rennArchetypes
+        case "Pluto":
+            return Planet.pluto.rennArchetypes
+        default:
+            return nil
+        }
     }
 }
 

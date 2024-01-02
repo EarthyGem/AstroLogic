@@ -3,7 +3,7 @@ import SwiftEphemeris
 import UIKit
 
 class SPInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     var tarot: String = ""
     var name: String = ""
     var infoText: String?
@@ -13,12 +13,12 @@ class SPInfoViewController: UIViewController, UITableViewDataSource, UITableView
     var mostHarmoniousPlanet: String!
     var mostDiscordantPlanet: String!
     var strongestPlanetSign: String!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
     }
-
+    
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -26,7 +26,7 @@ class SPInfoViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.register(ContentCell.self, forCellReuseIdentifier: "ContentCell")
         tableView.register(CardImageCell.self, forCellReuseIdentifier: "CardImageCell")
         tableView.tableFooterView = UIView()
-
+        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -36,27 +36,27 @@ class SPInfoViewController: UIViewController, UITableViewDataSource, UITableView
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
-
+    
     // MARK: - UITableViewDataSource
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3  // Example: 1 for planet intro, 1 for content and 1 for card image
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
         case 1:
             guard let planetInfo = planetInfo(for: strongestPlanet) else { return 0 }
-            return planetInfo.count
+            return 1
         case 2:
             return 1
         default:
             return 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
@@ -66,7 +66,7 @@ class SPInfoViewController: UIViewController, UITableViewDataSource, UITableView
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentCell", for: indexPath) as! ContentCell
             if let planetInfo = planetInfo(for: strongestPlanet) {
-                cell.configure(with: planetInfo[indexPath.row])
+                cell.configure(with: planetInfo)
             }
             return cell
         case 2:
@@ -77,25 +77,42 @@ class SPInfoViewController: UIViewController, UITableViewDataSource, UITableView
             return UITableViewCell()
         }
     }
-
+    
     // Here, I'm assuming you want to adjust the height of cells dynamically
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150  // Or whatever estimated height you want
     }
-
+    
     // Retrieve the info for the selected planet
-    func planetInfo(for planet: String) -> [String]? {
+    func planetInfo(for planet: String) -> String? {
         switch planet {
         case "Sun":
-            return ["..."] // Replace with the appropriate data
-        // Add other cases
+            return Planet.sun.rennArchetypes
+        case "Moon":
+            return Planet.moon.rennArchetypes
+        case "Mercury":
+            return Planet.mercury.rennArchetypes
+        case "Venus":
+            return Planet.venus.rennArchetypes
+        case "Mars":
+            return Planet.mars.rennArchetypes
+        case "Jupiter":
+            return Planet.jupiter.rennArchetypes
+        case "Saturn":
+            return Planet.saturn.rennArchetypes
+        case "Uranus":
+            return Planet.uranus.rennArchetypes
+        case "Neptune":
+            return Planet.neptune.rennArchetypes
+        case "Pluto":
+            return Planet.pluto.rennArchetypes
         default:
             return nil
         }
     }
+    
 }
-
