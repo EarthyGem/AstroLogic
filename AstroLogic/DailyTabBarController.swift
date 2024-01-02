@@ -10,6 +10,7 @@ import UIKit
 
 
 
+
 class DailyTabBarController: UITabBarController {
 
     var selectedDate: Date?
@@ -35,16 +36,25 @@ class DailyTabBarController: UITabBarController {
         
             // .
         // For Planets
-            let planetsVC = CurrentMoonPhaseViewController()
-               // Pass chartCake to PlanetsViewController
-               planetsVC.chartCake = self.chartCake
-            planetsVC.tabBarItem = UITabBarItem(title: "Moon", image: UIImage(systemName: "moon.max.fill"), tag: 0)
+            let lunarPhase = chartCake.lunarPhase(for: chartCake.transits)
+                  let tabBarItemImageName = tabImageName(for: lunarPhase)
+            let lightGreenColor = UIColor.systemGreen.withAlphaComponent(0.6) // Adjust the green color as needed
+            let lightOrangeColor = UIColor.systemOrange.withAlphaComponent(0.6) // Light orange color
 
+            let lightSkyBlueColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 0.6) // Light sky blue color
+
+            
+                  let planetsVC = CurrentMoonPhaseViewController()
+                  planetsVC.chartCake = self.chartCake
+            planetsVC.tabBarItem = UITabBarItem(title: "Moon", image: UIImage(systemName: tabImageName(for: chartCake.lunarPhase(for: chartCake.transits))), tag: 0)
+            planetsVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: lightGreenColor], for: .normal)
+            planetsVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: lightGreenColor], for: .selected)
         // For Houses
         let natalHouses = SunViewController()
         natalHouses.chartCake = chartCake
-        natalHouses.tabBarItem = UITabBarItem(title: "Sun", image: UIImage(systemName: "sun.fill"), tag: 1)
-
+        natalHouses.tabBarItem = UITabBarItem(title: "Sun", image: UIImage(systemName: "sun.max"), tag: 1)
+            natalHouses.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: lightOrangeColor], for: .normal)
+            natalHouses.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: lightOrangeColor], for: .selected)
         // For Aspects
       
 
@@ -52,8 +62,9 @@ class DailyTabBarController: UITabBarController {
             let currentSky = TransitPlanets(transitPlanets: [""])
             currentSky.chartCake = chartCake
          //   natalAspects.phaseName = self.phaseName
-            currentSky.tabBarItem = UITabBarItem(title: "Current Sky", image: UIImage(systemName: "sky"), tag: 2)
-
+            currentSky.tabBarItem = UITabBarItem(title: "Current Sky", image: UIImage(systemName: "sun.dust.circle"), tag: 2)
+            currentSky.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: lightSkyBlueColor], for: .normal)
+            currentSky.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: lightSkyBlueColor], for: .selected)
 
         // Setting the view controllers for the tab bar
         self.viewControllers = [planetsVC, natalHouses, currentSky]
@@ -63,5 +74,26 @@ class DailyTabBarController: UITabBarController {
         super.viewWillAppear(animated)
         print("In viewWillAppear of NatalTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
     }
+    private func tabImageName(for lunarPhase: LunarPhase) -> String {
+        switch lunarPhase {
+        case .NewMoon:
+            return "moon.fill" // New Moon
+        case .WaxingCrescent:
+            return "moonphase.waxing.crescent" // Waxing Crescent
+        case .FirstQuarter:
+            return "moonphase.first.quarter" // First Quarter
+        case .WaxingGibbous:
+            return "moonphase.waxing.gibbous" // Waxing Gibbous
+        case .FullMoon:
+            return "moon.full.fill" // Full Moon
+        case .WaningGibbous:
+            return "moonphase.waning.gibbous" // Waning Gibbous
+        case .LastQuarter:
+            return "moonphase.last.quarter" // Last Quarter
+        case .WaningCrescent:
+            return "moonphase.waning.crescent" // Waning Crescent
+        }
+    }
+
 
 }
