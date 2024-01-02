@@ -104,12 +104,19 @@ private extension DeacanatesViewController {
     func configureUI() {
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        birthChartView = BirthChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
-        print("StrongestPlanet: \(String(describing: strongestPlanet))")
+        // Assuming you have a UIImage of your chart
+        if let chartImage = UIImage(named: "dendera") {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth))
+            imageView.image = chartImage
+            imageView.contentMode = .scaleAspectFit // or .scaleAspectFill depending on your needs
+            imageView.clipsToBounds = true
+            // Add the imageView to your view, make sure you're adding it to the right parent view
+            self.view.addSubview(imageView)
+        }
 
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(birthChartView)
+     //   view.addSubview(birthChartView)
         view.addSubview(tableView)
     }
 

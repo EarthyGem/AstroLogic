@@ -16,7 +16,7 @@ class NatalTabBarController2: UITabBarController {
     var selectedDate: Date?
     var chartCake: ChartCake!
     var sortedPlanets: [CelestialObject] = []
-
+    var strongestPlanet: String?
     // Custom initializer
      init(chartCake: ChartCake, sortedPlanets: [CelestialObject]) {
          self.chartCake = chartCake
@@ -52,7 +52,23 @@ class NatalTabBarController2: UITabBarController {
 
         // Setting the view controllers for the tab bar
         self.viewControllers = [planetsVC, natalHouses, natalAspects]
-    }
+            setupRealmButton()
+            
+          }
+
+          func setupRealmButton() {
+              let realmButtonItem = UIBarButtonItem(title: "Key Decanates", style: .plain, target: self, action: #selector(didTapRealmButton))
+              navigationItem.rightBarButtonItem = realmButtonItem
+          }
+
+          @objc func didTapRealmButton() {
+              let realmsVC = DeacanatesViewController(planets: [""])
+              realmsVC.chartCake = self.chartCake
+              realmsVC.title = "Key Decanates"
+              realmsVC.strongestPlanet = self.strongestPlanet
+              self.navigationController?.pushViewController(realmsVC, animated: true)
+          }
+
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

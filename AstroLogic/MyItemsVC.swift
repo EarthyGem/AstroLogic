@@ -50,8 +50,8 @@ class MyItemsViewController: UIViewController {
 //        RicksItems(chartType: "Daily Moon"),
 //        RicksItems(chartType: "Daily Sun"),
 //        RicksItems(chartType: "Current Moon Phase"),
-        RicksItems(chartType: "Natal Moon Phase"),
-        RicksItems(chartType: "Key Decanates"),
+//        RicksItems(chartType: "Natal Moon Phase"),
+//        RicksItems(chartType: "Key Decanates"),
         RicksItems(chartType: "Natal Chart"),
         RicksItems(chartType: "Relationships"),
         RicksItems(chartType: "Timing"),
@@ -161,6 +161,7 @@ extension MyItemsViewController: UITableViewDelegate {
         let natalPlanetsVC = NatalTabBarController2(chartCake: chartCake!, sortedPlanets: self.sortedPlanets)
         natalPlanetsVC.title = category.chartType
         natalPlanetsVC.chartCake = self.chartCake
+        natalPlanetsVC.strongestPlanet = self.strongestPlanet
         natalPlanetsVC.sortedPlanets = self.sortedPlanets
 //
 
@@ -360,7 +361,7 @@ extension MyItemsViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [chartVC,collectiveMood,moonPhaseVC, decanatesVC,natalPlanetsVC,RelationshipVC,timingTVC,specialTVC]
+        let categories = [chartVC,collectiveMood,natalPlanetsVC,RelationshipVC,timingTVC,specialTVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

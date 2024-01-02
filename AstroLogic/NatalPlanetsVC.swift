@@ -105,8 +105,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Inside viewDidLoad: \(String(describing: chartCake))")
-        // ...
+      
 
         view.backgroundColor = .black
         tableView.backgroundColor = .black
@@ -144,6 +143,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         coverView.addGestureRecognizer(tapGestureForCoverView)
 
         setupRealmButton()
+        
       }
 
       func setupRealmButton() {
