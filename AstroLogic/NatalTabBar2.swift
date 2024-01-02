@@ -46,7 +46,7 @@ class NatalTabBarController2: UITabBarController {
         natalHouses.tabBarItem = UITabBarItem(title: "Houses", image: UIImage(systemName: "house.fill"), tag: 1)
 
         // For Aspects
-        let natalAspects = NatalAspectsViewController()
+        let natalAspects = SimpleNatalAspectsViewController()
         natalAspects.chartCake = chartCake
         natalAspects.tabBarItem = UITabBarItem(title: "Aspects", image: UIImage(systemName: "point.3.filled.connected.trianglepath.dotted"), tag: 2)
 
