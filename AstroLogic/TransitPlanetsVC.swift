@@ -421,11 +421,11 @@ return planetDegree
         let screenWidth = UIScreen.main.bounds.width
 
         transitBiWheelChartView = TransitBiWheelChartView(frame: CGRect(x: 0, y: 130, width: screenWidth, height: screenWidth), chartCake: chartCake!)
-            view.addSubview(transitBiWheelChartView)
+         //   view.addSubview(transitBiWheelChartView)
             // Other setup code for transitBiWheelChartView
 
-
-            view.addSubview(transitBiWheelChartView)
+        self.tableView.tableHeaderView = transitBiWheelChartView
+           // view.addSubview(transitBiWheelChartView)
 
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -448,7 +448,13 @@ return planetDegree
 //            view.addSubview(plusMonthButton)
 //            view.addSubview(minusYearButton)
 //            view.addSubview(plusYearButton)
+        if let tabBar = self.tabBarController?.tabBar {
+            tabBar.isTranslucent = false
+            tabBar.barTintColor = .black // Sets the background color to black
+        }
 
+        
+        
             plusHourButton.addTarget(self, action: #selector(plusHourButtonTapped), for: .touchUpInside)
             minusHourButton.addTarget(self, action: #selector(minusHourButtonTapped), for: .touchUpInside)
 
@@ -472,24 +478,22 @@ return planetDegree
             tableView.backgroundColor = .black
             tableView.dataSource = self
             tableView.delegate = self
-            view.frame = CGRect(x: 0, y: 0, width: 400, height: 2000)
 
+      
             view.addSubview(tableView)
 
             
         }
 
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let contentSizeHeight = tableView.contentSize.height
+        tableView.frame = CGRect(x: 10, y: 0, width: view.bounds.width - 20, height: contentSizeHeight)
+        
+     
 
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let yOffset: CGFloat = 600
-        let tableViewHeight = view.bounds.height - yOffset - 20  // Adjust this as per your requirements
-        tableView.frame = CGRect(x: 10, y: yOffset, width: view.bounds.width - 20, height: tableViewHeight)
-
-        view.addSubview(todaysDate)
     }
+
 
 
     func updateUIWithSelectedDate() {
