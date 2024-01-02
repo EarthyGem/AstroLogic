@@ -14,6 +14,12 @@ class MyNatalHousesVC: UIViewController {
     var chart: Chart?
     //var chartCake: ChartCake?
     var name: String?
+//
+    var sortedHousesByStrength: [(Int, Double)] = []
+    
+    var totalStrength: Double {
+        return sortedHousesByStrength.map { $0.1 }.reduce(0, +)
+    }
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -22,57 +28,57 @@ class MyNatalHousesVC: UIViewController {
     }()
 
 
-    private let sunScrollView: UIView = {
-        let sunScrollView = UIView()
+    private let firstScrollView: UIView = {
+        let firstScrollView = UIView()
 
-        return sunScrollView
+        return firstScrollView
     }()
 
-    private let moonScrollView: UIView = {
-        let moonScrollView = UIView()
+    private let secondScrollView: UIView = {
+        let secondScrollView = UIView()
 
-        return moonScrollView
+        return secondScrollView
     }()
 
-    private let mercuryScrollView: UIView = {
-        let mercuryScrollView = UIView()
+    private let thirdScrollView: UIView = {
+        let thirdScrollView = UIView()
 
-        return mercuryScrollView
+        return thirdScrollView
     }()
-    private let venusScrollView: UIView = {
-        let venusScrollView = UIView()
+    private let fourthScrollView: UIView = {
+        let fourthScrollView = UIView()
 
-        return venusScrollView
+        return fourthScrollView
     }()
-    private let marsScrollView: UIView = {
-        let marsScrollView = UIView()
+    private let fifthScrollView: UIView = {
+        let fifthScrollView = UIView()
 
-        return marsScrollView
+        return fifthScrollView
     }()
-    private let jupiterScrollView: UIView = {
-        let jupiterScrollView = UIView()
+    private let sixthScrollView: UIView = {
+        let sixthScrollView = UIView()
 
-        return jupiterScrollView
+        return sixthScrollView
     }()
-    private let saturnScrollView: UIView = {
-        let saturnScrollView = UIView()
+    private let seventhScrollView: UIView = {
+        let seventhScrollView = UIView()
 
-        return saturnScrollView
+        return seventhScrollView
     }()
-    private let uranusScrollView: UIView = {
-        let uranusScrollView = UIView()
+    private let eighthScrollView: UIView = {
+        let eighthScrollView = UIView()
 
-        return uranusScrollView
+        return eighthScrollView
     }()
-    private let neptuneScrollView: UIView = {
-        let neptuneScrollView = UIView()
+    private let ninthScrollView: UIView = {
+        let ninthScrollView = UIView()
 
-        return neptuneScrollView
+        return ninthScrollView
     }()
-    private let plutoScrollView: UIView = {
-        let plutoScrollView = UIView()
+    private let tenthScrollView: UIView = {
+        let tenthScrollView = UIView()
 
-        return plutoScrollView
+        return tenthScrollView
     }()
 
     private let eleventhScrollView: UIView = {
@@ -183,89 +189,89 @@ class MyNatalHousesVC: UIViewController {
     }()
 
 
-    private let sunSignGlyph: UIImageView = {
-        let sunSignGlyph = UIImageView()
+    private let firstHouseSignGlyph: UIImageView = {
+        let firstHouseSignGlyph = UIImageView()
 
 
-        return sunSignGlyph
-
-    }()
-    private let moonSignGlyph: UIImageView = {
-        let moonSignGlyph = UIImageView()
-
-
-        return moonSignGlyph
+        return firstHouseSignGlyph
 
     }()
-    private let mercurySignGlyph: UIImageView = {
-        let mercurySignGlyph = UIImageView()
+    private let secondHouseSignGlyph: UIImageView = {
+        let secondHouseSignGlyph = UIImageView()
 
 
-        return mercurySignGlyph
-
-    }()
-    private let venusSignGlyph: UIImageView = {
-        let venusSignGlyph = UIImageView()
-
-
-        return venusSignGlyph
+        return secondHouseSignGlyph
 
     }()
-    private let marsSignGlyph: UIImageView = {
-        let marsSignGlyph = UIImageView()
+    private let thirdHouseSignGlyph: UIImageView = {
+        let thirdHouseSignGlyph = UIImageView()
 
 
-        return marsSignGlyph
-
-    }()
-    private let jupiterSignGlyph: UIImageView = {
-        let jupiterSignGlyph = UIImageView()
-
-
-        return jupiterSignGlyph
+        return thirdHouseSignGlyph
 
     }()
-    private let saturnSignGlyph: UIImageView = {
-        let saturnSignGlyph = UIImageView()
+    private let fourthHouseSignGlyph: UIImageView = {
+        let fourthHouseSignGlyph = UIImageView()
 
 
-        return saturnSignGlyph
-
-    }()
-    private let uranusSignGlyph: UIImageView = {
-        let uranusSignGlyph = UIImageView()
-
-
-        return uranusSignGlyph
+        return fourthHouseSignGlyph
 
     }()
-    private let neptuneSignGlyph: UIImageView = {
-        let neptuneSignGlyph = UIImageView()
+    private let fifthHouseSignGlyph: UIImageView = {
+        let fifthHouseSignGlyph = UIImageView()
 
 
-        return neptuneSignGlyph
-
-    }()
-    private let plutoSignGlyph: UIImageView = {
-        let plutoSignGlyph = UIImageView()
-
-
-        return plutoSignGlyph
+        return fifthHouseSignGlyph
 
     }()
+    private let sixthHouseSignGlyph: UIImageView = {
+        let sixthHouseSignGlyph = UIImageView()
 
-    private let eleventhSignGlyph: UIImageView = {
-        let eleventhSignGlyph = UIImageView()
 
-
-        return eleventhSignGlyph
+        return sixthHouseSignGlyph
 
     }()
-    private let twelfthSignGlyph: UIImageView = {
-        let twelfthSignGlyph = UIImageView()
+    private let seventhHouseSignGlyph: UIImageView = {
+        let seventhHouseSignGlyph = UIImageView()
 
 
-        return twelfthSignGlyph
+        return seventhHouseSignGlyph
+
+    }()
+    private let eighthHouseSignGlyph: UIImageView = {
+        let eighthHouseSignGlyph = UIImageView()
+
+
+        return eighthHouseSignGlyph
+
+    }()
+    private let ninthHouseSignGlyph: UIImageView = {
+        let ninthHouseSignGlyph = UIImageView()
+
+
+        return ninthHouseSignGlyph
+
+    }()
+    private let tenthHouseSignGlyph: UIImageView = {
+        let tenthHouseSignGlyph = UIImageView()
+
+
+        return tenthHouseSignGlyph
+
+    }()
+
+    private let eleventhHouseSignGlyph: UIImageView = {
+        let eleventhHouseSignGlyph = UIImageView()
+
+
+        return eleventhHouseSignGlyph
+
+    }()
+    private let twelfthHouseSignGlyph: UIImageView = {
+        let twelfthHouseSignGlyph = UIImageView()
+
+
+        return twelfthHouseSignGlyph
 
     }()
 
@@ -311,7 +317,8 @@ class MyNatalHousesVC: UIViewController {
         twelfthTableView.dataSource = self
         twelfthTableView.delegate = self
         
-       
+        sortedHousesByStrength = chartCake!.sortedHouseStrengths()
+        
         view.backgroundColor = .black
 
        
@@ -363,16 +370,16 @@ class MyNatalHousesVC: UIViewController {
         view.addSubview(scrollView)
 
         topTransitImage.image = UIImage(named: "clouds")
-        topTransitImage.image?.withTintColor(UIColor.yellow)
+      //  topTransitImage.image?.withTintColor(UIColor.yellow)
 
         topTransitImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         view.addSubview(topTransitImage)
 
 
 
-        sunScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-        scrollView.addSubview(sunScrollView)
-        //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
+        firstScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(firstScrollView)
+        //        firstScrollView.contentSize = CGSize(width: 300, height: 200)
 
         //        firstTableView.backgroundColor = .orange
         secondTableView.backgroundColor = .green
@@ -395,7 +402,7 @@ class MyNatalHousesVC: UIViewController {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
         // Ensure you have the necessary data before proceeding.
-        guard let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets else {
+        guard let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets, !sortedHousesByStrength.isEmpty else {
             return
         }
 
@@ -403,56 +410,59 @@ class MyNatalHousesVC: UIViewController {
         let planetsInHouses = chartCake?.planetsAndRulersInHouses(using: houseCusps, with: bodies) ?? [:]
 
         for (index, tableView) in tableViews.enumerated() {
-            let houseNumber = index + 1
-            let count = planetsInHouses[houseNumber]?.count ?? 0  // Adjusted to get the count of combined planets and rulers
+            // Use the sorted house number instead of the index directly
+            let houseStrengthPair = sortedHousesByStrength[index]
+            let houseNumber = houseStrengthPair.0
+
+            let count = planetsInHouses[houseNumber]?.count ?? 0  // Get the count of combined planets and rulers in the sorted house
 
             // Update the height of the table view based on the number of rows it has.
             // Each row's height is 90 as per your previous implementation.
             tableView.contentSize.height = CGFloat(count * 90)
         }
 
-        scrollView.addSubview(moonScrollView)
-//        moonScrollView.contentSize = CGSize(width: 300, height: 200)
-       moonScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(secondScrollView)
+//        secondScrollView.contentSize = CGSize(width: 300, height: 200)
+       secondScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(mercuryScrollView)
-//        mercuryScrollView.contentSize = CGSize(width: 300, height: 200)
-        mercuryScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(thirdScrollView)
+//        thirdScrollView.contentSize = CGSize(width: 300, height: 200)
+        thirdScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(venusScrollView)
-//        venusScrollView.contentSize = CGSize(width: 300, height: 200)
-        venusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(fourthScrollView)
+//        fourthScrollView.contentSize = CGSize(width: 300, height: 200)
+        fourthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(marsScrollView)
-//        marsScrollView.contentSize = CGSize(width: 300, height: 200)
-        marsScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(fifthScrollView)
+//        fifthScrollView.contentSize = CGSize(width: 300, height: 200)
+        fifthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(jupiterScrollView)
-//        jupiterScrollView.contentSize = CGSize(width: 300, height: 200)
-        jupiterScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(sixthScrollView)
+//        sixthScrollView.contentSize = CGSize(width: 300, height: 200)
+        sixthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(saturnScrollView)
-//        saturnScrollView.contentSize = CGSize(width: 300, height: 200)
-        saturnScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(seventhScrollView)
+//        seventhScrollView.contentSize = CGSize(width: 300, height: 200)
+        seventhScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(uranusScrollView)
-//        uranusScrollView.contentSize = CGSize(width: 300, height: 200)
-        uranusScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(eighthScrollView)
+//        eighthScrollView.contentSize = CGSize(width: 300, height: 200)
+        eighthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(neptuneScrollView)
-//        neptuneScrollView.contentSize = CGSize(width: 300, height: 200)
-        neptuneScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(ninthScrollView)
+//        ninthScrollView.contentSize = CGSize(width: 300, height: 200)
+        ninthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
-        scrollView.addSubview(plutoScrollView)
-//        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
-        plutoScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        scrollView.addSubview(tenthScrollView)
+//        tenthScrollView.contentSize = CGSize(width: 300, height: 200)
+        tenthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
         scrollView.addSubview(eleventhScrollView)
-//        neptuneScrollView.contentSize = CGSize(width: 300, height: 200)
+//        ninthScrollView.contentSize = CGSize(width: 300, height: 200)
         eleventhScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
         scrollView.addSubview(twelfthScrollView)
-//        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
+//        tenthScrollView.contentSize = CGSize(width: 300, height: 200)
         twelfthScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
 
 
@@ -462,168 +472,180 @@ class MyNatalHousesVC: UIViewController {
 
 
 
-//        sunScrollView.addSubview(tenthTableView)
+//        firstScrollView.addSubview(tenthTableView)
         // Do any additional setup after loading the view.
 
 
-//        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
+//        firstScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
 //
         let mySignCusps = [chartCake?.houseCusps.first.sign.keyName, chartCake?.houseCusps.second.sign.keyName, chartCake?.houseCusps.third.sign.keyName, chartCake?.houseCusps.fourth.sign.keyName, chartCake?.houseCusps.fifth.sign.keyName, chartCake?.houseCusps.sixth.sign.keyName, chartCake?.houseCusps.seventh.sign.keyName, chartCake?.houseCusps.eighth.sign.keyName, chartCake?.houseCusps.ninth.sign.keyName, chartCake?.houseCusps.tenth.sign.keyName, chartCake?.houseCusps.eleventh.sign.keyName, chartCake?.houseCusps.twelfth.sign.keyName ]
+       
+        let scrollViews = [
+            firstScrollView,
+            secondScrollView,
+            thirdScrollView,
+            fourthScrollView,
+            fifthScrollView,
+            sixthScrollView,
+            seventhScrollView,
+            eighthScrollView,
+            ninthScrollView,
+            tenthScrollView,
+            eleventhScrollView,
+            twelfthScrollView
+        ]
+
+        let houseLabelsTexts = [
+            "First House - Personality",
+            "Second House - Resources",
+            "Third House - Finding Your Voice",
+            "Fourth House - Home and Family",
+            "Fifth House - Fun",
+            "Sixth House - Skill Development",
+            "Seventh House - Partnerships",
+            "Eighth House - The Occult",
+            "Ninth House - Philosophy",
+            "Tenth House - Role in the Community",
+            "Eleventh House - Friends",
+            "Twelfth House - Endings"
+        ]
+
+        // Initialize an array of optional UIImageViews
+        var houseSignGlyphs = [UIImageView?](repeating: nil, count: 12)
+
+        // Populate the array with UIImageView instances
+        for i in 0..<houseSignGlyphs.count {
+            let signGlyphImageView = UIImageView()
+            signGlyphImageView.frame = CGRect(x: 10, y: 10, width: 18, height: 18) // Set the frame as needed
+            signGlyphImageView.backgroundColor = .clear
+            houseSignGlyphs[i] = signGlyphImageView
+        }
+        // Dynamic assignment based on sorted house strengths
+        // Calculate the y position for the first scroll view
+        var yOffset: CGFloat = 200
+
+        // Dynamic assignment based on sorted house strengths
+        for (index, houseStrengthPair) in sortedHousesByStrength.enumerated() {
+            let houseNumber = houseStrengthPair.0 - 1
+            let scrollView = scrollViews[index]
+            let tableView = tableViews[houseNumber]
+            
+            // Clear out old views to prevent overlap
+            scrollView.subviews.forEach { $0.removeFromSuperview() }
+
+            // Reload the table view data to get the latest number of rows
+            tableView.reloadData()
+            
+            // Calculate the height of the table view based on the number of rows
+            let tableViewHeight = CGFloat(tableView.numberOfRows(inSection: 0) * 90) // Assuming each row height is 90
+
+            // Configure the table view frame
+            tableView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.size.width, height: tableViewHeight)
+            scrollView.addSubview(tableView)
+
+            // Assign and configure sign glyph
+            let signGlyph = houseSignGlyphs[index] ?? UIImageView()
+            signGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
+            signGlyph.backgroundColor = .clear
+            if let imageName = mySignCusps[houseNumber] {
+                signGlyph.image = UIImage(named: imageName)
+            }
+            scrollView.addSubview(signGlyph)
+
+            // Assign and configure house label
+            let houseText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
+            houseText.text = houseLabelsTexts[houseNumber]
+            houseText.font = .systemFont(ofSize: 16)
+            houseText.textColor = .white
+            scrollView.addSubview(houseText)
+
+            // Set the frame for the scrollView
+            tableView.contentSize = CGSize(width: scrollView.frame.size.width, height: tableView.frame.maxY)
+            scrollView.frame = CGRect(x: 0, y: yOffset, width: view.frame.size.width, height: tableView.contentSize.height)
+            
+            // Update yOffset for the next scrollView
+            yOffset += tableView.contentSize.height + 15 // Gap between scroll views
+            
+            let houseStrengths = chartCake!.sortedHouseStrengths(chartCake?.natal.planets)
+            let totalPower = houseStrengths.reduce(0) { $0 + $1.1 } // Sum up all the strengths
+
+            for (index, scrollView) in scrollViews.enumerated() {
+                let houseNumber = sortedHousesByStrength[index].0
+                let housePower = sortedHousesByStrength[index].1
+                
+                // Calculate the percentage of power for this house
+                let powerPercentage = (housePower / totalPower) * 100
+                
+                // Create the power label
+                let powerLabel = UILabel()
+                powerLabel.text = String(format: "%.1f%%", powerPercentage)
+                powerLabel.font = .systemFont(ofSize: 14)
+                powerLabel.textColor = .white
+                powerLabel.textAlignment = .right
+                
+                // Calculate the frame for the power label
+                // Adjust the x position based on where you want to place it within the scrollView
+                // The y position should be aligned with the sign glyph and label, or adjusted to your layout needs
+                let xPosition = scrollView.frame.width - 110 // 10 points padding from the right edge
+                let yPosition = signGlyph.frame.origin.y // Align with the top of the sign glyph
+                powerLabel.frame = CGRect(x: xPosition, y: yPosition, width: 100, height: 20)
+                
+                // Add the power label to the scrollView
+                scrollView.addSubview(powerLabel)
+            }
+        }
 
-        sunSignGlyph.image = UIImage(named: mySignCusps[0]!)
-        sunSignGlyph.image?.withTintColor(UIColor.yellow)
+        // You no longer need the getYPositionForScrollView function if you follow this approach
 
-        sunSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
+     
 
-        sunScrollView.addSubview(sunSignGlyph)
-        sunSignGlyph.backgroundColor = .clear
+        // Function to calculate Y position of each scroll view
+    
+       
 
+        firstScrollView.frame = CGRect(x: 0, y: 200, width: view.frame.size.width, height: firstTableView.contentSize.height + 40)
 
-        moonSignGlyph.image = UIImage(named: mySignCusps[1]!)
-        moonSignGlyph.image?.withTintColor(UIColor.yellow)
+        firstTableView.frame = CGRect(x: 10, y: 35, width: firstScrollView.frame.size.width , height: firstTableView.contentSize.height)
 
-        moonSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
+        firstScrollView.addSubview(firstTableView)
 
-        moonScrollView.addSubview(moonSignGlyph)
-        moonSignGlyph.backgroundColor = .clear
 
+        secondScrollView.frame = CGRect(x: 0, y: firstScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: secondTableView.contentSize.height + 40)
+        secondTableView.frame = CGRect(x: 10, y: 35, width: secondScrollView.frame.size.width , height: secondScrollView.frame.size.height - 60)
 
-        mercurySignGlyph.image = UIImage(named: mySignCusps[2]!)
-        mercurySignGlyph.image?.withTintColor(UIColor.yellow)
+        secondScrollView.addSubview(secondTableView)
 
-        mercurySignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
 
-        mercuryScrollView.addSubview(mercurySignGlyph)
-        mercurySignGlyph.backgroundColor = .clear
 
 
-        venusSignGlyph.image = UIImage(named: mySignCusps[3]!)
-        venusSignGlyph.image?.withTintColor(UIColor.yellow)
+        thirdScrollView.frame = CGRect(x: 0, y: secondScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: thirdTableView.contentSize.height + 40)
+        thirdScrollView.addSubview(thirdTableView)
 
-        venusSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
 
-        venusScrollView.addSubview(venusSignGlyph)
-        venusSignGlyph.backgroundColor = .clear
 
+        fourthScrollView.frame = CGRect(x: 0, y: thirdScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fourthTableView.contentSize.height + 40)
+        fourthScrollView.addSubview(fourthTableView)
 
-        marsSignGlyph.image = UIImage(named: mySignCusps[4]!)
-        marsSignGlyph.image?.withTintColor(UIColor.yellow)
+        fifthScrollView.frame = CGRect(x: 0, y: fourthScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fifthTableView.contentSize.height + 40)
+        fifthScrollView.addSubview(fifthTableView)
 
-        marsSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
+        sixthScrollView.frame = CGRect(x: 0, y: fifthScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: sixthTableView.contentSize.height + 40)
+        sixthScrollView.addSubview(sixthTableView)
 
-        marsScrollView.addSubview(marsSignGlyph)
-        marsSignGlyph.backgroundColor = .clear
+        seventhScrollView.frame = CGRect(x: 0, y: sixthScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: seventhTableView.contentSize.height + 40)
+        seventhScrollView.addSubview(seventhTableView)
 
+        eighthScrollView.frame = CGRect(x: 0, y: seventhScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: eighthTableView.contentSize.height + 40)
+        eighthScrollView.addSubview(eighthTableView)
 
-        jupiterSignGlyph.image = UIImage(named: mySignCusps[5]!)
-        jupiterSignGlyph.image?.withTintColor(UIColor.yellow)
+        ninthScrollView.frame = CGRect(x: 0, y: eighthScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: ninthTableView.contentSize.height + 40)
+        ninthScrollView.addSubview(ninthTableView)
 
-        jupiterSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
+        tenthScrollView.frame = CGRect(x: 0, y: ninthScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: tenthTableView.contentSize.height + 40)
+        tenthScrollView.addSubview(tenthTableView)
 
-        jupiterScrollView.addSubview(jupiterSignGlyph)
-        jupiterSignGlyph.backgroundColor = .clear
 
-
-        saturnSignGlyph.image = UIImage(named: mySignCusps[6]!)
-        saturnSignGlyph.image?.withTintColor(UIColor.yellow)
-
-        saturnSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
-
-        saturnScrollView.addSubview(saturnSignGlyph)
-        saturnSignGlyph.backgroundColor = .clear
-
-
-        uranusSignGlyph.image = UIImage(named: mySignCusps[7]!)
-        uranusSignGlyph.image?.withTintColor(UIColor.yellow)
-
-        uranusSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
-
-        uranusScrollView.addSubview(uranusSignGlyph)
-        uranusSignGlyph.backgroundColor = .clear
-
-
-        neptuneSignGlyph.image = UIImage(named: mySignCusps[8]!)
-        neptuneSignGlyph.image?.withTintColor(UIColor.yellow)
-
-        neptuneSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
-
-        neptuneScrollView.addSubview(neptuneSignGlyph)
-        neptuneSignGlyph.backgroundColor = .clear
-
-
-        plutoSignGlyph.image = UIImage(named: mySignCusps[9]!)
-        plutoSignGlyph.image?.withTintColor(UIColor.yellow)
-
-        plutoSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
-
-        plutoScrollView.addSubview(plutoSignGlyph)
-        plutoSignGlyph.backgroundColor = .clear
-
-
-
-        eleventhSignGlyph.image = UIImage(named: mySignCusps[10]!)
-        eleventhSignGlyph.image?.withTintColor(UIColor.yellow)
-
-        eleventhSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
-
-        eleventhScrollView.addSubview(eleventhSignGlyph)
-        eleventhSignGlyph.backgroundColor = .clear
-
-
-        twelfthSignGlyph.image = UIImage(named: mySignCusps[11]!)
-        twelfthSignGlyph.image?.withTintColor(UIColor.yellow)
-
-        twelfthSignGlyph.frame = CGRect(x: 10, y: 10, width: 18, height: 18)
-
-        twelfthScrollView.addSubview(twelfthSignGlyph)
-        twelfthSignGlyph.backgroundColor = .clear
-
-
-
-
-        sunScrollView.frame = CGRect(x: 0, y: 200, width: view.frame.size.width, height: firstTableView.contentSize.height + 40)
-
-        firstTableView.frame = CGRect(x: 10, y: 35, width: sunScrollView.frame.size.width , height: firstTableView.contentSize.height)
-
-        sunScrollView.addSubview(firstTableView)
-
-
-        moonScrollView.frame = CGRect(x: 0, y: sunScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: secondTableView.contentSize.height + 40)
-        secondTableView.frame = CGRect(x: 10, y: 35, width: moonScrollView.frame.size.width , height: moonScrollView.frame.size.height - 60)
-
-        moonScrollView.addSubview(secondTableView)
-
-
-
-
-        mercuryScrollView.frame = CGRect(x: 0, y: moonScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: thirdTableView.contentSize.height + 40)
-        mercuryScrollView.addSubview(thirdTableView)
-
-
-
-        venusScrollView.frame = CGRect(x: 0, y: mercuryScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fourthTableView.contentSize.height + 40)
-        venusScrollView.addSubview(fourthTableView)
-
-        marsScrollView.frame = CGRect(x: 0, y: venusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: fifthTableView.contentSize.height + 40)
-        marsScrollView.addSubview(fifthTableView)
-
-        jupiterScrollView.frame = CGRect(x: 0, y: marsScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: sixthTableView.contentSize.height + 40)
-        jupiterScrollView.addSubview(sixthTableView)
-
-        saturnScrollView.frame = CGRect(x: 0, y: jupiterScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: seventhTableView.contentSize.height + 40)
-        saturnScrollView.addSubview(seventhTableView)
-
-        uranusScrollView.frame = CGRect(x: 0, y: saturnScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: eighthTableView.contentSize.height + 40)
-        uranusScrollView.addSubview(eighthTableView)
-
-        neptuneScrollView.frame = CGRect(x: 0, y: uranusScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: ninthTableView.contentSize.height + 40)
-        neptuneScrollView.addSubview(ninthTableView)
-
-        plutoScrollView.frame = CGRect(x: 0, y: neptuneScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: tenthTableView.contentSize.height + 40)
-        plutoScrollView.addSubview(tenthTableView)
-
-
-        eleventhScrollView.frame = CGRect(x: 0, y: plutoScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: eleventhTableView.contentSize.height + 40)
+        eleventhScrollView.frame = CGRect(x: 0, y: tenthScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: eleventhTableView.contentSize.height + 40)
         eleventhScrollView.addSubview(eleventhTableView)
 
         twelfthScrollView.frame = CGRect(x: 0, y: eleventhScrollView.frame.maxY + 15, width: scrollView.frame.size.width , height: twelfthTableView.contentSize.height + 40)
@@ -633,110 +655,28 @@ class MyNatalHousesVC: UIViewController {
 //
 
 
-        thirdTableView.frame = CGRect(x: 10, y: 35, width: mercuryScrollView.frame.size.width , height: mercuryScrollView.frame.size.height - 60)
+        thirdTableView.frame = CGRect(x: 10, y: 35, width: thirdScrollView.frame.size.width , height: thirdScrollView.frame.size.height - 60)
 
-        fourthTableView.frame = CGRect(x: 10, y: 35, width: venusScrollView.frame.size.width , height: venusScrollView.frame.size.height - 60)
+        fourthTableView.frame = CGRect(x: 10, y: 35, width: fourthScrollView.frame.size.width , height: fourthScrollView.frame.size.height - 60)
 
-        fifthTableView.frame = CGRect(x: 10, y: 35, width: marsScrollView.frame.size.width , height: marsScrollView.frame.size.height - 60)
+        fifthTableView.frame = CGRect(x: 10, y: 35, width: fifthScrollView.frame.size.width , height: fifthScrollView.frame.size.height - 60)
 
-        sixthTableView.frame = CGRect(x: 10, y: 35, width: jupiterScrollView.frame.size.width , height: jupiterScrollView.frame.size.height - 60)
+        sixthTableView.frame = CGRect(x: 10, y: 35, width: sixthScrollView.frame.size.width , height: sixthScrollView.frame.size.height - 60)
 
-        seventhTableView.frame = CGRect(x: 10, y: 35, width: saturnScrollView.frame.size.width , height: saturnScrollView.frame.size.height - 60)
+        seventhTableView.frame = CGRect(x: 10, y: 35, width: seventhScrollView.frame.size.width , height: seventhScrollView.frame.size.height - 60)
 
-        eighthTableView.frame = CGRect(x: 10, y: 35, width: uranusScrollView.frame.size.width , height: uranusScrollView.frame.size.height - 20)
-        ninthTableView.frame = CGRect(x: 10, y: 35, width: neptuneScrollView.frame.size.width , height: neptuneScrollView.frame.size.height - 60)
-        tenthTableView.frame = CGRect(x: 10, y: 35, width: plutoScrollView.frame.size.width , height: plutoScrollView.frame.size.height - 60)
+        eighthTableView.frame = CGRect(x: 10, y: 35, width: eighthScrollView.frame.size.width , height: eighthScrollView.frame.size.height - 20)
+        ninthTableView.frame = CGRect(x: 10, y: 35, width: ninthScrollView.frame.size.width , height: ninthScrollView.frame.size.height - 60)
+        tenthTableView.frame = CGRect(x: 10, y: 35, width: tenthScrollView.frame.size.width , height: tenthScrollView.frame.size.height - 60)
 
 
         eleventhTableView.frame = CGRect(x: 10, y: 35, width: eleventhScrollView.frame.size.width , height: eleventhScrollView.frame.size.height - 60)
         twelfthTableView.frame = CGRect(x: 10, y: 35, width: twelfthScrollView.frame.size.width , height: twelfthScrollView.frame.size.height - 60)
 
 
-        let sunText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        sunText.text = "First House - Personality"
-        sunText.font = .systemFont(ofSize: 16)
-        sunText.textColor = .white
+ 
 
-         sunScrollView.addSubview(sunText)
-
-        let moonText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        moonText.text = "Second House - Resources"
-        moonText.font = .systemFont(ofSize: 16)
-        moonText.textColor = .white
-
-         moonScrollView.addSubview(moonText)
-
-        let mercuryText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        mercuryText.text = "Third House - Finding Your Voice"
-        mercuryText.font = .systemFont(ofSize: 16)
-        mercuryText.textColor = .white
-
-         mercuryScrollView.addSubview(mercuryText)
-
-        let venusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        venusText.text = "Fourth House - Home and Family"
-        venusText.font = .systemFont(ofSize: 16)
-        venusText.textColor = .white
-
-         venusScrollView.addSubview(venusText)
-
-        let marsText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        marsText.text = "Fifth House - Fun"
-        marsText.font = .systemFont(ofSize: 16)
-        marsText.textColor = .white
-
-         marsScrollView.addSubview(marsText)
-
-        let jupiterText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        jupiterText.text = "Sixth House - Skill Development"
-        jupiterText.font = .systemFont(ofSize: 16)
-        jupiterText.textColor = .white
-
-         jupiterScrollView.addSubview(jupiterText)
-
-        let saturnText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        saturnText.text = "Seventh House - Partnerships"
-        saturnText.font = .systemFont(ofSize: 16)
-        saturnText.textColor = .white
-
-         saturnScrollView.addSubview(saturnText)
-
-        let uranusText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        uranusText.text = "Eighth House - The Occult"
-        uranusText.font = .systemFont(ofSize: 16)
-        uranusText.textColor = .white
-
-         uranusScrollView.addSubview(uranusText)
-
-        let neptuneText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        neptuneText.text = "Ninth House - Philosophy"
-        neptuneText.font = .systemFont(ofSize: 16)
-        neptuneText.textColor = .white
-
-         neptuneScrollView.addSubview(neptuneText)
-
-        let plutoText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        plutoText.text = "Tenth House - Role in the Community"
-        plutoText.font = .systemFont(ofSize: 16)
-        plutoText.textColor = .white
-
-         plutoScrollView.addSubview(plutoText)
-
-        let eleventhText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        eleventhText.text = "Eleventh House - Friends"
-        eleventhText.font = .systemFont(ofSize: 16)
-        eleventhText.textColor = .white
-
-         eleventhScrollView.addSubview(eleventhText)
-
-        let twelfthText = UILabel(frame: CGRect(x: 35, y: 8, width: 300, height: 20))
-        twelfthText.text = "Twelfth House - Endings"
-        twelfthText.font = .systemFont(ofSize: 16)
-        twelfthText.textColor = .white
-
-         twelfthScrollView.addSubview(twelfthText)
-
-
+       
         let transitIntro = UILabel(frame: CGRect(x: 5, y: 30, width: scrollView.frame.width - 10, height: 200))
         transitIntro.text = "Houses represent specific fields of activity. They are life’s stages and arenas, the tangible theaters in which identity is made visible through action."
         transitIntro.font = .systemFont(ofSize: 13)
@@ -760,67 +700,57 @@ class MyNatalHousesVC: UIViewController {
 }
 
 extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
+
+    // Updated method to determine number of rows based on sorted house strengths
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
-        if let index = tableViews.firstIndex(of: tableView) {
-            if let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets {
-                let planetsInHouses = chartCake!.planetsAndRulersInHouses(using: houseCusps, with: bodies)
-                let houseNumber = index + 1
+        if let index = tableViews.firstIndex(of: tableView), !sortedHousesByStrength.isEmpty {
+            let houseStrengthPair = sortedHousesByStrength[index]
+            let houseNumber = houseStrengthPair.0
 
-                // Return the combined count of planets in the house and the ruling planets
+            if let planetsInHouses = chartCake?.planetsAndRulersInHouses(using: chartCake!.houseCusps, with: chartCake!.natal.planets) {
                 return planetsInHouses[houseNumber]?.count ?? 0
             }
         }
 
-        return 0 // Default return in case tableView is not found
+        return 0
     }
 
-
+    // Updated method to configure cell based on sorted house strengths
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
-        if let index = tableViews.firstIndex(of: tableView) {
-            if let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets {
-                let planetsInHouses = chartCake!.planetsAndRulersInHouses(using: houseCusps, with: bodies)
+        if let index = tableViews.firstIndex(of: tableView), !sortedHousesByStrength.isEmpty {
+            let houseStrengthPair = sortedHousesByStrength[index]
+            let houseNumber = houseStrengthPair.0
+
+            if let planetsInHouses = chartCake?.planetsAndRulersInHouses(using: chartCake!.houseCusps, with: chartCake!.natal.planets),
+               let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
                     return UITableViewCell()
                 }
 
-                let houseNumber = index + 1
+                let object = celestialObjectsInHouse[indexPath.row]
+                let keyName = object.keyName.lowercased()
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
 
-                if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
-                    let object = celestialObjectsInHouse[indexPath.row]
-                    
-                    // Assuming the object has a property or method 'keyName' to get its name
-                    // You need to adjust this part based on your actual data structure.
-                    let keyName = object.keyName.lowercased()
-                    
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
-
-                    return cell
-                }
+                return cell
             }
         }
 
-        return UITableViewCell() // Default cell in case tableView is not found or data is not available
+        return UITableViewCell()
     }
 
-
-
-
+    // Method for fixed height of table view rows
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90 // returns fixed height for all rows, regardless of the tableView
+        return 90
     }
 
+    // Method for handling selection of a row in the table view
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // remove all the code related to expanding and collapsing
+        // Additional logic for row selection can be added here
     }
-
-
-    }
-
-
-
+}

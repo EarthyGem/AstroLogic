@@ -38,7 +38,7 @@ class NatalTabBarController2: UITabBarController {
             let planetsVC = PlanetsViewController(planets: [""])
                // Pass chartCake to PlanetsViewController
                planetsVC.chartCake = self.chartCake
-            planetsVC.tabBarItem = UITabBarItem(title: "Planets", image: UIImage(systemName: "planet.max.fill"), tag: 0)
+            planetsVC.tabBarItem = UITabBarItem(title: "Planets", image: UIImage(systemName: "globe"), tag: 0)
 
         // For Houses
         let natalHouses = MyNatalHousesVC()
@@ -48,7 +48,7 @@ class NatalTabBarController2: UITabBarController {
         // For Aspects
         let natalAspects = NatalAspectsViewController()
         natalAspects.chartCake = chartCake
-        natalAspects.tabBarItem = UITabBarItem(title: "Aspects", image: UIImage(systemName: "globe"), tag: 2)
+        natalAspects.tabBarItem = UITabBarItem(title: "Aspects", image: UIImage(systemName: "point.3.filled.connected.trianglepath.dotted"), tag: 2)
 
         // Setting the view controllers for the tab bar
         self.viewControllers = [planetsVC, natalHouses, natalAspects]
