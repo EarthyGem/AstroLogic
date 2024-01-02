@@ -31,7 +31,7 @@ class NatalTabBarController2: UITabBarController {
  
         override func viewDidLoad() {
             super.viewDidLoad()
-            print("Inside viewDidLoad of PlanetsViewController: \(String(describing: chartCake))")
+         //   print("Inside viewDidLoad of PlanetsViewController: \(String(describing: chartCake))")
         
             // .
         // For Planets
@@ -72,7 +72,7 @@ class NatalTabBarController2: UITabBarController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("In viewWillAppear of NatalTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
+     //   print("In viewWillAppear of NatalTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))")
     }
 
 }

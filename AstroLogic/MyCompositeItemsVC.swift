@@ -61,7 +61,7 @@ class MyCompositeItemsViewController: UIViewController {
 
 
         super.viewDidLoad()
-        print("StrongestPlanet: \(String(describing: strongestPlanet))")
+   //     print("StrongestPlanet: \(String(describing: strongestPlanet))")
         view.backgroundColor = .white
               title = "My Items"
         view.addSubview(tableView)

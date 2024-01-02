@@ -633,7 +633,7 @@ class BirthChartView: UIView {
             let nextIndex = (i + 1) % houseCusps.count
             let distance = (houseCusps[nextIndex] - houseCusps[i] + 360).truncatingRemainder(dividingBy: 360)
             houseDistances.append(distance)
-            print("House \(i + 1) to \(nextIndex + 1) distance: \(distance)")
+         //   print("House \(i + 1) to \(nextIndex + 1) distance: \(distance)")
 
         }
         

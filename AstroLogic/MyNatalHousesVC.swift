@@ -317,6 +317,10 @@ class MyNatalHousesVC: UIViewController {
         twelfthTableView.dataSource = self
         twelfthTableView.delegate = self
         
+        if let tabBar = self.tabBarController?.tabBar {
+            tabBar.isTranslucent = false
+            tabBar.barTintColor = .black // Sets the background color to black
+        }
         sortedHousesByStrength = chartCake!.sortedHouseStrengths()
         
         view.backgroundColor = .black
