@@ -186,6 +186,8 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
             return chartCake!.natal.neptune.formatted
         case "Pluto":
             return chartCake!.natal.pluto.formatted
+        case "S.Node":
+            return chartCake!.natal.southNode.formatted
         default:
             return nil
         }
