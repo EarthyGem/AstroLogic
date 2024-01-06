@@ -287,63 +287,67 @@ class SimpleNatalAspectsViewController: UIViewController {
 
 
 
-     override func viewDidLoad() {
-         super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        guard let chartCake = chartCake else {
+            assert(false, "We need more chart cake!")
+            return
+        }
+
+        sunAspects = chartCake.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        moonAspects = chartCake.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        mercuryAspects = chartCake.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        venusAspects = chartCake.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        marsAspects = chartCake.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        jupiterAspects = chartCake.filterAndFormat(by: Planet.jupiter.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        saturnAspects = chartCake.filterAndFormat(by: Planet.saturn.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        uranusAspects = chartCake.filterAndFormat(by: Planet.uranus.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        neptuneAspects = chartCake.filterAndFormat(by: Planet.neptune.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        plutoAspects = chartCake.filterAndFormat(by: Planet.pluto.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+
+        sunAspects2 = chartCake.filterAndFormat2(by: Planet.sun.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        moonAspects2 = chartCake.filterAndFormat2(by: Planet.moon.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        mercuryAspects2 = chartCake.filterAndFormat2(by: Planet.mercury.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        venusAspects2 = chartCake.filterAndFormat2(by: Planet.venus.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        marsAspects2 = chartCake.filterAndFormat2(by: Planet.mars.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        jupiterAspects2 = chartCake.filterAndFormat2(by: Planet.jupiter.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        saturnAspects2 = chartCake.filterAndFormat2(by: Planet.saturn.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        uranusAspects2 = chartCake.filterAndFormat2(by: Planet.uranus.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        neptuneAspects2 = chartCake.filterAndFormat2(by: Planet.neptune.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+        plutoAspects2 = chartCake.filterAndFormat2(by: Planet.pluto.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
 
 
-         sunAspects = chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         moonAspects = chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         mercuryAspects = chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         venusAspects = chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         marsAspects = chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         jupiterAspects = chartCake!.filterAndFormat(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         saturnAspects = chartCake!.filterAndFormat(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         uranusAspects = chartCake!.filterAndFormat(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         neptuneAspects = chartCake!.filterAndFormat(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         plutoAspects = chartCake!.filterAndFormat(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         
-         sunAspects2 = chartCake!.filterAndFormat2(by: Planet.sun.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         moonAspects2 = chartCake!.filterAndFormat2(by: Planet.moon.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         mercuryAspects2 = chartCake!.filterAndFormat2(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         venusAspects2 = chartCake!.filterAndFormat2(by: Planet.venus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         marsAspects2 = chartCake!.filterAndFormat2(by: Planet.mars.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         jupiterAspects2 = chartCake!.filterAndFormat2(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         saturnAspects2 = chartCake!.filterAndFormat2(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         uranusAspects2 = chartCake!.filterAndFormat2(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         neptuneAspects2 = chartCake!.filterAndFormat2(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-         plutoAspects2 = chartCake!.filterAndFormat2(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
-
-
-         sunTableView.dataSource = self
-         sunTableView.delegate = self
+        sunTableView.dataSource = self
+        sunTableView.delegate = self
         moonTableView.dataSource = self
-         moonTableView.delegate = self
-         mercuryTableView.dataSource = self
-         mercuryTableView.delegate = self
-         venusTableView.dataSource = self
-         venusTableView.delegate = self
-         marsTableView.dataSource = self
-         marsTableView.delegate = self
-         jupiterTableView.dataSource = self
-         jupiterTableView.delegate = self
-         saturnTableView.dataSource = self
-         saturnTableView.delegate = self
-         uranusTableView.dataSource = self
-         uranusTableView.delegate = self
-         neptuneTableView.dataSource = self
-         neptuneTableView.delegate = self
-         plutoTableView.dataSource = self
-         plutoTableView.delegate = self
- //        ascTableView.dataSource = self
- //        ascTableView.delegate = self
-         if let tabBar = self.tabBarController?.tabBar {
-             tabBar.isTranslucent = false
-             tabBar.barTintColor = .black // Sets the background color to black
-         }
-         view.backgroundColor = .black
-         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More Aspects", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
+        moonTableView.delegate = self
+        mercuryTableView.dataSource = self
+        mercuryTableView.delegate = self
+        venusTableView.dataSource = self
+        venusTableView.delegate = self
+        marsTableView.dataSource = self
+        marsTableView.delegate = self
+        jupiterTableView.dataSource = self
+        jupiterTableView.delegate = self
+        saturnTableView.dataSource = self
+        saturnTableView.delegate = self
+        uranusTableView.dataSource = self
+        uranusTableView.delegate = self
+        neptuneTableView.dataSource = self
+        neptuneTableView.delegate = self
+        plutoTableView.dataSource = self
+        plutoTableView.delegate = self
+//        ascTableView.dataSource = self
+//        ascTableView.delegate = self
+        if let tabBar = self.tabBarController?.tabBar {
+            tabBar.isTranslucent = false
+            tabBar.barTintColor = .black // Sets the background color to black
+        }
+        view.backgroundColor = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More Aspects", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
 
-     }
+    }
 
      override func viewDidAppear(_ animated: Bool) {
          sunTableView.frame = CGRect(x: sunTableView.frame.origin.x, y: sunTableView.frame.origin.y , width: sunTableView.frame.size.width, height: sunTableView.contentSize.height)
