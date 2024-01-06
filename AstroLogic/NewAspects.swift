@@ -357,6 +357,7 @@ class NewAspectsCustomTableViewCell: UITableViewCell {
            firstPlanetText.text = firstPlanetTextText
         secondSignText.text = secondSignTextText
            secondPlanetText.text = secondPlanetTextText
+        secondPlanetText.font = UIFont.systemFont(ofSize: 15)
            firstAspectHeaderText.text = firstAspectHeaderTextText
 
        secondAspectHeaderText.text = secondAspectHeaderTextText

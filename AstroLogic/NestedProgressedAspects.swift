@@ -709,8 +709,8 @@ extension NestedMPAspectsViewController: UITableViewDataSource, UITableViewDeleg
             print("Planet: \(planet), Major Aspects Count: \(majorAspects.count)")
             // Assuming celestialAspect has the names of the contacting and contacted bodies
             if let celestialAspect = selectedAspect.celestialAspect {
-                let contactingPlanet = celestialAspect.body1.body.keyName
-                let contactedPlanet = celestialAspect.body2.body.keyName
+                let contactingPlanet = celestialAspect.body1.body
+                let contactedPlanet = celestialAspect.body2.body
                 
                 // Create the PlanetAspect instance
                 let planetAspect = PlanetAspect(contacting: contactingPlanet, contacted: contactedPlanet)

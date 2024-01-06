@@ -758,3 +758,9 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
         // Additional logic for row selection can be added here
     }
 }
+extension Array where Element: Hashable {
+  func uniqued() -> [Element] {
+      var seen = Set<Element>()
+      return filter { seen.insert($0).inserted }
+  }
+}

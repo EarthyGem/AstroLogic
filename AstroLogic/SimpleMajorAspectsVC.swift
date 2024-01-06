@@ -742,8 +742,8 @@ extension SimpleMajorAspectsViewController: UITableViewDataSource, UITableViewDe
 
         // Extracting the planet names from majorAspect
         if let celestialAspect = majorAspect.celestialAspect {
-            let contactingPlanet = celestialAspect.body1.body.keyName
-            let contactedPlanet = celestialAspect.body2.body.keyName
+            let contactingPlanet = celestialAspect.body1.body
+            let contactedPlanet = celestialAspect.body2.body
 
             // Create the PlanetAspect instance
             let planetAspect = PlanetAspect(contacting: contactingPlanet, contacted: contactedPlanet)

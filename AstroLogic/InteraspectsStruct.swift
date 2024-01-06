@@ -81,28 +81,37 @@ func generateInteraspectInterpretation(userA: String, userB: String, planetA: St
     return interpretation
 }
 
-public func generateAspectInterpretations(synastryChartCake: SynastryChartCake, by target: Coordinate) -> [String] {
-    let chart1 = synastryChartCake.natal.rickysBodies // Replace with the actual property
-    let chart2 = synastryChartCake.partner.rickysBodies // Replace with the actual property
-    let aspects = synastryChartCake.aspectsFromChart1ToChart2(chart1: chart1, chart2: chart2, by: target)
-
+public func generateAspectInterpretations(aspects: [CelestialAspect], userA: String, userB: String) -> [String] {
+    let data = InteraspectData()
     var interpretations = [String]()
 
     for aspect in aspects {
-        // Assuming 'aspect' contains information about the two planets involved and the aspect type
-        let planetA = aspect.celestialAspect?.body1.body.keyName // Replace with the actual property
-        let planetB = aspect.celestialAspect?.body2.body.keyName // Replace with the actual property
-        let aspectType = aspect.celestialAspect?.rickysInterAspectKeywords // Replace with the actual property
-        let aspectKind = aspect.celestialAspect?.kind
+        // Extracting planet names and aspect kind
+        let planetA = aspect.body1.body.keyName // Adjust if necessary to match your data structure
+        let planetB = aspect.body2.body.keyName // Adjust if necessary to match your data structure
+        let aspectKind = aspect.kind // The aspect type (e.g., trine, square, etc.)
 
-        // Generate interpretation
-        let interpretation = generateInteraspectInterpretation(
-            userA: synastryChartCake.name1 ?? "User A",
-            userB: synastryChartCake.name2 ?? "User B",
-            planetA: planetA!,
-            planetB: planetB!,
-            aspect: aspectType!, aspectCap: aspectType!, kind: aspectKind!
-        )
+        // Select the key phrases
+        let phraseA = data.planetKeyPhrases[planetA]?.randomElement() ?? ""
+        let phraseB = data.planetKeyPhrases[planetB]?.randomElement() ?? ""
+
+        // Select the condition phrase based on the aspect
+        let conditionPhrase = getAspectCondition(for: aspectKind)
+
+        // Select a template
+        let template = data.templates.randomElement() ?? ""
+
+        // Replace placeholders in the template
+        let interpretation = template
+            .replacingOccurrences(of: "{User A}", with: userA)
+            .replacingOccurrences(of: "{User B}", with: userB)
+            .replacingOccurrences(of: "{planet A}", with: planetA)
+            .replacingOccurrences(of: "{planet B}", with: planetB)
+            .replacingOccurrences(of: "{aspect}", with: aspect.rickysInterAspectKeywords) // Adjust if necessary
+            .replacingOccurrences(of: "{User A’s planet key words}", with: phraseA)
+            .replacingOccurrences(of: "{User B’s planet key words}", with: phraseB)
+            .replacingOccurrences(of: "{aspect condition}", with: conditionPhrase)
+
         interpretations.append(interpretation)
     }
 

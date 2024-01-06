@@ -10,31 +10,45 @@ import SwiftEphemeris
 
 class SimpleInteraspectsViewController: UIViewController {
 
-    //
-    //  ViewController.swift
-    //  Transits
-    //
-    //  Created by Errick Williams on 15/18/22.
-    //
 
-
-        var synastry: SynastryChartCake?
+    var currentPlanet: String?
+    var currentAspects: [String]?
 
          var selectedDate: Date?
-        var name: String?
-        var otherName: String?
+
         var otherChart: ChartCake?
         var chartCake: ChartCake?
 
-
+    var sunAspects: [String] = []
+    var moonAspects: [String] = []
+    var mercuryAspects: [String] = []
+    var venusAspects: [String] = []
+    var marsAspects: [String] = []
+    var jupiterAspects: [String] = []
+    var saturnAspects: [String] = []
+    var uranusAspects: [String] = []
+    var neptuneAspects: [String] = []
+    var plutoAspects: [String] = []
+    
+    var sunAspects2: [CelestialAspect] = []
+    var moonAspects2: [CelestialAspect] = []
+    var mercuryAspects2: [CelestialAspect] = []
+    var venusAspects2: [CelestialAspect] = []
+    var marsAspects2: [CelestialAspect] = []
+    var jupiterAspects2: [CelestialAspect] = []
+    var saturnAspects2: [CelestialAspect] = []
+    var uranusAspects2: [CelestialAspect] = []
+    var neptuneAspects2: [CelestialAspect] = []
+    var plutoAspects2: [CelestialAspect] = []
+    var aspect: AspectType!
+    var targetBody: Coordinate!
+    var name: String!
+    var otherName: String!
          private let scrollView: UIScrollView = {
              let scrollView = UIScrollView()
 
              return scrollView
          }()
-
-
-
 
          private let sunScrollView: UIView = {
              let sunScrollView = UIView()
@@ -254,13 +268,66 @@ class SimpleInteraspectsViewController: UIViewController {
          var SelectedIndex = -1
          var isCollapsed = false
 
+    private func getTargetBody(for tableView: UITableView) -> Coordinate {
+           if tableView == sunTableView {
+               return (otherChart?.natal.sun)!
+           } else if tableView == moonTableView {
+               return (otherChart?.natal.moon)!
+           } else if tableView == mercuryTableView {
+               return (otherChart?.natal.mercury)!
+           } else if tableView == venusTableView {
+               return (otherChart?.natal.venus)!
+           } else if tableView == marsTableView {
+               return (otherChart?.natal.mars)!
+           } else if tableView == jupiterTableView {
+               return (otherChart?.natal.jupiter)!
+           } else if tableView == saturnTableView {
+               return (otherChart?.natal.saturn)!
+           } else if tableView == uranusTableView {
+               return (otherChart?.natal.uranus)!
+           } else if tableView == neptuneTableView {
+               return (otherChart?.natal.neptune)!
+           } else if tableView == plutoTableView {
+               return (otherChart?.natal.pluto)!
+           }
+           // Default case
+           return (otherChart?.natal.sun)!
+       }
 
 
          override func viewDidLoad() {
              super.viewDidLoad()
 
+             sunAspects = chartCake!.synastryFilterAndFormat(by: Planet.sun.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             moonAspects = chartCake!.synastryFilterAndFormat(by: Planet.moon.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             mercuryAspects = chartCake!.synastryFilterAndFormat(by: Planet.mercury.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             venusAspects = chartCake!.synastryFilterAndFormat(by: Planet.venus.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             marsAspects = chartCake!.synastryFilterAndFormat(by: Planet.mars.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             jupiterAspects = chartCake!.synastryFilterAndFormat(by: Planet.jupiter.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             saturnAspects = chartCake!.synastryFilterAndFormat(by: Planet.saturn.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             uranusAspects = chartCake!.synastryFilterAndFormat(by: Planet.uranus.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             neptuneAspects = chartCake!.synastryFilterAndFormat(by: Planet.neptune.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             plutoAspects = chartCake!.synastryFilterAndFormat(by: Planet.pluto.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             
+             sunAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.sun.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             moonAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.moon.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             mercuryAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.mercury.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             venusAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.venus.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             marsAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.mars.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             jupiterAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.jupiter.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             saturnAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.saturn.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             uranusAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.uranus.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             neptuneAspects2 = chartCake!.synastryFilterAndFormat2(by: Planet.neptune.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+             plutoAspects2 = chartCake!.synastryFilterAndFormat2    (by: Planet.pluto.celestialObject, chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies,chart1Name: name!, chart2Name: otherName!, aspectTuples: chartCake!.interchartAspectScores(chart1: (otherChart!.natal.rickysBodies), chart2: chartCake!.natal.rickysBodies), filterChart2: true)
+         
+               
+             
 
-
+          
+             func getAspects(tableView: UITableView) {
+                 
+         //      var aspects = (synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.moon)!))!
+             }
 
              sunTableView.dataSource = self
              sunTableView.delegate = self
@@ -353,26 +420,25 @@ class SimpleInteraspectsViewController: UIViewController {
 
 
              scrollView.contentSize = CGSize(width: view.frame.width, height: 6000)
-             sunTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!, by:  (otherChart?.natal.sun)!).count)! * 90)
+             sunTableView.contentSize.height = CGFloat(sunAspects.count * 90)
 
-             moonTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.moon)!).count)! * 90)
+             moonTableView.contentSize.height = CGFloat(moonAspects.count * 90)
 
-             mercuryTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.mercury)!).count)! * 90)
+             mercuryTableView.contentSize.height = CGFloat(mercuryAspects.count * 90)
 
-             venusTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.venus)!).count)! * 90)
+             venusTableView.contentSize.height = CGFloat(venusAspects.count * 90)
 
-             marsTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.mars)!).count)! * 90)
+             marsTableView.contentSize.height = CGFloat(marsAspects.count * 90)
 
-             jupiterTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.jupiter)!).count)! * 90)
+             jupiterTableView.contentSize.height = CGFloat(jupiterAspects.count * 90)
 
-             saturnTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.saturn)!).count)! * 90)
+             saturnTableView.contentSize.height = CGFloat(saturnAspects.count * 90)
 
-             uranusTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.uranus)!).count)! * 90)
+             uranusTableView.contentSize.height = CGFloat(uranusAspects.count * 90)
 
-             neptuneTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.neptune)!).count)! * 90)
+             neptuneTableView.contentSize.height = CGFloat(neptuneAspects.count * 90)
 
-             plutoTableView.contentSize.height = CGFloat((synastry?.aspectsFromChart1ToChart2(chart1: (chartCake?.natal.rickysBodies)!, chart2: (otherChart?.natal.rickysBodies)!,  by: (otherChart?.natal.pluto)!).count)! * 90)
-
+             plutoTableView.contentSize.height = CGFloat(plutoAspects.count * 90)
 
 
              scrollView.addSubview(moonScrollView)
@@ -653,99 +719,66 @@ class SimpleInteraspectsViewController: UIViewController {
 
     }
 
-    extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDelegate {
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            guard let chart1 = chartCake?.natal.rickysBodies, let chart2 = otherChart?.natal.rickysBodies else {
-                return 0
-            }
+extension SimpleInteraspectsViewController: UITableViewDataSource, UITableViewDelegate {
 
-            let targetBody = getTargetBody(for: tableView)
-            return synastry?.aspectsFromChart1ToChart2(chart1: chart1, chart2: chart2, by: targetBody).count ?? 0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let tableViews = [sunTableView, moonTableView, mercuryTableView, venusTableView, marsTableView, jupiterTableView, saturnTableView, uranusTableView, neptuneTableView, plutoTableView]
+
+        if let index = tableViews.firstIndex(of: tableView) {
+            let aspectsArray = [sunAspects2, moonAspects2, mercuryAspects2, venusAspects2, marsAspects2, jupiterAspects2, saturnAspects2, uranusAspects2, neptuneAspects2, plutoAspects2]
+            return aspectsArray[index].count
         }
 
-        private func getTargetBody(for tableView: UITableView) -> Coordinate {
-            if tableView == sunTableView {
-                return (otherChart?.natal.sun)!
-            } else if tableView == moonTableView {
-                return (otherChart?.natal.moon)! 
-            } else if tableView == mercuryTableView {
-                return (otherChart?.natal.mercury)! 
-            } else if tableView == venusTableView {
-                return (otherChart?.natal.venus)! 
-            } else if tableView == marsTableView {
-                return (otherChart?.natal.mars)! 
-            } else if tableView == jupiterTableView {
-                return (otherChart?.natal.jupiter)! 
-            } else if tableView == saturnTableView {
-                return (otherChart?.natal.saturn)! 
-            } else if tableView == uranusTableView {
-                return (otherChart?.natal.uranus)! 
-            } else if tableView == neptuneTableView {
-                return (otherChart?.natal.neptune)! 
-            } else if tableView == plutoTableView {
-                return (otherChart?.natal.pluto)! 
-            }
-            // Default case
-            return (otherChart?.natal.sun)!
-        }
+        return 0
+    }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tableViews = [sunTableView, moonTableView, mercuryTableView, venusTableView, marsTableView, jupiterTableView, saturnTableView, uranusTableView, neptuneTableView, plutoTableView]
 
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell,
-                  let chart1 = chartCake?.natal.rickysBodies, let chart2 = otherChart?.natal.rickysBodies else {
+        if let index = tableViews.firstIndex(of: tableView) {
+            let aspectsArray = [sunAspects, moonAspects, mercuryAspects, venusAspects, marsAspects, jupiterAspects, saturnAspects, uranusAspects, neptuneAspects, plutoAspects]
+            let selectedAspect = aspectsArray[index][indexPath.row]
+
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
                 return UITableViewCell()
             }
 
-            let targetBody = getTargetBody(for: tableView)
-            if let aspect = synastry?.aspectsFromChart1ToChart2(chart1: chart1, chart2: chart2, by: targetBody)[indexPath.row] {
-                let aspectText = "\(name!)'s \(aspect.celestialAspect!.body1.body.archetype) \(aspect.celestialAspect!.rickysInterAspectKeywords) \(otherName!)'s \(aspect.celestialAspect!.body2.body.archetype)"
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectText, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: " ")
-            }
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: selectedAspect, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: " ")
 
             return cell
         }
 
-
-
-
-
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 90
-        }
-
-
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-
-            guard let chart1 = chartCake?.natal.rickysBodies, let chart2 = otherChart?.natal.rickysBodies else {
-                return
-            }
-
-            let targetBody = getTargetBody(for: tableView)
-            guard let aspect = synastry?.aspectsFromChart1ToChart2(chart1: chart1, chart2: chart2, by: targetBody)[indexPath.row] else {
-                return
-            }
-
-            // Extract the necessary data from the selected aspect
-            let userAName = name ?? "User A"
-            let userBName = otherName ?? "User B"
-            let planetA = aspect.celestialAspect?.body1.body.keyName ?? ""
-            let planetB = aspect.celestialAspect?.body2.body.keyName ?? ""
-            let aspectType = aspect.celestialAspect?.keyword ?? ""
-            let aspectTypeCap = aspect.celestialAspect?.Keyword ?? ""
-            let aspectKind = aspect.celestialAspect?.kind
-
-            // Instantiate and set up the InteraspectInterpretationViewController
-            let interpretationVC = InteraspectInterpretationViewController()
-            interpretationVC.userAName = userAName
-            interpretationVC.userBName = userBName
-            interpretationVC.planetA = planetA
-            interpretationVC.planetB = planetB
-            interpretationVC.aspect = aspectType
-            interpretationVC.aspectCap = aspectTypeCap
-            interpretationVC.kind = aspectKind
-            // Present or push the view controller
-            navigationController?.pushViewController(interpretationVC, animated: true)
-        }
-
+        return UITableViewCell()
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tableViews = [sunTableView, moonTableView, mercuryTableView, venusTableView, marsTableView, jupiterTableView, saturnTableView, uranusTableView, neptuneTableView, plutoTableView]
+
+        if let index = tableViews.firstIndex(of: tableView) {
+            let aspectsArray = [sunAspects2, moonAspects2, mercuryAspects2, venusAspects2, marsAspects2, jupiterAspects2, saturnAspects2, uranusAspects2, neptuneAspects2, plutoAspects2]
+            let selectedAspect = aspectsArray[index][indexPath.row]
+
+            let vc = InteraspectInterpretationViewController()
+            
+            let aspectType = selectedAspect.keyword
+            let aspectTypeCap = selectedAspect.Keyword
+            // Set properties for the destination view controller
+            // Replace the placeholders with actual properties from your data model
+            vc.userAName = name! // Replace with the actual user name
+            vc.userBName = otherName! // Replace with the actual other user name
+            vc.planetA = selectedAspect.body1.body.keyName // Adjust as needed
+            vc.planetB = selectedAspect.body2.body.keyName // Adjust as needed
+            vc.aspect = aspectType
+            vc.aspectCap = aspectTypeCap
+            vc.kind = selectedAspect.kind // Adjust as needed
+
+            navigationController?.pushViewController(vc, animated: true)
+        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}

@@ -743,6 +743,16 @@ class TransposedHousesVC: UIViewController {
     }
 
 
+    @objc func flipChartsButtonTapped() {
+        let flipSynastryVC = FlipTransposedHousesVC()
+
+        flipSynastryVC.otherChart = self.otherChart
+        flipSynastryVC.chartCake = self.chartCake
+        flipSynastryVC.userA = self.selectedName
+        flipSynastryVC.userB = self.name
+        flipSynastryVC.title = "\(name!)' Planets"
+        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
+    }
 }
 
 extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
@@ -791,16 +801,6 @@ extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
         return 0 // Default return in case tableView is not found
     }
 
-    @objc func flipChartsButtonTapped() {
-        let flipSynastryVC = FlipTransposedHousesVC()
-
-        flipSynastryVC.otherChart = self.otherChart
-        flipSynastryVC.chartCake = self.chartCake
-        flipSynastryVC.userA = self.selectedName
-        flipSynastryVC.userB = self.name
-        flipSynastryVC.title = "\(name!)' Planets"
-        self.navigationController?.pushViewController(flipSynastryVC, animated: true)
-    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

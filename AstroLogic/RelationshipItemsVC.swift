@@ -98,21 +98,14 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 tableView.deselectRow(at: indexPath, animated: true)
 
-//                let selectedRelationship = relationshipData[indexPath.row]
-//                let chartType = selectedRelationship.chartType
-//
-//                let selectedRelationship = // Get the selected relationship (chart) from your data source
-//                   delegate?.didSelectRelationship(selectedRelationship)
-//
+
                 let OthersPlanetsVC = OthersPlanetsViewController(planets: [""])
                 OthersPlanetsVC.chartCake = self.chartCake
                 OthersPlanetsVC.otherChart = self.otherChart
                 OthersPlanetsVC.name = self.name
                 OthersPlanetsVC.selectedName = self.selectedName
 
-             //   print("Suns!!! \(String(describing: todaysVC.otherChart?.sun.formatted)) and \(String(describing: todaysVC.chartCake?.sun.formatted))")
-//
-
+ 
                let SynastryChartVC = SynastryViewController(MP_Planets: [""])
                 SynastryChartVC.chartCake = self.chartCake
                 SynastryChartVC.otherChart = self.otherChart
@@ -129,24 +122,14 @@ extension RelationshipItemsViewController: AddRelationshipDelegate {
                 let natalPlanetsVC = PlanetsViewController(planets: placeHolder)
 
                 let interAspectsVC = SimpleInteraspectsViewController()
-                interAspectsVC.chartCake = self.chartCake
-                interAspectsVC.otherChart = self.otherChart
-               interAspectsVC.synastry = self.synastry
-              //  print("Synastry: \(synastry?.natal.sun.longitude)")
-                interAspectsVC.title = "Interaspects"
-                interAspectsVC.name = self.name
-                interAspectsVC.otherName = self.otherName
-
-                // Later on, when you have the second person's birth date, you call the method like this:
-
+                interAspectsVC.chartCake = chartCake
+                interAspectsVC.otherChart = otherChart
+                interAspectsVC.name = name
+                interAspectsVC.otherName = otherName
           
+              
 
-//                natalPlanetsVC.title = category.chartType
-                natalPlanetsVC.chartCake = self.chartCake
-            //    natalPlanetsVC.otherChart = self.otherChart
-                
-             
-                
+
                 let compositeVC = MyCompositeItemsViewController()
                 let chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
                 compositeVC.chartCake = chartCake

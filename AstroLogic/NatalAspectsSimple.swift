@@ -5,6 +5,20 @@
 //  Created by Errick Williams on 15/18/22.
 //
 
+struct AspectKey: Hashable {
+    let body1: CelestialObject
+    let body2: CelestialObject
+  
+}
+
+struct NatalAspectContent {
+    let aspectKey: AspectKey
+    let generalDescription: String
+    let strengths: String
+    let challenges: String
+    let advice: String
+}
+
 import UIKit
 import SwiftEphemeris
 
@@ -14,6 +28,28 @@ class SimpleNatalAspectsViewController: UIViewController {
 
      var chartCake: ChartCake?
      var selectedDate: Date?
+    var sunAspects: [String] = []
+    var moonAspects: [String] = []
+    var mercuryAspects: [String] = []
+    var venusAspects: [String] = []
+    var marsAspects: [String] = []
+    var jupiterAspects: [String] = []
+    var saturnAspects: [String] = []
+    var uranusAspects: [String] = []
+    var neptuneAspects: [String] = []
+    var plutoAspects: [String] = []
+    
+    var sunAspects2: [CelestialAspect] = []
+    var moonAspects2: [CelestialAspect] = []
+    var mercuryAspects2: [CelestialAspect] = []
+    var venusAspects2: [CelestialAspect] = []
+    var marsAspects2: [CelestialAspect] = []
+    var jupiterAspects2: [CelestialAspect] = []
+    var saturnAspects2: [CelestialAspect] = []
+    var uranusAspects2: [CelestialAspect] = []
+    var neptuneAspects2: [CelestialAspect] = []
+    var plutoAspects2: [CelestialAspect] = []
+    var aspectDictionary: [AspectKey: NatalAspectContent] = [:]
 
 
      private let scrollView: UIScrollView = {
@@ -255,6 +291,27 @@ class SimpleNatalAspectsViewController: UIViewController {
          super.viewDidLoad()
 
 
+         sunAspects = chartCake!.filterAndFormat(by: Planet.sun.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         moonAspects = chartCake!.filterAndFormat(by: Planet.moon.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         mercuryAspects = chartCake!.filterAndFormat(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         venusAspects = chartCake!.filterAndFormat(by: Planet.venus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         marsAspects = chartCake!.filterAndFormat(by: Planet.mars.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         jupiterAspects = chartCake!.filterAndFormat(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         saturnAspects = chartCake!.filterAndFormat(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         uranusAspects = chartCake!.filterAndFormat(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         neptuneAspects = chartCake!.filterAndFormat(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         plutoAspects = chartCake!.filterAndFormat(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         
+         sunAspects2 = chartCake!.filterAndFormat2(by: Planet.sun.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         moonAspects2 = chartCake!.filterAndFormat2(by: Planet.moon.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         mercuryAspects2 = chartCake!.filterAndFormat2(by: Planet.mercury.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         venusAspects2 = chartCake!.filterAndFormat2(by: Planet.venus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         marsAspects2 = chartCake!.filterAndFormat2(by: Planet.mars.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         jupiterAspects2 = chartCake!.filterAndFormat2(by: Planet.jupiter.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         saturnAspects2 = chartCake!.filterAndFormat2(by: Planet.saturn.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         uranusAspects2 = chartCake!.filterAndFormat2(by: Planet.uranus.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         neptuneAspects2 = chartCake!.filterAndFormat2(by: Planet.neptune.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
+         plutoAspects2 = chartCake!.filterAndFormat2(by: Planet.pluto.celestialObject, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true)
 
 
          sunTableView.dataSource = self
@@ -350,23 +407,23 @@ class SimpleNatalAspectsViewController: UIViewController {
          let tableViews = [sunTableView, moonTableView, mercuryTableView, venusTableView, marsTableView, jupiterTableView, saturnTableView, uranusTableView, neptuneTableView, plutoTableView]
          for tableView in tableViews {
              for planet in chartCake!.natal.planets {
-                 let height = CGFloat(chartCake!.simpleAspectsFiltered(by: planet.body).count * 90)
+                 let height = CGFloat(chartCake!.filterAndFormat(by: planet.body, aspectsScores: chartCake!.allCelestialAspectScoresbyAspect(), includeParallel: true).count * 90)
                  tableView.contentSize.height = height
                  totalHeight += height
              }
          }
          scrollView.contentSize = CGSize(width: view.frame.width, height: totalHeight)
-         sunTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.sun.celestialObject).count * 90)
+         sunTableView.contentSize.height = CGFloat(sunAspects.count * 90)
  //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-         moonTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.moon.celestialObject).count * 90)
-         mercuryTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
-         venusTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.venus.celestialObject).count * 90)
-         marsTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.mars.celestialObject).count * 90)
-         jupiterTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
-         saturnTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
-         uranusTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
-         neptuneTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
-         plutoTableView.contentSize.height = CGFloat(chartCake!.simpleAspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
+         moonTableView.contentSize.height = CGFloat(moonAspects.count * 90)
+         mercuryTableView.contentSize.height = CGFloat(mercuryAspects.count * 90)
+         venusTableView.contentSize.height = CGFloat(venusAspects.count * 90)
+         marsTableView.contentSize.height = CGFloat(marsAspects.count * 90)
+         jupiterTableView.contentSize.height = CGFloat(jupiterAspects.count * 90)
+         saturnTableView.contentSize.height = CGFloat(saturnAspects.count * 90)
+         uranusTableView.contentSize.height = CGFloat(uranusAspects.count * 90)
+         neptuneTableView.contentSize.height = CGFloat(neptuneAspects.count * 90)
+         plutoTableView.contentSize.height = CGFloat(plutoAspects.count * 90)
 
 
          scrollView.addSubview(moonScrollView)
@@ -668,44 +725,44 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
         if(tableView == sunTableView) {
 
-            return chartCake!.simpleAspectsFiltered(by: Planet.sun.celestialObject).count
+            return sunAspects.count
     }
         else if(tableView == moonTableView){
-            return chartCake!.simpleAspectsFiltered(by: Planet.moon.celestialObject).count
+            return moonAspects.count
         }
 
 
             else if(tableView == mercuryTableView){
 
-                return chartCake!.simpleAspectsFiltered(by: Planet.mercury.celestialObject).count
+                return mercuryAspects.count
             }
             else if(tableView == venusTableView){
 
-                return chartCake!.simpleAspectsFiltered(by: Planet.venus.celestialObject).count
+                return venusAspects.count
                 }
         else if(tableView == marsTableView){
 
-            return chartCake!.simpleAspectsFiltered(by: Planet.mars.celestialObject).count
+            return marsAspects.count
                     }
         else if(tableView == jupiterTableView){
 
-            return chartCake!.simpleAspectsFiltered(by: Planet.jupiter.celestialObject).count
+            return jupiterAspects.count
                         }
         else if(tableView == saturnTableView){
 
-            return chartCake!.simpleAspectsFiltered(by: Planet.saturn.celestialObject).count
+            return saturnAspects.count
                             }
         else if(tableView == uranusTableView){
 
-            return chartCake!.simpleAspectsFiltered(by: Planet.uranus.celestialObject).count
+            return uranusAspects.count
                                 }
         else if(tableView == neptuneTableView){
 
-            return chartCake!.simpleAspectsFiltered(by: Planet.neptune.celestialObject).count
+            return neptuneAspects.count
                                     }
         else {
 
-            return chartCake!.simpleAspectsFiltered(by: Planet.pluto.celestialObject).count
+            return plutoAspects.count
 
 
 
@@ -723,7 +780,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.sun.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: sunAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 //                    cell.dropDownText(transit1: "lKSACFhouEFHQVBIYEVBilvywbviy", transit2: "kabevovBNOVWIBWvo;wrbva", transit3: "qek.BVFbeqvV", transit4: "ALENVFoe;wvno;Vojw", myTableCell: sunScrollView)
 ////
@@ -740,7 +797,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
            }
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.moon.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: moonAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: " ",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -761,7 +818,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.mercury.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: mercuryAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -778,7 +835,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.venus.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: venusAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
                return cell
 
@@ -797,7 +854,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.mars.celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: marsAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -814,7 +871,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.jupiter .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: jupiterAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -831,7 +888,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 //                    var transitSaturnAspects = [plutoSaturn]
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.saturn .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: saturnAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
            return cell
 
@@ -847,7 +904,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.uranus .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: uranusAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -862,7 +919,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
            }
 
 
-              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.neptune .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+              cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: neptuneAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -879,7 +936,7 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
 
 
 
-            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: chartCake!.simpleAspectsFiltered(by: Planet.pluto .celestialObject)[indexPath.row].basicAspectString, firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
+            cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: plutoAspects[indexPath.row], firstPlanetTextText: "",firstAspectHeaderTextText: "",secondAspectHeaderTextText: " " )
 
 
            return cell
@@ -897,8 +954,46 @@ extension SimpleNatalAspectsViewController: UITableViewDataSource, UITableViewDe
     }
 
 
-            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var selectedAspect: CelestialAspect?
+        print("Did select row at \(indexPath)")
+        print("Navigation controller: \(navigationController)")
 
-            }
+        
+        // Determine which table view is being interacted with and set the selectedAspect
+        switch tableView {
+        case sunTableView:
+            selectedAspect = sunAspects2[indexPath.row]
+        case moonTableView:
+            selectedAspect = moonAspects2[indexPath.row]
+        case mercuryTableView:
+            selectedAspect = mercuryAspects2[indexPath.row]
+        case venusTableView:
+            selectedAspect = venusAspects2[indexPath.row]
+        case marsTableView:
+            selectedAspect = marsAspects2[indexPath.row]
+        case jupiterTableView:
+            selectedAspect = jupiterAspects2[indexPath.row]
+        case saturnTableView:
+            selectedAspect = saturnAspects2[indexPath.row]
+        case uranusTableView:
+            selectedAspect = uranusAspects2[indexPath.row]
+        case neptuneTableView:
+            selectedAspect = neptuneAspects2[indexPath.row]
+        case plutoTableView:
+            selectedAspect = plutoAspects2[indexPath.row]
+        default:
+            // Handle unexpected table view, if necessary
+            break
+        }
 
+        if let aspect = selectedAspect {
+              let detailVC = NatalAspectDetailViewController()
+              let key = AspectKey(body1: aspect.body1.body, body2: aspect.body2.body)
+              if let aspectContent = aspectDictionary[key] {
+                  detailVC.aspectContent = aspectContent
+                  navigationController?.pushViewController(detailVC, animated: true)
+              }
+          }
+      }
 }

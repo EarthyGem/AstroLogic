@@ -16,6 +16,7 @@ class HarmonyInfoViewController: UIViewController {
     var strongestPlanet: String!
     var mostHarmoniousPlanet: String!
     var mostDiscordantPlanet: String!
+    var lastView: UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +25,8 @@ class HarmonyInfoViewController: UIViewController {
         setupPlanetIntro()
         setupContent()
     }
+    
+    
 
     func setupScrollView() {
         // Adding scrollView
@@ -69,8 +72,10 @@ class HarmonyInfoViewController: UIViewController {
         // Configure and add planet intro label
         planetIntroLabel.textAlignment = .justified
         planetIntroLabel.numberOfLines = 0
-        planetIntroLabel.text = "The best planet is the one receiving the support from the rest of the chart, and thus indicates the kind of things with the greatest ability to bring luck or ease into \(name)'s life. It is important to note it, so that \(name) can associate as persistently as possible with the various things ruled by \(mostHarmoniousPlanet!) in order to increase their good 'luck'"
+        planetIntroLabel.text = "The best planet is the one receiving the support from the rest of the chart, and thus indicates the kind of things with the greatest ability to bring luck or ease into \(name)'s life. It is important to note it, so that \(name) can associate as persistently as possible with the various things ruled by \(mostHarmoniousPlanet!) in order to increase their good 'luck'\n\n\(planetDetails(for: mostHarmoniousPlanet)!)"
         planetIntroLabel.font = UIFont.systemFont(ofSize: 15) // adjust the font size as needed
+        planetIntroLabel.sizeToFit()
+        view.layoutIfNeeded()
 
                 planetIntroLabel.textColor = .white
 
@@ -101,7 +106,7 @@ class HarmonyInfoViewController: UIViewController {
     func setupContent() {
         var lastView: UIView? = nil
         let spaceBetweenGroups: CGFloat = 200
-        let initialTopPadding: CGFloat = 260
+        let initialTopPadding: CGFloat = 715
         let labelSidePadding: CGFloat = 0 // Increase padding space as needed
 
         for (index, text) in texts.enumerated() {
@@ -113,12 +118,12 @@ class HarmonyInfoViewController: UIViewController {
                 contentView.addSubview(container)
                 
             container.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    container.topAnchor.constraint(equalTo: lastView?.bottomAnchor ?? contentView.topAnchor, constant: lastView == nil ? initialTopPadding : 20),
-                    container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: labelSidePadding),
-                    container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -labelSidePadding)
-                    // ... other constraints ...
-                ])
+            NSLayoutConstraint.activate([
+                container.topAnchor.constraint(equalTo: lastView?.bottomAnchor ?? contentView.topAnchor, constant: lastView == nil ? initialTopPadding : spaceBetweenGroups),
+                container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: labelSidePadding),
+                container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -labelSidePadding)
+                // ... other constraints ...
+            ])
                 
                 let label = UILabel()
                 label.text = planetInfo(for: mostHarmoniousPlanet)
@@ -204,6 +209,33 @@ class HarmonyInfoViewController: UIViewController {
             return Planet.neptune.rennArchetypes
         case "Pluto":
             return Planet.pluto.rennArchetypes
+        default:
+            return nil
+        }
+    }
+    
+    func planetDetails(for planet: String) -> String? {
+        switch planet {
+        case "Sun":
+            return Planet.sun.planetDetails
+        case "Moon":
+            return Planet.moon.planetDetails
+        case "Mercury":
+            return Planet.mercury.planetDetails
+        case "Venus":
+            return Planet.venus.planetDetails
+        case "Mars":
+            return Planet.mars.planetDetails
+        case "Jupiter":
+            return Planet.jupiter.planetDetails
+        case "Saturn":
+            return Planet.saturn.planetDetails
+        case "Uranus":
+            return Planet.uranus.planetDetails
+        case "Neptune":
+            return Planet.neptune.planetDetails
+        case "Pluto":
+            return Planet.pluto.planetDetails
         default:
             return nil
         }

@@ -10,8 +10,8 @@ struct AspectContent {
 }
 
 struct PlanetAspect {
-    var contacting: String // Planet doing the contacting
-    var contacted: String  // Planet being contacted
+    var contacting: CelestialObject // Planet doing the contacting
+    var contacted: CelestialObject  // Planet being contacted
 }
 
 
