@@ -164,7 +164,34 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         )
     }
 
-
+    func planetInfo(for planet: String) -> String? {
+        switch planet {
+        case "Sun":
+            return chartCake!.natal.sun.formatted
+        case "Moon":
+            return chartCake!.natal.moon.formatted
+        case "Mercury":
+            return chartCake!.natal.mercury.formatted
+        case "Venus":
+            return chartCake!.natal.venus.formatted
+        case "Mars":
+            return chartCake!.natal.mars.formatted
+        case "Jupiter":
+            return chartCake!.natal.jupiter.formatted
+        case "Saturn":
+            return chartCake!.natal.saturn.formatted
+        case "Uranus":
+            return chartCake!.natal.uranus.formatted
+        case "Neptune":
+            return chartCake!.natal.neptune.formatted
+        case "Pluto":
+            return chartCake!.natal.pluto.formatted
+        default:
+            return nil
+        }
+    }
+    
+    
     @objc func toggleBirthChartView() {
         UIView.animate(withDuration: 0.3, animations: {
             if self.isBirthChartViewCollapsed {
@@ -218,7 +245,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         cell.configure(
             signGlyphImageName: celestialObject.keyName.lowercased(),
             planetImageImageName: celestialObject.keyName.lowercased(),
-            signTextText: celestialObject.keyName,
+            signTextText: planetInfo(for: celestialObject.keyName)!,
             planetTextText: "\(formattedStrength) \(celestialObject.archetype)",
             headerTextText: celestialObject.planetHeaders
         )
@@ -242,7 +269,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
     func navigateToArchetypeMatrixViewController(with celestialObject: CelestialObject) {
         let archetypeMatrixVC = NatalTabBarController(chartCake: chartCake, sortedPlanets: self.sortedPlanets, celstialObject: celestialObject)
-        print("celestialObjectTest: \(celestialObject)")
+   //     print("celestialObjectTest: \(celestialObject)")
         archetypeMatrixVC.chartCake = chartCake
      //   archetypeMatrixVC.celestialObject = celestialObject
         self.navigationController?.pushViewController(archetypeMatrixVC, animated: true)

@@ -390,6 +390,21 @@
                   endingLineNumber = "318"
                   offsetFromSymbolStart = "48560">
                </Location>
+               <Location
+                  uuid = "46BF7970-6CFB-4052-8F4C-E6F726B71E57 - 81c42497eaa10826"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.SimpleInteraspectsViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic/AstroLogic/SimpleInterAspectsVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "318"
+                  endingLineNumber = "318"
+                  offsetFromSymbolStart = "41188">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
