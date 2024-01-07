@@ -43,14 +43,14 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     }
 
     
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        if shouldRefreshData {
-//            fetchAllCharts()
-//            shouldRefreshData = false
-//        }
-//    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if shouldRefreshData {
+            fetchAllCharts()
+            shouldRefreshData = false
+        }
+    }
 
 
 
@@ -116,21 +116,25 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell
 
-        guard let selectedChart = charts?[indexPath.row] else {
-            return UITableViewCell()
-        }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as! ChartTableViewCell // Assume you've created a custom cell
 
-        // Use pre-calculated values
+        let selectedChart = charts![indexPath.row]
+
+            let chartDate = selectedChart.birthDate!
+            let latitude = selectedChart.latitude
+        let longitude = selectedChart.longitude
         let otherName = selectedChart.name
-        let strongestPlanet = selectedChart.strongestPlanet ?? ""
-        let strongestPlanetSign = selectedChart.strongestPlanetSign ?? ""
+        otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
+        let scores = otherChart!.getTotalPowerScoresForPlanets()
+            let strongestPlanet = getStrongestPlanet(from: scores)
 
-        // Set cell properties
-        cell.textLabel?.text = otherName
-        let imageName = strongestPlanet.lowercased()
-        cell.planetImageView.image = UIImage(named: imageName)
+            // Set the cell label
+            cell.textLabel?.text = otherName
+
+            // Set the cell image
+            let imageName = strongestPlanet.keyName.lowercased()
+            cell.planetImageView.image = UIImage(named: imageName)
 
         return cell
     }
@@ -221,8 +225,6 @@ extension RelationshipsViewController: UITableViewDelegate {
         strongestPlanetVC.birthDate = birthDate
      //   strongestPlanetVC.selectedName = selectedName
         //
-        strongestPlanetVC.mostDiscordantPlanetArchetype = mostDiscordantPlanet.archetype
-        strongestPlanetVC.mostHarmoniousPlanetArchetype = mostHarmoniousPlanet.archetype
         strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
         strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
         strongestPlanetVC.sentenceText = sentence
