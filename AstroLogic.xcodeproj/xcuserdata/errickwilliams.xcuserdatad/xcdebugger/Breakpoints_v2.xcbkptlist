@@ -319,7 +319,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "46BF7970-6CFB-4052-8F4C-E6F726B71E57"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AstroLogic/SimpleInterAspectsVC.swift"

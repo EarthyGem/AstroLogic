@@ -165,7 +165,7 @@ extension RelationshipsViewController: UITableViewDelegate {
         let latitude = selectedEntity.latitude
           let longitude = selectedEntity.longitude
           let chartDate = selectedEntity.birthDate!
-          let otherName = selectedEntity.name ?? ""
+        let otherName = selectedEntity.name
 
         let otherChart = ChartCake(birthDate: chartDate, latitude: latitude, longitude: longitude)
         let synastry = SynastryChartCake(birthDate: chartDate, otherBirthDate: birthDate, latitude: latitude, longitude: longitude, name1: "\(name)", name2: "\(otherName)'s")
@@ -209,7 +209,7 @@ extension RelationshipsViewController: UITableViewDelegate {
                                              strongestPlanetSign: strongestPlanetSign!,
                                              sunSign: otherChart!.natal.sun.sign.keyName,
                                              moonSign: otherChart!.natal.moon.sign.keyName,
-                                             risingSign: otherChart!.natal.houseCusps.ascendent.sign.keyName, name: otherName)
+                                             risingSign: otherChart!.natal.houseCusps.ascendent.sign.keyName, name: otherName!)
 
         // Initialize and push the StrongestPlanetViewController
         let strongestPlanetVC = OthersStrongestPlanetViewController()
@@ -221,6 +221,7 @@ extension RelationshipsViewController: UITableViewDelegate {
         strongestPlanetVC.birthDate = birthDate
      //   strongestPlanetVC.selectedName = selectedName
         //
+        strongestPlanetVC.strongestPlanetArchetype = strongestPlanet.archetype
         strongestPlanetVC.mostDiscordantPlanetArchetype = mostDiscordantPlanet.archetype
         strongestPlanetVC.mostHarmoniousPlanetArchetype = mostHarmoniousPlanet.archetype
         strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName

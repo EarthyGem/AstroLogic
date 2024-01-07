@@ -91,7 +91,7 @@ import SwiftEphemeris
             view.backgroundColor = .black
            configureStrongestImageView()
           configureStrongestLabel()
-            configureStrongestTitleLabel(name: name)
+            configureStrongestTitleLabel(name: otherName)
             configureHarmoniousImageView()
             configureHarmoniousTitleLabel()
             configureHarmoniousLabel()
@@ -256,7 +256,7 @@ import SwiftEphemeris
 
 
         private func configureStrongestLabel() {
-            label.text = "The \(strongestPlanetArchetype)"
+            label.text = "The \(strongestPlanetArchetype!)"
             label.textColor = .white
             label.font = UIFont.systemFont(ofSize: 20)
             label.textAlignment = .center

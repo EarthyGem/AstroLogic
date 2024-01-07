@@ -802,7 +802,8 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
 
     let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
-    
+   
+
     if let index = tableViews.firstIndex(of: tableView),
        let houseCusps = otherChart?.houseCusps,
        let bodies = chartCake?.natal.planets {

@@ -16,22 +16,22 @@ class InterpretationViewController: UIViewController {
     var userA: String?
     var userB: String?
     private let interpretationLabel = UILabel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white // Set the background color of the view
         setupUI()
         displayInterpretation()
     }
-
+    
     private func setupUI() {
         interpretationLabel.translatesAutoresizingMaskIntoConstraints = false
         interpretationLabel.numberOfLines = 0 // Allow for multiple lines
         interpretationLabel.textAlignment = .center
         interpretationLabel.font = UIFont.systemFont(ofSize: 16) // Set the font size
-
+        
         view.addSubview(interpretationLabel)
-
+        
         // Set constraints for the label
         NSLayoutConstraint.activate([
             interpretationLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -40,10 +40,10 @@ class InterpretationViewController: UIViewController {
             interpretationLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
-
     private func displayInterpretation() {
         if let body = celestialBody, let houseNum = houseNumber {
-            let interpretation = generateAstrologicalInterpretation(planet: body.keyName, houseNumber: houseNum, templateNumber: 1, userA: userA!, userB: userB!) // Choose template number as needed
+            let randomTemplateNumber = Int.random(in: 1...5) // Assuming you have 5 templates
+            let interpretation = generateAstrologicalInterpretation(planet: body.keyName, houseNumber: houseNum, templateNumber: randomTemplateNumber, userA: userA!, userB: userB!)
             interpretationLabel.text = interpretation
         }
     }

@@ -42,7 +42,7 @@ class ChartsViewController: UIViewController {
 //           self.navigationItem.rightBarButtonItem = importButton
 
        // processDetails()
-            //deleteAllNames()
+   //        deleteAllNames()
         setupTableView()
 
     }

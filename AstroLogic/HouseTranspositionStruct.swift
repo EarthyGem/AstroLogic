@@ -52,6 +52,21 @@ struct AstrologicalData {
         11: "circle of friends and associates",
         12: "relationship with own soul"
     ]
+    let houseNumbers: [Int: String] = [
+        1: "first",
+        2: "second",
+        3: "third",
+        4: "fourth",
+        5: "fifth",
+        6: "sixth",
+        7: "seventh",
+        8: "eighth",
+        9: "ninth",
+        10: "tenth",
+        11: "eleventh",
+        12: "twelfth"
+    ]
+
 }
 
 
@@ -60,21 +75,23 @@ func generateAstrologicalInterpretation(planet: String, houseNumber: Int, templa
     
     guard let planetPhrase = data.planetKeyPhrases[planet],
           let virtueTerm = data.planetVirtueTerms[planet],
-          let houseWords = data.houseKeyWords[houseNumber] else {
+          let houseWords = data.houseKeyWords[houseNumber],
+            let houseNum = data.houseNumbers[houseNumber] else {
         return "Invalid input"
     }
     
     switch templateNumber {
     case 1:
-        return "\(userA)'s \(planet) falls in \(userB)’s \(houseNumber)th house. That tells us that \(userA) brings a big dose of \(planetPhrase) into \(userB)'s \(houseWords). \(userA) is teaching \(userB) about how a little \(virtueTerm) can empower their soul."
+        return "\(userA)'s \(planet) resides in \(userB)’s \(houseNum) house, signifying that \(userA) infuses a substantial amount of \(planetPhrase) into \(userB)'s \(houseWords). This alignment suggests that \(userA) plays a pivotal role in enlightening \(userB) about the importance of \(virtueTerm)"
+
     case 2:
-        return "Your \(planet) falls in User B’s \(houseNumber)th house. As long as you are together in any way, you will bring \(planetPhrase) to bear upon User B’s \(houseWords). In your soul contract, you are teaching User B about how much simple \(virtueTerm) can help them reach their full potential in that specific area of life."
+        return "\(userA)'s \(planet) falls in \(userB)'s \(houseNum) house. As long as these two are together in any way, you will bring \(planetPhrase) to bear upon \(userB)'s \(houseWords). In \(userA)'s soul contract, you are teaching User B about how much simple \(virtueTerm) can help them reach their full potential in that specific area of life."
     case 3:
-        return "As we compare your two charts, we see that your \(planet) falls in User B’s \(houseNumber)th house. As long as you are linked in any way, your \(planetPhrase) is going to trigger lots of development in User B’s \(houseWords). Why did the universe bring you together? Part of the answer is that the \(virtueTerm) that you bring to bear on User B in that area will help to empower them to have the experiences that challenge and strengthen them in that precise area."
+        return "As we compare these two charts, we see that \(userA)'s \(planet) falls in \(userB)'s \(houseNum) house. As long as these two souls are linked in any way, \(userA)'s \(planetPhrase) is going to trigger lots of development in \(userB)'s \(houseWords). Why did the universe bring \(userA) and \(userB) together? Part of the answer is that the \(virtueTerm) that \(userA) brings to bear on \(userB) in that area will empower experiences that challenge and strengthen \(userB) in that precise area."
     case 4:
-        return "Where does your \(planet) land in User B’s chart? The answer is that it falls in User B’s \(houseNumber)th house. That means that your \(planetPhrase) will have a meteoric impact on User B’s \(houseWords) – and that’s an area of life where the \(virtueTerm) that you bring into their daily life supplies a missing piece of their puzzle."
+        return "Where does \(userA)'s \(planet) land in \(userB)'s chart? The answer is that it falls in \(userB)'s \(houseNum) house. That means that \(userA)'s \(planetPhrase) will have a meteoric impact on \(userB)'s \(houseWords) – and that’s an area of life where the \(virtueTerm) that \(userA) brings to daily life, supplies a missing piece of \(userB)'s puzzle."
     case 5:
-        return "If we superimpose your chart over User B’s, your \(planet) falls in User B’s \(houseNumber)th house. As your energy bodies interact, you trigger a very specific evolutionary reaction in them. Even without thinking about it, you will focus \(planetPhrase) on User B’s \(houseWords). Deep down, you signed up to teach User B about how much your \(virtueTerm) can help them reach their full human potential."
+        return "If we superimpose \(userA)'s chart over \(userB)'s, \(userA)'s \(planet) falls in \(userB)'s \(houseNum) house. As these two energy bodies interact, \(userA) triggers a very specific evolutionary reaction in \(userB). Even without thinking about it, \(userA)'s will focus \(planetPhrase) on \(userB)'s \(houseWords). Deep down, \(userA) signed up to demonstrate how much \(virtueTerm) can help \(userB) thrive in this area of life."
     default:
         return "Invalid template number"
     }
@@ -88,7 +105,8 @@ public func generateInterpretations(houseCusps: HouseCusps, bodies: [Coordinate]
 
     for (houseNumber, celestialBodies) in planetsInHousesDict {
         for celestialBody in celestialBodies {
-            let interpretation = generateAstrologicalInterpretation(planet: celestialBody.keyName, houseNumber: houseNumber, templateNumber: 1, userA: userA, userB: userB) // choose template number as needed
+            let randomTemplateNumber = Int.random(in: 1...5) // Randomly choose a template number between 1 and 5
+            let interpretation = generateAstrologicalInterpretation(planet: celestialBody.keyName, houseNumber: houseNumber, templateNumber: randomTemplateNumber, userA: userA, userB: userB)
             interpretations.append(interpretation)
         }
     }
