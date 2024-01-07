@@ -580,23 +580,22 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
                 var bodiesArgument: [Coordinate]? = (toggleSwitch.isOn) ? chart.rickysBodies : nil
 
-                
+
          
             let scores = chart.getTotalPowerScoresForPlanets(bodiesArgument)
                 let strongestPlanet = self.getStrongestPlanet(from: scores)
+                let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
+                let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
+                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
+             
 
-                saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet: strongestPlanet.keyName)
-
-                
                 let phaseName = chartCake?.lunarPhase(for: chartCake!.natal)
 
                 // let signScore = self.chart.calculateTotalSignScore()
                 // let houseStrengths = self.chart.calculatePlanetInHouseScores()
                 // let houseScores = self.chart.calculateHouseStrengths()
 
-                let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
-                let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
-                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
+             //   let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
 
                 if strongestPlanet == Planet.sun.celestialObject {
                     strongestPlanetSign = chart.sun.sign.keyName
@@ -633,6 +632,9 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
                     let scores2 = chartCake?.getTotalPowerScoresForPlanets()
                     return getPlanetsSortedByStrength(from: scores2!)
                 }
+                let strongestPlanetArchetype = strongestPlanet.archetype
+                saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet:  strongestPlanet.keyName, mostHarmoniousPlanet: mostHarmoniousPlanet.keyName, mostDiscordantPlanet: mostDiscordantPlanet.keyName, sentenceText: sentence, strongestPlanetSign: strongestPlanetSign!, strongestPlanetArchetype: strongestPlanetArchetype)
+
 
      //   print("sorted scores: \((sortedPlanets))")
 
@@ -820,7 +822,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 extension ViewController: CLLocationManagerDelegate {
 
 
-    func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double, birthPlace: String, strongestPlanet: String) {
+    func saveChart(name: String, birthDate: Date, latitude: Double, longitude: Double, birthPlace: String, strongestPlanet: String, mostHarmoniousPlanet: String, mostDiscordantPlanet: String, sentenceText: String, strongestPlanetSign: String, strongestPlanetArchetype: String) {
         // Get the Core Data managed context
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Unable to get AppDelegate")
@@ -847,6 +849,10 @@ extension ViewController: CLLocationManagerDelegate {
         newChart.setValue(longitude, forKey: "longitude")
         newChart.setValue(birthPlace, forKey: "birthPlace")
         newChart.setValue(strongestPlanet, forKey: "strongestPlanet")
+        newChart.setValue(mostHarmoniousPlanet, forKey: "mostHarmoniousPlanet")
+        newChart.setValue(mostDiscordantPlanet, forKey: "mostDiscordantPlanet")
+        newChart.setValue(sentenceText, forKey: "sentenceText")
+
         // Try saving the context
         do {
             try context.save()
