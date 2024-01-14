@@ -423,14 +423,14 @@ return planetDegree
         selectedDate = Calendar.current.date(byAdding: .hour, value: 1, to: selectedDate!)
         updateUIWithSelectedDate()
         updateTransitPositionsAndUI(for: selectedDate!)
-        updateChartCakeAndUI(for: selectedDate!)
+   //     updateChartCakeAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
 
     @objc func minusHourButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .hour, value: -1, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+    //    updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
@@ -439,7 +439,7 @@ return planetDegree
     @objc func plusDayButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+     //   updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
@@ -447,7 +447,7 @@ return planetDegree
     @objc func minusDayButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+     //   updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
@@ -456,7 +456,7 @@ return planetDegree
     @objc func plusWeekButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+    //    updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
@@ -464,7 +464,7 @@ return planetDegree
     @objc func minusWeekButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+    //    updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
@@ -472,7 +472,7 @@ return planetDegree
     @objc func plusMonthButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .month, value: 1, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+    //    updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
@@ -480,7 +480,7 @@ return planetDegree
     @objc func minusMonthButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .month, value: -1, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+     //   updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
@@ -488,7 +488,7 @@ return planetDegree
     @objc func plusYearButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .year, value: 1, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+    //    updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
     }
@@ -496,7 +496,7 @@ return planetDegree
     @objc func minusYearButtonTapped() {
         selectedDate = Calendar.current.date(byAdding: .year, value: -1, to: selectedDate!)
         updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
+   //     updateChartCakeAndUI(for: selectedDate!)
         updateTransitPositionsAndUI(for: selectedDate!)
         minorsBiWheelChartView.setNeedsDisplay()
 
@@ -521,8 +521,7 @@ return planetDegree
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.minor.planets[indexPath.row].formatted)!, planetTextText: chartCake!.minor.planets[indexPath.row].body.minorsName, headerTextText: "")
-        
+        cell.configure(signGlyphImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.minor.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.minor.planets[indexPath.row].formatted)!, planetTextText: chartCake!.minor.planets[indexPath.row].body.minorsName, headerTextText: "", capsuleText: chartCake!.houseCusps.house(of: chartCake!.minor.rickysBodies[safe: indexPath.row]!).houseString)
          return cell
          
          

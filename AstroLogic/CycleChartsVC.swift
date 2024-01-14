@@ -232,7 +232,7 @@ class CycleChartsViewController: UIViewController, UITableViewDelegate, UITableV
             planetImageImageName: planetName,
             signTextText: planetName,
             planetTextText: planetName,
-            headerTextText: headerText
+            headerTextText: headerText, capsuleText: ""
         )
 
         return cell

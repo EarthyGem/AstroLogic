@@ -316,6 +316,18 @@ class SimpleNatalAspectsViewController: UIViewController {
         uranusAspects2 = chartCake.filterAndFormat2(by: Planet.uranus.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
         neptuneAspects2 = chartCake.filterAndFormat2(by: Planet.neptune.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
         plutoAspects2 = chartCake.filterAndFormat2(by: Planet.pluto.celestialObject, aspectsScores: chartCake.allCelestialAspectScoresbyAspect(), includeParallel: true)
+    
+        sunTableView.isScrollEnabled = false
+        moonTableView.isScrollEnabled = false
+        mercuryTableView.isScrollEnabled = false
+        venusTableView.isScrollEnabled = false
+        marsTableView.isScrollEnabled = false
+        jupiterTableView.isScrollEnabled = false
+        saturnTableView.isScrollEnabled = false
+        uranusTableView.isScrollEnabled = false
+        neptuneTableView.isScrollEnabled = false
+        plutoTableView.isScrollEnabled = false
+
 
 
         sunTableView.dataSource = self

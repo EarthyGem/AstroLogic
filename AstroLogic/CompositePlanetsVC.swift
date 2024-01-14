@@ -25,19 +25,19 @@ class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UIT
     
        func setupNatalSigns() -> [String] {
            
-           var compSun = Coordinate(alpha: chartCake.natal.sun, bravo: otherChart.natal.sun)
-           var compMoon = Coordinate(alpha: chartCake.natal.moon, bravo: otherChart.natal.moon)
-           var compMercury = Coordinate(alpha: chartCake.natal.mercury, bravo: otherChart.natal.mercury)
-           var compVenus = Coordinate(alpha: chartCake.natal.venus, bravo: otherChart.natal.venus)
-           var compMars = Coordinate(alpha: chartCake.natal.mars, bravo: otherChart.natal.mars)
-           var compJupiter = Coordinate(alpha: chartCake.natal.jupiter, bravo: otherChart.natal.jupiter)
-           var compSaturn = Coordinate(alpha: chartCake.natal.saturn, bravo: otherChart.natal.saturn)
-           var compUranus = Coordinate(alpha: chartCake.natal.uranus, bravo: otherChart.natal.uranus)
-           var compNeptune = Coordinate(alpha: chartCake.natal.neptune, bravo: otherChart.natal.neptune)
-           var compPluto = Coordinate(alpha: chartCake.natal.pluto, bravo: otherChart.natal.pluto)
-           var compSouthNode = Coordinate(alpha: chartCake.natal.southNode, bravo: otherChart.natal.southNode)
-       var compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
-           var compMC = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           let compSun = Coordinate(alpha: chartCake.natal.sun, bravo: otherChart.natal.sun)
+           let compMoon = Coordinate(alpha: chartCake.natal.moon, bravo: otherChart.natal.moon)
+           let compMercury = Coordinate(alpha: chartCake.natal.mercury, bravo: otherChart.natal.mercury)
+           let compVenus = Coordinate(alpha: chartCake.natal.venus, bravo: otherChart.natal.venus)
+           let compMars = Coordinate(alpha: chartCake.natal.mars, bravo: otherChart.natal.mars)
+           let compJupiter = Coordinate(alpha: chartCake.natal.jupiter, bravo: otherChart.natal.jupiter)
+           let compSaturn = Coordinate(alpha: chartCake.natal.saturn, bravo: otherChart.natal.saturn)
+           let compUranus = Coordinate(alpha: chartCake.natal.uranus, bravo: otherChart.natal.uranus)
+           let compNeptune = Coordinate(alpha: chartCake.natal.neptune, bravo: otherChart.natal.neptune)
+           let compPluto = Coordinate(alpha: chartCake.natal.pluto, bravo: otherChart.natal.pluto)
+           let compSouthNode = Coordinate(alpha: chartCake.natal.southNode, bravo: otherChart.natal.southNode)
+           let compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           _ = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
            
            natalSigns = [
               compSun.sign.keyName,
@@ -64,19 +64,19 @@ class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UIT
        }
        
        func getNatalPositions() -> [String] {
-           var compSun = chart!.sun
-           var compMoon = chart!.moon
-           var compMercury = chart!.mercury
-           var compVenus = chart!.venus
-           var compMars = chart!.mars
-           var compJupiter = chart!.jupiter
-           var compSaturn = chart!.saturn
-           var compUranus = chart!.uranus
-           var compNeptune = chart!.neptune
-           var compPluto = chart!.pluto
-           var compSouthNode = chart!.southNode
-       var compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
-           var compMC = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           let compSun = chart!.sun
+           let compMoon = chart!.moon
+           let compMercury = chart!.mercury
+           let compVenus = chart!.venus
+           let compMars = chart!.mars
+           let compJupiter = chart!.jupiter
+           let compSaturn = chart!.saturn
+           let compUranus = chart!.uranus
+           let compNeptune = chart!.neptune
+           let compPluto = chart!.pluto
+           let compSouthNode = chart!.southNode
+           let compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+           let compMC = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
            
            natalSigns = [
             compSun.formatted,
@@ -101,6 +101,47 @@ class CompositePlanetsViewController: UIViewController, UITableViewDelegate, UIT
            
            return natalSigns
        }
+    
+    
+    func getCompositeName() -> [String] {
+        let compSun = Planet.sun
+        let compMoon = Planet.moon
+        let compMercury = Planet.mercury
+        let compVenus = Planet.venus
+        let compMars = Planet.mars
+        let compJupiter = Planet.jupiter
+        let compSaturn = Planet.saturn
+        let compUranus = Planet.uranus
+        let compNeptune = Planet.neptune
+        let compPluto = Planet.pluto
+        let compSouthNode = Planet.southNode
+        let compAsc = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+        let compMC = Cusp(alpha: chartCake.natal.ascendant , bravo: otherChart.natal.ascendant)
+        
+        natalSigns = [
+            compSun.compositePlanets,
+           compMoon.compositePlanets,
+           compMercury.compositePlanets,
+           compVenus.compositePlanets,
+           compMars.compositePlanets,
+           compJupiter.compositePlanets,
+           compSaturn.compositePlanets,
+           compUranus.compositePlanets,
+           compNeptune.compositePlanets,
+           compPluto.compositePlanets,
+           compSouthNode.compositePlanets,
+         //   compAsc.sign.compositePlanets,
+           // compMC.sign.compositePlanets
+
+        ].compactMap { $0 } // This will remove any nil values from the array
+    
+
+        
+        // This will remove any nil values from the array
+        
+        return natalSigns
+    }
+    
        
     
 
@@ -214,7 +255,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 13
+        return 11
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -223,7 +264,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getNatalPositions()[indexPath.row], planetTextText: "", headerTextText: "")
+        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getNatalPositions()[indexPath.row], planetTextText: "Our \(getCompositeName()[indexPath.row])", headerTextText: "", capsuleText: "")
         
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
         

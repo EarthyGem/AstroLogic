@@ -211,7 +211,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
            } else if let response = response {
                // Handle the search results
                for item in response.mapItems {
-                   print(item.name)
+                   print(item.name ?? "")
                }
            }
        }
@@ -370,7 +370,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
            DataManager.shared.fetchCharts { [weak self] charts in
-               guard let self = self else { return }
+               guard self != nil else { return }
                // Store the charts data or pass it to RelationshipsViewController
            }
        }
@@ -578,7 +578,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
             //    let phaseName = chartCake
 
-                var bodiesArgument: [Coordinate]? = (toggleSwitch.isOn) ? chart.rickysBodies : nil
+                let bodiesArgument: [Coordinate]? = (toggleSwitch.isOn) ? chart.rickysBodies : nil
 
 
          
@@ -862,45 +862,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
 
 
-    func fetchAndPrintCharts() {
-        // Get the Core Data managed context
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print("Unable to get AppDelegate")
-            return
-        }
-
-        let context = appDelegate.persistentContainer.viewContext
-
-        // Create a fetch request for the ChartEntity
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ChartEntity")
-
-        do {
-            // Execute the fetch request
-            let charts = try context.fetch(fetchRequest)
-
-            // Check if we got any results
-            if charts.isEmpty {
-                print("No charts saved in Core Data.")
-            } else {
-                for chart in charts {
-                    if let name = chart.value(forKey: "name") as? String,
-                       let birthDate = chart.value(forKey: "birthDate") as? Date,
-                       let latitude = chart.value(forKey: "latitude") as? Double,
-                       let longitude = chart.value(forKey: "longitude") as? Double,
-                       let birthPlace = chart.value(forKey: "birthPlace") as? String,
-                       let strongestPlanet = chart.value(forKey: "strongestPlanet") as? String
-                    {
-
-                        //    print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude), BirthPlace: \(birthPlace)")
-                    }
-                }
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-
-
+   
     func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
     }

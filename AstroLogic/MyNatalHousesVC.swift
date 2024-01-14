@@ -8,6 +8,19 @@
 import UIKit
 import SwiftEphemeris
 
+
+enum Section: Int, CaseIterable {
+   case inHouse = 0, rulerOfCusp
+
+   var title: String {
+       switch self {
+       case .inHouse: return "In House"
+       case .rulerOfCusp: return "Ruler of Cusp"
+
+       }
+   }
+}
+
 class MyNatalHousesVC: UIViewController {
 
     var chartCake: ChartCake?
@@ -15,6 +28,9 @@ class MyNatalHousesVC: UIViewController {
     //var chartCake: ChartCake?
     var name: String?
 //
+    
+    var planetsInEachHouse: [Int: [CelestialObject]] = [:]
+    var cuspRulersInEachHouse: [Int: [CelestialObject]] = [:]
     var sortedHousesByStrength: [(Int, Double)] = []
     
     var totalStrength: Double {
@@ -324,9 +340,17 @@ class MyNatalHousesVC: UIViewController {
         sortedHousesByStrength = chartCake!.sortedHouseStrengths()
         
         view.backgroundColor = .black
+        
+        guard let houseCusps = chartCake?.houseCusps, let bodies = chartCake?.natal.planets, !sortedHousesByStrength.isEmpty else {
+            return
+        }
+   
 
-       
+  
 
+
+        planetsInEachHouse = chartCake?.natalPlanetsInHouses(using: houseCusps, with: bodies) ?? [:]
+     cuspRulersInEachHouse = chartCake?.natalCuspRulersInHouses(using: houseCusps) ?? [:]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -381,26 +405,40 @@ class MyNatalHousesVC: UIViewController {
 
 
 
-        firstScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-        scrollView.addSubview(firstScrollView)
+      
+       scrollView.addSubview(firstScrollView)
         //        firstScrollView.contentSize = CGSize(width: 300, height: 200)
-
+        firstTableView.backgroundColor = .clear
         //        firstTableView.backgroundColor = .orange
-        secondTableView.backgroundColor = .green
+        firstScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
+        secondTableView.backgroundColor = .clear
 
-        thirdTableView.backgroundColor = .purple
+        thirdTableView.backgroundColor = .clear
 
-        fourthTableView.backgroundColor = .yellow
-        fifthTableView.backgroundColor = .red
-        sixthTableView.backgroundColor = .systemGroupedBackground
-        seventhTableView.backgroundColor = .blue
-        eighthTableView.backgroundColor = .white
-        ninthTableView.backgroundColor = .gray
-        tenthTableView.backgroundColor = .systemPink
+        fourthTableView.backgroundColor = .clear
+        fifthTableView.backgroundColor = .clear
+        sixthTableView.backgroundColor = .clear
+        seventhTableView.backgroundColor = .clear
+        eighthTableView.backgroundColor = .clear
+        ninthTableView.backgroundColor = .clear
+        tenthTableView.backgroundColor = .clear
+    eleventhTableView.backgroundColor = .clear
+        twelfthTableView.backgroundColor = .clear
 
         //      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
-
-
+       firstTableView.isScrollEnabled = false
+        secondTableView.isScrollEnabled = false
+     thirdTableView.isScrollEnabled = false
+       fourthTableView.isScrollEnabled = false
+        fifthTableView.isScrollEnabled = false
+        sixthTableView.isScrollEnabled = false
+        seventhTableView.isScrollEnabled = false
+        eighthTableView.isScrollEnabled = false
+        ninthTableView.isScrollEnabled = false
+        tenthTableView.isScrollEnabled = false
+        seventhTableView.isScrollEnabled = false
+        eleventhTableView.isScrollEnabled = false
+        twelfthTableView.isScrollEnabled = false
 
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
@@ -410,19 +448,29 @@ class MyNatalHousesVC: UIViewController {
             return
         }
 
-        // Get planets in houses using the function.
-        let planetsInHouses = chartCake?.planetsAndRulersInHouses(using: houseCusps, with: bodies) ?? [:]
+        let headerHeight: CGFloat = 30 // Adjust this to your header height, if custom
+
+        // Get planets in houses and rulers in houses using the functions.
+        let planetsInHouses = chartCake?.natalPlanetsInHouses(using: houseCusps, with: bodies) ?? [:]
+        let cuspRulersInHouses = chartCake?.natalCuspRulersInHouses(using: houseCusps) ?? [:]
 
         for (index, tableView) in tableViews.enumerated() {
             // Use the sorted house number instead of the index directly
             let houseStrengthPair = sortedHousesByStrength[index]
             let houseNumber = houseStrengthPair.0
 
-            let count = planetsInHouses[houseNumber]?.count ?? 0  // Get the count of combined planets and rulers in the sorted house
+            // Get the count of planets and rulers in the sorted house
+            let planetsCount = planetsInHouses[houseNumber]?.count ?? 0
+            let rulersCount = cuspRulersInHouses[houseNumber]?.count ?? 0
 
-            // Update the height of the table view based on the number of rows it has.
-            // Each row's height is 90 as per your previous implementation.
-            tableView.contentSize.height = CGFloat(count * 90)
+            // Each section has its own header, so we multiply the headerHeight by the number of sections (2)
+            let totalHeaderHeight = headerHeight * 2
+
+            // Calculate the total height required for all rows and headers in this table view
+            let totalHeight = CGFloat(planetsCount + rulersCount) * 90 + totalHeaderHeight
+
+            // Update the height of the table view
+            tableView.contentSize.height = totalHeight
         }
 
         scrollView.addSubview(secondScrollView)
@@ -527,22 +575,25 @@ class MyNatalHousesVC: UIViewController {
         // Dynamic assignment based on sorted house strengths
         // Calculate the y position for the first scroll view
         var yOffset: CGFloat = 200
+        let rowHeight: CGFloat = 90
+        let sectionHeaderHeight: CGFloat = 40 // Adjust this based on your design
+        let spacingBetweenTables: CGFloat = 20 // Gap between scroll views
 
-        // Dynamic assignment based on sorted house strengths
+
         for (index, houseStrengthPair) in sortedHousesByStrength.enumerated() {
             let houseNumber = houseStrengthPair.0 - 1
             let scrollView = scrollViews[index]
             let tableView = tableViews[houseNumber]
-            
+
             // Clear out old views to prevent overlap
             scrollView.subviews.forEach { $0.removeFromSuperview() }
 
             // Reload the table view data to get the latest number of rows
             tableView.reloadData()
             
-            // Calculate the height of the table view based on the number of rows
-            let tableViewHeight = CGFloat(tableView.numberOfRows(inSection: 0) * 90) // Assuming each row height is 90
-
+            // Calculate the height of the table view based on the number of rows in both sections
+            let totalRows = tableView.numberOfRows(inSection: 0) + tableView.numberOfRows(inSection: 1)
+            let tableViewHeight = CGFloat(totalRows) * rowHeight + (CGFloat(tableView.numberOfSections) * sectionHeaderHeight)
             // Configure the table view frame
             tableView.frame = CGRect(x: 0, y: 0, width: scrollView.frame.size.width, height: tableViewHeight)
             scrollView.addSubview(tableView)
@@ -705,23 +756,73 @@ class MyNatalHousesVC: UIViewController {
 
 extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
 
-    // Updated method to determine number of rows based on sorted house strengths
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2 // Assuming you now have 2 sections, one for planets in the house and another for rulers of the cusp
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
-
+        
         if let index = tableViews.firstIndex(of: tableView), !sortedHousesByStrength.isEmpty {
             let houseStrengthPair = sortedHousesByStrength[index]
             let houseNumber = houseStrengthPair.0
-
-            if let planetsInHouses = chartCake?.planetsAndRulersInHouses(using: chartCake!.houseCusps, with: chartCake!.natal.planets) {
-                return planetsInHouses[houseNumber]?.count ?? 0
+            
+            if section == 0 && (planetsInEachHouse[houseNumber]?.count ?? 0) > 0 {
+                return "Planets in the House"
+            } else if section == 1 && (cuspRulersInEachHouse[houseNumber]?.count ?? 0) > 0 {
+                return "Rulers of the Cusp"
             }
         }
-
-        return 0
+        return nil
     }
 
-    // Updated method to configure cell based on sorted house strengths
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 20)) // Adjust height as needed
+        headerView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
+        
+        let headerLabel = UILabel(frame: CGRect(x: 15, y: -10, width: headerView.bounds.width - 30, height: headerView.bounds.height))
+        headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+        headerLabel.textColor = UIColor.white // Set your text color
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 10) // Set your font size
+
+        headerView.addSubview(headerLabel)
+
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+        
+        if let index = tableViews.firstIndex(of: tableView), !sortedHousesByStrength.isEmpty {
+            let houseStrengthPair = sortedHousesByStrength[index]
+            let houseNumber = houseStrengthPair.0
+            
+            if (section == 0 && (planetsInEachHouse[houseNumber]?.count ?? 0) > 0) || (section == 1 && (cuspRulersInEachHouse[houseNumber]?.count ?? 0) > 0) {
+                return 20 // Return the desired height for the header
+            }
+        }
+        return 0 // Return zero height for no header
+    }
+
+    // Updated method to determine number of rows based on sorted house strengths
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
+          if let index = tableViews.firstIndex(of: tableView), !sortedHousesByStrength.isEmpty {
+              let houseStrengthPair = sortedHousesByStrength[index]
+              let houseNumber = houseStrengthPair.0
+
+              if section == 0 {
+                  return planetsInEachHouse[houseNumber]?.count ?? 0
+              } else if section == 1 {
+                  return cuspRulersInEachHouse[houseNumber]?.count ?? 0
+              }
+          }
+          return 0
+      }
+
+
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableViews = [firstTableView, secondTableView, thirdTableView, fourthTableView, fifthTableView, sixthTableView, seventhTableView, eighthTableView, ninthTableView, tenthTableView, eleventhTableView, twelfthTableView]
 
@@ -729,21 +830,35 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
             let houseStrengthPair = sortedHousesByStrength[index]
             let houseNumber = houseStrengthPair.0
 
-            if let planetsInHouses = chartCake?.planetsAndRulersInHouses(using: chartCake!.houseCusps, with: chartCake!.natal.planets),
-               let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
-
+            if indexPath.section == 0 {
+                guard let planetsInHouse = planetsInEachHouse[houseNumber], indexPath.row < planetsInHouse.count else {
+                    return UITableViewCell()
+                }
+                let object = planetsInHouse[indexPath.row]
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
                     return UITableViewCell()
                 }
-
-                let object = celestialObjectsInHouse[indexPath.row]
+                let houseEffects = object.houseEffect
                 let keyName = object.keyName.lowercased()
-                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
-
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: houseEffects, firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
+                
+                return cell
+            } else if indexPath.section == 1 {
+                guard let rulersInHouse = cuspRulersInEachHouse[houseNumber], indexPath.row < rulersInHouse.count else {
+                    return UITableViewCell()
+                }
+                let object = rulersInHouse[indexPath.row]
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: HousesCustomTableViewCell.identifier, for: indexPath) as? HousesCustomTableViewCell else {
+                    return UITableViewCell()
+                }
+                
+                let keyName = object.keyName.lowercased()
+                let houseEffects = object.houseEffect
+                cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: houseEffects, firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
+                
                 return cell
             }
         }
-
         return UITableViewCell()
     }
 
@@ -758,9 +873,5 @@ extension MyNatalHousesVC: UITableViewDataSource, UITableViewDelegate {
         // Additional logic for row selection can be added here
     }
 }
-extension Array where Element: Hashable {
-  func uniqued() -> [Element] {
-      var seen = Set<Element>()
-      return filter { seen.insert($0).inserted }
-  }
-}
+
+

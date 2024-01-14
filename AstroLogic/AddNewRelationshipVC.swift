@@ -665,41 +665,7 @@ extension AddRelationshipViewController: CLLocationManagerDelegate {
     }
 
    
-    func fetchAndPrintCharts() {
-        // Get the Core Data managed context
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print("Unable to get AppDelegate")
-            return
-        }
-
-        let context = appDelegate.persistentContainer.viewContext
-
-        // Create a fetch request for the ChartEntity
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ChartEntity")
-
-        do {
-            // Execute the fetch request
-            let charts = try context.fetch(fetchRequest)
-
-            // Check if we got any results
-            if charts.isEmpty {
-                print("No charts saved in Core Data.")
-            } else {
-                for chart in charts {
-                    if let name = chart.value(forKey: "name") as? String,
-                       let birthDate = chart.value(forKey: "birthDate") as? Date,
-                       let latitude = chart.value(forKey: "latitude") as? Double,
-                       let longitude = chart.value(forKey: "longitude") as? Double {
-
-                      //  print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude)")
-                    }
-                }
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-
+  
 
     func startUpdatingLocation() {
         locationManager.startUpdatingLocation()

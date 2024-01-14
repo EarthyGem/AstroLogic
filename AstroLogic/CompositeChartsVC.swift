@@ -222,7 +222,7 @@ class CompositeChartsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-var chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
+        let chart = Chart(alpha: chartCake!.natal, bravo: otherChart!.natal)
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
         let birthChartView = CompositeBirthChartView(frame: CGRect(x: 0, y: 30, width: screenWidth, height: screenWidth), chart: chart)

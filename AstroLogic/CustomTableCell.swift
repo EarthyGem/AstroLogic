@@ -27,14 +27,28 @@ class CustomTableViewCell: UITableViewCell {
         
     }()
     
-//    private let planetGlyph: UIImageView = {
-//        let planetGlyph = UIImageView(image: #imageLiteral(resourceName: "Sun2.png"))
-//
-//
-//        return planetGlyph
-//
-//    }()
-//
+    private let capsuleView: UIView = {
+          let view = UIView()
+          view.layer.cornerRadius = 10 // Adjust for desired curvature
+          view.backgroundColor = .systemBlue // Choose your color
+          return view
+      }()
+
+    private let capsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white // Choose your text color
+
+        // Set the font to a bold and italic system font if available
+        if let font = UIFont(name: "Helvetica-BoldOblique", size: 10) {
+            label.font = font
+        } else {
+            // Alternatively, set to a default font
+            label.font = UIFont.systemFont(ofSize: 9)
+        }
+
+        return label
+    }()
     private let signText: UILabel = {
         let signText = UILabel()
         
@@ -128,7 +142,8 @@ contentView.addSubview(tableCell)
         
         planetImageView.image = UIImage(named: "Sun")
         planetImageView.contentMode = .scaleToFill
-       
+        capsuleView.addSubview(capsuleLabel)
+             contentView.addSubview(capsuleView)
         
     }
     required init?(coder: NSCoder) {
@@ -136,10 +151,12 @@ contentView.addSubview(tableCell)
         
     }
     
-    public func configure(signGlyphImageName: String, planetImageImageName: String, signTextText: String, planetTextText: String, headerTextText: String)  {
-        
-           
-        
+    public func configure(signGlyphImageName: String, planetImageImageName: String, signTextText: String, planetTextText: String, headerTextText: String, capsuleText: String)  {
+         // ... existing configuration code ...
+
+         // Configure the capsule label
+         capsuleLabel.text = capsuleText
+     
         planetImageView.image = UIImage(named: planetImageImageName)
 //        planetGlyph.image = UIImage(named: planetGlyphImageName)
         signGlyph.image = UIImage(named: signGlyphImageName)
@@ -174,6 +191,13 @@ contentView.addSubview(tableCell)
         
         headerText.frame = CGRect(x: 10, y: 45, width: 200, height: 100)
         
+        let capsuleWidth: CGFloat = 65
+            let capsuleHeight: CGFloat = 20
+            let capsuleX: CGFloat = contentView.bounds.width - capsuleWidth - 10 // For example, 10 points from the right edge
+            let capsuleY: CGFloat = 20 // Adjust the Y-coordinate as needed
+
+            capsuleView.frame = CGRect(x: 10, y: 75, width: capsuleWidth, height: capsuleHeight)
+            capsuleLabel.frame = CGRect(x: 0, y: 0, width: capsuleWidth, height: capsuleHeight)
     }
 
 }

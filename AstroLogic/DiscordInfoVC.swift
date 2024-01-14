@@ -99,11 +99,11 @@ class DiscordInfoViewController: UIViewController {
 
     func setupContent() {
         var lastView: UIView? = nil
-        let spaceBetweenGroups: CGFloat = 200
+        let _: CGFloat = 200
         let initialTopPadding: CGFloat = 260
         let labelSidePadding: CGFloat = 0 // Increase padding space as needed
 
-        for (index, text) in texts.enumerated() {
+        for (_, _) in texts.enumerated() {
                 let container = UIView()
             container.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1) // Dark grey color
 

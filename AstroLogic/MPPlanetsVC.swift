@@ -331,89 +331,89 @@ return planetDegree
                    return nil
                }
            }
-    @objc func plusHourButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .hour, value: 1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateTransitPositionsAndUI(for: selectedDate!)
-        updateChartCakeAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func minusHourButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .hour, value: -1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-
-    @objc func plusDayButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func minusDayButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func plusWeekButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func minusWeekButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func plusMonthButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .month, value: 1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func minusMonthButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .month, value: -1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func plusYearButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .year, value: 1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-    }
-
-    @objc func minusYearButtonTapped() {
-        selectedDate = Calendar.current.date(byAdding: .year, value: -1, to: selectedDate!)
-        updateUIWithSelectedDate()
-        updateChartCakeAndUI(for: selectedDate!)
-        updateTransitPositionsAndUI(for: selectedDate!)
-        majorsBiWheelChartView.setNeedsDisplay()
-
-    }
-
+//    @objc func plusHourButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .hour, value: 1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        updateChartCakeAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func minusHourButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .hour, value: -1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//
+//    @objc func plusDayButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func minusDayButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func plusWeekButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func minusWeekButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func plusMonthButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .month, value: 1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func minusMonthButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .month, value: -1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func plusYearButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .year, value: 1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//    }
+//
+//    @objc func minusYearButtonTapped() {
+//        selectedDate = Calendar.current.date(byAdding: .year, value: -1, to: selectedDate!)
+//        updateUIWithSelectedDate()
+//        updateChartCakeAndUI(for: selectedDate!)
+//        updateTransitPositionsAndUI(for: selectedDate!)
+//        majorsBiWheelChartView.setNeedsDisplay()
+//
+//    }
+//
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -458,21 +458,21 @@ return planetDegree
 //        view.addSubview(plusMonthButton)
 //        view.addSubview(minusYearButton)
 //        view.addSubview(plusYearButton)
-
-        plusHourButton.addTarget(self, action: #selector(plusHourButtonTapped), for: .touchUpInside)
-        minusHourButton.addTarget(self, action: #selector(minusHourButtonTapped), for: .touchUpInside)
-
-        plusDayButton.addTarget(self, action: #selector(plusDayButtonTapped), for: .touchUpInside)
-        minusDayButton.addTarget(self, action: #selector(minusDayButtonTapped), for: .touchUpInside)
-
-        plusWeekButton.addTarget(self, action: #selector(plusWeekButtonTapped), for: .touchUpInside)
-        minusWeekButton.addTarget(self, action: #selector(minusWeekButtonTapped), for: .touchUpInside)
-
-        plusMonthButton.addTarget(self, action: #selector(plusMonthButtonTapped), for: .touchUpInside)
-        minusMonthButton.addTarget(self, action: #selector(minusMonthButtonTapped), for: .touchUpInside)
-
-        plusYearButton.addTarget(self, action: #selector(plusYearButtonTapped), for: .touchUpInside)
-        minusYearButton.addTarget(self, action: #selector(minusYearButtonTapped), for: .touchUpInside)
+//
+//        plusHourButton.addTarget(self, action: #selector(plusHourButtonTapped), for: .touchUpInside)
+//        minusHourButton.addTarget(self, action: #selector(minusHourButtonTapped), for: .touchUpInside)
+//
+//        plusDayButton.addTarget(self, action: #selector(plusDayButtonTapped), for: .touchUpInside)
+//        minusDayButton.addTarget(self, action: #selector(minusDayButtonTapped), for: .touchUpInside)
+//
+//        plusWeekButton.addTarget(self, action: #selector(plusWeekButtonTapped), for: .touchUpInside)
+//        minusWeekButton.addTarget(self, action: #selector(minusWeekButtonTapped), for: .touchUpInside)
+//
+//        plusMonthButton.addTarget(self, action: #selector(plusMonthButtonTapped), for: .touchUpInside)
+//        minusMonthButton.addTarget(self, action: #selector(minusMonthButtonTapped), for: .touchUpInside)
+//
+//        plusYearButton.addTarget(self, action: #selector(plusYearButtonTapped), for: .touchUpInside)
+//        minusYearButton.addTarget(self, action: #selector(minusYearButtonTapped), for: .touchUpInside)
 
 
         // Set an initial selected date
@@ -523,8 +523,11 @@ return planetDegree
 
              return UITableViewCell()
          }
-
-        cell.configure(signGlyphImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.major.planets[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.major.planets[indexPath.row].formatted)!, planetTextText: "Evolving \(chartCake!.major.planets[indexPath.row].body.archetype)", headerTextText: "")
+        guard let chartCake = chartCake else {
+            assert(false, "We have much bigger problems")
+            return UITableViewCell()
+        }
+        cell.configure(signGlyphImageName: (chartCake.major.planets[indexPath.row].body.keyName.lowercased()), planetImageImageName: (chartCake.major.planets[indexPath.row].body.keyName.lowercased()), signTextText: (chartCake.major.planets[indexPath.row].formatted), planetTextText: "Evolving \(chartCake.major.planets[indexPath.row].body.archetype)", headerTextText: "", capsuleText: chartCake.houseCusps.house(of: chartCake.transits.rickysBodies[safe: indexPath.row]!).houseString)
 
 
 

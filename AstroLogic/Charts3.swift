@@ -206,7 +206,7 @@ func fetchTimeZone(latitude: Double, longitude: Double, timestamp: Int, completi
                         formatter.timeZone = timeZone
                         formatter.dateStyle = .medium
                         formatter.timeStyle = .medium
-                        let localDateString = formatter.string(from: localDate)
+                        _ = formatter.string(from: localDate)
 
                     }
 
@@ -268,7 +268,7 @@ func adjustedBirthDateWithTimeZone(latitude: Double, longitude: Double, birthDat
                 formatter.timeZone = timeZone
                 formatter.dateStyle = .medium
                 formatter.timeStyle = .medium
-                let localDateString = formatter.string(from: adjustedBirthDate)
+                _ = formatter.string(from: adjustedBirthDate)
 
             }
 
@@ -287,7 +287,7 @@ func saveChart(name: String, latitude: Double, longitude: Double, birthDate: Dat
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
             formatter.timeStyle = .medium
-            let adjustedBirthDateString = formatter.string(from: adjustedBirthDate)
+            _ = formatter.string(from: adjustedBirthDate)
 
         } else {
 

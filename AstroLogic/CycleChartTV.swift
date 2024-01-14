@@ -360,7 +360,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
                 let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 // Fetch the cycle chart for the specified date and location
                 let cycleChartCake = findCycleStartDate(forPlanet: selectedPlanet!.body, startingFromDate: eventDate, at: coordinates, on: eventDate)
-                print("CycleCharts: \(cycleChartCake)")
+            //    print("CycleCharts: \(cycleChartCake)")
                      // Create an instance of the destination view controller
                     let cycleChartVC = CycleTransitPlanets(transitPlanets: [""]) // Replace with the actual view controller class
 
@@ -405,7 +405,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
         // Get the text from the eventPlaceTextField
         if let birthPlace = eventPlaceTextField.text {
             // Use the text to determine the time zone identifier
-            let timeZone = TimeZone(identifier: birthPlace)
+            _ = TimeZone(identifier: birthPlace)
 
             // Set the timeZone property of the UIDatePicker
 
@@ -418,7 +418,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
 
                 // Reset the time zone of the UIDatePicker based on the input in the eventPlaceTextField
                 if let birthPlace = eventPlaceTextField.text,
-                   let timeZone = TimeZone(identifier: birthPlace) {
+                   let _ = TimeZone(identifier: birthPlace) {
 
                 }
 
@@ -487,7 +487,7 @@ class CycleChartTableViewController: UIViewController,SuggestionsViewControllerD
     }
 
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        var selectedDate = sender.date
+        let selectedDate = sender.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         dateFormatter.timeZone = birthPlaceTimeZone // Use the birthPlaceTimeZone here
@@ -561,44 +561,6 @@ extension CycleChartTableViewController: CLLocationManagerDelegate {
         }
     }
 
-
-    func fetchAndPrintCharts() {
-        // Get the Core Data managed context
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print("Unable to get AppDelegate")
-            return
-        }
-
-        let context = appDelegate.persistentContainer.viewContext
-
-        // Create a fetch request for the ChartEntity
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ChartEntity")
-
-        do {
-            // Execute the fetch request
-            let charts = try context.fetch(fetchRequest)
-
-            // Check if we got any results
-            if charts.isEmpty {
-                print("No charts saved in Core Data.")
-            } else {
-                for chart in charts {
-                    if let name = chart.value(forKey: "name") as? String,
-                       let birthDate = chart.value(forKey: "birthDate") as? Date,
-                       let latitude = chart.value(forKey: "latitude") as? Double,
-                       let longitude = chart.value(forKey: "longitude") as? Double,
-                      let birthPlace = chart.value(forKey: "birthPlace") as? String,
-                        let strongestPlanet = chart.value(forKey: "strongestPlanet") as? String
-                    {
-
-                    //    print("Name: \(name), BirthDate: \(birthDate), Latitude: \(latitude), Longitude: \(longitude), BirthPlace: \(birthPlace)")
-                    }
-                }
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
 
 
     func startUpdatingLocation() {

@@ -1,4 +1,12 @@
 //
+//  MedicalAstrologyVC.swift
+//  AstroLogic
+//
+//  Created by Errick Williams on 1/7/24.
+//
+
+import Foundation
+//
 //  ListViewController.swift
 //  TableviewPassData
 //
@@ -8,7 +16,7 @@
 import SwiftEphemeris
 import UIKit
 
-class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MedicalAstrologyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var chartCake: ChartCake!
     var chart: Chart?
     var birthChartView: BirthChartView!
@@ -19,10 +27,12 @@ class PlanetsViewController: UIViewController, UITableViewDelegate, UITableViewD
        let birthChartViewFullHeight = UIScreen.main.bounds.width + 60
        var isBirthChartViewCollapsed = false
     var natalSigns = [String]()
-    var sortedCelestialObjects: [(CelestialObject, Double, Int)] = []
+    var sortedSignObjects: [(Zodiac, Double)] = []
     var totalStrength: Double {
-        return sortedCelestialObjects.map { $0.1 }.reduce(0, +)
+        return sortedSignObjects.map { $0.1 }.reduce(0, +)
     }
+    
+
 
 
     // ... Rest of your code ...
@@ -102,7 +112,12 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
     }
     
     
-
+    let medicalAstrologyImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 150, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
+        imageView.contentMode = .scaleAspectFit // Adjust content mode as needed
+        imageView.image = UIImage(named: "MA")
+        return imageView
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -115,7 +130,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         let tapGestureForBirthChart = UITapGestureRecognizer(target: self, action: #selector(toggleBirthChartView))
 
         birthChartView.addGestureRecognizer(tapGestureForBirthChart)
-        tableView.tableHeaderView = birthChartView
+        tableView.tableHeaderView = medicalAstrologyImageView
 
         // TableView setup
         tableView.dataSource = self
@@ -128,9 +143,9 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         coverView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: birthChartViewCollapsedHeight))
         coverView.backgroundColor = .black  // or any desired color
         coverView.isHidden = false  // Initially hidden because the chart is fully shown on viewDidLoad
-        tableView.addSubview(coverView)
-
-        sortedCelestialObjects = chartCake!.getSortedCelestialObjectsByStrengthWithHouse(birthdate: chartCake!.natal.birthDate)         // Set up natalChartLabel
+    //    tableView.addSubview(coverView)
+        tableView.addSubview(medicalAstrologyImageView)
+        sortedSignObjects = chartCake!.getSortedSignObjectsByStrength()         // Set up natalChartLabel
         natalChartLabel = UILabel()
         natalChartLabel.text = "Hide Chart"
         natalChartLabel.textColor = .white  // or any desired color
@@ -230,7 +245,7 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return sortedCelestialObjects.count
+        return sortedSignObjects.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -238,48 +253,21 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
             return UITableViewCell()
         }
 
-        let celestialObject = sortedCelestialObjects[indexPath.row].0
-        let strength = sortedCelestialObjects[indexPath.row].1
-        let house = sortedCelestialObjects[indexPath.row].2 // Retrieve the house information
-
+        let sign = sortedSignObjects[indexPath.row].0
+        let strength = sortedSignObjects[indexPath.row].1
         let relativeStrengthPercentage = (strength / totalStrength) * 100.0
         let formattedStrength = String(format: "%.2f%%", relativeStrengthPercentage)
-        let houseText = formatHouseText(house) // Convert the house position into a string
 
-        // Update the cell configuration to include the house information
+        // Assuming the CelestialObject has properties keyName, and urgeTypes for demonstration purposes.
         cell.configure(
-            signGlyphImageName: celestialObject.keyName.lowercased(),
-            planetImageImageName: celestialObject.keyName.lowercased(),
-            signTextText: planetInfo(for: celestialObject.keyName)!,
-            planetTextText: "\(formattedStrength) \(celestialObject.archetype)",
-            headerTextText: celestialObject.planetHeaders,
-            capsuleText: formatHouseText(house) // Pass the house text to the capsule
+            signGlyphImageName: sign.keyName,
+            planetImageImageName: sign.keyName,
+            signTextText: sign.keyName,
+            planetTextText:  "\(formattedStrength) \(sign.nickName)",
+            headerTextText: sign.bodyParts, capsuleText: ""
         )
-
         return cell
     }
-
-    private func formatHouseText(_ houseNumber: Int) -> String {
-        // Convert the house number into its ordinal representation
-        let ordinalSuffix = ordinalSuffixFor(number: houseNumber)
-        return "\(houseNumber)\(ordinalSuffix) House"
-    }
-
-    private func ordinalSuffixFor(number: Int) -> String {
-        let j = number % 10
-        let k = number % 100
-        if (j == 1 && k != 11) {
-            return "st"
-        }
-        if (j == 2 && k != 12) {
-            return "nd"
-        }
-        if (j == 3 && k != 13) {
-            return "rd"
-        }
-        return "th"
-    }
-
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
@@ -290,10 +278,10 @@ var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","ur
         tableView.deselectRow(at: indexPath, animated: true)
 
         // Get the celestial object for the selected row.
-        let celestialObject = sortedCelestialObjects[indexPath.row].0
+        let signObject = sortedSignObjects[indexPath.row].0
 //print("celestialObjectTest: \(celestialObject)")
         // Navigate to ArchetypeMatrixViewController with the selected celestial object.
-        navigateToArchetypeMatrixViewController(with: celestialObject)
+     //   navigateToArchetypeMatrixViewController(with: signObject)
     }
 
     func navigateToArchetypeMatrixViewController(with celestialObject: CelestialObject) {

@@ -141,7 +141,7 @@ var mySunText = ""
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "", signTextText: getNatalPositions()[indexPath.row], planetTextText: "", headerTextText: "")
+        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "", signTextText: getNatalPositions()[indexPath.row], planetTextText: "", headerTextText: "", capsuleText: "")
         
 
         

@@ -318,31 +318,190 @@ class SimpleInteraspectsViewController: UIViewController {
                  return
              }
 
-             sunAspects = chartCake.synastryFilterAndFormat(by: Planet.sun.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             moonAspects = chartCake.synastryFilterAndFormat(by: Planet.moon.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             mercuryAspects = chartCake.synastryFilterAndFormat(by: Planet.mercury.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             venusAspects = chartCake.synastryFilterAndFormat(by: Planet.venus.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             marsAspects = chartCake.synastryFilterAndFormat(by: Planet.mars.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             jupiterAspects = chartCake.synastryFilterAndFormat(by: Planet.jupiter.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             saturnAspects = chartCake.synastryFilterAndFormat(by: Planet.saturn.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             uranusAspects = chartCake.synastryFilterAndFormat(by: Planet.uranus.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             neptuneAspects = chartCake.synastryFilterAndFormat(by: Planet.neptune.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             plutoAspects = chartCake.synastryFilterAndFormat(by: Planet.pluto.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
+             sunAspects = chartCake.synastryFilterAndFormat(by: Planet.sun.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             moonAspects = chartCake.synastryFilterAndFormat(by: Planet.moon.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             mercuryAspects = chartCake.synastryFilterAndFormat(by: Planet.mercury.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             venusAspects = chartCake.synastryFilterAndFormat(by: Planet.venus.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             marsAspects = chartCake.synastryFilterAndFormat(by: Planet.mars.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             jupiterAspects = chartCake.synastryFilterAndFormat(by: Planet.jupiter.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             saturnAspects = chartCake.synastryFilterAndFormat(by: Planet.saturn.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             uranusAspects = chartCake.synastryFilterAndFormat(by: Planet.uranus.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             neptuneAspects = chartCake.synastryFilterAndFormat(by: Planet.neptune.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             plutoAspects = chartCake.synastryFilterAndFormat(by: Planet.pluto.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
              
-             sunAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.sun.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             moonAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.moon.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             mercuryAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.mercury.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             venusAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.venus.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             marsAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.mars.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             jupiterAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.jupiter.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             saturnAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.saturn.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             uranusAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.uranus.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             neptuneAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.neptune.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
-             plutoAspects2 = chartCake.synastryFilterAndFormat2    (by: Planet.pluto.celestialObject, chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies,chart1Name: name, chart2Name: otherName, aspectTuples: chartCake.interchartAspectScores(chart1: (otherChart.natal.rickysBodies), chart2: chartCake.natal.rickysBodies), filterChart2: true)
+             sunAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.sun.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             moonAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.moon.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             mercuryAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.mercury.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             venusAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.venus.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             marsAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.mars.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             jupiterAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.jupiter.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             saturnAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.saturn.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             uranusAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.uranus.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             neptuneAspects2 = chartCake.synastryFilterAndFormat2(by: Planet.neptune.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
+             plutoAspects2 = chartCake.synastryFilterAndFormat2    (by: Planet.pluto.celestialObject, chart1: chartCake.natal.rickysBodies,  // was otherChart.natal.rickysBodies
+    chart2: otherChart.natal.rickysBodies, // was chartCake.natal.rickysBodies
+    chart1Name: name,                 // was name
+    chart2Name: otherName,                      // was name
+    aspectTuples: chartCake.interchartAspectScores(
+        chart1: chartCake.natal.rickysBodies,        // was otherChart.natal.rickysBodies
+        chart2: otherChart.natal.rickysBodies),      // was chartCake.natal.rickysBodies
+    filterChart2: true
+)
          
                
-             
-
+      
           
              func getAspects(tableView: UITableView) {
                  

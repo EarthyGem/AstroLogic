@@ -359,22 +359,27 @@ class SimpleTransitAspectedPlanetsViewController  : UIViewController {
 
         //      view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
 
+   func totalRowCountForPlanet(_ planet: Planet) -> Int {
+            let majorsCount = chartCake!.transitSimpleAspectsFiltered(by: planet.celestialObject).count
+            let solarArcsCount = chartCake!.transitSimpleAspectsFiltered(by: planet.celestialObject).count
+            let minorsCount = chartCake!.transitSimpleAspectsFiltered(by: planet.celestialObject).count
+            let transitsCount = chartCake!.transitSimpleAspectsFiltered(by: planet.celestialObject).count
+            return majorsCount + solarArcsCount + minorsCount + transitsCount
+        }
 
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        sunTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.sun.celestialObject).count * 90)
-        //        sunTableView.contentSize = CGSize(width: view.frame.width, height: numbers)
-        moonTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.moon.celestialObject).count * 90)
-        mercuryTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.mercury.celestialObject).count * 90)
-        venusTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.venus.celestialObject).count * 90)
-        marsTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.mars.celestialObject).count * 90)
-        jupiterTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.jupiter.celestialObject).count * 90)
-        saturnTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.saturn.celestialObject).count * 90)
-        uranusTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.uranus.celestialObject).count * 90)
-        neptuneTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.neptune.celestialObject).count * 90)
-        plutoTableView.contentSize.height = CGFloat(chartCake!.transitSimpleAspectsFiltered(by: Planet.pluto.celestialObject).count * 90)
-        
-        
+        sunTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.sun) * 90)
+        moonTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.moon) * 90)
+        mercuryTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.mercury) * 90)
+        venusTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.venus) * 90)
+        marsTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.mars) * 90)
+        jupiterTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.jupiter) * 90)
+        saturnTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.saturn) * 90)
+        uranusTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.uranus) * 90)
+        neptuneTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.neptune) * 90)
+        plutoTableView.contentSize.height = CGFloat(totalRowCountForPlanet(.pluto) * 90)
+
         scrollView.addSubview(moonScrollView)
         //        moonScrollView.contentSize = CGSize(width: 300, height: 200)
         moonScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)

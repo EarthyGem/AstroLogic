@@ -37,8 +37,11 @@ class SpecialFeaturesViewController: UIViewController {
     var houseHarmonyDisharmony: [Int: Double] = [:]
     
     private let ricksData: [RicksItems] = [
-        RicksItems(chartType: "Vocational Astrology"),        RicksItems(chartType: "Birthday Wish"),
+           
+        RicksItems(chartType: "Birthday Wish"),
         RicksItems(chartType: "What's in a Name?"),
+        RicksItems(chartType: "Vocational Astrology"),
+        RicksItems(chartType: "Medical Astrology"),
         RicksItems(chartType: "Horary Chart"),
         RicksItems(chartType: "Cycle Charts"),
         RicksItems(chartType: "Aspect Charts"),
@@ -285,6 +288,12 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
         vocationalTVC.chartCake = self.chartCake
         vocationalTVC.strongestPlanet = self.strongestPlanet
         vocationalTVC.title = "Vocational Astrology"
+        
+        
+        let medicalAstrologyVC = MedicalAstrologyViewController(planets: [""])
+        medicalAstrologyVC.chartCake = self.chartCake
+      
+        medicalAstrologyVC.title = "Medical Astrology"
 
         let cycleChartsVC = CycleChartsViewController(MP_Planets: [""])
        cycleChartsVC.chartCake = self.chartCake
@@ -315,7 +324,7 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [ vocationalTVC,birthdayWishVC,nameVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC,timingVC, planetaryHoursVC]
+        let categories = [birthdayWishVC, nameVC,vocationalTVC,medicalAstrologyVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC,timingVC, planetaryHoursVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

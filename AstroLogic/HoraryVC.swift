@@ -31,7 +31,7 @@ class HoraryAstrologyViewController: UIViewController, CLLocationManagerDelegate
     private let askButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Ask", for: .normal)
-        button.addTarget(self, action: #selector(askButtonTapped), for: .touchUpInside)
+        button.addTarget(HoraryAstrologyViewController.self, action: #selector(askButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -163,9 +163,9 @@ class HoraryAstrologyViewController: UIViewController, CLLocationManagerDelegate
        
                 
                 
-                let chartDate = Date()
+                _ = Date()
                 chart = Chart(date: Date(), latitude: latitude, longitude: longitude, houseSystem: .placidus)
-                var chartCake: () = createChart(for:locationManager.location!, at: Date(), with: timeZone)
+                var _: () = createChart(for:locationManager.location!, at: Date(), with: timeZone)
                 
                 guard let chart = chart else {
                     assert(false, "There is no chart")
@@ -183,10 +183,7 @@ class HoraryAstrologyViewController: UIViewController, CLLocationManagerDelegate
                 
            
                 let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
-                let mostDiscordantPlanet = getMostDiscordantPlanet(from: tuple)
-                let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
-        
-    
+              
                 
                 
                 questionTextView.text = ""

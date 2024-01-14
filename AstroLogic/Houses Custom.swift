@@ -421,11 +421,11 @@ class HousesCustomTableViewCell: UITableViewCell {
            myTransit1.frame = CGRect(x: 20, y: 60, width: 325, height: 80)
         
            
-           secondPlanetText.frame = CGRect(x: 40, y: 25, width: 300, height: 40)
+           secondPlanetText.frame = CGRect(x: 50, y: 22, width: 300, height: 40)
            
            firstPlanetImageView.frame = CGRect(x: 20, y: 75, width: 55, height: 55)
           
-           secondPlanetImageView.frame = CGRect(x: 15, y: 10, width: 18, height: 18)
+           secondPlanetImageView.frame = CGRect(x: 15, y: 25, width: 30, height: 30)
            
            firstAspectHeaderText.frame = CGRect(x: 10, y: 90, width: 255, height: 100)
            

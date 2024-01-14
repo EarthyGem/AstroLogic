@@ -437,5 +437,28 @@ class NewAspectsCustomTableViewCell: UITableViewCell {
            jupiterSunView.frame = CGRect(x: 0, y: 0, width: tableCell.frame.size.width, height: 300)
            
        }
+    
+    func clearConfiguration() {
+           // Clear images
+           firstPlanetImageView.image = nil
+           secondPlanetImageView.image = nil
+           firstSignGlyph.image = nil
+           secondSignGlyph.image = nil
+           firstPlanetGlyph.image = nil
+           secondPlanetGlyph.image = nil
+           topTransitImage.image = nil
+           
+           // Clear texts
+           firstSignText.text = nil
+           secondSignText.text = nil
+           firstPlanetText.text = nil
+           secondPlanetText.text = nil
+           firstAspectHeaderText.text = nil
+           secondAspectHeaderText.text = nil
+           myTransit1.text = nil
+           myTransit2.text = nil
+           myTransit3.text = nil
+           myTransit4.text = nil
+       }
 
    }

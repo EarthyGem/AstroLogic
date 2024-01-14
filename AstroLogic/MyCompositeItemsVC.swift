@@ -107,7 +107,7 @@ extension MyCompositeItemsViewController: UITableViewDelegate {
         //   chartVC.harmonyDiscordScores = getScoresAndDifferenceForPlanets(chart: self.chart!)
         chartVC.scores2 = getTotalPowerScoresForPlanets(chart: chart!)
         chartVC.scores = getTotalPowerScoresForPlanets2(chart: chart!)
-        let natalPlanetsVC = CompositePlanetsViewController(planets: [""])
+        let natalPlanetsVC = ProgressedTabBarController2(chartCake: chartCake!, otherChart: otherChart!)
         natalPlanetsVC.title = category.chartType
         natalPlanetsVC.chartCake = chartCake
         natalPlanetsVC.otherChart = otherChart

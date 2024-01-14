@@ -140,6 +140,10 @@ extension TimingViewController: UITableViewDelegate {
         natalPlanetsVC.sortedPlanets = self.sortedPlanets
 //
 
+        let progressedPlanetsVC = ProgressedTabBarController2(chartCake: chartCake!, otherChart: otherChart!)
+        progressedPlanetsVC.title = category.chartType
+        progressedPlanetsVC.chartCake = self.chartCake
+        progressedPlanetsVC.sortedPlanets = self.sortedPlanets
 
         let currentMoonPhaseVC = CurrentMoonPhaseViewController()
         currentMoonPhaseVC.title = "\(category.chartType)"

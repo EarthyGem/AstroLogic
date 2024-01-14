@@ -286,7 +286,7 @@ class MPAspectsViewController: UIViewController {
             neptuneTableView: .neptune,
             plutoTableView: .pluto
         ]
-        chartCake?.calculateProgressedHouseStrengths2(progressedBodies: chartCake?.major.planets)
+    //    chartCake?.calculateProgressedHouseStrengths2(progressedBodies: chartCake?.major.planets)
     
     }
     

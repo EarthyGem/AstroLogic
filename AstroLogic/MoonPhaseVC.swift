@@ -65,7 +65,7 @@ class MoonPhaseViewController: UIViewController {
 
     // Determine if the Moon's speed is "Slow" or "Fast"
     func moonSpeedDescription(speed: Double?) -> String {
-        var moonSpeed = chartCake?.natal.moon.speedLongitude
+        let moonSpeed = chartCake?.natal.moon.speedLongitude
         if moonSpeed! > averageMoonSpeed {
             return "Fast Moon"
         } else {
@@ -78,7 +78,7 @@ class MoonPhaseViewController: UIViewController {
 
     // Determine if the Moon's declination is "out of bounds"
     func moonDeclinationDescription(declination: Double?) -> String {
-        var moonDeclination = chartCake?.natal.moon.declination
+        let moonDeclination = chartCake?.natal.moon.declination
         
         if abs(moonDeclination!) > outOfBoundsThreshold {
             return "Out of Bounds Moon"

@@ -774,8 +774,8 @@ extension TransposedHousesVC: UITableViewDataSource, UITableViewDelegate {
                 if let celestialObjectsInHouse = planetsInHouses[houseNumber], indexPath.row < celestialObjectsInHouse.count {
                     // Extracting the name for the specific celestial object in this row
                     let keyName = celestialObjectsInHouse[indexPath.row].keyName.lowercased()
-
-                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: "", firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
+                    let houseEffects = celestialObjectsInHouse[indexPath.row].houseEffect
+                    cell.configure(aspectingPlanet: "", secondPlanetImageImageName: keyName, firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: houseEffects, firstPlanetTextText: "", firstAspectHeaderTextText: " ", secondAspectHeaderTextText: " ")
 
                     return cell
                 }

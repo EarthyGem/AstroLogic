@@ -175,7 +175,7 @@ class AspectChart: UIViewController, UITableViewDelegate, UITableViewDataSource,
 
             view.addSubview(tableView)
 
-           let formatted = eventDate!.formatted(date: .complete, time: .omitted)
+       
 
             let todaysDate = UILabel(frame: CGRect(x: 100, y: 535, width: 300, height: 20))
              todaysDate.text = ""
@@ -224,7 +224,7 @@ class AspectChart: UIViewController, UITableViewDelegate, UITableViewDataSource,
              return UITableViewCell()
          }
 
-        cell.configure(signGlyphImageName: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.natal.rickysBodies[indexPath.row].formatted)!, planetTextText: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName)!, headerTextText: "")
+        cell.configure(signGlyphImageName: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName.lowercased())!, planetImageImageName: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName.lowercased())!, signTextText: (chartCake?.natal.rickysBodies[indexPath.row].formatted)!, planetTextText: (chartCake?.natal.rickysBodies[indexPath.row].body.keyName)!, headerTextText: "", capsuleText: "")
 
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
 

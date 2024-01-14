@@ -189,7 +189,7 @@ class AnTPlanetsViewController: UIViewController {
             planetImageImageName: celestialObject.keyName.lowercased(),
             signTextText: celestialObject.keyName,
             planetTextText: celestialObject.urgeTypes,
-            headerTextText: "headerTextText"
+            headerTextText: "headerTextText", capsuleText: ""
         )
         return cell
     }
