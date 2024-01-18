@@ -25,29 +25,28 @@ class AstrologyTabBarController: UITabBarController {
         super.viewDidLoad()
 
     
-        let timeChangeVC = TimingTimeChangeViewController()
+        let timeChangeVC = SimpleAllProgressionsAspectedPlanetsViewController()
         timeChangeVC.chartCake = chartCake
-        timeChangeVC.latitude = latitude
-        timeChangeVC.longitude = longitude
+        
         timeChangeVC.selectedDate = selectedDate
         
         timeChangeVC.tabBarItem = UITabBarItem(title: "Time Change", image: UIImage(named: "time_change_icon"), tag: 0)
         
-        let majorVC = MajorProgressionsViewController(MP_Planets: [])
+        let majorVC = MajorProgressionsViewController(transitPlanets: [])
         majorVC.chartCake = chartCake?.withUpdatedTransitDate(selectedDate!)
         majorVC.latitude = latitude
         majorVC.longitude = longitude
         majorVC.selectedDate = selectedDate
         majorVC.tabBarItem = UITabBarItem(title: "Major", image: UIImage(named: "major_icon"), tag: 1)
 
-        let minorVC = MinorProgressionsViewController(MP_Planets: [])
+        let minorVC = MinorProgressionsViewController(transitPlanets: [])
         minorVC.chartCake = chartCake?.withUpdatedTransitDate(selectedDate!)
         minorVC.latitude = latitude
         minorVC.longitude = longitude
         minorVC.selectedDate = selectedDate
         minorVC.tabBarItem = UITabBarItem(title: "Minor", image: UIImage(named: "minor_icon"), tag: 2)
 
-        let solarArcVC = SolarArcProgressionsViewController(MP_Planets: [])
+        let solarArcVC = SolarArcProgressionsViewController(transitPlanets: [])
         solarArcVC.chartCake = chartCake?.withUpdatedTransitDate(selectedDate!)
         solarArcVC.latitude = latitude
         solarArcVC.longitude = longitude
@@ -62,8 +61,7 @@ class AstrologyTabBarController: UITabBarController {
 //        transitsVC.tabBarItem = UITabBarItem(title: "Transits", image: UIImage(named: "transits_icon"), tag: 4)
 //
 //     
-        timeChangeVC.delegates = [majorVC, minorVC, solarArcVC]
-
+       
         viewControllers = [timeChangeVC, majorVC, minorVC, solarArcVC]
     }
 }

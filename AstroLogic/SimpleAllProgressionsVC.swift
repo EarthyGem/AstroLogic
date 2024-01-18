@@ -576,8 +576,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         plutoTableView.rowHeight = UITableView.automaticDimension
         plutoTableView.estimatedRowHeight = 120
 
-        print("Mercury: \(chartCake!.minorProgressedSimpleAspectsFiltered(by: Planet.mercury.celestialObject))")
-        print("Venus: \(chartCake!.minorProgressedSimpleAspectsFiltered(by: Planet.venus.celestialObject).count)")
+       
         sunTableView.dataSource = self
         sunTableView.delegate = self
         moonTableView.dataSource = self
@@ -602,26 +601,19 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         //        ascTableView.delegate = self
         setupPlanetButtons()
         
-        sunScrollView.isUserInteractionEnabled = true  // Enable user interaction
-           moonScrollView.isUserInteractionEnabled = true
-           mercuryScrollView.isUserInteractionEnabled = true
-           venusScrollView.isUserInteractionEnabled = true
-           marsScrollView.isUserInteractionEnabled = true
-           jupiterScrollView.isUserInteractionEnabled = true
-           saturnScrollView.isUserInteractionEnabled = true
-           uranusScrollView.isUserInteractionEnabled = true
-           neptuneScrollView.isUserInteractionEnabled = true
-           plutoScrollView.isUserInteractionEnabled = true
+//        sunScrollView.isUserInteractionEnabled = true  // Enable user interaction
+//           moonScrollView.isUserInteractionEnabled = true
+//           mercuryScrollView.isUserInteractionEnabled = true
+//           venusScrollView.isUserInteractionEnabled = true
+//           marsScrollView.isUserInteractionEnabled = true
+//           jupiterScrollView.isUserInteractionEnabled = true
+//           saturnScrollView.isUserInteractionEnabled = true
+//           uranusScrollView.isUserInteractionEnabled = true
+//           neptuneScrollView.isUserInteractionEnabled = true
+//           plutoScrollView.isUserInteractionEnabled = true
 
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More Aspects", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
-        view.backgroundColor = .black
-        
-    }
-    
- 
-    
-    override func viewDidAppear(_ animated: Bool) {
+      
         sunTableView.frame = CGRect(x: sunTableView.frame.origin.x, y: sunTableView.frame.origin.y , width: sunTableView.frame.size.width, height: sunTableView.contentSize.height)
         
         moonTableView.frame = CGRect(x: moonTableView.frame.origin.x, y: moonTableView.frame.origin.y , width: moonTableView.frame.size.width, height: moonTableView.contentSize.height)
@@ -643,9 +635,8 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         plutoTableView.frame = CGRect(x: plutoTableView.frame.origin.x, y: plutoTableView.frame.origin.y , width: plutoTableView.frame.size.width, height: plutoTableView.contentSize.height)
         
         ascTableView.frame = CGRect(x: ascTableView.frame.origin.x, y: ascTableView.frame.origin.y , width: ascTableView.frame.size.width, height: ascTableView.contentSize.height)
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    
+
 
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
         scrollView.backgroundColor = .clear
@@ -1033,7 +1024,9 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         plutoText.textColor = .white
 
         plutoScrollView.addSubview(plutoText)
-       
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More Aspects", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
+        view.backgroundColor = .black
+  
         //
     }
 

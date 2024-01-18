@@ -42,7 +42,7 @@ class SolarArcPlanetsTimeChangeViewController: UIViewController  {
         var selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = SolarArcProgressionsViewController(MP_Planets: [""])
+        let nextViewController = SolarArcProgressionsViewController(transitPlanets: [""])
 // Set the
        nextViewController.chartCake = chartCake
 

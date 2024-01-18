@@ -41,10 +41,11 @@ class TransitAspectsTimeChangeViewController: UIViewController  {
         var selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = SimpleAllProgressionsAspectedPlanetsViewController()
-// Set the
-        nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
+        let nextViewController = ProgressionsAspectsTabBarController(chartCake: ChartCake(birthDate: chartCake!.natal.birthDate, latitude: latitude!, longitude: longitude!, transitDate: selectedDate)!, selectedDate: selectedDate, longitude: longitude!, latitude: latitude!)
+        nextViewController.latitude = latitude
+        nextViewController.longitude = longitude
         nextViewController.selectedDate = selectedDate
+print("selected date: \(selectedDate)")
         navigationController?.pushViewController(nextViewController, animated: true)
     }
 

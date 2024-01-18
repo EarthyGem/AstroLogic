@@ -21,13 +21,13 @@ class ProgressionPlanetsTabBarController: UITabBarController {
 
 
 
-        let progressedChart = MajorProgressionsViewController(MP_Planets: [""])
+        let progressedChart = MajorProgressionsViewController(transitPlanets: [""])
         progressedChart.chartCake = chartCake
         progressedChart.selectedDate = selectedDate
         progressedChart.tabBarItem = UITabBarItem(title: "Birthday", image: UIImage(named: "countDownIcon"), tag: 0)
 
 
-        let minorProgressedChart = MinorProgressionsViewController(MP_Planets: [""])
+        let minorProgressedChart = MinorProgressionsViewController(transitPlanets: [""])
         progressedChart.chartCake = chartCake
         progressedChart.selectedDate = selectedDate
         minorProgressedChart.tabBarItem = UITabBarItem(title: "Monthly Recharge", image: UIImage(named: "rechargeIcon"), tag: 1)

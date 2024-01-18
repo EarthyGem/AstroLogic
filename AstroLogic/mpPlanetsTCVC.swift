@@ -42,7 +42,7 @@ class MinorsPlanetsTimeChangeViewController: UIViewController  {
         var selectedDate = tcDP.date
 
         // Create an instance of the next view controller
-        let nextViewController = MinorProgressionsViewController(MP_Planets: [""])
+        let nextViewController = MinorProgressionsViewController(transitPlanets: [""])
 // Set the
         nextViewController.chartCake = chartCake?.withUpdatedTransitDate(selectedDate)
         nextViewController.selectedDate = selectedDate
