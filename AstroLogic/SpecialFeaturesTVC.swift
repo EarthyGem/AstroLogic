@@ -38,7 +38,7 @@ class SpecialFeaturesViewController: UIViewController {
     
     private let ricksData: [RicksItems] = [
            
-        RicksItems(chartType: "Birthday Wish"),
+//        RicksItems(chartType: "Birthday Wish"),
         RicksItems(chartType: "What's in a Name?"),
         RicksItems(chartType: "Vocational Astrology"),
         RicksItems(chartType: "Medical Astrology"),
@@ -47,7 +47,7 @@ class SpecialFeaturesViewController: UIViewController {
         RicksItems(chartType: "Aspect Charts"),
         RicksItems(chartType: "Weather Charts"),
 
-        RicksItems(chartType: "Planetary Hours")
+    //    RicksItems(chartType: "Planetary Hours")
 
     ]
 
@@ -126,9 +126,10 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
         horaryVC.title = "Horary Chart"
 
    
-        let birthdayWishVC = MainTabBarController()
-        birthdayWishVC.chartCake = self.chartCake
-        birthdayWishVC.otherChart = self.otherChart
+        let birthdayWishVC = MainTabBarController(chartCake: ChartCake(birthDate: chartCake!.natal.birthDate, latitude: latitude!, longitude: longitude!, transitDate: selectedDate)!, selectedDate: Date(), longitude: longitude!, latitude: latitude!)
+        birthdayWishVC.latitude = latitude
+        birthdayWishVC.longitude = longitude
+        birthdayWishVC.selectedDate = selectedDate
         birthdayWishVC.title = "Other Person"
 
         
@@ -173,7 +174,7 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [birthdayWishVC, nameVC,vocationalTVC,medicalAstrologyVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC, planetaryHoursVC]
+        let categories = [ nameVC,vocationalTVC,medicalAstrologyVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

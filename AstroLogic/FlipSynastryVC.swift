@@ -44,7 +44,7 @@ class FlipSynastryViewController: UIViewController, UITableViewDelegate, UITable
     // transitChart now uses the device's current location
 
      
-    var planetGlyphs = ["sun","moon","","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto"]
+    var planetGlyphs = ["sun","moon","mercury","venus","mars","jupiter","saturn","uranus","neptune","pluto","s.node"]
     
     func setupTransitSigns() -> [String] {
         transitSigns = [
@@ -112,7 +112,7 @@ var mySunText = ""
     
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        table.register(SynastryCustomTableViewCell.self, forCellReuseIdentifier: SynastryCustomTableViewCell.identifier)
         return table
     }()
 
@@ -177,12 +177,13 @@ var mySunText = ""
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SynastryCustomTableViewCell.identifier, for: indexPath) as? SynastryCustomTableViewCell else {
              
              return UITableViewCell()
          }
         
-        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: getTransitPositions()[indexPath.row], planetTextText: "", headerTextText: "", capsuleText: "")
+        cell.configure(planetGlyphImageName1: planetGlyphs[indexPath.row], planetGlyphImageName2: planetGlyphs[indexPath.row], planetImageImageName: planetGlyphs[indexPath.row], signTextText: chartCake!.natal.rickysBodies[indexPath.row].formatted, planetTextText: "", headerTextText: otherChart!.natal.rickysBodies[indexPath.row].formatted, capsuleText: chartCake!.houseCusps.house(of: chartCake!.natal.rickysBodies[safe: indexPath.row]!).houseString, capsuleText2: otherChart!.houseCusps.house(of: otherChart!.natal.rickysBodies[safe: indexPath.row]!).houseString)
+        
         
 //        cell.configure(signGlyphImageName: planetGlyphs[indexPath.row], planetImageImageName: "\(planetImages2[indexPath.row])", signTextText: getNatalPositions()[indexPath.row], planetTextText: "\(h_Planets[indexPath.row])", headerTextText: "\(h_planets[indexPath.row])")
         

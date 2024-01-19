@@ -7,15 +7,15 @@
 
 import Foundation
 import UIKit
+import SwiftEphemeris
 
 class CountdownViewController: UIViewController {
 
     var countdownLabel: UILabel!
-       var timer: Timer?
-       var targetDate: Date? // This will be the user's birthday
-
-    var reflectionTextView: UITextView!
-    var insightsTextView: UITextView!
+    var timer: Timer?
+    var targetDate: Date? // This will be the user's birthday
+    var chartCake: ChartCake!
+    var birthdayWishTextField: UITextField!
     var birthdayWishLabel: UILabel!
 
     override func viewDidLoad() {
@@ -23,100 +23,117 @@ class CountdownViewController: UIViewController {
 
         view.backgroundColor = .black
         setupCountdownLabel()
-     //   setupReflectionSection()
-//setupInsightSection()
-        startTimer()
-        setupSections()
+        setupBirthdayWishTextField()
+        
+        // Directly use the natal longitude since it's not optional
+        let natalSunLongitude = chartCake.natal.sun.longitude
+        // Use today's date as the starting point to find the next birthday
+        if let nextBirthday = findNextBirthdayLongitudeMatch(currentLongitude: natalSunLongitude, startFromDate: Date()) {
+            targetDate = nextBirthday
+            startTimer()
+        } else {
+            print("Could not find the next birthday longitude match.")
+            // Handle error case here, perhaps alert the user or provide a default date
+        }
     }
 
-    // ... [Other Functions]
 
-    func setupReflectionSection() {
-        reflectionTextView = UITextView(frame: CGRect(x: 20, y: countdownLabel.frame.maxY + 20, width: self.view.frame.width - 40, height: (self.view.frame.height - countdownLabel.frame.maxY) / 2 - 30))
-        reflectionTextView.font = UIFont.systemFont(ofSize: 18)
-        reflectionTextView.isEditable = false
-        reflectionTextView.text = "Your reflections from the past year: \n\n" // Load this from wherever you store the user's reflection data
-        view.addSubview(reflectionTextView)
+    func setupCountdownLabel() {
+        countdownLabel = UILabel(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: 40))
+        countdownLabel.textColor = .white
+        countdownLabel.textAlignment = .center
+        countdownLabel.font = UIFont.systemFont(ofSize: 30)
+        view.addSubview(countdownLabel)
     }
 
-    func setupInsightSection() {
-//        insightsTextView = UITextView(frame: CGRect(x: 20, y: reflectionTextView.frame.maxY + 20, width: self.view.frame.width - 40, height: (self.view.frame.height - reflectionTextView.frame.maxY) / 2 - 30))
-//        insightsTextView.font = UIFont.systemFont(ofSize: 18)
-//        insightsTextView.isEditable = false
-//        insightsTextView.text = "Your insights for the upcoming year: \n\n" // Load this from your astrological insights data source
-//        view.addSubview(insightsTextView)
+    func setupBirthdayWishTextField() {
+        birthdayWishTextField = UITextField(frame: CGRect(x: 20, y: countdownLabel.frame.maxY + 20, width: self.view.frame.width - 40, height: 40))
+        birthdayWishTextField.borderStyle = .roundedRect
+        birthdayWishTextField.font = UIFont.systemFont(ofSize: 18)
+        birthdayWishTextField.placeholder = "Enter your birthday wish"
+        birthdayWishTextField.textAlignment = .center
+        birthdayWishTextField.isHidden = true // Initially hidden
+        view.addSubview(birthdayWishTextField)
+    }
+
+    func startTimer() {
+        timer?.invalidate() // Invalidate any existing timer
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
+    }
+
+    @objc func updateCountdown() {
+        guard let targetDate = targetDate else {
+            countdownLabel.text = "Set your birthday in settings"
+            return
+        }
+
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.month, .day, .hour, .minute, .second], from: currentDate, to: targetDate)
+
+        if let month = components.month, let day = components.day, let hour = components.hour, let minute = components.minute, let second = components.second {
+            countdownLabel.text = "\(month) months, \(day) days, \(hour) hours, \(minute) minutes, \(second) seconds until your birthday!"
+        }
+
+        // Check if it's the user's birthday
+        if calendar.isDateInToday(targetDate) {
+            if let birthdayWish = UserDefaults.standard.string(forKey: "birthdayWish") {
+                // If a wish has been saved, display it
+                displayBirthdayWish(wish: birthdayWish)
+            } else {
+                // It's the user's birthday and no wish has been saved, so show the text field
+                birthdayWishTextField.isHidden = false
+            }
+        } else {
+            birthdayWishTextField.isHidden = true
+        }
+    }
+
+    func displayBirthdayWish(wish: String) {
+        if birthdayWishLabel == nil {
+            birthdayWishLabel = UILabel(frame: CGRect(x: 20, y: countdownLabel.frame.maxY + 20, width: self.view.frame.width - 40, height: 100))
+            birthdayWishLabel.font = UIFont.systemFont(ofSize: 24)
+            birthdayWishLabel.textColor = .lightGray
+            birthdayWishLabel.textAlignment = .center
+            birthdayWishLabel.numberOfLines = 0
+            view.addSubview(birthdayWishLabel)
+        }
+
+        birthdayWishLabel.text = wish
+    }
+
+    // Call this method when the user enters their birthday wish
+    func saveBirthdayWish() {
+        if let wish = birthdayWishTextField.text, !wish.isEmpty {
+            UserDefaults.standard.set(wish, forKey: "birthdayWish")
+            birthdayWishTextField.isHidden = true
+            displayBirthdayWish(wish: wish)
+        }
     }
     
-    func setupCountdownLabel() {
-            countdownLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
-            countdownLabel.center = self.view.center
-        countdownLabel.textColor = .purple
-            countdownLabel.textAlignment = .center
-            countdownLabel.font = UIFont.systemFont(ofSize: 30)
-            view.addSubview(countdownLabel)
-        }
+    func findNextBirthdayLongitudeMatch(currentLongitude: Double, startFromDate date: Date) -> Date? {
+        var currentDate = date
+        let calendar = Calendar.current
+        let oneDay = TimeInterval(24 * 60 * 60) // One day in seconds
 
-        func startTimer() {
-            // Ensure the timer starts fresh
-            timer?.invalidate()
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
-        }
-
-
-    func setupSections() {
-            let currentDate = Date()
-            let twoWeeksInterval = TimeInterval(2 * 7 * 24 * 60 * 60) // 2 weeks in seconds
-
-            guard let targetDate = targetDate, let diff = Calendar.current.dateComponents([.day], from: currentDate, to: targetDate).day else {
-                setupBirthdayWishSection() // Default to birthday wish if something goes wrong
-                return
+        // Loop through each day starting from 'date'
+        while true {
+            // Assuming chartCake can calculate the longitude for a given date
+            let transitSunLongitude = chartCake.transits.sun.longitude
+            
+            // Check if the longitude matches, with a small range to account for the sun's apparent motion
+            if abs(transitSunLongitude - currentLongitude) < 0.1 { // You can adjust the range as needed
+                return currentDate
             }
-
-            if diff <= 14 {
-                setupReflectionSection()
-                setupInsightSection()
+            
+            // Increment the date by one day and continue
+            if let nextDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+                currentDate = nextDate
             } else {
-                setupBirthdayWishSection()
-            }
-        }
-
-    func setupBirthdayWishSection() {
-        birthdayWishLabel = UILabel()
-        birthdayWishLabel.font = UIFont.systemFont(ofSize: 34)
-        birthdayWishLabel.textColor = .blue
-        birthdayWishLabel.text = "Birthday Wish 🎂" // Load this from wherever you store the user's birthday wish
-        birthdayWishLabel.textAlignment = .center
-        birthdayWishLabel.numberOfLines = 0 // This allows the label to wrap text if needed
-
-        // Set the frame to the view's bounds
-        birthdayWishLabel.frame = view.bounds
-
-        // Allow the label to automatically resize for any changes (like device rotation)
-        birthdayWishLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-        view.addSubview(birthdayWishLabel)
-    }
-
-        @objc func updateCountdown() {
-            guard let targetDate = targetDate else { return }
-
-            let currentDate = Date()
-            let calendar = Calendar.current
-
-            let components = calendar.dateComponents([.day, .hour, .minute, .second], from: currentDate, to: targetDate)
-
-            if let days = components.day, let hours = components.hour, let minutes = components.minute, let seconds = components.second {
-                countdownLabel.text = "\(days) days, \(hours) hours, \(minutes) minutes, \(seconds) seconds until your birthday!"
-
-                // This will ensure that sections update when the date crosses the 2-weeks mark:
-                if (days == 14 && hours == 0 && minutes == 0 && seconds == 0) || (days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
-                    for subview in view.subviews {
-                        if subview is UITextView {
-                            subview.removeFromSuperview()
-                        }
-                    }
-                    setupSections()
-                }
+                // In case date addition fails, return nil
+                return nil
             }
         }
     }
+
+}

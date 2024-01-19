@@ -282,12 +282,7 @@ extension TimingViewController: UITableViewDelegate {
         MP_AspectsVC.chartCake = self.chartCake
         MP_AspectsVC.selectedDate = self.selectedDate
 
-        let birthdayWishVC = MainTabBarController()
-        birthdayWishVC.chartCake = self.chartCake
-        birthdayWishVC.otherChart = self.otherChart
-        birthdayWishVC.title = "Other Person"
-
-        
+    
         let nameVC = NameViewController()
         nameVC.chartCake = self.chartCake
         nameVC.name = self.name

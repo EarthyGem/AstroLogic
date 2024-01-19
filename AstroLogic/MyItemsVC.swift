@@ -194,6 +194,11 @@ extension MyItemsViewController: UITableViewDelegate {
         let specialTVC = SpecialFeaturesViewController()
         specialTVC.chartCake = self.chartCake
         specialTVC.name = self.name
+        specialTVC.selectedDate = self.selectedDate
+//print("chartCake (myItems): \(chartCake)")
+        specialTVC.latitude = self.latitude
+        specialTVC.longitude = self.longitude
+
       //  cycleChartsVC.otherChart = self.otherChart
         specialTVC.title = "Special Features"
 
