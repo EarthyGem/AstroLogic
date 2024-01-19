@@ -41,6 +41,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
     var chart: Chart?
     var chartCake: ChartCake?
     var selectedDate: Date?
+    var planetAspectCountCache: [Planet: PlanetAspectCounts] = [:]
     let houseKeywords: [String: [String]] = [
         "1st House": ["Self", "Appearance", "Beginnings", "Initiative"],
         "2nd House": ["Value", "Material", "Possessions", "Security"],
@@ -57,7 +58,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
     ]
 
 
-    var planetAspectCountCache: [Planet: PlanetAspectCounts] = [:]
+ 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
 
@@ -545,6 +546,23 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
        // Load data here
        currentPlanet = planet(for: sunTableView)
    
+        let planetsTableViews = [sunTableView, moonTableView, mercuryTableView, venusTableView, marsTableView, jupiterTableView, saturnTableView, uranusTableView, neptuneTableView, plutoTableView]
+        let planetsScrollView = [sunScrollView, moonScrollView, mercuryScrollView, venusScrollView, marsScrollView, jupiterScrollView, saturnScrollView, uranusScrollView, neptuneScrollView, plutoScrollView]
+
+        // Iterate over each pair of table view and scroll view
+        for index in 0..<planetsTableViews.count {
+            let tableView = planetsTableViews[index]
+            let scrollView = planetsScrollView[index]
+
+            // Calculate the total row count for the current table view
+            let totalRowCount = totalRowCountForPlanetTableView(planet: planet(for: tableView)!)
+
+            // Only add the table view to the scroll view if it has progressed aspects
+            if totalRowCount > 0 {
+                scrollView.addSubview(tableView)
+            }
+        }
+
          
         sunTableView.rowHeight = UITableView.automaticDimension
         sunTableView.estimatedRowHeight = 120
@@ -601,17 +619,6 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         //        ascTableView.delegate = self
         setupPlanetButtons()
         
-//        sunScrollView.isUserInteractionEnabled = true  // Enable user interaction
-//           moonScrollView.isUserInteractionEnabled = true
-//           mercuryScrollView.isUserInteractionEnabled = true
-//           venusScrollView.isUserInteractionEnabled = true
-//           marsScrollView.isUserInteractionEnabled = true
-//           jupiterScrollView.isUserInteractionEnabled = true
-//           saturnScrollView.isUserInteractionEnabled = true
-//           uranusScrollView.isUserInteractionEnabled = true
-//           neptuneScrollView.isUserInteractionEnabled = true
-//           plutoScrollView.isUserInteractionEnabled = true
-
         
       
         sunTableView.frame = CGRect(x: sunTableView.frame.origin.x, y: sunTableView.frame.origin.y , width: sunTableView.frame.size.width, height: sunTableView.contentSize.height)
@@ -727,13 +734,71 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         // Assume you have a function to layout table views sequentially without overlap
      
 
+//        // Calculate the total height for the scroll view content
+//        let totalScrollViewContentHeight = sunTableView.frame.maxY + moonTableView.frame.height + mercuryTableView.frame.height + venusTableView.frame.height + marsTableView.frame.height + jupiterTableView.frame.height + saturnTableView.frame.height + uranusTableView.frame.height + neptuneTableView.frame.height + plutoTableView.frame.height + 50
+//
+//        // Set the scroll view content size
+//        scrollView.contentSize = CGSize(width: view.frame.width, height: totalScrollViewContentHeight)
+
+        
+        print("Setting sunTableView contentSize.height to: \(totalHeightForTableView(tableView: sunTableView))")
+        sunTableView.contentSize.height = totalHeightForTableView(tableView: sunTableView)
+        sunTableView.isScrollEnabled = false
+        sunTableView.frame.size.height = sunTableView.contentSize.height
+
+        print("Setting moonTableView contentSize.height to: \(totalHeightForTableView(tableView: moonTableView))")
+        moonTableView.contentSize.height = totalHeightForTableView(tableView: moonTableView)
+        moonTableView.isScrollEnabled = false
+        moonTableView.frame.size.height = moonTableView.contentSize.height
+
+        print("Setting mercuryTableView contentSize.height to: \(totalHeightForTableView(tableView: mercuryTableView))")
+        mercuryTableView.contentSize.height = totalHeightForTableView(tableView: mercuryTableView)
+        mercuryTableView.isScrollEnabled = false
+        mercuryTableView.frame.size.height = mercuryTableView.contentSize.height
+
+        print("Setting venusTableView contentSize.height to: \(totalHeightForTableView(tableView: venusTableView))")
+        venusTableView.contentSize.height = totalHeightForTableView(tableView: venusTableView)
+        venusTableView.isScrollEnabled = false
+        venusTableView.frame.size.height = venusTableView.contentSize.height
+
+        print("Setting marsTableView contentSize.height to: \(totalHeightForTableView(tableView: marsTableView))")
+        marsTableView.contentSize.height = totalHeightForTableView(tableView: marsTableView)
+        marsTableView.isScrollEnabled = false
+        marsTableView.frame.size.height = marsTableView.contentSize.height
+
+        print("Setting jupiterTableView contentSize.height to: \(totalHeightForTableView(tableView: jupiterTableView))")
+        jupiterTableView.contentSize.height = totalHeightForTableView(tableView: jupiterTableView)
+        jupiterTableView.isScrollEnabled = false
+        jupiterTableView.frame.size.height = jupiterTableView.contentSize.height
+
+        print("Setting saturnTableView contentSize.height to: \(totalHeightForTableView(tableView: saturnTableView))")
+        saturnTableView.contentSize.height = totalHeightForTableView(tableView: saturnTableView)
+        saturnTableView.isScrollEnabled = false
+        saturnTableView.frame.size.height = saturnTableView.contentSize.height
+
+        print("Setting uranusTableView contentSize.height to: \(totalHeightForTableView(tableView: uranusTableView))")
+        uranusTableView.contentSize.height = totalHeightForTableView(tableView: uranusTableView)
+        uranusTableView.isScrollEnabled = false
+        uranusTableView.frame.size.height = uranusTableView.contentSize.height
+
+        print("Setting neptuneTableView contentSize.height to: \(totalHeightForTableView(tableView: neptuneTableView))")
+        neptuneTableView.contentSize.height = totalHeightForTableView(tableView: neptuneTableView)
+        neptuneTableView.isScrollEnabled = false
+        neptuneTableView.frame.size.height = neptuneTableView.contentSize.height
+
+        print("Setting plutoTableView contentSize.height to: \(totalHeightForTableView(tableView: plutoTableView))")
+        plutoTableView.contentSize.height = totalHeightForTableView(tableView: plutoTableView)
+        plutoTableView.isScrollEnabled = false
+        plutoTableView.frame.size.height = plutoTableView.contentSize.height
+
+        // After setting all the table view heights and disabling scroll
+        print("All table views' contentSize.height set and scrolling disabled.")
+
         // Calculate the total height for the scroll view content
         let totalScrollViewContentHeight = sunTableView.frame.maxY + moonTableView.frame.height + mercuryTableView.frame.height + venusTableView.frame.height + marsTableView.frame.height + jupiterTableView.frame.height + saturnTableView.frame.height + uranusTableView.frame.height + neptuneTableView.frame.height + plutoTableView.frame.height + 50
 
-        // Set the scroll view content size
+        print("Total ScrollView Content Height: \(totalScrollViewContentHeight)")
         scrollView.contentSize = CGSize(width: view.frame.width, height: totalScrollViewContentHeight)
-
-        
 
         
         
@@ -1102,9 +1167,10 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
 
     func calculateAndCacheAspectCounts(for planet: Planet) {
         // Check if already cached to prevent recalculation
-        if planetAspectCountCache[planet] != nil {
-            return
-        }
+        if let cachedCounts = planetAspectCountCache[planet] {
+              print("Aspect counts for \(planet) are already cached.")
+              return
+          }
         
         // Fetch and map the aspects to their string representations
         let majorsAspects = chartCake!.progressedSimpleAspectsFiltered(by: planet.celestialObject).map { $0.basicAspectString }
@@ -1123,6 +1189,8 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
             minorsAspects: minorsAspects,
             transitsAspects: transitsAspects
         )
+        print("Caching aspect counts for \(planet): Majors: \(majorsAspects.count), Solar Arcs: \(solarArcsAspects.count), Minors: \(minorsAspects.count), Transits: \(transitsAspects.count)")
+        
     }
     }
 
@@ -1208,8 +1276,10 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
 
         // Configure the cell with the fetched aspect string if available
         if let aspectDetail = aspectString {
+             print("Aspect detail for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row) is: \(aspectDetail)")
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectDetail, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: "")
         } else {
+            print("No aspect detail for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row)")
             // Handle the case where there is no aspect string for this indexPath
             // Perhaps clear out old data or show a placeholder
             cell.clearConfiguration()
@@ -1220,7 +1290,11 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let sectionType = SectionType(rawValue: indexPath.section) else { return UITableViewCell() }
+        guard let planet = planet(for: tableView), let sectionType = SectionType(rawValue: indexPath.section) else {
+               print("Error: Could not find planet or sectionType for table view at indexPath: \(indexPath)")
+               return UITableViewCell()
+           }
+        
 
         switch tableView {
         case sunTableView:
@@ -1246,7 +1320,11 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
         default:
             return UITableViewCell()
         }
-    }
+        let cell = configureCell(for: tableView, planet: planet, inSection: sectionType, at: indexPath)
+          print("Configuring cell for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row)")
+          return cell
+      }
+    
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 40)) // Adjust height as needed
@@ -1276,15 +1354,21 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
             }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let planet = planet(for: tableView) else {
+            print("Error: Could not find planet for table view.")
             return 0
         }
         let sectionTypesWithRows = SectionType.allCases.filter { self.numberOfRowsForPlanet(planet, inSection: $0) > 0 }
         if section < sectionTypesWithRows.count {
             let sectionType = sectionTypesWithRows[section]
-            return numberOfRowsForPlanet(planet, inSection: sectionType)
+            let rowCount = numberOfRowsForPlanet(planet, inSection: sectionType)
+            print("Planet: \(planet), Section: \(sectionType.title), Row count: \(rowCount)")
+            return rowCount
+        } else {
+            print("Error: Section \(section) is out of bounds for planet \(planet).")
+            return 0
         }
-        return 0
     }
+
 
     
     // This function should be defined within the SimpleAllProgressionsAspectedPlanetsViewController
@@ -1314,18 +1398,18 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
             return counts.majors
         case .solarArcs:
             return counts.solarArcs
-        case .
-    minors:
-    return counts.minors
-    case .transits:
-    return counts.transits
+        case .minors:
+            return counts.minors
+        case .transits:
+            return counts.transits
     }
+        
     }
 
     func numberOfRowsForPlanet(_ planet: Planet, inSection sectionType: SectionType) -> Int {
         // Use the new getAspectCount function which retrieves data from the cache
         let count = getAspectCount(for: planet, sectionType: sectionType)
-        print("Data** count for \(planet) in section \(sectionType): \(count)")
+      //  print("Data** count for \(planet) in section \(sectionType): \(count)")
         return count > 0 ? count : 0
     }
 

@@ -198,12 +198,12 @@ extension TimingViewController: UITableViewDelegate {
      transitPlanetsVC.longitude = self.longitude
 
 
-        let timingVC = AstrologyTabBarController()
-        timingVC.chartCake = self.chartCake
-        timingVC.selectedDate = self.selectedDate
-print("chartCake (myItems): \(chartCake)")
-        timingVC.latitude = self.latitude
-        timingVC.longitude = self.longitude
+//        let timingVC = AstrologyTabBarController()
+//        timingVC.chartCake = self.chartCake
+//        timingVC.selectedDate = self.selectedDate
+//print("chartCake (myItems): \(chartCake)")
+//        timingVC.latitude = self.latitude
+//        timingVC.longitude = self.longitude
 
 
 

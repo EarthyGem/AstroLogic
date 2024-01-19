@@ -433,8 +433,8 @@
             filePath = "AstroLogic/SimpleAllProgressionsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "673"
-            endingLineNumber = "673"
+            startingLineNumber = "680"
+            endingLineNumber = "680"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
