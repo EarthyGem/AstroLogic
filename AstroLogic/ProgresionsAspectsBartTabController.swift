@@ -16,11 +16,10 @@ class ProgressionsAspectsTabBarController: UITabBarController {
     var otherChart: ChartCake!
     var latitude: Double?
     var longitude: Double?
-    init(chartCake: ChartCake, selectedDate: Date, longitude: Double, latitude: Double) {
-        self.chartCake = ChartCake(birthDate: chartCake.natal.birthDate, latitude: latitude, longitude: longitude, transitDate: selectedDate)
+    init(chartCake: ChartCake, selectedDate: Date) {
+        self.chartCake = chartCake
         self.selectedDate = selectedDate
-        self.latitude = latitude
-        self.longitude = longitude
+  
         super.init(nibName: nil, bundle: nil)
     }
    

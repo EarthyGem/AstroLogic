@@ -1,11 +1,12 @@
 import UIKit
+import SwiftEphemeris
 import CoreData
 
 class EventListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // Add a table view to your storyboard or create it programmatically
     let tableView = UITableView()
-
+    var chartCake: ChartCake!
     var events: [NSManagedObject] = []
 
     override func viewDidLoad() {
@@ -59,7 +60,7 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
            let eventDate = event.value(forKey: "eventDate") as? Date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .short
+            dateFormatter.timeStyle = .none // This will remove the time
             let formattedDate = dateFormatter.string(from: eventDate)
             
             cell.configure(with: eventType, eventDate: formattedDate)
@@ -67,12 +68,33 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
         
         return cell
     }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
           if editingStyle == .delete {
               // Handle the deletion of the event
               deleteEvent(at: indexPath)
           }
       }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let event = events[indexPath.row]
+
+        // Assuming you have a way to retrieve the latitude and longitude
+        // You might be storing these in your event object
+   
+        let selectedDate = event.value(forKey: "eventDate") as? Date ?? Date()
+
+        // Assuming ChartCake can be initialized with the event details
+        // Replace this with the actual data you need to pass
+        if let chartCake = chartCake {
+            let nextViewController = EventsTabBarController(chartCake: chartCake, selectedDate: selectedDate)
+
+            // Push the nextViewController or present it modally
+            navigationController?.pushViewController(nextViewController, animated: true)
+            // OR
+            // present(nextViewController, animated: true, completion: nil)
+        }
+    }
+
 
       // Function to delete an event
       func deleteEvent(at indexPath: IndexPath) {

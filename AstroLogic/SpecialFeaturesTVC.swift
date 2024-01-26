@@ -141,7 +141,7 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
 
         let questionVC = AstrologyViewController()
      let researchVC = EventInputViewController()
-
+        researchVC.chartCake = chartCake
      //   MP_PlanetsVC.title = category.chartType
 
         let categories = [ nameVC,vocationalTVC,medicalAstrologyVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC,questionVC,researchVC]

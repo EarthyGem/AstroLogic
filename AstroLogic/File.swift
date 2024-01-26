@@ -5,10 +5,6 @@ import CoreData
 import BSImagePicker
 
 
-
-
-
-
 struct AstrologicalEvent {
     let name: String
     let houses: [String]
@@ -17,7 +13,7 @@ struct AstrologicalEvent {
 
 class EventInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 var collectionView: UICollectionView!
-    
+    var chartCake: ChartCake!
     var selectedPhotos: [UIImage] = []
     
     let photoStackView = UIStackView()
@@ -26,14 +22,11 @@ var collectionView: UICollectionView!
     lazy var eventDatePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
-        //     picker.preferredDatePickerStyle = .wheels
-        //    picker.frame = CGRect(x: 0, y: 0, width: 250, height: 200)
-        //       picker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
-        //     picker.timeZone = TimeZone.current // Use birthPlaceTimeZone
+      
         picker.backgroundColor = .gray
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        if let date = df.date(from: "1976-03-03 14:51:00") {
+        df.dateFormat = "yyyy-MM-dd"
+        if let date = df.date(from: "1977-05-21") {
             picker.date = date
         }
         
@@ -63,61 +56,7 @@ var collectionView: UICollectionView!
     
     let submitButton = UIButton()
     
-    let predefinedEvents = [
-        // Existing events
-        AstrologicalEvent(name: "Birth of a Child", houses: ["5th", "4th"]),
-        AstrologicalEvent(name: "Starting a New Business", houses: ["10th", "2nd"]),
-        AstrologicalEvent(name: "Relocating to a New Home", houses: ["4th", "9th"]),
-        AstrologicalEvent(name: "Beginning a New Relationship", houses: ["7th", "5th"]),
-        AstrologicalEvent(name: "End of a Relationship/Breakup", houses: ["7th", "8th"]),
-        AstrologicalEvent(name: "Receiving a Promotion or New Job", houses: ["10th", "6th"]),
-        AstrologicalEvent(name: "Experiencing a Financial Windfall", houses: ["2nd", "8th"]),
-        AstrologicalEvent(name: "Facing a Financial Crisis", houses: ["8th", "2nd"]),
-        AstrologicalEvent(name: "Going on a Significant Trip", houses: ["9th", "3rd"]),
-        AstrologicalEvent(name: "Returning to School or Further Education", houses: ["9th", "4th"]),
-        AstrologicalEvent(name: "Dealing with a Serious Illness", houses: ["6th", "12th"]),
-        AstrologicalEvent(name: "Experiencing a Spiritual Awakening", houses: ["12th", "9th"]),
-        AstrologicalEvent(name: "Making a Major Purchase", houses: ["2nd", "4th"]),
-        AstrologicalEvent(name: "Loss of a Loved One", houses: ["8th", "4th"]),
-        AstrologicalEvent(name: "Experiencing a Legal Issue or Lawsuit", houses: ["9th", "7th"]),
-        AstrologicalEvent(name: "Engagement or Decision to Marry", houses: ["7th", "5th"]),
-        AstrologicalEvent(name: "Discovering a New Talent or Hobby", houses: ["5th", "3rd"]),
-        AstrologicalEvent(name: "Facing a Personal Challenge or Obstacle", houses: ["1st", "8th"]),
-        AstrologicalEvent(name: "Achieving a Significant Personal Goal", houses: ["1st", "10th"]),
-        AstrologicalEvent(name: "Experiencing a Conflict at Work", houses: ["6th", "10th"]),
-        AstrologicalEvent(name: "Making a Significant Friend", houses: ["11th", "7th"]),
-        AstrologicalEvent(name: "Losing a Significant Friend", houses: ["11th", "12th"]),
-        AstrologicalEvent(name: "Experiencing a Family Conflict", houses: ["4th", "10th"]),
-        AstrologicalEvent(name: "Achieving Recognition or Award", houses: ["10th", "5th"]),
-        AstrologicalEvent(name: "Undergoing a Major Surgery or Health Procedure", houses: ["6th", "8th"]),
-        AstrologicalEvent(name: "Experiencing a Major Lifestyle Change", houses: ["1st", "9th"]),
-        AstrologicalEvent(name: "Discovering a New Spiritual or Religious Path", houses: ["9th", "12th"]),
-        AstrologicalEvent(name: "Undergoing a Crisis of Faith", houses: ["9th", "12th"]),
-        AstrologicalEvent(name: "Meeting a Significant Mentor or Teacher", houses: ["9th", "11th"]),
-        AstrologicalEvent(name: "Deciding to Start a Family", houses: ["5th", "7th"]),
-        AstrologicalEvent(name: "Retirement from Career", houses: ["10th", "4th"]),
-        AstrologicalEvent(name: "Starting a New Creative Project", houses: ["5th", "3rd"]),
-        AstrologicalEvent(name: "Learning a New Skill or Craft", houses: ["6th", "3rd"]),
-        AstrologicalEvent(name: "Volunteering or Charitable Work", houses: ["11th", "6th"]),
-        AstrologicalEvent(name: "Experiencing a Major Theft or Loss", houses: ["8th", "2nd"]),
-        AstrologicalEvent(name: "Winning a Competition or Award", houses: ["5th", "10th"]),
-        AstrologicalEvent(name: "Dealing with an Unexpected Event", houses: ["11th", "8th"]),
-        AstrologicalEvent(name: "Embarking on a Personal Fitness Journey", houses: ["6th", "1st"]),
-        AstrologicalEvent(name: "Overcoming an Addiction or Bad Habit", houses: ["12th", "6th"]),
-        AstrologicalEvent(name: "Reconnecting with a Long-Lost Family Member", houses: ["4th", "3rd"]),
-        AstrologicalEvent(name: "Undergoing a Major Personality Change", houses: ["1st", "12th"]),
-        AstrologicalEvent(name: "Achieving a Life Dream or Aspiration", houses: ["11th", "9th"]),
-        AstrologicalEvent(name: "Facing a Major Decision or Crossroads", houses: ["7th", "9th"]),
-        AstrologicalEvent(name: "Dealing with Identity Theft or Fraud", houses: ["8th", "3rd"]),
-        AstrologicalEvent(name: "Having a Life-Changing Experience Abroad", houses: ["9th", "12th"]),
-        AstrologicalEvent(name: "Discovering a Significant Ancestral Connection", houses: ["4th", "8th"]),
-        AstrologicalEvent(name: "Receiving a Major Critique or Review", houses: ["10th", "3rd"]),
-        AstrologicalEvent(name: "Facing a Housing or Living Situation Crisis", houses: ["4th", "12th"]),
-        AstrologicalEvent(name: "Making a Significant Lifestyle or Dietary Change", houses: ["6th", "2nd"]),
-        AstrologicalEvent(name: "Receiving a Significant Gift or Inheritance", houses: ["8th", "2nd"])
-    ]
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -132,6 +71,25 @@ var collectionView: UICollectionView!
             // Check if collectionView is not nil before registering the cell
         
     }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label: UILabel
+        if let view = view as? UILabel {
+            label = view
+        } else {
+            label = UILabel()
+        }
+
+        label.text = predefinedEvents[row].name
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5 // Adjust as needed
+
+        // Additional styling if needed
+        // label.font = UIFont.systemFont(ofSize: 16)
+
+        return label
+    }
+
             
 
     func setupUI() {
@@ -231,13 +189,79 @@ var collectionView: UICollectionView!
         let natalAspects = calculateNatalAspects(for: selectedEvent, date: eventDate)
         let progressedAspects = calculateProgressedAspects(for: selectedEvent, date: eventDate)
         
+        // Handle saving of photos and get their paths
+        let photoPaths = savePhotosAndGetPaths(photos: selectedPhotos)
+
         // Save the event data to Core Data
-        saveEventDataToCoreData(eventType: selectedEvent.name, eventDate: eventDate, userId: selectedEvent.houses, natalAspects: natalAspects, progressedAspects: progressedAspects)
+        saveEventDataToCoreData(eventType: selectedEvent.name, eventDate: eventDate, userId: selectedEvent.houses, natalAspects: natalAspects, progressedAspects: progressedAspects, photoPaths: photoPaths)
         
         // Navigate to the EventListViewController
-        let eventListVC = EventListViewController() // Initialize your EventListViewController here
+        let eventListVC = EventListViewController() 
+        eventListVC.chartCake = chartCake
+        // Initialize your EventListViewController here
         navigationController?.pushViewController(eventListVC, animated: true)
     }
+    
+    func savePhotoToFileSystem(photo: UIImage) -> String? {
+        // Create a unique file name or identifier for the image
+        let fileName = UUID().uuidString + ".jpg"
+
+        // Get the document directory URL
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+
+        // Create the full file URL
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+
+        // Convert the UIImage to JPEG data
+        guard let data = photo.jpegData(compressionQuality: 1.0) else {
+            return nil
+        }
+
+        // Write the data to the file URL
+        do {
+            try data.write(to: fileURL)
+            return fileURL.path
+        } catch {
+            print("Error saving photo: \(error)")
+            return nil
+        }
+    }
+
+
+    func savePhotosAndGetPaths(photos: [UIImage]) -> String {
+        var paths: [String] = []
+        for photo in photos {
+            if let path = savePhotoToFileSystem(photo: photo) {
+                paths.append(path)
+            }
+        }
+        return paths.joined(separator: ",")
+    }
+
+    func saveEventDataToCoreData(eventType: String, eventDate: Date, userId: [String], natalAspects: String, progressedAspects: String, photoPaths: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "UserEvent", in: managedContext)!
+        let userEvent = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        userEvent.setValue(eventType, forKeyPath: "eventType")
+        userEvent.setValue(eventDate, forKey: "eventDate")
+        userEvent.setValue(natalAspects, forKey: "natalAspects")
+        userEvent.setValue(progressedAspects, forKey: "progressedAspects")
+        userEvent.setValue(photoPaths, forKey: "photoPaths")
+
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+
     func updatePhotoStackView() {
         // Remove all existing arranged subviews
         photoStackView.arrangedSubviews.forEach {
@@ -289,26 +313,7 @@ var collectionView: UICollectionView!
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    //    func fetchEventsFromCoreData() -> [UserEvent] {
-    //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-    //            return []
-    //        }
-    //
-    //        let managedContext = appDelegate.persistentContainer.viewContext
-    //        let fetchRequest = NSFetchRequest<UserEvent>(entityName: "UserEvent")
-    //
-    //        do {
-    //            let events = try managedContext.fetch(fetchRequest)
-    //            return events.map { event in
-    //                // Map or process the event data as needed for export
-    //                // Include natalAspects and progressedAspects in the export format
-    //            }
-    //        } catch let error as NSError {
-    //            print("Could not fetch. \(error), \(error.userInfo)")
-    //            return []
-    //        }
-    //    }
-    
+
     // Define a dictionary to store progressed aspects for each planet
     var planetProgressedAspectCache: [Planet: [String]] = [:]
     
