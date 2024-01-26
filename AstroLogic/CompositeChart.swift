@@ -347,150 +347,68 @@ class CompositeBirthChartView: UIView {
         }
 
         
-        let minSymbolDistance: CGFloat = 10 // Adjust this value to change the minimum distance
-        var lastSymbolCenter: CGPoint? = nil
-        var lastCelestialObject: CelestialObject? = nil
-        
-        for (_, (celestialObject, imageName)) in sortedPlanetSymbols.enumerated() {
-            guard let position = planetPositions[celestialObject] else { continue }
-            let angle = 2 * .pi - (position * .pi / 180) + .pi
-            let radius = min(bounds.width, bounds.height) * 0.45 - 20
-            let center = CGPoint(x: bounds.midX, y: bounds.midY)
-            var centerX = center.x + cos(angle) * radius
-            var centerY = center.y + sin(angle) * radius
-            
-            if let lastCenter = lastSymbolCenter, let lastPosition = lastCelestialObject.flatMap({ planetPositions[$0] }) {
-                let distance = hypot(centerX - lastCenter.x, centerY - lastCenter.y)
-                
-                if distance < minSymbolDistance {
-                    if position > lastPosition {
-                        let angleAdjustment = -minSymbolDistance / radius
-                        let adjustedAngle = angle + angleAdjustment
-                        centerX = center.x + cos(adjustedAngle) * radius
-                        centerY = center.y + sin(adjustedAngle) * radius
-                    } else {
-                        let angleAdjustment = minSymbolDistance / radius
-                        let adjustedAngle = angle + angleAdjustment
-                        centerX = center.x + cos(adjustedAngle) * radius
-                        centerY = center.y + sin(adjustedAngle) * radius
-                    }
-                    
-                    
-                }
-            }
-            
-            lastSymbolCenter = CGPoint(x: centerX, y: centerY)
-            lastCelestialObject = celestialObject
-            
-            
-            
-            let symbolSize = min(bounds.width, bounds.height) / 30
-            let symbolRect = CGRect(x: centerX - symbolSize / 2, y: centerY - symbolSize / 2, width: symbolSize, height: symbolSize)
-            
-            let degreeLabelRadius = min(bounds.width, bounds.height) * 0.45 - 42
-            var lastDegreeLabelCenter: CGPoint? = nil
-            var lastDegreeLabelCelestialObject: CelestialObject? = nil
-            let minLabelDistance: CGFloat = 20
-            for (_, (celestialObject, degree)) in sortedPlanetDegree.enumerated() {
-                guard let position = planetPositions[celestialObject] else { continue }
+        for (index, (celestialObject, imageName)) in sortedPlanetSymbols.enumerated() {
+              guard let position = planetPositions[celestialObject] else { continue }
+              let angle = 2 * .pi - (position * .pi / 180) + .pi
+              let radius = min(bounds.width, bounds.height) * 0.36 - 20 // Adjust the offset for each layer
+              let center = CGPoint(x: bounds.midX, y: bounds.midY)
+              let symbolCenterX = center.x + cos(angle) * radius
+              let symbolCenterY = center.y + sin(angle) * radius
 
-                let degreeLabel = UILabel()
-                degreeLabel.textColor = .white
-                degreeLabel.textAlignment = .center
-                degreeLabel.text = degree
-                degreeLabel.font = UIFont.systemFont(ofSize: adjustedFontSize(for: 9))
+              let symbolSize = min(bounds.width, bounds.height) / 30
+              let symbolRect = CGRect(x: symbolCenterX - symbolSize / 2, y: symbolCenterY - symbolSize / 2, width: symbolSize, height: symbolSize)
 
-                degreeLabel.sizeToFit()
+              if let image = UIImage(named: imageName) {
+                  image.draw(in: symbolRect)
+              }
 
-                let degreeLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: degreeLabelRadius, lastSymbolCenter: &lastDegreeLabelCenter, lastCelestialObject: &lastDegreeLabelCelestialObject, minSymbolDistance: minLabelDistance)
-                degreeLabel.center = degreeLabelCenter
-                addSubview(degreeLabel)
-            }
+              // Draw degrees and minutes text labels next to each symbol, ensuring no overlap
+              let degree = sortedPlanetDegree[index].degree
+              let minute = sortedPlanetMinute[index].minute
+              
+              // Draw the degree label
+              drawTextLabel(context: context, text: degree, angle: angle, radius: radius - symbolSize, center: center, fontSize: adjustedFontSize(for: 9))
 
-            
+              // Draw the sign symbol
+              let signImageName = sortedPlanetSignSymbol[index].imageName
+              drawSignSymbol(context: context, imageName: signImageName, angle: angle, radius: radius - symbolSize * 2, center: center)
 
-            let signSymbolLabelRadius = min(bounds.width, bounds.height) * 0.45 - 59
-            var lastSignSymbolLabelCenter: CGPoint? = nil
-            var lastSignSymbolLabelCelestialObject: CelestialObject? = nil
+              // Draw the minute label
+              drawTextLabel(context: context, text: minute, angle: angle, radius: radius - symbolSize * 3, center: center, fontSize: adjustedFontSize(for: 6))
+          }
+      }
 
-            for (_, (celestialObject, imageName)) in sortedPlanetSignSymbol.enumerated() {
-                guard let position = planetPositions[celestialObject] else { continue }
-                let angle = 2 * .pi - (position * .pi / 180) + .pi
-                let radius = min(bounds.width, bounds.height) * 0.45 - 61
-                let center = CGPoint(x: bounds.midX, y: bounds.midY)
-                _ = center.x + cos(angle) * radius
-                _ = center.y + sin(angle) * radius
-
-                let symbolSize = min(bounds.width, bounds.height) / 40
-                let symbolImageView = UIImageView(image: UIImage(named: imageName))
-                symbolImageView.contentMode = .scaleAspectFit
-
-                let symbolLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: signSymbolLabelRadius, lastSymbolCenter: &lastSignSymbolLabelCenter, lastCelestialObject: &lastSignSymbolLabelCelestialObject, minSymbolDistance: minLabelDistance)
-                symbolImageView.frame = CGRect(x: symbolLabelCenter.x - symbolSize / 2, y: symbolLabelCenter.y - symbolSize / 2, width: symbolSize, height: symbolSize)
-                addSubview(symbolImageView)
-            }
-
-            
-            let minuteLabelRadius = min(bounds.width, bounds.height) * 0.45 - 74
-            var lastMinuteLabelCenter: CGPoint? = nil
-            var lastMinuteLabelCelestialObject: CelestialObject? = nil
-
-            for (_, (celestialObject, minute)) in sortedPlanetMinute.enumerated() {
-                guard let position = planetPositions[celestialObject] else { continue }
-
-                let minuteLabel = UILabel()
-                minuteLabel.textColor = .white
-                minuteLabel.textAlignment = .center
-                minuteLabel.text = minute
-                minuteLabel.font = UIFont.systemFont(ofSize: adjustedFontSize(for: 6))
-
-                minuteLabel.sizeToFit()
-
-                let minuteLabelCenter = calculateNonOverlappingPosition(celestialObject: celestialObject, position: position, radius: minuteLabelRadius, lastSymbolCenter: &lastMinuteLabelCenter, lastCelestialObject: &lastMinuteLabelCelestialObject, minSymbolDistance: minLabelDistance)
-                minuteLabel.center = minuteLabelCenter
-                addSubview(minuteLabel)
-            }
-
-
-            
-            if let image = UIImage(named: imageName) {
-                image.draw(in: symbolRect)
-
-            
-            }
-        }
-    }
+      // Helper method to draw text labels at a given angle and radius from the center
+      private func drawTextLabel(context: CGContext, text: String, angle: CGFloat, radius: CGFloat, center: CGPoint, fontSize: CGFloat) {
+          let paragraphStyle = NSMutableParagraphStyle()
+          paragraphStyle.alignment = .center
+          let attributes: [NSAttributedString.Key: Any] = [
+              .font: UIFont.systemFont(ofSize: fontSize),
+              .paragraphStyle: paragraphStyle,
+              .foregroundColor: UIColor.white
+          ]
+          
+          let attributedText = NSAttributedString(string: text, attributes: attributes)
+          let textSize = attributedText.size()
+          let textCenterX = center.x + cos(angle) * radius - textSize.width / 2
+          let textCenterY = center.y + sin(angle) * radius - textSize.height / 2
+          let textRect = CGRect(x: textCenterX, y: textCenterY, width: textSize.width, height: textSize.height)
+          attributedText.draw(in: textRect)
+      }
     
-    func calculateNonOverlappingPosition(celestialObject: CelestialObject, position: CGFloat, radius: CGFloat, lastSymbolCenter: inout CGPoint?, lastCelestialObject: inout CelestialObject?, minSymbolDistance: CGFloat) -> CGPoint {
-        let angle = 2 * .pi - (position * .pi / 180) + .pi
-        let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        var centerX = center.x + cos(angle) * radius
-        var centerY = center.y + sin(angle) * radius
-        
-        if let lastCenter = lastSymbolCenter, let lastPosition = lastCelestialObject.flatMap({ planetPositions[$0] }) {
-            let distance = hypot(centerX - lastCenter.x, centerY - lastCenter.y)
-            
-            if distance < minSymbolDistance {
-                if position > lastPosition {
-                    let angleAdjustment = -minSymbolDistance / radius
-                    let adjustedAngle = angle + angleAdjustment
-                    centerX = center.x + cos(adjustedAngle) * radius
-                    centerY = center.y + sin(adjustedAngle) * radius
-                } else {
-                    let angleAdjustment = minSymbolDistance / radius
-                    let adjustedAngle = angle + angleAdjustment
-                    centerX = center.x + cos(adjustedAngle) * radius
-                    centerY = center.y + sin(adjustedAngle) * radius
-                }
-            }
-        }
-        
-        lastSymbolCenter = CGPoint(x: centerX, y: centerY)
-        lastCelestialObject = celestialObject
-        
-        return CGPoint(x: centerX, y: centerY)
-    }
 
+      // Helper method to draw sign symbols
+      private func drawSignSymbol(context: CGContext, imageName: String, angle: CGFloat, radius: CGFloat, center: CGPoint) {
+          if let image = UIImage(named: imageName) {
+              let imageSize = min(bounds.width, bounds.height) / 40
+              let imageCenterX = center.x + cos(angle) * radius - imageSize / 2
+              let imageCenterY = center.y + sin(angle) * radius - imageSize / 2
+              let imageRect = CGRect(x: imageCenterX, y: imageCenterY, width: imageSize, height: imageSize)
+              image.draw(in: imageRect)
+          }
+      }
+
+  
     
     func updatePlanetPositions(newPositions: [CelestialObject: CGFloat]) {
         planetPositions = newPositions

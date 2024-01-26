@@ -95,7 +95,7 @@ class MoonPhaseViewController: UIViewController {
         let lunarPhase = chartCake?.lunarPhase(for: chartCake!.natal)
         
         if let phase = lunarPhase?.rawValue,
-           let moonFormatted = chartCake?.natal.moon.sign.keyName.capitalizingFirstLetter() {
+           let moonFormatted = chartCake?.natal.moon.sign.keyName {
             archetype = lunarPhase?.archetype
             phaseNameSentence = "\(phase) Moon in \(moonFormatted)"
         } else {

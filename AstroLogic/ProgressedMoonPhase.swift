@@ -79,7 +79,7 @@ class ProgressedMoonPhaseViewController: UIViewController {
         view.backgroundColor = .black
 
         if let lunarPhase = chartCake?.lunarPhase(for: chartCake!.major).rawValue,
-           let moonFormatted = chartCake?.major.moon.sign.keyName.capitalizingFirstLetter(),
+           let moonFormatted = chartCake?.major.moon.sign.keyName,
            let moonHouse = chartCake?.houseCusps.house(of: chartCake!.major.moon).name {
             phaseNameSentence = "\(lunarPhase) Moon in \(moonFormatted) in the \(moonHouse) house "
         } else {

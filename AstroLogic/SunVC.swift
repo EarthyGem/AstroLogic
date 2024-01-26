@@ -173,10 +173,37 @@ class SunViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.6, alpha: 1.0)
+        // Set the background image
+        // Adjust the y position to push the image down from the top
+          let yOffset: CGFloat = 80 // Change this value to whatever you need
+          let frame = CGRect(x: 0, y: yOffset, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - yOffset)
+          let backgroundImage = UIImageView(frame: frame)
+          backgroundImage.image = UIImage(named: "sunScreen")
+          backgroundImage.contentMode = .scaleAspectFill
+          view.insertSubview(backgroundImage, at: 0)
+        // Optionally set a color overlay if needed to improve text visibility
+        let overlayView = UIView(frame: UIScreen.main.bounds)
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.3) // Adjust the alpha to your preference
+        view.insertSubview(overlayView, at: 1)
 
+        // Other setup...
+        
         setupViews()
         setupLabels()
         setupLayout()
+        
+        // Configure label colors for better visibility on the background
+        pageTitleLabel.textColor = .white // Change as needed to match your design
+        currentDateLabel.textColor = .white // Change as needed
+        collectiveSeasonTitleLabel.textColor = .white // Change as needed
+        collectiveSeasonHeaderLabel.textColor = .white // Change as needed
+        collectiveSeasonSubheaderLabel.textColor = .white // Change as needed
+        collectiveSeasonContentLabel.textColor = .white // Change as needed
+        vitalityCheckInTitleLabel.textColor = .white // Change as needed
+        moonHousePlacementLabel.textColor = .white // Change as needed
+        moonConjunctionLabel.textColor = .white // Change as needed
+        vitalityCheckInContentLabel.textColor = .white // Change as needed
+        
     }
     
     private func setupViews() {
@@ -274,8 +301,8 @@ class SunViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 270),
+          
             contentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),

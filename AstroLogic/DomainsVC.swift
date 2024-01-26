@@ -90,7 +90,7 @@ class DomainViewController: UIViewController {
           explanationLabel.textAlignment = .center // Adjust text alignment as needed
 
           // Set the frame or use Auto Layout constraints
-          explanationLabel.frame = CGRect(x: 20, y: 355, width: view.frame.width - 40, height: 1000) // Adjust the positioning and size as needed
+          explanationLabel.frame = CGRect(x: 20, y: 300, width: view.frame.width - 40, height: 1000) // Adjust the positioning and size as needed
           scrollView.addSubview(explanationLabel)
       }
 }

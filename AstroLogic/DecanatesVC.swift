@@ -93,7 +93,7 @@ class DeacanatesViewController: UIViewController, UITableViewDelegate, UITableVi
         let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet)
         _ = planetOrder[indexPath.row]
         
-        let viewerVC = DecanateViewerVC(planet: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row], text: getDescription(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row].capitalizingFirstLetter())!, keyword: "", tarotCardImageName: getTarot(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row].capitalizingFirstLetter())!, constellationImageName: getDecanates(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row].capitalizingFirstLetter())!)
+        let viewerVC = DecanateViewerVC(planet: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row], text: getDescription(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row])!, keyword: "", tarotCardImageName: getTarot(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row])!, constellationImageName: getDecanates(for: getPlanetOrder(strongestPlanet: strongestPlanet)[indexPath.row])!)
         navigationController?.pushViewController(viewerVC, animated: true)
     }
 

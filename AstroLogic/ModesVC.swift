@@ -82,6 +82,7 @@ class ModesViewController: UIViewController {
         return dataEntries
     }
   
+   
     func setupExplanationLabel() {
           explanationLabel = UILabel()
           explanationLabel.numberOfLines = 0 // Allows multiple lines
@@ -89,9 +90,18 @@ class ModesViewController: UIViewController {
           explanationLabel.textColor = .white // Adjust the text color as needed
           explanationLabel.font = UIFont.systemFont(ofSize: 14) // Adjust the font size as needed
           explanationLabel.textAlignment = .center // Adjust text alignment as needed
-
-          // Set the frame or use Auto Layout constraints
-          explanationLabel.frame = CGRect(x: 20, y: 355, width: view.frame.width - 40, height: 1000) // Adjust the positioning and size as needed
+          explanationLabel.translatesAutoresizingMaskIntoConstraints = false // Important for Auto Layout
+          
           scrollView.addSubview(explanationLabel)
+
+          // Constraints
+          let margins = scrollView.layoutMarginsGuide
+          NSLayoutConstraint.activate([
+              explanationLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 300), // Adjust the top constraint as needed
+              explanationLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20), // Left padding
+              explanationLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20), // Right padding
+              explanationLabel.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor) // If you want to constrain the bottom
+          ])
       }
+
 }

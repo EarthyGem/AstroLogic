@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23B92" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ChartEntity" representedClassName="ChartEntity" syncable="YES" codeGenerationType="class">
         <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="birthPlace" optional="YES" attributeType="String"/>
@@ -12,5 +12,13 @@
         <attribute name="strongestPlanet" optional="YES" attributeType="String"/>
         <attribute name="strongestPlanetArchetype" optional="YES" attributeType="String"/>
         <attribute name="strongestPlanetSign" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UserEvent" representedClassName="UserEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="eventDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="eventType" optional="YES" attributeType="String"/>
+        <attribute name="house" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="natalAspects" optional="YES" attributeType="String"/>
+        <attribute name="progressedAspects" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
     </entity>
 </model>

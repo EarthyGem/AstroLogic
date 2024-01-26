@@ -172,9 +172,9 @@ func generateAstroSentence(strongestPlanet: String,
     let risingSignArrays: [String: [String]] = signArrays.mapValues { attributes in
         attributes.map { attribute in
             if let firstChar = attribute.first, "aeiouAEIOU".contains(firstChar) {
-                return "an \(attribute.capitalizingFirstLetter())"
+                return "an \(attribute)"
             } else {
-                return "a \(attribute.capitalizingFirstLetter())"
+                return "a \(attribute)"
             }
         }
     }

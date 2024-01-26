@@ -46,6 +46,8 @@ class SpecialFeaturesViewController: UIViewController {
         RicksItems(chartType: "Cycle Charts"),
         RicksItems(chartType: "Aspect Charts"),
         RicksItems(chartType: "Weather Charts"),
+        RicksItems(chartType: "What's Up?"),
+        RicksItems(chartType: "Research")
 
     //    RicksItems(chartType: "Planetary Hours")
 
@@ -94,44 +96,12 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
         
 
 
-//        let timingVC = AstrologyTabBarController()
-//        timingVC.chartCake = self.chartCake
-//        timingVC.selectedDate = self.selectedDate
-////print("chartCake (myItems): \(chartCake)")
-//        timingVC.latitude = self.latitude
-//        timingVC.longitude = self.longitude
-//
-
-
-
-        let transitAspectsVC = TransitAspectsTimeChangeViewController()
-        transitAspectsVC.title = category.chartType
-        transitAspectsVC.chartCake = self.chartCake
-        transitAspectsVC.selectedDate = self.selectedDate
-        
-        
-     
-
-        let planetaryHoursVC = PlanetaryHoursViewController()
-
-        planetaryHoursVC.latitude = self.latitude
-        planetaryHoursVC.longitude = self.longitude
-
-
-
-
    
 
         let horaryVC = HoraryAstrologyViewController()
         horaryVC.title = "Horary Chart"
 
    
-        let birthdayWishVC = MainTabBarController(chartCake: ChartCake(birthDate: chartCake!.natal.birthDate, latitude: latitude!, longitude: longitude!, transitDate: selectedDate)!, selectedDate: Date(), longitude: longitude!, latitude: latitude!)
-        birthdayWishVC.latitude = latitude
-        birthdayWishVC.longitude = longitude
-        birthdayWishVC.selectedDate = selectedDate
-        birthdayWishVC.title = "Other Person"
-
         
         let nameVC = NameViewController()
         nameVC.chartCake = self.chartCake
@@ -169,12 +139,12 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
       //  cycleChartsVC.otherChart = self.otherChart
         weatherVC.title = "Weather Charts"
 
-     
-
+        let questionVC = AstrologyViewController()
+     let researchVC = EventInputViewController()
 
      //   MP_PlanetsVC.title = category.chartType
 
-        let categories = [ nameVC,vocationalTVC,medicalAstrologyVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC]
+        let categories = [ nameVC,vocationalTVC,medicalAstrologyVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC,questionVC,researchVC]
 
         navigationController?.pushViewController(categories[indexPath.row] , animated: true)
 

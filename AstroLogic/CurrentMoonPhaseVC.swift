@@ -116,7 +116,7 @@ class CurrentMoonPhaseViewController: UIViewController {
         moodOfDayLabel.text = getMoodOfDayText()
 
         if let lunarPhase = chartCake?.lunarPhase(for: chartCake!.transits).rawValue,
-           let moonFormatted = chartCake?.transits.moon.sign.keyName.capitalizingFirstLetter() {
+           let moonFormatted = chartCake?.transits.moon.sign.keyName {
             phaseNameSentence = "\(lunarPhase) Moon in \(moonFormatted)"
         } else {
             phaseNameSentence = "Unknown Phase" // Fallback in case data is missing
