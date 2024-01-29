@@ -8,7 +8,8 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
     let tableView = UITableView()
     var chartCake: ChartCake!
     var events: [NSManagedObject] = []
-
+    var latitude: Double!
+    var longitude: Double!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(CustomEventCell.self, forCellReuseIdentifier: "EventCell")
@@ -86,14 +87,18 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
         // Assuming ChartCake can be initialized with the event details
         // Replace this with the actual data you need to pass
         if let chartCake = chartCake {
-            let nextViewController = EventsTabBarController(chartCake: chartCake, selectedDate: selectedDate)
+            let nextViewController = EventsTabBarController(chartCake: ChartCake(birthDate: chartCake.natal.birthDate, latitude: latitude!, longitude: longitude!, transitDate: selectedDate)!, selectedDate: selectedDate)
 
+
+            
             // Push the nextViewController or present it modally
             navigationController?.pushViewController(nextViewController, animated: true)
             // OR
             // present(nextViewController, animated: true, completion: nil)
         }
     }
+
+
 
 
       // Function to delete an event

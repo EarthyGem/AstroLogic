@@ -15,23 +15,20 @@ class EventInputViewController: UIViewController, UIPickerViewDelegate, UIPicker
 var collectionView: UICollectionView!
     var chartCake: ChartCake!
     var selectedPhotos: [UIImage] = []
-    
+    var latitude: Double!
+    var longitude: Double!
     let photoStackView = UIStackView()
     let eventTypePicker = UIPickerView()
     //   let eventDatePicker = UIDatePicker()
     lazy var eventDatePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
-      
         picker.backgroundColor = .gray
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        if let date = df.date(from: "1977-05-21") {
-            picker.date = date
-        }
-        
+        picker.date = Date() // Set the date to the current date
+
         return picker
     }()
+
     let notesTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,10 +64,24 @@ var collectionView: UICollectionView!
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
         view.addSubview(collectionView)
 
-            
+        let eventsListButton = UIBarButtonItem(title: "Saved Events", style: .plain, target: self, action: #selector(eventsListButtonTapped))
+
+        // Add the button to the navigation bar
+        navigationItem.rightBarButtonItem = eventsListButton
+
             // Check if collectionView is not nil before registering the cell
         
     }
+
+    @objc func eventsListButtonTapped() {
+        let eventListVC = EventListViewController()
+        eventListVC.chartCake = chartCake
+        eventListVC.latitude = latitude
+        eventListVC.longitude = longitude
+        // Initialize your EventListViewController here
+        navigationController?.pushViewController(eventListVC, animated: true)
+    }
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var label: UILabel
         if let view = view as? UILabel {
@@ -188,16 +199,18 @@ var collectionView: UICollectionView!
         // Calculate the natal and progressed aspects based on the selected event and date
         let natalAspects = calculateNatalAspects(for: selectedEvent, date: eventDate)
         let progressedAspects = calculateProgressedAspects(for: selectedEvent, date: eventDate)
-        
+        let notes = "\(notesTextView.text!)\n"
         // Handle saving of photos and get their paths
         let photoPaths = savePhotosAndGetPaths(photos: selectedPhotos)
 
         // Save the event data to Core Data
-        saveEventDataToCoreData(eventType: selectedEvent.name, eventDate: eventDate, userId: selectedEvent.houses, natalAspects: natalAspects, progressedAspects: progressedAspects, photoPaths: photoPaths)
-        
+        saveEventDataToCoreData(eventType: selectedEvent.name, eventDate: eventDate, userId: selectedEvent.houses, natalAspects: natalAspects, progressedAspects: progressedAspects, photoPaths: photoPaths, notes: notes ?? "No Notes")
+
         // Navigate to the EventListViewController
         let eventListVC = EventListViewController() 
         eventListVC.chartCake = chartCake
+        eventListVC.latitude = latitude
+        eventListVC.longitude = longitude
         // Initialize your EventListViewController here
         navigationController?.pushViewController(eventListVC, animated: true)
     }
@@ -240,7 +253,7 @@ var collectionView: UICollectionView!
         return paths.joined(separator: ",")
     }
 
-    func saveEventDataToCoreData(eventType: String, eventDate: Date, userId: [String], natalAspects: String, progressedAspects: String, photoPaths: String) {
+    func saveEventDataToCoreData(eventType: String, eventDate: Date, userId: [String], natalAspects: String, progressedAspects: String, photoPaths: String, notes: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -254,6 +267,7 @@ var collectionView: UICollectionView!
         userEvent.setValue(natalAspects, forKey: "natalAspects")
         userEvent.setValue(progressedAspects, forKey: "progressedAspects")
         userEvent.setValue(photoPaths, forKey: "photoPaths")
+        userEvent.setValue(notes, forKey: "notes")
 
         do {
             try managedContext.save()
@@ -291,27 +305,6 @@ var collectionView: UICollectionView!
     func calculateProgressedAspects(for event: AstrologicalEvent, date: Date) -> String {
         // Your logic to calculate progressed aspects
         return ""
-    }
-    func saveEventDataToCoreData(eventType: String, eventDate: Date, userId: [String], natalAspects: String, progressedAspects: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "UserEvent", in: managedContext)!
-        let userEvent = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        userEvent.setValue(eventType, forKeyPath: "eventType")
-        userEvent.setValue(eventDate, forKey: "eventDate")
-        //  userEvent.setValue(userId, forKey: "userID")
-        userEvent.setValue(natalAspects, forKey: "natalAspects")
-        userEvent.setValue(progressedAspects, forKey: "progressedAspects")
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
     }
 
     // Define a dictionary to store progressed aspects for each planet

@@ -2,12 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ç</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We would like access to your calendar to remind you of the cosmic time.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We&apos;d like to give you access to your photos</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need to use location services to calculate based on your birthplace.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We&apos;d like to allow usage of your camera</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -15,7 +15,7 @@ class CurrentMoonPhaseViewController: UIViewController {
     // This will hold the name of the moon phase.
     var phaseName: String!
     var phaseNameSentence: String!
-
+    var name: String!
     private var imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,26 @@ class CurrentMoonPhaseViewController: UIViewController {
         label.numberOfLines = 0 // Allows label to wrap text to as many lines as needed
         return label
     }()
-    
+
+    private var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .black
+        return scrollView
+    }()
+
+
+    private var moonHouseLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .lightGray
+        label.numberOfLines = 0 // Allows label to wrap text to as many lines as needed
+        return label
+    }()
+
+
     private var moonPhaseLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -102,22 +121,40 @@ class CurrentMoonPhaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
 
+        view.addSubview(scrollView)
+        setupScrollViewConstraints()
+
+        // Add subviews to the scrollView
+        scrollView.addSubview(imageView)
         setupImageView()
+
+        scrollView.addSubview(phaseLabel)
         setupPhaseLabel()
+
+        scrollView.addSubview(speedLabel)
         setupSpeedLabel()
+
+        scrollView.addSubview(declinationLabel)
         setupDeclinationLabel()
+
+        scrollView.addSubview(moodOfDayLabel)
         setupMoodOfDayLabel()
+
+        scrollView.addSubview(moonPhaseLabel)
         setupMoonPhaseLabel()
 
-        // Assuming you have a method to get the mood of the day text
+        moonHouseLabel.text = getMoonHouse()
+        scrollView.addSubview(moonHouseLabel)
+        setupMoonHouseLabel()
+
+        // Update labels with data
         moonPhaseLabel.text = getMoonPhaseText()
         moodOfDayLabel.text = getMoodOfDayText()
 
         if let lunarPhase = chartCake?.lunarPhase(for: chartCake!.transits).rawValue,
            let moonFormatted = chartCake?.transits.moon.sign.keyName {
-            phaseNameSentence = "\(lunarPhase) Moon in \(moonFormatted)"
+            phaseNameSentence = "\(lunarPhase) Moon in \(moonFormatted) in the \(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).houseString)"
         } else {
             phaseNameSentence = "Unknown Phase" // Fallback in case data is missing
         }
@@ -128,7 +165,12 @@ class CurrentMoonPhaseViewController: UIViewController {
         phaseLabel.text = phaseNameSentence
         speedLabel.text = moonSpeedDescription(speed: chartCake?.transits.moon.speedLongitude)
         declinationLabel.text = moonDeclinationDescription(declination: chartCake?.transits.moon.declination)
+
+        // Set up the content size for the scroll view
+        let contentHeight = moonHouseLabel.frame.origin.y + moonHouseLabel.frame.size.height + 20 // Adjust the 20 to your preference
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: contentHeight)
     }
+
 
 
     func setupImageView() {
@@ -150,6 +192,36 @@ class CurrentMoonPhaseViewController: UIViewController {
             phaseLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             phaseLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             phaseLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+    }
+
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let bottomOfLastSubview = moonHouseLabel.frame.origin.y + moonHouseLabel.frame.size.height
+        let contentHeight = bottomOfLastSubview + 20 // Add some padding at the bottom
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: contentHeight)
+    }
+    func setupScrollViewConstraints() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+
+
+    func setupMoonHouseLabel() {
+        scrollView.addSubview(moonHouseLabel)
+
+        NSLayoutConstraint.activate([
+            moonHouseLabel.topAnchor.constraint(equalTo: moonPhaseLabel.bottomAnchor, constant: 20),
+            moonHouseLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            moonHouseLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            moonHouseLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            moonHouseLabel.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor, constant: -20) // New constraint
         ])
     }
 
@@ -213,6 +285,12 @@ class CurrentMoonPhaseViewController: UIViewController {
         
         // Retrieve the message for the current lunar phase and month
         return lunarPhase.messageFor(month: currentMonth)
+    }
+    // Function to get the Moon's house
+    func getMoonHouse() -> String {
+      var moonHouse = "\(chartCake!.houseCusps.cusp(for: (chartCake!.transits.moon.longitude)).moonMessages[0])"
+
+        return moonHouse
     }
 
 
