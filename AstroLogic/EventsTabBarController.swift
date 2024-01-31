@@ -19,38 +19,37 @@ class EventsTabBarController: UITabBarController {
     var latitude: Double?
     var longitude: Double?
     var notes: String?
+    var name: String!
     var event: NSManagedObject?
-    init(chartCake: ChartCake, selectedDate: Date) {
+    init(chartCake: ChartCake, selectedDate: Date, name: String) {
         self.chartCake = chartCake
         self.selectedDate = selectedDate
-  
+        self.name = name
         super.init(nibName: nil, bundle: nil)
     }
    
    required init?(coder: NSCoder) {
        fatalError("init(coder:) has not been implemented")
    }
-    func fetchEventFromCoreData(selectedDate: Date) -> (event: NSManagedObject?, photoPaths: [String]?) {
-        // Get the managed object context from the app delegate
+    func fetchEventFromCoreData(selectedDate: Date, userName: String) -> (event: NSManagedObject?, photoPaths: [String]?) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
 
-        // Create a fetch request for the UserEvent entity
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserEvent")
 
-        // Specify a predicate to filter the events based on the selected date
-        fetchRequest.predicate = NSPredicate(format: "eventDate == %@", selectedDate as NSDate)
+        // Update predicate to filter based on both the date and the user's name
+        let datePredicate = NSPredicate(format: "eventDate == %@", selectedDate as NSDate)
+        let userPredicate = NSPredicate(format: "userID == %@", userName)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [datePredicate, userPredicate])
 
-        // Execute the fetch request
         do {
             let fetchedEvents = try managedContext.fetch(fetchRequest)
-            if fetchedEvents.isEmpty {
-                print("No event found for the selected date.")
-                return (nil, nil)
+            if let event = fetchedEvents.first {
+                let photoPaths = event.value(forKey: "photoPaths") as? String
+                return (event, photoPaths?.split(separator: ",").map(String.init))
             } else {
-                let event = fetchedEvents.first
-                let photoPaths = event?.value(forKey: "photoPaths") as? String
-                return (event, photoPaths?.split(separator: ",").map(String.init) ?? [])
+                print("No event found for the selected date and user.")
+                return (nil, nil)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -58,7 +57,6 @@ class EventsTabBarController: UITabBarController {
         }
     }
 
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         print("EventDetailsViewController loaded with event: \(String(describing: event))")
@@ -66,7 +64,8 @@ class EventsTabBarController: UITabBarController {
         print("Memory address in EventsTabBarController: \(Unmanaged.passUnretained(self).toOpaque())") // Debugging line 2
 
 
-        let (fetchedEvent, photoPaths) = fetchEventFromCoreData(selectedDate: selectedDate!)
+        let (fetchedEvent, photoPaths) = fetchEventFromCoreData(selectedDate: selectedDate!, userName: name)
+
         print("Fetched event: \(String(describing: fetchedEvent)), photoPaths: \(String(describing: photoPaths))")
 
         if let fetchedEvent = fetchedEvent {

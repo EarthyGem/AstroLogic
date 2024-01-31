@@ -7,7 +7,7 @@
 
 import UIKit
 import SwiftEphemeris
-
+import Firebase
 
 
 class TransitAspectsTimeChangeViewController: UIViewController  {
@@ -42,6 +42,7 @@ class TransitAspectsTimeChangeViewController: UIViewController  {
 
         // Create an instance of the next view controller
         let nextViewController = ProgressionsAspectsTabBarController(chartCake: ChartCake(birthDate: chartCake!.natal.birthDate, latitude: latitude!, longitude: longitude!, transitDate: selectedDate)!, selectedDate: selectedDate)
+        Analytics.logEvent("timing_button_tapped", parameters: nil)
       
         nextViewController.selectedDate = selectedDate
 print("selected date: \(selectedDate)")
@@ -102,6 +103,8 @@ print("selected date: \(selectedDate)")
       override func viewDidLoad() {
           super.viewDidLoad()
 
+          
+          
  tcDP.frame = CGRect(x: 0, y: 150, width: 400, height: 450)
         tcDP.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.75, alpha: 1)
         tcDP.backgroundColor = UIColor(red: 236/255, green: 239/255, blue: 244/255, alpha: 1)

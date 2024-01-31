@@ -1,6 +1,8 @@
 import UIKit
 import CoreData
 import SwiftEphemeris
+import Firebase
+
 
 class RelationshipsViewController: UIViewController, UITableViewDataSource, RelationshipSelectionDelegate {
 
@@ -23,7 +25,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         super.viewDidLoad()
 
         setupTableView()
-
+        Analytics.logEvent("relationships_viewDidLoad", parameters: nil)
    
             // Data has not been pre-fetched
             charts = fetchAllCharts()

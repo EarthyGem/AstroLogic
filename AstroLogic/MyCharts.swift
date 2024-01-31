@@ -2,7 +2,7 @@ import UIKit
 import SwiftEphemeris
 import CoreData
 import SystemConfiguration
-
+import Firebase
 
 
 class ChartsViewController: UIViewController {
@@ -13,7 +13,9 @@ class ChartsViewController: UIViewController {
     var birthPlace: String?
     var birthPlaceTimeZone: TimeZone?
     var chartDate: Date?
- 
+    let planetRankings: [String: Int] = ["Sun": 1, "Moon": 2, "Mercury": 3, "Venus": 4, "Mars": 5, "Jupiter": 6, "Saturn": 7, "Uranus": 8, "Neptune": 9, "Pluto": 10]
+
+    // Step 3: Assign a rank to each chart
     var toggleSwitch: UISwitch!
     @IBAction func importButtonTapped(_ sender: UIBarButtonItem) {
         // Code to navigate to the new import screen
@@ -50,14 +52,17 @@ class ChartsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         charts = fetchAllCharts()
-        //  deleteAllNames()
+
+        // Calculate the strongest planet for each chart and sort
+        sortChartsByStrongestPlanet()
+
         tableView.reloadData()
     }
 
     @objc func toggleSwitchChanged(sender: UISwitch) {
         // Handle switch state changes here
         // You can access sender.isOn to determine the new state (true for on, false for off)
-        
+        Analytics.logEvent("toggle_nodes", parameters: nil)
         // Apply changes to all the charts based on the new switch state
         if sender.isOn {
             // Apply changes when the switch is on
@@ -245,6 +250,16 @@ class ChartsViewController: UIViewController {
         let mostDiscordantPlanet = sorted.first!.key
 
         return mostDiscordantPlanet
+    }
+
+    func sortChartsByStrongestPlanet() {
+        charts = charts.map { chart in
+            let chartObj = Chart(date: chart.birthDate!, latitude: chart.latitude, longitude: chart.longitude, houseSystem: .placidus)
+            let scores = chartObj.getTotalPowerScoresForPlanets()
+            let strongestPlanet = getStrongestPlanet(from: scores)
+            chart.strongestPlanet = strongestPlanet.keyName // Assuming you have a property 'strongestPlanet' in ChartEntity
+            return chart
+        }.sorted { $0.strongestPlanet! < $1.strongestPlanet! }
     }
 
 

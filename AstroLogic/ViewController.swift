@@ -3,7 +3,7 @@ import CoreData
 import UIKit
 import MapKit
 import CoreLocation
-
+import Firebase
 //import GoogleMaps
 
 import CoreData
@@ -397,6 +397,12 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
     @objc func showMyCharts() {
         let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
+        Analytics.logEvent("add_chart", parameters: nil
+        )
+
+        
+
+        
         navigationController?.pushViewController(myChartsViewController, animated: true)
     }
 
@@ -535,7 +541,8 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
         getPowerPlanetButton.isEnabled = false
         let location = birthPlaceTextField.text!
         getPowerPlanetButton.isEnabled = false
-
+        Analytics.logEvent("chart_added", parameters: nil
+        )
 
 
         geocoding(location: location) { latitude, longitude in
@@ -591,10 +598,10 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
                 let phaseName = chartCake?.lunarPhase(for: chartCake!.natal)
 
-                // let signScore = self.chart.calculateTotalSignScore()
-                // let houseStrengths = self.chart.calculatePlanetInHouseScores()
-                // let houseScores = self.chart.calculateHouseStrengths()
-
+                let houseHarmonyScores = chart.calculateHouseHarmonyDiscord(bodiesArgument)
+                let houseScores = chart.calculateHouseStrengths(bodiesArgument)
+                let signScores = chart.calculateTotalSignScore(bodiesArgument)
+                let signHarmonyScores = chart.calculateTotalSignHarmonyDiscord(bodiesArgument)
              //   let tuple = chart.getTotalHarmonyDiscordScoresForPlanets()
 
                 if strongestPlanet == Planet.sun.celestialObject {
@@ -639,29 +646,34 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
      //   print("sorted scores: \((sortedPlanets))")
 
                 // Initialize and push the StrongestPlanetViewController
+                // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
                 strongestPlanetVC.chartCake = chartCake
                 strongestPlanetVC.chart = chart
-                strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
-                strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
-               // strongestPlanetVC.charts = charts
-                strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
                 strongestPlanetVC.strongestPlanet = getStrongestPlanet(from: scores).keyName
                 strongestPlanetVC.strongestPlanetArchetype = getStrongestPlanet(from: scores).archetype
-                strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
-                strongestPlanetVC.name = nameTextField.text!
-                strongestPlanetVC.phaseName = phaseName?.rawValue
+                strongestPlanetVC.name = name
+                strongestPlanetVC.harmonyDiscordtuple = tuple
+                strongestPlanetVC.scores = scores
+      
+                strongestPlanetVC.birthDate = chartDate
+                //  strongestPlanetVC.combinedBirthDateTime = chartDate
+                strongestPlanetVC.tarot = getStrongestPlanet(from: scores).tarot
+                strongestPlanetVC.disTarot = mostDiscordantPlanet.tarot
+                strongestPlanetVC.harTarot = mostHarmoniousPlanet.tarot
                 strongestPlanetVC.mostDiscordantPlanet = mostDiscordantPlanet.keyName
                 strongestPlanetVC.mostHarmoniousPlanet = mostHarmoniousPlanet.keyName
-                strongestPlanetVC.scores = scores
                 strongestPlanetVC.mostDiscordantPlanetArchetype = mostDiscordantPlanet.archetype
                 strongestPlanetVC.mostHarmoniousPlanetArchetype = mostHarmoniousPlanet.archetype
+                strongestPlanetVC.strongestPlanetSign = strongestPlanetSign
+                strongestPlanetVC.signHarmonyDisharmony = signHarmonyScores
+                strongestPlanetVC.houseHarmonyDisharmony = houseHarmonyScores
+                strongestPlanetVC.houseScores = houseScores
+                strongestPlanetVC.signScores = signScores
                 strongestPlanetVC.sentenceText = sentence
-                strongestPlanetVC.birthDate = combinedDateAndTime()
-                strongestPlanetVC.sortedPlanets = getPlanetsSortedByStrength(from: scores2)
-             //   print("sortedPlanets\(getPlanetsSortedByStrength(from: scores2))")
-                strongestPlanetVC.birthPlace = self.birthPlaceTextField.text
-
+           
+                strongestPlanetVC.latitude = latitude
+                strongestPlanetVC.longitude = longitude
                 self.navigationController?.pushViewController(strongestPlanetVC, animated: true)
 
                 resetViewController()

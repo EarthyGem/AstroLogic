@@ -3,7 +3,7 @@ import Photos
 import SwiftEphemeris
 import CoreData
 import BSImagePicker
-
+import Firebase
 
 struct AstrologicalEvent {
     let name: String
@@ -19,6 +19,7 @@ var collectionView: UICollectionView!
     var longitude: Double!
     let photoStackView = UIStackView()
     let eventTypePicker = UIPickerView()
+    var name: String!
     //   let eventDatePicker = UIDatePicker()
     lazy var eventDatePicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -42,7 +43,7 @@ var collectionView: UICollectionView!
     let attachPhotoButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Attach Photo", for: .normal)
+        button.setTitle("Attach Photo (Optional)", for: .normal)
         button.backgroundColor = .systemBlue
         button.addTarget(self, action: #selector(attachPhotoButtonTapped), for: .touchUpInside)
         return button
@@ -78,6 +79,9 @@ var collectionView: UICollectionView!
         eventListVC.chartCake = chartCake
         eventListVC.latitude = latitude
         eventListVC.longitude = longitude
+        eventListVC.name = name
+        print("event inputVC: \(name)")
+        Analytics.logEvent("eventsList_button_tapped", parameters: nil)
         // Initialize your EventListViewController here
         navigationController?.pushViewController(eventListVC, animated: true)
     }
@@ -105,9 +109,17 @@ var collectionView: UICollectionView!
 
     func setupUI() {
         // Configure the event type picker
+        let pickerTitleLabel = UILabel()
+        pickerTitleLabel.text = "Choose an Event"
+        pickerTitleLabel.textAlignment = .center
+        pickerTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pickerTitleLabel)
+
+        // Configure the event type picker
         eventTypePicker.translatesAutoresizingMaskIntoConstraints = false
         eventTypePicker.backgroundColor = UIColor.lightGray
         view.addSubview(eventTypePicker)
+        
         photoStackView.axis = .horizontal
               photoStackView.distribution = .fillEqually
               photoStackView.alignment = .fill
@@ -121,7 +133,7 @@ var collectionView: UICollectionView!
         view.addSubview(notesTextView)
         // Configure the submit button
         submitButton.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.setTitle("Submit", for: .normal)
+        submitButton.setTitle("Save Event", for: .normal)
         submitButton.backgroundColor = .systemBlue
         submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         view.addSubview(submitButton)
@@ -129,6 +141,7 @@ var collectionView: UICollectionView!
         
         // Add constraints
         UIKit.NSLayoutConstraint.activate([
+            
             // Event Type Picker constraints
             eventTypePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             eventTypePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -202,16 +215,17 @@ var collectionView: UICollectionView!
         let notes = "\(notesTextView.text!)\n"
         // Handle saving of photos and get their paths
         let photoPaths = savePhotosAndGetPaths(photos: selectedPhotos)
-
+     
         // Save the event data to Core Data
-        saveEventDataToCoreData(eventType: selectedEvent.name, eventDate: eventDate, userId: selectedEvent.houses, natalAspects: natalAspects, progressedAspects: progressedAspects, photoPaths: photoPaths, notes: notes ?? "No Notes")
+        saveEventDataToCoreData(eventType: selectedEvent.name, eventDate: eventDate, name: name, natalAspects: natalAspects, progressedAspects: progressedAspects, photoPaths: photoPaths, notes: notes)
 
         // Navigate to the EventListViewController
         let eventListVC = EventListViewController() 
         eventListVC.chartCake = chartCake
         eventListVC.latitude = latitude
         eventListVC.longitude = longitude
-        // Initialize your EventListViewController here
+        eventListVC.name = name
+        print("event inputVC: \(name)")
         navigationController?.pushViewController(eventListVC, animated: true)
     }
     
@@ -252,8 +266,11 @@ var collectionView: UICollectionView!
         }
         return paths.joined(separator: ",")
     }
+    func getName() -> String {
+        return ""
+    }
 
-    func saveEventDataToCoreData(eventType: String, eventDate: Date, userId: [String], natalAspects: String, progressedAspects: String, photoPaths: String, notes: String) {
+    func saveEventDataToCoreData(eventType: String, eventDate: Date, name: String, natalAspects: String, progressedAspects: String, photoPaths: String, notes: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -268,6 +285,7 @@ var collectionView: UICollectionView!
         userEvent.setValue(progressedAspects, forKey: "progressedAspects")
         userEvent.setValue(photoPaths, forKey: "photoPaths")
         userEvent.setValue(notes, forKey: "notes")
+        userEvent.setValue(name, forKey: "userID") // 'name' is the variable holding the user's name
 
         do {
             try managedContext.save()

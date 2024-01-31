@@ -1,6 +1,7 @@
 import UIKit
 import SwiftEphemeris
 import CoreData
+import Firebase
 
 class EventListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -10,6 +11,7 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
     var events: [NSManagedObject] = []
     var latitude: Double!
     var longitude: Double!
+    var name: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(CustomEventCell.self, forCellReuseIdentifier: "EventCell")
@@ -19,32 +21,37 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-
+        print("EventListView: \(name)")
         // Register a table view cell class or use a custom cell
 
         // Fetch the saved events from Core Data
-        fetchEvents()
+        fetchEvents(forUser: name)
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchEvents(forUser: name) // Fetch updated events
+        tableView.reloadData() // Reload the table view
     }
 
     
     // Function to fetch events from Core Data
-    func fetchEvents() {
-        // Implement the logic to fetch events from Core Data here
-        // You should replace this with your actual Core Data fetch request
-        
-        // For demonstration purposes, let's assume you have an entity named "UserEvent"
-        // and you want to fetch all UserEvent objects
+    func fetchEvents(forUser userName: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserEvent")
-        
+
+        // Add a predicate to filter events by user ID (user's name)
+        fetchRequest.predicate = NSPredicate(format: "userID == %@", userName)
+
         do {
             events = try managedContext.fetch(fetchRequest)
             tableView.reloadData() // Reload the table view with the fetched events
         } catch let error as NSError {
-            print("Could not fetch events. \(error), \(error.userInfo)")
+            print("Could not fetch events for user \(userName). \(error), \(error.userInfo)")
         }
     }
+
 
     // MARK: - Table view data source
     
@@ -87,8 +94,10 @@ class EventListViewController: UIViewController, UITableViewDataSource, UITableV
         // Assuming ChartCake can be initialized with the event details
         // Replace this with the actual data you need to pass
         if let chartCake = chartCake {
-            let nextViewController = EventsTabBarController(chartCake: ChartCake(birthDate: chartCake.natal.birthDate, latitude: latitude!, longitude: longitude!, transitDate: selectedDate)!, selectedDate: selectedDate)
+            let nextViewController = EventsTabBarController(chartCake: ChartCake(birthDate: chartCake.natal.birthDate, latitude: latitude!, longitude: longitude!, transitDate: selectedDate)!, selectedDate: selectedDate, name: name)
 
+            Analytics.logEvent("journal_entry", parameters: nil
+            )
 
             
             // Push the nextViewController or present it modally

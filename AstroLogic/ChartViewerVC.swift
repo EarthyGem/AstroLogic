@@ -1,7 +1,7 @@
 import UIKit
 import DGCharts
 import SwiftEphemeris
-
+import Firebase
 
 class PercentFormatter: NSObject, ValueFormatter {
     let numberFormatter = NumberFormatter()
@@ -112,7 +112,7 @@ class ChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        Analytics.logEvent("charts_graphs_viewDidLoad", parameters: nil)
         let chartCake = chartCake
         
         let pieChartsButton = UIBarButtonItem(title: "Pie Charts", style: .plain, target: self, action: #selector(pieChartButton))

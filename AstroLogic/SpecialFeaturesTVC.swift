@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEphemeris
 import CoreLocation
-
+import Firebase
 
 class SpecialFeaturesViewController: UIViewController {
 
@@ -73,6 +73,8 @@ class SpecialFeaturesViewController: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        Analytics.logEvent("specialEvents_Loaded", parameters: nil
+        )
 
     }
 
@@ -144,6 +146,9 @@ extension SpecialFeaturesViewController: UITableViewDelegate {
         researchVC.chartCake = chartCake
         researchVC.latitude = latitude
         researchVC.longitude = longitude
+        researchVC.name = name
+        researchVC.title = "\(name!)'s Events"
+        print("special featuresVC: \(name)")
      //   MP_PlanetsVC.title = category.chartType
 
         let categories = [ nameVC,vocationalTVC,medicalAstrologyVC,horaryVC,cycleChartsVC,aspectChartsVC ,weatherVC,questionVC,researchVC]

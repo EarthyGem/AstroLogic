@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 import CoreData
 import SwiftEphemeris
-class EventDetailsViewController: UIViewController, UITextFieldDelegate {
+import Photos
+
+class EventDetailsViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var event: NSManagedObject! // The event object passed from the previous view controller
     var selectedDate: Date?
@@ -20,25 +22,14 @@ class EventDetailsViewController: UIViewController, UITextFieldDelegate {
     let journalTextView = UITextView()
     let imagesStackView = UIStackView()
     var notes: String?
+    let addPhotosButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         print("EventDetailsViewController loaded. Event: \(String(describing: event))")
         setupUI()
         displayEventDetails()
-        for path in photoPaths {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.layer.borderColor = UIColor.red.cgColor
-            imageView.layer.borderWidth = 1
-            imageView.backgroundColor = UIColor.lightGray // Temporary background color
-
-            if let image = loadImageFromPath(path) {
-                imageView.image = image
-            }
-
-            imagesStackView.addArrangedSubview(imageView)
-        }
+        setupAddPhotosButton()
+      
     }
 
         // Add this code inside your EventDetailsViewController
@@ -60,6 +51,8 @@ class EventDetailsViewController: UIViewController, UITextFieldDelegate {
             eventNameTextField.borderStyle = .roundedRect
             if let event = event {
                 eventNameTextField.text = event.value(forKey: "eventType") as? String ?? "Event"
+                // Inside setupUI function
+            
                 eventDateLabel.text = formatDate(event.value(forKey: "eventDate") as? Date ?? Date())
                 displayEventDetails()
             } else {
@@ -128,35 +121,106 @@ class EventDetailsViewController: UIViewController, UITextFieldDelegate {
                 imagesStackView.heightAnchor.constraint(equalToConstant: 100) // Adjust as needed
             ])
         }
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        if let imageView = sender.view as? UIImageView {
+            presentFullscreenImage(imageView.image)
+        }
+    }
+    func setupAddPhotosButton() {
+           addPhotosButton.setTitle("Add Photos", for: .normal)
+           addPhotosButton.backgroundColor = .systemBlue
+           addPhotosButton.addTarget(self, action: #selector(addPhotosButtonTapped), for: .touchUpInside)
+           view.addSubview(addPhotosButton)
 
-        func displayEventDetails() {
-            guard let event = event else {
-                print("Event is nil in displayEventDetails")
-                print("Photo paths: \(photoPaths)")
+           addPhotosButton.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               addPhotosButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+               addPhotosButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+               addPhotosButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+               addPhotosButton.heightAnchor.constraint(equalToConstant: 50)
+           ])
+       }
 
-                // Handle nil event appropriately here, maybe with an error message to the user
-                return
-            }
+       @objc func addPhotosButtonTapped() {
+           let imagePickerController = UIImagePickerController()
+           imagePickerController.delegate = self
+           imagePickerController.sourceType = .photoLibrary
+           present(imagePickerController, animated: true, completion: nil)
+       }
 
-            if let photoPathsString = event.value(forKey: "photoPaths") as? String, !photoPathsString.isEmpty {
-                let photoPaths = photoPathsString.components(separatedBy: ",")
-                for path in photoPaths {
-                    if let image = loadImageFromPath(path.trimmingCharacters(in: .whitespacesAndNewlines)) {
-                        let imageView = UIImageView(image: image)
-                        imageView.contentMode = .scaleAspectFill
-                        imageView.clipsToBounds = true
-                        imagesStackView.addArrangedSubview(imageView)
-                    } else {
-                        print("Could not load image at path: \(path)")
-                        // Handle the case where the image could not be loaded
-                    }
+       // UIImagePickerControllerDelegate methods
+       func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+           guard let selectedImage = info[.originalImage] as? UIImage else { return }
+
+           // Handle saving of photo and updating Core Data
+           if let path = savePhotoToFileSystem(photo: selectedImage) {
+               // Append the new path to your photoPaths array and update Core Data
+               photoPaths.append(path)
+               savePhotoPathsToCoreData()
+               displayEventDetails() // Refresh the display
+           }
+
+           dismiss(animated: true, completion: nil)
+       }
+    func savePhotoPathsToCoreData() {
+          guard let event = event else { return }
+
+          let pathsString = photoPaths.joined(separator: ",")
+          event.setValue(pathsString, forKey: "photoPaths")
+
+          do {
+              try event.managedObjectContext?.save()
+          } catch {
+              print("Error saving photo paths: \(error)")
+          }
+      }
+
+    func displayEventDetails() {
+        // Clear the imagesStackView before adding new image views
+        imagesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        guard let event = event else {
+            print("Event is nil in displayEventDetails")
+            print("Photo paths: \(photoPaths)")
+            return
+        }
+        
+        if let photoPathsString = event.value(forKey: "photoPaths") as? String, !photoPathsString.isEmpty {
+            let photoPaths = photoPathsString.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            let uniquePhotoPaths = Array(Set(photoPaths)) // Remove duplicates if needed
+            for path in uniquePhotoPaths {
+                if let image = loadImageFromPath(path) {
+                    let imageView = UIImageView(image: image)
+                    imageView.contentMode = .scaleAspectFill
+                    imageView.clipsToBounds = true
+                    imageView.isUserInteractionEnabled = true
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+                    imageView.addGestureRecognizer(tapGesture)
+                    imagesStackView.addArrangedSubview(imageView)
+                } else {
+                    print("Could not load image at path: \(path)")
                 }
-            } else {
-                print("No photo paths available or photoPaths is not a String")
-                // Handle the case where there are no photos or the data is invalid
             }
         }
+    }
+       
+          func presentFullscreenImage(_ image: UIImage?) {
+              let fullscreenViewController = UIViewController()
+              fullscreenViewController.view.backgroundColor = UIColor.black
+              let fullscreenImageView = UIImageView(image: image)
+              fullscreenImageView.contentMode = .scaleAspectFit
+              fullscreenImageView.frame = fullscreenViewController.view.frame
+              fullscreenViewController.view.addSubview(fullscreenImageView)
 
+              let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+              fullscreenViewController.view.addGestureRecognizer(tapGesture)
+
+              present(fullscreenViewController, animated: true, completion: nil)
+          }
+
+          @objc func dismissFullscreenImage() {
+              dismiss(animated: true, completion: nil)
+          }
 
         func loadImageFromPath(_ path: String) -> UIImage? {
             let fileURL = URL(fileURLWithPath: path)
@@ -198,6 +262,29 @@ class EventDetailsViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
+ 
+
+    // Implement the UITextFieldDelegate method
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == eventNameTextField {
+            guard let event = event, let newEventName = eventNameTextField.text, !newEventName.isEmpty else {
+                return
+            }
+            
+            // Update the event name attribute of the NSManagedObject
+            event.setValue(newEventName, forKey: "eventType")
+            
+            // Save the CoreData context to persist the changes
+            do {
+                try event.managedObjectContext?.save()
+                print("Event name updated to: \(newEventName)")
+            } catch {
+                print("Error saving event name: \(error)")
+            }
+        }
+    }
+
+    // ... rest of your code
 
 
         func formatDate(_ date: Date) -> String {
@@ -212,6 +299,32 @@ class EventDetailsViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder() // Dismiss the keyboard
             return true
         }
+    func savePhotoToFileSystem(photo: UIImage) -> String? {
+        // Create a unique file name or identifier for the image
+        let fileName = UUID().uuidString + ".jpg"
+
+        // Get the document directory URL
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+
+        // Create the full file URL
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+
+        // Convert the UIImage to JPEG data
+        guard let data = photo.jpegData(compressionQuality: 1.0) else {
+            return nil
+        }
+
+        // Write the data to the file URL
+        do {
+            try data.write(to: fileURL)
+            return fileURL.path
+        } catch {
+            print("Error saving photo: \(error)")
+            return nil
+        }
+    }
 
     }
 
