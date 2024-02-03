@@ -342,26 +342,23 @@ class BirthChartView: UIView {
             }
             return false
         }
-
         for (index, (celestialObject, imageName)) in sortedPlanetSymbols.enumerated() {
-              guard let position = planetPositions[celestialObject] else { continue }
-              let angle = 2 * .pi - (position * .pi / 180) + .pi
-              let radius = min(bounds.width, bounds.height) * 0.46 - 20 // Adjust the offset for each layer
-              let center = CGPoint(x: bounds.midX, y: bounds.midY)
-              let symbolCenterX = center.x + cos(angle) * radius
-              let symbolCenterY = center.y + sin(angle) * radius
+            guard let position = planetPositions[celestialObject] else { continue }
+            let angle = 2 * .pi - (position * .pi / 180) + .pi
+            let radius = min(bounds.width, bounds.height) * 0.46 - 20 // Adjust the offset for each layer
+            let center = CGPoint(x: bounds.midX, y: bounds.midY)
+
+            // Call the drawPlanetSymbol function
+            drawPlanetSymbol(context: context, imageName: imageName, angle: angle, radius: radius, center: center)
+
+
+
 
               let symbolSize = min(bounds.width, bounds.height) / 30
-              let symbolRect = CGRect(x: symbolCenterX - symbolSize / 2, y: symbolCenterY - symbolSize / 2, width: symbolSize, height: symbolSize)
 
-              if let image = UIImage(named: imageName) {
-                  image.draw(in: symbolRect)
-              }
-
-              // Draw degrees and minutes text labels next to each symbol, ensuring no overlap
               let degree = sortedPlanetDegree[index].degree
               let minute = sortedPlanetMinute[index].minute
-              
+
               // Draw the degree label
               drawTextLabel(context: context, text: degree, angle: angle, radius: radius - symbolSize, center: center, fontSize: adjustedFontSize(for: 9))
 
@@ -369,7 +366,9 @@ class BirthChartView: UIView {
               let signImageName = sortedPlanetSignSymbol[index].imageName
               drawSignSymbol(context: context, imageName: signImageName, angle: angle, radius: radius - symbolSize * 2, center: center)
 
-              // Draw the minute label
+
+
+            // Draw the minute label
               drawTextLabel(context: context, text: minute, angle: angle, radius: radius - symbolSize * 3, center: center, fontSize: adjustedFontSize(for: 6))
           }
       }
@@ -404,8 +403,16 @@ class BirthChartView: UIView {
           }
       }
 
-  
-    
+    private func drawPlanetSymbol(context: CGContext, imageName: String, angle: CGFloat, radius: CGFloat, center: CGPoint) {
+        if let image = UIImage(named: imageName) {
+            let imageSize = min(bounds.width, bounds.height) / 40
+            let imageCenterX = center.x + cos(angle) * radius - imageSize / 2
+            let imageCenterY = center.y + sin(angle) * radius - imageSize / 2
+            let imageRect = CGRect(x: imageCenterX, y: imageCenterY, width: imageSize, height: imageSize)
+            image.draw(in: imageRect)
+        }
+    }
+
     
     func updatePlanetPositions(newPositions: [CelestialObject: CGFloat]) {
         planetPositions = newPositions

@@ -73,7 +73,7 @@ class SpecialFeaturesViewController: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        Analytics.logEvent("specialEvents_Loaded", parameters: nil
+        Analytics.logEvent("specialFeatures_tabeView_viewed", parameters: nil
         )
 
     }

@@ -337,8 +337,10 @@ class NewAspectsCustomTableViewCell: UITableViewCell {
            
        }
        
-    public func configure(aspectingPlanet: String, secondPlanetImageImageName: String, firstSignTextText: String, secondSignTextText: String, secondPlanetTextText: String, firstPlanetTextText: String,firstAspectHeaderTextText: String,secondAspectHeaderTextText: String ) {
-           
+    func configure(aspectingPlanet: String, secondPlanetImageImageName: String, firstSignTextText: String, secondSignTextText: String, secondPlanetTextText: String, firstPlanetTextText: String, firstAspectHeaderTextText: String, secondAspectHeaderTextText: String) {
+        // Your existing configuration code
+        print("Configuring cell UI with aspect detail: \(secondPlanetTextText)")
+    
 //                   planetGlyphImageName
 //           firstSignGlyph.frame = CGRect(x: 10, y: 20, width: 14, height: 15)
 //

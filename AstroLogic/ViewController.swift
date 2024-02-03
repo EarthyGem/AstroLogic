@@ -375,6 +375,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
            }
        }
 
+
     @objc func toggleSwitchChanged(sender: UISwitch) {
         // Handle switch state changes here
         // You can access sender.isOn to determine the new state (true for on, false for off)
@@ -397,7 +398,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
     @objc func showMyCharts() {
         let myChartsViewController = ChartsViewController() // Assuming it's a basic table view
-        Analytics.logEvent("add_chart", parameters: nil
+        Analytics.logEvent("tapped_chart_folder", parameters: nil
         )
 
         
@@ -930,3 +931,5 @@ extension ViewController: CLLocationManagerDelegate {
     }
 
 }
+
+

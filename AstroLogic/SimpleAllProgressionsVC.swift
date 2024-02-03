@@ -35,9 +35,9 @@ struct PlanetAspectCounts {
 
 
 class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, KeywordSelectionViewControllerDelegate {
-  
     
-
+    
+    
     var chart: Chart?
     var chartCake: ChartCake?
     var selectedDate: Date?
@@ -56,177 +56,177 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         "11th House": ["Friendship", "Community", "Aspirations", "Groups"],
         "12th House": ["Subconscious", "Hidden Strengths", "Secrets", "Sacrifice"]
     ]
-
-
- 
+    
+    
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-
+        
         return scrollView
     }()
     
     private let sunCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
         label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let moonCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let mercuryCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let venusCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let marsCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let jupiterCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let saturnCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let uranusCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let neptuneCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
-       private let plutoCapsuleLabel: UILabel = {
-           let label = UILabel()
-           label.textAlignment = .center
-           label.textColor = .white
-           label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
-           return label
-       }()
-
+        return label
+    }()
+    
+    private let moonCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let mercuryCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let venusCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let marsCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let jupiterCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let saturnCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let uranusCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let neptuneCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
+    private let plutoCapsuleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-BoldOblique", size: 10)
+        return label
+    }()
+    
     private let sunCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let moonCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let mercuryCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let venusCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let marsCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let jupiterCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let saturnCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let uranusCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let neptuneCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
-       private let plutoCapsuleView: UIView = {
-           let view = UIView()
-           view.layer.cornerRadius = 7
-           view.backgroundColor = .systemBlue
-           return view
-       }()
-
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let moonCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let mercuryCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let venusCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let marsCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let jupiterCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let saturnCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let uranusCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let neptuneCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
+    private let plutoCapsuleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 7
+        view.backgroundColor = .systemBlue
+        return view
+    }()
+    
     private let capsuleView: UIView = {
-          let view = UIView()
-          view.layer.cornerRadius = 7 // Adjust for desired curvature
-          view.backgroundColor = .systemBlue // Choose your color
-          return view
-      }()
-
+        let view = UIView()
+        view.layer.cornerRadius = 7 // Adjust for desired curvature
+        view.backgroundColor = .systemBlue // Choose your color
+        return view
+    }()
+    
     private let capsuleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white // Choose your text color
-
+        
         // Set the font to a bold and italic system font if available
         if let font = UIFont(name: "Helvetica-BoldOblique", size: 10) {
             label.font = font
@@ -234,79 +234,79 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
             // Alternatively, set to a default font
             label.font = UIFont.systemFont(ofSize: 9)
         }
-
+        
         return label
     }()
     
     private let sunScrollView: UIView = {
         let sunScrollView = UIView()
-
+        
         return sunScrollView
     }()
     
     private let moonScrollView: UIView = {
         let moonScrollView = UIView()
-
+        
         return moonScrollView
     }()
     
     private let mercuryScrollView: UIView = {
         let mercuryScrollView = UIView()
-
+        
         return mercuryScrollView
     }()
     private let venusScrollView: UIView = {
         let venusScrollView = UIView()
-
+        
         return venusScrollView
     }()
     private let marsScrollView: UIView = {
         let marsScrollView = UIView()
-
+        
         return marsScrollView
     }()
     private let jupiterScrollView: UIView = {
         let jupiterScrollView = UIView()
-
+        
         return jupiterScrollView
     }()
     private let saturnScrollView: UIView = {
         let saturnScrollView = UIView()
-
+        
         return saturnScrollView
     }()
     private let uranusScrollView: UIView = {
         let uranusScrollView = UIView()
-
+        
         return uranusScrollView
     }()
     private let neptuneScrollView: UIView = {
         let neptuneScrollView = UIView()
-
+        
         return neptuneScrollView
     }()
     private let plutoScrollView: UIView = {
         let plutoScrollView = UIView()
-
+        
         return plutoScrollView
     }()
     
     private let sunTableView: UITableView = {
         let sunTableView = UITableView()
-
+        
         sunTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
-
-
+        
+        
         
         return sunTableView
     }()
     
     private let ascTableView: UITableView = {
         let ascTableView = UITableView()
-
+        
         ascTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
-
-
+        
+        
         
         return ascTableView
     }()
@@ -321,7 +321,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
     
     private let mercuryTableView: UITableView = {
         let mercuryTableView = UITableView()
-
+        
         mercuryTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return mercuryTableView
     }()
@@ -349,7 +349,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
     
     private let saturnTableView: UITableView = {
         let saturnTableView = UITableView()
-
+        
         saturnTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return saturnTableView
     }()
@@ -362,13 +362,13 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
     }()
     private let neptuneTableView: UITableView = {
         let neptuneTableView = UITableView()
-
+        
         neptuneTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return neptuneTableView
     }()
     private let plutoTableView: UITableView = {
         let plutoTableView = UITableView()
-
+        
         plutoTableView.register(NewAspectsCustomTableViewCell.self, forCellReuseIdentifier: NewAspectsCustomTableViewCell.identifier)
         return plutoTableView
     }()
@@ -451,25 +451,25 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         return topTransitImage
         
     }()
- let sunButton = createCapsuleButton()
-   let moonButton = createCapsuleButton()
-  let mercuryButton = createCapsuleButton()
+    let sunButton = createCapsuleButton()
+    let moonButton = createCapsuleButton()
+    let mercuryButton = createCapsuleButton()
     let venusButton = createCapsuleButton()
-     let marsButton = createCapsuleButton()
-     let jupiterButton = createCapsuleButton()
-     let saturnButton = createCapsuleButton()
+    let marsButton = createCapsuleButton()
+    let jupiterButton = createCapsuleButton()
+    let saturnButton = createCapsuleButton()
     let uranusButton = createCapsuleButton()
     let neptuneButton = createCapsuleButton()
     let plutoButton = createCapsuleButton()
-
-      private static func createCapsuleButton() -> UIButton {
-          let button = UIButton(type: .system)
-          button.backgroundColor = .systemBlue
-          button.setTitleColor(.white, for: .normal)
-          button.layer.cornerRadius = 7
-          // Additional styling can be added here
-          return button
-      }
+    
+    private static func createCapsuleButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 7
+        // Additional styling can be added here
+        return button
+    }
     private func setupButton(_ button: UIButton, title: String, houseCusp: Cusp, containerView: UIView, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
         button.frame = CGRect(x: x, y: y, width: width, height: height)
         button.setTitle("\(houseCusp.houseString)", for: .normal)
@@ -478,13 +478,13 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         button.addTarget(self, action: #selector(showKeywordSelectionVC(_:)), for: .touchUpInside)
         containerView.addSubview(button)
     }
-
+    
     private func setupPlanetButtons() {
         let capsuleWidth: CGFloat = 60
         let capsuleHeight: CGFloat = 15
         let capsuleX: CGFloat = 60
         let capsuleY: CGFloat = 35
-
+        
         // Sun
         setupButton(sunButton, title: "Sun", houseCusp: chartCake!.natal.houseCusps.house(of: chartCake!.natal.sun), containerView: sunScrollView, x: capsuleX, y: capsuleY, width: capsuleWidth, height: capsuleHeight)
         
@@ -511,15 +511,15 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         setupButton(neptuneButton, title: "Neptune", houseCusp: chartCake!.natal.houseCusps.house(of: chartCake!.natal.neptune), containerView: neptuneScrollView, x: capsuleX, y: capsuleY, width: capsuleWidth, height: capsuleHeight)
         // Pluto
         setupButton(plutoButton, title: "Pluto", houseCusp: chartCake!.natal.houseCusps.house(of: chartCake!.natal.pluto), containerView: plutoScrollView, x: capsuleX, y: capsuleY , width: capsuleWidth, height: capsuleHeight)
-        }
-       
-                    
-                    
-
+    }
     
-
+    
+    
+    
+    
+    
     @objc func showKeywordSelectionVC(_ sender: UIButton) {
-       print("Button tapped!")
+        print("Button tapped!")
         guard let title = sender.title(for: .normal), let house = title.components(separatedBy: " - ").last else { return }
         
         let keywordsVC = KeywordSelectionViewController()
@@ -527,74 +527,74 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         keywordsVC.delegate = self // Make sure you've set the delegate
         present(keywordsVC, animated: true)
     }
-
+    
     
     var SelectedIndex = -1
     var isCollapsed = false
-
-
+    
+    
     func keywordsSelected(_ keywords: [String]) {
         // Handle the selected keywords here
         // For example, you might update a label or process the keywords further
         print("Selected Keywords: \(keywords)")
     }
-
+    
     var currentPlanet: Planet?
-
+    
     override func viewDidLoad() {
-       super.viewDidLoad()
-       // Load data here
-       currentPlanet = planet(for: sunTableView)
-   
+        super.viewDidLoad()
+        // Load data here
+        currentPlanet = planet(for: sunTableView)
+        
         let planetsTableViews = [sunTableView, moonTableView, mercuryTableView, venusTableView, marsTableView, jupiterTableView, saturnTableView, uranusTableView, neptuneTableView, plutoTableView]
         let planetsScrollView = [sunScrollView, moonScrollView, mercuryScrollView, venusScrollView, marsScrollView, jupiterScrollView, saturnScrollView, uranusScrollView, neptuneScrollView, plutoScrollView]
-
+        
         // Iterate over each pair of table view and scroll view
         for index in 0..<planetsTableViews.count {
             let tableView = planetsTableViews[index]
             let scrollView = planetsScrollView[index]
-
+            
             // Calculate the total row count for the current table view
             let totalRowCount = totalRowCountForPlanetTableView(planet: planet(for: tableView)!)
-
+            
             // Only add the table view to the scroll view if it has progressed aspects
             if totalRowCount > 0 {
                 scrollView.addSubview(tableView)
             }
         }
-
-         
+        
+        
         sunTableView.rowHeight = UITableView.automaticDimension
         sunTableView.estimatedRowHeight = 120
-
+        
         moonTableView.rowHeight = UITableView.automaticDimension
         moonTableView.estimatedRowHeight = 120
-
+        
         mercuryTableView.rowHeight = UITableView.automaticDimension
         mercuryTableView.estimatedRowHeight = 120
-
+        
         venusTableView.rowHeight = UITableView.automaticDimension
         venusTableView.estimatedRowHeight = 120
-
+        
         marsTableView.rowHeight = UITableView.automaticDimension
         marsTableView.estimatedRowHeight = 120
-
+        
         jupiterTableView.rowHeight = UITableView.automaticDimension
         jupiterTableView.estimatedRowHeight = 120
-
+        
         saturnTableView.rowHeight = UITableView.automaticDimension
         saturnTableView.estimatedRowHeight = 120
-
+        
         uranusTableView.rowHeight = UITableView.automaticDimension
         uranusTableView.estimatedRowHeight = 120
-
+        
         neptuneTableView.rowHeight = UITableView.automaticDimension
         neptuneTableView.estimatedRowHeight = 120
-
+        
         plutoTableView.rowHeight = UITableView.automaticDimension
         plutoTableView.estimatedRowHeight = 120
-
-       
+        
+        
         sunTableView.dataSource = self
         sunTableView.delegate = self
         moonTableView.dataSource = self
@@ -620,7 +620,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         setupPlanetButtons()
         
         
-      
+        
         sunTableView.frame = CGRect(x: sunTableView.frame.origin.x, y: sunTableView.frame.origin.y , width: sunTableView.frame.size.width, height: sunTableView.contentSize.height)
         
         moonTableView.frame = CGRect(x: moonTableView.frame.origin.x, y: moonTableView.frame.origin.y , width: moonTableView.frame.size.width, height: moonTableView.contentSize.height)
@@ -642,9 +642,9 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         plutoTableView.frame = CGRect(x: plutoTableView.frame.origin.x, y: plutoTableView.frame.origin.y , width: plutoTableView.frame.size.width, height: plutoTableView.contentSize.height)
         
         ascTableView.frame = CGRect(x: ascTableView.frame.origin.x, y: ascTableView.frame.origin.y , width: ascTableView.frame.size.width, height: ascTableView.contentSize.height)
-    
-
-
+        
+        
+        
         scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 20)
         scrollView.backgroundColor = .clear
         view.addSubview(scrollView)
@@ -667,7 +667,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         
         let photoButton = UIButton(frame: CGRect(x: 75, y: 170, width: 20, height: 20))
         photoButton.setImage(UIImage(systemName: "photo.fill"), for: .normal)
-
+        
         photoButton.tintColor = .white // Or whichever color you prefer for the icon
         photoButton.addTarget(self, action: #selector(memoriesButtonTapped), for: .touchUpInside)
         scrollView.addSubview(photoButton)
@@ -677,11 +677,11 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         scrollView.addSubview(sunScrollView)
         //        sunScrollView.contentSize = CGSize(width: 300, height: 200)
         
-                sunTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
+        sunTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
         moonTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
-
+        
         mercuryTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
-
+        
         venusTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
         marsTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
         jupiterTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
@@ -689,10 +689,10 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         uranusTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
         neptuneTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
         plutoTableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.00)
-
-              view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
-
-       
+        
+        view.frame = CGRect(x: 0, y: 0, width: 400, height: 6000)
+        
+        
         // Then set the contentSize.height for each tableView
         // Assuming you have declared and implemented the totalHeightForTableView(tableView:) function correctly
         sunTableView.contentSize.height = totalHeightForTableView(tableView: sunTableView)
@@ -705,7 +705,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         uranusTableView.contentSize.height = totalHeightForTableView(tableView: uranusTableView)
         neptuneTableView.contentSize.height = totalHeightForTableView(tableView: neptuneTableView)
         plutoTableView.contentSize.height = totalHeightForTableView(tableView: plutoTableView)
-
+        
         // Similarly, implement methods for other table views (Moon, Mercury, Venus, etc.)
         // Disable scrolling for each table view
         sunTableView.isScrollEnabled = false
@@ -718,7 +718,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         uranusTableView.isScrollEnabled = false
         neptuneTableView.isScrollEnabled = false
         plutoTableView.isScrollEnabled = false
-
+        
         // Adjust the frame for each table view
         sunTableView.frame.size.height = sunTableView.contentSize.height
         moonTableView.frame.size.height = moonTableView.contentSize.height
@@ -730,76 +730,63 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         uranusTableView.frame.size.height = uranusTableView.contentSize.height
         neptuneTableView.frame.size.height = neptuneTableView.contentSize.height
         plutoTableView.frame.size.height = plutoTableView.contentSize.height
-
-        // Assume you have a function to layout table views sequentially without overlap
-     
-
-//        // Calculate the total height for the scroll view content
-//        let totalScrollViewContentHeight = sunTableView.frame.maxY + moonTableView.frame.height + mercuryTableView.frame.height + venusTableView.frame.height + marsTableView.frame.height + jupiterTableView.frame.height + saturnTableView.frame.height + uranusTableView.frame.height + neptuneTableView.frame.height + plutoTableView.frame.height + 50
-//
-//        // Set the scroll view content size
-//        scrollView.contentSize = CGSize(width: view.frame.width, height: totalScrollViewContentHeight)
-
         
-        print("Setting sunTableView contentSize.height to: \(totalHeightForTableView(tableView: sunTableView))")
+        
         sunTableView.contentSize.height = totalHeightForTableView(tableView: sunTableView)
         sunTableView.isScrollEnabled = false
         sunTableView.frame.size.height = sunTableView.contentSize.height
-
-        print("Setting moonTableView contentSize.height to: \(totalHeightForTableView(tableView: moonTableView))")
+        
         moonTableView.contentSize.height = totalHeightForTableView(tableView: moonTableView)
         moonTableView.isScrollEnabled = false
         moonTableView.frame.size.height = moonTableView.contentSize.height
-
-        print("Setting mercuryTableView contentSize.height to: \(totalHeightForTableView(tableView: mercuryTableView))")
+        
         mercuryTableView.contentSize.height = totalHeightForTableView(tableView: mercuryTableView)
         mercuryTableView.isScrollEnabled = false
         mercuryTableView.frame.size.height = mercuryTableView.contentSize.height
-
-        print("Setting venusTableView contentSize.height to: \(totalHeightForTableView(tableView: venusTableView))")
+        
+        
         venusTableView.contentSize.height = totalHeightForTableView(tableView: venusTableView)
         venusTableView.isScrollEnabled = false
         venusTableView.frame.size.height = venusTableView.contentSize.height
-
-        print("Setting marsTableView contentSize.height to: \(totalHeightForTableView(tableView: marsTableView))")
+        
         marsTableView.contentSize.height = totalHeightForTableView(tableView: marsTableView)
         marsTableView.isScrollEnabled = false
         marsTableView.frame.size.height = marsTableView.contentSize.height
-
+        
         print("Setting jupiterTableView contentSize.height to: \(totalHeightForTableView(tableView: jupiterTableView))")
         jupiterTableView.contentSize.height = totalHeightForTableView(tableView: jupiterTableView)
         jupiterTableView.isScrollEnabled = false
         jupiterTableView.frame.size.height = jupiterTableView.contentSize.height
-
+        
         print("Setting saturnTableView contentSize.height to: \(totalHeightForTableView(tableView: saturnTableView))")
         saturnTableView.contentSize.height = totalHeightForTableView(tableView: saturnTableView)
         saturnTableView.isScrollEnabled = false
         saturnTableView.frame.size.height = saturnTableView.contentSize.height
-
+        
         print("Setting uranusTableView contentSize.height to: \(totalHeightForTableView(tableView: uranusTableView))")
         uranusTableView.contentSize.height = totalHeightForTableView(tableView: uranusTableView)
         uranusTableView.isScrollEnabled = false
         uranusTableView.frame.size.height = uranusTableView.contentSize.height
-
+        
         print("Setting neptuneTableView contentSize.height to: \(totalHeightForTableView(tableView: neptuneTableView))")
         neptuneTableView.contentSize.height = totalHeightForTableView(tableView: neptuneTableView)
         neptuneTableView.isScrollEnabled = false
         neptuneTableView.frame.size.height = neptuneTableView.contentSize.height
-
+        
         print("Setting plutoTableView contentSize.height to: \(totalHeightForTableView(tableView: plutoTableView))")
         plutoTableView.contentSize.height = totalHeightForTableView(tableView: plutoTableView)
         plutoTableView.isScrollEnabled = false
         plutoTableView.frame.size.height = plutoTableView.contentSize.height
-
+        
         // After setting all the table view heights and disabling scroll
         print("All table views' contentSize.height set and scrolling disabled.")
-
+        
         // Calculate the total height for the scroll view content
         let totalScrollViewContentHeight = sunTableView.frame.maxY + moonTableView.frame.height + mercuryTableView.frame.height + venusTableView.frame.height + marsTableView.frame.height + jupiterTableView.frame.height + saturnTableView.frame.height + uranusTableView.frame.height + neptuneTableView.frame.height + plutoTableView.frame.height + 50
-
+        
         print("Total ScrollView Content Height: \(totalScrollViewContentHeight)")
         scrollView.contentSize = CGSize(width: view.frame.width, height: totalScrollViewContentHeight)
-
+        
         
         
         scrollView.addSubview(moonScrollView)
@@ -837,11 +824,11 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         scrollView.addSubview(plutoScrollView)
         //        plutoScrollView.contentSize = CGSize(width: 300, height: 200)
         plutoScrollView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.20)
-
+        
         //        sunScrollView.addSubview(plutoTableView)
         // Do any additional setup after loading the view.
         
-
+        
         //        sunScrollView.frame = CGRect(x: 10, y: 150, width: view.frame.size.width - 20, height: view.frame.size.height - 20)
         //
         
@@ -935,18 +922,18 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         plutoScrollView.addSubview(plutoSignGlyph)
         plutoSignGlyph.backgroundColor = .clear
         
-
-
-
+        
+        
+        
         let spacing: CGFloat = 15 // space between scrollViews
         var yOffset: CGFloat = 200 // initial y-offset for the first scrollView
-
+        
         // Configure the sunTableView and its scrollView
         sunTableView.frame = CGRect(x: 10, y: 35, width: view.frame.size.width - 20, height: sunTableView.contentSize.height)
         sunScrollView.frame = CGRect(x: 0, y: yOffset, width: view.frame.size.width, height: sunTableView.frame.height + 40)
         yOffset = sunScrollView.frame.maxY + spacing
         sunScrollView.addSubview(sunTableView)
-
+        
         // Configure the moonTableView and its scrollView
         moonTableView.frame = CGRect(x: 10, y: 35, width: view.frame.size.width - 20, height: moonTableView.contentSize.height)
         print("moonTableView2: \(moonTableView.contentSize.height)")
@@ -996,105 +983,105 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         neptuneScrollView.frame = CGRect(x: 0, y: yOffset, width: view.frame.size.width, height: neptuneTableView.frame.height + 40)
         yOffset = neptuneScrollView.frame.maxY + spacing
         neptuneScrollView.addSubview(neptuneTableView)
-
+        
         // Repeat the above steps for the remaining table views...
-
+        
         // For the last tableView, you don't need to update yOffset after setting the frame
         plutoTableView.frame = CGRect(x: 10, y: 35, width: view.frame.size.width - 20, height: plutoTableView.contentSize.height)
         plutoScrollView.frame = CGRect(x: 0, y: yOffset, width: view.frame.size.width, height: plutoTableView.frame.height + 40)
         plutoScrollView.addSubview(plutoTableView)
-
+        
         // Finally, set the content size of your scrollView to match the total content
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: yOffset)
-
+        
         
         let capsuleWidth: CGFloat = 60
-            let capsuleHeight: CGFloat = 15
-            let capsuleX: CGFloat = 60 // For example, 10 points from the right edge
-            let capsuleY: CGFloat = 35 // Adjust the Y-coordinate as needed
-
-            capsuleView.frame = CGRect(x: capsuleX, y: capsuleY, width: capsuleWidth, height: capsuleHeight)
-            capsuleLabel.frame = CGRect(x: capsuleX, y: capsuleY, width: capsuleWidth, height: capsuleHeight)
+        let capsuleHeight: CGFloat = 15
+        let capsuleX: CGFloat = 60 // For example, 10 points from the right edge
+        let capsuleY: CGFloat = 35 // Adjust the Y-coordinate as needed
+        
+        capsuleView.frame = CGRect(x: capsuleX, y: capsuleY, width: capsuleWidth, height: capsuleHeight)
+        capsuleLabel.frame = CGRect(x: capsuleX, y: capsuleY, width: capsuleWidth, height: capsuleHeight)
         let sunText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         sunText.text = "Vitality and Authority \("") \("")"
         sunText.font = .systemFont(ofSize: 17)
         sunText.textColor = .white
-     
+        
         sunScrollView.addSubview(sunText)
         
-   
-
-    
-
+        
+        
+        
+        
         let moonText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         moonText.text = "Shifting Moods and Everyday Affairs \("") \("")"
         moonText.font = .systemFont(ofSize: 17)
         moonText.textColor = .white
-
+        
         moonScrollView.addSubview(moonText)
-
+        
         let mercuryText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         mercuryText.text = "Mental Interests, Learning, Teaching \("") \("")"
         mercuryText.font = .systemFont(ofSize: 17)
         mercuryText.textColor = .white
-
+        
         mercuryScrollView.addSubview(mercuryText)
-
+        
         let venusText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         venusText.text = "Affections and Social Relations \("") \("")"
         venusText.font = .systemFont(ofSize: 17)
         venusText.textColor = .white
-
+        
         venusScrollView.addSubview(venusText)
-
+        
         let marsText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         marsText.text = "Strife, Increased Expenditure of Energy \("") \("")"
-
+        
         marsText.font = .systemFont(ofSize: 17)
         marsText.textColor = .white
-
+        
         marsScrollView.addSubview(marsText)
-
+        
         let jupiterText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         jupiterText.text = "Abundance and Optimism \("") \("")"
         jupiterText.font = .systemFont(ofSize: 17)
         jupiterText.textColor = .white
-
+        
         jupiterScrollView.addSubview(jupiterText)
-
+        
         let saturnText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         saturnText.text = "Work, and Economy or Loss \("") \("")"
         saturnText.font = .systemFont(ofSize: 17)
         saturnText.textColor = .white
-
+        
         saturnScrollView.addSubview(saturnText)
-
+        
         let uranusText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         uranusText.text = "Sudden Events and Radical Changes \("") \("")"
         uranusText.font = .systemFont(ofSize: 17)
         uranusText.textColor = .white
-
+        
         uranusScrollView.addSubview(uranusText)
-
+        
         let neptuneText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         neptuneText.text = "The Imagination and Schemes \("") \("")"
         neptuneText.font = .systemFont(ofSize: 17)
         neptuneText.textColor = .white
-
+        
         neptuneScrollView.addSubview(neptuneText)
-
+        
         let plutoText = UILabel(frame: CGRect(x: 55, y: 10, width: 300, height: 20))
         plutoText.text = "Hidden Forces, Coercion or Cooperation \("") \("")"
         plutoText.font = .systemFont(ofSize: 17)
         plutoText.textColor = .white
-
+        
         plutoScrollView.addSubview(plutoText)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More Aspects", style: .plain, target: self, action: #selector(moreAspectsButtonTapped))
         view.backgroundColor = .black
-  
-        //
+        
+        
     }
-
+    
     @objc func navigateToTimeChangeVC() {
         let timeChangeVC = TransitAspectsTimeChangeViewController()
         self.navigationController?.pushViewController(timeChangeVC, animated: true)
@@ -1106,15 +1093,15 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         flipSynastryVC.selectedDate = self.selectedDate
         self.navigationController?.pushViewController(flipSynastryVC, animated: true)
     }
-   
-
+    
+    
     
     @objc func memoriesButtonTapped() {
         guard var selectedDate = selectedDate else {
             // Handle case where selectedDate is nil
             return
         }
-
+        
         ImagePickerViewController.fetchPhotos(from: selectedDate) { photoAssets in
             if photoAssets.isEmpty {
                 // Show a message to the user that there are no photos from the selected date
@@ -1130,7 +1117,7 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
             }
         }
     }
-
+    
     func totalRowCountForPlanetTableView(planet: Planet) -> Int {
         // Make sure the cache is updated before attempting to access it
         calculateAndCacheAspectCounts(for: planet)
@@ -1138,20 +1125,26 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
             return 0
         }
         // Now sum up the counts using the cached values
+        
+        print("counts.major \(counts.majors)")
+        print("counts.solarArcs \(counts.solarArcs)")
+        print("counts.minors \(counts.minors)")
+        print("counts.transits \(counts.transits)")
         return counts.majors + counts.solarArcs + counts.minors + counts.transits
     }
-
+    
     let headerHeight: CGFloat = 50 // Replace 50 with your actual header height
-
+    
     func totalHeightForTableView(tableView: UITableView) -> CGFloat {
         guard let planet = planet(for: tableView) else {
             return 0
         }
-
+        
         // Get the total row count using the updated totalRowCountForPlanetTableView method
         let totalRowCount = totalRowCountForPlanetTableView(planet: planet)
+        print("tital row count: \(totalRowCount)")
         let totalRowsHeight = CGFloat(totalRowCount) * 130 // Assuming 130 is the row height
-
+        
         // Calculate the total section count using the numberOfSections method
         let sectionCount = self.numberOfSections(in: tableView)
         
@@ -1160,17 +1153,16 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
         
         // The total height of the table is the sum of all rows' height and all headers' height
         let totalHeight = totalRowsHeight + totalHeadersHeight
-
+        
         return totalHeight
     }
-
-
+    
     func calculateAndCacheAspectCounts(for planet: Planet) {
         // Check if already cached to prevent recalculation
-        if let cachedCounts = planetAspectCountCache[planet] {
-              print("Aspect counts for \(planet) are already cached.")
-              return
-          }
+        if let _ = planetAspectCountCache[planet] {
+            // If already cached, no need to recalculate
+            return
+        }
         
         // Fetch and map the aspects to their string representations
         let majorsAspects = chartCake!.progressedSimpleAspectsFiltered(by: planet.celestialObject).map { $0.basicAspectString }
@@ -1189,28 +1181,91 @@ class SimpleAllProgressionsAspectedPlanetsViewController  : UIViewController, Ke
             minorsAspects: minorsAspects,
             transitsAspects: transitsAspects
         )
-        print("Caching aspect counts for \(planet): Majors: \(majorsAspects.count), Solar Arcs: \(solarArcsAspects.count), Minors: \(minorsAspects.count), Transits: \(transitsAspects.count)")
         
-    }
-    }
+        // After updating the cache, reload the specific table view for this planet on the main thread
+        // Reload the specific table view for this planet
+          DispatchQueue.main.async { [weak self] in
+              switch planet {
+              case .sun:
+                  self?.sunTableView.reloadData()
+              case .moon:
+                  self?.moonTableView.reloadData()
+              case .mercury:
+                  self?.mercuryTableView.reloadData()
+              case .venus:
+                  self?.venusTableView.reloadData()
+              case .mars:
+                  self?.marsTableView.reloadData()
+              case .jupiter:
+                  self?.jupiterTableView.reloadData()
+              case .saturn:
+                  self?.saturnTableView.reloadData()
+              case .uranus:
+                  self?.uranusTableView.reloadData()
+              case .neptune:
+                  self?.neptuneTableView.reloadData()
+              case .pluto:
+                  self?.plutoTableView.reloadData()
+              case .southNode: break
+              }
+          }
 
-
+          // Debug information
+          print("Aspect counts for \(planet): Majors: \(majorsAspects.count), Solar Arcs: \(solarArcsAspects.count), Minors: \(minorsAspects.count), Transits: \(transitsAspects.count)")
+      }
+}
 
 extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+          guard let planet = planet(for: tableView) else {
+              return 0
+          }
+          calculateAndCacheAspectCounts(for: planet)
+          // Filter out sections with zero counts using getAspectCount directly
+          return SectionType.allCases.filter { sectionType in
+              getAspectCount(for: planet, sectionType: sectionType) > 0
+          }.count
+      }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let planet = planet(for: tableView) else {
             return 0
         }
-        calculateAndCacheAspectCounts(for: planet)
-        let cachedCounts = planetAspectCountCache[planet]!
-        return SectionType.allCases.filter { sectionType in
-            let count = getCount(from: cachedCounts, for: sectionType)
-            return count > 0
-        }.count
+        let sectionTypesWithCounts = SectionType.allCases.filter {
+            getAspectCount(for: planet, sectionType: $0) > 0
+        }
+        if section < sectionTypesWithCounts.count {
+            let sectionType = sectionTypesWithCounts[section]
+            let count = getAspectCount(for: planet, sectionType: sectionType)
+            print("Number of rows in section \(sectionType.title) for \(planet): \(count)")
+            return count
+        } else {
+            return 0
+        }
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let planet = planet(for: tableView) else {
+            return 0
+        }
 
+        // Get the section type for the current section
+        let sectionTypesWithCounts = SectionType.allCases.filter {
+            getAspectCount(for: planet, sectionType: $0) > 0
+        }
+
+        // Check if the index path's section is valid
+        if indexPath.section < sectionTypesWithCounts.count {
+            let sectionType = sectionTypesWithCounts[indexPath.section]
+
+            // Check if the row index is within the count of aspects for this section
+            return getAspectCount(for: planet, sectionType: sectionType) > indexPath.row ? 90 : 0
+        } else {
+            // If the section is not valid, return a minimal height or zero
+            return 0
+        }
+    }
 
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -1249,39 +1304,53 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
         }
     }
 
-
     private func configureCell(for tableView: UITableView, planet: Planet, inSection sectionType: SectionType, at indexPath: IndexPath) -> UITableViewCell {
+        // Dequeue the cell
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewAspectsCustomTableViewCell.identifier, for: indexPath) as? NewAspectsCustomTableViewCell else {
-            return UITableViewCell()
+            fatalError("Error: Unable to dequeue NewAspectsCustomTableViewCell.")
         }
 
-        // Ensure the cache has the necessary data before trying to access it
-        calculateAndCacheAspectCounts(for: planet)
+        // Get cached data, calculate if not available
+        if planetAspectCountCache[planet] == nil {
+            calculateAndCacheAspectCounts(for: planet)
+            print("Cached data after calculation1: \(planetAspectCountCache)")
+
+        }
+
+        // Now that we're sure we have cached data, let's access it
         guard let cachedData = planetAspectCountCache[planet] else {
-            // Handle the case where cached data is not available
-            return cell
+            fatalError("Error: No cached data available for planet \(planet).")
         }
 
-        let aspectString: String?
-        switch sectionType {
-        case .majors:
-            aspectString = cachedData.majorsAspects.indices.contains(indexPath.row) ? cachedData.majorsAspects[indexPath.row] : nil
-        case .solarArcs:
-            aspectString = cachedData.solarArcsAspects.indices.contains(indexPath.row) ? cachedData.solarArcsAspects[indexPath.row] : nil
-        case .minors:
-            aspectString = cachedData.minorsAspects.indices.contains(indexPath.row) ? cachedData.minorsAspects[indexPath.row] : nil
-        case .transits:
-            aspectString = cachedData.transitsAspects.indices.contains(indexPath.row) ? cachedData.transitsAspects[indexPath.row] : nil
-        }
+        // Debug: Print the cached aspect data for verification
+        print("Configuring cell for \(planet): \(cachedData)")
 
-        // Configure the cell with the fetched aspect string if available
+        // Determine the aspect string to configure the cell with
+        let aspectString: String? = {
+            
+
+            switch sectionType {
+            case .majors:
+                return indexPath.row < cachedData.majorsAspects.count ? cachedData.majorsAspects[indexPath.row] : nil
+            case .solarArcs:
+                return indexPath.row < cachedData.solarArcsAspects.count ? cachedData.solarArcsAspects[indexPath.row] : nil
+            case .minors:
+                return indexPath.row < cachedData.minorsAspects.count ? cachedData.minorsAspects[indexPath.row] : nil
+            case .transits:
+                print("Attempting to configure cell for Transits. IndexPath.row: \(indexPath.row), Transits count: \(cachedData.transitsAspects.count)")
+                return indexPath.row < cachedData.transitsAspects.count ? cachedData.transitsAspects[indexPath.row] : nil
+            }
+            
+        }()
+
+        // Configure the cell if the aspect string exists, otherwise clear the cell
         if let aspectDetail = aspectString {
-             print("Aspect detail for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row) is: \(aspectDetail)")
+            print("Retrieved aspect string for configuration: \(String(describing: aspectString))")
+
+            print("Configuring cell for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row) with aspect detail: \(aspectDetail)")
             cell.configure(aspectingPlanet: "", secondPlanetImageImageName: "", firstSignTextText: "", secondSignTextText: "", secondPlanetTextText: aspectDetail, firstPlanetTextText: "", firstAspectHeaderTextText: "", secondAspectHeaderTextText: "")
         } else {
-            print("No aspect detail for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row)")
-            // Handle the case where there is no aspect string for this indexPath
-            // Perhaps clear out old data or show a placeholder
+            print("No aspect detail for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row). Clearing cell configuration.")
             cell.clearConfiguration()
         }
 
@@ -1289,7 +1358,10 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
     }
 
 
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("cellForRowAt called for section \(indexPath.section), row \(indexPath.row)")
+      
         guard let planet = planet(for: tableView), let sectionType = SectionType(rawValue: indexPath.section) else {
                print("Error: Could not find planet or sectionType for table view at indexPath: \(indexPath)")
                return UITableViewCell()
@@ -1320,8 +1392,10 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
         default:
             return UITableViewCell()
         }
+        
+
         let cell = configureCell(for: tableView, planet: planet, inSection: sectionType, at: indexPath)
-          print("Configuring cell for Planet: \(planet), Section: \(sectionType.title), Row: \(indexPath.row)")
+
           return cell
       }
     
@@ -1340,38 +1414,10 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
         return headerView
     }
 
-  
-
-           
-           
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-
-            
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
             }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let planet = planet(for: tableView) else {
-            print("Error: Could not find planet for table view.")
-            return 0
-        }
-        let sectionTypesWithRows = SectionType.allCases.filter { self.numberOfRowsForPlanet(planet, inSection: $0) > 0 }
-        if section < sectionTypesWithRows.count {
-            let sectionType = sectionTypesWithRows[section]
-            let rowCount = numberOfRowsForPlanet(planet, inSection: sectionType)
-            print("Planet: \(planet), Section: \(sectionType.title), Row count: \(rowCount)")
-            return rowCount
-        } else {
-            print("Error: Section \(section) is out of bounds for planet \(planet).")
-            return 0
-        }
-    }
 
-
-    
-    // This function should be defined within the SimpleAllProgressionsAspectedPlanetsViewController
     func getAspectCount(for planet: Planet, sectionType: SectionType) -> Int {
         // Ensure the counts are calculated and cached
         calculateAndCacheAspectCounts(for: planet)
@@ -1392,25 +1438,10 @@ extension SimpleAllProgressionsAspectedPlanetsViewController  : UITableViewDataS
 
     
 
-    private func getCount(from counts: PlanetAspectCounts, for sectionType: SectionType) -> Int {
-        switch sectionType {
-        case .majors:
-            return counts.majors
-        case .solarArcs:
-            return counts.solarArcs
-        case .minors:
-            return counts.minors
-        case .transits:
-            return counts.transits
-    }
-        
-    }
 
     func numberOfRowsForPlanet(_ planet: Planet, inSection sectionType: SectionType) -> Int {
-        // Use the new getAspectCount function which retrieves data from the cache
-        let count = getAspectCount(for: planet, sectionType: sectionType)
-      //  print("Data** count for \(planet) in section \(sectionType): \(count)")
-        return count > 0 ? count : 0
-    }
+         let count = getAspectCount(for: planet, sectionType: sectionType)
+         return count > 0 ? count : 0
+     }
 
 }

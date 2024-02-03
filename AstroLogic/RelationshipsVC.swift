@@ -25,7 +25,7 @@ class RelationshipsViewController: UIViewController, UITableViewDataSource, Rela
         super.viewDidLoad()
 
         setupTableView()
-        Analytics.logEvent("relationships_viewDidLoad", parameters: nil)
+        Analytics.logEvent("relationships_tabeView_viewed", parameters: nil)
    
             // Data has not been pre-fetched
             charts = fetchAllCharts()

@@ -81,7 +81,7 @@ var collectionView: UICollectionView!
         eventListVC.longitude = longitude
         eventListVC.name = name
         print("event inputVC: \(name)")
-        Analytics.logEvent("eventsList_button_tapped", parameters: nil)
+        Analytics.logEvent("added_event", parameters: nil)
         // Initialize your EventListViewController here
         navigationController?.pushViewController(eventListVC, animated: true)
     }

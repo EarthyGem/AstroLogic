@@ -22,10 +22,11 @@ class PercentFormatter: NSObject, ValueFormatter {
 
 
 class ChartViewController: UIViewController {
-    var birthChartView: BirthChartView!
-
+    var birthChartView: AstrologicalChartView!
+    var wheelChartContent: WheelChartContent!
     var harmonyDiscordLabels: [UILabel] = []
-
+    var horoscopeChart: HoroscopeChart!
+    var signIntercept: SignIntercept!
     var harmonyDiscordScores: [String: (harmony: Double, discord: Double, difference: Double)]?
     var chart: Chart!
     var scrollView: UIScrollView!
@@ -41,8 +42,8 @@ class ChartViewController: UIViewController {
     //    var scores = [Planet : Double] = [:]
     var signHarmonyDisharmony: [Zodiac: Double] = [:]
     var houseHarmonyDisharmony: [Int: Double] = [:]
-    
-
+    var planets: [PlanetModel] = []
+    var houses: [HouseModel] = []
     let planetSymbolMapping: [String: String] = [
         "Sun": "☉",
         "Moon": "☽",
@@ -112,16 +113,91 @@ class ChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Analytics.logEvent("charts_graphs_viewDidLoad", parameters: nil)
-        let chartCake = chartCake
-        
+        Analytics.logEvent("charts_graphs_viewed", parameters: nil)
+        guard let chartCake = chartCake else {
+            assert(false, "We have much bigger problems")
+            return
+        }
+
+      //  let chartCake = chartCake
+        var houseData: [(houseId: Int, signId: Int, sign: String, startDegree: Double, endDegree: Double)] = [
+            (1, chartCake.natal.houseCusps.first.sign.rawValue, chartCake.natal.houseCusps.first.sign.keyName, chartCake.natal.houseCusps.first.value, chartCake.natal.houseCusps.second.value),
+            (2, chartCake.natal.houseCusps.second.sign.rawValue, chartCake.natal.houseCusps.second.sign.keyName, chartCake.natal.houseCusps.second.value, chartCake.natal.houseCusps.third.value),
+            (3, chartCake.natal.houseCusps.third.sign.rawValue, chartCake.natal.houseCusps.third.sign.keyName, chartCake.natal.houseCusps.third.value, chartCake.natal.houseCusps.fourth.value),
+            (4, chartCake.natal.houseCusps.fourth.sign.rawValue, chartCake.natal.houseCusps.fourth.sign.keyName, chartCake.natal.houseCusps.fourth.value, chartCake.natal.houseCusps.fifth.value),
+            (5, chartCake.natal.houseCusps.fifth.sign.rawValue, chartCake.natal.houseCusps.fifth.sign.keyName, chartCake.natal.houseCusps.fifth.value, chartCake.natal.houseCusps.sixth.value),
+            (6, chartCake.natal.houseCusps.sixth.sign.rawValue, chartCake.natal.houseCusps.sixth.sign.keyName, chartCake.natal.houseCusps.sixth.value, chartCake.natal.houseCusps.seventh.value),
+            (7, chartCake.natal.houseCusps.seventh.sign.rawValue, chartCake.natal.houseCusps.seventh.sign.keyName, chartCake.natal.houseCusps.seventh.value, chartCake.natal.houseCusps.eighth.value),
+            (8, chartCake.natal.houseCusps.eighth.sign.rawValue, chartCake.natal.houseCusps.eighth.sign.keyName, chartCake.natal.houseCusps.eighth.value, chartCake.natal.houseCusps.ninth.value),
+            (9, chartCake.natal.houseCusps.ninth.sign.rawValue, chartCake.natal.houseCusps.ninth.sign.keyName, chartCake.natal.houseCusps.ninth.value, chartCake.natal.houseCusps.tenth.value),
+            (10, chartCake.natal.houseCusps.tenth.sign.rawValue, chartCake.natal.houseCusps.tenth.sign.keyName, chartCake.natal.houseCusps.tenth.value, chartCake.natal.houseCusps.eleventh.value),
+            (11, chartCake.natal.houseCusps.eleventh.sign.rawValue, chartCake.natal.houseCusps.eleventh.sign.keyName, chartCake.natal.houseCusps.eleventh.value, chartCake.natal.houseCusps.twelfth.value),
+            (12, chartCake.natal.houseCusps.twelfth.sign.rawValue, chartCake.natal.houseCusps.twelfth.sign.keyName, chartCake.natal.houseCusps.twelfth.value, chartCake.natal.houseCusps.first.value)
+        ]
+
+
+
+            let planetData: [(name: String, signId: Int, sign: String, house: Int, fullDegree: Double, isRetrograde: Bool)] = [
+            ("Sun", 3, chartCake.natal.sun.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.sun).number, chartCake.natal.sun.longitude, false),
+            ("Moon", 4, chartCake.natal.moon.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.moon).number, chartCake.natal.moon.longitude, false),
+            ("Mercury", 2, chartCake.natal.mercury.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.mercury).number, chartCake.natal.mercury.longitude, false),
+            ("Venus", 1, chartCake.natal.venus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.venus).number, chartCake.natal.venus.longitude, false),
+            ("Mars", 1, chartCake.natal.mars.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.mars).number, chartCake.natal.mars.longitude, false),
+            ("Jupiter", 3, chartCake.natal.jupiter.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.jupiter).number, chartCake.natal.jupiter.longitude, false),
+            ("Saturn", 5, chartCake.natal.saturn.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.saturn).number, chartCake.natal.saturn.longitude, false),
+            ("Uranus", 8, chartCake.natal.uranus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.uranus).number, chartCake.natal.uranus.longitude, false),
+            ("Neptune", 9, chartCake.natal.neptune.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.neptune).number, chartCake.natal.neptune.longitude, false),
+            ("Pluto", 7, chartCake.natal.uranus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.uranus).number, chartCake.natal.uranus.longitude, false),
+            // Add data for other planets here
+        ]
+
+        // Create an empty array to store the PlanetModel instances
+        var planets: [PlanetModel] = []
+
+        // Loop through the planet data and create PlanetModel instances
+        for data in planetData {
+            let planet = PlanetModel(
+                name: data.name.lowercased(),
+                signId: data.signId,
+                sign: data.sign,
+                house: data.house,
+                fullDegree: data.fullDegree,
+                isRetrograde: data.isRetrograde
+            )
+            planets.append(planet)
+          //  print(planets)
+        }
+
+        var houses: [HouseModel] = []
+
+        // Loop through the planet data and create PlanetModel instances
+        for data2 in houseData {
+            let house = HouseModel(
+                houseId: data2.houseId,
+                signId: data2.signId,
+                sign: data2.sign,
+                startDegree: data2.startDegree,
+                endDegree: data2.endDegree
+
+            )
+            houses.append(house)
+          //  print(houses)
+        }
+
         let pieChartsButton = UIBarButtonItem(title: "Pie Charts", style: .plain, target: self, action: #selector(pieChartButton))
         navigationItem.rightBarButtonItem = pieChartsButton
 
         view.backgroundColor = .black
         let screenWidth = UIScreen.main.bounds.width
-        let birthChartView = BirthChartView(frame: CGRect(x: 0, y: 30, width: screenWidth, height: screenWidth), chartCake: chartCake!)
         
+        signIntercept = SignIntercept(sign: "", house: 1)
+horoscopeChart = HoroscopeChart(houses: houses, planets: planets)
+        wheelChartContent =
+        WheelChartContent(chart: horoscopeChart, signIntercepts: [signIntercept])
+        let birthChartView = AstrologicalChartView(frame: CGRect(x: 0, y: 30, width: screenWidth, height: screenWidth), chartCake: chartCake, wheelChartContent: wheelChartContent)
+        print("wheelChart: \(wheelChartContent.chart.planets)")
+        print("signIntercept: \(signIntercept.house)")
+        print("horoscopeChart: \(horoscopeChart.houses)")
         //   birthChartView.backgroundColor = .white
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 1500))
         // Set the total height to 4000

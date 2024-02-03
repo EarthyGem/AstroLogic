@@ -30,8 +30,8 @@ class ProgressionsAspectsTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("Debug in ProgressionsAspectsTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))") // Debugging line 1
-          print("Memory address in ProgressionsAspectsTabBarController: \(Unmanaged.passUnretained(self).toOpaque())") // Debugging line 2
+    //    print("Debug in ProgressionsAspectsTabBarController: \(String(describing: selectedDate)), \(String(describing: chartCake))") // Debugging line 1
+       //   print("Memory address in ProgressionsAspectsTabBarController: \(Unmanaged.passUnretained(self).toOpaque())") // Debugging line 2
 
         // For Majors (sun symbol is just an example; you may need to find a suitable SF Symbol)
         let progressedAspects = SimpleAllProgressionsAspectedPlanetsViewController()
@@ -75,7 +75,7 @@ class ProgressionsAspectsTabBarController: UITabBarController {
 
         self.viewControllers = [progressedAspects, majorProgressedAspects, sAAspects, minors,transits]
 
-        print("Debug After Set: \(String(describing: progressedAspects.selectedDate)), \(String(describing: progressedAspects.chartCake))")
+       // print("Debug After Set: \(String(describing: progressedAspects.selectedDate)), \(String(describing: progressedAspects.chartCake))")
         _ = progressedAspects.view
         _ = majorProgressedAspects.view
         _ = sAAspects.view
