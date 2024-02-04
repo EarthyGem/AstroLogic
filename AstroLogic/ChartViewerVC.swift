@@ -118,38 +118,40 @@ class ChartViewController: UIViewController {
             assert(false, "We have much bigger problems")
             return
         }
-
+        print("\(chartCake.natal.sun)")
       //  let chartCake = chartCake
         var houseData: [(houseId: Int, signId: Int, sign: String, startDegree: Double, endDegree: Double)] = [
-            (1, chartCake.natal.houseCusps.first.sign.rawValue, chartCake.natal.houseCusps.first.sign.keyName, chartCake.natal.houseCusps.first.value, chartCake.natal.houseCusps.second.value),
-            (2, chartCake.natal.houseCusps.second.sign.rawValue, chartCake.natal.houseCusps.second.sign.keyName, chartCake.natal.houseCusps.second.value, chartCake.natal.houseCusps.third.value),
-            (3, chartCake.natal.houseCusps.third.sign.rawValue, chartCake.natal.houseCusps.third.sign.keyName, chartCake.natal.houseCusps.third.value, chartCake.natal.houseCusps.fourth.value),
-            (4, chartCake.natal.houseCusps.fourth.sign.rawValue, chartCake.natal.houseCusps.fourth.sign.keyName, chartCake.natal.houseCusps.fourth.value, chartCake.natal.houseCusps.fifth.value),
-            (5, chartCake.natal.houseCusps.fifth.sign.rawValue, chartCake.natal.houseCusps.fifth.sign.keyName, chartCake.natal.houseCusps.fifth.value, chartCake.natal.houseCusps.sixth.value),
-            (6, chartCake.natal.houseCusps.sixth.sign.rawValue, chartCake.natal.houseCusps.sixth.sign.keyName, chartCake.natal.houseCusps.sixth.value, chartCake.natal.houseCusps.seventh.value),
-            (7, chartCake.natal.houseCusps.seventh.sign.rawValue, chartCake.natal.houseCusps.seventh.sign.keyName, chartCake.natal.houseCusps.seventh.value, chartCake.natal.houseCusps.eighth.value),
-            (8, chartCake.natal.houseCusps.eighth.sign.rawValue, chartCake.natal.houseCusps.eighth.sign.keyName, chartCake.natal.houseCusps.eighth.value, chartCake.natal.houseCusps.ninth.value),
-            (9, chartCake.natal.houseCusps.ninth.sign.rawValue, chartCake.natal.houseCusps.ninth.sign.keyName, chartCake.natal.houseCusps.ninth.value, chartCake.natal.houseCusps.tenth.value),
-            (10, chartCake.natal.houseCusps.tenth.sign.rawValue, chartCake.natal.houseCusps.tenth.sign.keyName, chartCake.natal.houseCusps.tenth.value, chartCake.natal.houseCusps.eleventh.value),
-            (11, chartCake.natal.houseCusps.eleventh.sign.rawValue, chartCake.natal.houseCusps.eleventh.sign.keyName, chartCake.natal.houseCusps.eleventh.value, chartCake.natal.houseCusps.twelfth.value),
-            (12, chartCake.natal.houseCusps.twelfth.sign.rawValue, chartCake.natal.houseCusps.twelfth.sign.keyName, chartCake.natal.houseCusps.twelfth.value, chartCake.natal.houseCusps.first.value)
+            (1, chartCake.natal.houseCusps.first.sign.signId, chartCake.natal.houseCusps.first.sign.keyName, 0, 30),
+            (2, chartCake.natal.houseCusps.second.sign.signId, chartCake.natal.houseCusps.second.sign.keyName, 30, 60),
+            (3, chartCake.natal.houseCusps.third.sign.signId, chartCake.natal.houseCusps.third.sign.keyName, 60, 90),
+            (4, chartCake.natal.houseCusps.fourth.sign.signId, chartCake.natal.houseCusps.fourth.sign.keyName, 90, 120),
+            (5, chartCake.natal.houseCusps.fifth.sign.signId, chartCake.natal.houseCusps.fifth.sign.keyName, 120, 150),
+            (6, chartCake.natal.houseCusps.sixth.sign.signId, chartCake.natal.houseCusps.sixth.sign.keyName, 150, 180),
+            (7, chartCake.natal.houseCusps.seventh.sign.signId, chartCake.natal.houseCusps.seventh.sign.keyName, 180, 210),
+            (8, chartCake.natal.houseCusps.eighth.sign.signId, chartCake.natal.houseCusps.eighth.sign.keyName, 210, 240),
+            (9, chartCake.natal.houseCusps.ninth.sign.signId, chartCake.natal.houseCusps.ninth.sign.keyName, 240, 270),
+            (10, chartCake.natal.houseCusps.tenth.sign.signId, chartCake.natal.houseCusps.tenth.sign.keyName, 270, 300),
+            (11, chartCake.natal.houseCusps.eleventh.sign.signId, chartCake.natal.houseCusps.eleventh.sign.keyName, 300, 330),
+            (12, chartCake.natal.houseCusps.twelfth.sign.signId, chartCake.natal.houseCusps.twelfth.sign.keyName, 330, 30)
         ]
 
 
 
-            let planetData: [(name: String, signId: Int, sign: String, house: Int, fullDegree: Double, isRetrograde: Bool)] = [
-            ("Sun", 3, chartCake.natal.sun.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.sun).number, chartCake.natal.sun.longitude, false),
-            ("Moon", 4, chartCake.natal.moon.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.moon).number, chartCake.natal.moon.longitude, false),
-            ("Mercury", 2, chartCake.natal.mercury.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.mercury).number, chartCake.natal.mercury.longitude, false),
-            ("Venus", 1, chartCake.natal.venus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.venus).number, chartCake.natal.venus.longitude, false),
-            ("Mars", 1, chartCake.natal.mars.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.mars).number, chartCake.natal.mars.longitude, false),
-            ("Jupiter", 3, chartCake.natal.jupiter.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.jupiter).number, chartCake.natal.jupiter.longitude, false),
-            ("Saturn", 5, chartCake.natal.saturn.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.saturn).number, chartCake.natal.saturn.longitude, false),
-            ("Uranus", 8, chartCake.natal.uranus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.uranus).number, chartCake.natal.uranus.longitude, false),
-            ("Neptune", 9, chartCake.natal.neptune.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.neptune).number, chartCake.natal.neptune.longitude, false),
-            ("Pluto", 7, chartCake.natal.uranus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.uranus).number, chartCake.natal.uranus.longitude, false),
-            // Add data for other planets here
-        ]
+          
+        let planetData: [(name: String, signId: Int, sign: String, house: Int, fullDegree: Double, isRetrograde: Bool)] = [
+        ("Sun", chartCake.natal.sun.sign.signId, chartCake.natal.sun.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.sun).number, chartCake.natal.sun.degree, false),
+        ("Moon", chartCake.natal.moon.sign.signId, chartCake.natal.moon.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.moon).number, chartCake.natal.moon.degree, false),
+        ("mercury", chartCake.natal.mercury.sign.signId, chartCake.natal.mercury.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.mercury).number, chartCake.natal.mercury.degree, false),
+        ("venus", chartCake.natal.venus.sign.signId, chartCake.natal.venus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.venus).number, chartCake.natal.venus.degree, false),
+        ("Mars", chartCake.natal.mars.sign.signId, chartCake.natal.mars.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.mars).number, chartCake.natal.mars.degree, false),
+        ("Jupiter", chartCake.natal.jupiter.sign.signId, chartCake.natal.jupiter.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.jupiter).number, chartCake.natal.jupiter.degree, false),
+        ("Saturn", chartCake.natal.saturn.sign.signId, chartCake.natal.saturn.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.saturn).number, chartCake.natal.saturn.degree, false),
+        ("Uranus", chartCake.natal.uranus.sign.signId, chartCake.natal.uranus.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.uranus).number, chartCake.natal.uranus.degree, false),
+        ("Neptune", chartCake.natal.neptune.sign.signId
+         , chartCake.natal.neptune.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.neptune).number, chartCake.natal.neptune.degree, false),
+        ("Pluto", chartCake.natal.pluto.sign.signId, chartCake.natal.pluto.sign.keyName, chartCake.natal.houseCusps.house(of: chartCake.natal.pluto).number, chartCake.natal.pluto.degree, false),
+        // Add data for other planets here
+    ]
 
         // Create an empty array to store the PlanetModel instances
         var planets: [PlanetModel] = []
