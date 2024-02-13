@@ -42,20 +42,49 @@ class ImagePickerViewController: UIViewController, UICollectionViewDataSource, U
        // pickImage()
     }
     
+ 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoAssets.count
+        return min(photoAssets.count, 20) // Limit to 10 photos
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
-        
+
+        // Configure the cell with the image
         let asset = photoAssets[indexPath.row]
         PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFill, options: nil) { (image, _) in
             cell.photoImageView.image = image
         }
-        
+
+        // Add tap gesture recognizer to the cell
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        cell.addGestureRecognizer(tapGestureRecognizer)
+        cell.tag = indexPath.row // Use the cell's tag to identify the tapped photo
+
         return cell
     }
+    
+    @objc func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard let indexPath = gestureRecognizer.view?.tag else { return }
+        let asset = photoAssets[indexPath]
+
+        // Fetch the full-size image for the tapped asset
+        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil) { (image, info) in
+            guard let image = image else { return }
+            
+            // Present the image in a new view controller or your preferred presentation method
+            let imageViewController = UIViewController()
+            imageViewController.view.backgroundColor = .black
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = .scaleAspectFit
+            imageView.frame = imageViewController.view.frame
+            imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            imageViewController.view.addSubview(imageView)
+
+            self.present(imageViewController, animated: true, completion: nil)
+        }
+    }
+
     
     class func fetchPhotos(from date: Date, completion: @escaping ([PHAsset]) -> Void) {
         // ... rest of your code ...

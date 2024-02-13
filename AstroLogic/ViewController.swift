@@ -577,6 +577,10 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
                     return
                 }
 
+                guard let chartCake = self.chartCake else {
+                    assert(false, "There is no chart")
+                    return
+                }
 
 
 //              print("get pairs1: \(chartCake?.celestialPairsFromProgressedAspects())")
@@ -597,7 +601,7 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
                 let mostHarmoniousPlanet = getMostHarmoniousPlanet(from: tuple)
              
 
-                let phaseName = chartCake?.lunarPhase(for: chartCake!.natal)
+                let phaseName = chartCake.lunarPhase(for: chartCake.natal)
 
                 let houseHarmonyScores = chart.calculateHouseHarmonyDiscord(bodiesArgument)
                 let houseScores = chart.calculateHouseStrengths(bodiesArgument)
@@ -637,15 +641,15 @@ class ViewController: UIViewController,  SuggestionsViewControllerDelegate, MKLo
 
 
                 var sortedPlanets: [CelestialObject] {
-                    let scores2 = chartCake?.getTotalPowerScoresForPlanets()
-                    return getPlanetsSortedByStrength(from: scores2!)
+                    let scores2 = chartCake.getTotalPowerScoresForPlanets()
+                    return getPlanetsSortedByStrength(from: scores2)
                 }
                 let strongestPlanetArchetype = strongestPlanet.archetype
                 saveChart(name: name, birthDate: chartDate, latitude: latitude, longitude: longitude, birthPlace: birthPlaceTextField.text!, strongestPlanet:  strongestPlanet.keyName, mostHarmoniousPlanet: mostHarmoniousPlanet.keyName, mostDiscordantPlanet: mostDiscordantPlanet.keyName, sentenceText: sentence, strongestPlanetSign: strongestPlanetSign!, strongestPlanetArchetype: strongestPlanetArchetype)
 
 
      //   print("sorted scores: \((sortedPlanets))")
-
+            
                 // Initialize and push the StrongestPlanetViewController
                 // Initialize and push the StrongestPlanetViewController
                 let strongestPlanetVC = StrongestPlanetViewController()
