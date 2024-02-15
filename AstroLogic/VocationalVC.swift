@@ -52,11 +52,18 @@ class VocationalAstrologyViewController: UIViewController {
         return order
     }
 
+    func getStrongestPlanet(from scores: [CelestialObject: Double]) -> CelestialObject {
+        let sorted = scores.sorted { $0.value > $1.value }
+        let strongestPlanet = sorted.first!.key
 
+        return strongestPlanet
+    }
 
     func getNatalPositions() -> [String] {
         var positions = [String]()
         
+        let scores = chartCake.getTotalPowerScoresForPlanets()
+        strongestPlanet = getStrongestPlanet(from: scores).keyName
         // Get the order of the planets
         let planetOrder = getPlanetOrder(strongestPlanet: strongestPlanet!)
         
