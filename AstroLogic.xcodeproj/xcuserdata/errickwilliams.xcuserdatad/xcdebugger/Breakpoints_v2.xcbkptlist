@@ -471,5 +471,53 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C1ED12E-9D50-4439-8F74-95D69EC4DD18"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AstroLogic/EducationContent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "7C1ED12E-9D50-4439-8F74-95D69EC4DD18 - 601eba7ee28e76ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for mercuryEducation"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic1/AstroLogic/EducationContent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "7C1ED12E-9D50-4439-8F74-95D69EC4DD18 - 7c7ae694f83c9ee6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AstroLogic.mercuryEducation.unsafeMutableAddressor : Swift.String"
+                  moduleName = "AstroLogic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/errickwilliams/Documents/AstroLogic1/AstroLogic/EducationContent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
