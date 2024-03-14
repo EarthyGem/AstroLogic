@@ -1,7 +1,0 @@
-.DS_Store
-Build/
-/.build
-/Packages
-/*.xcodeproj
-*/xcschemes/*
-*/xcuserdata/*
